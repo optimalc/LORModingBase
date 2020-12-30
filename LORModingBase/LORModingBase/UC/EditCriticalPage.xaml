@@ -6,7 +6,236 @@
              xmlns:local="clr-namespace:LORModingBase.UC"
              mc:Ignorable="d" 
              Height="400" Width="270">
-    <Grid Background="#FF406DBA">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="43*"/>
+        </Grid.RowDefinitions>
+        <Rectangle x:Name="WindowBg" Fill="#5430BF4B" Grid.RowSpan="7" RadiusX="5" RadiusY="5"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.ColumnSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Button x:Name="BtnRarityCommon" ToolTip="보급 책장으로 지정" Grid.Column="0" Content="보급" FontSize="15" Foreground="#FF30BF4B" Style="{StaticResource StyBtnMenu}" Click="BtnRarityCommon_Click" Background="#54FFFFFF"/>
+            <Button x:Name="BtnRarityUncommon" ToolTip="고급 책장으로 지정" Grid.Column="1" Content="고급" FontSize="15" Foreground="#FF306ABF" Style="{StaticResource StyBtnMenu}" Click="BtnRarityUncommon_Click"/>
+            <Button x:Name="BtnRarityRare" ToolTip="한정 책장으로 지정" Grid.Column="2" Content="한정" FontSize="15" Foreground="#FF8030BF" Style="{StaticResource StyBtnMenu}" Click="BtnRarityRare_Click"/>
+            <Button x:Name="BtnRarityUnique" ToolTip="예술 책장으로 지정" Grid.Column="3" Content="예술" FontSize="15" Foreground="#FFF3B530" Style="{StaticResource StyBtnMenu}" Click="BtnRarityUnique_Click"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.ColumnSpan="7" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Button x:Name="BtnCh1" ToolTip="챕터 1 : 뜬소문" Grid.Column="0" Content="1" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh1_Click"/>
+            <Button x:Name="BtnCh2" ToolTip="챕터 2 : 도시 괴담" Grid.Column="1" Content="2" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh2_Click"/>
+            <Button x:Name="BtnCh3" ToolTip="챕터 3 : 도시 전설" Grid.Column="2" Content="3" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh3_Click"/>
+            <Button x:Name="BtnCh4" ToolTip="챕터 4 : 도시 질병" Grid.Column="3" Content="4" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh4_Click"/>
+            <Button x:Name="BtnCh5" ToolTip="챕터 5 : 도시 악몽" Grid.Column="4" Content="5" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh5_Click"/>
+            <Button x:Name="BtnCh6" ToolTip="챕터 6 : 도시의 별" Grid.Column="5" Content="6" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh6_Click"/>
+            <Button x:Name="BtnCh7" ToolTip="챕터 7 : 도시 질병" Grid.Column="6" Content="7" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh7_Click"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+
+            <Label Grid.Column="0" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <TextBox x:Name="TbxPageName" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0"/>
+            <Label Grid.Column="2" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <TextBox x:Name="TbxPageUniqueID" Grid.Column="3" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Rectangle Grid.Column="4" Grid.ColumnSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Image Grid.Column="0" Source="../Resources/iconHP.png" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <TextBox x:Name="TbxHP" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0"/>
             
+            <Image Grid.Column="2" Source="../Resources/iconBR.png" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1.2" ScaleX="1.2"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-2"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <TextBox x:Name="TbxBR" Grid.Column="3" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0"/>
+            
+            <Image Grid.Column="4" Source="../Resources/iconSpeedDice.png" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="2"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <TextBox x:Name="TbxSpeedDiceMin" Grid.Column="5" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0"/>
+            <Label Grid.Column="5" Content="~" FontSize="15"  Style="{StaticResource StyLbl}" Margin="18,0,0,0"/>
+            <TextBox x:Name="TbxSpeedDiceMax" Grid.Column="6" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0"/>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Rectangle Grid.Column="2"  RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="55*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="../Resources/iconSResist.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-1"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Button x:Name="BtnSResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnSResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnSResist_PreviewMouseRightButtonDown"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="55*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="../Resources/iconPResist.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.75" ScaleY="0.75"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Button x:Name="BtnPResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnPResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnPResist_PreviewMouseRightButtonDown"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="55*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="../Resources/iconHResist.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Button x:Name="BtnHResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnHResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnHResist_PreviewMouseRightButtonDown"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Rectangle Grid.Column="2"  RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="55*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="../Resources/iconBSResist.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-1"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Button x:Name="BtnBSResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnBSResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnBSResist_PreviewMouseRightButtonDown"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="55*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="../Resources/iconBPResist.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.75" ScaleY="0.75"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Button x:Name="BtnBPResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnBPResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnBPResist_PreviewMouseRightButtonDown"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="55*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="../Resources/iconBHResist.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Button x:Name="BtnBHResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnBHResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnBHResist_PreviewMouseRightButtonDown"/>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

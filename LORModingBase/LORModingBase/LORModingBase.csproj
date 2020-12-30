@@ -64,7 +64,9 @@
     </ApplicationDefinition>
     <Compile Include="DM\Config.cs" />
     <Compile Include="DS\Config.cs" />
+    <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\PATH.cs" />
+    <Compile Include="Tools\ColorTools.cs" />
     <Compile Include="Tools\Dialog.cs" />
     <Compile Include="Tools\JsonFile.cs" />
     <Compile Include="Tools\ProcessTools.cs" />
@@ -126,6 +128,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\iconBR.png" />
+    <Resource Include="Resources\iconHP.png" />
+    <Resource Include="Resources\iconSpeedDice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\iconBHResist.png" />
+    <Resource Include="Resources\iconBPResist.png" />
+    <Resource Include="Resources\iconBSResist.png" />
+    <Resource Include="Resources\iconHResist.png" />
+    <Resource Include="Resources\iconPResist.png" />
+    <Resource Include="Resources\iconSResist.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
