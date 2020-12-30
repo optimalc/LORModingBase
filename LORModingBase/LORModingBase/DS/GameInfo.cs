@@ -22,7 +22,7 @@ namespace LORModingBase.DS
         public static List<string> resistInfo_Code = new List<string>() { "Vulnerable", "Weak", "Normal", "Endure", "Resist", "Immune" };
 
         /// <summary>
-        /// Resist info dictionary
+        /// Resist info dictionary reverse
         /// </summary>
         public static Dictionary<string, string> resistInfo_Dic_Rev = new Dictionary<string, string>()
         {
@@ -30,8 +30,21 @@ namespace LORModingBase.DS
             {"약점", "Weak" },
             {"보통", "Normal" },
             {"견딤", "Endure" },
-            {"내성", "Endure" },
-            {"면역", "Immune" },
+            {"내성", "Resist" },
+            {"면역", "Immune" }
+        };
+
+        /// <summary>
+        /// Resist info dictionary
+        /// </summary>
+        public static Dictionary<string, string> resistInfo_Dic = new Dictionary<string, string>()
+        {
+            {"Vulnerable", "취약" },
+            {"Weak", "약점" },
+            {"Normal", "보통" },
+            {"Endure", "견딤" },
+            {"Resist", "내성" },
+            {"Immune", "면역" }
         };
 
         /// <summary>
@@ -101,6 +114,7 @@ namespace LORModingBase.DS
 
         public string chapter = "";
         public string episode = "";
+        public string episodeDes = "";
 
         public string HP = "50";
         public string breakNum = "50";
@@ -109,15 +123,17 @@ namespace LORModingBase.DS
         public string maxSpeedCount = "6";
 
         public string skinName = "";
+        public string skinDes = "";
         public string iconName = "";
+        public string iconDes = "";
 
-        public string SResist = "보통";
-        public string PResist = "보통";
-        public string HResist = "보통";
+        public string SResist = "Normal";
+        public string PResist = "Normal";
+        public string HResist = "Normal";
 
-        public string BSResist = "보통";
-        public string BPResist = "보통";
-        public string BHResist = "보통";
+        public string BSResist = "Normal";
+        public string BPResist = "Normal";
+        public string BHResist = "Normal";
 
         public List<string> passiveIDs = new List<string>();
     }

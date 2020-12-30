@@ -19,11 +19,40 @@ namespace LORModingBase.UC
             this.innerCriticalPageInfo = criticalPageInfo;
 
             ChangeRarityUIInit(criticalPageInfo.rarity);
+            if(!string.IsNullOrEmpty(criticalPageInfo.episodeDes))
+            {
+                BtnEpisode.Content = criticalPageInfo.episodeDes;
+                BtnEpisode.ToolTip = criticalPageInfo.episodeDes;
+            }
+
+            TbxPageName.Text = criticalPageInfo.name;
             TbxPageUniqueID.Text = criticalPageInfo.bookID;
+
             TbxHP.Text = criticalPageInfo.HP;
             TbxBR.Text = criticalPageInfo.breakNum;
             TbxSpeedDiceMin.Text = criticalPageInfo.minSpeedCount;
             TbxSpeedDiceMax.Text = criticalPageInfo.maxSpeedCount;
+
+            if (!string.IsNullOrEmpty(criticalPageInfo.iconDes))
+            {
+                BtnBookIcon.Content = criticalPageInfo.iconDes;
+                BtnBookIcon.ToolTip = criticalPageInfo.iconDes;
+            }
+            if (!string.IsNullOrEmpty(criticalPageInfo.iconDes))
+            {
+                BtnSkin.Content = criticalPageInfo.skinDes;
+                BtnSkin.ToolTip = criticalPageInfo.skinDes;
+            }
+
+            BtnSResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.SResist];
+            BtnPResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.PResist];
+            BtnHResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.HResist];
+
+            BtnBSResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BSResist];
+            BtnBPResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BPResist];
+            BtnBHResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BHResist];
+
+            InitLbxPassives();
         }
 
         private void ChangeRarityUIInit(string rarity)
@@ -132,6 +161,7 @@ namespace LORModingBase.UC
 
                 innerCriticalPageInfo.chapter = chapter;
                 innerCriticalPageInfo.episode = episodeID;
+                innerCriticalPageInfo.episodeDes = CONTENT_TO_SHOW;
             }).ShowDialog();
         }
         private void BtnBookIcon_Click(object sender, RoutedEventArgs e)
@@ -142,6 +172,7 @@ namespace LORModingBase.UC
                 BtnBookIcon.ToolTip = bookIconName;
 
                 innerCriticalPageInfo.iconName = bookIconName.Split(':').Last();
+                innerCriticalPageInfo.iconDes = bookIconName;
             }).ShowDialog();
         }
         private void BtnSkin_Click(object sender, RoutedEventArgs e)
@@ -152,6 +183,7 @@ namespace LORModingBase.UC
                 BtnSkin.ToolTip = bookSkinName;
 
                 innerCriticalPageInfo.skinName = bookSkinName.Split(':').Last();
+                innerCriticalPageInfo.skinDes = bookSkinName;
             }).ShowDialog();
         }
 
