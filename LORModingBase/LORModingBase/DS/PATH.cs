@@ -34,5 +34,14 @@ namespace LORModingBase.DS
         /// Mode localize resources
         /// </summary>
         public static string RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE = $"{RELATIVE_DIC_LOR_MODE_RESOURCES}\\Localize";
+
+        /// <summary>
+        /// Resource dictionary
+        /// </summary>
+        public static string DIC_RESURCE = "./resources";
+        /// <summary>
+        /// Xml bases for equip page
+        /// </summary>
+        public static string RESOURCE_XML_BASE_EQUIP_PAGE = $"{DIC_RESURCE}\\EquipPage.txt";
     }
 }

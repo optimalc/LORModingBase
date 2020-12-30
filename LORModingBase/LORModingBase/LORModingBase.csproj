@@ -62,7 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DM\CheckDatas.cs" />
     <Compile Include="DM\Config.cs" />
+    <Compile Include="DM\ExportDatas.cs" />
     <Compile Include="DM\StaticInfos.cs" />
     <Compile Include="DS\Config.cs" />
     <Compile Include="DS\GameInfo.cs" />

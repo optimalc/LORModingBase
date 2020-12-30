@@ -22,8 +22,8 @@
             <Grid.Background>
                 <ImageBrush ImageSource="./Resources/MenuBg.png"/>
             </Grid.Background>
-            <Button x:Name="BtnSave" Grid.Column="0" Content="[내보내기]" ToolTip="설정된 정보들로 모드 폴더를 생성합니다." Style="{StaticResource StyBtnMenu}"/>
-            <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" ToolTip="특정 모드폴더 정보들을 불러옵니다." Style="{StaticResource StyBtnMenu}"/>
+            <Button x:Name="BtnSave" Grid.Column="0" Content="[내보내기]" ToolTip="설정된 정보들로 모드 폴더를 생성합니다." Style="{StaticResource StyBtnMenu}" Click="BtnSave_Click"/>
+            <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" ToolTip="특정 모드폴더 정보들을 불러옵니다." Style="{StaticResource StyBtnMenu}" Visibility="Hidden"/>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="23*"/>

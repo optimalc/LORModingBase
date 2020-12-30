@@ -1,18 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LORModingBase
 {
@@ -21,7 +10,7 @@ namespace LORModingBase
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<DS.CriticalPageInfo> criticalPageInfos = new List<DS.CriticalPageInfo>();
+        public static List<DS.CriticalPageInfo> criticalPageInfos = new List<DS.CriticalPageInfo>();
 
         #region Init controls
         public MainWindow()
@@ -110,5 +99,24 @@ namespace LORModingBase
             InitSplCriticalPage();
         }
         #endregion
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(TbxModeName.Text))
+                    throw new Exception("모드명이 입력되어 있지 않습니다.");
+
+                DM.CheckDatas.CheckAllDatas();
+                string MOD_DIR_TO_USE = DM.ExportDatas.ExportAllDatas(TbxModeName.Text);
+
+                MessageBox.Show("내보내기가 정상적으로 완료되었습니다.", "완료", MessageBoxButton.OK, MessageBoxImage.Information);
+                Tools.ProcessTools.OpenExplorer(MOD_DIR_TO_USE);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"내보내는 도중 오류가 발생했습니다. : {ex.Message}", "내보내기 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
