@@ -16,21 +16,29 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
             <Grid.Background>
                 <ImageBrush ImageSource="./Resources/MenuBg.png"/>
             </Grid.Background>
             <Button x:Name="BtnSave" Grid.Column="0" Content="[내보내기]" ToolTip="설정된 정보들로 모드 폴더를 생성합니다." Style="{StaticResource StyBtnMenu}"/>
             <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" ToolTip="특정 모드폴더 정보들을 불러옵니다." Style="{StaticResource StyBtnMenu}"/>
-
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="13*"/>
-                    <ColumnDefinition Width="55*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="13*"/>
-                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="23*"/>
+                    <ColumnDefinition Width="80*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="모드명 : " Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxModeName" Grid.Column="1" Text="TEST_MODE" Style="{StaticResource StyTbx}"/>
+            </Grid>
+            <Grid Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="14*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="라오루 위치 : " Style="{StaticResource StyLbl}"/>
                 <Label x:Name="LblLORPath" Grid.Column="1" Content="NONE" HorizontalAlignment="Left" Style="{StaticResource StyLbl}"/>
