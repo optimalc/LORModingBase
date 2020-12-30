@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,12 +12,14 @@ namespace LORModingBase.UC
     public partial class EditCriticalPage : UserControl
     {
         DS.CriticalPageInfo innerCriticalPageInfo = null;
+        Action initStack = null;
 
         #region Init controls
-        public EditCriticalPage(DS.CriticalPageInfo criticalPageInfo)
+        public EditCriticalPage(DS.CriticalPageInfo criticalPageInfo, Action initStack)
         {
             InitializeComponent();
             this.innerCriticalPageInfo = criticalPageInfo;
+            this.initStack = initStack;
 
             ChangeRarityUIInit(criticalPageInfo.rarity);
             if(!string.IsNullOrEmpty(criticalPageInfo.episodeDes))
@@ -287,7 +290,6 @@ namespace LORModingBase.UC
             }
         }
         #endregion
-
         #region Text change events
         private void TbxPageName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -319,5 +321,11 @@ namespace LORModingBase.UC
             innerCriticalPageInfo.maxSpeedCount = TbxSpeedDiceMax.Text;
         }
         #endregion
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.criticalPageInfos.Remove(innerCriticalPageInfo);
+            initStack();
+        }
     }
 }

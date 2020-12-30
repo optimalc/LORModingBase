@@ -20,16 +20,20 @@
         <Rectangle x:Name="WindowBg" Fill="#5430BF4B" Grid.RowSpan="8" RadiusX="5" RadiusY="5"/>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25*"/>
-                <ColumnDefinition Width="25*"/>
-                <ColumnDefinition Width="25*"/>
-                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="12*"/>
             </Grid.ColumnDefinitions>
             <Rectangle Grid.ColumnSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
             <Button x:Name="BtnRarityCommon" ToolTip="보급 책장으로 지정" Grid.Column="0" Content="보급" FontSize="15" Foreground="#FF30BF4B" Style="{StaticResource StyBtnMenu}" Click="BtnRarityCommon_Click" Background="#54FFFFFF"/>
             <Button x:Name="BtnRarityUncommon" ToolTip="고급 책장으로 지정" Grid.Column="1" Content="고급" FontSize="15" Foreground="#FF306ABF" Style="{StaticResource StyBtnMenu}" Click="BtnRarityUncommon_Click"/>
             <Button x:Name="BtnRarityRare" ToolTip="한정 책장으로 지정" Grid.Column="2" Content="한정" FontSize="15" Foreground="#FF8030BF" Style="{StaticResource StyBtnMenu}" Click="BtnRarityRare_Click"/>
             <Button x:Name="BtnRarityUnique" ToolTip="예술 책장으로 지정" Grid.Column="3" Content="예술" FontSize="15" Foreground="#FFF3B530" Style="{StaticResource StyBtnMenu}" Click="BtnRarityUnique_Click"/>
+
+            <Rectangle Grid.Column="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Button x:Name="BtnDelete" Grid.Column="4" Content="X" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Foreground="Red" Click="BtnDelete_Click" />
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

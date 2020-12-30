@@ -78,7 +78,7 @@ namespace LORModingBase
             SplCriticalPage.Children.Clear();
             criticalPageInfos.ForEach((DS.CriticalPageInfo criticalPageInfo) =>
             {
-                SplCriticalPage.Children.Add(new UC.EditCriticalPage(criticalPageInfo));
+                SplCriticalPage.Children.Add(new UC.EditCriticalPage(criticalPageInfo, InitSplCriticalPage));
             });
         }
         #endregion
