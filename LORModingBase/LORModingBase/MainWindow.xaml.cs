@@ -39,6 +39,9 @@ namespace LORModingBase
             if(!Directory.Exists(DS.PATH.DIC_EXPORT_DATAS))
                 Directory.CreateDirectory(DS.PATH.DIC_EXPORT_DATAS);
 
+            if (File.Exists(DS.PATH.VERSION))
+                this.Title = $"LOR Moding Base {File.ReadAllText(DS.PATH.VERSION)}";
+
             DM.Config.LoadData();
         }
 

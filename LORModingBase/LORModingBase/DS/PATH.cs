@@ -17,6 +17,10 @@ namespace LORModingBase.DS
         /// Config file
         /// </summary>
         public const string CONFIG = "./config.json";
+        /// <summary>
+        /// Version info file
+        /// </summary>
+        public const string VERSION = "./version.txt";
 
         /// <summary>
         /// Mode resources
