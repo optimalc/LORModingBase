@@ -20,6 +20,19 @@ namespace LORModingBase.DS
         /// Resist info code
         /// </summary>
         public static List<string> resistInfo_Code = new List<string>() { "Vulnerable", "Weak", "Normal", "Endure", "Resist", "Immune" };
+
+        /// <summary>
+        /// Chpater info doc
+        /// </summary>
+        public static Dictionary<string, string> chapter_Doc = new Dictionary<string, string>() {
+            {"1", "뜬소문" },
+            {"2", "도시 괴담" },
+            {"3", "도시 전설" },
+            {"4", "도시 질병" },
+            {"5", "도시 악몽" },
+            {"6", "도시의 별" },
+            {"7", "챕터 7" }
+        };
     }
 
     /// <summary>
@@ -41,5 +54,32 @@ namespace LORModingBase.DS
         /// Stage chapter
         /// </summary>
         public string Chapter = "";  
+    }
+
+    /// <summary>
+    /// Critical page data structure
+    /// </summary>
+    class CriticalPageInfo
+    {
+        public string rarity = "";
+        public string bookID = "";
+        public string name = "";
+
+        public string chapter = "";
+        public string episode = "";
+
+        public string HP = "";
+        public string breakNum = "";
+
+        public string minSpeedCount = "";
+        public string maxSpeedCount = "";
+
+        public string SResist = "";
+        public string PResist = "";
+        public string HResist = "";
+
+        public string BSResist = "";
+        public string BPResist = "";
+        public string BHResist = "";
     }
 }

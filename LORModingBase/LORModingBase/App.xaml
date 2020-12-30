@@ -69,5 +69,13 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
+
+        <Style TargetType="ListBox" x:Key="StyListBox">
+            <Setter Property="Foreground" Value="#FFFFD9A3"/>
+            <Setter Property="FontFamily" Value="HYHeadLine"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+        </Style>
     </Application.Resources>
 </Application>

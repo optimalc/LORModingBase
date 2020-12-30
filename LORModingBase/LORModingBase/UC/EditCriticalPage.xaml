@@ -33,21 +33,9 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.ColumnSpan="7" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-            <Button x:Name="BtnCh1" ToolTip="챕터 1 : 뜬소문" Grid.Column="0" Content="1" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh1_Click"/>
-            <Button x:Name="BtnCh2" ToolTip="챕터 2 : 도시 괴담" Grid.Column="1" Content="2" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh2_Click"/>
-            <Button x:Name="BtnCh3" ToolTip="챕터 3 : 도시 전설" Grid.Column="2" Content="3" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh3_Click"/>
-            <Button x:Name="BtnCh4" ToolTip="챕터 4 : 도시 질병" Grid.Column="3" Content="4" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh4_Click"/>
-            <Button x:Name="BtnCh5" ToolTip="챕터 5 : 도시 악몽" Grid.Column="4" Content="5" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh5_Click"/>
-            <Button x:Name="BtnCh6" ToolTip="챕터 6 : 도시의 별" Grid.Column="5" Content="6" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh6_Click"/>
-            <Button x:Name="BtnCh7" ToolTip="챕터 7 : 도시 질병" Grid.Column="6" Content="7" FontSize="15"  Style="{StaticResource StyBtnMenu}" Click="BtnCh7_Click"/>
+            <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+            <Button x:Name="BtnEpisode" Grid.Column="1" Content="선택되지 않음" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnEpisode_Click"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

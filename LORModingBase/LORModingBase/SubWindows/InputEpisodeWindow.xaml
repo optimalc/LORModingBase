@@ -1,0 +1,86 @@
+﻿<Window x:Class="LORModingBase.SubWindows.InputEpisodeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LORModingBase.SubWindows"
+        mc:Ignorable="d"
+        Title="에피소드 지정하기" Height="450" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Resources/MainBg.png"/>
+        </Grid.Background>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+            <Label Grid.Row="0" Content="뜬소문" FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <ListBox x:Name="LbxCh1" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxCh1_PreviewMouseDoubleClick"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+            <Label Grid.Row="0" Content="도시 괴담" FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <ListBox x:Name="LbxCh2" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxCh2_PreviewMouseDoubleClick"/>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+            <Label Grid.Row="0" Content="도시 전설" FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <ListBox x:Name="LbxCh3" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxCh3_PreviewMouseDoubleClick"/>
+        </Grid>
+        <Grid Grid.Column="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+            <Label Grid.Row="0" Content="도시 질병" FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <ListBox x:Name="LbxCh4" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxCh4_PreviewMouseDoubleClick"/>
+        </Grid>
+        <Grid Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+            <Label Grid.Row="0" Content="도시 악몽" FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <ListBox x:Name="LbxCh5" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxCh5_PreviewMouseDoubleClick"/>
+        </Grid>
+        <Grid Grid.Column="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+            <Label Grid.Row="0" Content="도시의 별" FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <ListBox x:Name="LbxCh6" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxCh6_PreviewMouseDoubleClick"/>
+        </Grid>
+        <Grid Grid.Column="6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+            <Label Grid.Row="0" Content="챕터 7" FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <ListBox x:Name="LbxCh7" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxCh7_PreviewMouseDoubleClick"/>
+        </Grid>
+    </Grid>
+</Window>

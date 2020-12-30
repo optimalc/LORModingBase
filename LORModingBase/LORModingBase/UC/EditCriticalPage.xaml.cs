@@ -20,7 +20,6 @@ namespace LORModingBase.UC
         {
             InitializeComponent();
             ChangeRarityUIInit("Common");
-            ChangeChapterUIInit(1);
         }
 
         private void ChangeRarityUIInit(string rarity)
@@ -47,42 +46,6 @@ namespace LORModingBase.UC
                 case "Unique":
                     WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54F3B530");
                     BtnRarityUnique.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    break;
-            }
-        }
-        
-        private void ChangeChapterUIInit(int chapter)
-        {
-            BtnCh1.Background = null;
-            BtnCh2.Background = null;
-            BtnCh3.Background = null;
-            BtnCh4.Background = null;
-            BtnCh5.Background = null;
-            BtnCh6.Background = null;
-            BtnCh7.Background = null;
-
-            switch (chapter)
-            {
-                case 1:
-                    BtnCh1.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    break;
-                case 2:
-                    BtnCh2.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    break;
-                case 3:
-                    BtnCh3.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    break;
-                case 4:
-                    BtnCh4.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    break;
-                case 5:
-                    BtnCh5.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    break;
-                case 6:
-                    BtnCh6.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    break;
-                case 7:
-                    BtnCh7.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
                     break;
             }
         }
@@ -128,42 +91,15 @@ namespace LORModingBase.UC
             ChangeRarityUIInit("Unique");
         }
         #endregion
-        #region Chapter buttons
-        private void BtnCh1_Click(object sender, RoutedEventArgs e)
+        private void BtnEpisode_Click(object sender, RoutedEventArgs e)
         {
-            ChangeChapterUIInit(1);
+            new SubWindows.InputEpisodeWindow((string chapter, string episodeID, string episodeDoc) =>
+            {
+                string CONTENT_TO_SHOW = $"{DS.GameInfo.chapter_Doc[chapter]} / {episodeDoc}:{episodeID}";
+                BtnEpisode.Content = CONTENT_TO_SHOW;
+                BtnEpisode.ToolTip = CONTENT_TO_SHOW;
+            }).ShowDialog();
         }
-
-        private void BtnCh2_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeChapterUIInit(2);
-        }
-
-        private void BtnCh3_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeChapterUIInit(3);
-        }
-
-        private void BtnCh4_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeChapterUIInit(4);
-        }
-
-        private void BtnCh5_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeChapterUIInit(5);
-        }
-
-        private void BtnCh6_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeChapterUIInit(6);
-        }
-
-        private void BtnCh7_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeChapterUIInit(7);
-        }
-        #endregion
 
         #region HP resist buttons
         private void BtnSResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -196,7 +132,6 @@ namespace LORModingBase.UC
             InitResistFromButton(BtnHResist, false);
         }
         #endregion
-
         #region Break resist buttons
         private void BtnBSResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

@@ -67,6 +67,9 @@
     <Compile Include="DS\Config.cs" />
     <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\PATH.cs" />
+    <Compile Include="SubWindows\InputEpisodeWindow.xaml.cs">
+      <DependentUpon>InputEpisodeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\ColorTools.cs" />
     <Compile Include="Tools\Dialog.cs" />
     <Compile Include="Tools\JsonFile.cs" />
@@ -87,6 +90,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SubWindows\InputEpisodeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC\EditCriticalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
