@@ -21,7 +21,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="./Resources/MenuBg.png"/>
             </Grid.Background>
-            <Button x:Name="BtnSave" Grid.Column="0" Content="[저장하기]" Style="{StaticResource StyBtnMenu}"/>
+            <Button x:Name="BtnSave" Grid.Column="0" Content="[내보내기]" Style="{StaticResource StyBtnMenu}"/>
             <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" Style="{StaticResource StyBtnMenu}"/>
 
             <Grid Grid.Column="2">
@@ -33,10 +33,10 @@
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="라오루 위치 : " Style="{StaticResource StyLbl}"/>
-                <Label Grid.Column="1" Content="NONE" HorizontalAlignment="Left" Style="{StaticResource StyLbl}"/>
-                <Button x:Name="BtnLORPath" Grid.Column="2" Content="[경로설정]" Style="{StaticResource StyBtnMenu}"/>
+                <Label x:Name="LblLORPath" Grid.Column="1" Content="NONE" HorizontalAlignment="Left" Style="{StaticResource StyLbl}"/>
+                <Button x:Name="BtnLORPath" Grid.Column="2" Content="[경로설정]" Style="{StaticResource StyBtnMenu}" Click="BtnLORPath_Click"/>
                 <Label Grid.Column="3" Content="리소스 인식 :" Style="{StaticResource StyLbl}"/>
-                <Label Grid.Column="4" Content="X" Style="{StaticResource StyLbl}"/>
+                <Label x:Name="LblResourceCheck" Grid.Column="4" Content="X" Style="{StaticResource StyLbl}"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
