@@ -1,0 +1,36 @@
+﻿<Window x:Class="LORModingBase.SubWindows.InputBookSkinWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LORModingBase.SubWindows"
+        mc:Ignorable="d"
+        Title="지정할 책 스킨을 더블클릭" Height="450" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Resources/MainBg.png"/>
+        </Grid.Background>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+            <Label Grid.Row="0" Content="파일 선택" FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <ListBox x:Name="LbxFile" Grid.Row="1"  Style="{StaticResource StyListBox}" SelectionChanged="LbxFile_SelectionChanged"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+            <Label Grid.Row="0" Content="책 스킨 선택" FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <ListBox x:Name="LbxBookSkin" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxBookSkin_PreviewMouseDoubleClick"/>
+        </Grid>
+    </Grid>
+</Window>

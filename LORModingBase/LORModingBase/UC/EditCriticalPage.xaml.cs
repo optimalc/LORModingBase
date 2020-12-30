@@ -91,6 +91,7 @@ namespace LORModingBase.UC
             ChangeRarityUIInit("Unique");
         }
         #endregion
+
         private void BtnEpisode_Click(object sender, RoutedEventArgs e)
         {
             new SubWindows.InputEpisodeWindow((string chapter, string episodeID, string episodeDoc) =>
@@ -98,6 +99,22 @@ namespace LORModingBase.UC
                 string CONTENT_TO_SHOW = $"{DS.GameInfo.chapter_Doc[chapter]} / {episodeDoc}:{episodeID}";
                 BtnEpisode.Content = CONTENT_TO_SHOW;
                 BtnEpisode.ToolTip = CONTENT_TO_SHOW;
+            }).ShowDialog();
+        }
+        private void BtnBookIcon_Click(object sender, RoutedEventArgs e)
+        {
+            new SubWindows.InputBookIconWindow((string bookIconName) =>
+            {
+                BtnBookIcon.Content = bookIconName;
+                BtnBookIcon.ToolTip = bookIconName;
+            }).ShowDialog();
+        }
+        private void BtnSkin_Click(object sender, RoutedEventArgs e)
+        {
+            new SubWindows.InputBookSkinWindow((string bookSkinName) =>
+            {
+                BtnSkin.Content = bookSkinName;
+                BtnSkin.ToolTip = bookSkinName;
             }).ShowDialog();
         }
 
