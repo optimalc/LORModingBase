@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BookUseXmlRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BookUse ID="31">
+    <Name>dropbook_something</Name>
+    <TextId>dropbook_something</TextId>
+    <Chapter>1</Chapter>
+  </BookUse>
+  <BookUse ID="200004">
+    <TextId>dropbook_finn</TextId>
+    <BookIcon>YunsOffice</BookIcon>
+    <Chapter>1</Chapter>
+    <Exp>5</Exp>
+    <EquipProb>0.3</EquipProb>
+    <DropItem Type="Equip">200004</DropItem>
+    <DropItem Type="Equip">999999</DropItem>
+  </BookUse>
+</BookUseXmlRoot>

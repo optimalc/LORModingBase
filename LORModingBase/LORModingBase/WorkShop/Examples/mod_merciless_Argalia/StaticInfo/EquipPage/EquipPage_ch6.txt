@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BookXmlRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Book ID="999999">
+    <Name>무자비한 아르갈리아 과장</Name>
+    <TextId>999999</TextId>
+    <EquipEffect>
+      <HP>999</HP>
+      <Break>512</Break>
+      <SpeedMin>99</SpeedMin>
+      <Speed>99</Speed>
+      <SResist>Vulnerable</SResist>
+      <PResist>Endure</PResist>
+      <HResist>Endure</HResist>
+      <SBResist>Endure</SBResist>
+      <PBResist>Endure</PBResist>
+      <HBResist>Endure</HBResist>
+
+      <StartPlayPoint>10</StartPlayPoint>
+      <MaxPlayPoint>10</MaxPlayPoint>
+
+      <PassiveCost>16</PassiveCost>
+			
+      <Passive Level="1"></Passive>
+
+    </EquipEffect>
+    <BookIcon>TheBlueReverberation</BookIcon>
+    <Chapter>6</Chapter>
+    <Episode>50006</Episode>
+    <Rarity>Unique</Rarity>
+    <CharacterSkin>Nemo</CharacterSkin>
+    <SpeedDiceNum>2</SpeedDiceNum>
+
+  </Book>
+</BookXmlRoot>
