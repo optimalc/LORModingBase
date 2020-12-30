@@ -21,4 +21,25 @@ namespace LORModingBase.DS
         /// </summary>
         public static List<string> resistInfo_Code = new List<string>() { "Vulnerable", "Weak", "Normal", "Endure", "Resist", "Immune" };
     }
+
+    /// <summary>
+    /// Stage infos data structure
+    /// </summary>
+    class StageInfo
+    {
+        /// <summary>
+        /// Stage ID
+        /// </summary>
+        public string stageID = "";
+
+        /// <summary>
+        /// Stage discription
+        /// </summary>
+        public string stageDoc = "";
+
+        /// <summary>
+        /// Stage chapter
+        /// </summary>
+        public string Chapter = "";  
+    }
 }

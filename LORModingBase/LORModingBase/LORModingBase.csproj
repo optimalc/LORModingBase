@@ -63,6 +63,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DM\Config.cs" />
+    <Compile Include="DM\StaticInfos.cs" />
     <Compile Include="DS\Config.cs" />
     <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\PATH.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Tools\Dialog.cs" />
     <Compile Include="Tools\JsonFile.cs" />
     <Compile Include="Tools\ProcessTools.cs" />
+    <Compile Include="Tools\XmlFile.cs" />
     <Compile Include="UC\EditCriticalPage.xaml.cs">
       <DependentUpon>EditCriticalPage.xaml</DependentUpon>
     </Compile>
