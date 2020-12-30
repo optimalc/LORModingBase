@@ -7,6 +7,53 @@
         mc:Ignorable="d"
         Title="LOR Moding Base" Height="600" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="84*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="80*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="./Resources/MenuBg.png"/>
+            </Grid.Background>
+            <Button x:Name="BtnSave" Grid.Column="0" Content="[저장하기]" Style="{StaticResource StyBtnMenu}"/>
+            <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" Style="{StaticResource StyBtnMenu}"/>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="55*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="라오루 위치 : " Style="{StaticResource StyLbl}"/>
+                <Label Grid.Column="1" Content="NONE" HorizontalAlignment="Left" Style="{StaticResource StyLbl}"/>
+                <Button x:Name="BtnLORPath" Grid.Column="2" Content="[경로설정]" Style="{StaticResource StyBtnMenu}"/>
+                <Label Grid.Column="3" Content="리소스 인식 :" Style="{StaticResource StyLbl}"/>
+                <Label Grid.Column="4" Content="X" Style="{StaticResource StyLbl}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="./Resources/MenuBg.png"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="13.9*"/>
+                <ColumnDefinition Width="86.1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="BtnCriticalPage" Grid.Column="0" Content="[핵심책장 편집]" Style="{StaticResource StyBtnMenu}"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.Background>
+                <ImageBrush ImageSource="./Resources/MainBg.png"/>
+            </Grid.Background>
+        </Grid>
     </Grid>
 </Window>
