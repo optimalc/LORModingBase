@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LORModingBase"
         mc:Ignorable="d"
-        Title="LOR Moding Base" Height="600" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="LOR Moding Base" Height="600" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="Resources/icon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
@@ -21,8 +21,8 @@
             <Grid.Background>
                 <ImageBrush ImageSource="./Resources/MenuBg.png"/>
             </Grid.Background>
-            <Button x:Name="BtnSave" Grid.Column="0" Content="[내보내기]" Style="{StaticResource StyBtnMenu}"/>
-            <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" Style="{StaticResource StyBtnMenu}"/>
+            <Button x:Name="BtnSave" Grid.Column="0" Content="[내보내기]" ToolTip="설정된 정보들로 모드 폴더를 생성합니다." Style="{StaticResource StyBtnMenu}"/>
+            <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" ToolTip="특정 모드폴더 정보들을 불러옵니다." Style="{StaticResource StyBtnMenu}"/>
 
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
@@ -34,7 +34,7 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="라오루 위치 : " Style="{StaticResource StyLbl}"/>
                 <Label x:Name="LblLORPath" Grid.Column="1" Content="NONE" HorizontalAlignment="Left" Style="{StaticResource StyLbl}"/>
-                <Button x:Name="BtnLORPath" Grid.Column="2" Content="[경로설정]" Style="{StaticResource StyBtnMenu}" Click="BtnLORPath_Click"/>
+                <Button x:Name="BtnLORPath" Grid.Column="2" Content="[경로설정]" ToolTip="라오루 폴더를 지정합니다.&#x0a;폴더 경로는 보통 '...\Steam\steamapps\common\Library Of Ruina'입니다." Style="{StaticResource StyBtnMenu}" Click="BtnLORPath_Click"/>
                 <Label Grid.Column="3" Content="리소스 인식 :" Style="{StaticResource StyLbl}"/>
                 <Label x:Name="LblResourceCheck" Grid.Column="4" Content="X" Style="{StaticResource StyLbl}"/>
             </Grid>
@@ -48,7 +48,7 @@
                 <ColumnDefinition Width="86.1*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="BtnCriticalPage" Grid.Column="0" Content="[핵심책장 편집]" Style="{StaticResource StyBtnMenu}"/>
+            <Button x:Name="BtnCriticalPage" Grid.Column="0" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.Background>

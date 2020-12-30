@@ -11,7 +11,7 @@ namespace LORModingBase.DS
         /// <summary>
         /// Export data directory
         /// </summary>
-        public const string DIC_EXPORT_DATAS = ".\\exportedDatas";
+        public const string DIC_EXPORT_DATAS = ".\\exportedModes";
 
         /// <summary>
         /// Config file

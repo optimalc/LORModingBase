@@ -27,7 +27,7 @@ namespace LORModingBase
             InitializeComponent();
 
             LoadDatas();
-            InitLORPathLabel();
+            InitLORPathResourceLabel();
             InitSplCriticalPage();
         } 
 
@@ -36,13 +36,13 @@ namespace LORModingBase
         /// </summary>
         private void LoadDatas()
         {
-            if(Directory.Exists(DS.PATH.DIC_EXPORT_DATAS))
+            if(!Directory.Exists(DS.PATH.DIC_EXPORT_DATAS))
                 Directory.CreateDirectory(DS.PATH.DIC_EXPORT_DATAS);
 
             DM.Config.LoadData();
         }
 
-        private void InitLORPathLabel()
+        private void InitLORPathResourceLabel()
         {
             #region Check LOR folder exists. If exists, init LblLORPath
             if (!Directory.Exists(DM.Config.config.LORFolderPath) || !Directory.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data") 
@@ -65,6 +65,13 @@ namespace LORModingBase
             if(!Directory.Exists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}"))
             {
                 MessageBox.Show("모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)", "인식 실패", MessageBoxButton.OK, MessageBoxImage.Error);
+                LblResourceCheck.Content = "X";
+                LblResourceCheck.ToolTip = "모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)";
+            }
+            else
+            {
+                LblResourceCheck.Content = "O";
+                LblResourceCheck.ToolTip = "리소스가 정상적으로 발견되었습니다.";
             }
             #endregion
 
@@ -87,7 +94,7 @@ namespace LORModingBase
             {
                 DM.Config.config.LORFolderPath = selectedDir;
                 DM.Config.SaveData();
-                InitLORPathLabel();
+                InitLORPathResourceLabel();
             });
         } 
         #endregion
