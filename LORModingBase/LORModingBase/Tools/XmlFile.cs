@@ -37,5 +37,20 @@ namespace LORModingBase.Tools
 
             return root.SelectSingleNode(xPath);
         }
+
+        /// <summary>
+        /// Add new node to rootNode with innerText
+        /// </summary>
+        /// <param name="rootNode">Root node to use</param>
+        /// <param name="nodeName">Node name will be used</param>
+        /// <param name="innerText">Inner text content</param>
+        /// <returns>Created node</returns>
+        public static XmlNode AddNewNodeWithInnerText(XmlNode rootNode, string nodeName, string innerText)
+        {
+            XmlElement createdElement = rootNode.OwnerDocument.CreateElement(nodeName);
+            createdElement.InnerText = innerText;
+            rootNode.AppendChild(createdElement);
+            return createdElement;
+        }
     }
 }
