@@ -20,9 +20,22 @@ namespace LORModingBase
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Init controls
         public MainWindow()
         {
             InitializeComponent();
+            InitSplCriticalPage();
+        } 
+
+        private void InitSplCriticalPage()
+        {
+            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
+            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
+            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
+            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
+            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
+            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
         }
+        #endregion
     }
 }

@@ -54,6 +54,16 @@
             <Grid.Background>
                 <ImageBrush ImageSource="./Resources/MainBg.png"/>
             </Grid.Background>
+
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                <StackPanel x:Name="SplCriticalPage" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type Grid}">
+                            <Setter Property="Margin" Value="5,5,5,5"/>
+                        </Style>
+                    </StackPanel.Resources>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Window>
