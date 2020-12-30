@@ -13,17 +13,17 @@ namespace LORModingBase.SubWindows
         Action<string> afterSelectBookskin = null;
 
         #region Init controls
-        public InputBookSkinWindow(Action<string> afterSelectBookIcon)
+        public InputBookSkinWindow(Action<string> afterSelectBookskin)
         {
             InitializeComponent();
             InitLbxFile();
-            this.afterSelectBookskin = afterSelectBookIcon;
+            this.afterSelectBookskin = afterSelectBookskin;
         }
 
         private void InitLbxFile()
         {
             LbxFile.Items.Clear();
-            DM.StaticInfos.bookIconInfos.Keys.ToList().ForEach((string fileName) =>
+            DM.StaticInfos.skinInfos.Keys.ToList().ForEach((string fileName) =>
             {
                 LbxFile.Items.Add(fileName);
             });

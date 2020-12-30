@@ -68,7 +68,6 @@ namespace LORModingBase.UC
             }
         }
         #endregion
-
         #region Button events
         #region Rarity buttons
         private void BtnRarityCommon_Click(object sender, RoutedEventArgs e)
@@ -182,6 +181,16 @@ namespace LORModingBase.UC
         }
         #endregion
 
+        #endregion
+
+        #region Passive events
+        private void BtnAddPassive_Click(object sender, RoutedEventArgs e)
+        {
+            new SubWindows.InputBookPassiveWindow((string passiveDec) =>
+            {
+                LbxPassives.Items.Add(passiveDec);
+            }).ShowDialog();
+        } 
         #endregion
     }
 }

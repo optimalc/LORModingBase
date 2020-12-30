@@ -57,6 +57,27 @@ namespace LORModingBase.DS
     }
 
     /// <summary>
+    /// Passive infos data structure
+    /// </summary>
+    class PassiveInfo
+    {
+        /// <summary>
+        /// Passive uniqe ID
+        /// </summary>
+        public string passiveID = "";
+
+        /// <summary>
+        /// Passive name
+        /// </summary>
+        public string passiveName = "";
+
+        /// <summary>
+        /// Passive description
+        /// </summary>
+        public string passiveDes = "";
+    }
+
+    /// <summary>
     /// Critical page data structure
     /// </summary>
     class CriticalPageInfo

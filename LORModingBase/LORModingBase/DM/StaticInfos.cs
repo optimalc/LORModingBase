@@ -16,6 +16,11 @@ namespace LORModingBase.DM
         public static List<DS.StageInfo> stageInfos = new List<DS.StageInfo>();
 
         /// <summary>
+        /// Loaded passive infos
+        /// </summary>
+        public static Dictionary<string, List<DS.PassiveInfo>> passiveInfos = new Dictionary<string, List<DS.PassiveInfo>>();
+
+        /// <summary>
         /// Skin infos
         /// </summary>
         public static Dictionary<string, List<string>> skinInfos = new Dictionary<string, List<string>>();
@@ -32,6 +37,7 @@ namespace LORModingBase.DM
         {
             LoadDatas_StageInfo();
             LoadDatas_SkinAndBookIconInfo();
+            LoadDatas_PassiveInfo();
         }
 
         /// <summary>
@@ -85,10 +91,41 @@ namespace LORModingBase.DM
 
                 }
                 string PATH_TO_USE = eqPath.Split('\\').Last().Split('.')[0];
-                skinInfos[PATH_TO_USE] = skins;
-                bookIconInfos[PATH_TO_USE] = bookIcons;
+                if(skins.Count > 0) skinInfos[PATH_TO_USE] = skins;
+                if(bookIcons.Count > 0) bookIconInfos[PATH_TO_USE] = bookIcons;
             });
 
+        }
+    
+        /// <summary>
+        /// Load passive info datas
+        /// </summary>
+        public static void LoadDatas_PassiveInfo()
+        {
+            passiveInfos.Clear();
+
+            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\PassiveDesc").ToList().ForEach((string pvPath) =>
+            {
+                XmlNodeList passiveDescNodeList = Tools.XmlFile.SelectNodeLists(pvPath, "//PassiveDesc");
+
+                List<DS.PassiveInfo> passives = new List<DS.PassiveInfo>();
+                foreach (XmlNode passiveDescNode in passiveDescNodeList)
+                {
+                    if (passiveDescNode.Attributes["ID"] == null
+                        || passiveDescNode["Name"] == null
+                        || passiveDescNode["Desc"] == null)
+                            continue;
+
+                    passives.Add(new DS.PassiveInfo()
+                    {
+                        passiveID = passiveDescNode.Attributes["ID"].Value,
+                        passiveName = passiveDescNode["Name"].InnerText,
+                        passiveDes = passiveDescNode["Desc"].InnerText
+                    });
+                }
+                string PATH_TO_USE = pvPath.Split('\\').Last().Split('.')[0];
+                if(passives.Count > 0) passiveInfos[PATH_TO_USE] = passives;
+            });
         }
     }
 }
