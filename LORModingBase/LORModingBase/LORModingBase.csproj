@@ -82,6 +82,7 @@
     <Compile Include="Tools\ColorTools.cs" />
     <Compile Include="Tools\Dialog.cs" />
     <Compile Include="Tools\JsonFile.cs" />
+    <Compile Include="Tools\MathTools.cs" />
     <Compile Include="Tools\ProcessTools.cs" />
     <Compile Include="Tools\XmlFile.cs" />
     <Compile Include="UC\EditCriticalPage.xaml.cs">

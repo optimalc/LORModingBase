@@ -1,25 +1,29 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace LORModingBase.UC
 {
-    public class DirectoryListing
-    {
-        public string Name { get; set; }
-        public string Path { get; set; }
-    }
-
     /// <summary>
     /// EditCriticalPage.xaml에 대한 상호 작용 논리
     /// </summary>
     public partial class EditCriticalPage : UserControl
     {
+        DS.CriticalPageInfo innerCriticalPageInfo = null;
+
         #region Init controls
-        public EditCriticalPage()
+        public EditCriticalPage(DS.CriticalPageInfo criticalPageInfo)
         {
             InitializeComponent();
-            ChangeRarityUIInit("Common");
+            this.innerCriticalPageInfo = criticalPageInfo;
+
+            ChangeRarityUIInit(criticalPageInfo.rarity);
+            TbxPageUniqueID.Text = criticalPageInfo.bookID;
+            TbxHP.Text = criticalPageInfo.HP;
+            TbxBR.Text = criticalPageInfo.breakNum;
+            TbxSpeedDiceMin.Text = criticalPageInfo.minSpeedCount;
+            TbxSpeedDiceMax.Text = criticalPageInfo.maxSpeedCount;
         }
 
         private void ChangeRarityUIInit(string rarity)
@@ -34,18 +38,22 @@ namespace LORModingBase.UC
                 case "Common":
                     WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#5430BF4B");
                     BtnRarityCommon.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
+                    innerCriticalPageInfo.rarity = "Common";
                     break;
                 case "Uncommon":
                     WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54306ABF");
                     BtnRarityUncommon.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
+                    innerCriticalPageInfo.rarity = "Uncommon";
                     break;
                 case "Rare":
                     WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#548030BF");
                     BtnRarityRare.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
+                    innerCriticalPageInfo.rarity = "Rare";
                     break;
                 case "Unique":
                     WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54F3B530");
                     BtnRarityUnique.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
+                    innerCriticalPageInfo.rarity = "Unique";
                     break;
             }
         }
@@ -65,6 +73,29 @@ namespace LORModingBase.UC
                 int RESISTS_INDEX = DS.GameInfo.resistInfo_Doc.IndexOf(targetButton.Content.ToString()) + 1;
                 if (RESISTS_INDEX >= DS.GameInfo.resistInfo_Doc.Count) RESISTS_INDEX = 0;
                 targetButton.Content = DS.GameInfo.resistInfo_Doc[RESISTS_INDEX];
+            }
+
+            switch (targetButton.Name)
+            {
+                case "BtnSResist":
+                    innerCriticalPageInfo.SResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    break;
+                case "BtnPResist":
+                    innerCriticalPageInfo.PResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    break;
+                case "BtnHResist":
+                    innerCriticalPageInfo.HResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    break;
+
+                case "BtnBSResist":
+                    innerCriticalPageInfo.BSResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    break;
+                case "BtnBPResist":
+                    innerCriticalPageInfo.BPResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    break;
+                case "BtnBHResist":
+                    innerCriticalPageInfo.BHResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    break;
             }
         }
         #endregion
@@ -95,9 +126,12 @@ namespace LORModingBase.UC
         {
             new SubWindows.InputEpisodeWindow((string chapter, string episodeID, string episodeDoc) =>
             {
-                string CONTENT_TO_SHOW = $"{DS.GameInfo.chapter_Doc[chapter]} / {episodeDoc}:{episodeID}";
+                string CONTENT_TO_SHOW = $"{DS.GameInfo.chapter_Dic[chapter]} / {episodeDoc}:{episodeID}";
                 BtnEpisode.Content = CONTENT_TO_SHOW;
                 BtnEpisode.ToolTip = CONTENT_TO_SHOW;
+
+                innerCriticalPageInfo.chapter = chapter;
+                innerCriticalPageInfo.episode = episodeID;
             }).ShowDialog();
         }
         private void BtnBookIcon_Click(object sender, RoutedEventArgs e)
@@ -106,6 +140,8 @@ namespace LORModingBase.UC
             {
                 BtnBookIcon.Content = bookIconName;
                 BtnBookIcon.ToolTip = bookIconName;
+
+                innerCriticalPageInfo.iconName = bookIconName.Split(':').Last();
             }).ShowDialog();
         }
         private void BtnSkin_Click(object sender, RoutedEventArgs e)
@@ -114,6 +150,8 @@ namespace LORModingBase.UC
             {
                 BtnSkin.Content = bookSkinName;
                 BtnSkin.ToolTip = bookSkinName;
+
+                innerCriticalPageInfo.skinName = bookSkinName.Split(':').Last();
             }).ShowDialog();
         }
 
@@ -184,13 +222,70 @@ namespace LORModingBase.UC
         #endregion
 
         #region Passive events
+        private void InitLbxPassives()
+        {
+            LbxPassives.Items.Clear();
+            innerCriticalPageInfo.passiveIDs.ForEach((string passiveName) =>
+            {
+                LbxPassives.Items.Add(passiveName);
+            });
+        }
+
         private void BtnAddPassive_Click(object sender, RoutedEventArgs e)
         {
             new SubWindows.InputBookPassiveWindow((string passiveDec) =>
             {
-                LbxPassives.Items.Add(passiveDec);
+                innerCriticalPageInfo.passiveIDs.Add(passiveDec);
+                InitLbxPassives();
             }).ShowDialog();
-        } 
+        }
+
+        private void BtnDeletePassive_Click(object sender, RoutedEventArgs e)
+        {
+            if(LbxPassives.SelectedItem != null)
+            {
+                int passiveIndexToDelete = innerCriticalPageInfo.passiveIDs.FindIndex((string passiveName) => {
+                    return passiveName == LbxPassives.SelectedItem.ToString();
+                });
+                if(passiveIndexToDelete != -1)
+                {
+                    innerCriticalPageInfo.passiveIDs.RemoveAt(passiveIndexToDelete);
+                    InitLbxPassives();
+                }
+            }
+        }
+        #endregion
+
+        #region Text change events
+        private void TbxPageName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            innerCriticalPageInfo.name = TbxPageName.Text;
+        }
+
+        private void TbxPageUniqueID_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            innerCriticalPageInfo.bookID = TbxPageUniqueID.Text;
+        }
+
+        private void TbxHP_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            innerCriticalPageInfo.HP = TbxHP.Text;
+        }
+
+        private void TbxBR_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            innerCriticalPageInfo.breakNum = TbxBR.Text;
+        }
+
+        private void TbxSpeedDiceMin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            innerCriticalPageInfo.minSpeedCount = TbxSpeedDiceMin.Text;
+        }
+
+        private void TbxSpeedDiceMax_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            innerCriticalPageInfo.maxSpeedCount = TbxSpeedDiceMax.Text;
+        }
         #endregion
     }
 }

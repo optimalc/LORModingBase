@@ -21,6 +21,8 @@ namespace LORModingBase
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<DS.CriticalPageInfo> criticalPageInfos = new List<DS.CriticalPageInfo>();
+
         #region Init controls
         public MainWindow()
         {
@@ -84,12 +86,11 @@ namespace LORModingBase
 
         private void InitSplCriticalPage()
         {
-            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
-            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
-            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
-            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
-            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
-            SplCriticalPage.Children.Add(new UC.EditCriticalPage());
+            SplCriticalPage.Children.Clear();
+            criticalPageInfos.ForEach((DS.CriticalPageInfo criticalPageInfo) =>
+            {
+                SplCriticalPage.Children.Add(new UC.EditCriticalPage(criticalPageInfo));
+            });
         }
         #endregion
         #region Click events
@@ -101,7 +102,13 @@ namespace LORModingBase
                 DM.Config.SaveData();
                 InitLORPathResourceLabel();
             });
-        } 
+        }
+
+        private void BtnAddCriticalBook_Click(object sender, RoutedEventArgs e)
+        {
+            criticalPageInfos.Add(new DS.CriticalPageInfo());
+            InitSplCriticalPage();
+        }
         #endregion
     }
 }

@@ -49,9 +49,9 @@
             <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
 
             <Label Grid.Column="0" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
-            <TextBox x:Name="TbxPageName" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0"/>
+            <TextBox x:Name="TbxPageName" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxPageName_TextChanged"/>
             <Label Grid.Column="2" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
-            <TextBox x:Name="TbxPageUniqueID" Grid.Column="3" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0"/>
+            <TextBox x:Name="TbxPageUniqueID" Grid.Column="3" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxPageUniqueID_TextChanged"/>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -76,7 +76,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <TextBox x:Name="TbxHP" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0"/>
+            <TextBox x:Name="TbxHP" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxHP_TextChanged"/>
             
             <Image Grid.Column="2" Source="../Resources/iconBR.png" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
@@ -88,7 +88,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <TextBox x:Name="TbxBR" Grid.Column="3" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0"/>
+            <TextBox x:Name="TbxBR" Grid.Column="3" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxBR_TextChanged"/>
             
             <Image Grid.Column="4" Source="../Resources/iconSpeedDice.png" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
@@ -100,9 +100,9 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <TextBox x:Name="TbxSpeedDiceMin" Grid.Column="5" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0"/>
+            <TextBox x:Name="TbxSpeedDiceMin" Grid.Column="5" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0" TextChanged="TbxSpeedDiceMin_TextChanged"/>
             <Label Grid.Column="5" Content="~" FontSize="15"  Style="{StaticResource StyLbl}" Margin="18,0,0,0"/>
-            <TextBox x:Name="TbxSpeedDiceMax" Grid.Column="6" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0"/>
+            <TextBox x:Name="TbxSpeedDiceMax" Grid.Column="6" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0" TextChanged="TbxSpeedDiceMax_TextChanged"/>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -251,7 +251,7 @@
                 <Button x:Name="BtnAddPassive" Grid.Column="0" Content="패시브 추가" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnAddPassive_Click"/>
                 
                 <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnDeletePassive" Grid.Column="1" Content="패시브 삭제" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center"/>
+                <Button x:Name="BtnDeletePassive" Grid.Column="1" Content="패시브 삭제" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDeletePassive_Click"/>
             </Grid>
             <Rectangle Grid.Row="1" Grid.RowSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
             <ListBox x:Name="LbxPassives" Grid.Row="1"  Style="{StaticResource StyListBox}"/>

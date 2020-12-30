@@ -22,9 +22,22 @@ namespace LORModingBase.DS
         public static List<string> resistInfo_Code = new List<string>() { "Vulnerable", "Weak", "Normal", "Endure", "Resist", "Immune" };
 
         /// <summary>
+        /// Resist info dictionary
+        /// </summary>
+        public static Dictionary<string, string> resistInfo_Dic_Rev = new Dictionary<string, string>()
+        {
+            {"취약", "Vulnerable" },
+            {"약점", "Weak" },
+            {"보통", "Normal" },
+            {"견딤", "Endure" },
+            {"내성", "Endure" },
+            {"면역", "Immune" },
+        };
+
+        /// <summary>
         /// Chpater info doc
         /// </summary>
-        public static Dictionary<string, string> chapter_Doc = new Dictionary<string, string>() {
+        public static Dictionary<string, string> chapter_Dic = new Dictionary<string, string>() {
             {"1", "뜬소문" },
             {"2", "도시 괴담" },
             {"3", "도시 전설" },
@@ -80,27 +93,32 @@ namespace LORModingBase.DS
     /// <summary>
     /// Critical page data structure
     /// </summary>
-    class CriticalPageInfo
+    public class CriticalPageInfo
     {
-        public string rarity = "";
-        public string bookID = "";
+        public string rarity = "Common";
+        public string bookID = Tools.MathTools.GetRandomNumber(1000000, 9999999).ToString();
         public string name = "";
 
         public string chapter = "";
         public string episode = "";
 
-        public string HP = "";
-        public string breakNum = "";
+        public string HP = "50";
+        public string breakNum = "50";
 
-        public string minSpeedCount = "";
-        public string maxSpeedCount = "";
+        public string minSpeedCount = "1";
+        public string maxSpeedCount = "6";
 
-        public string SResist = "";
-        public string PResist = "";
-        public string HResist = "";
+        public string skinName = "";
+        public string iconName = "";
 
-        public string BSResist = "";
-        public string BPResist = "";
-        public string BHResist = "";
+        public string SResist = "보통";
+        public string PResist = "보통";
+        public string HResist = "보통";
+
+        public string BSResist = "보통";
+        public string BPResist = "보통";
+        public string BHResist = "보통";
+
+        public List<string> passiveIDs = new List<string>();
     }
 }
