@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -138,6 +139,9 @@ namespace LORModingBase.DM
                         || passiveDescNode["Name"] == null
                         || passiveDescNode["Desc"] == null)
                             continue;
+
+                    if (Int32.Parse(passiveDescNode.Attributes["ID"].Value) < 10000)
+                        continue;
 
                     passives.Add(new DS.PassiveInfo()
                     {
