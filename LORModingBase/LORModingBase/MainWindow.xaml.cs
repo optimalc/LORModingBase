@@ -17,8 +17,15 @@ namespace LORModingBase
         {
             InitializeComponent();
 
-            InitLORPathResourceLabel();
-            InitSplCriticalPage();
+            try
+            {
+                InitLORPathResourceLabel();
+                InitSplCriticalPage();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "초기화 과정 중 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         } 
 
         /// <summary>
@@ -35,6 +42,9 @@ namespace LORModingBase
             DM.StaticInfos.LoadAllDatas();
         }
 
+        /// <summary>
+        /// Reflect changed LOR path and load all static datas
+        /// </summary>
         private void InitLORPathResourceLabel()
         {
             DM.Config.LoadData();
@@ -42,12 +52,13 @@ namespace LORModingBase
             if (!Directory.Exists(DM.Config.config.LORFolderPath) || !Directory.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data") 
                 || string.IsNullOrEmpty(DM.Config.config.LORFolderPath))
             {
-                MessageBox.Show("설정된 라오루 폴더가 존재하지 않거나 적절하지 않습니다. 수동 설정이 필요합니다.", "인식 실패", MessageBoxButton.OK, MessageBoxImage.Error);
                 DM.Config.config.LORFolderPath = "";
                 DM.Config.SaveData();
                 LblLORPath.Content = "라오루 폴더 자동 인식 실패. 수동으로 설정해주세요.";
                 LblLORPath.ToolTip = "라오루 폴더 자동 인식 실패. 수동으로 설정해주세요.";
-                return;
+                LblResourceCheck.Content = "X";
+                LblResourceCheck.ToolTip = "모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)";
+                throw new Exception("설정된 라오루 폴더가 존재하지 않거나 적절하지 않습니다. 수동 설정이 필요합니다.");
             }
             else
             {
@@ -58,10 +69,9 @@ namespace LORModingBase
             #region Check LOR mode resources
             if(!Directory.Exists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}"))
             {
-                MessageBox.Show("모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)", "인식 실패", MessageBoxButton.OK, MessageBoxImage.Error);
                 LblResourceCheck.Content = "X";
                 LblResourceCheck.ToolTip = "모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)";
-                return;
+                throw new Exception("모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)");
             }
             else
             {
@@ -87,9 +97,16 @@ namespace LORModingBase
         {
             Tools.Dialog.SelectDirectory((string selectedDir) =>
             {
-                DM.Config.config.LORFolderPath = selectedDir;
-                DM.Config.SaveData();
-                InitLORPathResourceLabel();
+                try
+                {
+                    DM.Config.config.LORFolderPath = selectedDir;
+                    DM.Config.SaveData();
+                    InitLORPathResourceLabel();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "변경된 경로를 반영하는 과정에서 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
         }
 
