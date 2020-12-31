@@ -67,6 +67,7 @@
     <Compile Include="DM\ExportDatas.cs" />
     <Compile Include="DM\StaticInfos.cs" />
     <Compile Include="DS\Config.cs" />
+    <Compile Include="DS\FilterDatas.cs" />
     <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\PATH.cs" />
     <Compile Include="SubWindows\InputBookSkinWindow.xaml.cs">

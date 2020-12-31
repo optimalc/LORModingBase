@@ -142,6 +142,8 @@ namespace LORModingBase.DM
 
                     if (Int32.Parse(passiveDescNode.Attributes["ID"].Value) < 10000)
                         continue;
+                    if (DS.FilterDatas.EXCLUDE_PASSIVE_CODE.Contains(passiveDescNode.Attributes["ID"].Value))
+                        continue;
 
                     passives.Add(new DS.PassiveInfo()
                     {
