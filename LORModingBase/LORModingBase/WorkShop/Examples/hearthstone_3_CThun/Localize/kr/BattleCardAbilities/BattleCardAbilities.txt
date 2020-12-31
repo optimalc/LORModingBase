@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattleCardAbilityDescRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- 헌신 추가 -->
+  <BattleCardAbility ID="CThun2">
+    <Desc>[사용시] 헌신을 2 얻음</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="1energyCThun2">
+    <Desc>[사용시] 헌신을 2 얻고 빛을 1 회복함</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="1drawCThun2">
+    <Desc>[사용시] 헌신을 2 얻고 책장을 1장 뽑음</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="CThun4">
+    <Desc>[사용시] 헌신을 4 얻음</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="resuCThun2">
+    <Desc>[사용시] 헌신을 2 얻고 크툰을 덱에 넣음, 사용 후 소멸</Desc>
+  </BattleCardAbility>
+  <!-- 헌신 이용 -->
+  <BattleCardAbility ID="addTwin">
+    <Desc>[사용시] 손에 비용 0, 사용후 소멸인 쌍둥이를 추가, 헌신이 10 이상이면 위력 +3</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="Twin">
+    <Desc>[사용시] 헌신이 10 이상이면  위력 +3, 소멸</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="Kla">
+    <Desc>[사용시] 책장을 1장 뽑음, 헌신이 10 이상이면 위력 +2</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="Twi">
+    <Desc>[사용시] 체력을 8 회복, 헌신이 10 이상이면 빛을 2 회복함</Desc>
+  </BattleCardAbility>
+  <!-- 크툰 -->
+  <BattleCardAbility ID="CThun">
+    <Desc>헌신 1당 최대값이 1 증가</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="CThun1">
+    <Desc>[적중시] 책장 사용시의 헌신만큼 주사위를 재사용</Desc>
+  </BattleCardAbility>
+  <!-- 1차 확장 -->
+  <BattleCardAbility ID="Cthuneye">
+    <Desc>[사용시] 이 책장의 모든 공격 주사위가 '[적중] 헌신 1 얻음'을 얻음</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="Cthunheart">
+    <Desc>[사용시] 헌신을 2 얻고 빛을 2 회복함</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="Cthunbody">
+    <Desc>[사용시] 책장을 1장 뽑음, 헌신이 5 이상이면 추가로 책장을 1장 뽑음</Desc>
+  </BattleCardAbility>
+    <BattleCardAbility ID="darklook1">
+    <Desc>[적중시] 헌신이 10 이상이면 허약을 1 부여</Desc>
+  </BattleCardAbility>
+    <BattleCardAbility ID="darklook2">
+    <Desc>[적중시] 헌신이 10 이상이면 취약을 1 부여</Desc>
+  </BattleCardAbility>
+    <BattleCardAbility ID="repeatCthun">
+    <Desc>이 주사위는 헌신 5당 1번 추가로 사용</Desc>
+  </BattleCardAbility>
+    <BattleCardAbility ID="CThuncheck2">
+    <Desc>이 책장은 사용 후에 소멸됨</Desc>
+  </BattleCardAbility>
+  
+</BattleCardAbilityDescRoot>

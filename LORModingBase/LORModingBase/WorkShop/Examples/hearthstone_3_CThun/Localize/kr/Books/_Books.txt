@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BookDescRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <bookDescList>
+
+    <BookDesc BookID="2702301">
+      <BookName>크툰의 책장</BookName>
+      <TextList>
+      </TextList>
+      <PassiveList>
+      </PassiveList>
+    </BookDesc>
+
+    <BookDesc BookID="2702302">
+      <BookName>광신도의 책장</BookName>
+      <TextList>
+      </TextList>
+      <PassiveList>
+      </PassiveList>
+    </BookDesc>
+
+    <BookDesc BookID="2702303">
+      <BookName>이교도의 책장</BookName>
+      <TextList>
+      </TextList>
+      <PassiveList>
+      </PassiveList>
+    </BookDesc>
+  
+  </bookDescList>
+
+</BookDescRoot>

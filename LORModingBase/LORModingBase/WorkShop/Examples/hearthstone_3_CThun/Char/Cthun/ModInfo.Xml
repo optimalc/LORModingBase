@@ -1,0 +1,55 @@
+<ModInfo>
+  <ClothInfo>
+    <Name>Cthun</Name>
+    <Default>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Default>
+    <Guard>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Guard>
+    <Evade>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Evade>
+    <Damaged>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Damaged>
+    <Slash>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Slash>
+    <Penetrate>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Penetrate>
+    <Hit>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Hit>
+    <Move>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Move>
+    <Fire>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Fire>
+    <Aim>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Aim>
+  </ClothInfo>
+</ModInfo>

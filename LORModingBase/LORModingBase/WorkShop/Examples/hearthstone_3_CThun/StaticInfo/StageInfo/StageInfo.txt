@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<StageXmlRoot>
+  <Stage id="2702201">
+    <Name>툰</Name>
+    <Wave>
+      <Formation>14</Formation>
+      <AvailableUnit>5</AvailableUnit>
+      <Unit>2702902</Unit> 
+      <Unit>2702902</Unit> 
+      <Unit>2702903</Unit>
+      <Unit>2702902</Unit> 
+      <Unit>2702903</Unit>
+    </Wave>
+    <Wave>
+      <Formation>14</Formation>
+      <AvailableUnit>5</AvailableUnit>
+      <Unit>2702902</Unit> 
+      <Unit>2702902</Unit> 
+      <Unit>2702903</Unit>
+      <Unit>2702902</Unit> 
+      <Unit>2702903</Unit>
+    </Wave>
+    <Wave>
+      <Formation>14</Formation>
+      <AvailableUnit>5</AvailableUnit>
+      <Unit>2702901</Unit> 
+      <Unit>2702902</Unit> 
+      <Unit>2702903</Unit>
+      <Unit>2702902</Unit> 
+      <Unit>2702903</Unit>
+    </Wave>
+    <FloorNum>1</FloorNum>
+    <Invitation Combine="BookRecipe">
+      <Book>-2702001</Book> 
+    </Invitation>
+    <Chapter>6</Chapter>
+  </Stage>
+
+</StageXmlRoot>

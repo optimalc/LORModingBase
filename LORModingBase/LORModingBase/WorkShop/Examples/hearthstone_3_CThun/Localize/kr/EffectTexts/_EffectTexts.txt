@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattleEffectTextRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <effectTextList>
+   
+    
+    <BattleEffectText ID="CThunBuf">
+      <Name>헌신</Name>
+      <Desc>헌신 수치에 따라서 특정 전투 책장의 능력이 상승</Desc>
+    </BattleEffectText>
+    <BattleEffectText ID="MadnessBuf">
+      <Name>광기</Name>
+      <Desc>이 효과가 있는동안 피아식별 없이 공격 대상을 정함</Desc>
+    </BattleEffectText>
+
+  </effectTextList>
+</BattleEffectTextRoot>

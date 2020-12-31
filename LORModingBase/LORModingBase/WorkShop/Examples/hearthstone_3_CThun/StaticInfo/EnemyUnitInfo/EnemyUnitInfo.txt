@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<EnemyUnitClassRoot>
+  <Enemy ID="2702901">
+    <NameID>2702901</NameID>
+    <MinHeight>200</MinHeight>
+    <MaxHeight>200</MaxHeight>
+
+    <BookId>2702801</BookId>
+    <DeckId>2702801</DeckId>
+
+    <DropTable Level="0">
+      <DropItem Prob="1">2702801</DropItem>
+    </DropTable>
+  </Enemy>
+
+  <Enemy ID="2702902">
+    <NameID>2702902</NameID>
+    <MinHeight>183</MinHeight>
+    <MaxHeight>183</MaxHeight>
+
+    <BookId>2702802</BookId>
+    <DeckId>2702802</DeckId>
+
+    <DropTable Level="0">
+      <DropItem Prob="1">2702802</DropItem>
+    </DropTable>
+  </Enemy>
+
+  <Enemy ID="2702903">
+    <NameID>2702903</NameID>
+    <MinHeight>171</MinHeight>
+    <MaxHeight>171</MaxHeight>
+
+    <BookId>2702803</BookId>
+    <DeckId>2702803</DeckId>
+
+    <DropTable Level="0">
+      <DropItem Prob="1">2702803</DropItem>
+    </DropTable>
+  </Enemy>
+
+
+
+</EnemyUnitClassRoot>

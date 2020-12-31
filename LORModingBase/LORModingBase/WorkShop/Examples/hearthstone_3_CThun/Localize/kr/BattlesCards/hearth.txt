@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattleCardDescRoot xmlns:xsi="http://www.w1.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w1.org/2001/XMLSchema">
+  <cardDescList>
+    <BattleCardDesc ID="2702110">
+      <LocalizedName>크툰</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+    <BattleCardDesc ID="2702111">
+      <LocalizedName>제왕 베클로어</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+    <BattleCardDesc ID="2702112">
+      <LocalizedName>제왕 베크닐라쉬</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+	
+    <BattleCardDesc ID="2702114">
+      <LocalizedName>악의 신도</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+    <BattleCardDesc ID="2702115">
+      <LocalizedName>두건 쓴 수행사제</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+	<BattleCardDesc ID="2702116">
+      <LocalizedName>크툰의 사도</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+    <BattleCardDesc ID="2702117">
+      <LocalizedName>어둠에 물든 아라코아</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+    <BattleCardDesc ID="2702118">
+      <LocalizedName>파멸의 사절</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+    <BattleCardDesc ID="2702119">
+      <LocalizedName>클락시 호박술사</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+	<BattleCardDesc ID="2702120">
+      <LocalizedName>황혼의 암흑치유사</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+	<BattleCardDesc ID="2702121">
+      <LocalizedName>크툰의 눈</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+	<BattleCardDesc ID="2702122">
+      <LocalizedName>크툰의 심장</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+	<BattleCardDesc ID="2702123">
+      <LocalizedName>크툰의 아귀</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+	<BattleCardDesc ID="2702124">
+      <LocalizedName>크툰의 육체</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+	<BattleCardDesc ID="2702125">
+      <LocalizedName>암흑의 주시</LocalizedName>
+      <Ability></Ability>
+    </BattleCardDesc>
+	<BattleCardDesc ID="2702126">
+      <LocalizedName>주시</LocalizedName>
+      <Ability>[사용시] 이 책장의 모든 주사위 제거. 다음 막 동안에만 사용할 수 있는 [광역 공격 책장]을 손에 추가. 이 책장은 사용 후에 소멸됨</Ability>
+    </BattleCardDesc>
+
+  </cardDescList>
+  
+</BattleCardDescRoot>

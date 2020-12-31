@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BookXmlRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Book ID="2702601">
+    <Name>크툰</Name>
+    <TextId>2702301</TextId>
+    <EquipEffect>
+      <HP>95</HP>
+      <Break>57</Break>
+      <SpeedMin>3</SpeedMin>
+      <Speed>6</Speed>
+      <SResist>Normal</SResist>
+      <PResist>Normal</PResist>
+      <HResist>Endure</HResist>
+      <SBResist>Normal</SBResist>
+      <PBResist>Normal</PBResist>
+      <HBResist>Endure</HBResist>
+
+      <PassiveCost>10</PassiveCost>
+      <Passive Level="1">2702513</Passive>
+      <Passive Level="1">2702505</Passive>
+      <Passive Level="1">2702506</Passive>
+      <Passive Level="1">2702507</Passive>
+    </EquipEffect>
+    <RangeType>Hybrid</RangeType>
+    <BookIcon>CThun111</BookIcon>
+    <Chapter>5</Chapter>
+    <Rarity>Unique</Rarity>
+    <CharacterSkin>Custom_Cthun</CharacterSkin>
+  </Book>
+
+  <Book ID="2702602">
+    <Name>광신도</Name>
+    <TextId>2702302</TextId>
+    <EquipEffect>
+      <HP>86</HP>
+      <Break>46</Break>
+      <SpeedMin>2</SpeedMin>
+      <Speed>6</Speed>
+      <SResist>Normal</SResist>
+      <PResist>Normal</PResist>
+      <HResist>Normal</HResist>
+      <SBResist>Normal</SBResist>
+      <PBResist>Endure</PBResist>
+      <HBResist>Normal</HBResist>
+
+      <PassiveCost>10</PassiveCost>
+
+      <Passive Level="1">10001</Passive>
+      <Passive Level="1">2702508</Passive>
+      <Passive Level="1">2702509</Passive>
+      <Passive Level="1">2702512</Passive>
+    </EquipEffect>
+    <BookIcon>CThun111</BookIcon>
+    <Chapter>5</Chapter>
+    <Rarity>Common</Rarity>
+    <CharacterSkin>SmilingFacesUnit_Librarian</CharacterSkin>
+  </Book>
+
+  <Book ID="2702603">
+    <Name>이도교</Name>
+    <TextId>2702303</TextId>
+    <EquipEffect>
+      <HP>84</HP>
+      <Break>45</Break>
+      <SpeedMin>2</SpeedMin>
+      <Speed>6</Speed>
+      <SResist>Normal</SResist>
+      <PResist>Normal</PResist>
+      <HResist>Normal</HResist>
+      <SBResist>Endure</SBResist>
+      <PBResist>Normal</PBResist>
+      <HBResist>Normal</HBResist>
+
+      <PassiveCost>10</PassiveCost>
+
+      <Passive Level="1">10001</Passive>
+      <Passive Level="1">2702510</Passive>
+      <Passive Level="1">2702511</Passive>
+      <Passive Level="1">2702512</Passive>
+    </EquipEffect>
+    <BookIcon>CThun111</BookIcon>
+    <Chapter>5</Chapter>
+    <Rarity>Common</Rarity>
+    <CharacterSkin>GearsUnit</CharacterSkin>
+  </Book>
+
+</BookXmlRoot>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<localize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<text id="dropbook_enterCthun">크툰의 초대장</text>
+	<text id="dropbook_Cthun">크툰의 책</text>
+	<text id="dropbook_Fanatic">광신도의 책</text>
+	<text id="dropbook_Cultist">이교도의 책</text>
+</localize>

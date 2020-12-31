@@ -1,0 +1,55 @@
+<ModInfo>
+  <ClothInfo>
+    <Name>CThun</Name>
+    <Default>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Default>
+    <Guard>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="-20.70001" pivot_y="-243.6" />
+      <Head head_x="0" head_y="0" rotation="0.8433509" head_enable="False" />
+    </Guard>
+    <Evade>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="-59.8" pivot_y="-243.6001" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Evade>
+    <Damaged>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="2.384186E-07" pivot_y="-245.8999" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Damaged>
+    <Move>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="4.768372E-07" pivot_y="-252.8002" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Move>
+    <Fire>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="-59.79999" pivot_y="-250.5" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Fire>
+    <Aim>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="-57.5" pivot_y="-250.5" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Aim>
+    <Slash>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="-73.59994" pivot_y="-248.2001" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Slash>
+    <Penetrate>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="-64.39999" pivot_y="-248.1999" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Penetrate>
+    <Hit>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="-69" pivot_y="-245.9001" />
+      <Head head_x="0" head_y="0" rotation="0" head_enable="False" />
+    </Hit>
+  </ClothInfo>
+</ModInfo>

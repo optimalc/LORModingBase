@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiceCardXmlRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Card ID="2702110">
+    <Name>크툰</Name>
+    <Artwork>C'Thun_full</Artwork>
+    <Rarity>Unique</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="4"/>
+    <Script>CThuncheck2</Script>
+    <ScriptDesc>이 책장은 사용 후에 소멸됨</ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="1" Dice="1" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="CThun" Desc="헌신 1당 위력을 1 얻음" />
+	  <Behaviour Min="1" Dice="1" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="CThun" Desc="헌신 1당 위력을 1 얻음" />
+      <Behaviour Min="2" Dice="4" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="CThun1" ActionScript="sweeperOnly" Desc="헌신만큼 주사위를 재사용" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702111">
+    <Name>쌍둥이 제왕 베클로어</Name>
+    <Artwork>Twin_Emperor_Veklor_full</Artwork>
+    <Rarity>Unique</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="2"/>
+    <Script>addTwin</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="4" Dice="8" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="" Desc="" />
+	  <Behaviour Min="3" Dice="7" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702112">
+    <Name>쌍둥이 제왕 베크닐라쉬</Name>
+    <Artwork>Twin_Emperor_Veknilash_full</Artwork>
+    <Rarity>Unique</Rarity>
+    <Spec Range="Near" Cost="0"/>
+    <Script>Twin</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+	  <Behaviour Min="4" Dice="8" Type="Atk" Detail="Slash" Motion="H" EffectRes="" Script="" Desc="" />
+      <Behaviour Min="3" Dice="7" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702114">
+    <Name>악의 신도</Name>
+    <Artwork>Beckoner_of_Evil_full</Artwork>
+    <Rarity>Common</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="1" />
+    <Script>CThun2</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="2" Dice="9" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+      <Behaviour Min="3" Dice="8" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="" Desc="" />
+	  <Behaviour Min="2" Dice="7" Type="Standby" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+	</BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702115">
+    <Name>두건 쓴 수행사제</Name>
+    <Artwork>Hooded_Acolyte_full</Artwork>
+    <Rarity>Common</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="0" />
+    <Script>1energyCThun2</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="2" Dice="5" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="" Desc="" />
+	  <Behaviour Min="2" Dice="6" Type="Def" Detail="Evasion" Motion="E" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702116">
+    <Name>크툰의 사도</Name>
+    <Artwork>Disciple_of_CThun_full</Artwork>
+    <Rarity>Uncommon</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="1" />
+    <Script>1drawCThun2</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="1" Dice="6" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+	  <Behaviour Min="2" Dice="6" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+      <Behaviour Min="2" Dice="6" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702117">
+    <Name>어둠에 물든 아라코아</Name>
+    <Artwork>Dark_Arakkoa_full</Artwork>
+    <Rarity>Common</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="3" />
+    <Script>CThun4</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="4" Dice="8" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+	  <Behaviour Min="6" Dice="9" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="" Desc="" />
+      <Behaviour Min="4" Dice="9" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702118">
+    <Name>파멸의 사절</Name>
+    <Artwork>Doomcaller_full</Artwork>
+    <Rarity>Uncommon</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="3" />
+    <Script>resuCThun2</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="6" Dice="10" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="" Desc="" />
+	  <Behaviour Min="6" Dice="11" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702119">
+    <Name>클락시 호박술사</Name>
+    <Artwork>Klaxxi_Amber-Weaver_full</Artwork>
+    <Rarity>Uncommon</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="2" />
+    <Script>Kla</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="4" Dice="7" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="" Desc="" />
+	  <Behaviour Min="3" Dice="6" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+      <Behaviour Min="2" Dice="5" Type="Atk" Detail="Slash" Motion="H" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702120">
+    <Name>황혼의 암흑치유사</Name>
+    <Artwork>Twilight_Darkmender_full</Artwork>
+    <Rarity>Uncommon</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="1" />
+    <Script>Twi</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="3" Dice="6" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="" Desc="" />
+	  <Behaviour Min="2" Dice="5" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="" Desc="" />
+      <Behaviour Min="2" Dice="7" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702121">
+    <Name>크툰의 눈</Name>
+    <Artwork>enUS_EyeofCThun</Artwork>
+    <Rarity>Unique</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Far" Cost="4" />
+    <Script>Cthuneye</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="9" Dice="19" Type="Atk" Detail="Penetrate" Motion="S1" EffectRes="CryingChild_FarAtk" Script="" ActionScript="cryingchild_chestlaser" Desc="" />
+	  <Behaviour Min="3" Dice="9" Type="Atk" Detail="Penetrate" Motion="S1" EffectRes="CryingChild_FarAtk" Script="repeatCthun" ActionScript="cryingchild_chestlaser" Desc="" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>10</Priority>
+  </Card>
+  <Card ID="2702122">
+    <Name>크툰의 심장</Name>
+    <Artwork>enUS_HeartofCThun</Artwork>
+    <Rarity>Uncommon</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="1" />
+    <Script>Cthunheart</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="1" Dice="5" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="" Desc="" />
+	  <Behaviour Min="2" Dice="9" Type="Atk" Detail="Slash" Motion="H" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702123">
+    <Name>크툰의 아귀</Name>
+    <Artwork>enUS_MawofCThun</Artwork>
+    <Rarity>Uncommon</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="2" />
+    <Script>CThun4</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="4" Dice="8" Type="Atk" Detail="Slash" Motion="H" EffectRes="" Script="recoverHp4atk" Desc="" />
+	  <Behaviour Min="4" Dice="8" Type="Atk" Detail="Slash" Motion="H" EffectRes="" Script="recoverHp4atk" Desc="" />
+      <Behaviour Min="2" Dice="7" Type="Standby" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702124">
+    <Name>크툰의 육체</Name>
+    <Artwork>enUS_BodyofCThun</Artwork>
+    <Rarity>Uncommon</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="0" />
+    <Script>Cthunbody</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="1" Dice="7" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+	  <Behaviour Min="2" Dice="5" Type="Atk" Detail="Hit" Motion="Z" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+  <Card ID="2702125">
+    <Name>암흑의 주시</Name>
+    <Artwork>Cthun_big_eye</Artwork>
+    <Rarity>Uncommon</Rarity>
+    <Spec Range="FarAreaEach" Cost="1" Affection ="Team" />
+    <Script>exhaust</Script>
+    <ScriptDesc>[광역 공격 책장]이 책장은 사용 후에 소멸한다</ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="6" Dice="10" Type="Atk" Detail="Penetrate" Motion="S2" EffectRes="" Script="darklook1" ActionScript="cryingchild_eyelaser" Desc="[개별][적중] 헌신이 10 이상이면 허약을 1 부여" />
+	  <Behaviour Min="6" Dice="10" Type="Atk" Detail="Penetrate" Motion="S2" EffectRes="" Script="darklook2" ActionScript="cryingchild_eyelaser" Desc="[개별][적중] 헌신이 10 이상이면 취약을 1 부여" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>20</Priority>
+  </Card>
+    <Card ID="2702126">
+    <Name>주시</Name>
+    <Artwork>Cthun_big_eye</Artwork>
+    <Rarity>Unique</Rarity>
+    <Spec Range="Near" Cost="4" />
+    <Script>readyCthun</Script>
+    <ScriptDesc>[사용시] 이 책장의 모든 주사위 제거. 다음 막 동안에만 사용할 수 있는 [광역 공격 책장]을 손에 추가. 이 책장은 사용 후에 소멸됨</ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="6" Dice="10" Type="Atk" Detail="Penetrate" Motion="S2" EffectRes="" Script="darklook1" ActionScript="cryingchild_eyelaser" Desc="[개별][적중] 헌신이 10 이상이면 허약을 1 부여" />
+	  <Behaviour Min="6" Dice="10" Type="Atk" Detail="Penetrate" Motion="S2" EffectRes="" Script="darklook2" ActionScript="cryingchild_eyelaser" Desc="[개별][적중] 헌신이 10 이상이면 취약을 1 부여" />
+    </BehaviourList>
+	<Chapter>1</Chapter>
+    <Priority>1</Priority>
+  </Card>
+</DiceCardXmlRoot>

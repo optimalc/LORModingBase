@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BookXmlRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Book ID="240001">
+    <Name>유진</Name>
+    <TextId>240001</TextId>
+    <EquipEffect>
+      <HP>244</HP>
+      <Break>44</Break>
+      <SpeedMin>2</SpeedMin>
+      <Speed>6</Speed>
+      <SResist>Normal</SResist>
+      <PResist>Endure</PResist>
+      <HResist>Normal</HResist>
+      <SBResist>Normal</SBResist>
+      <PBResist>Normal</PBResist>
+      <HBResist>Endure</HBResist>
+
+      <PassiveCost>17</PassiveCost>
+
+<Passive Level="1">10004</Passive>
+      <Passive Level="1">240101</Passive>
+      <Passive Level="1">9900001</Passive>
+      <Passive Level="1">9900002</Passive>
+      <Passive Level="1">241001</Passive>
+      <OnlyCard>501001</OnlyCard>
+    </EquipEffect>
+    <BookIcon>ShiAssociation</BookIcon>
+    <Chapter>5</Chapter>
+    <Episode>40001</Episode>
+    <Rarity>Unique</Rarity>
+    <CharacterSkin>Yujin</CharacterSkin>
+    <SpeedDiceNum>1</SpeedDiceNum>
+
+  </Book>
+</BookXmlRoot>

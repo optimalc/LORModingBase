@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DeckXmlRoot>
+
+  <!--크툰-->
+  <Deck ID="2702801">
+    <Card>2702110</Card>
+	<Card>2702122</Card>
+	<Card>2702122</Card>
+	<Card>2702124</Card>
+	<Card>2702124</Card>
+	<Card>2702111</Card>
+	<Card>2702121</Card>
+	<Card>2702123</Card>
+	<Card>2702118</Card>
+  </Deck>
+
+  <!--광신도-->
+  <Deck ID="2702802">
+    <Card>2702110</Card>
+	<Card>2702116</Card>
+	<Card>2702116</Card>
+	<Card>2702115</Card>
+	<Card>2702115</Card>
+	<Card>2702119</Card>
+	<Card>2702111</Card>
+	<Card>2702117</Card>
+	<Card>2702118</Card>
+  </Deck>
+
+  <!--이교도-->
+  <Deck ID="2702803">
+    <Card>2702110</Card>
+	<Card>2702116</Card>
+	<Card>2702116</Card>
+	<Card>2702115</Card>
+	<Card>2702115</Card>
+	<Card>2702119</Card>
+	<Card>2702111</Card>
+	<Card>2702117</Card>
+	<Card>2702118</Card>
+  </Deck>
+
+</DeckXmlRoot>

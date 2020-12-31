@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PassiveDescRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PassiveDesc ID="2702505"> 
+    <Name>정신 공유</Name>
+    <Desc>막 종료시 다른 무작위 아군의 헌신 수치와 동일한 수치의 헌신을 얻음</Desc> 
+  </PassiveDesc>
+  <PassiveDesc ID="2702506"> 
+    <Name>불멸</Name>
+    <Desc>체력이 0이 되는 피해를 입을 때, 헌신이 20 이상일시 그 피해를 0으로 하고 헌신을 모두 소모하며 체력을 전부 회복</Desc> 
+  </PassiveDesc>
+  <PassiveDesc ID="2702507"> 
+    <Name>공허</Name>
+    <Desc>막 시작시 헌신이 15 이상이라면 빛을 1 회복하고 책장을 1장 뽑음</Desc> 
+  </PassiveDesc>
+  <PassiveDesc ID="2702513"> 
+    <Name>고대신</Name>
+    <Desc>속도 주사위 슬롯 +1. 헌신이 10 이상일 때, 속도 주사위 슬롯 +2, 헌신이 30 이상일 때, 속도 주사위 슬롯 +3과 모든 주사위 위력 +1를 얻음</Desc> 
+  </PassiveDesc>
+
+  <PassiveDesc ID="2702508"> 
+    <Name>제물</Name>
+    <Desc>적 처치시 힘 2, 신속 2, 헌신 8을 얻음</Desc> 
+  </PassiveDesc>
+  <PassiveDesc ID="2702509"> 
+    <Name>심취</Name>
+    <Desc>헌신 4당 공격으로 주는 피해량 +1</Desc> 
+  </PassiveDesc>
+  <PassiveDesc ID="2702510"> 
+    <Name>낙인</Name>
+    <Desc>공격 적중시 속박 1, 화상 1을 부여하고 헌신을 1 얻음</Desc> 
+  </PassiveDesc>
+    <PassiveDesc ID="2702511"> 
+    <Name>심문</Name>
+    <Desc>헌신 4당 공격으로 주는 흐트러짐 피해량 +1</Desc> 
+  </PassiveDesc>
+    <PassiveDesc ID="2702512"> 
+    <Name>크툰의 하수인</Name>
+    <Desc>전투책장으로 헌신를 얻을 때, 얻는 헌신 수치 +1</Desc> 
+  </PassiveDesc>
+    <PassiveDesc ID="2702514"> 
+    <Name>망신</Name>
+    <Desc>헌신이 10 이상이라면 공격 주사위 위력 +1</Desc> 
+  </PassiveDesc>
+  
+</PassiveDescRoot>

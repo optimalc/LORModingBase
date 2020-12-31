@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CharactersNameRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Name ID="2702901">크툰</Name>
+	<Name ID="2702902">광신도</Name>
+	<Name ID="2702903">이도교</Name>
+
+
+</CharactersNameRoot>

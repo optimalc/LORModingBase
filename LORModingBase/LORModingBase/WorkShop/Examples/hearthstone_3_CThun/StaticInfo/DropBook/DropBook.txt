@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BookUseXmlRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <BookUse ID="-2702001">
+    <Name>Cthun</Name>
+    <TextId>dropbook_enterCthun</TextId>
+	<BookIcon>CThun111</BookIcon>
+    <Chapter>6</Chapter>
+  </BookUse>
+
+  <BookUse ID="2702801">
+    <TextId>dropbook_Cthun</TextId>
+    <BookIcon>CThun111</BookIcon>
+    <Chapter>6</Chapter>
+    <DropItem Type="Equip">2702601</DropItem>
+  </BookUse>
+
+  <BookUse ID="2702802">
+    <TextId>dropbook_Fanatic</TextId>
+    <BookIcon>CThun111</BookIcon>
+    <Chapter>6</Chapter>
+    <DropItem Type="Equip">2702602</DropItem>
+  </BookUse>
+
+  <BookUse ID="2702803">
+    <TextId>dropbook_Cultist</TextId>
+    <BookIcon>CThun111</BookIcon>
+    <Chapter>6</Chapter>
+    <DropItem Type="Equip">2702603</DropItem>
+  </BookUse>
+
+
+</BookUseXmlRoot>

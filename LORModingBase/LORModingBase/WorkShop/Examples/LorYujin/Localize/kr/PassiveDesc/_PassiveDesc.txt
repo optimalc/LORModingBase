@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PassiveDescRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PassiveDesc ID="9900001"> 
+    <Name>사의 눈</Name>
+    <Desc>모든 주사위 위력 +4</Desc> 
+  </PassiveDesc>
+  <PassiveDesc ID="9900002"> 
+    <Name>과호흡</Name>
+    <Desc>원래 비용이 4 이상인 책장을 사용할 때 빛 2 회복</Desc> 
+  </PassiveDesc>
+</PassiveDescRoot>
