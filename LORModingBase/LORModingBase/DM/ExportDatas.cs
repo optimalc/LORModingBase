@@ -27,9 +27,13 @@ namespace LORModingBase.DM
 
             Directory.CreateDirectory(MDOE_DIR_TO_USE);
             Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo");
+            Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\kr");
 
             Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\EquipPage");
             ExportDatas_CriticalPages();
+
+            Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\kr\\Books");
+            ExportDatas_CriticalPageDescription();
 
             return MDOE_DIR_TO_USE;
         }
@@ -89,6 +93,42 @@ namespace LORModingBase.DM
             }
 
             rootNode.OwnerDocument.Save(EQUIP_PAGE_PATH);
+        }
+
+        /// <summary>
+        /// Export critical page description
+        /// </summary>
+        public static void ExportDatas_CriticalPageDescription()
+        {
+            string BOOKS_PATH = $"{MDOE_DIR_TO_USE}\\Localize\\kr\\Books\\_Books.txt";
+            File.Copy(DS.PATH.RESOURCE_XML_BASE_BOOKS, BOOKS_PATH);
+
+            XmlNode rootNode = Tools.XmlFile.SelectSingleNode(BOOKS_PATH, "//bookDescList");
+
+            foreach (DS.CriticalPageInfo ciriticalInfo in MainWindow.criticalPageInfos)
+            {
+                XmlElement bookDescElement = rootNode.OwnerDocument.CreateElement("BookDesc");
+                bookDescElement.SetAttribute("BookID", ciriticalInfo.bookID);
+                Tools.XmlFile.AddNewNodeWithInnerText(bookDescElement, "BookName", ciriticalInfo.name);
+
+                XmlElement textListElement = rootNode.OwnerDocument.CreateElement("TextList");
+                foreach(string desPart in ciriticalInfo.description.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.None))
+                {
+                    Tools.XmlFile.AddNewNodeWithInnerText(textListElement, "Desc", desPart.Replace("\r\n", " ").Replace("\r", "").Replace("\n", ""));
+                }
+                bookDescElement.AppendChild(textListElement);
+
+                XmlElement passiveListElement = rootNode.OwnerDocument.CreateElement("PassiveList");
+                foreach (string passiveName in ciriticalInfo.passiveIDs)
+                {
+                    Tools.XmlFile.AddNewNodeWithInnerText(passiveListElement, "Passive", passiveName.Split(':')[1]);
+                }
+                bookDescElement.AppendChild(passiveListElement);
+
+                rootNode.AppendChild(bookDescElement);
+            }
+
+            rootNode.OwnerDocument.Save(BOOKS_PATH);
         }
     }
 }

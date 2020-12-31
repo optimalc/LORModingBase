@@ -43,6 +43,9 @@ namespace LORModingBase.DM
                     throw new Exception("핵심 책장의 스킨 이름이 입력되지 않았습니다.");
                 if (string.IsNullOrEmpty(ciriticalInfo.iconName))
                     throw new Exception("핵심 책장의 아이콘 이름이 입력되지 않았습니다.");
+
+                if (string.IsNullOrEmpty(ciriticalInfo.description))
+                    throw new Exception("핵심 책장에 대한 설명이 입력되지 않았습니다.");
             }
         }
     }

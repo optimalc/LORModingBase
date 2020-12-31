@@ -15,7 +15,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="../Resources/MainBg.png"/>
             </Grid.Background>
-            <TextBox x:Name="TbxDescription" Text="" ToolTip="핵심책장에 대한 설명을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch"/>
+            <TextBox x:Name="TbxDescription" Text="" ToolTip="핵심책장에 대한 설명을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
