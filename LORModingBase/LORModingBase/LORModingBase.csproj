@@ -186,5 +186,9 @@
     <Resource Include="Resources\IconNobookInfo.png" />
     <Resource Include="Resources\IconYesbookInfo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\iconNoDropBook.png" />
+    <Resource Include="Resources\iconYesDropBook.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

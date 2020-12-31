@@ -47,5 +47,9 @@ namespace LORModingBase.DS
         /// Xml bases for Books info
         /// </summary>
         public static string RESOURCE_XML_BASE_BOOKS = $"{DIC_RESURCE}\\_Books.txt";
+        /// <summary>
+        /// Xml base for Dropping books info
+        /// </summary>
+        public static string RESOURCE_XML_BASE_DROP_BOOK = $"{DIC_RESURCE}\\DropBook.txt";
     }
 }
