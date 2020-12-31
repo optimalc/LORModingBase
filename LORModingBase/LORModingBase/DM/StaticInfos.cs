@@ -104,6 +104,8 @@ namespace LORModingBase.DM
                 {
                     if (bookNode["CharacterSkin"] == null)
                         continue;
+                    if (string.IsNullOrEmpty(bookNode["CharacterSkin"].InnerText))
+                        continue;
 
                     bookSkinInfos.Add(new DS.BookSkinInfo()
                     {
