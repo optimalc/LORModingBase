@@ -69,11 +69,11 @@
     <Compile Include="DS\Config.cs" />
     <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\PATH.cs" />
-    <Compile Include="SubWindows\InputBookPassiveWindow.xaml.cs">
-      <DependentUpon>InputBookPassiveWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SubWindows\InputBookSkinWindow.xaml.cs">
       <DependentUpon>InputBookSkinWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindows\InputBookPassiveWindow.xaml.cs">
+      <DependentUpon>InputBookPassiveWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\InputBookIconWindow.xaml.cs">
       <DependentUpon>InputBookIconWindow.xaml</DependentUpon>
@@ -102,11 +102,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SubWindows\InputBookPassiveWindow.xaml">
+    <Page Include="SubWindows\InputBookSkinWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SubWindows\InputBookSkinWindow.xaml">
+    <Page Include="SubWindows\InputBookPassiveWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

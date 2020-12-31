@@ -21,9 +21,9 @@ namespace LORModingBase.DM
         public static Dictionary<string, List<DS.PassiveInfo>> passiveInfos = new Dictionary<string, List<DS.PassiveInfo>>();
 
         /// <summary>
-        /// Skin infos
+        /// Book skin infos
         /// </summary>
-        public static Dictionary<string, List<string>> skinInfos = new Dictionary<string, List<string>>();
+        public static List<DS.BookSkinInfo> bookSkinInfos = new List<DS.BookSkinInfo>();
 
         /// <summary>
         /// Book icon infos
@@ -95,21 +95,23 @@ namespace LORModingBase.DM
             });
             #endregion
             #region Load skin icon infos
-            skinInfos.Clear();
+            bookSkinInfos.Clear();
             Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\EquipPage").ToList().ForEach((string eqPath) =>
             {
                 XmlNodeList bookNodeList = Tools.XmlFile.SelectNodeLists(eqPath, "//Book");
 
-                List<string> skins = new List<string>();
                 foreach (XmlNode bookNode in bookNodeList)
                 {
-                    if (bookNode["Name"] == null && bookNode["CharacterSkin"] != null)
-                        skins.Add($":{bookNode["CharacterSkin"].InnerText}");
-                    else if (bookNode["CharacterSkin"] != null)
-                        skins.Add($"{bookNode["Name"].InnerText}:{bookNode["CharacterSkin"].InnerText}");
+                    if (bookNode["CharacterSkin"] == null)
+                        continue;
+
+                    bookSkinInfos.Add(new DS.BookSkinInfo()
+                    {
+                        skinDesc = (bookNode["Name"] == null) ? "" : bookNode["Name"].InnerText,
+                        skinName = bookNode["CharacterSkin"].InnerText,
+                        chapter = (bookNode["Chapter"] == null) ? "" : bookNode["Chapter"].InnerText
+                    });
                 }
-                string PATH_TO_USE = eqPath.Split('\\').Last().Split('.')[0];
-                if (skins.Count > 0) skinInfos[PATH_TO_USE] = skins;
             }); 
             #endregion
 

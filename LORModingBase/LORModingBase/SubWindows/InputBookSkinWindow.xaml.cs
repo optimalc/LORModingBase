@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,56 +9,135 @@ namespace LORModingBase.SubWindows
     /// </summary>
     public partial class InputBookSkinWindow : Window
     {
-        Action<string> afterSelectBookskin = null;
+        /// <summary>
+        /// After select atage (chapter, skinName, skinDesc)
+        /// </summary>
+        Action<string, string, string> afterSelectSkin = null;
 
         #region Init controls
-        public InputBookSkinWindow(Action<string> afterSelectBookskin)
+        public InputBookSkinWindow(Action<string, string, string> afterSelectSkin)
         {
             InitializeComponent();
-            InitLbxFile();
-            this.afterSelectBookskin = afterSelectBookskin;
-        }
+            InitListBoxes();
 
-        private void InitLbxFile()
+            this.afterSelectSkin = afterSelectSkin;
+        } 
+
+        private void InitListBoxes()
         {
-            LbxFile.Items.Clear();
-            DM.StaticInfos.skinInfos.Keys.ToList().ForEach((string fileName) =>
+            DM.StaticInfos.bookSkinInfos.ForEach((DS.BookSkinInfo skinInfo) =>
             {
-                LbxFile.Items.Add(fileName);
-            });
-
-            if (LbxFile.Items.Count > 0)
-            {
-                LbxFile.SelectedIndex = 0;
-                InitLbxBookSkin();
-            }
-        }
-
-        private void InitLbxBookSkin()
-        {
-            if (LbxFile.SelectedItem != null)
-            {
-                LbxBookSkin.Items.Clear();
-                DM.StaticInfos.skinInfos[LbxFile.SelectedItem.ToString()].ForEach((string bookSkinName) =>
+                switch(skinInfo.chapter)
                 {
-                    LbxBookSkin.Items.Add(bookSkinName);
-                });
-            }
+                    case "1":
+                        LbxCh1.Items.Add($"{skinInfo.skinDesc}:{skinInfo.skinName}");
+                        break;
+                    case "2":
+                        LbxCh2.Items.Add($"{skinInfo.skinDesc}:{skinInfo.skinName}");
+                        break;
+                    case "3":
+                        LbxCh3.Items.Add($"{skinInfo.skinDesc}:{skinInfo.skinName}");
+                        break;
+                    case "4":
+                        LbxCh4.Items.Add($"{skinInfo.skinDesc}:{skinInfo.skinName}");
+                        break;
+                    case "5":
+                        LbxCh5.Items.Add($"{skinInfo.skinDesc}:{skinInfo.skinName}");
+                        break;
+                    case "6":
+                        LbxCh6.Items.Add($"{skinInfo.skinDesc}:{skinInfo.skinName}");
+                        break;
+                    case "7":
+                        LbxCh7.Items.Add($"{skinInfo.skinDesc}:{skinInfo.skinName}");
+                        break;
+                    default:
+                        LbxEtc.Items.Add($"{skinInfo.skinDesc}:{skinInfo.skinName}");
+                        break;
+                }
+            });
         }
         #endregion
 
-        private void LbxFile_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        #region Episode select event
+        private void LbxEtc_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            InitLbxBookSkin();
-        }
-
-        private void LbxBookSkin_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (LbxBookSkin.SelectedIndex != -1)
+            if (LbxEtc.SelectedItem != null)
             {
-                afterSelectBookskin(LbxBookSkin.SelectedItem.ToString());
+                afterSelectSkin("ETC", LbxCh1.SelectedItem.ToString().Split(':')[1], LbxCh1.SelectedItem.ToString().Split(':')[0]);
                 this.Close();
             }
         }
+
+        private void LbxCh1_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(LbxCh1.SelectedItem != null)
+            {
+                afterSelectSkin("1", LbxCh1.SelectedItem.ToString().Split(':')[1], LbxCh1.SelectedItem.ToString().Split(':')[0]);
+                this.Close();
+            }
+        }
+        private void Label_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (LbxCh2.SelectedItem != null)
+            {
+                afterSelectSkin("2", LbxCh1.SelectedItem.ToString().Split(':')[1], LbxCh1.SelectedItem.ToString().Split(':')[0]);
+                this.Close();
+            }
+        }
+
+        private void LbxCh2_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (LbxCh2.SelectedItem != null)
+            {
+                afterSelectSkin("2", LbxCh2.SelectedItem.ToString().Split(':')[1], LbxCh2.SelectedItem.ToString().Split(':')[0]);
+                this.Close();
+            }
+        }
+
+        private void LbxCh3_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (LbxCh3.SelectedItem != null)
+            {
+                afterSelectSkin("3", LbxCh3.SelectedItem.ToString().Split(':')[1], LbxCh3.SelectedItem.ToString().Split(':')[0]);
+                this.Close();
+            }
+        }
+
+        private void LbxCh4_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (LbxCh4.SelectedItem != null)
+            {
+                afterSelectSkin("4", LbxCh4.SelectedItem.ToString().Split(':')[1], LbxCh4.SelectedItem.ToString().Split(':')[0]);
+                this.Close();
+            }
+        }
+
+        private void LbxCh5_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (LbxCh5.SelectedItem != null)
+            {
+                afterSelectSkin("5", LbxCh5.SelectedItem.ToString().Split(':')[1], LbxCh5.SelectedItem.ToString().Split(':')[0]);
+                this.Close();
+            }
+        }
+
+        private void LbxCh6_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (LbxCh6.SelectedItem != null)
+            {
+                afterSelectSkin("6", LbxCh6.SelectedItem.ToString().Split(':')[1], LbxCh6.SelectedItem.ToString().Split(':')[0]);
+                this.Close();
+            }
+        }
+
+        private void LbxCh7_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (LbxCh7.SelectedItem != null)
+            {
+                afterSelectSkin("7", LbxCh7.SelectedItem.ToString().Split(':')[1], LbxCh7.SelectedItem.ToString().Split(':')[0]);
+                this.Close();
+            }
+        }
+        #endregion
     }
 }

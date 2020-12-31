@@ -181,13 +181,14 @@ namespace LORModingBase.UC
         }
         private void BtnSkin_Click(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputBookSkinWindow((string bookSkinName) =>
+            new SubWindows.InputBookSkinWindow((string chpater, string bookSkinName, string bookSkinDesc) =>
             {
-                BtnSkin.Content = bookSkinName;
-                BtnSkin.ToolTip = bookSkinName;
+                string SKIN_DESC = $"{bookSkinDesc}:{bookSkinName}";
+                BtnSkin.Content = SKIN_DESC;
+                BtnSkin.ToolTip = SKIN_DESC;
 
-                innerCriticalPageInfo.skinName = bookSkinName.Split(':').Last();
-                innerCriticalPageInfo.skinDes = bookSkinName;
+                innerCriticalPageInfo.skinName = bookSkinName;
+                innerCriticalPageInfo.skinDes = SKIN_DESC;
             }).ShowDialog();
         }
 

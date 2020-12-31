@@ -82,6 +82,27 @@ namespace LORModingBase.DS
         public string iconDesc = "";
     }
 
+    /// <summary>
+    /// Skin infos data structure
+    /// </summary>
+    class BookSkinInfo
+    {
+        /// <summary>
+        /// Icon name to use
+        /// </summary>
+        public string skinName = "";
+
+        /// <summary>
+        /// Chapter
+        /// </summary>
+        public string chapter = "";
+
+        /// <summary>
+        /// Icon desciption
+        /// </summary>
+        public string skinDesc = "";
+    }
+
 
     /// <summary>
     /// Stage infos data structure
