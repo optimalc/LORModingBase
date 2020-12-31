@@ -111,8 +111,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\InputBookIconWindow.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\InputEpisodeWindow.xaml">
       <SubType>Designer</SubType>

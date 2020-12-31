@@ -169,13 +169,14 @@ namespace LORModingBase.UC
         }
         private void BtnBookIcon_Click(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputBookIconWindow((string bookIconName) =>
+            new SubWindows.InputBookIconWindow((string chpater, string bookIconName, string bookIconDesc) =>
             {
-                BtnBookIcon.Content = bookIconName;
-                BtnBookIcon.ToolTip = bookIconName;
+                string ICON_DESC = $"{bookIconDesc}:{bookIconName}";
+                BtnBookIcon.Content = ICON_DESC;
+                BtnBookIcon.ToolTip = ICON_DESC;
 
-                innerCriticalPageInfo.iconName = bookIconName.Split(':').Last();
-                innerCriticalPageInfo.iconDes = bookIconName;
+                innerCriticalPageInfo.iconName = bookIconName;
+                innerCriticalPageInfo.iconDes = ICON_DESC;
             }).ShowDialog();
         }
         private void BtnSkin_Click(object sender, RoutedEventArgs e)

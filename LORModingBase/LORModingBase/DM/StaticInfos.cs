@@ -28,7 +28,7 @@ namespace LORModingBase.DM
         /// <summary>
         /// Book icon infos
         /// </summary>
-        public static Dictionary<string, List<string>> bookIconInfos = new Dictionary<string, List<string>>();
+        public static List<DS.BookIconInfo> bookIconInfos = new List<DS.BookIconInfo>();
 
         /// <summary>
         /// Load all static datas
@@ -70,30 +70,48 @@ namespace LORModingBase.DM
         /// </summary>
         public static void LoadDatas_SkinAndBookIconInfo()
         {
-            skinInfos.Clear();
+            #region Load book icon infos
             bookIconInfos.Clear();
-            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\EquipPage").ToList().ForEach((string eqPath) => {
+            string dropBookInfoPath = $"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\etc\\KR_Dropbook.txt";
+            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\DropBook").ToList().ForEach((string dropBookPath) =>
+            {
+                XmlNodeList bookUseNodeList = Tools.XmlFile.SelectNodeLists(dropBookPath, "//BookUse");
+                foreach (XmlNode bookUseNode in bookUseNodeList)
+                {
+                    if (bookUseNode["TextId"] == null || bookUseNode["BookIcon"] == null || bookUseNode["Chapter"] == null)
+                        continue;
+
+                    XmlNode dropBookInfoNode = Tools.XmlFile.SelectSingleNode(dropBookInfoPath, $"//text[@id='{bookUseNode["TextId"].InnerText}']");
+                    if (dropBookInfoNode == null)
+                        continue;
+
+                    bookIconInfos.Add(new DS.BookIconInfo()
+                    {
+                        iconName = bookUseNode["BookIcon"].InnerText,
+                        iconDesc = dropBookInfoNode.InnerText,
+                        chapter = bookUseNode["Chapter"].InnerText
+                    });
+                }
+            });
+            #endregion
+            #region Load skin icon infos
+            skinInfos.Clear();
+            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\EquipPage").ToList().ForEach((string eqPath) =>
+            {
                 XmlNodeList bookNodeList = Tools.XmlFile.SelectNodeLists(eqPath, "//Book");
 
                 List<string> skins = new List<string>();
-                List<string> bookIcons = new List<string>();
                 foreach (XmlNode bookNode in bookNodeList)
                 {
                     if (bookNode["Name"] == null && bookNode["CharacterSkin"] != null)
                         skins.Add($":{bookNode["CharacterSkin"].InnerText}");
                     else if (bookNode["CharacterSkin"] != null)
                         skins.Add($"{bookNode["Name"].InnerText}:{bookNode["CharacterSkin"].InnerText}");
-
-                    if (bookNode["Name"] == null && bookNode["BookIcon"] != null)
-                        bookIcons.Add($":{bookNode["BookIcon"].InnerText}");
-                    else if (bookNode["BookIcon"] != null)
-                        bookIcons.Add($"{bookNode["Name"].InnerText}:{bookNode["BookIcon"].InnerText}");
-
                 }
                 string PATH_TO_USE = eqPath.Split('\\').Last().Split('.')[0];
-                if(skins.Count > 0) skinInfos[PATH_TO_USE] = skins;
-                if(bookIcons.Count > 0) bookIconInfos[PATH_TO_USE] = bookIcons;
-            });
+                if (skins.Count > 0) skinInfos[PATH_TO_USE] = skins;
+            }); 
+            #endregion
 
         }
     

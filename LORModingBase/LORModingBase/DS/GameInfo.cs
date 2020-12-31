@@ -62,6 +62,28 @@ namespace LORModingBase.DS
     }
 
     /// <summary>
+    /// Icon infos data structure
+    /// </summary>
+    class BookIconInfo
+    {
+        /// <summary>
+        /// Icon name to use
+        /// </summary>
+        public string iconName = "";
+
+        /// <summary>
+        /// Chapter
+        /// </summary>
+        public string chapter = "";
+
+        /// <summary>
+        /// Icon desciption
+        /// </summary>
+        public string iconDesc = "";
+    }
+
+
+    /// <summary>
     /// Stage infos data structure
     /// </summary>
     class StageInfo
