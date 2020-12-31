@@ -63,7 +63,7 @@ namespace LORModingBase.SubWindows
         {
             if (LbxEtc.SelectedItem != null)
             {
-                afterSelectSkin("ETC", LbxCh1.SelectedItem.ToString().Split(':')[1], LbxCh1.SelectedItem.ToString().Split(':')[0]);
+                afterSelectSkin("ETC", LbxEtc.SelectedItem.ToString().Split(':')[1], LbxEtc.SelectedItem.ToString().Split(':')[0]);
                 this.Close();
             }
         }

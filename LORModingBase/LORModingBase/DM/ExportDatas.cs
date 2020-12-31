@@ -35,6 +35,9 @@ namespace LORModingBase.DM
             Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\kr\\Books");
             ExportDatas_CriticalPageDescription();
 
+            Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\DropBook");
+            ExportDatas_DropBooks();
+
             return MDOE_DIR_TO_USE;
         }
 
@@ -129,6 +132,57 @@ namespace LORModingBase.DM
             }
 
             rootNode.OwnerDocument.Save(BOOKS_PATH);
+        }
+
+        /// <summary>
+        /// Export DropBooks
+        /// </summary>
+        public static void ExportDatas_DropBooks()
+        {
+            string DROP_BOOK_PATH = $"{MDOE_DIR_TO_USE}\\StaticInfo\\DropBook\\DropBook.txt";
+            File.Copy(DS.PATH.RESOURCE_XML_BASE_DROP_BOOK, DROP_BOOK_PATH);
+
+            Dictionary<string, List<string>> dropBookDic = new Dictionary<string, List<string>>(); // <DropBook ID, BookID>
+            #region Make drop book dic
+            foreach (DS.CriticalPageInfo ciriticalInfo in MainWindow.criticalPageInfos)
+            {
+                foreach(string dropBookID in ciriticalInfo.dropBooks)
+                {
+                    string DROP_BOOK_ID = dropBookID.Split(':').Last();
+                    if (!dropBookDic.ContainsKey(DROP_BOOK_ID))
+                        dropBookDic[DROP_BOOK_ID] = new List<string>();
+
+                    dropBookDic[DROP_BOOK_ID].Add(ciriticalInfo.bookID);
+                }
+            }
+            #endregion
+
+            XmlNode rootNode = Tools.XmlFile.SelectSingleNode(DROP_BOOK_PATH, "//BookUseXmlRoot");
+            foreach(string dropBookID in dropBookDic.Keys)
+            {
+                DS.DropBookInfo foundDropBookInfo = DM.StaticInfos.dropBookInfos.Find((DS.DropBookInfo info) =>
+                {
+                    return info.bookID == dropBookID;
+                });
+                if (foundDropBookInfo == null) continue;
+
+                string DROP_BOOK_SEARCH_PATH = $"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\DropBook\\DropBook_ch{foundDropBookInfo.chapter}.txt";
+                if (!File.Exists(DROP_BOOK_SEARCH_PATH)) continue;
+
+                XmlNode copiedBookUseNode = Tools.XmlFile.SelectSingleNode(DROP_BOOK_SEARCH_PATH, $"//BookUse[@ID='{dropBookID}']");
+                if (copiedBookUseNode == null) continue;
+
+                foreach (string bookIDToDrop in dropBookDic[dropBookID])
+                {
+                    XmlElement dropItemElement = copiedBookUseNode.OwnerDocument.CreateElement("DropItem");
+                    dropItemElement.SetAttribute("Type", "Equip");
+                    dropItemElement.InnerText = bookIDToDrop;
+                    copiedBookUseNode.AppendChild(dropItemElement);
+                }
+
+                rootNode.AppendChild(rootNode.OwnerDocument.ImportNode(copiedBookUseNode, true));
+            }
+            rootNode.OwnerDocument.Save(DROP_BOOK_PATH);
         }
     }
 }
