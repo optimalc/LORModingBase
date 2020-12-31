@@ -64,7 +64,7 @@ namespace LORModingBase.DS
     /// <summary>
     /// Icon infos data structure
     /// </summary>
-    class BookIconInfo
+    class DropBookInfo
     {
         /// <summary>
         /// Icon name to use
@@ -80,6 +80,11 @@ namespace LORModingBase.DS
         /// Icon desciption
         /// </summary>
         public string iconDesc = "";
+
+        /// <summary>
+        /// bookID
+        /// </summary>
+        public string bookID = "";
     }
 
     /// <summary>

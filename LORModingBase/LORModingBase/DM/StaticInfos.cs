@@ -28,7 +28,7 @@ namespace LORModingBase.DM
         /// <summary>
         /// Book icon infos
         /// </summary>
-        public static List<DS.BookIconInfo> bookIconInfos = new List<DS.BookIconInfo>();
+        public static List<DS.DropBookInfo> dropBookInfos = new List<DS.DropBookInfo>();
 
         /// <summary>
         /// Load all static datas
@@ -71,25 +71,26 @@ namespace LORModingBase.DM
         public static void LoadDatas_SkinAndBookIconInfo()
         {
             #region Load book icon infos
-            bookIconInfos.Clear();
+            dropBookInfos.Clear();
             string dropBookInfoPath = $"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\etc\\KR_Dropbook.txt";
             Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\DropBook").ToList().ForEach((string dropBookPath) =>
             {
                 XmlNodeList bookUseNodeList = Tools.XmlFile.SelectNodeLists(dropBookPath, "//BookUse");
                 foreach (XmlNode bookUseNode in bookUseNodeList)
                 {
-                    if (bookUseNode["TextId"] == null || bookUseNode["BookIcon"] == null || bookUseNode["Chapter"] == null)
+                    if (bookUseNode.Attributes["ID"] == null || bookUseNode["TextId"] == null || bookUseNode["BookIcon"] == null || bookUseNode["Chapter"] == null)
                         continue;
 
                     XmlNode dropBookInfoNode = Tools.XmlFile.SelectSingleNode(dropBookInfoPath, $"//text[@id='{bookUseNode["TextId"].InnerText}']");
                     if (dropBookInfoNode == null)
                         continue;
 
-                    bookIconInfos.Add(new DS.BookIconInfo()
+                    dropBookInfos.Add(new DS.DropBookInfo()
                     {
                         iconName = bookUseNode["BookIcon"].InnerText,
                         iconDesc = dropBookInfoNode.InnerText,
-                        chapter = bookUseNode["Chapter"].InnerText
+                        chapter = bookUseNode["Chapter"].InnerText,
+                        bookID = bookUseNode.Attributes["ID"].Value
                     });
                 }
             });

@@ -25,7 +25,7 @@ namespace LORModingBase.SubWindows
 
         private void InitListBoxes()
         {
-            DM.StaticInfos.bookIconInfos.ForEach((DS.BookIconInfo iconInfo) =>
+            DM.StaticInfos.dropBookInfos.ForEach((DS.DropBookInfo iconInfo) =>
             {
                 switch(iconInfo.chapter)
                 {
