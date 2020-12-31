@@ -186,9 +186,6 @@ namespace LORModingBase.DS
         public List<string> passiveIDs = new List<string>();
 
         public string description = "입력된 정보가 없습니다";
-        public List<string> dropBooks = new List<string>()
-        {
-            "200004"
-        };
+        public List<string> dropBooks = new List<string>();
     }
 }

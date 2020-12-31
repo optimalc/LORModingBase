@@ -62,6 +62,11 @@ namespace LORModingBase.UC
                 BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
                 BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
             }
+            if (innerCriticalPageInfo.dropBooks.Count > 0)
+            {
+                BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+                BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)";
+            }
         }
 
         private void ChangeRarityUIInit(string rarity)
@@ -345,7 +350,23 @@ namespace LORModingBase.UC
                 BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
                 BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
             }, innerCriticalPageInfo.description).ShowDialog();
-        } 
+        }
+
+        private void BtnDropBooks_Click(object sender, RoutedEventArgs e)
+        {
+            new SubWindows.InputDropBookInfosWindow(innerCriticalPageInfo.dropBooks).ShowDialog();
+
+            if(innerCriticalPageInfo.dropBooks.Count > 0)
+            {
+                BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+                BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)";
+            }
+            else
+            {
+                BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
+                BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
+            }
+        }
         #endregion
     }
 }

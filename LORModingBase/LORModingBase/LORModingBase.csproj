@@ -72,6 +72,9 @@
     <Compile Include="SubWindows\InputBookSkinWindow.xaml.cs">
       <DependentUpon>InputBookSkinWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\InputDropBookInfosWindow.xaml.cs">
+      <DependentUpon>InputDropBookInfosWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputBookPassiveWindow.xaml.cs">
       <DependentUpon>InputBookPassiveWindow.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SubWindows\InputBookSkinWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindows\InputDropBookInfosWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

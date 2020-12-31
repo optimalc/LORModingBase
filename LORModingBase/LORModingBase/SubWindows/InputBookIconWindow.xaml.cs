@@ -64,14 +64,6 @@ namespace LORModingBase.SubWindows
                 this.Close();
             }
         }
-        private void Label_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (LbxCh2.SelectedItem != null)
-            {
-                afterSelectIcon("2", LbxCh1.SelectedItem.ToString().Split(':')[1], LbxCh1.SelectedItem.ToString().Split(':')[0]);
-                this.Close();
-            }
-        }
 
         private void LbxCh2_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
