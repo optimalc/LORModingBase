@@ -81,6 +81,8 @@ namespace LORModingBase.DM
                 {
                     if (bookUseNode.Attributes["ID"] == null || bookUseNode["TextId"] == null || bookUseNode["BookIcon"] == null || bookUseNode["Chapter"] == null)
                         continue;
+                    if (string.IsNullOrEmpty(bookUseNode["BookIcon"].InnerText))
+                        continue;
 
                     XmlNode dropBookInfoNode = Tools.XmlFile.SelectSingleNode(dropBookInfoPath, $"//text[@id='{bookUseNode["TextId"].InnerText}']");
                     if (dropBookInfoNode == null)
