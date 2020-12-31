@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LORModingBase.SubWindows"
         mc:Ignorable="d"
-        Title="지정할 패시브를 더블클릭" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+        Title="지정할 패시브를 더블클릭" Height="450" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="85*"/>
         </Grid.ColumnDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="../Resources/MainBg.png"/>
@@ -20,8 +20,8 @@
                 <RowDefinition Height="90*"/>
             </Grid.RowDefinitions>
             <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
-            <Label Grid.Row="0" Content="파일 선택" FontSize="15"  Style="{StaticResource StyLbl}"/>
-            <ListBox x:Name="LbxFile" Grid.Row="1"  Style="{StaticResource StyListBox}" SelectionChanged="LbxFile_SelectionChanged"/>
+            <Label Grid.Row="0" Content="검색 유형" FontSize="15"  Style="{StaticResource StyLbl}"/>
+            <ListBox x:Name="LbxSearchType" Grid.Row="1"  Style="{StaticResource StyListBox}" SelectionChanged="LbxSearchType_SelectionChanged"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

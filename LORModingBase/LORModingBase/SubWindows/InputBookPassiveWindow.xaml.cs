@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -11,44 +12,81 @@ namespace LORModingBase.SubWindows
     public partial class InputBookPassiveWindow : Window
     {
         Action<string> afterSelectPassive = null;
+        List<string> passiveSearchType = new List<string>()
+        {
+            "모든 패시브",
+            "모든 환상체 패시브",
+            "모든 일반 패시브",
+            "속도",
+            "참격", "관통", "타격", "방어", "회피", "반격",
+            "화상", "마비", "출혈", "취약", "허약", "속박", "보호", "힘", "인내", "신속", "충전", "연기",
+            "빛", "탄환", "회복", "책장을 손에 추가"
+        };
 
         #region Init controls
         public InputBookPassiveWindow(Action<string> afterSelectPassive)
         {
             InitializeComponent();
-            InitLbxFile();
+            InitLbxSearchType();
             this.afterSelectPassive = afterSelectPassive;
         }
 
-        private void InitLbxFile()
+        private void InitLbxSearchType()
         {
-            LbxFile.Items.Clear();
-            DM.StaticInfos.passiveInfos.Keys.ToList().ForEach((string fileName) =>
+            LbxSearchType.Items.Clear();
+            passiveSearchType.ForEach((string searchType) =>
             {
-                LbxFile.Items.Add(fileName);
+                LbxSearchType.Items.Add(searchType);
             });
 
-            if (LbxFile.Items.Count > 0)
+            if (LbxSearchType.Items.Count > 0)
             {
-                LbxFile.SelectedIndex = 0;
+                LbxSearchType.SelectedIndex = 0;
                 InitLbxBookPassive();
             }
         }
 
         private void InitLbxBookPassive()
         {
-            if (LbxFile.SelectedItem != null)
+            if (LbxSearchType.SelectedItem != null)
             {
                 LbxPassive.Items.Clear();
-                DM.StaticInfos.passiveInfos[LbxFile.SelectedItem.ToString()].ForEach((DS.PassiveInfo passiveInfo) =>
+
+                foreach (KeyValuePair<string, List<DS.PassiveInfo>> passiveInfoPair in DM.StaticInfos.passiveInfos)
                 {
-                    LbxPassive.Items.Add($"{passiveInfo.passiveName}:{passiveInfo.passiveDes}:{passiveInfo.passiveID}");
-                });
+                    foreach(DS.PassiveInfo passiveInfoValue in passiveInfoPair.Value)
+                    {
+                        string PASSIVE_DES = $"{passiveInfoValue.passiveName}:{passiveInfoValue.passiveDes}:{passiveInfoValue.passiveID}";
+                        switch (LbxSearchType.SelectedItem.ToString())
+                        {
+                            case "모든 패시브":
+                                LbxPassive.Items.Add(PASSIVE_DES);
+                                break;
+                            case "모든 환상체 패시브":
+                                if(passiveInfoPair.Key.Contains("Creature"))
+                                    LbxPassive.Items.Add(PASSIVE_DES);
+                                break;
+                            case "모든 일반 패시브":
+                                if (!passiveInfoPair.Key.Contains("Creature"))
+                                    LbxPassive.Items.Add(PASSIVE_DES);
+                                break;
+                            case "속도":
+                                if(passiveInfoValue.passiveName.Contains(LbxSearchType.SelectedItem.ToString()))
+                                    LbxPassive.Items.Add(PASSIVE_DES);
+                                break;
+                            default:
+                                if (passiveInfoValue.passiveName.Contains(LbxSearchType.SelectedItem.ToString()) ||
+                                    passiveInfoValue.passiveDes.Contains(LbxSearchType.SelectedItem.ToString()))
+                                    LbxPassive.Items.Add(PASSIVE_DES);
+                                break;
+                        }
+                    }
+                }
             }
         }
         #endregion
 
-        private void LbxFile_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void LbxSearchType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             InitLbxBookPassive();
         }
