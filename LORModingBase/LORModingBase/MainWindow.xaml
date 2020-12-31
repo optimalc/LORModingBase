@@ -30,7 +30,7 @@
                     <ColumnDefinition Width="80*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="모드명 : " Style="{StaticResource StyLbl}"/>
-                <TextBox x:Name="TbxModeName" Grid.Column="1" Text="TEST_MODE" Style="{StaticResource StyTbx}"/>
+                <TextBox x:Name="TbxModeName" Grid.Column="1" Text="TEST_MODE" ToolTip="생성시에 사용할 모드명을 입력합니다" Style="{StaticResource StyTbx}"/>
             </Grid>
             <Grid Grid.Column="3">
                 <Grid.ColumnDefinitions>
@@ -67,7 +67,7 @@
                 <ImageBrush ImageSource="./Resources/MainBg.png"/>
             </Grid.Background>
             <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-            <Button x:Name="BtnAddCriticalBook" Grid.Column="0" Content="+" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnAddCriticalBook_Click"/>
+            <Button x:Name="BtnAddCriticalBook" Grid.Column="0" Content="+" ToolTip="사용할 핵심책장을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnAddCriticalBook_Click"/>
             
             <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
                 <StackPanel x:Name="SplCriticalPage" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
