@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -56,6 +55,13 @@ namespace LORModingBase.UC
             BtnBHResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BHResist];
 
             InitLbxPassives();
+
+
+            if (criticalPageInfo.description != "입력된 정보가 없습니다")
+            {
+                BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
+                BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
+            }
         }
 
         private void ChangeRarityUIInit(string rarity)
@@ -329,5 +335,17 @@ namespace LORModingBase.UC
             MainWindow.criticalPageInfos.Remove(innerCriticalPageInfo);
             initStack();
         }
+
+        #region Right button events
+        private void BtnCiricalBookInfo_Click(object sender, RoutedEventArgs e)
+        {
+            new SubWindows.InputCriticalBookDescription((string inputedDes) =>
+            {
+                innerCriticalPageInfo.description = inputedDes;
+                BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
+                BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
+            }, innerCriticalPageInfo.description).ShowDialog();
+        } 
+        #endregion
     }
 }

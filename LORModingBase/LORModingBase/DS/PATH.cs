@@ -43,5 +43,9 @@ namespace LORModingBase.DS
         /// Xml bases for equip page
         /// </summary>
         public static string RESOURCE_XML_BASE_EQUIP_PAGE = $"{DIC_RESURCE}\\EquipPage.txt";
+        /// <summary>
+        /// Xml bases for Books info
+        /// </summary>
+        public static string RESOURCE_XML_BASE_BOOKS = $"{DIC_RESURCE}\\_Books.txt";
     }
 }

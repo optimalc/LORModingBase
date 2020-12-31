@@ -179,5 +179,7 @@ namespace LORModingBase.DS
         public string BHResist = "Normal";
 
         public List<string> passiveIDs = new List<string>();
+
+        public string description = "입력된 정보가 없습니다";
     }
 }

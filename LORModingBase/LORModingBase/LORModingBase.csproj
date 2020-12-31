@@ -78,6 +78,9 @@
     <Compile Include="SubWindows\InputBookIconWindow.xaml.cs">
       <DependentUpon>InputBookIconWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\InputCriticalBookDescription.xaml.cs">
+      <DependentUpon>InputCriticalBookDescription.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputEpisodeWindow.xaml.cs">
       <DependentUpon>InputEpisodeWindow.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,10 @@
     <Page Include="SubWindows\InputBookIconWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindows\InputCriticalBookDescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubWindows\InputEpisodeWindow.xaml">
       <SubType>Designer</SubType>
@@ -174,6 +181,10 @@
     <Resource Include="Resources\iconHResist.png" />
     <Resource Include="Resources\iconPResist.png" />
     <Resource Include="Resources\iconSResist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconNobookInfo.png" />
+    <Resource Include="Resources\IconYesbookInfo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
