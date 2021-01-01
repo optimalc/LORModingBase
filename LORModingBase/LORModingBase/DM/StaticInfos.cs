@@ -188,7 +188,12 @@ namespace LORModingBase.DM
                     }
 
                     #region Get description of ciritical page
-                    XmlNode bookDescNode = booksDesNode.SelectSingleNode($"//BookDesc[@BookID='{criticalPageInfo.bookID}']");
+                    string BOOK_ID_DESC = criticalPageInfo.bookID;
+                    int BOOK_ID = Convert.ToInt32(criticalPageInfo.bookID);
+                    if (BOOK_ID > DS.FilterDatas.CARD_DIV_LIBRARION && BOOK_ID < DS.FilterDatas.CARD_DIV_ENEMY)
+                        BOOK_ID_DESC = (BOOK_ID + 100000).ToString();
+
+                    XmlNode bookDescNode = booksDesNode.SelectSingleNode($"//BookDesc[@BookID='{BOOK_ID_DESC}']");
                     if (bookDescNode != null)
                     {
                         XmlNodeList descNodes = bookDescNode.SelectNodes("TextList/Desc");
@@ -201,6 +206,7 @@ namespace LORModingBase.DM
                                 criticalPageInfo.description += "\r\n\r\n";
                             criticalPageInfo.description += descNodes[descNodeIndex].InnerText;
                         }
+                        criticalPageInfo.description = criticalPageInfo.description.Replace(". ", ". \n");
                     }
                     #endregion
                     #region Get dropbook info of ciritical page
