@@ -31,7 +31,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
                     <Label Grid.Row="0" Content="검색 : " FontSize="15"  Style="{StaticResource StyLbl}" HorizontalAlignment="Right"/>
-                    <TextBox x:Name="TbxSearch" Grid.Column="1" Text="" ToolTip="패스브를 검색합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,12,0" TextChanged="TbxSearch_TextChanged"/>
+                    <TextBox x:Name="TbxSearch" Grid.Column="1" Text="" ToolTip="패시브를 검색합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,12,0" TextChanged="TbxSearch_TextChanged"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -61,7 +61,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="../Resources/MenuBg.png"/>
             </Grid.Background>
-            <Button x:Name="BtnDirectInput" Grid.Column="0" Content="[수동으로 입력]" ToolTip="수동으로 에피소드 코드를 입력합니다" Style="{StaticResource StyBtnMenu}" Click="BtnDirectInput_Click"/>
+            <Button x:Name="BtnDirectInput" Grid.Column="0" Content="[수동으로 입력]" ToolTip="수동으로 패시브 코드를 입력합니다" Style="{StaticResource StyBtnMenu}" Click="BtnDirectInput_Click"/>
             <Button x:Name="BtnOk" Grid.Column="1" Content="[닫기]" ToolTip="창을 닫습니다" Style="{StaticResource StyBtnMenu}" Click="BtnOk_Click"/>
         </Grid>
     </Grid>
