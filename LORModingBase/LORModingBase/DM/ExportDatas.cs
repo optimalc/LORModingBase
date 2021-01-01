@@ -84,7 +84,18 @@ namespace LORModingBase.DM
                 Tools.XmlFile.AddNewNodeWithInnerText(equipEffectElement, "PBResist", ciriticalInfo.BPResist);
                 Tools.XmlFile.AddNewNodeWithInnerText(equipEffectElement, "HBResist", ciriticalInfo.BHResist);
 
-                foreach(string passiveName in ciriticalInfo.passiveIDs)
+                #region Add Enemy Infomation if exists
+                if(!string.IsNullOrEmpty(ciriticalInfo.ENEMY_StartPlayPoint))
+                    Tools.XmlFile.AddNewNodeWithInnerText(equipEffectElement, "StartPlayPoint", ciriticalInfo.ENEMY_StartPlayPoint);
+                if (!string.IsNullOrEmpty(ciriticalInfo.ENEMY_MaxPlayPoint))
+                    Tools.XmlFile.AddNewNodeWithInnerText(equipEffectElement, "MaxPlayPoint", ciriticalInfo.ENEMY_MaxPlayPoint);
+                if (!string.IsNullOrEmpty(ciriticalInfo.ENEMY_EmotionLevel))
+                    Tools.XmlFile.AddNewNodeWithInnerText(equipEffectElement, "EmotionLevel", ciriticalInfo.ENEMY_EmotionLevel);
+                if (!string.IsNullOrEmpty(ciriticalInfo.ENEMY_AddedStartDraw))
+                    Tools.XmlFile.AddNewNodeWithInnerText(equipEffectElement, "AddedStartDraw", ciriticalInfo.ENEMY_AddedStartDraw);
+                #endregion
+
+                foreach (string passiveName in ciriticalInfo.passiveIDs)
                 {
                     XmlElement passiveElement = rootNode.OwnerDocument.CreateElement("Passive");
                     passiveElement.SetAttribute("Level", "10");
