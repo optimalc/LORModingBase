@@ -100,6 +100,8 @@ namespace LORModingBase.UC
                 BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
             }
             #endregion
+
+            CriticalPageTypeUIUpdating();
         }
 
         private void ChangeRarityUIInit(string rarity)
@@ -345,6 +347,7 @@ namespace LORModingBase.UC
         private void TbxPageUniqueID_TextChanged(object sender, TextChangedEventArgs e)
         {
             innerCriticalPageInfo.bookID = TbxPageUniqueID.Text;
+            CriticalPageTypeUIUpdating();
         }
 
         private void TbxHP_TextChanged(object sender, TextChangedEventArgs e)
@@ -417,6 +420,7 @@ namespace LORModingBase.UC
                 BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
                 BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력))";
             }
+            CriticalPageTypeUIUpdating();
         }
         #endregion
 
@@ -452,6 +456,65 @@ namespace LORModingBase.UC
                 BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
             }
             #endregion
+        }
+    
+        private void CriticalPageTypeUIUpdating()
+        {
+            try
+            {
+                bool IS_ENEMY_DATA_INPUTED = (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
+                            !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
+                            !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
+                            !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel));
+                bool BOOK_ID_CHECK = false;
+                if(!string.IsNullOrEmpty(innerCriticalPageInfo.bookID))
+                {
+                    int BOOK_ID = Convert.ToInt32(innerCriticalPageInfo.bookID);
+                    BOOK_ID_CHECK = (BOOK_ID > 1000 && BOOK_ID < 200000);
+                }
+
+                bool FORCE_ENEMY = innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE;
+                bool FORCE_USER = innerCriticalPageInfo.USER_TYPE_CH_FORCE;
+                bool FORECLY_INPUTED = FORCE_ENEMY || FORCE_USER;
+
+                if ((IS_ENEMY_DATA_INPUTED || BOOK_ID_CHECK || FORCE_ENEMY) && !FORCE_USER)
+                {
+                    innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = true;
+                    BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeEnemy.png");
+                    BtnCriticalPageType.ToolTip = $"클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 적 전용 책장[{(FORECLY_INPUTED ? "수동" : "자동")}]) {DS.LongDescription.EditCriticalPage_TypeChange}";
+                }
+                else
+                {
+                    innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = false;
+                    BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeUser.png");
+                    BtnCriticalPageType.ToolTip = $"클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 유저 전용 책장[{(FORECLY_INPUTED ? "수동" : "자동")}]) {DS.LongDescription.EditCriticalPage_TypeChange}";
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void BtnCriticalPageType_Click(object sender, RoutedEventArgs e)
+        {
+            if(!innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE && !innerCriticalPageInfo.USER_TYPE_CH_FORCE)
+            {
+                innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = true;
+                innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
+            }
+            else if(innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE)
+            {
+                innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
+                innerCriticalPageInfo.USER_TYPE_CH_FORCE = true;
+            }
+            else if (innerCriticalPageInfo.USER_TYPE_CH_FORCE)
+            {
+                innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
+                innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
+            }
+
+            CriticalPageTypeUIUpdating();
         }
     }
 }

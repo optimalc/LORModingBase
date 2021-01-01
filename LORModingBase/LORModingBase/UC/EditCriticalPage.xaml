@@ -273,7 +273,8 @@
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="9*"/>
-                <RowDefinition Height="82*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="46*"/>
             </Grid.RowDefinitions>
             <Rectangle Grid.RowSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
             <Button x:Name="BtnCiricalBookInfo" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장에 대한 이야기를 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="BtnCiricalBookInfo_Click" >
@@ -316,7 +317,7 @@
                 </Button.Background>
             </Button>
 
-            <Rectangle Grid.Row="3" Grid.RowSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Rectangle Grid.Row="3" Grid.RowSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
             <Button x:Name="BtnRangeType" Grid.Row="3"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" Click="BtnRangeType_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
@@ -328,6 +329,19 @@
                 </Button.RenderTransform>
                 <Button.Background>
                     <ImageBrush ImageSource="../Resources/TypeNomal.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnCriticalPageType" Grid.Row="4"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 유저 전용 책장) &#x0a; ※ 적 적용 책장은 '에피소드 선택 여부', '책장이 어느 책으로부터 드랍될 것인지의 여부'를 확인하지 않습니다 &#x0a; ※ 적 전용 데이터 입력여부 &amp; 고유 ID가 1000 ~ 200000인 경우 적 전용 책장으로 인식합니다" RenderTransformOrigin="0.5,0.5" Click="BtnCriticalPageType_Click">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/TypeUser.png"/>
                 </Button.Background>
             </Button>
         </Grid>

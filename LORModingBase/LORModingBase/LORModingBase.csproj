@@ -70,6 +70,7 @@
     <Compile Include="DS\Config.cs" />
     <Compile Include="DS\FilterDatas.cs" />
     <Compile Include="DS\GameInfo.cs" />
+    <Compile Include="DS\LongDescription.cs" />
     <Compile Include="DS\PATH.cs" />
     <Compile Include="SubWindows\InputEnemyInfoWindow.xaml.cs">
       <DependentUpon>InputEnemyInfoWindow.xaml</DependentUpon>
@@ -243,6 +244,10 @@
   <ItemGroup>
     <Resource Include="Resources\IconNoEnemy.png" />
     <Resource Include="Resources\IconYesEnemy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TypeEnemy.png" />
+    <Resource Include="Resources\TypeUser.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

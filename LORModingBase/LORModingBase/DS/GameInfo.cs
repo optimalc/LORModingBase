@@ -218,5 +218,13 @@ namespace LORModingBase.DS
         /// 시작시 가지는 책장의 수
         /// </summary>
         public string ENEMY_AddedStartDraw = "";
+
+        public bool ENEMY_TYPE_CH_FORCE = false;
+        public bool USER_TYPE_CH_FORCE = false;
+
+        /// <summary>
+        /// 적 전용책장 여부
+        /// </summary>
+        public bool ENEMY_IS_ENEMY_TYPE = false;
     }
 }
