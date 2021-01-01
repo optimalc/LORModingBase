@@ -89,6 +89,9 @@
     <Compile Include="SubWindows\InputCriticalBookDescription.xaml.cs">
       <DependentUpon>InputCriticalBookDescription.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\InputPassiveDirectlyWindow.xaml.cs">
+      <DependentUpon>InputPassiveDirectlyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputEpisodeDirectlyWindow.xaml.cs">
       <DependentUpon>InputEpisodeDirectlyWindow.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
     <Page Include="SubWindows\InputCriticalBookDescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindows\InputPassiveDirectlyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\InputEpisodeDirectlyWindow.xaml">
       <SubType>Designer</SubType>

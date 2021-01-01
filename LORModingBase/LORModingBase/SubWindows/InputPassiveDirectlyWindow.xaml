@@ -1,0 +1,61 @@
+﻿<Window x:Class="LORModingBase.SubWindows.InputPassiveDirectlyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LORModingBase.SubWindows"
+        mc:Ignorable="d"
+        Title="수동으로 직접 입력" Height="400" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="../Resources/MainBg.png"/>
+            </Grid.Background>
+            <Label x:Name="LblInputUpside" Grid.Row="0" Content="패시브 코드 >" FontSize="15"  Style="{StaticResource StyLbl}" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox x:Name="TbxInputUpSide" Grid.Row="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" VerticalAlignment="Stretch"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="../Resources/MainBg.png"/>
+            </Grid.Background>
+            <Label x:Name="LblInputUpside2" Grid.Row="0" Content="패시브 이름 >" FontSize="15"  Style="{StaticResource StyLbl}" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox x:Name="TbxInputUpSide2" Grid.Row="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" VerticalAlignment="Stretch"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25*"/>
+                <RowDefinition Height="75*"/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="../Resources/MainBg.png"/>
+            </Grid.Background>
+            <Label x:Name="LblInputDownside" Grid.Row="0" Content="관련 설명 >" FontSize="15"  Style="{StaticResource StyLbl}" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox x:Name="TbxInputDownSide" Grid.Row="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" VerticalAlignment="Stretch"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="../Resources/MenuBg.png"/>
+            </Grid.Background>
+            <Button x:Name="BtnCancel" Grid.Column="0" Content="[취소하기]" ToolTip="입력을 취소합니다" Style="{StaticResource StyBtnMenu}" Click="BtnCancel_Click"/>
+            <Button x:Name="BtnOk" Grid.Column="1" Content="[입력완료]" ToolTip="입력된 정보를 저장합니다" Style="{StaticResource StyBtnMenu}" Click="BtnOk_Click"/>
+        </Grid>
+    </Grid>
+</Window>

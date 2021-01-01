@@ -106,5 +106,19 @@ namespace LORModingBase.SubWindows
         {
             InitLbxBookPassive();
         }
+
+        private void BtnOk_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnDirectInput_Click(object sender, RoutedEventArgs e)
+        {
+            new InputPassiveDirectlyWindow((string passiveCode, string passiveName, string passiveDes) =>
+            {
+                afterSelectPassive($"{passiveName}:{passiveDes}:{passiveCode}");
+                Close();
+            }).ShowDialog();
+        }
     }
 }

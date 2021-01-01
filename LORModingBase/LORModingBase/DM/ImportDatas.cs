@@ -119,6 +119,8 @@ namespace LORModingBase.DM
                         });
                         if (!string.IsNullOrEmpty(foundPassiveDesc))
                             criticalPageInfo.passiveIDs.Add(foundPassiveDesc);
+                        else
+                            criticalPageInfo.passiveIDs.Add($"커스텀:커스텀 패시브:{passiveNode.InnerText}");
                     }
                 }
                 MainWindow.criticalPageInfos.Add(criticalPageInfo);
