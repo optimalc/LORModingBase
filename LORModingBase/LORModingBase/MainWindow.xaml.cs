@@ -92,6 +92,7 @@ namespace LORModingBase
             });
         }
         #endregion
+        
         #region Click events
         private void BtnLORPath_Click(object sender, RoutedEventArgs e)
         {
@@ -109,14 +110,20 @@ namespace LORModingBase
                 }
             });
         }
-
+        #endregion
+        #region Left menu button events
         private void BtnAddCriticalBook_Click(object sender, RoutedEventArgs e)
         {
             criticalPageInfos.Add(new DS.CriticalPageInfo());
             InitSplCriticalPage();
         }
-        #endregion
 
+        private void BtnLoadCriticalBook_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+        #region Top menu button events
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -130,7 +137,7 @@ namespace LORModingBase
                 MessageBox.Show("내보내기가 정상적으로 완료되었습니다.", "완료", MessageBoxButton.OK, MessageBoxImage.Information);
                 Tools.ProcessTools.OpenExplorer(MOD_DIR_TO_USE);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"내보내는 도중 오류가 발생했습니다. : {ex.Message}", "내보내기 오류", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -152,6 +159,7 @@ namespace LORModingBase
             {
                 MessageBox.Show($"불러오는 도중 오류가 발생했습니다. : {ex.Message}", "불러오기 오류", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
+        } 
+        #endregion
     }
 }

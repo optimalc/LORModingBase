@@ -77,7 +77,7 @@
                 </Grid>
                 <Grid Grid.Row="1">
                     <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnLoadCriticalBook" Content="~" ToolTip="게임 내부로부터 핵심책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center"/>
+                    <Button x:Name="BtnLoadCriticalBook" Content="~" ToolTip="게임 내부로부터 핵심책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnLoadCriticalBook_Click"/>
                 </Grid>
             </Grid>
             <Grid Grid.Column="1">

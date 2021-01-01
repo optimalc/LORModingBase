@@ -45,7 +45,7 @@ namespace LORModingBase.DM
                     throw new Exception("핵심 책장의 아이콘 이름이 입력되지 않았습니다.");
 
                 if (string.IsNullOrEmpty(ciriticalInfo.description))
-                    throw new Exception("핵심 책장에 대한 설명이 입력되지 않았습니다.");
+                    throw new Exception("핵심 책장에 대한 이야기가 입력되지 않았습니다.");
 
                 if (ciriticalInfo.dropBooks.Count <= 0)
                     throw new Exception("핵심 책장이 어느 책에서 연소되어서 나오는지가 입력되지 않았습니다.");

@@ -45,7 +45,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnEpisode" Grid.Column="1" Content="적용할 에피소드를 선택" ToolTip="핵심챌장과 관련된 에피소드를 설정합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnEpisode_Click"/>
+                <Button x:Name="BtnEpisode" Grid.Column="1" Content="적용할 에피소드를 선택" ToolTip="핵심책장과 관련된 에피소드를 설정합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnEpisode_Click"/>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -275,7 +275,7 @@
                 <RowDefinition Height="82*"/>
             </Grid.RowDefinitions>
             <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-            <Button x:Name="BtnCiricalBookInfo" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장에 대한 설명을 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="BtnCiricalBookInfo_Click" >
+            <Button x:Name="BtnCiricalBookInfo" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장에 대한 이야기를 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="BtnCiricalBookInfo_Click" >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="10"/>

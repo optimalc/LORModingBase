@@ -41,51 +41,20 @@ namespace LORModingBase.DM
                 if (bookNode.Attributes["ID"] != null)
                     criticalPageInfo.bookID = bookNode.Attributes["ID"].Value;
                 criticalPageInfo.name = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Name");
+                criticalPageInfo.rarity = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Rarity");
 
                 #region 책 아이콘 정보 불러오기
                 criticalPageInfo.iconName = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "BookIcon");
-                if (!string.IsNullOrEmpty(criticalPageInfo.iconName))
-                {
-                    DS.DropBookInfo foundDropBookInfo = DM.StaticInfos.dropBookInfos.Find((DS.DropBookInfo dropInfo) =>
-                    {
-                        return dropInfo.iconName == criticalPageInfo.iconName;
-                    });
-                    if (foundDropBookInfo != null)
-                        criticalPageInfo.iconDes = $"{foundDropBookInfo.iconDesc}:{criticalPageInfo.iconName}";
-                    else
-                        criticalPageInfo.iconDes = $"커스텀 아이콘:{criticalPageInfo.iconName}";
-                }
+                criticalPageInfo.iconDes = DM.StaticInfos.GetDescription.GetIconDescription(criticalPageInfo.iconName);
                 #endregion
                 #region 책 에피소드 정보 불러오기
                 criticalPageInfo.episode = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Episode");
                 criticalPageInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Chapter");
-                if (!string.IsNullOrEmpty(criticalPageInfo.episode))
-                {
-                    DS.StageInfo foundStageInfo = DM.StaticInfos.stageInfos.Find((DS.StageInfo stageInfo) =>
-                    {
-                        return stageInfo.stageID == criticalPageInfo.episode;
-                    });
-                    if (foundStageInfo != null)
-                        criticalPageInfo.episodeDes = $"{DS.GameInfo.chapter_Dic[foundStageInfo.Chapter]} / {foundStageInfo.stageDoc}:{foundStageInfo.stageID}";
-                    else
-                        criticalPageInfo.episodeDes = $"{DS.GameInfo.chapter_Dic[criticalPageInfo.chapter]} / 커스텀 스테이지:{criticalPageInfo.episode}";
-                } 
+                criticalPageInfo.episodeDes = DM.StaticInfos.GetDescription.GetEpisodeDescription(criticalPageInfo.episode, criticalPageInfo.chapter);
                 #endregion
-
-                criticalPageInfo.rarity = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Rarity");
                 #region 책 스킨 정보 불러오기
                 criticalPageInfo.skinName = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "CharacterSkin");
-                if (!string.IsNullOrEmpty(criticalPageInfo.skinName))
-                {
-                    DS.BookSkinInfo foundSkinInfo = DM.StaticInfos.bookSkinInfos.Find((DS.BookSkinInfo skinInfo) =>
-                    {
-                        return skinInfo.skinName == criticalPageInfo.skinName;
-                    });
-                    if (foundSkinInfo != null)
-                        criticalPageInfo.skinDes = $"{foundSkinInfo.skinDesc}:{foundSkinInfo.skinName}";
-                    else
-                        criticalPageInfo.skinDes = $"커스텀 스킨:{criticalPageInfo.skinName}";
-                }
+                criticalPageInfo.skinDes = DM.StaticInfos.GetDescription.GetSkinDescription(criticalPageInfo.skinName);
                 #endregion
 
                 if (bookNode["RangeType"] != null)
@@ -110,17 +79,8 @@ namespace LORModingBase.DM
                     XmlNodeList passiveNodes = equipEffectNode.SelectNodes("Passive");
                     foreach (XmlNode passiveNode in passiveNodes)
                     {
-                        if (string.IsNullOrEmpty(passiveNode.InnerText)) 
-                            continue;
-
-                        string foundPassiveDesc = DM.StaticInfos.passiveList.Find((string passiveDesc) =>
-                        {
-                            return passiveDesc.Split(':').Last() == passiveNode.InnerText;
-                        });
-                        if (!string.IsNullOrEmpty(foundPassiveDesc))
-                            criticalPageInfo.passiveIDs.Add(foundPassiveDesc);
-                        else
-                            criticalPageInfo.passiveIDs.Add($"커스텀:커스텀 패시브:{passiveNode.InnerText}");
+                        if (!string.IsNullOrEmpty(passiveNode.InnerText))
+                            criticalPageInfo.passiveIDs.Add(DM.StaticInfos.GetDescription.GetPassiveDescription(passiveNode.InnerText));
                     }
                 }
                 MainWindow.criticalPageInfos.Add(criticalPageInfo);
