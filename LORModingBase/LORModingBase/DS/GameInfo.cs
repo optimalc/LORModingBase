@@ -85,6 +85,11 @@ namespace LORModingBase.DS
         /// bookID
         /// </summary>
         public string bookID = "";
+
+        /// <summary>
+        /// Dropped itmes
+        /// </summary>
+        public List<string> dropItems = new List<string>();
     }
 
     /// <summary>

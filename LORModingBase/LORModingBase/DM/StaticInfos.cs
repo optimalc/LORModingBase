@@ -93,12 +93,21 @@ namespace LORModingBase.DM
                     if (dropBookInfoNode == null)
                         continue;
 
+                    XmlNodeList dropItems = bookUseNode.SelectNodes("DropItem");
+                    List<string> dropItemList = new List<string>();
+                    foreach (XmlNode dropItem in dropItems)
+                    {
+                        if (string.IsNullOrEmpty(dropItem.InnerText)) continue;
+                        dropItemList.Add(dropItem.InnerText);
+                    }
+
                     dropBookInfos.Add(new DS.DropBookInfo()
                     {
                         iconName = bookUseNode["BookIcon"].InnerText,
                         iconDesc = dropBookInfoNode.InnerText,
                         chapter = bookUseNode["Chapter"].InnerText,
-                        bookID = bookUseNode.Attributes["ID"].Value
+                        bookID = bookUseNode.Attributes["ID"].Value,
+                        dropItems = dropItemList
                     });
                 }
             });
@@ -106,6 +115,8 @@ namespace LORModingBase.DM
             #region Load skin icon infos
             bookSkinInfos.Clear();
             gameCriticalPageInfos.Clear();
+
+            XmlNode booksDesNode = Tools.XmlFile.SelectSingleNode($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\Books\\_Books.txt", "//bookDescList");
             Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\EquipPage").ToList().ForEach((string eqPath) =>
             {
                 XmlNodeList bookNodeList = Tools.XmlFile.SelectNodeLists(eqPath, "//Book");
@@ -168,6 +179,30 @@ namespace LORModingBase.DM
 
                         criticalPageInfo.passiveIDs.Add(GetDescription.GetPassiveDescription(passiveNode.InnerText));
                     }
+
+                    #region Get description of ciritical page
+                    XmlNode bookDescNode = booksDesNode.SelectSingleNode($"//BookDesc[@BookID='{criticalPageInfo.bookID}']");
+                    if (bookDescNode != null)
+                    {
+                        XmlNodeList descNodes = bookDescNode.SelectNodes("TextList/Desc");
+                        if (descNodes.Count > 0)
+                            criticalPageInfo.description = "";
+
+                        for (int descNodeIndex = 0; descNodeIndex < descNodes.Count; descNodeIndex++)
+                        {
+                            if (descNodeIndex > 0)
+                                criticalPageInfo.description += "\r\n\r\n";
+                            criticalPageInfo.description += descNodes[descNodeIndex].InnerText;
+                        }
+                    }
+                    #endregion
+                    #region Get dropbook info of ciritical page
+                    dropBookInfos.ForEach((DS.DropBookInfo dropBookInfo) =>
+                    {
+                        if (dropBookInfo.dropItems.Contains(criticalPageInfo.bookID))
+                            criticalPageInfo.dropBooks.Add($"{dropBookInfo.iconDesc}:{dropBookInfo.bookID}");
+                    });
+                    #endregion
 
                     gameCriticalPageInfos.Add(criticalPageInfo);
                     #endregion
