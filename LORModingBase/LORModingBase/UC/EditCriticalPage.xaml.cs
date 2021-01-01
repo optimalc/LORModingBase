@@ -72,9 +72,19 @@ namespace LORModingBase.UC
                 BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)";
             }
             #endregion
+            #region 적 전용책장 입력 부분 UI 반영시키기
+            if (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
+                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
+                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
+                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel))
+            {
+                BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
+                BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)";
+            }
+            #endregion
 
             #region 핵심책장 원거리 속성 UI 반영시키기
-            if(criticalPageInfo.rangeType == "Range")
+            if (criticalPageInfo.rangeType == "Range")
             {
                 BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
                 BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
@@ -393,7 +403,20 @@ namespace LORModingBase.UC
 
         private void BtnEnemySetting_Click(object sender, RoutedEventArgs e)
         {
-
+            new SubWindows.InputEnemyInfoWindow(innerCriticalPageInfo).ShowDialog();
+            if (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
+                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
+                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
+                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel))
+            {
+                BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
+                BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)";
+            }
+            else
+            {
+                BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
+                BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력))";
+            }
         }
         #endregion
 

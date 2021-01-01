@@ -71,6 +71,9 @@
     <Compile Include="DS\FilterDatas.cs" />
     <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\PATH.cs" />
+    <Compile Include="SubWindows\InputEnemyInfoWindow.xaml.cs">
+      <DependentUpon>InputEnemyInfoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputGameCriticalPage.xaml.cs">
       <DependentUpon>InputGameCriticalPage.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SubWindows\InputEnemyInfoWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SubWindows\InputGameCriticalPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
