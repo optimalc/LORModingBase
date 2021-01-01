@@ -57,6 +57,8 @@ namespace LORModingBase.SubWindows
                     foreach(DS.PassiveInfo passiveInfoValue in passiveInfoPair.Value)
                     {
                         string PASSIVE_DES = $"{passiveInfoValue.passiveName}:{passiveInfoValue.passiveDes}:{passiveInfoValue.passiveID}";
+                        if (!string.IsNullOrEmpty(TbxSearch.Text) && !PASSIVE_DES.Contains(TbxSearch.Text)) continue;
+
                         switch (LbxSearchType.SelectedItem.ToString())
                         {
                             case "모든 패시브":
@@ -98,6 +100,11 @@ namespace LORModingBase.SubWindows
                 afterSelectPassive(LbxPassive.SelectedItem.ToString());
                 this.Close();
             }
+        }
+
+        private void TbxSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            InitLbxBookPassive();
         }
     }
 }
