@@ -543,5 +543,11 @@ namespace LORModingBase.UC
 
             CriticalPageTypeUIUpdating();
         }
+
+        private void BtnCopyPage_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.criticalPageInfos.Add(Tools.DeepCopy.DeepClone(innerCriticalPageInfo));
+            initStack();
+        }
     }
 }

@@ -343,6 +343,19 @@
             </Button>
 
             <Rectangle Grid.Row="5" Grid.RowSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnCopyPage" Grid.Row="5"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장을 복제해서 새로운 핵심 책장을 만듭니다" Click="BtnCopyPage_Click">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-17"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnCopy.png"/>
+                </Button.Background>
+            </Button>
             <Button x:Name="BtnDelete" Grid.Row="7" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDelete_Click" ToolTip="핵심 책장을 삭제합니다" >
                 <Button.RenderTransform>
                     <TransformGroup>
