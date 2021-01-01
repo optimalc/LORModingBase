@@ -128,6 +128,8 @@ namespace LORModingBase.DM
                     #region Add equiment load infos
                     DS.CriticalPageInfo criticalPageInfo = new DS.CriticalPageInfo();
                     criticalPageInfo.bookID = (bookNode.Attributes["ID"] == null) ? "" : bookNode.Attributes["ID"].Value;
+                    if (string.IsNullOrEmpty(criticalPageInfo.bookID))
+                        continue;
 
                     criticalPageInfo.name = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Name");
                     criticalPageInfo.rangeType = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "RangeType", "Nomal");

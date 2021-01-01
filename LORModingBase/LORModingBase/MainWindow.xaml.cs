@@ -120,7 +120,10 @@ namespace LORModingBase
 
         private void BtnLoadCriticalBook_Click(object sender, RoutedEventArgs e)
         {
-
+            new SubWindows.InputGameCriticalPage((DS.CriticalPageInfo selectedCriticalPageInfo) =>
+            {
+                MessageBox.Show(selectedCriticalPageInfo.name);
+            }).ShowDialog();
         }
         #endregion
         #region Top menu button events
