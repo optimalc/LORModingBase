@@ -42,8 +42,9 @@ namespace LORModingBase.DM
                     criticalPageInfo.bookID = bookNode.Attributes["ID"].Value;
                 criticalPageInfo.name = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Name");
 
+                #region 책 아이콘 정보 불러오기
                 criticalPageInfo.iconName = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "BookIcon");
-                if(!string.IsNullOrEmpty(criticalPageInfo.iconName))
+                if (!string.IsNullOrEmpty(criticalPageInfo.iconName))
                 {
                     DS.DropBookInfo foundDropBookInfo = DM.StaticInfos.dropBookInfos.Find((DS.DropBookInfo dropInfo) =>
                     {
@@ -51,8 +52,11 @@ namespace LORModingBase.DM
                     });
                     if (foundDropBookInfo != null)
                         criticalPageInfo.iconDes = $"{foundDropBookInfo.iconDesc}:{criticalPageInfo.iconName}";
+                    else
+                        criticalPageInfo.iconDes = $"커스텀 아이콘:{criticalPageInfo.iconName}";
                 }
-
+                #endregion
+                #region 책 에피소드 정보 불러오기
                 criticalPageInfo.episode = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Episode");
                 criticalPageInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Chapter");
                 if (!string.IsNullOrEmpty(criticalPageInfo.episode))
@@ -65,10 +69,11 @@ namespace LORModingBase.DM
                         criticalPageInfo.episodeDes = $"{DS.GameInfo.chapter_Dic[foundStageInfo.Chapter]} / {foundStageInfo.stageDoc}:{foundStageInfo.stageID}";
                     else
                         criticalPageInfo.episodeDes = $"{DS.GameInfo.chapter_Dic[criticalPageInfo.chapter]} / 커스텀 스테이지:{criticalPageInfo.episode}";
-                }
+                } 
+                #endregion
 
                 criticalPageInfo.rarity = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Rarity");
-
+                #region 책 스킨 정보 불러오기
                 criticalPageInfo.skinName = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "CharacterSkin");
                 if (!string.IsNullOrEmpty(criticalPageInfo.skinName))
                 {
@@ -78,7 +83,8 @@ namespace LORModingBase.DM
                     });
                     if (foundSkinInfo != null)
                         criticalPageInfo.skinDes = $"{foundSkinInfo.skinDesc}:{foundSkinInfo.skinName}";
-                }
+                } 
+                #endregion
 
 
                 XmlNode equipEffectNode = bookNode.SelectSingleNode("EquipEffect");

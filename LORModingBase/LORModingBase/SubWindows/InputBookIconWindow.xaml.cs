@@ -55,7 +55,7 @@ namespace LORModingBase.SubWindows
         }
         #endregion
 
-        #region Episode select event
+        #region Icon select event
         private void LbxCh1_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if(LbxCh1.SelectedItem != null)
@@ -119,5 +119,19 @@ namespace LORModingBase.SubWindows
             }
         }
         #endregion
+
+        private void BtnOk_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnDirectInput_Click(object sender, RoutedEventArgs e)
+        {
+            new InputEpisodeDirectlyWindow((string episodeCode, string episodeDes) =>
+            {
+                afterSelectIcon("1", episodeCode, episodeDes);
+                Close();
+            }, upsideLabelInfo:"책 아이콘 이름 >").ShowDialog();
+        }
     }
 }
