@@ -25,6 +25,7 @@ namespace LORModingBase.DM
             TARGET_MODE_DIC = dicToLoad;
 
             ImportDatas_CriticalPages();
+            ImportDatas_CriticalPageDescription();
         }
 
         /// <summary>
@@ -116,6 +117,41 @@ namespace LORModingBase.DM
                     }
                 }
                 MainWindow.criticalPageInfos.Add(criticalPageInfo);
+            }
+        }
+
+        /// <summary>
+        /// Import page description
+        /// </summary>
+        public static void ImportDatas_CriticalPageDescription()
+        {
+            string BOOKS_PATH = $"{TARGET_MODE_DIC}\\Localize\\kr\\Books\\_Books.txt";
+            if (!File.Exists(BOOKS_PATH))
+                return;
+
+            XmlNodeList bookDescNodes = Tools.XmlFile.SelectNodeLists(BOOKS_PATH, "//BookDesc");
+            foreach (XmlNode bookDescNode in bookDescNodes)
+            {
+                if (bookDescNode.Attributes["BookID"] == null)
+                    continue;
+
+                DS.CriticalPageInfo foundCriticalPageInfo = MainWindow.criticalPageInfos.Find((DS.CriticalPageInfo criticalPageInfo) =>
+                {
+                    return criticalPageInfo.bookID == bookDescNode.Attributes["BookID"].Value;
+                });
+                if (foundCriticalPageInfo == null)
+                    continue;
+
+                XmlNodeList descNodes = bookDescNode.SelectNodes("//Desc");
+                if (descNodes.Count > 0)
+                    foundCriticalPageInfo.description = "";
+
+                for (int descNodeIndex=0; descNodeIndex<descNodes.Count; descNodeIndex++)
+                {
+                    if (descNodeIndex > 0)
+                        foundCriticalPageInfo.description += "\r\n\r\n";
+                    foundCriticalPageInfo.description += descNodes[descNodeIndex].InnerText;
+                }
             }
         }
     }
