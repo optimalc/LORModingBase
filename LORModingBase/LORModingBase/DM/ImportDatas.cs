@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace LORModingBase.DM
@@ -26,6 +22,7 @@ namespace LORModingBase.DM
 
             ImportDatas_CriticalPages();
             ImportDatas_CriticalPageDescription();
+            ImportDatas_DropBooks();
         }
 
         /// <summary>
@@ -84,7 +81,7 @@ namespace LORModingBase.DM
                 }
 
 
-                XmlNode equipEffectNode = bookNode.SelectSingleNode("//EquipEffect");
+                XmlNode equipEffectNode = bookNode.SelectSingleNode("EquipEffect");
                 if(equipEffectNode != null)
                 {
                     criticalPageInfo.HP = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "HP");
@@ -100,7 +97,7 @@ namespace LORModingBase.DM
                     criticalPageInfo.BPResist = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "PBResist");
                     criticalPageInfo.BHResist = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "HBResist");
 
-                    XmlNodeList passiveNodes = bookNode.SelectNodes("//Passive");
+                    XmlNodeList passiveNodes = equipEffectNode.SelectNodes("Passive");
                     foreach (XmlNode passiveNode in passiveNodes)
                     {
                         if (string.IsNullOrEmpty(passiveNode.InnerText)) 
@@ -142,7 +139,7 @@ namespace LORModingBase.DM
                 if (foundCriticalPageInfo == null)
                     continue;
 
-                XmlNodeList descNodes = bookDescNode.SelectNodes("//Desc");
+                XmlNodeList descNodes = bookDescNode.SelectNodes("TextList/Desc");
                 if (descNodes.Count > 0)
                     foundCriticalPageInfo.description = "";
 
@@ -151,6 +148,45 @@ namespace LORModingBase.DM
                     if (descNodeIndex > 0)
                         foundCriticalPageInfo.description += "\r\n\r\n";
                     foundCriticalPageInfo.description += descNodes[descNodeIndex].InnerText;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Import drop books datas
+        /// </summary>
+        public static void ImportDatas_DropBooks()
+        {
+            string DROP_BOOK_PATH = $"{TARGET_MODE_DIC}\\StaticInfo\\DropBook\\DropBook.txt";
+            if (!File.Exists(DROP_BOOK_PATH))
+                return;
+
+            XmlNodeList bookUseNodes = Tools.XmlFile.SelectNodeLists(DROP_BOOK_PATH, "//BookUse");
+            foreach (XmlNode bookUseNode in bookUseNodes)
+            {
+                if (bookUseNode.Attributes["ID"] == null)
+                    continue;
+                if (string.IsNullOrEmpty(bookUseNode.Attributes["ID"].Value))
+                    continue;
+
+                XmlNodeList dropItemNodes = bookUseNode.SelectNodes("DropItem");
+                foreach (XmlNode dropItemNode in dropItemNodes)
+                {
+                    if (string.IsNullOrEmpty(dropItemNode.InnerText))
+                        continue;
+
+                    DS.CriticalPageInfo foundCriticalPageInfo = MainWindow.criticalPageInfos.Find((DS.CriticalPageInfo criticalPageInfo) =>
+                    {
+                        return criticalPageInfo.bookID == dropItemNode.InnerText;
+                    });
+                    if(foundCriticalPageInfo != null)
+                    {
+                        DS.DropBookInfo foundDropBookInfo = DM.StaticInfos.dropBookInfos.Find((DS.DropBookInfo dropInfo) =>
+                        {
+                            return dropInfo.bookID == bookUseNode.Attributes["ID"].Value;
+                        });
+                        foundCriticalPageInfo.dropBooks.Add($"{foundDropBookInfo.iconDesc}:{foundDropBookInfo.bookID}");
+                    }
                 }
             }
         }
