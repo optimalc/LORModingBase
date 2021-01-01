@@ -54,11 +54,11 @@ namespace LORModingBase
             {
                 DM.Config.config.LORFolderPath = "";
                 DM.Config.SaveData();
-                LblLORPath.Content = "라오루 폴더 자동 인식 실패. 수동으로 설정해주세요.";
-                LblLORPath.ToolTip = "라오루 폴더 자동 인식 실패. 수동으로 설정해주세요.";
+                LblLORPath.Content = "라오루 폴더 자동 인식 실패. 수동으로 설정해주세요";
+                LblLORPath.ToolTip = "라오루 폴더 자동 인식 실패. 수동으로 설정해주세요";
                 LblResourceCheck.Content = "X";
                 LblResourceCheck.ToolTip = "모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)";
-                throw new Exception("설정된 라오루 폴더가 존재하지 않거나 적절하지 않습니다. 수동 설정이 필요합니다.");
+                throw new Exception("설정된 라오루 폴더가 존재하지 않거나 적절하지 않습니다. 수동 설정이 필요합니다");
             }
             else
             {
@@ -76,7 +76,7 @@ namespace LORModingBase
             else
             {
                 LblResourceCheck.Content = "O";
-                LblResourceCheck.ToolTip = "리소스가 정상적으로 발견되었습니다.";
+                LblResourceCheck.ToolTip = "리소스가 정상적으로 발견되었습니다";
             }
             #endregion
             

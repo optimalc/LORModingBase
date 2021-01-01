@@ -5,13 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LORModingBase.SubWindows"
         mc:Ignorable="d"
-        Title="지정할 패시브를 더블클릭" Height="450" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+        Title="지정할 패시브를 더블클릭" Height="480" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
             <RowDefinition Height="450*"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <Grid.Background>
+                <ImageBrush ImageSource="../Resources/MenuBg.png"/>
+            </Grid.Background>
+            <Label Content="※ 주의 : 나열된 패시브들중 몇몇은 적용이 안될 수 있기 때문에 직접 적용 후, 실행해서 적용 여부를 확인하기를 권장합니다" FontSize="15"  Style="{StaticResource StyLbl}" HorizontalAlignment="Left"/>
+        </Grid>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="15*"/>
                 <ColumnDefinition Width="85*"/>
@@ -53,7 +60,7 @@
                 <ListBox x:Name="LbxPassive" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxPassive_PreviewMouseDoubleClick"/>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
