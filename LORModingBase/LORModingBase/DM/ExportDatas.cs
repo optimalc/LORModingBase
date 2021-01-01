@@ -175,8 +175,22 @@ namespace LORModingBase.DM
                 XmlNode copiedBookUseNode = Tools.XmlFile.SelectSingleNode(DROP_BOOK_SEARCH_PATH, $"//BookUse[@ID='{dropBookID}']");
                 if (copiedBookUseNode == null) continue;
 
+
+                XmlNodeList dropItems = copiedBookUseNode.SelectNodes("DropItem");
+                List<string> dropItemList = new List<string>();
+                foreach (XmlNode dropItem in dropItems)
+                {
+                    if (string.IsNullOrEmpty(dropItem.InnerText)) continue;
+                    dropItemList.Add(dropItem.InnerText);
+                }
+
                 foreach (string bookIDToDrop in dropBookDic[dropBookID])
                 {
+                    if (dropItemList.Contains(bookIDToDrop))
+                        continue;
+                    else
+                        dropItemList.Add(bookIDToDrop);
+
                     XmlElement dropItemElement = copiedBookUseNode.OwnerDocument.CreateElement("DropItem");
                     dropItemElement.SetAttribute("Type", "Equip");
                     dropItemElement.InnerText = bookIDToDrop;
