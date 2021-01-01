@@ -57,7 +57,7 @@ namespace LORModingBase.SubWindows
                     foreach(DS.PassiveInfo passiveInfoValue in passiveInfoPair.Value)
                     {
                         string PASSIVE_DES = $"{passiveInfoValue.passiveName}:{passiveInfoValue.passiveDes}:{passiveInfoValue.passiveID}";
-                        if (!string.IsNullOrEmpty(TbxSearch.Text) && !PASSIVE_DES.Contains(TbxSearch.Text)) continue;
+                        if (!string.IsNullOrEmpty(TbxSearch.Text) && !PASSIVE_DES.ToLower().Replace(" ","").Contains(TbxSearch.Text.ToLower().Replace(" ", ""))) continue;
 
                         switch (LbxSearchType.SelectedItem.ToString())
                         {
