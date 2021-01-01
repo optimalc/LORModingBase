@@ -20,6 +20,7 @@ namespace LORModingBase.DM
         /// Loaded passive infos
         /// </summary>
         public static Dictionary<string, List<DS.PassiveInfo>> passiveInfos = new Dictionary<string, List<DS.PassiveInfo>>();
+        public static List<string> passiveList = new List<string>();
 
         /// <summary>
         /// Book skin infos
@@ -129,6 +130,7 @@ namespace LORModingBase.DM
         public static void LoadDatas_PassiveInfo()
         {
             passiveInfos.Clear();
+            passiveList.Clear();
 
             Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\PassiveDesc").ToList().ForEach((string pvPath) =>
             {
@@ -153,6 +155,7 @@ namespace LORModingBase.DM
                         passiveName = passiveDescNode["Name"].InnerText,
                         passiveDes = passiveDescNode["Desc"].InnerText
                     });
+                    passiveList.Add($"{passiveDescNode["Name"].InnerText}:{passiveDescNode["Desc"].InnerText}:{passiveDescNode.Attributes["ID"].Value}");
                 }
                 string PATH_TO_USE = pvPath.Split('\\').Last().Split('.')[0];
                 if(passives.Count > 0) passiveInfos[PATH_TO_USE] = passives;

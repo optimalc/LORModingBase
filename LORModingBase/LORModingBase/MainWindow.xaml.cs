@@ -135,5 +135,23 @@ namespace LORModingBase
                 MessageBox.Show($"내보내는 도중 오류가 발생했습니다. : {ex.Message}", "내보내기 오류", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void BtnLoad_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Tools.Dialog.SelectDirectory((string selectedDir) =>
+                {
+                    DM.ImportDatas.ImportAllDatas(selectedDir);
+                    MessageBox.Show("성공적으로 로드되었습니다.", "완료", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    InitSplCriticalPage();
+                }, $"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"불러오는 도중 오류가 발생했습니다. : {ex.Message}", "불러오기 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

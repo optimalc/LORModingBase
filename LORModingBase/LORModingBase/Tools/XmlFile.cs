@@ -1,4 +1,6 @@
-﻿using System.Xml;
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace LORModingBase.Tools
@@ -51,6 +53,59 @@ namespace LORModingBase.Tools
             createdElement.InnerText = innerText;
             rootNode.AppendChild(createdElement);
             return createdElement;
+        }
+
+        /// <summary>
+        /// 해당 노드에 값이 정말로 존재하는지 확인합니다.
+        /// </summary>
+        public static bool IsValueExists(XmlNode nodeXml, string node)
+        {
+            if (nodeXml == null) return false;
+            if (nodeXml[node] != null)
+                return !string.IsNullOrEmpty(nodeXml[node].InnerText);
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Xml 노드로 부터 안전하게 값을 얻어오기 위해서 사용된다.
+        /// </summary>
+        public class GetXmlNodeSafe
+        {
+            /// <summary>
+            /// String 형으로 얻어온다.
+            /// </summary>
+            public static string ToString(XmlNode xmlNode, string XPath, string defaultValue = "")
+            {
+                if (IsValueExists(xmlNode, XPath))
+                    return xmlNode[XPath].InnerText;
+                else
+                    return defaultValue;
+            }
+
+            /// <summary>
+            /// Double 형으로 얻어온다. 숫자형식이 아니면 1.0을 반환한다.
+            /// </summary>
+            public static double ToDouble(XmlNode xmlNode, string XPath, double defaultValue = 0)
+            {
+                string gettedText = ToString(xmlNode, XPath, defaultValue.ToString());
+                if (Regex.IsMatch(gettedText, "^[0-9.]+$"))
+                    return Convert.ToDouble(gettedText);
+                else
+                    return defaultValue;
+            }
+
+            /// <summary>
+            /// Int 형으로 얻어온다. 숫자형식이 아니면 1을 반환한다.
+            /// </summary>
+            public static int ToInt(XmlNode xmlNode, string XPath, int defaultValue = 0)
+            {
+                string gettedText = ToString(xmlNode, XPath, defaultValue.ToString());
+                if (Regex.IsMatch(gettedText, "^[0-9]+$"))
+                    return Convert.ToInt32(gettedText);
+                else
+                    return defaultValue;
+            }
         }
     }
 }
