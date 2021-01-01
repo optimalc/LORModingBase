@@ -364,7 +364,7 @@ namespace LORModingBase.UC
             initStack();
         }
 
-        #region Right button events
+        #region Right button events (Upside)
         private void BtnCiricalBookInfo_Click(object sender, RoutedEventArgs e)
         {
             new SubWindows.InputCriticalBookDescription((string inputedDes) =>
@@ -389,6 +389,11 @@ namespace LORModingBase.UC
                 BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
                 BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
             }
+        }
+
+        private void BtnEnemySetting_Click(object sender, RoutedEventArgs e)
+        {
+
         }
         #endregion
 

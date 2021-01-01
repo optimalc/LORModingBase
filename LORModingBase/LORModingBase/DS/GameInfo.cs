@@ -191,10 +191,32 @@ namespace LORModingBase.DS
 
         public List<string> passiveIDs = new List<string>();
 
+        /// <summary>
+        /// 책장의 이야기
+        /// </summary>
         public string description = "입력된 정보가 없습니다";
+        /// <summary>
+        /// 책장이 어느 책으로부터 나올지의 리스트
+        /// </summary>
         public List<string> dropBooks = new List<string>();
 
         public string rangeType = "Nomal";
-        public string cardType = "User";
+
+        /// <summary>
+        /// 시작시 빛의 개수
+        /// </summary>
+        public string ENEMY_StartPlayPoint = "";
+        /// <summary>
+        /// 최대 빛의 개수
+        /// </summary>
+        public string ENEMY_MaxPlayPoint = "";
+        /// <summary>
+        /// 최대 감정 레벨
+        /// </summary>
+        public string ENEMY_EmotionLevel = "";
+        /// <summary>
+        /// 시작시 가지는 책장의 수
+        /// </summary>
+        public string ENEMY_AddedStartDraw = "";
     }
 }

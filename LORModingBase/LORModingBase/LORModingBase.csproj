@@ -233,5 +233,9 @@
     <Resource Include="Resources\TypeNomal.png" />
     <Resource Include="Resources\TypeRange.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconNoEnemy.png" />
+    <Resource Include="Resources\IconYesEnemy.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
