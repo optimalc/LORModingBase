@@ -15,7 +15,10 @@ namespace LORModingBase.SubWindows
         List<string> CriticalPagesSearchType = new List<string>()
         {
             "모든 핵심책장",
-            "챕터 없음",
+            "[사서 전용 책장]",
+            "[적 전용 책장]",
+            "[환상체 책장]",
+            "[유저 전용 책장]",
             "챕터 1 : 뜬소문",
             "챕터 2 : 도시 괴담",
             "챕터 3 : 도시 전설",
@@ -56,7 +59,31 @@ namespace LORModingBase.SubWindows
 
                 foreach (DS.CriticalPageInfo criticalPageInfo in DM.StaticInfos.gameCriticalPageInfos)
                 {
-                    string PAGEINFO_DES = $"{criticalPageInfo.name}:{(string.IsNullOrEmpty(criticalPageInfo.chapter) ? "챕터 없음" : criticalPageInfo.episodeDes)}:{criticalPageInfo.skinName}:{criticalPageInfo.bookID}";
+                    string extraInfo = "";
+                    string extraChpater = "챕터 없음";
+
+                    int BOOK_ID = Convert.ToInt32(criticalPageInfo.bookID);
+                    if (BOOK_ID < 1000)
+                        extraInfo += "[사서 전용 책장] ";
+                    else if (BOOK_ID < 200000)
+                    {
+                        extraInfo += "[적 전용 책장] ";
+                        DS.CriticalPageInfo foundCriticalPageInfo = DM.StaticInfos.gameCriticalPageInfos.Find((DS.CriticalPageInfo pageInfo) =>
+                        {
+                            return pageInfo.bookID == (BOOK_ID + 100000).ToString();
+                        });
+                        if (foundCriticalPageInfo != null)
+                            extraChpater = $"{foundCriticalPageInfo.episodeDes} / {foundCriticalPageInfo.chapter}:{foundCriticalPageInfo.episode}";
+                    }
+                    else if (BOOK_ID > 900000)
+                        extraInfo += "[환상체 책장] ";
+                    else
+                    {
+                        extraInfo += "[유저 전용 책장]";
+                        extraChpater = criticalPageInfo.episodeDes;
+                    }
+
+                    string PAGEINFO_DES = $"{extraInfo}{criticalPageInfo.name}:{extraChpater}:{criticalPageInfo.skinName}:{criticalPageInfo.bookID}";
                     if (!string.IsNullOrEmpty(TbxSearch.Text) && !PAGEINFO_DES.ToLower().Replace(" ", "").Contains(TbxSearch.Text.ToLower().Replace(" ", ""))) continue;
 
                     switch (LbxSearchType.SelectedItem.ToString())
