@@ -26,17 +26,18 @@ namespace LORModingBase.DM
                 Directory.Delete(MDOE_DIR_TO_USE, true);
 
             Directory.CreateDirectory(MDOE_DIR_TO_USE);
-            Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo");
-            Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\kr");
 
-            Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\EquipPage");
-            ExportDatas_CriticalPages();
+            if (MainWindow.criticalPageInfos.Count > 0)
+            {
+                Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\EquipPage");
+                ExportDatas_CriticalPages();
 
-            Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\kr\\Books");
-            ExportDatas_CriticalPageDescription();
+                Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\kr\\Books");
+                ExportDatas_CriticalPageDescription();
 
-            Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\DropBook");
-            ExportDatas_DropBooks();
+                Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\DropBook");
+                ExportDatas_DropBooks();
+            }
 
             return MDOE_DIR_TO_USE;
         }
