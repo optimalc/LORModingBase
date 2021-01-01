@@ -127,9 +127,9 @@ namespace LORModingBase.SubWindows
 
         private void BtnDirectInput_Click(object sender, RoutedEventArgs e)
         {
-            new InputEpisodeDirectlyWindow((string episodeCode, string episodeDes) =>
+            new InputEpisodeDirectlyWindow((string iconCode, string iconDes) =>
             {
-                afterSelectIcon("1", episodeCode, episodeDes);
+                afterSelectIcon("1", iconCode, iconDes);
                 Close();
             }, upsideLabelInfo:"책 아이콘 이름 >").ShowDialog();
         }

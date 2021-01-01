@@ -83,6 +83,8 @@ namespace LORModingBase.DM
                     });
                     if (foundSkinInfo != null)
                         criticalPageInfo.skinDes = $"{foundSkinInfo.skinDesc}:{foundSkinInfo.skinName}";
+                    else
+                        criticalPageInfo.skinDes = $"커스텀 스킨:{criticalPageInfo.skinName}";
                 } 
                 #endregion
 

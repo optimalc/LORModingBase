@@ -96,7 +96,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="../Resources/MenuBg.png"/>
             </Grid.Background>
-            <Button x:Name="BtnDirectInput" Grid.Column="0" Content="[수동으로 입력]" ToolTip="수동으로 에피소드 코드를 입력합니다" Style="{StaticResource StyBtnMenu}" Click="BtnDirectInput_Click"/>
+            <Button x:Name="BtnDirectInput" Grid.Column="0" Content="[수동으로 입력]" ToolTip="수동으로 아이콘을 입력합니다" Style="{StaticResource StyBtnMenu}" Click="BtnDirectInput_Click"/>
             <Button x:Name="BtnOk" Grid.Column="1" Content="[닫기]" ToolTip="창을 닫습니다" Style="{StaticResource StyBtnMenu}" Click="BtnOk_Click"/>
         </Grid>
     </Grid>

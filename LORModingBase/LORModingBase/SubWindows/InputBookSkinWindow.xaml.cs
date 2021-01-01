@@ -131,5 +131,19 @@ namespace LORModingBase.SubWindows
             }
         }
         #endregion
+
+        private void BtnOk_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnDirectInput_Click(object sender, RoutedEventArgs e)
+        {
+            new InputEpisodeDirectlyWindow((string skinCode, string skinDes) =>
+            {
+                afterSelectSkin("ETC", skinCode, skinDes);
+                Close();
+            }, upsideLabelInfo: "스킨 이름 >").ShowDialog();
+        }
     }
 }
