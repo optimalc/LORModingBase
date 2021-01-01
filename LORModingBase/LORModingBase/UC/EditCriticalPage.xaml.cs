@@ -68,8 +68,15 @@ namespace LORModingBase.UC
             #region 핵심책장 드랍 책 부분 UI 반영시키기
             if (innerCriticalPageInfo.dropBooks.Count > 0)
             {
+                string extraInfo = "";
+                innerCriticalPageInfo.dropBooks.ForEach((string dropBookInfo) =>
+                {
+                    extraInfo += $"{dropBookInfo}\n";
+                });
+                extraInfo = extraInfo.TrimEnd('\n');
+
                 BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-                BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)";
+                BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
             }
             #endregion
             #region 적 전용책장 입력 부분 UI 반영시키기
@@ -400,8 +407,15 @@ namespace LORModingBase.UC
 
             if(innerCriticalPageInfo.dropBooks.Count > 0)
             {
+                string extraInfo = "";
+                innerCriticalPageInfo.dropBooks.ForEach((string dropBookInfo) =>
+                {
+                    extraInfo += $"{dropBookInfo}\n";
+                });
+                extraInfo = extraInfo.TrimEnd('\n');
+
                 BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-                BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)";
+                BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
             }
             else
             {
