@@ -135,6 +135,37 @@ namespace LORModingBase.DM
 
                     criticalPageInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Chapter");
                     criticalPageInfo.episode = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Episode");
+                    criticalPageInfo.episodeDes = GetDescription.GetEpisodeDescription(criticalPageInfo.episode, criticalPageInfo.chapter);
+
+                    criticalPageInfo.iconName = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "BookIcon");
+                    criticalPageInfo.iconDes = GetDescription.GetIconDescription(criticalPageInfo.iconName);
+
+                    criticalPageInfo.skinName = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "CharacterSkin");
+                    criticalPageInfo.skinDes = GetDescription.GetSkinDescription(criticalPageInfo.skinName);
+
+                    XmlNode equipEffectNode = bookNode.SelectSingleNode("EquipEffect");
+                    criticalPageInfo.HP = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "HP");
+                    criticalPageInfo.breakNum = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "Break");
+
+                    criticalPageInfo.minSpeedCount = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "SpeedMin");
+                    criticalPageInfo.maxSpeedCount = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "Speed");
+
+                    criticalPageInfo.SResist = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "SResist");
+                    criticalPageInfo.PResist = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "PResist");
+                    criticalPageInfo.HResist = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "HResist");
+
+                    criticalPageInfo.BSResist = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "SBResist");
+                    criticalPageInfo.BPResist = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "PBResist");
+                    criticalPageInfo.BHResist = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "HBResist");
+
+                    XmlNodeList passiveNodes = equipEffectNode.SelectNodes("Passive");
+                    foreach (XmlNode passiveNode in passiveNodes)
+                    {
+                        if (string.IsNullOrEmpty(passiveNode.InnerText)) 
+                            continue;
+
+                        criticalPageInfo.passiveIDs.Add(GetDescription.GetPassiveDescription(passiveNode.InnerText));
+                    }
 
                     gameCriticalPageInfos.Add(criticalPageInfo);
                     #endregion
