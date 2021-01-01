@@ -78,8 +78,14 @@ namespace LORModingBase.UC
                 !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
                 !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel))
             {
+                string extraInfo = "";
+                extraInfo += $"시작시 빛의 수 : {innerCriticalPageInfo.ENEMY_StartPlayPoint}\n";
+                extraInfo += $"최대 빛의 수 : {innerCriticalPageInfo.ENEMY_MaxPlayPoint}\n";
+                extraInfo += $"최대 감정 레벨 : {innerCriticalPageInfo.ENEMY_EmotionLevel}\n";
+                extraInfo += $"추가로 드로우하는 책장의 수: {innerCriticalPageInfo.ENEMY_AddedStartDraw}";
+
                 BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
-                BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)";
+                BtnEnemySetting.ToolTip = $"적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)\n{extraInfo}";
             }
             #endregion
 
@@ -407,13 +413,20 @@ namespace LORModingBase.UC
         private void BtnEnemySetting_Click(object sender, RoutedEventArgs e)
         {
             new SubWindows.InputEnemyInfoWindow(innerCriticalPageInfo).ShowDialog();
+
+            string extraInfo = "";
+            extraInfo += $"시작시 빛의 수 : {innerCriticalPageInfo.ENEMY_StartPlayPoint}\n";
+            extraInfo += $"최대 빛의 수 : {innerCriticalPageInfo.ENEMY_MaxPlayPoint}\n";
+            extraInfo += $"최대 감정 레벨 : {innerCriticalPageInfo.ENEMY_EmotionLevel}\n";
+            extraInfo += $"추가로 드로우하는 책장의 수: {innerCriticalPageInfo.ENEMY_AddedStartDraw}";
+
             if (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
                 !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
                 !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
                 !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel))
             {
                 BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
-                BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)";
+                BtnEnemySetting.ToolTip = $"적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)\n{extraInfo}";
             }
             else
             {

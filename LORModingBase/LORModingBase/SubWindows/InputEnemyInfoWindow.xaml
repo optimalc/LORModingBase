@@ -55,7 +55,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="&lt; 추가로 드러우하는 책장의 수 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <Label Grid.Column="0" Content="&lt; 추가로 드로우하는 책장의 수 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <TextBox x:Name="TbxAddedStartDraw" Grid.Column="1" Text="" ToolTip="적이 책장을 추가로 드러우 할 때의 수치입니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="TbxAddedStartDraw_TextChanged"/>
             </Grid>
         </Grid>
