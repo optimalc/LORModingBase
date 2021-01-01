@@ -35,7 +35,6 @@ namespace LORModingBase.DM
                 Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\kr\\Books");
                 ExportDatas_CriticalPageDescription();
 
-                Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\DropBook");
                 ExportDatas_DropBooks();
             }
 
@@ -60,8 +59,12 @@ namespace LORModingBase.DM
                 Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "Name", ciriticalInfo.name);
                 Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "TextId", ciriticalInfo.bookID);
                 Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "BookIcon", ciriticalInfo.iconName);
-                Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "Chapter", ciriticalInfo.chapter);
-                Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "Episode", ciriticalInfo.episode);
+                
+                if(!string.IsNullOrEmpty(ciriticalInfo.chapter))
+                    Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "Chapter", ciriticalInfo.chapter);
+                if(!string.IsNullOrEmpty(ciriticalInfo.episode))
+                    Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "Episode", ciriticalInfo.episode);
+                
                 Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "Rarity", ciriticalInfo.rarity);
                 Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "CharacterSkin", ciriticalInfo.skinName);
                 Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "SpeedDiceNum", "1");
@@ -153,9 +156,6 @@ namespace LORModingBase.DM
         /// </summary>
         public static void ExportDatas_DropBooks()
         {
-            string DROP_BOOK_PATH = $"{MDOE_DIR_TO_USE}\\StaticInfo\\DropBook\\DropBook.txt";
-            File.Copy(DS.PATH.RESOURCE_XML_BASE_DROP_BOOK, DROP_BOOK_PATH);
-
             Dictionary<string, List<string>> dropBookDic = new Dictionary<string, List<string>>(); // <DropBook ID, BookID>
             #region Make drop book dic
             foreach (DS.CriticalPageInfo ciriticalInfo in MainWindow.criticalPageInfos)
@@ -170,6 +170,12 @@ namespace LORModingBase.DM
                 }
             }
             #endregion
+            if (dropBookDic.Keys.Count <= 0)
+                return;
+
+            Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\DropBook");
+            string DROP_BOOK_PATH = $"{MDOE_DIR_TO_USE}\\StaticInfo\\DropBook\\DropBook.txt";
+            File.Copy(DS.PATH.RESOURCE_XML_BASE_DROP_BOOK, DROP_BOOK_PATH);
 
             XmlNode rootNode = Tools.XmlFile.SelectSingleNode(DROP_BOOK_PATH, "//BookUseXmlRoot");
             foreach(string dropBookID in dropBookDic.Keys)
