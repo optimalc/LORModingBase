@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -119,5 +120,22 @@ namespace LORModingBase.SubWindows
             }
         }
         #endregion
+
+        private void BtnDirectInput_Click(object sender, RoutedEventArgs e)
+        {
+            new InputEpisodeDirectlyWindow((string episodeCode, string episodeDes) =>
+            {
+                new InputChapterWindow((string selectedChapter) =>
+                {
+                    afterSelectEpisode(selectedChapter.Split(':').Last(), episodeCode, episodeDes);
+                    Close();
+                }).ShowDialog();
+            }).ShowDialog();
+        }
+
+        private void BtnOk_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

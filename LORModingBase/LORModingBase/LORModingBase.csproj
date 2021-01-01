@@ -74,6 +74,9 @@
     <Compile Include="SubWindows\InputBookSkinWindow.xaml.cs">
       <DependentUpon>InputBookSkinWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\InputChapterWindow.xaml.cs">
+      <DependentUpon>InputChapterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputDropBookInfosWindow.xaml.cs">
       <DependentUpon>InputDropBookInfosWindow.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,9 @@
     </Compile>
     <Compile Include="SubWindows\InputCriticalBookDescription.xaml.cs">
       <DependentUpon>InputCriticalBookDescription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindows\InputEpisodeDirectlyWindow.xaml.cs">
+      <DependentUpon>InputEpisodeDirectlyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\InputEpisodeWindow.xaml.cs">
       <DependentUpon>InputEpisodeWindow.xaml</DependentUpon>
@@ -114,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="SubWindows\InputChapterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SubWindows\InputDropBookInfosWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -127,6 +137,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\InputCriticalBookDescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindows\InputEpisodeDirectlyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

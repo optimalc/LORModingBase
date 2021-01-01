@@ -54,6 +54,7 @@ namespace LORModingBase.DM
                 }
 
                 criticalPageInfo.episode = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Episode");
+                criticalPageInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Chapter");
                 if (!string.IsNullOrEmpty(criticalPageInfo.episode))
                 {
                     DS.StageInfo foundStageInfo = DM.StaticInfos.stageInfos.Find((DS.StageInfo stageInfo) =>
@@ -61,10 +62,9 @@ namespace LORModingBase.DM
                         return stageInfo.stageID == criticalPageInfo.episode;
                     });
                     if (foundStageInfo != null)
-                    {
-                        criticalPageInfo.chapter = foundStageInfo.Chapter;
                         criticalPageInfo.episodeDes = $"{DS.GameInfo.chapter_Dic[foundStageInfo.Chapter]} / {foundStageInfo.stageDoc}:{foundStageInfo.stageID}";
-                    }
+                    else
+                        criticalPageInfo.episodeDes = $"{DS.GameInfo.chapter_Dic[criticalPageInfo.chapter]} / 커스텀 스테이지:{criticalPageInfo.episode}";
                 }
 
                 criticalPageInfo.rarity = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Rarity");
