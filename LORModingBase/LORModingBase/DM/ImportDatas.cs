@@ -110,8 +110,6 @@ namespace LORModingBase.DM
                     {
                         if (string.IsNullOrEmpty(passiveNode.InnerText)) 
                             continue;
-                        if (DS.FilterDatas.EXCLUDE_PASSIVE_CODE.Contains(passiveNode.InnerText))
-                            continue;
 
                         string foundPassiveDesc = DM.StaticInfos.passiveList.Find((string passiveDesc) =>
                         {
