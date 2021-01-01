@@ -29,16 +29,12 @@
                     <ColumnDefinition Width="22*"/>
                     <ColumnDefinition Width="22*"/>
                     <ColumnDefinition Width="22*"/>
-                    <ColumnDefinition Width="12*"/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.ColumnSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Button x:Name="BtnRarityCommon" ToolTip="보급 책장으로 지정" Grid.Column="0" Content="보급" FontSize="15" Foreground="#FF30BF4B" Style="{StaticResource StyBtnMenu}" Click="BtnRarityCommon_Click" Background="#54FFFFFF"/>
                 <Button x:Name="BtnRarityUncommon" ToolTip="고급 책장으로 지정" Grid.Column="1" Content="고급" FontSize="15" Foreground="#FF306ABF" Style="{StaticResource StyBtnMenu}" Click="BtnRarityUncommon_Click"/>
                 <Button x:Name="BtnRarityRare" ToolTip="한정 책장으로 지정" Grid.Column="2" Content="한정" FontSize="15" Foreground="#FF8030BF" Style="{StaticResource StyBtnMenu}" Click="BtnRarityRare_Click"/>
                 <Button x:Name="BtnRarityUnique" ToolTip="예술 책장으로 지정" Grid.Column="3" Content="예술" FontSize="15" Foreground="#FFF3B530" Style="{StaticResource StyBtnMenu}" Click="BtnRarityUnique_Click"/>
-
-                <Rectangle Grid.Column="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnDelete" Grid.Column="4" Content="X" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Foreground="Red" Click="BtnDelete_Click" ToolTip="핵심 책장을 삭제합니다" />
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -274,7 +270,8 @@
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="9*"/>
-                <RowDefinition Height="46*"/>
+                <RowDefinition Height="37*"/>
+                <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
             <Rectangle Grid.RowSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
             <Button x:Name="BtnCiricalBookInfo" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장에 대한 이야기를 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="BtnCiricalBookInfo_Click" >
@@ -317,7 +314,7 @@
                 </Button.Background>
             </Button>
 
-            <Rectangle Grid.Row="3" Grid.RowSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Rectangle Grid.Row="3" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
             <Button x:Name="BtnRangeType" Grid.Row="3"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" Click="BtnRangeType_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
@@ -342,6 +339,21 @@
                 </Button.RenderTransform>
                 <Button.Background>
                     <ImageBrush ImageSource="../Resources/TypeUser.png"/>
+                </Button.Background>
+            </Button>
+
+            <Rectangle Grid.Row="5" Grid.RowSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnDelete" Grid.Row="7" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDelete_Click" ToolTip="핵심 책장을 삭제합니다" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-21"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnBin.png"/>
                 </Button.Background>
             </Button>
         </Grid>

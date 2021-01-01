@@ -249,5 +249,11 @@
     <Resource Include="Resources\TypeEnemy.png" />
     <Resource Include="Resources\TypeUser.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnCopy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnBin.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
