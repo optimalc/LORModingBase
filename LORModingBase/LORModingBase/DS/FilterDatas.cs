@@ -26,5 +26,10 @@ namespace LORModingBase.DS
 
             "505611", "505641", "505631", "505621"
         };
+
+        public const int CARD_DIV_LIBRARION = 1000;
+        public const int CARD_DIV_ENEMY = 200000;
+        public const int CARD_DIV_USER = 1000000;
+        public const int CARD_DIV_CUSTOM = 9000000;
     }
 }

@@ -163,7 +163,7 @@ namespace LORModingBase.DS
     public class CriticalPageInfo
     {
         public string rarity = "Common";
-        public string bookID = Tools.MathTools.GetRandomNumber(1000000, 9999999).ToString();
+        public string bookID = Tools.MathTools.GetRandomNumber(DS.FilterDatas.CARD_DIV_USER, DS.FilterDatas.CARD_DIV_CUSTOM).ToString();
         public string name = "";
 
         public string chapter = "";
@@ -195,5 +195,6 @@ namespace LORModingBase.DS
         public List<string> dropBooks = new List<string>();
 
         public string rangeType = "Nomal";
+        public string cardType = "User";
     }
 }
