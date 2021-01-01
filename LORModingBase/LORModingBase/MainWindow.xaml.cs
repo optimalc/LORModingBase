@@ -122,7 +122,8 @@ namespace LORModingBase
         {
             new SubWindows.InputGameCriticalPage((DS.CriticalPageInfo selectedCriticalPageInfo) =>
             {
-                MessageBox.Show(selectedCriticalPageInfo.name);
+                criticalPageInfos.Add(Tools.DeepCopy.DeepClone(selectedCriticalPageInfo));
+                InitSplCriticalPage();
             }).ShowDialog();
         }
         #endregion

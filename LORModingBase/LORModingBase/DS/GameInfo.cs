@@ -154,6 +154,7 @@ namespace LORModingBase.DS
     /// <summary>
     /// Critical page data structure
     /// </summary>
+    [Serializable]
     public class CriticalPageInfo
     {
         public string rarity = "Common";

@@ -102,6 +102,7 @@
       <DependentUpon>InputEpisodeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\ColorTools.cs" />
+    <Compile Include="Tools\DeepCopy.cs" />
     <Compile Include="Tools\Dialog.cs" />
     <Compile Include="Tools\JsonFile.cs" />
     <Compile Include="Tools\MathTools.cs" />
