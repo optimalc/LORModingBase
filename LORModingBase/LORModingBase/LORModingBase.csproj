@@ -220,5 +220,10 @@
     <Resource Include="Resources\iconNoDropBook.png" />
     <Resource Include="Resources\iconYesDropBook.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TypeHybrid.png" />
+    <Resource Include="Resources\TypeNomal.png" />
+    <Resource Include="Resources\TypeRange.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

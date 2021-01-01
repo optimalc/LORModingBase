@@ -65,6 +65,8 @@ namespace LORModingBase.DM
                 Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "CharacterSkin", ciriticalInfo.skinName);
                 Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "SpeedDiceNum", "1");
 
+                if (ciriticalInfo.rangeType == "Range" || ciriticalInfo.rangeType == "Hybrid")
+                    Tools.XmlFile.AddNewNodeWithInnerText(bookElement, "RangeType", ciriticalInfo.rangeType);
 
                 XmlElement equipEffectElement = rootNode.OwnerDocument.CreateElement("EquipEffect");
 

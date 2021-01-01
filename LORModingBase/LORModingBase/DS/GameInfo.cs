@@ -187,5 +187,7 @@ namespace LORModingBase.DS
 
         public string description = "입력된 정보가 없습니다";
         public List<string> dropBooks = new List<string>();
+
+        public string rangeType = "Nomal";
     }
 }

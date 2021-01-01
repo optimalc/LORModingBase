@@ -20,8 +20,9 @@ namespace LORModingBase.UC
             this.innerCriticalPageInfo = criticalPageInfo;
             this.initStack = initStack;
 
+            #region 일반적인 핵심책장 정보 UI 반영시키기
             ChangeRarityUIInit(criticalPageInfo.rarity);
-            if(!string.IsNullOrEmpty(criticalPageInfo.episodeDes))
+            if (!string.IsNullOrEmpty(criticalPageInfo.episodeDes))
             {
                 BtnEpisode.Content = criticalPageInfo.episodeDes;
                 BtnEpisode.ToolTip = criticalPageInfo.episodeDes;
@@ -55,18 +56,40 @@ namespace LORModingBase.UC
             BtnBHResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BHResist];
 
             InitLbxPassives();
+            #endregion
 
-
+            #region 핵심책장 설명부분 UI 반영시키기
             if (criticalPageInfo.description != "입력된 정보가 없습니다")
             {
                 BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
                 BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
             }
+            #endregion
+            #region 핵심책장 드랍 책 부분 UI 반영시키기
             if (innerCriticalPageInfo.dropBooks.Count > 0)
             {
                 BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
                 BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)";
             }
+            #endregion
+
+            #region 핵심책장 원거리 속성 UI 반영시키기
+            if(criticalPageInfo.rangeType == "Range")
+            {
+                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
+                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
+            }
+            else if (criticalPageInfo.rangeType == "Hybrid")
+            {
+                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
+                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
+            }
+            else
+            {
+                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
+                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
+            }
+            #endregion
         }
 
         private void ChangeRarityUIInit(string rarity)
@@ -368,5 +391,39 @@ namespace LORModingBase.UC
             }
         }
         #endregion
+
+        private void BtnRangeType_Click(object sender, RoutedEventArgs e)
+        {
+            switch(innerCriticalPageInfo.rangeType)
+            {
+                case "Range":
+                    innerCriticalPageInfo.rangeType = "Hybrid";
+                    break;
+                case "Hybrid":
+                    innerCriticalPageInfo.rangeType = "Nomal";
+                    break;
+                default:
+                    innerCriticalPageInfo.rangeType = "Range";
+                    break;
+            }
+
+            #region 핵심책장 원거리 속성 UI 반영시키기
+            if (innerCriticalPageInfo.rangeType == "Range")
+            {
+                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
+                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
+            }
+            else if (innerCriticalPageInfo.rangeType == "Hybrid")
+            {
+                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
+                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
+            }
+            else
+            {
+                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
+                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
+            }
+            #endregion
+        }
     }
 }

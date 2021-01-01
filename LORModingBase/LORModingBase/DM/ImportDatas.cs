@@ -85,9 +85,11 @@ namespace LORModingBase.DM
                         criticalPageInfo.skinDes = $"{foundSkinInfo.skinDesc}:{foundSkinInfo.skinName}";
                     else
                         criticalPageInfo.skinDes = $"커스텀 스킨:{criticalPageInfo.skinName}";
-                } 
+                }
                 #endregion
 
+                if (bookNode["RangeType"] != null)
+                    criticalPageInfo.rangeType = bookNode["RangeType"].InnerText;
 
                 XmlNode equipEffectNode = bookNode.SelectSingleNode("EquipEffect");
                 if(equipEffectNode != null)
