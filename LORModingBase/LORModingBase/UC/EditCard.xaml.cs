@@ -34,6 +34,32 @@ namespace LORModingBase.UC
             ChangeRarityUIInit(innerCardInfo.rarity);
             TbxCardName.Text = innerCardInfo.name;
             TbxCardUniqueID.Text = innerCardInfo.cardID;
+
+            if(!string.IsNullOrEmpty(innerCardInfo.cardImage))
+            {
+                BtnCardImage.Content = innerCardInfo.cardImage;
+                BtnCardImage.ToolTip = innerCardInfo.cardImage;
+            }
+            if (!string.IsNullOrEmpty(innerCardInfo.cardScript))
+            {
+                BtnCardEffect.Content = innerCardInfo.cardScript;
+                BtnCardEffect.ToolTip = innerCardInfo.cardScript;
+            }
+
+            #region 드랍되는 곳 체크
+            if (innerCardInfo.dropBooks.Count > 0)
+            {
+                string extraInfo = "";
+                innerCardInfo.dropBooks.ForEach((string dropBookInfo) =>
+                {
+                    extraInfo += $"{dropBookInfo}\n";
+                });
+                extraInfo = extraInfo.TrimEnd('\n');
+
+                BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+                BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
+            } 
+            #endregion
         }
 
         private void ChangeRarityUIInit(string rarity)
@@ -98,7 +124,25 @@ namespace LORModingBase.UC
 
         private void BtnDropCards_Click(object sender, RoutedEventArgs e)
         {
+            new SubWindows.InputDropBookInfosWindow(innerCardInfo.dropBooks).ShowDialog();
 
+            if (innerCardInfo.dropBooks.Count > 0)
+            {
+                string extraInfo = "";
+                innerCardInfo.dropBooks.ForEach((string dropBookInfo) =>
+                {
+                    extraInfo += $"{dropBookInfo}\n";
+                });
+                extraInfo = extraInfo.TrimEnd('\n');
+
+                BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+                BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
+            }
+            else
+            {
+                BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
+                BtnDropCards.ToolTip = "이 전투책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
+            }
         }
 
 
