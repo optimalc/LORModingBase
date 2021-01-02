@@ -17,6 +17,7 @@ namespace LORModingBase.DM
         public static void CheckAllDatas()
         {
             CheckCriticalPageInfos();
+            CheckCardInfos();
         }
 
         /// <summary>
@@ -52,6 +53,37 @@ namespace LORModingBase.DM
                     if (ciriticalInfo.dropBooks.Count <= 0)
                         throw new Exception("핵심 책장이 어느 책에서 연소되어서 나오는지가 입력되지 않았습니다.");
                 }
+            }
+        }
+
+        /// <summary>
+        /// Check inputed card infos
+        /// </summary>
+        public static void CheckCardInfos()
+        {
+            foreach (DS.CardInfo cardInfo in MainWindow.cardInfos)
+            {
+                if (string.IsNullOrEmpty(cardInfo.cardID))
+                    throw new Exception("전투 책장 고유 ID가 입력되지 않았습니다.");
+                if (string.IsNullOrEmpty(cardInfo.name))
+                    throw new Exception("전투 책장 이름이 입력되지 않았습니다.");
+
+                if (string.IsNullOrEmpty(cardInfo.cardImage))
+                    throw new Exception("전투 책장 이미지가 선택되지 않았습니다.");
+
+                if (string.IsNullOrEmpty(cardInfo.cost))
+                    throw new Exception("전투 책장 비용이 입력되지 않았습니다.");
+
+                foreach(DS.Dice diceInfo in cardInfo.dices)
+                {
+                    if (string.IsNullOrEmpty(diceInfo.max))
+                        throw new Exception("전투 책장 주사위의 최대값이 입력되지 않았습니다.");
+                    if (string.IsNullOrEmpty(diceInfo.min))
+                        throw new Exception("전투 책장 주사위의 최소값이 입력되지 않았습니다.");
+                }
+
+                if (cardInfo.dropBooks.Count <= 0)
+                    throw new Exception("전투 책장이 어느 책에서 연소되어서 나오는지가 입력되지 않았습니다.");
             }
         }
     }

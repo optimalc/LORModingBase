@@ -38,8 +38,8 @@
                     <ColumnDefinition Width="33*"/>
                     <ColumnDefinition Width="33*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="TbzMinDice" Grid.Column="0" Text="1" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="최소 주사위 값을 입력합니다" VerticalAlignment="Center" TextAlignment="Center" Background="#7F223082"/>
-                <TextBox x:Name="TbzMaxDice" Grid.Column="2" Text="6" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="최대 주사위 값을 입력합니다" TextAlignment="Center" Background="#7F5A1212"/>
+                <TextBox x:Name="TbxMinDice" Grid.Column="0" Text="1" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="최소 주사위 값을 입력합니다" VerticalAlignment="Center" TextAlignment="Center" Background="#7F223082" TextChanged="TbxMinDice_TextChanged"/>
+                <TextBox x:Name="TbxMaxDice" Grid.Column="2" Text="6" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="최대 주사위 값을 입력합니다" TextAlignment="Center" Background="#7F5A1212" TextChanged="TbxMaxDice_TextChanged"/>
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>

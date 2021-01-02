@@ -26,9 +26,9 @@ namespace LORModingBase.UC
         #region Init controls
         public EditCard(DS.CardInfo innerCardInfo, Action initStack)
         {
+            InitializeComponent();
             this.innerCardInfo = innerCardInfo;
             this.initStack = initStack;
-            InitializeComponent();
 
             TbxCost.Text = innerCardInfo.cost;
             ChangeRarityUIInit(innerCardInfo.rarity);
@@ -279,17 +279,20 @@ namespace LORModingBase.UC
         #region Text change events
         private void TbxCost_TextChanged(object sender, TextChangedEventArgs e)
         {
-            innerCardInfo.cost = TbxCost.Text;
+            if(innerCardInfo != null)
+                innerCardInfo.cost = TbxCost.Text;
         }
 
         private void TbxCardName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            innerCardInfo.name = TbxCardName.Text;
+            if (innerCardInfo != null)
+                innerCardInfo.name = TbxCardName.Text;
         }
 
         private void TbxCardUniqueID_TextChanged(object sender, TextChangedEventArgs e)
         {
-            innerCardInfo.cardID = TbxCardUniqueID.Text;
+            if (innerCardInfo != null)
+                innerCardInfo.cardID = TbxCardUniqueID.Text;
         }
         #endregion
 

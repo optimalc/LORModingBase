@@ -18,6 +18,7 @@ namespace LORModingBase.DM
         {
             LoadData_CardsInfo();
             LoadData_CardEffect();
+            LoadData_Dropbooks();
 
             LoadDatas_PassiveInfo();
             LoadDatas_StageInfo();
@@ -392,7 +393,9 @@ namespace LORModingBase.DM
         /// card effect dic - [effectID, description]
         /// </summary>
         public static Dictionary<string, List<string>> cardEffectDic = new Dictionary<string, List<string>>();
-        
+
+        public static Dictionary<string, List<string>> dropBookDic = new Dictionary<string, List<string>>();
+
         public static void LoadData_CardsInfo()
         {
             #region Make localized dictionary list
@@ -487,6 +490,33 @@ namespace LORModingBase.DM
 
                 cardEffectDic[battleCardAbilityNode.Attributes["ID"].Value] = desc;
             }
+        }
+        
+        public static void LoadData_Dropbooks()
+        {
+            dropBookDic.Clear();
+            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\CardDropTable").ToList().ForEach((string dropBookPath) =>
+            {
+                XmlNodeList dropBookNodes = Tools.XmlFile.SelectNodeLists(dropBookPath, "//DropTable");
+                foreach (XmlNode dropBookNode in dropBookNodes)
+                {
+                    if (dropBookNode.Attributes["ID"] == null)
+                        continue;
+                    if (string.IsNullOrEmpty(dropBookNode.Attributes["ID"].Value))
+                        continue;
+
+                    List<string> dropBookCards = new List<string>();
+                    XmlNodeList dropBookCardNodes = dropBookNode.SelectNodes("Card");
+                    foreach (XmlNode dropBookCardNode in dropBookCardNodes)
+                    {
+                        if (string.IsNullOrEmpty(dropBookCardNode.InnerText))
+                            continue;
+                        dropBookCards.Add(dropBookCardNode.InnerText);
+                    }
+                    if (dropBookCards.Count <= 0) continue;
+                    dropBookDic[dropBookNode.Attributes["ID"].Value] = dropBookCards;
+                }
+            });
         }
         #endregion
     }

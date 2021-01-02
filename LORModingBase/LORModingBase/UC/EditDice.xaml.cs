@@ -27,9 +27,12 @@ namespace LORModingBase.UC
         public EditDice(List<DS.Dice> diceListToUse, DS.Dice innerDice, Action stackInitFunc)
         {
             this.diceListToUse = diceListToUse;
-            this.innerDice = innerDice;
             this.stackInitFunc = stackInitFunc;
             InitializeComponent();
+
+            this.innerDice = innerDice;
+            TbxMinDice.Text = innerDice.min;
+            TbxMaxDice.Text = innerDice.max;
 
             UpdateEffectGrid();
             UpdateDiceTypeUI();
@@ -202,5 +205,17 @@ namespace LORModingBase.UC
             UpdateDiceTypeUI();
         }
         #endregion
+
+        private void TbxMinDice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (innerDice != null)
+                innerDice.min = TbxMinDice.Text;
+        }
+
+        private void TbxMaxDice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (innerDice != null)
+                innerDice.max = TbxMaxDice.Text;
+        }
     }
 }

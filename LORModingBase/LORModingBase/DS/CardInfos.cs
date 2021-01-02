@@ -50,8 +50,8 @@ namespace LORModingBase.DS
     [Serializable]
     public class Dice
     {
-        public string min = "";
-        public string max = "";
+        public string min = "1";
+        public string max = "6";
 
         public string type = "Atk";
         public string detail = "Slash";

@@ -51,5 +51,18 @@ namespace LORModingBase.DS
         /// Xml base for Dropping books info
         /// </summary>
         public static string RESOURCE_XML_BASE_DROP_BOOK = $"{DIC_RESURCE}\\DropBook.txt";
+
+        /// <summary>
+        /// Xml bases for Card info
+        /// </summary>
+        public static string RESOURCE_XML_BASE_CARD_INFO = $"{DIC_RESURCE}\\CardInfo.txt";
+        /// <summary>
+        /// Xml bases for Battle cards
+        /// </summary>
+        public static string RESOURCE_XML_BASE_BATTLE_CARDS = $"{DIC_RESURCE}\\_BattleCards.txt";
+        /// <summary>
+        /// Xml base for Card drop table
+        /// </summary>
+        public static string RESOURCE_XML_BASE_CARD_DROP_TABLE = $"{DIC_RESURCE}\\CardDropTable.txt";
     }
 }
