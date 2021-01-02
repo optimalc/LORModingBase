@@ -217,7 +217,11 @@ namespace LORModingBase
 
         private void BtnLoadCard_Click(object sender, RoutedEventArgs e)
         {
-            InitSplCards();
+            new SubWindows.InputGameCard((DS.CardInfo selectedCardInfo) =>
+            {
+                cardInfos.Add(Tools.DeepCopy.DeepClone(selectedCardInfo));
+                InitSplCards();
+            }).ShowDialog();
         }
         #endregion
     }
