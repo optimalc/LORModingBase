@@ -16,11 +16,11 @@ namespace LORModingBase.DM
         /// </summary>
         public static void LoadAllDatas()
         {
+            LoadData_CardsInfo();
+
             LoadDatas_PassiveInfo();
             LoadDatas_StageInfo();
             LoadDatas_SkinAndBookIconInfo();
-
-            LoadData_CardsInfo();
         }
 
         #region Load datas for critical page
@@ -180,6 +180,14 @@ namespace LORModingBase.DM
                     criticalPageInfo.ENEMY_MaxPlayPoint = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "MaxPlayPoint");
                     criticalPageInfo.ENEMY_EmotionLevel = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "EmotionLevel");
                     criticalPageInfo.ENEMY_AddedStartDraw = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "AddedStartDraw");
+                    #endregion
+                    #region 전용책장 관련 정보 불러오기
+                    XmlNodeList onlyCardNodes = equipEffectNode.SelectNodes("OnlyCard");
+                    foreach (XmlNode onlyCardNode in onlyCardNodes)
+                    {
+                        if (!string.IsNullOrEmpty(onlyCardNode.InnerText))
+                            criticalPageInfo.onlyCards.Add(DM.StaticInfos.GetDescription.GetUniqueCardDescription(onlyCardNode.InnerText));
+                    }
                     #endregion
 
                     XmlNodeList passiveNodes = equipEffectNode.SelectNodes("Passive");
