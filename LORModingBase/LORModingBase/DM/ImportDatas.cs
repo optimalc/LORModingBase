@@ -202,6 +202,15 @@ namespace LORModingBase.DM
 
                 cardInfo.name = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Name");
                 cardInfo.cardImage = DM.StaticInfos.GetDescriptionForCard.GetArtworkDescription(Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Artwork"));
+                if (Directory.Exists($"{TARGET_MODE_DIC}\\ArtWork"))
+                {
+                    string IMAGE_NAME = cardInfo.cardImage.Split(':').Last();
+                    if (File.Exists($"{TARGET_MODE_DIC}\\ArtWork\\{IMAGE_NAME}.png"))
+                        cardInfo.cardImage = $"%IMAGE_PATH%/{$"{TARGET_MODE_DIC}\\ArtWork\\{IMAGE_NAME}.png"}/:{IMAGE_NAME}";
+                    else if(File.Exists($"{TARGET_MODE_DIC}\\ArtWork\\{IMAGE_NAME}.jpg"))
+                        cardInfo.cardImage = $"%IMAGE_PATH%/{$"{TARGET_MODE_DIC}\\ArtWork\\{IMAGE_NAME}.jpg"}/:{IMAGE_NAME}";
+                }
+
                 cardInfo.rarity = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Rarity");
                 cardInfo.cardScript = DM.StaticInfos.GetDescriptionForCard.GetScriptDescription(Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Script"));
                 cardInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Chapter");
