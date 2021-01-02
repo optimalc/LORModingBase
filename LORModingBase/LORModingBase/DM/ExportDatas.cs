@@ -275,6 +275,12 @@ namespace LORModingBase.DM
                 XmlElement specElement = rootNode.OwnerDocument.CreateElement("Spec");
                 specElement.SetAttribute("Range", cardInfo.rangeType);
                 specElement.SetAttribute("Cost", cardInfo.cost);
+
+                if(!string.IsNullOrEmpty(cardInfo.EXTRA_EmotionLimit))
+                    specElement.SetAttribute("EmotionLimit", cardInfo.EXTRA_EmotionLimit);
+                if (!string.IsNullOrEmpty(cardInfo.EXTRA_Affection))
+                    specElement.SetAttribute("Affection", cardInfo.EXTRA_Affection);
+
                 cardElement.AppendChild(specElement);
                 #endregion
                 #region Dices information

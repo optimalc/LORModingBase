@@ -466,6 +466,9 @@ namespace LORModingBase.DM
                     cardInfo.rangeType = Tools.XmlFile.GetAttributeSafeWithXPath.ToString(cardNode, "Spec", "Range", "Near");
                     cardInfo.cost = Tools.XmlFile.GetAttributeSafeWithXPath.ToString(cardNode, "Spec", "Cost", "1");
 
+                    cardInfo.EXTRA_EmotionLimit = Tools.XmlFile.GetAttributeSafeWithXPath.ToString(cardNode, "Spec", "EmotionLimit");
+                    cardInfo.EXTRA_Affection = Tools.XmlFile.GetAttributeSafeWithXPath.ToString(cardNode, "Spec", "Affection");
+
                     cardInfo.priority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Priority", "1");
                     cardInfo.priorityScript = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "PriorityScript");
                     cardInfo.sortPriority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "SortPriority", "1");

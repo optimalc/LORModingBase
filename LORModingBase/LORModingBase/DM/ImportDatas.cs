@@ -214,6 +214,8 @@ namespace LORModingBase.DM
                 {
                     cardInfo.rangeType = Tools.XmlFile.GetAttributeSafe.ToString(specNode, "Range");
                     cardInfo.cost = Tools.XmlFile.GetAttributeSafe.ToString(specNode, "Cost");
+                    cardInfo.EXTRA_EmotionLimit = Tools.XmlFile.GetAttributeSafe.ToString(specNode, "EmotionLimit");
+                    cardInfo.EXTRA_Affection = Tools.XmlFile.GetAttributeSafe.ToString(specNode, "Affection");
                 }
 
                 XmlNodeList behaviourNodes = cardNode.SelectNodes("BehaviourList/Behaviour");

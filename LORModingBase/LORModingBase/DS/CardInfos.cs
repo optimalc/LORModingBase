@@ -42,6 +42,15 @@ namespace LORModingBase.DS
         public string sortPriority = "1";
 
         public string priorityScript = "";
+
+        /// <summary>
+        /// 감정 수치를 제한합니다
+        /// </summary>
+        public string EXTRA_EmotionLimit = "";
+        /// <summary>
+        /// 광역 전투 책장
+        /// </summary>
+        public string EXTRA_Affection = "";
     }
 
     /// <summary>

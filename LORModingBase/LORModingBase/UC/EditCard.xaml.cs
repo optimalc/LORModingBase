@@ -186,15 +186,19 @@ namespace LORModingBase.UC
             {
                 case "Near":
                     innerCardInfo.rangeType = "Far";
+                    innerCardInfo.EXTRA_Affection = "";
                     break;
                 case "Far":
                     innerCardInfo.rangeType = "FarArea";
+                    innerCardInfo.EXTRA_Affection = "";
                     break;
                 case "FarArea":
                     innerCardInfo.rangeType = "FarAreaEach";
+                    innerCardInfo.EXTRA_Affection = "Team";
                     break;
                 case "FarAreaEach":
                     innerCardInfo.rangeType = "Near";
+                    innerCardInfo.EXTRA_Affection = "Team";
                     break;
             }
             UpdateRangeTypeUI();

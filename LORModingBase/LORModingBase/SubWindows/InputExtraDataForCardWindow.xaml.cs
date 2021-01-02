@@ -20,6 +20,8 @@ namespace LORModingBase.SubWindows
             TbxPriority.Text = cardInfoToUse.priority;
             TbxSortPriority.Text = cardInfoToUse.sortPriority;
             TbxPriorityScript.Text = cardInfoToUse.priorityScript;
+            TbxEmotionLimit.Text = cardInfoToUse.EXTRA_EmotionLimit;
+            TbxAffection.Text = cardInfoToUse.EXTRA_Affection;
         }
 
         #region Button events
@@ -66,7 +68,17 @@ namespace LORModingBase.SubWindows
         private void TbxPriorityScript_TextChanged(object sender, TextChangedEventArgs e)
         {
             cardInfoToUse.priorityScript = TbxPriorityScript.Text;
-        } 
+        }
+
+        private void TbxEmotionLimit_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cardInfoToUse.EXTRA_EmotionLimit = TbxEmotionLimit.Text;
+        }
+
+        private void TbxAffection_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cardInfoToUse.EXTRA_Affection = TbxAffection.Text;
+        }
         #endregion
     }
 }

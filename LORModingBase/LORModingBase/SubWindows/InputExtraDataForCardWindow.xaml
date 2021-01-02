@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LORModingBase.SubWindows"
         mc:Ignorable="d"
-        Title="추가적인 전투 책장 정보 입력" Height="200" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+        Title="추가적인 전투 책장 정보 입력" Height="268" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80*"/>
@@ -17,6 +17,8 @@
         <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -57,6 +59,25 @@
 
                 <Label Grid.Column="0" Content="&lt; 우선순위 스크립트 명 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <TextBox x:Name="TbxPriorityScript" Grid.Column="1" Text="" ToolTip="이 스크립트는 우선순위를 지정할때 사용됩니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="TbxPriorityScript_TextChanged"/>
+            </Grid>
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="&lt; 특정 감정이상에서만 사용가능 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxEmotionLimit" Grid.Column="1" Text="" ToolTip="특정 감정레벨 이상에서만 사용이 가능하도록 만듭니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="TbxEmotionLimit_TextChanged"/>
+            </Grid>
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="&lt; 광역 전투책장 코드 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxAffection" Grid.Column="1" Text="" ToolTip="광역 전투책장에서 주로 사용하며, 광역 전투책장 적용시 자동으로 설정됩니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="TbxAffection_TextChanged"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
