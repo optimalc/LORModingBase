@@ -106,5 +106,13 @@ namespace LORModingBase.SubWindows
                 Close();
             }, upsideLabelInfo:"이미지 이름 >").ShowDialog();
         }
+
+        private void BtnDirectImagePath_Click(object sender, RoutedEventArgs e)
+        {
+            Tools.Dialog.ShowOpenFileDialog("사용할 이미지를 선택", "All files (*.*)|*.*", (string pathToUse) => {
+                afterSelectImage($"%IMAGE_PATH%/{pathToUse}/:{pathToUse.Split('\\').Last().Split('.')[0]}");
+                Close();
+            }, Tools.ProcessTools.GetWorkingDirectory());
+        }
     }
 }

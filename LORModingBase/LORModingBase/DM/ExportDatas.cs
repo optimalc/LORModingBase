@@ -39,6 +39,8 @@ namespace LORModingBase.DM
             }
             if (MainWindow.cardInfos.Count > 0)
             {
+                ExporDatas_MakeArtWork();
+
                 Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\Card");
                 ExportDatas_CardInfos();
 
@@ -240,6 +242,31 @@ namespace LORModingBase.DM
         #endregion
 
         #region Export card infos
+        public static void ExporDatas_MakeArtWork()
+        {
+            bool isToDo = false;
+            foreach (DS.CardInfo cardInfo in MainWindow.cardInfos)
+            {
+                if(cardInfo.cardImage.Contains("%IMAGE_PATH%"))
+                {
+                    isToDo = true;
+                    break;
+                }
+            }
+
+            if (!isToDo) 
+                return;
+
+            Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\ArtWork");
+            foreach (DS.CardInfo cardInfo in MainWindow.cardInfos)
+            {
+                if (cardInfo.cardImage.Contains("%IMAGE_PATH%"))
+                {
+                    File.Copy(cardInfo.cardImage.Split('/')[1], $"{MDOE_DIR_TO_USE}\\ArtWork\\{cardInfo.cardImage.Split('/')[1].Split('\\').Last()}");
+                }
+            }
+        }
+
         public static void ExportDatas_CardInfos()
         {
             string CARD_INFO_PATH = $"{MDOE_DIR_TO_USE}\\StaticInfo\\Card\\CardInfo.txt";

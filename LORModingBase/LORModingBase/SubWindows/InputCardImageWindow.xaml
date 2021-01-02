@@ -57,12 +57,14 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.Background>
                 <ImageBrush ImageSource="../Resources/MenuBg.png"/>
             </Grid.Background>
             <Button x:Name="BtnDirectInput" Grid.Column="0" Content="[수동으로 입력]" ToolTip="수동으로 이미지 이름을 입력합니다" Style="{StaticResource StyBtnMenu}" Click="BtnDirectInput_Click"/>
-            <Button x:Name="BtnOk" Grid.Column="1" Content="[닫기]" ToolTip="창을 닫습니다" Style="{StaticResource StyBtnMenu}" Click="BtnOk_Click"/>
+            <Button x:Name="BtnDirectImagePath" Grid.Column="1" Content="[사용할 이미지 경로를 설정]" ToolTip="이미지 파일 경로를 지정합니다" Style="{StaticResource StyBtnMenu}" Click="BtnDirectImagePath_Click"/>
+            <Button x:Name="BtnOk" Grid.Column="2" Content="[닫기]" ToolTip="창을 닫습니다" Style="{StaticResource StyBtnMenu}" Click="BtnOk_Click"/>
         </Grid>
     </Grid>
 </Window>
