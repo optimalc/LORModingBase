@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattleCardAbilityDescRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- 저글링 -->
+  <BattleCardAbility ID="hohou">
+    <Desc>사용시 다음 막 시작에 덱에 있는 다른 '저글링'을 모두 뽑는다.</Desc>
+   </BattleCardAbility>
+
+  <BattleCardAbility ID="powerUptargetHp25">
+    <Desc>대상의 체력이 25% 이하라면 피해 +45</Desc>
+  </BattleCardAbility>
+
+  <BattleCardAbility ID="Choo">
+    <Desc>[전투 시작] 이번 막 동안 관통 위력 +2</Desc>
+  </BattleCardAbility>
+  
+</BattleCardAbilityDescRoot>

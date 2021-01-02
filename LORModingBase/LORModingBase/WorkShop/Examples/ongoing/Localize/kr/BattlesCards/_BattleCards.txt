@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattleCardDescRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <cardDescList>
+
+<BattleCardDesc ID="88883691">
+      <LocalizedName>피로</LocalizedName>
+      <Ability></Ability>    
+</BattleCardDesc>
+
+<BattleCardDesc ID="88883692">
+      <LocalizedName>못</LocalizedName>
+      <Ability></Ability>    
+</BattleCardDesc>
+
+<BattleCardDesc ID="88883693">
+      <LocalizedName>불길한 미소</LocalizedName>
+      <Ability></Ability>    
+</BattleCardDesc>
+
+<BattleCardDesc ID="88883694">
+      <LocalizedName>마무리</LocalizedName>
+      <Ability></Ability>  
+    </BattleCardDesc>
+
+<BattleCardDesc ID="88883695">
+      <LocalizedName>미끼</LocalizedName>
+      <Ability></Ability>  
+    </BattleCardDesc>
+
+
+<BattleCardDesc ID="88883696">
+      <LocalizedName>급습</LocalizedName>
+      <Ability></Ability>  
+    </BattleCardDesc>
+
+
+
+  </cardDescList>
+</BattleCardDescRoot>

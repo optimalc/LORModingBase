@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiceCardXmlRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Card ID="503009">
+    <Name>저글링</Name>
+    <Artwork>Circus3</Artwork>
+    <Rarity>Uncommon</Rarity>
+    <Spec Range="Far" Cost="0"/>
+    <Script>hohou</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="2" Dice="3" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="vulnerable1atk" Desc="[적중] 취약 1 부여" />
+      <Behaviour Min="2" Dice="2" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="energy1atk" Desc="[적중] 빛 1 회복" />
+    </BehaviourList>
+    <Chapter>5</Chapter>
+    <Priority>1</Priority>
+  </Card>
+  <Card ID="503010">
+    <Name>와일드 카드</Name>
+    <Artwork>Circus4</Artwork>
+    <Rarity>Unique</Rarity>
+    <Spec Range="Far" Cost="3"/>
+    <Script></Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="4" Dice="6" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="" Desc="" />
+      <Behaviour Min="2" Dice="3" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="repeat3" Desc="이 주사위는 3번 사용한다" />
+    </BehaviourList>
+    <Chapter>5</Chapter>
+    <Priority>0</Priority>
+  </Card>
+    <Card ID="88883691">
+    <Name>피로</Name>
+    <Artwork>Wjsxn</Artwork>
+    <Rarity>Rare</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Far" Cost="0"/>
+    <Script>energy1paralysis1</Script>
+    <ScriptDesc>[사용시] 빛 1 회복. 다음 막에 마비 1을 받는다</ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="3" Dice="6" Type="Atk" Detail="Hit" Motion="F" EffectRes="" Script="paralysis1atk" Desc="[적중] 다음 막에 마비 1 부여" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>
+   </Card>
+    <Card ID="88883692">
+    <Name>수상한 웃음</Name>
+    <Artwork>Cnfguf</Artwork>
+    <Rarity>Rare</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="2"/>
+    <Script>Choo</Script>
+    <ScriptDesc>[전투 시작] 이번 막 동안 관통 위력 +2</ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="1" Dice="4" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="bleeding3atk" Desc="[적중] 다음 막에 출혈 3 부여" />
+      <Behaviour Min="2" Dice="6" Type="Def" Detail="Guard" Motion="G" EffectRes="Basic_G" Script="" Desc="" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>  
+    </Card>
+
+    <Card ID="88883693">
+    <Name>못과 망치</Name>
+    <Artwork>Wnsql</Artwork>
+    <Rarity>Unique</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="3"/>
+    <Script>negatePower</Script>
+    <ScriptDesc>이 책장을 사용하는 동안 서로의 주사위는 위력의 효과를 받지 않는다</ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="2" Dice="3" Type="Atk" Detail="Hit" Motion="F" EffectRes="" Script="break3atk" Desc="[적중] 대상에게 흐트러짐 피해 3" />
+      <Behaviour Min="2" Dice="3" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="break3atk" Desc="[적중] 대상에게 흐트러짐 피해 3" />
+      <Behaviour Min="1" Dice="2" Type="Atk" Detail="Penetrate" Motion="F" EffectRes="" Script="estherDice" Desc="[적중] 원래 주사위 값 1당 대상에게 피해와 흐트러짐 피해 7" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority> 
+  </Card>
+
+    <Card ID="88883694">
+    <Name>마무리</Name>
+    <Artwork>Kurokumo9</Artwork>
+    <Rarity>Unique</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="1"/>
+    <Script></Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="4" Dice="5" Type="Atk" Detail="Slash" Motion="H" EffectRes="" Script="powerUptargetHp25" Desc="대상의 체력이 25% 이하라면 위력 +45" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+
+    <Card ID="88883695">
+    <Name>찬란한 빛</Name>
+    <Artwork>Rltmq</Artwork>
+    <Rarity>Rare</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="1"/>
+    <Script></Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+       <Behaviour Min="3" Dice="6" Type="Def" Detail="Guard" Motion="G" EffectRes="Basic_G" Script="damage3pw" Desc="[합 승리] 대상에게 피해 3" />
+       <Behaviour Min="3" Dice="6" Type="Def" Detail="Evasion" Motion="E" EffectRes="" Script="damage3pw" Desc="[합 승리] 대상에게 피해 3" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+
+    <Card ID="88883696">
+    <Name>급습</Name>
+    <Artwork>Rltmqwnsql</Artwork>
+    <Rarity>Rare</Rarity>
+	<Option>Basic</Option>
+    <Spec Range="Near" Cost="2"/>
+    <Script></Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="4" Dice="5" Type="Atk" Detail="Slash" Motion="H" EffectRes="" Script="lovetownPower" Desc="일방공격이면 위력 +10" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>
+  </Card>
+
+</DiceCardXmlRoot>
