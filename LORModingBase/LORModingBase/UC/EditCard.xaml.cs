@@ -31,6 +31,8 @@ namespace LORModingBase.UC
             InitializeComponent();
 
             ChangeRarityUIInit(innerCardInfo.rarity);
+            TbxCardName.Text = innerCardInfo.name;
+            TbxCardUniqueID.Text = innerCardInfo.cardID;
         }
 
         private void ChangeRarityUIInit(string rarity)
@@ -87,18 +89,80 @@ namespace LORModingBase.UC
             ChangeRarityUIInit("Unique");
         }
         #endregion
-
-        #region Text change events
-        private void TbxCost_TextChanged(object sender, TextChangedEventArgs e)
+        #region Right side buttons
+        private void BtnExtraInfo_Click(object sender, RoutedEventArgs e)
         {
-            innerCardInfo.cost = TbxCost.Text;
+
         }
-        #endregion
+
+        private void BtnDropCards_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void BtnRangeType_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void BtnCopyCard_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.cardInfos.Add(Tools.DeepCopy.DeepClone(innerCardInfo));
+            initStack();
+        }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.cardInfos.Remove(innerCardInfo);
             initStack();
         }
+        #endregion
+        #region Left side buttons
+        private void BtnCardImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnCardEffect_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Text change events
+        private void TbxCost_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            innerCardInfo.cost = TbxCost.Text;
+        }
+
+        private void TbxCardName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            innerCardInfo.name = TbxCardName.Text;
+        }
+
+        private void TbxCardUniqueID_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            innerCardInfo.cardID = TbxCardUniqueID.Text;
+        }
+        #endregion
+
+        #region Controls for dices
+        private void BtnAddDice_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnEditDice_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteDice_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

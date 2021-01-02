@@ -17,11 +17,7 @@
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="10*"/>
-                <RowDefinition Height="9*"/>
-                <RowDefinition Height="9*"/>
-                <RowDefinition Height="11*"/>
-                <RowDefinition Height="11*"/>
-                <RowDefinition Height="34*"/>
+                <RowDefinition Height="72*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -40,6 +36,65 @@
                 <Button x:Name="BtnRarityRare" ToolTip="한정 책장으로 지정" Grid.Column="3" Content="한정" FontSize="15" Foreground="#FF8030BF" Style="{StaticResource StyBtnMenu}" Click="BtnRarityRare_Click"/>
                 <Button x:Name="BtnRarityUnique" ToolTip="예술 책장으로 지정" Grid.Column="4" Content="예술" FontSize="15" Foreground="#FFF3B530" Style="{StaticResource StyBtnMenu}" Click="BtnRarityUnique_Click"/>
             </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+
+                <Label Grid.Column="0" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxCardName" Grid.Column="1" Text="" ToolTip="전투책장의 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxCardName_TextChanged"/>
+                <Label Grid.Column="2" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxCardUniqueID" Grid.Column="3" Text="" ToolTip="전투책장의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxCardUniqueID_TextChanged"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Button x:Name="BtnCardImage" Grid.Column="0" Content="카드 이미지 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장에 표시될 이미지를 선택합니다" Click="BtnCardImage_Click"/>
+
+                <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Button x:Name="BtnCardEffect" Grid.Column="1" Content="카드 효과 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장 자체의 효과를 선택합니다" Click="BtnCardEffect_Click"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="14*"/>
+                    <RowDefinition Height="86*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <Button x:Name="BtnAddDice" Grid.Column="0" Content="행동 추가" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장에 주사위를 추가합니다" Click="BtnAddDice_Click"/>
+
+                    <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <Button x:Name="BtnEditDice" Grid.Column="1" Content="행동 편집" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="선택된 주사위를 편집합니다" Click="BtnEditDice_Click"/>
+
+                    <Rectangle Grid.Column="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <Button x:Name="BtnDeleteDice" Grid.Column="2" Content="행동 삭제" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="선택된 주사위를 삭제합니다" Click="BtnDeleteDice_Click"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Rectangle Grid.Column="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Visible">
+                        <StackPanel x:Name="SqlDices" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -48,13 +103,68 @@
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="9*"/>
-                <RowDefinition Height="9*"/>
                 <RowDefinition Height="37*"/>
                 <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
-            
-            <Rectangle Grid.Row="5" Grid.RowSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-            <Button x:Name="BtnDelete" Grid.Row="7" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDelete_Click" ToolTip="전투 책장을 삭제합니다" >
+            <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnExtraInfo" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="중요성이 떨어지는 더 많은 추가적인 정보를 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="BtnExtraInfo_Click" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/IconNobookInfo.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnDropCards" Grid.Row="1"  Style="{StaticResource StyBtnMenu}" ToolTip="이 전투책장이 어느 책에서 드랍되는지 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="BtnDropCards_Click">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/iconNoDropBook.png"/>
+                </Button.Background>
+            </Button>
+
+            <Rectangle Grid.Row="2" Grid.RowSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnRangeType" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" Click="BtnRangeType_Click">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/TypeNomal.png"/>
+                </Button.Background>
+            </Button>
+
+            <Rectangle Grid.Row="3" Grid.RowSpan="5" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnCopyCard" Grid.Row="3"  Style="{StaticResource StyBtnMenu}" ToolTip="전투 책장을 복제해서 새로운 전투 책장을 만듭니다" Click="BtnCopyCard_Click">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-17"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnCopy.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDelete_Click" ToolTip="전투 책장을 삭제합니다" >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="12"/>
