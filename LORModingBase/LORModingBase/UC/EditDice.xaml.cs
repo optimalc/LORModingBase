@@ -85,19 +85,50 @@ namespace LORModingBase.UC
             switch ($"{innerDice.type}_{innerDice.detail}")
             {
                 case "Atk_Slash":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconSResist.png");
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconSlash.png");
                     BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 참격 주사위)";
                     break;
                 case "Atk_Penetrate":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconPResist.png");
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconPenetrate.png");
                     BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 관통 주사위)";
                     break;
                 case "Atk_Hit":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconHResist.png");
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconHit.png");
                     BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 타격 주사위)";
+                    break;
+
+                case "Def_Guard":
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconGuard.png");
+                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 방어 주사위)";
+                    break;
+                case "Def_Evasion":
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconEvasion.png");
+                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 회피 주사위)";
+                    break;
+
+                case "Stadby_Slash":
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconStadbySlash.png");
+                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 반격 참격 주사위)";
+                    break;
+                case "Stadby_Penetrate":
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconStadbyPenetrate.png");
+                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 반격 관통 주사위)";
+                    break;
+                case "Stadby_Hit":
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconStadbyHit.png");
+                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 반격 타격 주사위)";
+                    break;
+                case "Stadby_Guard":
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconStadbyGuard.png");
+                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 반격 방어 주사위)";
+                    break;
+                case "Stadby_Evasion":
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconStadbyEvasion.png");
+                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 반격 회피 주사위)";
                     break;
             }
         }
+
 
         private void BtnDiceType_Atk_Slash_Click(object sender, RoutedEventArgs e)
         {
@@ -117,6 +148,57 @@ namespace LORModingBase.UC
         {
             innerDice.type = "Atk";
             innerDice.detail = "Hit";
+            UpdateDiceTypeUI();
+        }
+
+
+        private void BtnDiceType_Def_Guard_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.type = "Def";
+            innerDice.detail = "Guard";
+            UpdateDiceTypeUI();
+        }
+
+        private void BtnDiceType_Def_Evasion_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.type = "Def";
+            innerDice.detail = "Evasion";
+            UpdateDiceTypeUI();
+        }
+
+
+        private void BtnDiceType_Stadby_Slash_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.type = "Stadby";
+            innerDice.detail = "Slash";
+            UpdateDiceTypeUI();
+        }
+
+        private void BtnDiceType_Stadby_Penetrate_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.type = "Stadby";
+            innerDice.detail = "Penetrate";
+            UpdateDiceTypeUI();
+        }
+
+        private void BtnDiceType_Stadby_Hit_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.type = "Stadby";
+            innerDice.detail = "Hit";
+            UpdateDiceTypeUI();
+        }
+
+        private void BtnDiceType_Stadby_Guard_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.type = "Stadby";
+            innerDice.detail = "Guard";
+            UpdateDiceTypeUI();
+        }
+
+        private void BtnDiceType_Stadby_Evasion_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.type = "Stadby";
+            innerDice.detail = "Evasion";
             UpdateDiceTypeUI();
         }
         #endregion

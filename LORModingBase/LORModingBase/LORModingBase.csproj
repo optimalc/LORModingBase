@@ -316,5 +316,19 @@
   <ItemGroup>
     <Resource Include="Resources\TypeFarAreaEach.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\iconEvasion.png" />
+    <Resource Include="Resources\iconGuard.png" />
+    <Resource Include="Resources\iconStadbyEvasion.png" />
+    <Resource Include="Resources\iconStadbyGuard.png" />
+    <Resource Include="Resources\iconStadbyHit.png" />
+    <Resource Include="Resources\iconStadbyPenetrate.png" />
+    <Resource Include="Resources\iconStadbySlash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\iconHit.png" />
+    <Resource Include="Resources\iconPenetrate.png" />
+    <Resource Include="Resources\iconSlash.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
