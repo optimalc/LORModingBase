@@ -168,5 +168,10 @@ namespace LORModingBase.DS
         /// 적 전용책장 여부
         /// </summary>
         public bool ENEMY_IS_ENEMY_TYPE = false;
+
+        /// <summary>
+        /// 전용 책장 리스트
+        /// </summary>
+        List<string> onlyCards = new List<string>();
     }
 }

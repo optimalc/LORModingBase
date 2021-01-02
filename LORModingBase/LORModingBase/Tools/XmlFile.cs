@@ -107,5 +107,38 @@ namespace LORModingBase.Tools
                     return defaultValue;
             }
         }
+
+        /// <summary>
+        /// Xml노드의 속성을 안전하게 얻어온다
+        /// </summary>
+        public class GetAttributeSafe
+        {
+            /// <summary>
+            /// String 형으로 얻어온다.
+            /// </summary>
+            public static string ToString(XmlNode xmlNode, string attributeName, string defaultValue = "")
+            {
+                if (xmlNode == null) return defaultValue;
+                if (xmlNode.Attributes[attributeName] == null) return defaultValue;
+                if (string.IsNullOrEmpty(xmlNode.Attributes[attributeName].Value)) return defaultValue;
+                return xmlNode.Attributes[attributeName].Value;
+            }
+        }
+
+        /// <summary>
+        /// Xpath에 지정된 노드에 대한속성을 안전하게 얻어온다
+        /// </summary>
+        public class GetAttributeSafeWithXPath
+        {
+            /// <summary>
+            /// String 형으로 얻어온다.
+            /// </summary>
+            public static string ToString(XmlNode xmlNode, string XPath, string attributeName, string defaultValue = "")
+            {
+                if (xmlNode == null) return defaultValue;
+                if (xmlNode[XPath] == null) return defaultValue;
+                return GetAttributeSafe.ToString(xmlNode[XPath], attributeName, defaultValue);
+            }
+        }
     }
 }

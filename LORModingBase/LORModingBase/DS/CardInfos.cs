@@ -15,7 +15,7 @@ namespace LORModingBase.DS
         public string cost = "1";
         public string rarity = "Common";
 
-        public string bookID = Tools.MathTools.GetRandomNumber(DS.FilterDatas.CARD_DIV_SPECIAL, DS.FilterDatas.CARD_DIV_FINAL_STORY).ToString();
+        public string cardID = Tools.MathTools.GetRandomNumber(DS.FilterDatas.CARD_DIV_SPECIAL, DS.FilterDatas.CARD_DIV_FINAL_STORY).ToString();
         public string name = "";
 
         public string cardImage = "";
@@ -31,6 +31,11 @@ namespace LORModingBase.DS
         /// 원거리 타입
         /// </summary>
         public string rangeType = "Nomal";
+
+        /// <summary>
+        /// 전용카드 여부를 설정합니다
+        /// </summary>
+        public string option = "";
     }
 
     /// <summary>

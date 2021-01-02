@@ -12,6 +12,19 @@ namespace LORModingBase.DM
     class StaticInfos
     {
         /// <summary>
+        /// Load all static datas
+        /// </summary>
+        public static void LoadAllDatas()
+        {
+            LoadDatas_PassiveInfo();
+            LoadDatas_StageInfo();
+            LoadDatas_SkinAndBookIconInfo();
+
+            LoadData_CardsInfo();
+        }
+
+        #region Load datas for critical page
+        /// <summary>
         /// Loaded stage infos
         /// </summary>
         public static List<DS.StageInfo> stageInfos = new List<DS.StageInfo>();
@@ -36,15 +49,6 @@ namespace LORModingBase.DM
         /// </summary>
         public static List<DS.DropBookInfo> dropBookInfos = new List<DS.DropBookInfo>();
 
-        /// <summary>
-        /// Load all static datas
-        /// </summary>
-        public static void LoadAllDatas()
-        {
-            LoadDatas_PassiveInfo();
-            LoadDatas_StageInfo();
-            LoadDatas_SkinAndBookIconInfo();
-        }
 
         /// <summary>
         /// Load stage info datas
@@ -52,12 +56,12 @@ namespace LORModingBase.DM
         public static void LoadDatas_StageInfo()
         {
             stageInfos.Clear();
-            XmlNodeList stageNodeList =  Tools.XmlFile.SelectNodeLists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\StageInfo\\StageInfo.txt",
+            XmlNodeList stageNodeList = Tools.XmlFile.SelectNodeLists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\StageInfo\\StageInfo.txt",
                 "//Stage");
 
-            foreach(XmlNode stageNode in stageNodeList)
+            foreach (XmlNode stageNode in stageNodeList)
             {
-                if (stageNode.Attributes["id"] == null 
+                if (stageNode.Attributes["id"] == null
                     || stageNode["Chapter"] == null
                     || stageNode["Name"] == null)
                     continue;
@@ -70,7 +74,7 @@ namespace LORModingBase.DM
                 });
             }
         }
-    
+
         /// <summary>
         /// Load skin and book icon datas
         /// </summary>
@@ -181,7 +185,7 @@ namespace LORModingBase.DM
                     XmlNodeList passiveNodes = equipEffectNode.SelectNodes("Passive");
                     foreach (XmlNode passiveNode in passiveNodes)
                     {
-                        if (string.IsNullOrEmpty(passiveNode.InnerText)) 
+                        if (string.IsNullOrEmpty(passiveNode.InnerText))
                             continue;
 
                         criticalPageInfo.passiveIDs.Add(GetDescription.GetPassiveDescription(passiveNode.InnerText));
@@ -220,11 +224,11 @@ namespace LORModingBase.DM
                     gameCriticalPageInfos.Add(criticalPageInfo);
                     #endregion
                 }
-            }); 
+            });
             #endregion
 
         }
-    
+
         /// <summary>
         /// Load passive info datas
         /// </summary>
@@ -243,7 +247,7 @@ namespace LORModingBase.DM
                     if (passiveDescNode.Attributes["ID"] == null
                         || passiveDescNode["Name"] == null
                         || passiveDescNode["Desc"] == null)
-                            continue;
+                        continue;
 
                     passives.Add(new DS.PassiveInfo()
                     {
@@ -254,10 +258,10 @@ namespace LORModingBase.DM
                     passiveList.Add($"{passiveDescNode["Name"].InnerText}:{passiveDescNode["Desc"].InnerText}:{passiveDescNode.Attributes["ID"].Value}");
                 }
                 string PATH_TO_USE = pvPath.Split('\\').Last().Split('.')[0];
-                if(passives.Count > 0) passiveInfos[PATH_TO_USE] = passives;
+                if (passives.Count > 0) passiveInfos[PATH_TO_USE] = passives;
             });
         }
-    
+
         /// <summary>
         /// Get correct description
         /// </summary>
@@ -285,7 +289,7 @@ namespace LORModingBase.DM
                 else
                     return "";
             }
-        
+
             /// <summary>
             /// Get skin description for given Name
             /// </summary>
@@ -307,7 +311,7 @@ namespace LORModingBase.DM
                 else
                     return "";
             }
-        
+
             /// <summary>
             /// Get icon description for given name
             /// </summary>
@@ -329,7 +333,7 @@ namespace LORModingBase.DM
                 else
                     return "";
             }
-        
+
             /// <summary>
             /// Get passive description
             /// </summary>
@@ -347,5 +351,82 @@ namespace LORModingBase.DM
                     return $"커스텀:커스텀 패시브:{passiveID}";
             }
         }
+        #endregion
+        #region Load datas for card
+        /// <summary>
+        /// Critical page infos in game
+        /// </summary>
+        public static List<DS.CardInfo> gameCardInfos = new List<DS.CardInfo>();
+        /// <summary>
+        /// Localized name for each card ID
+        /// </summary>
+        public static Dictionary<string, string> gameCardLocalized = new Dictionary<string, string>();
+
+        public static void LoadData_CardsInfo()
+        {
+            #region Make localized dictionary list
+            gameCardLocalized.Clear();
+            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\BattlesCards").ToList().ForEach((string battleCardsInfo) =>
+            {
+                XmlNodeList battleCardsDesc = Tools.XmlFile.SelectNodeLists(battleCardsInfo, "//BattleCardDesc");
+                foreach (XmlNode battleCardDesc in battleCardsDesc)
+                {
+                    if (battleCardDesc.Attributes["ID"] == null || battleCardDesc["LocalizedName"] == null)
+                        continue;
+                    if (string.IsNullOrEmpty(battleCardDesc["LocalizedName"].InnerText))
+                        continue;
+
+                    gameCardLocalized[battleCardDesc.Attributes["ID"].Value] = battleCardDesc["LocalizedName"].InnerText;
+                }
+            });
+            #endregion
+            #region Make card infos
+            gameCardInfos.Clear();
+            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\Card").ToList().ForEach((string cardInfoPath) =>
+            {
+                XmlNodeList cardNodeList = Tools.XmlFile.SelectNodeLists(cardInfoPath, "//Card");
+                foreach (XmlNode cardNode in cardNodeList)
+                {
+                    if (cardNode.Attributes["ID"] == null)
+                        continue;
+                    if (string.IsNullOrEmpty(cardNode.Attributes["ID"].Value))
+                        continue;
+
+
+                    DS.CardInfo cardInfo = new DS.CardInfo();
+                    cardInfo.cardID = cardNode.Attributes["ID"].Value;
+                    if(gameCardLocalized.ContainsKey(cardInfo.cardID))
+                        cardInfo.name = gameCardLocalized[cardInfo.cardID];
+
+                    cardInfo.rarity = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Rarity", "Common");
+                    cardInfo.cardScript = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Script");
+
+                    cardInfo.option = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Option");
+                    cardInfo.cardImage = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Artwork");
+
+                    cardInfo.rangeType = Tools.XmlFile.GetAttributeSafeWithXPath.ToString(cardNode, "Spec", "Range", "Near");
+                    cardInfo.cost = Tools.XmlFile.GetAttributeSafeWithXPath.ToString(cardNode, "Spec", "Cost", "1");
+
+                    XmlNodeList behaviourNodes = cardNode.SelectNodes("BehaviourList/Behaviour");
+                    foreach (XmlNode behaviourNode in behaviourNodes)
+                    {
+                        cardInfo.dices.Add(new DS.Dice()
+                        {
+                            min = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Min"),
+                            max = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Dice"),
+                            type = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Type"),
+                            detail = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Detail"),
+                            motion = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Motion"),
+                            script = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Script"),
+                            actionScript = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "ActionScript")
+                        });
+                    }
+
+                    gameCardInfos.Add(cardInfo);
+                }
+            }); 
+            #endregion
+        }
+        #endregion
     }
 }
