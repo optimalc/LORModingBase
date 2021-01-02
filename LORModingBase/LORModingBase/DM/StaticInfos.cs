@@ -407,6 +407,10 @@ namespace LORModingBase.DM
                     cardInfo.rangeType = Tools.XmlFile.GetAttributeSafeWithXPath.ToString(cardNode, "Spec", "Range", "Near");
                     cardInfo.cost = Tools.XmlFile.GetAttributeSafeWithXPath.ToString(cardNode, "Spec", "Cost", "1");
 
+                    cardInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Chapter");
+                    cardInfo.priority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Priority");
+                    cardInfo.sortPriority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "SortPriority");
+
                     XmlNodeList behaviourNodes = cardNode.SelectNodes("BehaviourList/Behaviour");
                     foreach (XmlNode behaviourNode in behaviourNodes)
                     {
@@ -418,7 +422,8 @@ namespace LORModingBase.DM
                             detail = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Detail"),
                             motion = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Motion"),
                             script = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Script"),
-                            actionScript = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "ActionScript")
+                            actionScript = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "ActionScript"),
+                            effectres = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "EffectRes")
                         });
                     }
 

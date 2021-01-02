@@ -36,6 +36,10 @@ namespace LORModingBase.DS
         /// 전용카드 여부를 설정합니다
         /// </summary>
         public string option = "";
+
+        public string chapter = "";
+        public string priority = "";
+        public string sortPriority = "";
     }
 
     /// <summary>
@@ -53,5 +57,7 @@ namespace LORModingBase.DS
 
         public string script = "";
         public string actionScript = "";
+
+        public string effectres = "";
     }
 }
