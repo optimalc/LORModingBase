@@ -132,6 +132,7 @@ namespace LORModingBase
                     MessageBox.Show("성공적으로 로드되었습니다.", "완료", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     InitSplCriticalPage();
+                    InitSplCards();
                 }, $"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes");
             }
             catch (Exception ex)

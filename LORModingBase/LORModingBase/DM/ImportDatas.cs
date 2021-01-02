@@ -18,13 +18,19 @@ namespace LORModingBase.DM
         public static void ImportAllDatas(string dicToLoad)
         {
             MainWindow.criticalPageInfos.Clear();
+            MainWindow.cardInfos.Clear();
             TARGET_MODE_DIC = dicToLoad;
 
             ImportDatas_CriticalPages();
             ImportDatas_CriticalPageDescription();
             ImportDatas_DropBooks();
+
+            ImportDatas_Cards();
+            ImportData_Names();
+            ImportData_CardDropTables();
         }
 
+        #region Import critical pages info datas
         /// <summary>
         /// Import ciritical pages info datas
         /// </summary>
@@ -61,7 +67,7 @@ namespace LORModingBase.DM
                     criticalPageInfo.rangeType = bookNode["RangeType"].InnerText;
 
                 XmlNode equipEffectNode = bookNode.SelectSingleNode("EquipEffect");
-                if(equipEffectNode != null)
+                if (equipEffectNode != null)
                 {
                     criticalPageInfo.HP = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "HP");
                     criticalPageInfo.breakNum = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "Break");
@@ -128,7 +134,7 @@ namespace LORModingBase.DM
                 if (descNodes.Count > 0)
                     foundCriticalPageInfo.description = "";
 
-                for (int descNodeIndex=0; descNodeIndex<descNodes.Count; descNodeIndex++)
+                for (int descNodeIndex = 0; descNodeIndex < descNodes.Count; descNodeIndex++)
                 {
                     if (descNodeIndex > 0)
                         foundCriticalPageInfo.description += "\r\n\r\n";
@@ -136,7 +142,7 @@ namespace LORModingBase.DM
                 }
             }
         }
-        
+
         /// <summary>
         /// Import drop books datas
         /// </summary>
@@ -164,7 +170,7 @@ namespace LORModingBase.DM
                     {
                         return criticalPageInfo.bookID == dropItemNode.InnerText;
                     });
-                    if(foundCriticalPageInfo != null)
+                    if (foundCriticalPageInfo != null)
                     {
                         DS.DropBookInfo foundDropBookInfo = DM.StaticInfos.dropBookInfos.Find((DS.DropBookInfo dropInfo) =>
                         {
@@ -175,5 +181,110 @@ namespace LORModingBase.DM
                 }
             }
         }
+        #endregion
+        #region Import card datas
+        public static void ImportDatas_Cards()
+        {
+            string CARD_INFO_PATH = $"{TARGET_MODE_DIC}\\StaticInfo\\Card\\CardInfo.txt";
+            if (!File.Exists(CARD_INFO_PATH))
+                return;
+
+            XmlNodeList cardNodes = Tools.XmlFile.SelectNodeLists(CARD_INFO_PATH, "//Card");
+            foreach (XmlNode cardNode in cardNodes)
+            {
+                if (cardNode.Attributes["ID"] == null)
+                    continue;
+                if (string.IsNullOrEmpty(cardNode.Attributes["ID"].Value))
+                    continue;
+
+                DS.CardInfo cardInfo = new DS.CardInfo();
+                cardInfo.cardID = Tools.XmlFile.GetAttributeSafe.ToString(cardNode, "ID");
+
+                cardInfo.name = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Name");
+                cardInfo.cardImage = DM.StaticInfos.GetDescriptionForCard.GetArtworkDescription(Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Artwork"));
+                cardInfo.rarity = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Rarity");
+                cardInfo.cardScript = DM.StaticInfos.GetDescriptionForCard.GetScriptDescription(Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Script"));
+                cardInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Chapter");
+                cardInfo.priority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Priority");
+                cardInfo.option = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Option");
+                cardInfo.sortPriority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "SortPriority");
+
+                XmlNode specNode = cardNode.SelectSingleNode("Spec");
+                if(specNode != null)
+                {
+                    cardInfo.rangeType = Tools.XmlFile.GetAttributeSafe.ToString(specNode, "Range");
+                    cardInfo.cost = Tools.XmlFile.GetAttributeSafe.ToString(specNode, "Cost");
+                }
+
+                XmlNodeList behaviourNodes = cardNode.SelectNodes("BehaviourList/Behaviour");
+                foreach(XmlNode behaviourNode in behaviourNodes)
+                {
+                    cardInfo.dices.Add(new DS.Dice()
+                    {
+                        min = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Min"),
+                        max = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Dice"),
+                        type = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Type"),
+                        detail = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Detail"),
+                        motion = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Motion"),
+                        script = DM.StaticInfos.GetDescriptionForCard.GetScriptDescription(Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Script"))
+                    });
+                }
+
+                MainWindow.cardInfos.Add(cardInfo);
+            }
+        }
+        public static void ImportData_Names()
+        {
+            string BATTLE_CARDS_PATH = $"{TARGET_MODE_DIC}\\Localize\\kr\\BattlesCards\\BattlesCards.txt";
+            if (!File.Exists(BATTLE_CARDS_PATH))
+                return;
+
+            XmlNode cardDescListNode = Tools.XmlFile.SelectSingleNode(BATTLE_CARDS_PATH, "//cardDescList");
+            foreach (DS.CardInfo cardInfo in MainWindow.cardInfos)
+            {
+                XmlNode cardDescNode = cardDescListNode.SelectSingleNode($"//BattleCardDesc[@ID='{cardInfo.cardID}']");
+                if(cardDescNode != null)
+                {
+                    XmlNode localizedNode = cardDescNode.SelectSingleNode($"LocalizedName");
+                    if (string.IsNullOrEmpty(localizedNode.InnerText))
+                        continue;
+                    cardInfo.name = localizedNode.InnerText;
+                }
+            }      
+        }
+        public static void ImportData_CardDropTables()
+        {
+            string CARD_DROP_TABLE_PATH = $"{TARGET_MODE_DIC}\\StaticInfo\\CardDropTable\\CardDropTable.txt";
+            if (!File.Exists(CARD_DROP_TABLE_PATH))
+                return;
+
+            XmlNodeList dropNodes = Tools.XmlFile.SelectNodeLists(CARD_DROP_TABLE_PATH, "//DropTable");
+            foreach (XmlNode dropNode in dropNodes)
+            {
+                if (dropNode.Attributes["ID"] == null)
+                    continue;
+                if (string.IsNullOrEmpty(dropNode.Attributes["ID"].Value))
+                    continue;
+
+                XmlNodeList cardNodes = dropNode.SelectNodes("Card");
+                if (cardNodes != null)
+                {
+                    foreach (XmlNode cardNode in cardNodes)
+                    {
+                        if (string.IsNullOrEmpty(cardNode.InnerText))
+                            continue;
+                        foreach (DS.CardInfo cardInfo in MainWindow.cardInfos)
+                        {
+                            if (cardInfo.cardID == cardNode.InnerText)
+                            {
+                                if(!cardInfo.dropBooks.Contains(dropNode.Attributes["ID"].Value))
+                                    cardInfo.dropBooks.Add(dropNode.Attributes["ID"].Value);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }

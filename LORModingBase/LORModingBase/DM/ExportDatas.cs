@@ -289,30 +289,34 @@ namespace LORModingBase.DM
                     behaviourElement.SetAttribute("Type", diceInfo.type);
                     behaviourElement.SetAttribute("Detail", diceInfo.detail);
 
-                    switch (diceInfo.detail)
+                    if(string.IsNullOrEmpty(diceInfo.motion))
                     {
-                        case "Slash":
-                            behaviourElement.SetAttribute("Motion", "H");
-                            break;
-                        case "Penetrate":
-                            behaviourElement.SetAttribute("Motion", "Z");
-                            break;
-                        case "Hit":
-                            behaviourElement.SetAttribute("Motion", "J");
-                            break;
+                        switch (diceInfo.detail)
+                        {
+                            case "Slash":
+                                behaviourElement.SetAttribute("Motion", "H");
+                                break;
+                            case "Penetrate":
+                                behaviourElement.SetAttribute("Motion", "Z");
+                                break;
+                            case "Hit":
+                                behaviourElement.SetAttribute("Motion", "J");
+                                break;
 
-                        case "Evasion":
-                            behaviourElement.SetAttribute("Motion", "E");
-                            break;
-                        case "Guard":
-                            behaviourElement.SetAttribute("Guard", "G");
-                            break;
+                            case "Evasion":
+                                behaviourElement.SetAttribute("Motion", "E");
+                                break;
+                            case "Guard":
+                                behaviourElement.SetAttribute("Guard", "G");
+                                break;
 
-                        default:
-                            behaviourElement.SetAttribute("Motion", "H");
-                            break;
+                            default:
+                                behaviourElement.SetAttribute("Motion", "H");
+                                break;
+                        }
                     }
-
+                    else
+                        behaviourElement.SetAttribute("Motion", diceInfo.motion);
 
                     if (!string.IsNullOrEmpty(diceInfo.effectres))
                         behaviourElement.SetAttribute("EffectRes", diceInfo.effectres);

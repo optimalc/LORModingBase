@@ -518,6 +518,39 @@ namespace LORModingBase.DM
                 }
             });
         }
+        
+        public class GetDescriptionForCard
+        {
+            public static string GetArtworkDescription(string artworkName)
+            {
+                if (!string.IsNullOrEmpty(artworkName))
+                {
+                    DS.CardInfo foundCardInfo = DM.StaticInfos.gameCardInfos.Find((DS.CardInfo cardInfo) =>
+                    {
+                        return cardInfo.cardImage == artworkName;
+                    });
+                    if (foundCardInfo != null)
+                        return $"{foundCardInfo.name}:{foundCardInfo.cardImage}";
+                    else
+                        return $"커스텀 이미지:{artworkName}";
+                }
+                else
+                    return "";
+            }
+
+            public static string GetScriptDescription(string scriptName)
+            {
+                if (!string.IsNullOrEmpty(scriptName))
+                {
+                    if(cardEffectDic.ContainsKey(scriptName))
+                        return $"{String.Join(" ", cardEffectDic[scriptName].ToArray())}:{scriptName}";
+                    else
+                        return $"커스텀 효과:{scriptName}";
+                }
+                else
+                    return "";
+            }
+        }
         #endregion
     }
 }
