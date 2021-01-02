@@ -351,10 +351,10 @@ namespace LORModingBase.DM
                     else
                         behaviourElement.SetAttribute("Motion", diceInfo.motion);
 
-                    if (!string.IsNullOrEmpty(diceInfo.effectres))
-                        behaviourElement.SetAttribute("EffectRes", diceInfo.effectres);
-                    if (!string.IsNullOrEmpty(diceInfo.script))
-                        behaviourElement.SetAttribute("Script", diceInfo.script.Split(':').Last());
+                    behaviourElement.SetAttribute("EffectRes", diceInfo.effectres);
+                    behaviourElement.SetAttribute("Script", diceInfo.script.Split(':').Last());
+                    behaviourElement.SetAttribute("Desc", diceInfo.script.Split(':')[0]);
+
                     if (!string.IsNullOrEmpty(diceInfo.actionScript))
                         behaviourElement.SetAttribute("ActionScript", diceInfo.actionScript);
 
