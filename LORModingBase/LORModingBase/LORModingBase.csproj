@@ -282,5 +282,8 @@
     <Resource Include="Resources\IconNoUniqueCard.png" />
     <Resource Include="Resources\IconYesUniqueCard.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnEffect.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

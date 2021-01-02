@@ -5,19 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LORModingBase.UC"
              mc:Ignorable="d" 
-             Width="235" Height="80">
+             Width="225" Height="59">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="27"/>
         </Grid.RowDefinitions>
-        <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="3"/>
+        <Rectangle x:Name="RectAllInfo" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="6"/>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="60*"/>
             </Grid.ColumnDefinitions>
+            <Rectangle x:Name="RectDiceOnly" Grid.ColumnSpan="4" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="3"/>
             <Image Source="../Resources/iconSResist.png" ToolTip="참격 주사위" Margin="5,0,0,0"></Image>
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
@@ -34,13 +35,26 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                <Button x:Name="BtnEffect" Grid.Column="0" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="주사위에 특수 효과를 추가합니다" Click="BtnEffect_Click" >
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="7" ScaleY="8"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-18" Y="-13"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Resources/BtnEffect.png"/>
+                    </Button.Background>
+                </Button>
                 <Button x:Name="BtnDelete" Grid.Column="4" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDelete_Click" ToolTip="주사위를 삭제합니다" >
                     <Button.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform ScaleX="8" ScaleY="10"/>
+                            <ScaleTransform ScaleX="6" ScaleY="8"/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform X="-18" Y="-18"/>
+                            <TranslateTransform X="-4" Y="-14"/>
                         </TransformGroup>
                     </Button.RenderTransform>
                     <Button.Background>
@@ -49,8 +63,8 @@
                 </Button>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1">
-            <Label Content="TEST2 TEST2 TEST2 TEST2" FontSize="12"  Style="{StaticResource StyLbl}" FontWeight="Bold"/>
+        <Grid Grid.Row="1" Name="GldEffect">
+            <Label x:Name="LblEffect" Content="TEST2 TEST2 TEST2 TEST2" FontSize="10"  Style="{StaticResource StyLbl}" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         </Grid>
     </Grid>
 </UserControl>

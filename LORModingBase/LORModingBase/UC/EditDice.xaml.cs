@@ -30,12 +30,41 @@ namespace LORModingBase.UC
             this.innerDice = innerDice;
             this.stackInitFunc = stackInitFunc;
             InitializeComponent();
+
+            UpdateEffectGrid();
+        }
+
+        private void UpdateEffectGrid()
+        {
+            LblEffect.Content = innerDice.script;
+            LblEffect.ToolTip = innerDice.script;
+            RectAllInfo.Visibility = Visibility.Collapsed;
+            RectDiceOnly.Visibility = Visibility.Collapsed;
+
+            if (string.IsNullOrEmpty(innerDice.script))
+            {
+                RectDiceOnly.Visibility = Visibility.Visible;
+                GldEffect.Visibility = Visibility.Collapsed;
+            }   
+            else
+            {
+                RectAllInfo.Visibility = Visibility.Visible;
+                GldEffect.Visibility = Visibility.Visible;
+            }
+        }
+
+        #region Button events
+        private void BtnEffect_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.script = "체력이 25% 이상일때 속도가 3 증가한다. 하지만 아닐 수도 있다.";
+            UpdateEffectGrid();
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             diceListToUse.Remove(innerDice);
             stackInitFunc();
-        }
+        } 
+        #endregion
     }
 }

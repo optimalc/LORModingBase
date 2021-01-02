@@ -30,6 +30,7 @@ namespace LORModingBase.UC
             this.initStack = initStack;
             InitializeComponent();
 
+            InitSqlDices();
             ChangeRarityUIInit(innerCardInfo.rarity);
             TbxCardName.Text = innerCardInfo.name;
             TbxCardUniqueID.Text = innerCardInfo.cardID;
