@@ -17,6 +17,7 @@ namespace LORModingBase.DM
         public static void LoadAllDatas()
         {
             LoadData_CardsInfo();
+            LoadData_CardEffect();
 
             LoadDatas_PassiveInfo();
             LoadDatas_StageInfo();
@@ -386,7 +387,12 @@ namespace LORModingBase.DM
         /// Localized name for each card ID
         /// </summary>
         public static Dictionary<string, string> gameCardLocalized = new Dictionary<string, string>();
-
+        
+        /// <summary>
+        /// card effect dic - [effectID, description]
+        /// </summary>
+        public static Dictionary<string, List<string>> cardEffectDic = new Dictionary<string, List<string>>();
+        
         public static void LoadData_CardsInfo()
         {
             #region Make localized dictionary list
@@ -456,6 +462,30 @@ namespace LORModingBase.DM
                 }
             }); 
             #endregion
+        }
+
+        public static void LoadData_CardEffect()
+        {
+            cardEffectDic.Clear();
+            string battleCardEffectPath = $"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\BattleCardAbilities\\BattleCardAbilities.txt";
+            XmlNodeList battleCardAbilityNodes = Tools.XmlFile.SelectNodeLists(battleCardEffectPath, "//BattleCardAbility");
+            foreach (XmlNode battleCardAbilityNode in battleCardAbilityNodes)
+            {
+                if (battleCardAbilityNode.Attributes["ID"] == null )
+                    continue;
+                if (string.IsNullOrEmpty(battleCardAbilityNode.Attributes["ID"].Value))
+                    continue;
+
+                List<string> desc = new List<string>();
+                XmlNodeList descNodes = battleCardAbilityNode.SelectNodes("Desc");
+                foreach (XmlNode descNode in descNodes)
+                {
+                    if (!string.IsNullOrEmpty(descNode.InnerText))
+                        desc.Add(descNode.InnerText);
+                }
+
+                cardEffectDic[battleCardAbilityNode.Attributes["ID"].Value] = desc;
+            }
         }
         #endregion
     }
