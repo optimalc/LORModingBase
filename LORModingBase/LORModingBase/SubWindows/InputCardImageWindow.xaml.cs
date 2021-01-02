@@ -92,5 +92,19 @@ namespace LORModingBase.SubWindows
                 this.Close();
             }
         }
+
+        private void BtnOk_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnDirectInput_Click(object sender, RoutedEventArgs e)
+        {
+            new InputEpisodeDirectlyWindow((string imageName, string ImageDesc) =>
+            {
+                afterSelectImage($"{ImageDesc}:{imageName}");
+                Close();
+            }, upsideLabelInfo:"이미지 이름 >").ShowDialog();
+        }
     }
 }
