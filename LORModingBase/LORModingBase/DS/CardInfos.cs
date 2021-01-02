@@ -53,8 +53,8 @@ namespace LORModingBase.DS
         public string min = "";
         public string max = "";
 
-        public string type = "";
-        public string detail = "";
+        public string type = "Atk";
+        public string detail = "Slash";
         public string motion = "";
 
         public string script = "";

@@ -32,6 +32,7 @@ namespace LORModingBase.UC
             InitializeComponent();
 
             UpdateEffectGrid();
+            UpdateDiceTypeUI();
         }
 
         private void UpdateEffectGrid()
@@ -67,7 +68,57 @@ namespace LORModingBase.UC
         {
             diceListToUse.Remove(innerDice);
             stackInitFunc();
-        } 
+        }
+        #endregion
+        #region Dice type buttons
+        private void BtnDiceType_Click(object sender, RoutedEventArgs e)
+        {
+            GldInfo.Visibility = Visibility.Collapsed;
+            GldChangeAttackType.Visibility = Visibility.Visible;
+        }
+
+        private void UpdateDiceTypeUI()
+        {
+            GldInfo.Visibility = Visibility.Visible;
+            GldChangeAttackType.Visibility = Visibility.Collapsed;
+
+            switch ($"{innerDice.type}_{innerDice.detail}")
+            {
+                case "Atk_Slash":
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconSResist.png");
+                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 참격 주사위)";
+                    break;
+                case "Atk_Penetrate":
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconPResist.png");
+                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 관통 주사위)";
+                    break;
+                case "Atk_Hit":
+                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconHResist.png");
+                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 타격 주사위)";
+                    break;
+            }
+        }
+
+        private void BtnDiceType_Atk_Slash_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.type = "Atk";
+            innerDice.detail = "Slash";
+            UpdateDiceTypeUI();
+        }
+
+        private void BtnDiceType_Atk_Penetrate_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.type = "Atk";
+            innerDice.detail = "Penetrate";
+            UpdateDiceTypeUI();
+        }
+
+        private void BtnDiceType_Atk_Hit_Click(object sender, RoutedEventArgs e)
+        {
+            innerDice.type = "Atk";
+            innerDice.detail = "Hit";
+            UpdateDiceTypeUI();
+        }
         #endregion
     }
 }

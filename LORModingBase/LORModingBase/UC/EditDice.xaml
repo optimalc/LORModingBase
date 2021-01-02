@@ -12,14 +12,27 @@
             <RowDefinition Height="27"/>
         </Grid.RowDefinitions>
         <Rectangle x:Name="RectAllInfo" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="6"/>
-        <Grid Grid.Row="0">
+        <Rectangle x:Name="RectDiceOnly" Grid.ColumnSpan="4" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="3"/>
+        <Grid Grid.Row="0" Name="GldInfo">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="60*"/>
             </Grid.ColumnDefinitions>
-            <Rectangle x:Name="RectDiceOnly" Grid.ColumnSpan="4" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="3"/>
-            <Image Source="../Resources/iconSResist.png" ToolTip="참격 주사위" Margin="5,0,0,0"></Image>
+            <Button x:Name="BtnDiceType" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 주사위의 속성을 변경합니다. (현재 : 참격 주사위)" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Click">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="8" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="2"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/iconSResist.png"/>
+                </Button.Background>
+            </Button>
+            
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="33*"/>
@@ -62,6 +75,59 @@
                     </Button.Background>
                 </Button>
             </Grid>
+        </Grid>
+        <Grid Grid.Row="0" Name="GldChangeAttackType">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BtnDiceType_Atk_Slash" Grid.Column="0"  Style="{StaticResource StyBtnMenu}" ToolTip="참격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Atk_Slash_Click">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="8" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="2"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/iconSResist.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnDiceType_Atk_Penetrate" Grid.Column="1"  Style="{StaticResource StyBtnMenu}" ToolTip="관통 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Atk_Penetrate_Click">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="8" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="2"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/iconPResist.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnDiceType_Atk_Hit" Grid.Column="2"  Style="{StaticResource StyBtnMenu}" ToolTip="타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Atk_Hit_Click">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="8" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="2"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/iconPResist.png"/>
+                </Button.Background>
+            </Button>
         </Grid>
         <Grid Grid.Row="1" Name="GldEffect">
             <Label x:Name="LblEffect" Content="TEST2 TEST2 TEST2 TEST2" FontSize="10"  Style="{StaticResource StyLbl}" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
