@@ -32,6 +32,7 @@ namespace LORModingBase.UC
 
             InitSqlDices();
             ChangeRarityUIInit(innerCardInfo.rarity);
+            UpdateExtrainfoIcon();
             TbxCardName.Text = innerCardInfo.name;
             TbxCardUniqueID.Text = innerCardInfo.cardID;
 
@@ -119,7 +120,22 @@ namespace LORModingBase.UC
         #region Right side buttons
         private void BtnExtraInfo_Click(object sender, RoutedEventArgs e)
         {
+            new SubWindows.InputExtraDataForCardWindow(innerCardInfo).ShowDialog();
+            UpdateExtrainfoIcon();
+        }
 
+        private void UpdateExtrainfoIcon()
+        {
+            if(!string.IsNullOrEmpty(innerCardInfo.chapter))
+            {
+                BtnExtraInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
+                BtnExtraInfo.ToolTip = "중요성이 떨어지는 더 많은 추가적인 정보를 입력합니다 (입력됨)";
+            }
+            else
+            {
+                BtnExtraInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNobookInfo.png");
+                BtnExtraInfo.ToolTip = "중요성이 떨어지는 더 많은 추가적인 정보를 입력합니다 (미입력)";
+            }
         }
 
         private void BtnDropCards_Click(object sender, RoutedEventArgs e)

@@ -80,6 +80,9 @@
     <Compile Include="SubWindows\InputCardImageWindow.xaml.cs">
       <DependentUpon>InputCardImageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\InputExtraDataForCardWindow.xaml.cs">
+      <DependentUpon>InputExtraDataForCardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputUniqueCardsWindow.xaml.cs">
       <DependentUpon>InputUniqueCardsWindow.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\InputCardImageWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindows\InputExtraDataForCardWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

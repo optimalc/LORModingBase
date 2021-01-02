@@ -1,0 +1,76 @@
+﻿<Window x:Class="LORModingBase.SubWindows.InputExtraDataForCardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LORModingBase.SubWindows"
+        mc:Ignorable="d"
+        Title="추가적인 전투 책장 정보 입력" Height="200" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Resources/MainBg.png"/>
+        </Grid.Background>
+        <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="&lt; 챕터 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxChapter" Grid.Column="1" Text="" ToolTip="카드가 속하는 챕터 번호입니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewMouseLeftButtonDown="TbxChapter_PreviewMouseLeftButtonDown"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="&lt; 최대 빛의 수 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxMaxPlayPoint" Grid.Column="1" Text="" ToolTip="적이 가지게 되는 빛의 최대 개수를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="&lt; 최대 감정 레벨 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxEmotionLevel" Grid.Column="1" Text="" ToolTip="적이 가지게 되는 최대 감정레벨을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="&lt; 추가로 드로우하는 책장의 수 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxAddedStartDraw" Grid.Column="1" Text="" ToolTip="적이 책장을 추가로 드러우 할 때의 수치입니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="../Resources/MenuBg.png"/>
+                </Grid.Background>
+                <Button x:Name="BtnClearAll" Grid.Column="0" Content="[모두 초기화]" ToolTip="모든 적 적용 책장 관련 정보를 초기화합니다" Style="{StaticResource StyBtnMenu}" Click="BtnClearAll_Click"/>
+                <Button x:Name="BtnOk" Grid.Column="1" Content="[닫기]" ToolTip="창을 닫습니다" Style="{StaticResource StyBtnMenu}" Click="BtnOk_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
