@@ -143,7 +143,7 @@
             <Button x:Name="BtnUnqueType" Grid.Row="3"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 고유 책장의 여부를 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" Click="BtnUnqueType_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform ScaleX="10" ScaleY="10"/>
+                        <ScaleTransform ScaleX="8" ScaleY="10"/>
                         <SkewTransform/>
                         <RotateTransform/>
                         <TranslateTransform/>

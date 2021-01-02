@@ -34,6 +34,7 @@ namespace LORModingBase.UC
             ChangeRarityUIInit(innerCardInfo.rarity);
             UpdateExtrainfoIcon();
             UpdateRangeTypeUI();
+            UpdateUniqueTypeUI();
             TbxCardName.Text = innerCardInfo.name;
             TbxCardUniqueID.Text = innerCardInfo.cardID;
 
@@ -222,7 +223,31 @@ namespace LORModingBase.UC
 
         private void BtnUnqueType_Click(object sender, RoutedEventArgs e)
         {
+            switch (innerCardInfo.option)
+            {
+                case "OnlyPage":
+                    innerCardInfo.option = "";
+                    break;
+                default:
+                    innerCardInfo.option = "OnlyPage";
+                    break;
+            }
+            UpdateUniqueTypeUI();
+        }
 
+        private void UpdateUniqueTypeUI()
+        {
+            switch (innerCardInfo.option)
+            {
+                case "OnlyPage":
+                    BtnUnqueType.ToolTip = "클릭시 고유 책장의 여부를 변경합니다. (현재 : 고유 책장)";
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeUniquePage.png");
+                    break;
+                default:
+                    BtnUnqueType.ToolTip = "클릭시 고유 책장의 여부를 변경합니다. (현재 : 일반 책장)";
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNotUniquePage.png");
+                    break;
+            }
         }
         #endregion
 
