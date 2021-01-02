@@ -18,11 +18,12 @@ namespace LORModingBase.DM
         {
             LoadData_CardEffect();
             LoadData_CardsInfo();
-            LoadData_Dropbooks();
 
             LoadDatas_PassiveInfo();
             LoadDatas_StageInfo();
             LoadDatas_SkinAndBookIconInfo();
+
+            LoadData_Dropbooks();
         }
 
         #region Load datas for critical page
@@ -377,6 +378,23 @@ namespace LORModingBase.DM
                 else
                     return $"커스텀 카드:{cardID}";
             }
+        
+            public static string GetBookChapterDescription(string bookID)
+            {
+                DS.DropBookInfo founDropBookInfo = DM.StaticInfos.dropBookInfos.Find((DS.DropBookInfo dropBookInfo) =>
+                {
+                    return dropBookInfo.bookID == bookID;
+                });
+                if (founDropBookInfo != null)
+                {
+                    if(DS.GameInfo.chapter_Dic.ContainsKey(founDropBookInfo.chapter))
+                        return $"{DS.GameInfo.chapter_Dic[founDropBookInfo.chapter]}:{founDropBookInfo.bookID}";
+                    else
+                        return $":{founDropBookInfo.bookID}";
+                }
+                else
+                    return $"커스텀 에피소드:{bookID}";
+            }
         }
         #endregion
         #region Load datas for card
@@ -518,6 +536,16 @@ namespace LORModingBase.DM
                         if (string.IsNullOrEmpty(dropBookCardNode.InnerText))
                             continue;
                         dropBookCards.Add(dropBookCardNode.InnerText);
+
+                        foreach(DS.CardInfo gameCardInfo in gameCardInfos)
+                        {
+                            if(gameCardInfo.cardID == dropBookCardNode.InnerText)
+                            {
+                                string BOOK_TO_DROP = dropBookNode.Attributes["ID"].Value;
+                                if (!gameCardInfo.dropBooks.Contains(BOOK_TO_DROP))
+                                    gameCardInfo.dropBooks.Add(GetDescription.GetBookChapterDescription(BOOK_TO_DROP));
+                            }
+                        }
                     }
                     if (dropBookCards.Count <= 0) continue;
                     dropBookDic[dropBookNode.Attributes["ID"].Value] = dropBookCards;

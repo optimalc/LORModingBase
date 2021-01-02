@@ -81,9 +81,6 @@ namespace LORModingBase.DM
                     if (string.IsNullOrEmpty(diceInfo.min))
                         throw new Exception("전투 책장 주사위의 최소값이 입력되지 않았습니다.");
                 }
-
-                if (cardInfo.dropBooks.Count <= 0)
-                    throw new Exception("전투 책장이 어느 책에서 연소되어서 나오는지가 입력되지 않았습니다.");
             }
         }
     }
