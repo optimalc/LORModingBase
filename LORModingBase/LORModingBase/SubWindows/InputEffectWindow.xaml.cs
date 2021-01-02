@@ -122,5 +122,19 @@ namespace LORModingBase.SubWindows
                 this.Close();
             }
         }
+
+        private void BtnOk_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnDirectInput_Click(object sender, RoutedEventArgs e)
+        {
+            new InputEpisodeDirectlyWindow((string effectName, string effectDes) =>
+            {
+                afterSelectEffect($"{effectDes}:{effectName}");
+                Close();
+            }, upsideLabelInfo: "효과 이름 >").ShowDialog();
+        }
     }
 }

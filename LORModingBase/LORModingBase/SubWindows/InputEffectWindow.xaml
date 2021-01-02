@@ -9,6 +9,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="450*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -51,6 +52,17 @@
                 <Label Grid.Row="0" Content="적용시킬 효과 선택" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <ListBox x:Name="LbxEffects" Grid.Row="1"  Style="{StaticResource StyListBox}" MouseDoubleClick="LbxEffects_MouseDoubleClick"/>
             </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="../Resources/MenuBg.png"/>
+            </Grid.Background>
+            <Button x:Name="BtnDirectInput" Grid.Column="0" Content="[수동으로 입력]" ToolTip="수동으로 효과를 입력합니다" Style="{StaticResource StyBtnMenu}" Click="BtnDirectInput_Click"/>
+            <Button x:Name="BtnOk" Grid.Column="1" Content="[닫기]" ToolTip="창을 닫습니다" Style="{StaticResource StyBtnMenu}" Click="BtnOk_Click"/>
         </Grid>
     </Grid>
 </Window>
