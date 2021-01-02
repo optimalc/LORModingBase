@@ -68,8 +68,15 @@ namespace LORModingBase.UC
             #region 유니크 전용 책장 설정 부분 UI 반영시키기
             if (criticalPageInfo.onlyCards.Count > 0)
             {
+                string extraInfo = "";
+                innerCriticalPageInfo.onlyCards.ForEach((string onlyCardInfo) =>
+                {
+                    extraInfo += $"{onlyCardInfo}\n";
+                });
+                extraInfo = extraInfo.TrimEnd('\n');
+
                 BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
-                BookUniqueCards.ToolTip = "이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)";
+                BookUniqueCards.ToolTip = $"이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)\n{extraInfo}";
             }
             #endregion
 
@@ -464,8 +471,15 @@ namespace LORModingBase.UC
 
             if (innerCriticalPageInfo.onlyCards.Count > 0)
             {
+                string extraInfo = "";
+                innerCriticalPageInfo.onlyCards.ForEach((string onlyCardInfo) =>
+                {
+                    extraInfo += $"{onlyCardInfo}\n";
+                });
+                extraInfo = extraInfo.TrimEnd('\n');
+
                 BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
-                BookUniqueCards.ToolTip = "이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)";
+                BookUniqueCards.ToolTip = $"이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)\n{extraInfo}";
             }
             else
             {
