@@ -5,15 +5,49 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LORModingBase.UC"
              mc:Ignorable="d" 
-             Width="260" Height="75">
+             Width="235" Height="80">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+        <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="3"/>
         <Grid Grid.Row="0">
-            <Label Content="TEST TEST TEST TEST" FontSize="12"  Style="{StaticResource StyLbl}" FontWeight="Bold"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="../Resources/iconSResist.png" ToolTip="참격 주사위" Margin="5,0,0,0"></Image>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="33*"/>
+                    <ColumnDefinition Width="33*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TbzMinDice" Grid.Column="0" Text="1" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="최소 주사위 값을 입력합니다" VerticalAlignment="Center" TextAlignment="Center" Background="#7F223082"/>
+                <TextBox x:Name="TbzMaxDice" Grid.Column="2" Text="6" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="최대 주사위 값을 입력합니다" TextAlignment="Center" Background="#7F5A1212"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="BtnDelete" Grid.Column="4" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDelete_Click" ToolTip="주사위를 삭제합니다" >
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="8" ScaleY="10"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-18" Y="-18"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Resources/BtnBin.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
         </Grid>
         <Grid Grid.Row="1">
             <Label Content="TEST2 TEST2 TEST2 TEST2" FontSize="12"  Style="{StaticResource StyLbl}" FontWeight="Bold"/>

@@ -27,8 +27,7 @@
                     <ColumnDefinition Width="22*"/>
                     <ColumnDefinition Width="22*"/>
                 </Grid.ColumnDefinitions>
-                <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <TextBox x:Name="TbxCost" Grid.Column="0" Text="1" ToolTip="전투책장의 코스트를 입력합니다" FontSize="24" Style="{StaticResource StyTbx}" HorizontalAlignment="Center" TextChanged="TbxCost_TextChanged"/>
+                <TextBox x:Name="TbxCost" Grid.Column="0" Text="1" ToolTip="전투책장의 코스트를 입력합니다" FontSize="22" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" TextChanged="TbxCost_TextChanged" TextAlignment="Center" Background="#7F000000"/>
                 
                 <Rectangle Grid.Column="1" Grid.ColumnSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Button x:Name="BtnRarityCommon" ToolTip="보급 책장으로 지정" Grid.Column="1" Content="보급" FontSize="15" Foreground="#FF30BF4B" Style="{StaticResource StyBtnMenu}" Click="BtnRarityCommon_Click" Background="#54FFFFFF"/>
@@ -80,7 +79,7 @@
                         <StackPanel x:Name="SqlDices" Orientation="Vertical" HorizontalAlignment="Center">
                             <StackPanel.Resources>
                                 <Style TargetType="{x:Type Grid}">
-                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                    <Setter Property="Margin" Value="3,3,3,3"/>
                                 </Style>
                             </StackPanel.Resources>
                         </StackPanel>

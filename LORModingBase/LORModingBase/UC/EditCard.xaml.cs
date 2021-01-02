@@ -149,9 +149,19 @@ namespace LORModingBase.UC
         #endregion
 
         #region Controls for dices
+        private void InitSqlDices()
+        {
+            SqlDices.Children.Clear();
+            innerCardInfo.dices.ForEach((DS.Dice dice) =>
+            {
+                SqlDices.Children.Add(new EditDice(innerCardInfo.dices, dice, InitSqlDices));
+            });
+        }
+
         private void BtnAddDice_Click(object sender, RoutedEventArgs e)
         {
-            SqlDices.Children.Add(new EditDice());
+            innerCardInfo.dices.Add(new DS.Dice());
+            InitSqlDices();
         }
         #endregion
     }

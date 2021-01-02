@@ -20,9 +20,22 @@ namespace LORModingBase.UC
     /// </summary>
     public partial class EditDice : UserControl
     {
-        public EditDice()
+        List<DS.Dice> diceListToUse = null;
+        DS.Dice innerDice = null;
+        Action stackInitFunc = null;
+
+        public EditDice(List<DS.Dice> diceListToUse, DS.Dice innerDice, Action stackInitFunc)
         {
+            this.diceListToUse = diceListToUse;
+            this.innerDice = innerDice;
+            this.stackInitFunc = stackInitFunc;
             InitializeComponent();
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            diceListToUse.Remove(innerDice);
+            stackInitFunc();
         }
     }
 }
