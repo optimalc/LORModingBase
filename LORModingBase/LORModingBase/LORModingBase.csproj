@@ -306,5 +306,15 @@
   <ItemGroup>
     <Resource Include="Resources\BtnEffect.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TypeNotUniquePage.png" />
+    <Resource Include="Resources\TypeUniquePage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TypeFarArea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TypeFarAreaEach.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

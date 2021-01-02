@@ -30,7 +30,7 @@ namespace LORModingBase.DS
         /// <summary>
         /// 원거리 타입
         /// </summary>
-        public string rangeType = "Nomal";
+        public string rangeType = "Near";
 
         /// <summary>
         /// 전용카드 여부를 설정합니다

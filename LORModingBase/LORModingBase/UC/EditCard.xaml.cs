@@ -33,6 +33,7 @@ namespace LORModingBase.UC
             InitSqlDices();
             ChangeRarityUIInit(innerCardInfo.rarity);
             UpdateExtrainfoIcon();
+            UpdateRangeTypeUI();
             TbxCardName.Text = innerCardInfo.name;
             TbxCardUniqueID.Text = innerCardInfo.cardID;
 
@@ -117,6 +118,7 @@ namespace LORModingBase.UC
             ChangeRarityUIInit("Unique");
         }
         #endregion
+
         #region Right side buttons
         private void BtnExtraInfo_Click(object sender, RoutedEventArgs e)
         {
@@ -161,13 +163,6 @@ namespace LORModingBase.UC
             }
         }
 
-
-        private void BtnRangeType_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
         private void BtnCopyCard_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.cardInfos.Add(Tools.DeepCopy.DeepClone(innerCardInfo));
@@ -180,6 +175,57 @@ namespace LORModingBase.UC
             initStack();
         }
         #endregion
+        #region Type Change Buttons
+        private void BtnRangeType_Click(object sender, RoutedEventArgs e)
+        {
+            switch (innerCardInfo.rangeType)
+            {
+                case "Near":
+                    innerCardInfo.rangeType = "Far";
+                    break;
+                case "Far":
+                    innerCardInfo.rangeType = "FarArea";
+                    break;
+                case "FarArea":
+                    innerCardInfo.rangeType = "FarAreaEach";
+                    break;
+                case "FarAreaEach":
+                    innerCardInfo.rangeType = "Near";
+                    break;
+            }
+            UpdateRangeTypeUI();
+        }
+
+        private void UpdateRangeTypeUI()
+        {
+            switch (innerCardInfo.rangeType)
+            {
+                case "Near":
+                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 근거리 책장)";
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
+                    break;
+                case "Far":
+                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 책장)";
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
+                    break;
+                case "FarArea":
+                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 광역 합산 책장)";
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeFarArea.png");
+                    break;
+                case "FarAreaEach":
+                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 광역 개별 책장)";
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeFarAreaEach.png");
+                    break;
+            }
+        }
+
+
+        private void BtnUnqueType_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
         #region Left side buttons
         private void BtnCardImage_Click(object sender, RoutedEventArgs e)
         {
