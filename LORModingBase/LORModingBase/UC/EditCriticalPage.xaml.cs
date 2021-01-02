@@ -527,22 +527,18 @@ namespace LORModingBase.UC
         {
             try
             {
-                bool IS_ENEMY_DATA_INPUTED = (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
-                            !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
-                            !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
-                            !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel));
                 bool BOOK_ID_CHECK = false;
                 if(!string.IsNullOrEmpty(innerCriticalPageInfo.bookID))
                 {
                     int BOOK_ID = Convert.ToInt32(innerCriticalPageInfo.bookID);
-                    BOOK_ID_CHECK = (BOOK_ID > 1000 && BOOK_ID < 200000);
+                    BOOK_ID_CHECK = (BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_ENEMY) || (BOOK_ID > DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM && BOOK_ID < (DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM + 1000000));
                 }
 
                 bool FORCE_ENEMY = innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE;
                 bool FORCE_USER = innerCriticalPageInfo.USER_TYPE_CH_FORCE;
                 bool FORECLY_INPUTED = FORCE_ENEMY || FORCE_USER;
 
-                if ((IS_ENEMY_DATA_INPUTED || BOOK_ID_CHECK || FORCE_ENEMY) && !FORCE_USER)
+                if ((BOOK_ID_CHECK || FORCE_ENEMY) && !FORCE_USER)
                 {
                     innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = true;
                     BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeEnemy.png");
