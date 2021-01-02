@@ -133,7 +133,12 @@ namespace LORModingBase.UC
 
         private void BtnCardEffect_Click(object sender, RoutedEventArgs e)
         {
-
+            new SubWindows.InputEffectWindow((string effectDes) =>
+            {
+                BtnCardEffect.Content = effectDes;
+                BtnCardEffect.ToolTip = effectDes.Replace(".", ".\n");
+                innerCardInfo.cardScript = effectDes;
+            }, isCardEffect: true).ShowDialog();
         }
         #endregion
 

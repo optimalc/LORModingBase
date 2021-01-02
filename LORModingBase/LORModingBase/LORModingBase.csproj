@@ -74,6 +74,9 @@
     <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\LongDescription.cs" />
     <Compile Include="DS\PATH.cs" />
+    <Compile Include="SubWindows\InputEffectWindow.xaml.cs">
+      <DependentUpon>InputEffectWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputCardImageWindow.xaml.cs">
       <DependentUpon>InputCardImageWindow.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SubWindows\InputEffectWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SubWindows\InputCardImageWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
