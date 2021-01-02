@@ -190,7 +190,7 @@ namespace LORModingBase.DM
                     #region Get description of ciritical page
                     string BOOK_ID_DESC = criticalPageInfo.bookID;
                     int BOOK_ID = Convert.ToInt32(criticalPageInfo.bookID);
-                    if (BOOK_ID > DS.FilterDatas.CARD_DIV_LIBRARION && BOOK_ID < DS.FilterDatas.CARD_DIV_ENEMY)
+                    if (BOOK_ID > DS.FilterDatas.CRITICAL_PAGE_DIV_LIBRARION && BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_ENEMY)
                         BOOK_ID_DESC = (BOOK_ID + 100000).ToString();
 
                     XmlNode bookDescNode = booksDesNode.SelectSingleNode($"//BookDesc[@BookID='{BOOK_ID_DESC}']");

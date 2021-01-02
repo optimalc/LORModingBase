@@ -10,17 +10,17 @@ namespace LORModingBase
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static List<DS.CriticalPageInfo> criticalPageInfos = new List<DS.CriticalPageInfo>();
-
         #region Init controls
         public MainWindow()
         {
             InitializeComponent();
+            BtnCriticalPage_Click(null, null);
 
             try
             {
                 InitLORPathResourceLabel();
                 InitSplCriticalPage();
+                InitSplCards();
             }
             catch(Exception ex)
             {
@@ -82,15 +82,6 @@ namespace LORModingBase
             
             LoadDatas();
         }
-
-        private void InitSplCriticalPage()
-        {
-            SplCriticalPage.Children.Clear();
-            criticalPageInfos.ForEach((DS.CriticalPageInfo criticalPageInfo) =>
-            {
-                SplCriticalPage.Children.Add(new UC.EditCriticalPage(criticalPageInfo, InitSplCriticalPage));
-            });
-        }
         #endregion
         
         #region Click events
@@ -109,22 +100,6 @@ namespace LORModingBase
                     MessageBox.Show(ex.Message, "변경된 경로를 반영하는 과정에서 오류", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
-        }
-        #endregion
-        #region Left menu button events
-        private void BtnAddCriticalBook_Click(object sender, RoutedEventArgs e)
-        {
-            criticalPageInfos.Add(new DS.CriticalPageInfo());
-            InitSplCriticalPage();
-        }
-
-        private void BtnLoadCriticalBook_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputGameCriticalPage((DS.CriticalPageInfo selectedCriticalPageInfo) =>
-            {
-                criticalPageInfos.Add(Tools.DeepCopy.DeepClone(selectedCriticalPageInfo));
-                InitSplCriticalPage();
-            }).ShowDialog();
         }
         #endregion
         #region Top menu button events
@@ -163,7 +138,84 @@ namespace LORModingBase
             {
                 MessageBox.Show($"불러오는 도중 오류가 발생했습니다. : {ex.Message}", "불러오기 오류", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        } 
+        }
+        #endregion
+        #region Top Second menu click event
+        private void HideAllGrid()
+        {
+            GrdCriticalPage.Visibility = Visibility.Collapsed;
+            BtnCriticalPage.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
+
+            GrdCards.Visibility = Visibility.Collapsed;
+            BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
+        }
+
+        private void BtnCriticalPage_Click(object sender, RoutedEventArgs e)
+        {
+            HideAllGrid();
+            GrdCriticalPage.Visibility = Visibility.Visible;
+            BtnCriticalPage.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+        }
+
+        private void BtnCards_Click(object sender, RoutedEventArgs e)
+        {
+            HideAllGrid();
+            GrdCards.Visibility = Visibility.Visible;
+            BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+        }
+        #endregion
+
+        #region EDIT MENU - Critical Page Infos
+        public static List<DS.CriticalPageInfo> criticalPageInfos = new List<DS.CriticalPageInfo>();
+
+        private void InitSplCriticalPage()
+        {
+            SplCriticalPage.Children.Clear();
+            criticalPageInfos.ForEach((DS.CriticalPageInfo criticalPageInfo) =>
+            {
+                SplCriticalPage.Children.Add(new UC.EditCriticalPage(criticalPageInfo, InitSplCriticalPage));
+            });
+        }
+
+        #region Left menu button events
+
+        private void BtnAddCriticalBook_Click(object sender, RoutedEventArgs e)
+        {
+            criticalPageInfos.Add(new DS.CriticalPageInfo());
+            InitSplCriticalPage();
+        }
+
+        private void BtnLoadCriticalBook_Click(object sender, RoutedEventArgs e)
+        {
+            new SubWindows.InputGameCriticalPage((DS.CriticalPageInfo selectedCriticalPageInfo) =>
+            {
+                criticalPageInfos.Add(Tools.DeepCopy.DeepClone(selectedCriticalPageInfo));
+                InitSplCriticalPage();
+            }).ShowDialog();
+        }
+        #endregion
+
+        #endregion
+        #region EDIT MENU - Cards Page
+        private void InitSplCards()
+        {
+            SplCards.Children.Clear();
+            criticalPageInfos.ForEach((DS.CriticalPageInfo criticalPageInfo) =>
+            {
+                SplCards.Children.Add(new UC.EditCriticalPage(criticalPageInfo, InitSplCriticalPage));
+            });
+        }
+
+
+        private void BtnAddCard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnLoadCard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         #endregion
     }
 }

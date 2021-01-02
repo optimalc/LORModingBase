@@ -63,9 +63,9 @@ namespace LORModingBase.SubWindows
                     string extraChpater = "챕터 없음";
 
                     int BOOK_ID = Convert.ToInt32(criticalPageInfo.bookID);
-                    if (BOOK_ID < DS.FilterDatas.CARD_DIV_LIBRARION)
+                    if (BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_LIBRARION)
                         extraInfo += "[사서 전용 책장] ";
-                    else if (BOOK_ID < DS.FilterDatas.CARD_DIV_ENEMY)
+                    else if (BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_ENEMY)
                     {
                         extraInfo += "[적 전용 책장] ";
                         DS.CriticalPageInfo foundCriticalPageInfo = DM.StaticInfos.gameCriticalPageInfos.Find((DS.CriticalPageInfo pageInfo) =>
@@ -75,7 +75,7 @@ namespace LORModingBase.SubWindows
                         if (foundCriticalPageInfo != null)
                             extraChpater = $"{foundCriticalPageInfo.episodeDes} / {foundCriticalPageInfo.chapter}:{foundCriticalPageInfo.episode}";
                     }
-                    else if (BOOK_ID < DS.FilterDatas.CARD_DIV_USER)
+                    else if (BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_USER)
                     {
                         extraInfo += "[유저 전용 책장] ";
                         extraChpater = criticalPageInfo.episodeDes;

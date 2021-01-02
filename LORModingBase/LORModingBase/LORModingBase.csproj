@@ -67,7 +67,9 @@
     <Compile Include="DM\ExportDatas.cs" />
     <Compile Include="DM\ImportDatas.cs" />
     <Compile Include="DM\StaticInfos.cs" />
+    <Compile Include="DS\CardInfos.cs" />
     <Compile Include="DS\Config.cs" />
+    <Compile Include="DS\CriticalPageInfos.cs" />
     <Compile Include="DS\FilterDatas.cs" />
     <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\LongDescription.cs" />

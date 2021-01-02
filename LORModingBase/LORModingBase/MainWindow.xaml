@@ -53,12 +53,14 @@
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="13.9*"/>
-                <ColumnDefinition Width="86.1*"/>
+                <ColumnDefinition Width="13.9*"/>
+                <ColumnDefinition Width="72.2*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="BtnCriticalPage" Grid.Column="0" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}"/>
+            <Button x:Name="BtnCriticalPage" Grid.Column="0" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="BtnCriticalPage_Click"/>
+            <Button x:Name="BtnCards" Grid.Column="1" Content="[전투책장 편집]" ToolTip="전투책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="BtnCards_Click"/>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Name="GrdCriticalPage">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="95*"/>
@@ -83,6 +85,40 @@
             <Grid Grid.Column="1">
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
                     <StackPanel x:Name="SplCriticalPage" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Grid}">
+                                <Setter Property="Margin" Value="5,5,5,5"/>
+                            </Style>
+                        </StackPanel.Resources>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Name="GrdCards">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="95*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="./Resources/MainBg.png"/>
+            </Grid.Background>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <Button x:Name="BtnAddCard" Content="+" ToolTip="게임에 없는 새로운 전투책장을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnAddCard_Click"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <Button x:Name="BtnLoadCard" Content="~" ToolTip="게임 내부로부터 전투책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnLoadCard_Click"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                    <StackPanel x:Name="SplCards" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                         <StackPanel.Resources>
                             <Style TargetType="{x:Type Grid}">
                                 <Setter Property="Margin" Value="5,5,5,5"/>
