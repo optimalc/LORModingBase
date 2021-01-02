@@ -97,6 +97,14 @@ namespace LORModingBase.DM
                 if (!string.IsNullOrEmpty(ciriticalInfo.ENEMY_AddedStartDraw))
                     Tools.XmlFile.AddNewNodeWithInnerText(equipEffectElement, "AddedStartDraw", ciriticalInfo.ENEMY_AddedStartDraw);
                 #endregion
+                #region Add Only Cards List
+                foreach (string onlyCard in ciriticalInfo.onlyCards)
+                {
+                    if (string.IsNullOrEmpty(onlyCard))
+                        continue;
+                    Tools.XmlFile.AddNewNodeWithInnerText(equipEffectElement, "OnlyCard", onlyCard.Split(':').Last());
+                }
+                #endregion
 
                 foreach (string passiveName in ciriticalInfo.passiveIDs)
                 {

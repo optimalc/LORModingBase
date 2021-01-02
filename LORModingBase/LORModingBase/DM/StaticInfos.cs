@@ -350,6 +350,23 @@ namespace LORModingBase.DM
                 else
                     return $"커스텀:커스텀 패시브:{passiveID}";
             }
+        
+            /// <summary>
+            /// Get unique card description
+            /// </summary>
+            /// <param name="cardID">Card id to use</param>
+            /// <returns>DES</returns>
+            public static string GetUniqueCardDescription(string cardID)
+            {
+                DS.CardInfo foundCardInfo = DM.StaticInfos.gameCardInfos.Find((DS.CardInfo cardInfo) =>
+                {
+                    return cardInfo.cardID == cardID;
+                });
+                if (foundCardInfo != null)
+                    return $"{foundCardInfo.name}:{foundCardInfo.cardID}";
+                else
+                    return $"커스텀 카드:{cardID}";
+            }
         }
         #endregion
         #region Load datas for card

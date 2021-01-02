@@ -82,6 +82,14 @@ namespace LORModingBase.DM
                     criticalPageInfo.ENEMY_EmotionLevel = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "EmotionLevel");
                     criticalPageInfo.ENEMY_AddedStartDraw = Tools.XmlFile.GetXmlNodeSafe.ToString(equipEffectNode, "AddedStartDraw");
                     #endregion
+                    #region 전용책장 관련 정보 불러오기
+                    XmlNodeList onlyCardNodes = equipEffectNode.SelectNodes("OnlyCard");
+                    foreach (XmlNode onlyCardNode in onlyCardNodes)
+                    {
+                        if (!string.IsNullOrEmpty(onlyCardNode.InnerText))
+                            criticalPageInfo.onlyCards.Add(DM.StaticInfos.GetDescription.GetUniqueCardDescription(onlyCardNode.InnerText));
+                    }
+                    #endregion
 
                     XmlNodeList passiveNodes = equipEffectNode.SelectNodes("Passive");
                     foreach (XmlNode passiveNode in passiveNodes)
