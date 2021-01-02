@@ -114,6 +114,9 @@
     <Compile Include="Tools\MathTools.cs" />
     <Compile Include="Tools\ProcessTools.cs" />
     <Compile Include="Tools\XmlFile.cs" />
+    <Compile Include="UC\EditCard.xaml.cs">
+      <DependentUpon>EditCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\EditCriticalPage.xaml.cs">
       <DependentUpon>EditCriticalPage.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubWindows\InputEpisodeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

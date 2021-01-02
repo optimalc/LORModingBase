@@ -10,7 +10,7 @@ namespace LORModingBase.DS
     /// Card information data structure
     /// </summary>
     [Serializable]
-    class CardInfo
+    public class CardInfo
     {
         public string cost = "1";
         public string rarity = "Common";
@@ -37,7 +37,7 @@ namespace LORModingBase.DS
     /// Dice information data structure
     /// </summary>
     [Serializable]
-    class Dice
+    public class Dice
     {
         public string min = "";
         public string max = "";

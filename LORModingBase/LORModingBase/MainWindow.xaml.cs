@@ -197,24 +197,26 @@ namespace LORModingBase
 
         #endregion
         #region EDIT MENU - Cards Page
+        public static List<DS.CardInfo> cardInfos = new List<DS.CardInfo>();
+
         private void InitSplCards()
         {
             SplCards.Children.Clear();
-            criticalPageInfos.ForEach((DS.CriticalPageInfo criticalPageInfo) =>
+            cardInfos.ForEach((DS.CardInfo cardInfo) =>
             {
-                SplCards.Children.Add(new UC.EditCriticalPage(criticalPageInfo, InitSplCriticalPage));
+                SplCards.Children.Add(new UC.EditCard(cardInfo, InitSplCards));
             });
         }
 
-
         private void BtnAddCard_Click(object sender, RoutedEventArgs e)
         {
-
+            cardInfos.Add(new DS.CardInfo());
+            InitSplCards();
         }
 
         private void BtnLoadCard_Click(object sender, RoutedEventArgs e)
         {
-
+            InitSplCards();
         }
         #endregion
     }

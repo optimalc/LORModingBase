@@ -16,9 +16,9 @@ namespace LORModingBase.UC
         #region Init controls
         public EditCriticalPage(DS.CriticalPageInfo criticalPageInfo, Action initStack)
         {
-            InitializeComponent();
             this.innerCriticalPageInfo = criticalPageInfo;
             this.initStack = initStack;
+            InitializeComponent();
 
             #region 일반적인 핵심책장 정보 UI 반영시키기
             ChangeRarityUIInit(criticalPageInfo.rarity);
