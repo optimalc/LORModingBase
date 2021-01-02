@@ -61,6 +61,15 @@ namespace LORModingBase.SubWindows
                         break;
                 }
             });
+
+            MainWindow.cardInfos.ForEach((DS.CardInfo cardInfo) =>
+            {
+                if (cardInfo.option == "OnlyPage")
+                {
+                    if(!string.IsNullOrEmpty(cardInfo.cardID))
+                        LbxEditedCard.Items.Add($"{cardInfo.name}:{cardInfo.cardID}");
+                }
+            });
         }
         #endregion
 
@@ -132,6 +141,15 @@ namespace LORModingBase.SubWindows
                 uniqueCards.Add($"{cardDes}:{cardCode}");
                 InitSelectedDropboxsList();
             }, upsideLabelInfo: "고유책장 코드 >").ShowDialog();
+        }
+
+        private void LbxEditedCard_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (LbxEditedCard.SelectedItem != null && !uniqueCards.Contains(LbxEditedCard.SelectedItem.ToString()))
+            {
+                uniqueCards.Add(LbxEditedCard.SelectedItem.ToString());
+                InitSelectedDropboxsList();
+            }
         }
     }
 }

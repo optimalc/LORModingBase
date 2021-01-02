@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LORModingBase.SubWindows"
         mc:Ignorable="d"
-        Title="사용가능하게 만들 고유책장을 더블클릭으로 추가" Height="480" Width="858" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+        Title="사용가능하게 만들 고유책장을 더블클릭으로 추가" Height="480" Width="994" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="450*"/>
@@ -13,6 +13,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -38,10 +39,19 @@
                     <RowDefinition Height="90*"/>
                 </Grid.RowDefinitions>
                 <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+                <Label Grid.Row="0" Content="편집된 책장" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <ListBox x:Name="LbxEditedCard" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxEditedCard_PreviewMouseDoubleClick"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="90*"/>
+                </Grid.RowDefinitions>
+                <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
                 <Label Grid.Row="0" Content="기타" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <ListBox x:Name="LbxEtc" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxEtc_PreviewMouseDoubleClick"/>
             </Grid>
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="90*"/>
@@ -50,7 +60,7 @@
                 <Label Grid.Row="0" Content="뜬소문~도시질병" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <ListBox x:Name="LbxCh1_2_3_4" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxCh1_2_3_4_PreviewMouseDoubleClick"/>
             </Grid>
-            <Grid Grid.Column="3">
+            <Grid Grid.Column="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="90*"/>
@@ -59,7 +69,7 @@
                 <Label Grid.Row="0" Content="도시 악몽" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <ListBox x:Name="LbxCh5" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxCh5_PreviewMouseDoubleClick"/>
             </Grid>
-            <Grid Grid.Column="4">
+            <Grid Grid.Column="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="90*"/>
@@ -68,7 +78,7 @@
                 <Label Grid.Row="0" Content="도시의 별" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <ListBox x:Name="LbxCh6" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxCh6_PreviewMouseDoubleClick"/>
             </Grid>
-            <Grid Grid.Column="5">
+            <Grid Grid.Column="6">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="90*"/>
