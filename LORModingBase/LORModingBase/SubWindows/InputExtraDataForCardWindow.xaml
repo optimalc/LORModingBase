@@ -37,8 +37,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="&lt; 최대 빛의 수 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
-                <TextBox x:Name="TbxMaxPlayPoint" Grid.Column="1" Text="" ToolTip="적이 가지게 되는 빛의 최대 개수를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Grid.Column="0" Content="&lt; 책장 우선 순위(적) &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxPriority" Grid.Column="1" Text="" ToolTip="적이 책장을 선택할때 참조하게 되는 우선순위를 설정합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="TbxPriority_TextChanged"/>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -46,8 +46,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="&lt; 최대 감정 레벨 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
-                <TextBox x:Name="TbxEmotionLevel" Grid.Column="1" Text="" ToolTip="적이 가지게 되는 최대 감정레벨을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Grid.Column="0" Content="&lt; 책장 우선 순위(유저) &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxSortPriority" Grid.Column="1" Text="" ToolTip="유저가 책장을 선택할때 참조하게 되는 우선순위를 설정합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="TbxSortPriority_TextChanged"/>
             </Grid>
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
@@ -55,8 +55,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="&lt; 추가로 드로우하는 책장의 수 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
-                <TextBox x:Name="TbxAddedStartDraw" Grid.Column="1" Text="" ToolTip="적이 책장을 추가로 드러우 할 때의 수치입니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Grid.Column="0" Content="&lt; 우선순위 스크립트 명 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <TextBox x:Name="TbxPriorityScript" Grid.Column="1" Text="" ToolTip="이 스크립트는 우선순위를 지정할때 사용됩니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="TbxPriorityScript_TextChanged"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">

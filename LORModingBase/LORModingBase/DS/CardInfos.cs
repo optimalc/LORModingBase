@@ -37,9 +37,11 @@ namespace LORModingBase.DS
         /// </summary>
         public string option = "";
 
-        public string chapter = "";
-        public string priority = "";
-        public string sortPriority = "";
+        public string chapter = "1";
+        public string priority = "1";
+        public string sortPriority = "1";
+
+        public string priorityScript = "";
     }
 
     /// <summary>

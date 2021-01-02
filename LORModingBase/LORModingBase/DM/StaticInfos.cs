@@ -440,6 +440,7 @@ namespace LORModingBase.DM
 
                     cardInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Chapter");
                     cardInfo.priority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Priority");
+                    cardInfo.priorityScript = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "PriorityScript");
                     cardInfo.sortPriority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "SortPriority");
 
                     XmlNodeList behaviourNodes = cardNode.SelectNodes("BehaviourList/Behaviour");
