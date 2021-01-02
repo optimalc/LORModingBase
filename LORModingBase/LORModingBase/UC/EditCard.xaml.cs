@@ -30,15 +30,13 @@ namespace LORModingBase.UC
             this.initStack = initStack;
             InitializeComponent();
 
-            InitSqlDices();
+            TbxCost.Text = innerCardInfo.cost;
             ChangeRarityUIInit(innerCardInfo.rarity);
-            UpdateExtrainfoIcon();
-            UpdateRangeTypeUI();
-            UpdateUniqueTypeUI();
+
             TbxCardName.Text = innerCardInfo.name;
             TbxCardUniqueID.Text = innerCardInfo.cardID;
 
-            if(!string.IsNullOrEmpty(innerCardInfo.cardImage))
+            if (!string.IsNullOrEmpty(innerCardInfo.cardImage))
             {
                 BtnCardImage.Content = innerCardInfo.cardImage;
                 BtnCardImage.ToolTip = innerCardInfo.cardImage;
@@ -48,6 +46,11 @@ namespace LORModingBase.UC
                 BtnCardEffect.Content = innerCardInfo.cardScript;
                 BtnCardEffect.ToolTip = innerCardInfo.cardScript;
             }
+            InitSqlDices();
+
+            UpdateExtrainfoIcon();
+            UpdateRangeTypeUI();
+            UpdateUniqueTypeUI();
 
             #region 드랍되는 곳 체크
             if (innerCardInfo.dropBooks.Count > 0)
