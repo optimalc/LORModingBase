@@ -74,6 +74,9 @@
     <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\LongDescription.cs" />
     <Compile Include="DS\PATH.cs" />
+    <Compile Include="SubWindows\InputUniqueCardsWindow.xaml.cs">
+      <DependentUpon>InputUniqueCardsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputEnemyInfoWindow.xaml.cs">
       <DependentUpon>InputEnemyInfoWindow.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SubWindows\InputUniqueCardsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SubWindows\InputEnemyInfoWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -263,6 +270,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\BtnBin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconNoUniqueCard.png" />
+    <Resource Include="Resources\IconYesUniqueCard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

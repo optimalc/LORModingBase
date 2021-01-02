@@ -65,6 +65,14 @@ namespace LORModingBase.UC
                 BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
             }
             #endregion
+            #region 유니크 전용 책장 설정 부분 UI 반영시키기
+            if (criticalPageInfo.onlyCards.Count > 0)
+            {
+                BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
+                BookUniqueCards.ToolTip = "이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)";
+            }
+            #endregion
+
             #region 핵심책장 드랍 책 부분 UI 반영시키기
             if (innerCriticalPageInfo.dropBooks.Count > 0)
             {
@@ -448,6 +456,22 @@ namespace LORModingBase.UC
                 BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력))";
             }
             CriticalPageTypeUIUpdating();
+        }
+
+        private void BookUniqueCards_Click(object sender, RoutedEventArgs e)
+        {
+            new SubWindows.InputUniqueCardsWindow(innerCriticalPageInfo.onlyCards).ShowDialog();
+
+            if (innerCriticalPageInfo.onlyCards.Count > 0)
+            {
+                BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
+                BookUniqueCards.ToolTip = "이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)";
+            }
+            else
+            {
+                BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoUniqueCard.png");
+                BookUniqueCards.ToolTip = "이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (미입력)";
+            }
         }
         #endregion
 

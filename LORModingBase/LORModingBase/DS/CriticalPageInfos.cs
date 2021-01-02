@@ -172,6 +172,6 @@ namespace LORModingBase.DS
         /// <summary>
         /// 전용 책장 리스트
         /// </summary>
-        List<string> onlyCards = new List<string>();
+        public List<string> onlyCards = new List<string>();
     }
 }
