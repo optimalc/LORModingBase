@@ -16,8 +16,8 @@ namespace LORModingBase.DM
         /// </summary>
         public static void LoadAllDatas()
         {
-            LoadData_CardsInfo();
             LoadData_CardEffect();
+            LoadData_CardsInfo();
             LoadData_Dropbooks();
 
             LoadDatas_PassiveInfo();
@@ -433,15 +433,21 @@ namespace LORModingBase.DM
                         cardInfo.name = gameCardLocalized[cardInfo.cardID];
 
                     cardInfo.rarity = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Rarity", "Common");
-                    cardInfo.cardScript = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Script");
+                    cardInfo.cardScript = GetDescriptionForCard.GetScriptDescription(Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Script"));
 
                     cardInfo.option = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Option");
-                    cardInfo.cardImage = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Artwork");
+                    cardInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Chapter", "1");
+
+                    string chapterDes = "챕터 없음";
+                    if (DS.GameInfo.chapter_Dic.ContainsKey(cardInfo.chapter))
+                        chapterDes = DS.GameInfo.chapter_Dic[cardInfo.chapter];
+
+                    string IMAGE_DES = $"{cardInfo.name}:{chapterDes}:{Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Artwork")}";
+                    cardInfo.cardImage = IMAGE_DES;
 
                     cardInfo.rangeType = Tools.XmlFile.GetAttributeSafeWithXPath.ToString(cardNode, "Spec", "Range", "Near");
                     cardInfo.cost = Tools.XmlFile.GetAttributeSafeWithXPath.ToString(cardNode, "Spec", "Cost", "1");
 
-                    cardInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Chapter", "1");
                     cardInfo.priority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Priority", "1");
                     cardInfo.priorityScript = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "PriorityScript");
                     cardInfo.sortPriority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "SortPriority", "1");
@@ -456,7 +462,7 @@ namespace LORModingBase.DM
                             type = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Type"),
                             detail = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Detail"),
                             motion = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Motion"),
-                            script = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Script"),
+                            script = GetDescriptionForCard.GetScriptDescription(Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Script")),
                             actionScript = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "ActionScript"),
                             effectres = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "EffectRes")
                         });
@@ -527,7 +533,7 @@ namespace LORModingBase.DM
                 {
                     DS.CardInfo foundCardInfo = DM.StaticInfos.gameCardInfos.Find((DS.CardInfo cardInfo) =>
                     {
-                        return cardInfo.cardImage == artworkName;
+                        return cardInfo.cardImage.Split(':').Last() == artworkName;
                     });
                     if (foundCardInfo != null)
                         return $"{foundCardInfo.name}:{foundCardInfo.cardImage}";

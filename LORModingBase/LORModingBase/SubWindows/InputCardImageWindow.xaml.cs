@@ -56,11 +56,7 @@ namespace LORModingBase.SubWindows
 
                 foreach (DS.CardInfo cardInfo in DM.StaticInfos.gameCardInfos)
                 {
-                    string chapterDes = "챕터 없음";
-                    if (DS.GameInfo.chapter_Dic.ContainsKey(cardInfo.chapter))
-                        chapterDes = DS.GameInfo.chapter_Dic[cardInfo.chapter];
-
-                    string IMAGE_DES = $"{cardInfo.name}:{chapterDes}:{cardInfo.cardImage}";
+                    string IMAGE_DES = cardInfo.cardImage;
                     if (!string.IsNullOrEmpty(TbxSearch.Text) && !IMAGE_DES.ToLower().Replace(" ", "").Contains(TbxSearch.Text.ToLower().Replace(" ", ""))) continue;
 
                     switch (LbxSearchType.SelectedItem.ToString())
