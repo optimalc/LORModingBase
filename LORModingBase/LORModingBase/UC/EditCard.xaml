@@ -64,28 +64,20 @@
             </Grid>
             <Grid Grid.Row="3">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="14*"/>
-                    <RowDefinition Height="86*"/>
+                    <RowDefinition Height="12*"/>
+                    <RowDefinition Height="84*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnAddDice" Grid.Column="0" Content="행동 추가" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장에 주사위를 추가합니다" Click="BtnAddDice_Click"/>
-
-                    <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnEditDice" Grid.Column="1" Content="행동 편집" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="선택된 주사위를 편집합니다" Click="BtnEditDice_Click"/>
-
-                    <Rectangle Grid.Column="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnDeleteDice" Grid.Column="2" Content="행동 삭제" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="선택된 주사위를 삭제합니다" Click="BtnDeleteDice_Click"/>
+                    <Button x:Name="BtnAddDice" Grid.Column="0" Content="▼ 주사위 추가 ▼" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장에 주사위를 추가합니다" Click="BtnAddDice_Click"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Rectangle Grid.Column="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <ScrollViewer VerticalScrollBarVisibility="Visible">
-                        <StackPanel x:Name="SqlDices" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel x:Name="SqlDices" Orientation="Vertical" HorizontalAlignment="Center">
                             <StackPanel.Resources>
                                 <Style TargetType="{x:Type Grid}">
                                     <Setter Property="Margin" Value="5,5,5,5"/>

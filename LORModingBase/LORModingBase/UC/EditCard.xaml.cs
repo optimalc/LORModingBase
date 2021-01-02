@@ -151,17 +151,7 @@ namespace LORModingBase.UC
         #region Controls for dices
         private void BtnAddDice_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void BtnEditDice_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnDeleteDice_Click(object sender, RoutedEventArgs e)
-        {
-
+            SqlDices.Children.Add(new EditDice());
         }
         #endregion
     }

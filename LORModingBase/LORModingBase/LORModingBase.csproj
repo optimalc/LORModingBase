@@ -123,6 +123,9 @@
     <Compile Include="UC\EditCriticalPage.xaml.cs">
       <DependentUpon>EditCriticalPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\EditDice.xaml.cs">
+      <DependentUpon>EditDice.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -188,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\EditCriticalPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditDice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
