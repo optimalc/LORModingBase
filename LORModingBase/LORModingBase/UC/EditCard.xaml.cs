@@ -123,7 +123,12 @@ namespace LORModingBase.UC
         #region Left side buttons
         private void BtnCardImage_Click(object sender, RoutedEventArgs e)
         {
-
+            new SubWindows.InputCardImageWindow((string cardImageDes) =>
+            {
+                BtnCardImage.Content = cardImageDes;
+                BtnCardImage.ToolTip = cardImageDes;
+                innerCardInfo.cardImage = cardImageDes;
+            }).ShowDialog();
         }
 
         private void BtnCardEffect_Click(object sender, RoutedEventArgs e)
