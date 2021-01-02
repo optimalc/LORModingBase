@@ -37,7 +37,7 @@ namespace LORModingBase.UC
         private void UpdateEffectGrid()
         {
             LblEffect.Content = innerDice.script;
-            LblEffect.ToolTip = innerDice.script;
+            LblEffect.ToolTip = innerDice.script.Replace(".", "\n.");
             RectAllInfo.Visibility = Visibility.Collapsed;
             RectDiceOnly.Visibility = Visibility.Collapsed;
 
@@ -56,8 +56,11 @@ namespace LORModingBase.UC
         #region Button events
         private void BtnEffect_Click(object sender, RoutedEventArgs e)
         {
-            innerDice.script = "체력이 25% 이상일때 속도가 3 증가한다. 하지만 아닐 수도 있다.";
-            UpdateEffectGrid();
+            new SubWindows.InputEffectWindow((string effectDes) =>
+            {
+                innerDice.script = effectDes;
+                UpdateEffectGrid();
+            }, isCardEffect: false).ShowDialog();
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
