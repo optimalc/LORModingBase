@@ -81,18 +81,7 @@ namespace LORModingBase
                 Tools.ProcessTools.OpenExplorer(MOD_DIR_TO_USE);
 
                 if (DM.Config.config.isExecuteAfterExport)
-                {
-                    Tools.ProcessTools.StartProcess($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina.exe");
-                    if(DM.Config.config.isLogPlusMod)
-                    {
-                        if (File.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt"))
-                            File.WriteAllText($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt", "");
-                        if (File.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt"))
-                            File.WriteAllText($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt", "");
-
-                        new SubWindows.ExtraLogWindow().Show();
-                    }
-                }
+                    BtnStartGame_Click(null, null);
             }
             catch (Exception ex)
             {
@@ -144,6 +133,20 @@ namespace LORModingBase
         private void BtnTools_Click(object sender, RoutedEventArgs e)
         {
             new SubWindows.ExtraToolsWindow().ShowDialog();
+        }
+
+        private void BtnStartGame_Click(object sender, RoutedEventArgs e)
+        {
+            Tools.ProcessTools.StartProcess($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina.exe");
+            if (DM.Config.config.isLogPlusMod)
+            {
+                if (File.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt"))
+                    File.WriteAllText($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt", "");
+                if (File.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt"))
+                    File.WriteAllText($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt", "");
+
+                new SubWindows.ExtraLogWindow().Show();
+            }
         }
         #endregion
 

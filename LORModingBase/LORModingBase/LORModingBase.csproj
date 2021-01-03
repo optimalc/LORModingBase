@@ -386,5 +386,8 @@
   <ItemGroup>
     <Resource Include="Resources\BtnTools.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnStartGame.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

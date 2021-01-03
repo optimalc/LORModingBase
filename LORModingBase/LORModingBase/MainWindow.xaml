@@ -34,14 +34,28 @@
             </Grid>
             <Grid Grid.Column="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="65*"/>
+                    <ColumnDefinition Width="58*"/>
+                    <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="7*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="BtnOpenBaseFolder" Grid.Column="1" ToolTip="기반모드의 모드 설치 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnOpenBaseFolder_Click">
+                <Button x:Name="BtnStartGame" Grid.Column="1" ToolTip="게임을 시작시킵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnStartGame_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="./Resources/BtnStartGame.png" />
+                    </Button.Background>
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="15" ScaleY="15"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-27" Y="-30"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <Button x:Name="BtnOpenBaseFolder" Grid.Column="2" ToolTip="기반모드의 모드 설치 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnOpenBaseFolder_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnOpenBaseFolder.png" />
                     </Button.Background>
@@ -50,11 +64,11 @@
                             <ScaleTransform ScaleX="15" ScaleY="15"/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-21"/>
+                            <TranslateTransform X="-27" Y="-30"/>
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="BtnOpenExportFolder" Grid.Column="2" ToolTip="프로그램이 생성된 모드 폴더를 내보내는 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnOpenExportFolder_Click">
+                <Button x:Name="BtnOpenExportFolder" Grid.Column="3" ToolTip="프로그램이 생성된 모드 폴더를 내보내는 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnOpenExportFolder_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnOpenExportFolder.png" />
                     </Button.Background>
@@ -63,11 +77,11 @@
                             <ScaleTransform ScaleX="15" ScaleY="15"/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-21"/>
+                            <TranslateTransform X="-27" Y="-30"/>
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="BtnExtURL" Grid.Column="3" ToolTip="툴과 관련된 외부 URL로 이동합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnExtURL_Click">
+                <Button x:Name="BtnExtURL" Grid.Column="4" ToolTip="툴과 관련된 외부 URL로 이동합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnExtURL_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnExtURL.png" />
                     </Button.Background>
@@ -76,11 +90,11 @@
                             <ScaleTransform ScaleX="15" ScaleY="15"/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-21"/>
+                            <TranslateTransform X="-27" Y="-30"/>
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="BtnTools" Grid.Column="4" ToolTip="이 프로그램이 제공하는 추가적인 기능을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnTools_Click">
+                <Button x:Name="BtnTools" Grid.Column="5" ToolTip="이 프로그램이 제공하는 추가적인 기능을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnTools_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnTools.png" />
                     </Button.Background>
@@ -89,11 +103,11 @@
                             <ScaleTransform ScaleX="15" ScaleY="15"/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-21"/>
+                            <TranslateTransform X="-27" Y="-30"/>
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="BtnConfig" Grid.Column="5" ToolTip="프로그램 설정을 변경합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnConfig_Click">
+                <Button x:Name="BtnConfig" Grid.Column="6" ToolTip="프로그램 설정을 변경합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnConfig_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnConfig.png" />
                     </Button.Background>
@@ -102,7 +116,7 @@
                             <ScaleTransform ScaleX="15" ScaleY="15"/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-21"/>
+                            <TranslateTransform X="-27" Y="-30"/>
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
