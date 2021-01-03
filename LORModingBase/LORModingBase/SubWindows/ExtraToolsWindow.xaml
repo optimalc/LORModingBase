@@ -14,7 +14,8 @@
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
-                <RowDefinition Height="80*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="60*"/>
             </Grid.RowDefinitions>
             <Grid.Background>
                 <ImageBrush ImageSource="../Resources/MainBg.png"/>
@@ -36,6 +37,26 @@
                 <Grid Grid.Column="1">
                     <Rectangle RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
                     <Button x:Name="BtnExecuteDebugRedirect" Grid.Column="0" Content="[실행]" ToolTip="이 툴을 실행시킵니다" Style="{StaticResource StyBtnMenu}" Click="BtnExecuteDebugRedirect_Click"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="30*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="※ 로그파일 내용 관리 기능 활성화" Style="{StaticResource StyLbl}" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="1" Content="게임 자동실행시 로그 파일이 자동으로 초기화되고 관련 내용을 실시간으로 출력시키는 창을 띄웁니다" Style="{StaticResource StyLbl}" HorizontalAlignment="Left" FontSize="16"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Rectangle RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+                    <CheckBox x:Name="CbxIsLogPlusMod" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                          ToolTip="체크를 하면 로그파일이 프로그램에서 관리됩니다" Click="CbxIsLogPlusMod_Click"/>
                 </Grid>
             </Grid>
         </Grid>

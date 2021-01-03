@@ -23,6 +23,7 @@ namespace LORModingBase.SubWindows
         public ExtraToolsWindow()
         {
             InitializeComponent();
+            UpdateUI();
         }
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
@@ -54,6 +55,19 @@ namespace LORModingBase.SubWindows
             {
                 MessageBox.Show($"툴 적용 과정에서 오류가 발생했습니다 : {ex.Message}", "툴 적용 오류", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void UpdateUI()
+        {
+            CbxIsLogPlusMod.IsChecked = DM.Config.config.isLogPlusMod;
+        }
+
+        private void CbxIsLogPlusMod_Click(object sender, RoutedEventArgs e)
+        {
+            DM.Config.config.isLogPlusMod = (bool)CbxIsLogPlusMod.IsChecked;
+            DM.Config.SaveData();
+
+            UpdateUI();
         }
     }
 }

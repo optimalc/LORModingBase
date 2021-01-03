@@ -81,7 +81,18 @@ namespace LORModingBase
                 Tools.ProcessTools.OpenExplorer(MOD_DIR_TO_USE);
 
                 if (DM.Config.config.isExecuteAfterExport)
+                {
                     Tools.ProcessTools.StartProcess($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina.exe");
+                    if(DM.Config.config.isLogPlusMod)
+                    {
+                        if (File.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt"))
+                            File.WriteAllText($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt", "");
+                        if (File.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt"))
+                            File.WriteAllText($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt", "");
+
+                        new SubWindows.ExtraLogWindow().Show();
+                    }
+                }
             }
             catch (Exception ex)
             {

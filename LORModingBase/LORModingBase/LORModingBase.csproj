@@ -77,6 +77,9 @@
     <Compile Include="SubWindows\ExtraToolsWindow.xaml.cs">
       <DependentUpon>ExtraToolsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\ExtraLogWindow.xaml.cs">
+      <DependentUpon>ExtraLogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\ToEXTUrl.xaml.cs">
       <DependentUpon>ToEXTUrl.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,7 @@
     <Compile Include="Tools\JsonFile.cs" />
     <Compile Include="Tools\MathTools.cs" />
     <Compile Include="Tools\ProcessTools.cs" />
+    <Compile Include="Tools\ThreadTools.cs" />
     <Compile Include="Tools\XmlFile.cs" />
     <Compile Include="UC\EditCard.xaml.cs">
       <DependentUpon>EditCard.xaml</DependentUpon>
@@ -162,6 +166,10 @@
     <Page Include="SubWindows\ExtraToolsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubWindows\ExtraLogWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\ToEXTUrl.xaml">
       <Generator>MSBuild:Compile</Generator>

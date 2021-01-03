@@ -13,5 +13,7 @@
         public bool isDirectBaseModeExport = false;
 
         public bool isExecuteAfterExport = false;
+
+        public bool isLogPlusMod = false;
     }
 }
