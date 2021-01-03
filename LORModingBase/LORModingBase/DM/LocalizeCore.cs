@@ -26,13 +26,31 @@ namespace LORModingBase.DM
             Directory.GetDirectories(DS.PATH.LOCAIZE_DIC).ToList().ForEach((string localizeDic) =>
             {
                 string LOCALIZE_FORDER_KEY = localizeDic.Split('\\').Last();
-                Dictionary<string, Dictionary<string, string>> locaizeDatas = new Dictionary<string, Dictionary<string, string>>();
-                Directory.GetFiles(localizeDic).ToList().ForEach((string filePath) =>
+
+                if (DM.Config.config.localizeOption == LOCALIZE_FORDER_KEY)
                 {
-                    string LOCALIZE_FILE_KEY = filePath.Split('\\').Last().Split('.')[0];
-                    locaizeDatas[LOCALIZE_FILE_KEY] = Tools.JsonFile.LoadJsonFile<Dictionary<string, string>>(filePath);
-                });
-                localizedData[LOCALIZE_FORDER_KEY] = locaizeDatas;
+                    Dictionary<string, Dictionary<string, string>> locaizeDatas = new Dictionary<string, Dictionary<string, string>>();
+                    Directory.GetFiles(localizeDic).ToList().ForEach((string filePath) =>
+                    {
+                        string LOCALIZE_FILE_KEY = filePath.Split('\\').Last().Split('.')[0];
+                        locaizeDatas[LOCALIZE_FILE_KEY] = Tools.JsonFile.LoadJsonFile<Dictionary<string, string>>(filePath);
+                    });
+                    localizedData[LOCALIZE_FORDER_KEY] = locaizeDatas;
+                }
+                else
+                {
+                    string LANGUAGE_FILE = $"{localizeDic}\\{LANGUAGE_FILE_NAME.OPTION}.json";
+                    if(File.Exists(LANGUAGE_FILE))
+                    {
+                        Dictionary<string,string> OPTION_DATAS = Tools.JsonFile.LoadJsonFile<Dictionary<string, string>>(LANGUAGE_FILE);
+                        if(OPTION_DATAS.ContainsKey("language"))
+                        {
+                            Dictionary<string, Dictionary<string, string>> locaizeDatas = new Dictionary<string, Dictionary<string, string>>();
+                            locaizeDatas[LANGUAGE_FILE_NAME.OPTION] = new Dictionary<string, string>() { { "language",OPTION_DATAS["language"] } };
+                            localizedData[LOCALIZE_FORDER_KEY] = locaizeDatas;
+                        }
+                    }
+                }
             });
         }
 
