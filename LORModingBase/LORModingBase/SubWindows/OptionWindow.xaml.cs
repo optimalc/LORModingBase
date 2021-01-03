@@ -37,6 +37,8 @@ namespace LORModingBase.SubWindows
                 LblBaseModeResource.Content = "O";
                 LblBaseModeResource.ToolTip = "리소스가 정상적으로 발견되었습니다";
             }
+
+            CbxDirectBaseModeExport.IsChecked = DM.Config.config.isDirectBaseModeExport;
         }
         #endregion
 
@@ -64,6 +66,12 @@ namespace LORModingBase.SubWindows
                     MessageBox.Show(ex.Message, "변경된 경로를 반영하는 과정에서 오류", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
+        }
+
+        private void CbxDirectBaseModeExport_Click(object sender, RoutedEventArgs e)
+        {
+            DM.Config.config.isDirectBaseModeExport = (bool)CbxDirectBaseModeExport.IsChecked;
+            InitSettingUIs();
         }
     }
 }

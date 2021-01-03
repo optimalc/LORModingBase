@@ -9,5 +9,7 @@
         /// Library Of Lunia folder path
         /// </summary>
         public string LORFolderPath = "";
+
+        public bool isDirectBaseModeExport = false;
     }
 }

@@ -42,6 +42,15 @@
                 <Label Grid.Column="0" Content="&lt; 기반모드 리소스 인식 여부 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <Label x:Name="LblBaseModeResource" Grid.Column="1" Content="O" FontSize="15"  Style="{StaticResource StyLbl}"/>
             </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="&lt; 기반모드 폴더로 결과 내보내기 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <CheckBox x:Name="CbxDirectBaseModeExport" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="CbxDirectBaseModeExport_Click"/>
+            </Grid>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.Background>
