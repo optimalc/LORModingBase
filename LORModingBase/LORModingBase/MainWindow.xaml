@@ -34,7 +34,8 @@
             </Grid>
             <Grid Grid.Column="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="72*"/>
+                    <ColumnDefinition Width="65*"/>
+                    <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="7*"/>
@@ -79,7 +80,20 @@
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="BtnConfig" Grid.Column="4" ToolTip="프로그램 설정을 변경합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnConfig_Click">
+                <Button x:Name="BtnTools" Grid.Column="4" ToolTip="이 프로그램이 제공하는 추가적인 기능을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnTools_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="./Resources/BtnTools.png" />
+                    </Button.Background>
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="15" ScaleY="15"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-27" Y="-21"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <Button x:Name="BtnConfig" Grid.Column="5" ToolTip="프로그램 설정을 변경합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnConfig_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnConfig.png" />
                     </Button.Background>

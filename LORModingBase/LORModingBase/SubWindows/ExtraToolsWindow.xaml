@@ -1,0 +1,49 @@
+﻿<Window x:Class="LORModingBase.SubWindows.ExtraToolsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LORModingBase.SubWindows"
+        mc:Ignorable="d"
+        Title="프로그램이 제공하는 추가적인 기능들" Height="480" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="80*"/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="../Resources/MainBg.png"/>
+            </Grid.Background>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="30*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="※ 매우 상세한 디버깅을 위한 게임 로그데이터 리다이렉트" Style="{StaticResource StyLbl}" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="1" Content="내부적인 로그데이터가 기반모드의 BaseModes디렉토리에 파일로 출력되도록 만들어서 디버깅 효율을 상승시킵니다" Style="{StaticResource StyLbl}" HorizontalAlignment="Left" FontSize="16"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Rectangle RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+                    <Button x:Name="BtnExecuteDebugRedirect" Grid.Column="0" Content="[실행]" ToolTip="이 툴을 실행시킵니다" Style="{StaticResource StyBtnMenu}" Click="BtnExecuteDebugRedirect_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="../Resources/MenuBg.png"/>
+            </Grid.Background>
+            <Button x:Name="BtnOk" Grid.Column="1" Content="[닫기]" ToolTip="창을 닫습니다" Style="{StaticResource StyBtnMenu}" Click="BtnOk_Click"/>
+        </Grid>
+    </Grid>
+</Window>

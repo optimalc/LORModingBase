@@ -64,5 +64,7 @@ namespace LORModingBase.DS
         /// Xml base for Card drop table
         /// </summary>
         public static string RESOURCE_XML_BASE_CARD_DROP_TABLE = $"{DIC_RESURCE}\\CardDropTable.txt";
+
+        public static string RESOURCE_UNITY_ENGINE_DEBUG = $"{DIC_RESURCE}\\UnityEngine.dll";
     }
 }

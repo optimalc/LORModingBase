@@ -74,6 +74,9 @@
     <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\LongDescription.cs" />
     <Compile Include="DS\PATH.cs" />
+    <Compile Include="SubWindows\ExtraToolsWindow.xaml.cs">
+      <DependentUpon>ExtraToolsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\ToEXTUrl.xaml.cs">
       <DependentUpon>ToEXTUrl.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SubWindows\ExtraToolsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SubWindows\ToEXTUrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -367,6 +374,9 @@
   <ItemGroup>
     <Resource Include="Resources\BtnOpenBaseFolder.png" />
     <Resource Include="Resources\BtnOpenExportFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnTools.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

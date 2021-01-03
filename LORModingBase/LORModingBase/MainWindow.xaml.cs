@@ -129,6 +129,11 @@ namespace LORModingBase
             if (Directory.Exists($"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes"))
                 Tools.ProcessTools.OpenExplorer($"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes");
         }
+
+        private void BtnTools_Click(object sender, RoutedEventArgs e)
+        {
+            new SubWindows.ExtraToolsWindow().ShowDialog();
+        }
         #endregion
 
         #region Top Second menu click event
