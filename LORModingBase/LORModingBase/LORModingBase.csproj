@@ -83,6 +83,9 @@
     <Compile Include="SubWindows\InputExtraDataForCardWindow.xaml.cs">
       <DependentUpon>InputExtraDataForCardWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\OptionWindow.xaml.cs">
+      <DependentUpon>OptionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputGameCard.xaml.cs">
       <DependentUpon>InputGameCard.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\InputExtraDataForCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="SubWindows\OptionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -343,6 +350,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\TypeETC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnConfig.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

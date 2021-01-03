@@ -54,54 +54,18 @@ namespace LORModingBase
             {
                 DM.Config.config.LORFolderPath = "";
                 DM.Config.SaveData();
-                LblLORPath.Content = "라오루 폴더 자동 인식 실패. 수동으로 설정해주세요";
-                LblLORPath.ToolTip = "라오루 폴더 자동 인식 실패. 수동으로 설정해주세요";
-                LblResourceCheck.Content = "X";
-                LblResourceCheck.ToolTip = "모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)";
                 throw new Exception("설정된 라오루 폴더가 존재하지 않거나 적절하지 않습니다. 수동 설정이 필요합니다");
-            }
-            else
-            {
-                LblLORPath.Content = DM.Config.config.LORFolderPath;
-                LblLORPath.ToolTip = DM.Config.config.LORFolderPath;
             }
             #endregion
             #region Check LOR mode resources
             if(!Directory.Exists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}"))
-            {
-                LblResourceCheck.Content = "X";
-                LblResourceCheck.ToolTip = "모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)";
                 throw new Exception("모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)");
-            }
-            else
-            {
-                LblResourceCheck.Content = "O";
-                LblResourceCheck.ToolTip = "리소스가 정상적으로 발견되었습니다";
-            }
             #endregion
             
             LoadDatas();
         }
         #endregion
         
-        #region Click events
-        private void BtnLORPath_Click(object sender, RoutedEventArgs e)
-        {
-            Tools.Dialog.SelectDirectory((string selectedDir) =>
-            {
-                try
-                {
-                    DM.Config.config.LORFolderPath = selectedDir;
-                    DM.Config.SaveData();
-                    InitLORPathResourceLabel();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "변경된 경로를 반영하는 과정에서 오류", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            });
-        }
-        #endregion
         #region Top menu button events
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -140,7 +104,13 @@ namespace LORModingBase
                 MessageBox.Show($"불러오는 도중 오류가 발생했습니다. : {ex.Message}", "불러오기 오류", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void BtnConfig_Click(object sender, RoutedEventArgs e)
+        {
+            new SubWindows.OptionWindow(InitLORPathResourceLabel).ShowDialog();
+        }
         #endregion
+
         #region Top Second menu click event
         private void HideAllGrid()
         {

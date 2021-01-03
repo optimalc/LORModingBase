@@ -34,17 +34,22 @@
             </Grid>
             <Grid Grid.Column="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="14*"/>
-                    <ColumnDefinition Width="20*"/>
-                    <ColumnDefinition Width="12*"/>
-                    <ColumnDefinition Width="15*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="93*"/>
+                    <ColumnDefinition Width="7*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="라오루 위치 : " Style="{StaticResource StyLbl}"/>
-                <Label x:Name="LblLORPath" Grid.Column="1" Content="NONE" HorizontalAlignment="Left" Style="{StaticResource StyLbl}"/>
-                <Button x:Name="BtnLORPath" Grid.Column="2" Content="[경로설정]" ToolTip="라오루 폴더를 지정합니다.&#x0a;폴더 경로는 보통 '...\Steam\steamapps\common\Library Of Ruina'입니다" Style="{StaticResource StyBtnMenu}" Click="BtnLORPath_Click"/>
-                <Label Grid.Column="3" Content="리소스 인식 :" Style="{StaticResource StyLbl}"/>
-                <Label x:Name="LblResourceCheck" Grid.Column="4" Content="X" Style="{StaticResource StyLbl}"/>
+                <Button x:Name="BtnConfig" Grid.Column="1" ToolTip="프로그램 설정을 변경합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnConfig_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="./Resources/BtnConfig.png" />
+                    </Button.Background>
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="15" ScaleY="15"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-25" Y="-25"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
