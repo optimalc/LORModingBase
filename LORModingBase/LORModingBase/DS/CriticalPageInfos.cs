@@ -136,7 +136,7 @@ namespace LORModingBase.DS
         /// <summary>
         /// 책장의 이야기
         /// </summary>
-        public string description = "입력된 정보가 없습니다";
+        public string description = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, "noDescription");
         /// <summary>
         /// 책장이 어느 책으로부터 나올지의 리스트
         /// </summary>

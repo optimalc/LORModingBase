@@ -10,11 +10,11 @@ namespace LORModingBase.SubWindows
     {
         Action<string> afterDesInputed = null;
 
-        public InputCriticalBookDescription(Action<string> afterDesInputed, string des = "입력된 정보가 없습니다")
+        public InputCriticalBookDescription(Action<string> afterDesInputed, string des = "")
         {
             InitializeComponent();
             this.afterDesInputed = afterDesInputed;
-            if(des != "입력된 정보가 없습니다")
+            if(des != DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, "noDescription"))
                 TbxDescription.Text = des;
         }
 

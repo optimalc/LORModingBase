@@ -59,7 +59,7 @@ namespace LORModingBase.UC
             #endregion
 
             #region 핵심책장 설명부분 UI 반영시키기
-            if (criticalPageInfo.description != "입력된 정보가 없습니다")
+            if (criticalPageInfo.description != DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, "noDescription"))
             {
                 BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
                 BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";

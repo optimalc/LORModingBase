@@ -111,5 +111,6 @@ namespace LORModingBase.DM
     {
         public static string OPTION = "option";
         public static string CARD_INFO = "cardInfo";
+        public static string BOOK_INFO = "bookInfo";
     }
 }

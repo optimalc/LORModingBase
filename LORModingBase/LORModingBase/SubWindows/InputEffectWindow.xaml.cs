@@ -82,9 +82,9 @@ namespace LORModingBase.SubWindows
                 {
                     string EFFECT_DES = $"{String.Join(" ", effectKeyPair.Value.ToArray())}:{effectKeyPair.Key}";
 
-                    if (isCardEffect && !EFFECT_DES.Contains("[사용시]"))
+                    if (isCardEffect && !EFFECT_DES.Contains($"[{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, "onUse")}]"))
                         continue;
-                    else if (!isCardEffect && EFFECT_DES.Contains("[사용시]"))
+                    else if (!isCardEffect && EFFECT_DES.Contains($"[{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, "onUse")}]"))
                         continue;
 
                     if (!string.IsNullOrEmpty(TbxSearch.Text) && !EFFECT_DES.ToLower().Replace(" ", "").Contains(TbxSearch.Text.ToLower().Replace(" ", ""))) continue;

@@ -138,25 +138,26 @@ namespace LORModingBase.DM
                 foreach (XmlNode bookNode in bookNodeList)
                 {
                     #region Add skin infos
-                    if (bookNode["CharacterSkin"] == null)
+                    if (bookNode["CharacterSkin"] == null || bookNode.Attributes["ID"] == null || bookNode["TextId"] == null)
                         continue;
                     if (string.IsNullOrEmpty(bookNode["CharacterSkin"].InnerText))
                         continue;
 
+                    XmlNode localizedBookDesc = booksDesNode.SelectSingleNode($"//BookDesc[@BookID='{bookNode["TextId"].InnerText}']");
+                    if (localizedBookDesc == null || localizedBookDesc["BookName"] == null)
+                        continue;
+
                     bookSkinInfos.Add(new DS.BookSkinInfo()
                     {
-                        skinDesc = (bookNode["Name"] == null) ? "" : bookNode["Name"].InnerText,
+                        skinDesc = localizedBookDesc["BookName"].InnerText,
                         skinName = bookNode["CharacterSkin"].InnerText,
                         chapter = (bookNode["Chapter"] == null) ? "" : bookNode["Chapter"].InnerText
                     });
                     #endregion
                     #region Add equiment load infos
                     DS.CriticalPageInfo criticalPageInfo = new DS.CriticalPageInfo();
-                    criticalPageInfo.bookID = (bookNode.Attributes["ID"] == null) ? "" : bookNode.Attributes["ID"].Value;
-                    if (string.IsNullOrEmpty(criticalPageInfo.bookID))
-                        continue;
-
-                    criticalPageInfo.name = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Name");
+                    criticalPageInfo.bookID = bookNode.Attributes["ID"].Value;
+                    criticalPageInfo.name = localizedBookDesc["BookName"].InnerText;
                     criticalPageInfo.rangeType = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "RangeType", "Nomal");
                     criticalPageInfo.rarity = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Rarity");
 
@@ -210,15 +211,9 @@ namespace LORModingBase.DM
                     }
 
                     #region Get description of ciritical page
-                    string BOOK_ID_DESC = criticalPageInfo.bookID;
-                    int BOOK_ID = Convert.ToInt32(criticalPageInfo.bookID);
-                    if (BOOK_ID > DS.FilterDatas.CRITICAL_PAGE_DIV_LIBRARION && BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_ENEMY)
-                        BOOK_ID_DESC = (BOOK_ID + 100000).ToString();
-
-                    XmlNode bookDescNode = booksDesNode.SelectSingleNode($"//BookDesc[@BookID='{BOOK_ID_DESC}']");
-                    if (bookDescNode != null)
+                    if (localizedBookDesc != null)
                     {
-                        XmlNodeList descNodes = bookDescNode.SelectNodes("TextList/Desc");
+                        XmlNodeList descNodes = localizedBookDesc.SelectNodes("TextList/Desc");
                         if (descNodes.Count > 0)
                         {
                             criticalPageInfo.description = "";
@@ -232,13 +227,13 @@ namespace LORModingBase.DM
                             criticalPageInfo.description = criticalPageInfo.description.Replace(". ", ". \n");
 
                             if(string.IsNullOrEmpty(criticalPageInfo.description))
-                                criticalPageInfo.description = "입력된 정보가 없습니다";
+                                criticalPageInfo.description = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, "noDescription");
                         }
                         else
-                            criticalPageInfo.description = "입력된 정보가 없습니다";
+                            criticalPageInfo.description = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, "noDescription");
                     }
                     else
-                        criticalPageInfo.description = "입력된 정보가 없습니다";
+                        criticalPageInfo.description = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, "noDescription");
                     #endregion
                     #region Get dropbook info of ciritical page
                     dropBookInfos.ForEach((DS.DropBookInfo dropBookInfo) =>
