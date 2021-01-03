@@ -110,5 +110,6 @@ namespace LORModingBase.DM
     public class LANGUAGE_FILE_NAME
     {
         public static string OPTION = "option";
+        public static string CARD_INFO = "cardInfo";
     }
 }

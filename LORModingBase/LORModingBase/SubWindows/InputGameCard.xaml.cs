@@ -85,7 +85,7 @@ namespace LORModingBase.SubWindows
                     else
                         extraInfo += "[기타 책장] ";
 
-                    string extraChpater = "챕터 없음";
+                    string extraChpater = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, "noChapter");
                     if (DS.GameInfo.chapter_Dic.ContainsKey(cardInfo.chapter))
                         extraChpater = DS.GameInfo.chapter_Dic[cardInfo.chapter];
 

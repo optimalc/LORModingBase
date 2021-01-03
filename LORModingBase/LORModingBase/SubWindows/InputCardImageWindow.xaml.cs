@@ -15,7 +15,7 @@ namespace LORModingBase.SubWindows
         List<string> ImageSearchType = new List<string>()
         {
             "모든 이미지명",
-            "챕터 없음",
+            DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, "noChapter"),
             "챕터 1 : 뜬소문",
             "챕터 2 : 도시 괴담",
             "챕터 3 : 도시 전설",

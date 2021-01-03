@@ -58,23 +58,30 @@ namespace LORModingBase.DM
         /// </summary>
         public static void LoadDatas_StageInfo()
         {
-            stageInfos.Clear();
+            stageInfos.Clear(); // C:\User\Programs\BasicPrograms\Steam\steamapps\common\Library Of Ruina\LibraryOfRuina_Data\Managed\BaseMod\Localize\en\StageName
             XmlNodeList stageNodeList = Tools.XmlFile.SelectNodeLists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\StageInfo\\StageInfo.txt",
                 "//Stage");
+            XmlNode stageNameNode = Tools.XmlFile.SelectSingleNode($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\{DM.Config.config.localizeOption}\\StageName\\_StageName.txt",
+              "//CharactersNameRoot");
 
             foreach (XmlNode stageNode in stageNodeList)
             {
                 if (stageNode.Attributes["id"] == null
                     || stageNode["Chapter"] == null
-                    || stageNode["Name"] == null)
+                    || string.IsNullOrEmpty(stageNode.Attributes["id"].Value))
                     continue;
 
-                stageInfos.Add(new DS.StageInfo()
+                XmlNode stageLocalizedNode = stageNameNode.SelectSingleNode($"Name[@ID='{stageNode.Attributes["id"].Value}']");
+                if(stageLocalizedNode != null 
+                    && !string.IsNullOrEmpty(stageLocalizedNode.InnerText))
                 {
-                    stageID = stageNode.Attributes["id"].Value,
-                    Chapter = stageNode["Chapter"].InnerText,
-                    stageDoc = stageNode["Name"].InnerText
-                });
+                    stageInfos.Add(new DS.StageInfo()
+                    {
+                        stageID = stageNode.Attributes["id"].Value,
+                        Chapter = stageNode["Chapter"].InnerText,
+                        stageDoc = stageLocalizedNode.InnerText
+                    });
+                }
             }
         }
 
@@ -465,7 +472,7 @@ namespace LORModingBase.DM
                     cardInfo.option = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Option");
                     cardInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Chapter", "1");
 
-                    string chapterDes = "챕터 없음";
+                    string chapterDes = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, "noChapter");
                     if (DS.GameInfo.chapter_Dic.ContainsKey(cardInfo.chapter))
                         chapterDes = DS.GameInfo.chapter_Dic[cardInfo.chapter];
 
@@ -504,6 +511,9 @@ namespace LORModingBase.DM
             #endregion
         }
 
+        /// <summary>
+        /// Load localized card effects
+        /// </summary>
         public static void LoadData_CardEffect()
         {
             cardEffectDic.Clear();
@@ -511,19 +521,22 @@ namespace LORModingBase.DM
             XmlNodeList battleCardAbilityNodes = Tools.XmlFile.SelectNodeLists(battleCardEffectPath, "//BattleCardAbility");
             foreach (XmlNode battleCardAbilityNode in battleCardAbilityNodes)
             {
-                if (battleCardAbilityNode.Attributes["ID"] == null )
+                #region ID Check
+                if (battleCardAbilityNode.Attributes["ID"] == null)
                     continue;
                 if (string.IsNullOrEmpty(battleCardAbilityNode.Attributes["ID"].Value))
-                    continue;
+                    continue; 
+                #endregion
 
                 List<string> desc = new List<string>();
+                #region Make loalized description
                 XmlNodeList descNodes = battleCardAbilityNode.SelectNodes("Desc");
                 foreach (XmlNode descNode in descNodes)
                 {
                     if (!string.IsNullOrEmpty(descNode.InnerText))
                         desc.Add(descNode.InnerText);
-                }
-
+                } 
+                #endregion
                 cardEffectDic[battleCardAbilityNode.Attributes["ID"].Value] = desc;
             }
         }

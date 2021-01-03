@@ -60,7 +60,7 @@ namespace LORModingBase.SubWindows
                 foreach (DS.CriticalPageInfo criticalPageInfo in DM.StaticInfos.gameCriticalPageInfos)
                 {
                     string extraInfo = "";
-                    string extraChpater = "챕터 없음";
+                    string extraChpater = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, "noChapter");
 
                     int BOOK_ID = Convert.ToInt32(criticalPageInfo.bookID);
                     if (BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_LIBRARION)
