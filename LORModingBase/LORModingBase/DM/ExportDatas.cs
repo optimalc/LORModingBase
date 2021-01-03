@@ -21,7 +21,11 @@ namespace LORModingBase.DM
         /// <param name="modeDicName"></param>
         public static string ExportAllDatas(string modeDicName)
         {
-            MDOE_DIR_TO_USE = $"{DS.PATH.DIC_EXPORT_DATAS}\\{modeDicName}";
+            if(DM.Config.config.isDirectBaseModeExport)
+                MDOE_DIR_TO_USE = $"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\{modeDicName}";
+            else
+                MDOE_DIR_TO_USE = $"{DS.PATH.DIC_EXPORT_DATAS}\\{modeDicName}";
+
             if (Directory.Exists(MDOE_DIR_TO_USE))
                 Directory.Delete(MDOE_DIR_TO_USE, true);
 
