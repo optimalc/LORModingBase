@@ -109,6 +109,11 @@ namespace LORModingBase
         {
             new SubWindows.OptionWindow(InitLORPathResourceLabel).ShowDialog();
         }
+
+        private void BtnExtURL_Click(object sender, RoutedEventArgs e)
+        {
+            new SubWindows.ToEXTUrl().ShowDialog();
+        }
         #endregion
 
         #region Top Second menu click event

@@ -34,10 +34,24 @@
             </Grid>
             <Grid Grid.Column="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="93*"/>
+                    <ColumnDefinition Width="86*"/>
+                    <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="7*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="BtnConfig" Grid.Column="1" ToolTip="프로그램 설정을 변경합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnConfig_Click">
+                <Button x:Name="BtnExtURL" Grid.Column="1" ToolTip="툴과 관련된 외부 URL로 이동합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnExtURL_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="./Resources/BtnExtURL.png" />
+                    </Button.Background>
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="15" ScaleY="15"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-27" Y="-21"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <Button x:Name="BtnConfig" Grid.Column="2" ToolTip="프로그램 설정을 변경합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnConfig_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnConfig.png" />
                     </Button.Background>
@@ -46,7 +60,7 @@
                             <ScaleTransform ScaleX="15" ScaleY="15"/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform X="-25" Y="-25"/>
+                            <TranslateTransform X="-27" Y="-21"/>
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
