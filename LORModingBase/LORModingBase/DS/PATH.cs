@@ -18,6 +18,10 @@ namespace LORModingBase.DS
         /// </summary>
         public const string CONFIG = "./config.json";
         /// <summary>
+        /// Locaize dictionary
+        /// </summary>
+        public const string LOCAIZE_DIC = ".\\localize";
+        /// <summary>
         /// Version info file
         /// </summary>
         public const string VERSION = "./version.txt";

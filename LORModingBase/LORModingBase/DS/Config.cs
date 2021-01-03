@@ -15,5 +15,7 @@
         public bool isExecuteAfterExport = false;
 
         public bool isLogPlusMod = false;
+
+        public string localizeOption = "kr";
     }
 }

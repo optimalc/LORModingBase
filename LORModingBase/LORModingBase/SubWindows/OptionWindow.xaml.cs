@@ -40,6 +40,8 @@ namespace LORModingBase.SubWindows
 
             CbxDirectBaseModeExport.IsChecked = DM.Config.config.isDirectBaseModeExport;
             CbxExecuteAfterExport.IsChecked = DM.Config.config.isExecuteAfterExport;
+
+            TbxProgramLanguage.Text = DM.LocalizeCore.GetLocalizeOption()[DM.Config.config.localizeOption];
         }
         #endregion
 
@@ -79,6 +81,25 @@ namespace LORModingBase.SubWindows
         {
             DM.Config.config.isExecuteAfterExport = (bool)CbxExecuteAfterExport.IsChecked;
             InitSettingUIs();
+        }
+
+        private void TbxProgramLanguage_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            new SubWindows.InputLanguageWindow((string languageName) =>
+            {
+                try
+                {
+                    DM.Config.config.localizeOption = DM.LocalizeCore.GetLocalizeOptionRev()[languageName];
+                    DM.Config.SaveData();
+
+                    System.Windows.Forms.Application.Restart();
+                    System.Windows.Application.Current.Shutdown();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "변경된 경로를 반영하는 과정에서 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }).ShowDialog();
         }
     }
 }

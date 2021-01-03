@@ -18,6 +18,8 @@ namespace LORModingBase
 
             try
             {
+                DM.LocalizeCore.LoadAllDatas();
+
                 InitLORPathResourceLabel();
                 InitSplCriticalPage();
                 InitSplCards();
