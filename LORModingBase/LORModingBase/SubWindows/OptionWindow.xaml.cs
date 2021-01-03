@@ -39,6 +39,7 @@ namespace LORModingBase.SubWindows
             }
 
             CbxDirectBaseModeExport.IsChecked = DM.Config.config.isDirectBaseModeExport;
+            CbxExecuteAfterExport.IsChecked = DM.Config.config.isExecuteAfterExport;
         }
         #endregion
 
@@ -71,6 +72,12 @@ namespace LORModingBase.SubWindows
         private void CbxDirectBaseModeExport_Click(object sender, RoutedEventArgs e)
         {
             DM.Config.config.isDirectBaseModeExport = (bool)CbxDirectBaseModeExport.IsChecked;
+            InitSettingUIs();
+        }
+
+        private void CbxExecuteAfterExport_Click(object sender, RoutedEventArgs e)
+        {
+            DM.Config.config.isExecuteAfterExport = (bool)CbxExecuteAfterExport.IsChecked;
             InitSettingUIs();
         }
     }

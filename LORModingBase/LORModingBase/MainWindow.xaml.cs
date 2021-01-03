@@ -79,6 +79,9 @@ namespace LORModingBase
 
                 MessageBox.Show("내보내기가 정상적으로 완료되었습니다.", "완료", MessageBoxButton.OK, MessageBoxImage.Information);
                 Tools.ProcessTools.OpenExplorer(MOD_DIR_TO_USE);
+
+                if (DM.Config.config.isExecuteAfterExport)
+                    Tools.ProcessTools.StartProcess($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina.exe");
             }
             catch (Exception ex)
             {

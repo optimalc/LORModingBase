@@ -31,5 +31,24 @@ namespace LORModingBase.Tools
         {
             Process.Start("explorer.exe", pathToLoc);
         }
+
+        /// <summary>
+        /// Start given process path
+        /// </summary>
+        /// <param name="pathToStart">Path to start</param>
+        public static void StartProcess(string pathToStart, string arg = "")
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(arg))
+                    Process.Start(pathToStart);
+                else
+                    Process.Start(pathToStart, $"\"{arg}\"");
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

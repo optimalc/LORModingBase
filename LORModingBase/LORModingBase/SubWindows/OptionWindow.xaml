@@ -52,6 +52,16 @@
                 <CheckBox x:Name="CbxDirectBaseModeExport" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="CbxDirectBaseModeExport_Click"
                           ToolTip="체크를 하면 해당 프로그램의 exportedModes 디렉토리가 아닌, 기반모드의 BaseModes 디렉토리로 바로 결과를 내보냅니다"/>
             </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="&lt; 내보내기 후 게임 자동 실행 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <CheckBox x:Name="CbxExecuteAfterExport" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                          ToolTip="체크를 하면 내보내기 후 게임을 자동으로 실행시킵니다" Click="CbxExecuteAfterExport_Click"/>
+            </Grid>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.Background>

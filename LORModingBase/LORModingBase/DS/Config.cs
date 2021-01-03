@@ -11,5 +11,7 @@
         public string LORFolderPath = "";
 
         public bool isDirectBaseModeExport = false;
+
+        public bool isExecuteAfterExport = false;
     }
 }
