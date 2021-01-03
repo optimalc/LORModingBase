@@ -114,6 +114,18 @@ namespace LORModingBase
         {
             new SubWindows.ToEXTUrl().ShowDialog();
         }
+
+        private void BtnOpenBaseFolder_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods"))
+                Tools.ProcessTools.OpenExplorer($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods");
+        }
+
+        private void BtnOpenExportFolder_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists($"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes"))
+                Tools.ProcessTools.OpenExplorer($"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes");
+        }
         #endregion
 
         #region Top Second menu click event
