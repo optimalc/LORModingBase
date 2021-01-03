@@ -36,7 +36,7 @@ namespace LORModingBase.DM
                 Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\EquipPage");
                 ExportDatas_CriticalPages();
 
-                Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\kr\\Books");
+                Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\{DM.Config.config.localizeOption}\\Books");
                 ExportDatas_CriticalPageDescription();
 
                 ExportDatas_DropBooks();
@@ -48,7 +48,7 @@ namespace LORModingBase.DM
                 Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\StaticInfo\\Card");
                 ExportDatas_CardInfos();
 
-                Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\kr\\BattlesCards");
+                Directory.CreateDirectory($"{MDOE_DIR_TO_USE}\\Localize\\{DM.Config.config.localizeOption}\\BattlesCards");
                 ExportDatas_CardInfosDescription();
 
                 ExportDatas_DropTables();
@@ -145,7 +145,7 @@ namespace LORModingBase.DM
         /// </summary>
         public static void ExportDatas_CriticalPageDescription()
         {
-            string BOOKS_PATH = $"{MDOE_DIR_TO_USE}\\Localize\\kr\\Books\\_Books.txt";
+            string BOOKS_PATH = $"{MDOE_DIR_TO_USE}\\Localize\\{DM.Config.config.localizeOption}\\Books\\_Books.txt";
             File.Copy(DS.PATH.RESOURCE_XML_BASE_BOOKS, BOOKS_PATH);
 
             XmlNode rootNode = Tools.XmlFile.SelectSingleNode(BOOKS_PATH, "//bookDescList");
@@ -375,7 +375,7 @@ namespace LORModingBase.DM
         
         public static void ExportDatas_CardInfosDescription()
         {
-            string CARDS_PATH = $"{MDOE_DIR_TO_USE}\\Localize\\kr\\BattlesCards\\BattlesCards.txt";
+            string CARDS_PATH = $"{MDOE_DIR_TO_USE}\\Localize\\{DM.Config.config.localizeOption}\\BattlesCards\\BattlesCards.txt";
             File.Copy(DS.PATH.RESOURCE_XML_BASE_BATTLE_CARDS, CARDS_PATH);
 
             XmlNode rootNode = Tools.XmlFile.SelectSingleNode(CARDS_PATH, "//cardDescList");

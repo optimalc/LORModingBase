@@ -113,7 +113,7 @@ namespace LORModingBase.DM
         /// </summary>
         public static void ImportDatas_CriticalPageDescription()
         {
-            string BOOKS_PATH = $"{TARGET_MODE_DIC}\\Localize\\kr\\Books\\_Books.txt";
+            string BOOKS_PATH = $"{TARGET_MODE_DIC}\\Localize\\{DM.Config.config.localizeOption}\\Books\\_Books.txt";
             if (!File.Exists(BOOKS_PATH))
                 return;
 
@@ -246,7 +246,7 @@ namespace LORModingBase.DM
         }
         public static void ImportData_Names()
         {
-            string BATTLE_CARDS_PATH = $"{TARGET_MODE_DIC}\\Localize\\kr\\BattlesCards\\BattlesCards.txt";
+            string BATTLE_CARDS_PATH = $"{TARGET_MODE_DIC}\\Localize\\{DM.Config.config.localizeOption}\\BattlesCards\\BattlesCards.txt";
             if (!File.Exists(BATTLE_CARDS_PATH))
                 return;
 

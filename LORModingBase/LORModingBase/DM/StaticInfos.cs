@@ -85,7 +85,7 @@ namespace LORModingBase.DM
         {
             #region Load book icon infos
             dropBookInfos.Clear();
-            string dropBookInfoPath = $"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\etc\\KR_Dropbook.txt";
+            string dropBookInfoPath = $"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\{DM.Config.config.localizeOption}\\etc\\{DM.Config.config.localizeOption.ToUpper()}_Dropbook.txt";
             Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\DropBook").ToList().ForEach((string dropBookPath) =>
             {
                 XmlNodeList bookUseNodeList = Tools.XmlFile.SelectNodeLists(dropBookPath, "//BookUse");
@@ -123,7 +123,7 @@ namespace LORModingBase.DM
             bookSkinInfos.Clear();
             gameCriticalPageInfos.Clear();
 
-            XmlNode booksDesNode = Tools.XmlFile.SelectSingleNode($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\Books\\_Books.txt", "//bookDescList");
+            XmlNode booksDesNode = Tools.XmlFile.SelectSingleNode($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\{DM.Config.config.localizeOption}\\Books\\_Books.txt", "//bookDescList");
             Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}\\EquipPage").ToList().ForEach((string eqPath) =>
             {
                 XmlNodeList bookNodeList = Tools.XmlFile.SelectNodeLists(eqPath, "//Book");
@@ -257,7 +257,7 @@ namespace LORModingBase.DM
             passiveInfos.Clear();
             passiveList.Clear();
 
-            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\PassiveDesc").ToList().ForEach((string pvPath) =>
+            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\{DM.Config.config.localizeOption}\\PassiveDesc").ToList().ForEach((string pvPath) =>
             {
                 XmlNodeList passiveDescNodeList = Tools.XmlFile.SelectNodeLists(pvPath, "//PassiveDesc");
 
@@ -427,7 +427,7 @@ namespace LORModingBase.DM
         {
             #region Make localized dictionary list
             gameCardLocalized.Clear();
-            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\BattlesCards").ToList().ForEach((string battleCardsInfo) =>
+            Directory.GetFiles($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\{DM.Config.config.localizeOption}\\BattlesCards").ToList().ForEach((string battleCardsInfo) =>
             {
                 XmlNodeList battleCardsDesc = Tools.XmlFile.SelectNodeLists(battleCardsInfo, "//BattleCardDesc");
                 foreach (XmlNode battleCardDesc in battleCardsDesc)
@@ -507,7 +507,7 @@ namespace LORModingBase.DM
         public static void LoadData_CardEffect()
         {
             cardEffectDic.Clear();
-            string battleCardEffectPath = $"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\kr\\BattleCardAbilities\\BattleCardAbilities.txt";
+            string battleCardEffectPath = $"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE}\\{DM.Config.config.localizeOption}\\BattleCardAbilities\\BattleCardAbilities.txt";
             XmlNodeList battleCardAbilityNodes = Tools.XmlFile.SelectNodeLists(battleCardEffectPath, "//BattleCardAbility");
             foreach (XmlNode battleCardAbilityNode in battleCardAbilityNodes)
             {
