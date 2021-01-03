@@ -17,6 +17,7 @@ namespace LORModingBase.SubWindows
         public OptionWindow(Action initResourceFunc)
         {
             InitializeComponent();
+            this.DataContext = DM.LocalizeCore.GetLanguageDictionary(DM.LANGUAGE_FILE_NAME.OPTION);
             this.initResourceFunc = initResourceFunc;
 
             InitSettingUIs();

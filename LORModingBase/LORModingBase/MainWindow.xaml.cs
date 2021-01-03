@@ -18,8 +18,6 @@ namespace LORModingBase
 
             try
             {
-                DM.LocalizeCore.LoadAllDatas();
-
                 InitLORPathResourceLabel();
                 InitSplCriticalPage();
                 InitSplCards();
@@ -50,6 +48,8 @@ namespace LORModingBase
         private void InitLORPathResourceLabel()
         {
             DM.Config.LoadData();
+            DM.LocalizeCore.LoadAllDatas();
+
             #region Check LOR folder exists. If exists, init LblLORPath
             if (!Directory.Exists(DM.Config.config.LORFolderPath) || !Directory.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data") 
                 || string.IsNullOrEmpty(DM.Config.config.LORFolderPath))

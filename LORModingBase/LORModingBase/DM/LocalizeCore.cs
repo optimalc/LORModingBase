@@ -92,6 +92,16 @@ namespace LORModingBase.DM
         {
             return localizedData[DM.Config.config.localizeOption][LANGUAGE_FILE_NAME][keyName];
         }
+    
+        /// <summary>
+        /// Get language dictionary for specific file name
+        /// </summary>
+        /// <param name="LANGUAGE_FILE_NAME">Language name to use</param>
+        /// <returns></returns>
+        public static Dictionary<string, string> GetLanguageDictionary(string LANGUAGE_FILE_NAME)
+        {
+            return localizedData[DM.Config.config.localizeOption][LANGUAGE_FILE_NAME];
+        }
     }
 
     /// <summary>
