@@ -19,6 +19,7 @@ namespace LORModingBase.SubWindows
                 listItems.Add("메인 홈페이지>https://gall.dcinside.com/mgallery/board/view/?id=lobotomycorporation&no=464908&search_head=110&page=1");
                 listItems.Add("공식 가이드 1 - 핵심책장 편집 메뉴 활용>https://gall.dcinside.com/mgallery/board/view/?id=lobotomycorporation&no=467819");
                 listItems.Add("공식 가이드 2 - 전투책장 편집 메뉴 활용>https://gall.dcinside.com/mgallery/board/view/?id=lobotomycorporation&no=470793");
+                listItems.Add("공식 가이드 3 - 추가로 제공되는 툴의 활용>https://gall.dcinside.com/mgallery/board/view/?id=lobotomycorporation&no=471213");
             }
 
             listItems.ForEach((string content) =>
