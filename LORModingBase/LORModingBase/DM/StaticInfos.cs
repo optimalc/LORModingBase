@@ -213,16 +213,25 @@ namespace LORModingBase.DM
                     {
                         XmlNodeList descNodes = bookDescNode.SelectNodes("TextList/Desc");
                         if (descNodes.Count > 0)
+                        {
                             criticalPageInfo.description = "";
 
-                        for (int descNodeIndex = 0; descNodeIndex < descNodes.Count; descNodeIndex++)
-                        {
-                            if (descNodeIndex > 0)
-                                criticalPageInfo.description += "\r\n\r\n";
-                            criticalPageInfo.description += descNodes[descNodeIndex].InnerText;
+                            for (int descNodeIndex = 0; descNodeIndex < descNodes.Count; descNodeIndex++)
+                            {
+                                if (descNodeIndex > 0)
+                                    criticalPageInfo.description += "\r\n\r\n";
+                                criticalPageInfo.description += descNodes[descNodeIndex].InnerText;
+                            }
+                            criticalPageInfo.description = criticalPageInfo.description.Replace(". ", ". \n");
+
+                            if(string.IsNullOrEmpty(criticalPageInfo.description))
+                                criticalPageInfo.description = "입력된 정보가 없습니다";
                         }
-                        criticalPageInfo.description = criticalPageInfo.description.Replace(". ", ". \n");
+                        else
+                            criticalPageInfo.description = "입력된 정보가 없습니다";
                     }
+                    else
+                        criticalPageInfo.description = "입력된 정보가 없습니다";
                     #endregion
                     #region Get dropbook info of ciritical page
                     dropBookInfos.ForEach((DS.DropBookInfo dropBookInfo) =>
