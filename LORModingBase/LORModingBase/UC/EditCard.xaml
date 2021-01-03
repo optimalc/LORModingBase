@@ -140,7 +140,7 @@
                     <ImageBrush ImageSource="../Resources/TypeNomal.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnUnqueType" Grid.Row="3"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 고유 책장의 여부를 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" Click="BtnUnqueType_Click">
+            <Button x:Name="BtnUnqueType" Grid.Row="3"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 책장의 추가 옵션을 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" Click="BtnUnqueType_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>

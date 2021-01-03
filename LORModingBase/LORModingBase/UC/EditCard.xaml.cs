@@ -232,11 +232,17 @@ namespace LORModingBase.UC
         {
             switch (innerCardInfo.option)
             {
+                case "":
+                    innerCardInfo.option = "OnlyPage";
+                    break;
                 case "OnlyPage":
-                    innerCardInfo.option = "";
+                    innerCardInfo.option = "Basic";
+                    break;
+                case "Basic":
+                    innerCardInfo.option = "EGO";
                     break;
                 default:
-                    innerCardInfo.option = "OnlyPage";
+                    innerCardInfo.option = "";
                     break;
             }
             UpdateUniqueTypeUI();
@@ -246,13 +252,34 @@ namespace LORModingBase.UC
         {
             switch (innerCardInfo.option)
             {
+                case "":
+                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : 일반 책장)\n특수한 속성이 없습니다";
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNotUniquePage.png");
+                    break;
                 case "OnlyPage":
-                    BtnUnqueType.ToolTip = "클릭시 고유 책장의 여부를 변경합니다. (현재 : 고유 책장)";
+                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : 고유 책장)\n특정 핵심 책장만 착용이 가능합니다";
                     BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeUniquePage.png");
                     break;
+                case "Basic":
+                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : 기본 책장)\n기본적으로 포함되며, 무제한으로 사용할 수 있습니다.";
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeBasic.png");
+                    break;
+                case "EGO":
+                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : EGO 책장)\nEGO 책장이 가지는 고유한 옵션입니다";
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeEGO.png");
+                    break;
+
+                case "Personal":
+                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : Personal)\n분류되지 않음 - 보라 눈물 책장에서 주로 사용되는 옵션";
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeETC.png");
+                    break;
+                case "NoInventory":
+                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : NoInventory)\n분류되지 않음 - 비나 책장에서 주로 사용되는 옵션";
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeETC.png");
+                    break;
                 default:
-                    BtnUnqueType.ToolTip = "클릭시 고유 책장의 여부를 변경합니다. (현재 : 일반 책장)";
-                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNotUniquePage.png");
+                    BtnUnqueType.ToolTip = $"클릭시 책장의 추가 옵션을 변경합니다. (현재 : {innerCardInfo.option})\n분류되지 않음";
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeETC.png");
                     break;
             }
         }

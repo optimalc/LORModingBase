@@ -337,5 +337,12 @@
     <Resource Include="Resources\iconPenetrate.png" />
     <Resource Include="Resources\iconSlash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TypeBasic.png" />
+    <Resource Include="Resources\TypeEGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TypeETC.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
