@@ -16,11 +16,12 @@ namespace LORModingBase
         public MainWindow()
         {
             InitializeComponent();
-            ButtonClickEvents(BtnCriticalPage, null);
+            MainWindowButtonClickEvents(BtnCriticalPage, null);
 
             try
             {
-                InitLORPathResourceLabel();
+                LoadAllRelatedDatasAfterChangePath();
+
                 Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.MAIN_WINDOW);
                 ExtraLocalizeWindow();
 
@@ -39,23 +40,9 @@ namespace LORModingBase
         }
 
         /// <summary>
-        /// Load config datas etc...
+        /// Load all related datas after path is changed
         /// </summary>
-        private void LoadDatas()
-        {
-            if(!Directory.Exists(DS.PROGRAM_PATHS.DIC_EXPORT_DATAS))
-                Directory.CreateDirectory(DS.PROGRAM_PATHS.DIC_EXPORT_DATAS);
-
-            if (File.Exists(DS.PROGRAM_PATHS.VERSION))
-                this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)}";
-
-            DM.GameInfos.LoadAllDatas();
-        }
-
-        /// <summary>
-        /// Reflect changed LOR path and load all static datas
-        /// </summary>
-        private void InitLORPathResourceLabel()
+        private void LoadAllRelatedDatasAfterChangePath()
         {
             DM.Config.LoadData();
             DM.LocalizeCore.LoadAllDatas();
@@ -73,12 +60,22 @@ namespace LORModingBase
             if(!Directory.Exists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}"))
                 throw new Exception("모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)");
             #endregion
-            
-            LoadDatas();
+
+            if (!Directory.Exists(DS.PROGRAM_PATHS.DIC_EXPORT_DATAS))
+                Directory.CreateDirectory(DS.PROGRAM_PATHS.DIC_EXPORT_DATAS);
+
+            if (File.Exists(DS.PROGRAM_PATHS.VERSION))
+                this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)}";
+
+            DM.GameInfos.LoadAllDatas();
         }
         #endregion
 
-        #region Top menu button events
+
+        #region Main window events
+        /// <summary>
+        /// Hide all main window menu grids
+        /// </summary>
         private void HideAllGrid()
         {
             GrdCriticalPage.Visibility = Visibility.Collapsed;
@@ -88,7 +85,10 @@ namespace LORModingBase
             BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
         }
 
-        private void ButtonClickEvents(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Main window button events
+        /// </summary>
+        private void MainWindowButtonClickEvents(object sender, RoutedEventArgs e)
         {
             Button clickButton = sender as Button;
             try
@@ -119,7 +119,7 @@ namespace LORModingBase
                             Tools.ProcessTools.OpenExplorer(MOD_DIR_TO_USE);
 
                             if (DM.Config.config.isExecuteAfterExport)
-                                BtnStartGame_Click(null, null);
+                                MainWindowButtonClickEvents(BtnStartGame, null);
                         }
                         catch (Exception ex)
                         {
@@ -144,55 +144,47 @@ namespace LORModingBase
                         }
                         break;
 
+                    case "BtnStartGame":
+                        Tools.ProcessTools.StartProcess($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina.exe");
+                        if (DM.Config.config.isLogPlusMod)
+                        {
+                            if (File.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt"))
+                                File.WriteAllText($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt", "");
+                            if (File.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt"))
+                                File.WriteAllText($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt", "");
+
+                            new SubWindows.ExtraLogWindow().Show();
+                        }
+                        break;
+
+                    case "BtnOpenBaseFolder":
+                        if (Directory.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods"))
+                            Tools.ProcessTools.OpenExplorer($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods");
+                        break;
+                    case "BtnOpenExportFolder":
+                        if (Directory.Exists($"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes"))
+                            Tools.ProcessTools.OpenExplorer($"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes");
+                        break;
+
+                    case "BtnExtURL":
+                        new SubWindows.ToEXTUrl().ShowDialog();
+                        break;
+                    case "BtnTools":
+                        new SubWindows.ExtraToolsWindow().ShowDialog();
+                        break;
+                    case "BtnConfig":
+                        new SubWindows.OptionWindow(LoadAllRelatedDatasAfterChangePath).ShowDialog();
+                        break;
+
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "버튼 클릭 이벤트에서 오류");
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "메인 윈도우의 버튼 클릭 이벤트에서 오류");
             }
-        }
-
-        private void BtnConfig_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.OptionWindow(InitLORPathResourceLabel).ShowDialog();
-        }
-
-        private void BtnExtURL_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.ToEXTUrl().ShowDialog();
-        }
-
-        private void BtnOpenBaseFolder_Click(object sender, RoutedEventArgs e)
-        {
-            if (Directory.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods"))
-                Tools.ProcessTools.OpenExplorer($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods");
-        }
-
-        private void BtnOpenExportFolder_Click(object sender, RoutedEventArgs e)
-        {
-            if (Directory.Exists($"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes"))
-                Tools.ProcessTools.OpenExplorer($"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes");
-        }
-
-        private void BtnTools_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.ExtraToolsWindow().ShowDialog();
-        }
-
-        private void BtnStartGame_Click(object sender, RoutedEventArgs e)
-        {
-            Tools.ProcessTools.StartProcess($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina.exe");
-            if (DM.Config.config.isLogPlusMod)
-            {
-                if (File.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt"))
-                    File.WriteAllText($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt", "");
-                if (File.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt"))
-                    File.WriteAllText($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt", "");
-
-                new SubWindows.ExtraLogWindow().Show();
-            }
-        }
+        } 
         #endregion
+
 
         #region EDIT MENU - Critical Page Infos
         public static List<DS.CriticalPageInfo> criticalPageInfos = new List<DS.CriticalPageInfo>();
@@ -205,8 +197,6 @@ namespace LORModingBase
                 SplCriticalPage.Children.Add(new UC.EditCriticalPage(criticalPageInfo, InitSplCriticalPage));
             });
         }
-
-        #region Left menu button events
 
         private void BtnAddCriticalBook_Click(object sender, RoutedEventArgs e)
         {
@@ -222,7 +212,6 @@ namespace LORModingBase
                 InitSplCriticalPage();
             }).ShowDialog();
         }
-        #endregion
 
         #endregion
         #region EDIT MENU - Cards Page
