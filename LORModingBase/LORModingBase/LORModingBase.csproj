@@ -62,12 +62,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomExtensions\IEnumerable.cs" />
     <Compile Include="DM\CheckDatas.cs" />
     <Compile Include="DM\Config.cs" />
     <Compile Include="DM\ExportDatas.cs" />
     <Compile Include="DM\ImportDatas.cs" />
     <Compile Include="DM\LocalizeCore.cs" />
     <Compile Include="DM\StaticInfos.cs" />
+    <Compile Include="DM\StaticInfos_Books.cs" />
+    <Compile Include="DM\StaticInfos_Cards.cs" />
+    <Compile Include="DM\XmlData.cs" />
     <Compile Include="DS\CardInfos.cs" />
     <Compile Include="DS\Config.cs" />
     <Compile Include="DS\CriticalPageInfos.cs" />
@@ -75,6 +79,7 @@
     <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\LongDescription.cs" />
     <Compile Include="DS\PATH.cs" />
+    <Compile Include="DS\XmlData.cs" />
     <Compile Include="SubWindows\ExtraToolsWindow.xaml.cs">
       <DependentUpon>ExtraToolsWindow.xaml</DependentUpon>
     </Compile>

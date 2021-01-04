@@ -51,16 +51,16 @@ namespace LORModingBase.DM
 
                 #region 책 아이콘 정보 불러오기
                 criticalPageInfo.iconName = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "BookIcon");
-                criticalPageInfo.iconDes = DM.StaticInfos.GetDescription.GetIconDescription(criticalPageInfo.iconName);
+                criticalPageInfo.iconDes = DM.StaticInfos.GetDescriptionForBook.GetIconDescription(criticalPageInfo.iconName);
                 #endregion
                 #region 책 에피소드 정보 불러오기
                 criticalPageInfo.episode = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Episode");
                 criticalPageInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Chapter");
-                criticalPageInfo.episodeDes = DM.StaticInfos.GetDescription.GetEpisodeDescription(criticalPageInfo.episode, criticalPageInfo.chapter);
+                criticalPageInfo.episodeDes = DM.StaticInfos.GetDescriptionForBook.GetEpisodeDescription(criticalPageInfo.episode, criticalPageInfo.chapter);
                 #endregion
                 #region 책 스킨 정보 불러오기
                 criticalPageInfo.skinName = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "CharacterSkin");
-                criticalPageInfo.skinDes = DM.StaticInfos.GetDescription.GetSkinDescription(criticalPageInfo.skinName);
+                criticalPageInfo.skinDes = DM.StaticInfos.GetDescriptionForBook.GetSkinDescription(criticalPageInfo.skinName);
                 #endregion
 
                 if (bookNode["RangeType"] != null)
@@ -93,7 +93,7 @@ namespace LORModingBase.DM
                     foreach (XmlNode onlyCardNode in onlyCardNodes)
                     {
                         if (!string.IsNullOrEmpty(onlyCardNode.InnerText))
-                            criticalPageInfo.onlyCards.Add(DM.StaticInfos.GetDescription.GetUniqueCardDescription(onlyCardNode.InnerText));
+                            criticalPageInfo.onlyCards.Add(DM.StaticInfos.GetDescriptionForBook.GetUniqueCardDescription(onlyCardNode.InnerText));
                     }
                     #endregion
 
@@ -101,7 +101,7 @@ namespace LORModingBase.DM
                     foreach (XmlNode passiveNode in passiveNodes)
                     {
                         if (!string.IsNullOrEmpty(passiveNode.InnerText))
-                            criticalPageInfo.passiveIDs.Add(DM.StaticInfos.GetDescription.GetPassiveDescription(passiveNode.InnerText));
+                            criticalPageInfo.passiveIDs.Add(DM.StaticInfos.GetDescriptionForBook.GetPassiveDescription(passiveNode.InnerText));
                     }
                 }
                 MainWindow.criticalPageInfos.Add(criticalPageInfo);
