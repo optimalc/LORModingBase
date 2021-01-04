@@ -23,7 +23,7 @@ namespace LORModingBase.DM
         public static void LoadAllDatas()
         {
             localizedData.Clear();
-            Directory.GetDirectories(DS.PATH.LOCAIZE_DIC).ToList().ForEach((string localizeDic) =>
+            Directory.GetDirectories(DS.PROGRAM_PATHS.LOCAIZE_DIC).ToList().ForEach((string localizeDic) =>
             {
                 string LOCALIZE_FORDER_KEY = localizeDic.Split('\\').Last();
 

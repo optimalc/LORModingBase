@@ -33,11 +33,11 @@ namespace LORModingBase
         /// </summary>
         private void LoadDatas()
         {
-            if(!Directory.Exists(DS.PATH.DIC_EXPORT_DATAS))
-                Directory.CreateDirectory(DS.PATH.DIC_EXPORT_DATAS);
+            if(!Directory.Exists(DS.PROGRAM_PATHS.DIC_EXPORT_DATAS))
+                Directory.CreateDirectory(DS.PROGRAM_PATHS.DIC_EXPORT_DATAS);
 
-            if (File.Exists(DS.PATH.VERSION))
-                this.Title = $"LOR Moding Base {File.ReadAllText(DS.PATH.VERSION)}";
+            if (File.Exists(DS.PROGRAM_PATHS.VERSION))
+                this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)}";
 
             DM.StaticInfos.LoadAllDatas();
         }

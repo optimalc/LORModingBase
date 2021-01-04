@@ -1,6 +1,8 @@
 ﻿using LORModingBase.CustomExtensions;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Xml;
 
 namespace LORModingBase.DM
@@ -13,25 +15,63 @@ namespace LORModingBase.DM
         /// <summary>
         /// Current loaded xml file path
         /// </summary>
-        public string currentXmlFilePath = "";
+        public List<string> currentXmlFilePaths = new List<string>();
         /// <summary>
         /// Root xml data node
         /// </summary>
         public XmlDataNode rootDataNode = new XmlDataNode();
 
 
-        /// <summary>
-        /// Load xmlData from xml file
-        /// </summary>
-        /// <param name="xmlFilePath">xml file path to load</param>
-        public XmlData(string xmlFilePath)
-        {
-            this.currentXmlFilePath = xmlFilePath;
 
-            XmlDocument XML_DOC = new XmlDocument();
-            XML_DOC.Load(this.currentXmlFilePath);
-            rootDataNode = LoadNodeData(XML_DOC.DocumentElement);
+        /// <summary>
+        /// Load xmlData from xml file or directory
+        /// </summary>
+        /// <param name="xmlPath">xml file path to load</param>
+        public XmlData(string xmlPath)
+        {
+            if(xmlPath.Contains(".txt") || xmlPath.Contains(".xml"))
+            {
+                this.currentXmlFilePaths.Add(xmlPath);
+
+                XmlDocument XML_DOC = new XmlDocument();
+                XML_DOC.Load(xmlPath);
+                rootDataNode = LoadNodeData(XML_DOC.DocumentElement);
+            }
+            else
+                LoadFromXmlFilePaths(Directory.GetFiles(xmlPath).ToList());
         }
+
+        /// <summary>
+        /// Load xmlData from multiple xml file
+        /// </summary>
+        /// <param name="xmlFilePaths">Multiple xml file path list</param>
+        public XmlData(List<string> xmlFilePaths)
+        {
+            LoadFromXmlFilePaths(xmlFilePaths);
+        }
+
+        /// <summary>
+        /// Load xmlData from multiple xml file
+        /// </summary>
+        /// <param name="xmlFilePaths">Multiple xml file path list</param>
+        private void LoadFromXmlFilePaths(List<string> xmlFilePaths)
+        {
+            this.currentXmlFilePaths = xmlFilePaths;
+            if (xmlFilePaths.Count > 0)
+            {
+                XmlDocument XML_DOC = new XmlDocument();
+                XML_DOC.Load(xmlFilePaths[0]);
+                rootDataNode = LoadNodeData(XML_DOC.DocumentElement);
+
+                xmlFilePaths.Skip(1).ForEachSafe((string xmlPath) =>
+                {
+                    XmlDocument XML_DOC_SUB = new XmlDocument();
+                    XML_DOC_SUB.Load(xmlPath);
+                    rootDataNode.subNodes.AddRange(LoadNodeData(XML_DOC_SUB.DocumentElement).subNodes);
+                });
+            }
+        }
+
 
         /// <summary>
         /// Load xmlData from other XmlData base
@@ -39,9 +79,10 @@ namespace LORModingBase.DM
         /// <param name="xmlFilePath">xml file path to load</param>
         public XmlData(XmlData xmlDataBase)
         {
-            this.currentXmlFilePath = xmlDataBase.currentXmlFilePath;
+            this.currentXmlFilePaths = xmlDataBase.currentXmlFilePaths;
             rootDataNode.name = xmlDataBase.rootDataNode.name;
         }
+
 
 
         /// <summary>
@@ -61,7 +102,7 @@ namespace LORModingBase.DM
                 {
                     if(childNode.Name == "#text")
                         loadedXmlDataNode.innerText = nodeToLoad.InnerText;
-                    else
+                    else if(!childNode.Name.Contains("#"))
                         loadedXmlDataNode.subNodes.Add(LoadNodeData(childNode));
                 }
 

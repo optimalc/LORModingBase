@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LORModingBase.DS
 {
-    class PATH
+    class PROGRAM_PATHS
     {
         /// <summary>
         /// Export data directory
@@ -16,15 +16,26 @@ namespace LORModingBase.DS
         /// <summary>
         /// Config file
         /// </summary>
-        public const string CONFIG = "./config.json";
+        public const string CONFIG = ".\\config.json";
+
         /// <summary>
         /// Locaize dictionary
         /// </summary>
         public const string LOCAIZE_DIC = ".\\localize";
+
         /// <summary>
         /// Version info file
         /// </summary>
-        public const string VERSION = "./version.txt";
+        public const string VERSION = ".\\version.txt";
+    }
+
+    class GAME_PATHS
+    {
+
+    }
+
+    class PATH
+    {
 
         /// <summary>
         /// Mode resources
@@ -70,5 +81,22 @@ namespace LORModingBase.DS
         public static string RESOURCE_XML_BASE_CARD_DROP_TABLE = $"{DIC_RESURCE}\\CardDropTable.txt";
 
         public static string RESOURCE_UNITY_ENGINE_DEBUG = $"{DIC_RESURCE}\\UnityEngine.dll";
+    }
+
+    class GAME_RESOURCE_PATHS
+    {
+        /// <summary>
+        /// Mode resource directory
+        /// </summary>
+        public const string RESOURCE_BASE_MODE = "LibraryOfRuina_Data\\Managed\\BaseMod";
+
+        /// <summary>
+        /// Static root directory
+        /// </summary>
+        public string RESOURCE_ROOT_STATIC = "";
+        /// <summary>
+        /// Localize root directory
+        /// </summary>
+        public string RESOURCE_ROOT_LOCALIZE = "";
     }
 }

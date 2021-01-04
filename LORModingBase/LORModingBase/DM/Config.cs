@@ -14,14 +14,17 @@ namespace LORModingBase.DM
         /// </summary>
         public static DS.Config config = new DS.Config();
 
+        public static DS.GAME_RESOURCE_PATHS GAME_RESOURCE_PATHS = new DS.GAME_RESOURCE_PATHS();
+
+
         #region Save / Load config data
         /// <summary>
         /// Load config data
         /// </summary>
         public static void LoadData()
         {
-            if (File.Exists(DS.PATH.CONFIG))
-                config = Tools.JsonFile.LoadJsonFile<DS.Config>(DS.PATH.CONFIG);
+            if (File.Exists(DS.PROGRAM_PATHS.CONFIG))
+                config = Tools.JsonFile.LoadJsonFile<DS.Config>(DS.PROGRAM_PATHS.CONFIG);
             else
             {
                 const string LOR_PATH = "steamapps\\common\\Library Of Ruina";
@@ -44,14 +47,23 @@ namespace LORModingBase.DM
                 } 
                 #endregion
             }
+            InitGameResourcePaths();
         }
+
+        public static void InitGameResourcePaths()
+        {
+            GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC = $"{config.LORFolderPath}\\{DS.GAME_RESOURCE_PATHS.RESOURCE_BASE_MODE}\\StaticInfo";
+            GAME_RESOURCE_PATHS.RESOURCE_ROOT_LOCALIZE = $"{config.LORFolderPath}\\{DS.GAME_RESOURCE_PATHS.RESOURCE_BASE_MODE}\\Localize\\{config.localizeOption}";
+        }
+
 
         /// <summary>
         /// Save config data
         /// </summary>
         public static void SaveData()
         {
-            Tools.JsonFile.SaveJsonFile<DS.Config>(DS.PATH.CONFIG, config);
+            Tools.JsonFile.SaveJsonFile<DS.Config>(DS.PROGRAM_PATHS.CONFIG, config);
+            InitGameResourcePaths();
         }
         #endregion
     }
