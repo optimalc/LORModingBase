@@ -29,7 +29,7 @@ namespace LORModingBase
             }
             catch(Exception ex)
             {
-                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "초기화 과정 중 오류");
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindow_Error"));
             }
         }
 
@@ -52,12 +52,12 @@ namespace LORModingBase
             {
                 DM.Config.config.LORFolderPath = "";
                 DM.Config.SaveData();
-                throw new Exception("설정된 라오루 폴더가 존재하지 않거나 적절하지 않습니다. 수동 설정이 필요합니다");
+                throw new Exception(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"LoadAllRelatedDatasAfterChangePath_Error_1"));
             }
             #endregion
             #region Check LOR mode resources
             if(!Directory.Exists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}"))
-                throw new Exception("모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)");
+                throw new Exception(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"LoadAllRelatedDatasAfterChangePath_Error_2"));
             #endregion
 
             if (!Directory.Exists(DS.PROGRAM_PATHS.DIC_EXPORT_DATAS))
@@ -108,12 +108,14 @@ namespace LORModingBase
                         try
                         {
                             if (string.IsNullOrEmpty(TbxModeName.Text))
-                                throw new Exception("모드명이 입력되어 있지 않습니다.");
+                                throw new Exception(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_1"));
 
                             DM.CheckDatas.CheckAllDatas();
                             string MOD_DIR_TO_USE = DM.ExportDatas.ExportAllDatas(TbxModeName.Text);
 
-                            Tools.MessageBoxTools.ShowInfoMessageBox("내보내기가 정상적으로 완료되었습니다.", "완료");
+                            Tools.MessageBoxTools.ShowInfoMessageBox(
+                                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Info_1"),
+                                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Info_2"));
                             Tools.ProcessTools.OpenExplorer(MOD_DIR_TO_USE);
 
                             if (DM.Config.config.isExecuteAfterExport)
@@ -121,7 +123,9 @@ namespace LORModingBase
                         }
                         catch (Exception ex)
                         {
-                            Tools.MessageBoxTools.ShowErrorMessageBox("내보내는 도중 오류가 발생했습니다.", ex, "내보내기 오류");
+                            Tools.MessageBoxTools.ShowErrorMessageBox(
+                                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_2"),
+                                ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_3"));
                         }
                         break;
                     case "BtnLoad":
@@ -130,7 +134,9 @@ namespace LORModingBase
                             Tools.Dialog.SelectDirectory((string selectedDir) =>
                             {
                                 DM.ImportDatas.ImportAllDatas(selectedDir);
-                                Tools.MessageBoxTools.ShowInfoMessageBox("성공적으로 로드되었습니다.", "완료");
+                                Tools.MessageBoxTools.ShowInfoMessageBox(
+                                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Info_3")
+                                    ,DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Info_2"));
 
                                 InitSplCriticalPage();
                                 InitSplCards();
@@ -138,7 +144,9 @@ namespace LORModingBase
                         }
                         catch (Exception ex)
                         {
-                            Tools.MessageBoxTools.ShowErrorMessageBox("불러오는 도중 오류가 발생했습니다.", ex, "불러오기 오류");
+                            Tools.MessageBoxTools.ShowErrorMessageBox(
+                                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_4"),
+                                ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_5"));
                         }
                         break;
 
@@ -178,7 +186,8 @@ namespace LORModingBase
             }
             catch (Exception ex)
             {
-                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "메인 윈도우의 버튼 클릭 이벤트에서 오류");
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_6"));
             }
         } 
         #endregion
@@ -218,7 +227,8 @@ namespace LORModingBase
             }
             catch (Exception ex)
             {
-                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "핵심 책장 편집 윈도우의 버튼 클릭 이벤트에서 오류");
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"CriticalPageGridButtonClickEvents_Error_1"));
             }
         }
         #endregion
@@ -258,7 +268,8 @@ namespace LORModingBase
             }
             catch (Exception ex)
             {
-                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "전투 책장 편집 윈도우의 버튼 클릭 이벤트에서 오류");
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"BattleCardGridButtonClickEvents_Error_1"));
             }
         }
         #endregion
