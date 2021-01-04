@@ -22,14 +22,20 @@
             <Grid.Background>
                 <ImageBrush ImageSource="./Resources/MenuBg.png"/>
             </Grid.Background>
-            <Button x:Name="BtnSave" Grid.Column="0" Content="[내보내기]" ToolTip="설정된 정보들로 모드 폴더를 생성합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
-            <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" ToolTip="특정 모드 폴더의 정보들을 불러옵니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+            <Viewbox Grid.Column="0" Stretch="Fill" Margin="10">
+                <Button x:Name="BtnSave" Content="[내보내기]" ToolTip="설정된 정보들로 모드 폴더를 생성합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+            </Viewbox>
+            <Viewbox Grid.Column="1" Stretch="Fill" Margin="10">
+                <Button x:Name="BtnLoad" Content="[불러오기]" ToolTip="특정 모드 폴더의 정보들을 불러옵니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+            </Viewbox>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="23*"/>
                     <ColumnDefinition Width="80*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="모드명 : " Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="0" Stretch="Fill" Margin="0,5">
+                    <Label Name="LblModeName" Content="모드명 :" Style="{StaticResource StyLbl}"/>
+                </Viewbox>
                 <TextBox x:Name="TbxModeName" Grid.Column="1" Text="TEST_MODE" ToolTip="생성시에 사용할 모드명을 입력합니다" Style="{StaticResource StyTbx}"/>
             </Grid>
             <Grid Grid.Column="3">
@@ -55,7 +61,7 @@
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="BtnOpenBaseFolder" Grid.Column="2" ToolTip="기반모드의 모드 설치 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                <Button x:Name="BtnOpenBaseFolder" Grid.Column="2" ToolTip="기반모드 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnOpenBaseFolder.png" />
                     </Button.Background>
@@ -81,7 +87,7 @@
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="BtnExtURL" Grid.Column="4" ToolTip="툴과 관련된 외부 URL로 이동합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                <Button x:Name="BtnExtURL" Grid.Column="4" ToolTip="툴과 관련된 외부 URL 이동을 위한 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnExtURL.png" />
                     </Button.Background>
@@ -94,7 +100,7 @@
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="BtnTools" Grid.Column="5" ToolTip="이 프로그램이 제공하는 추가적인 기능을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                <Button x:Name="BtnTools" Grid.Column="5" ToolTip="이 프로그램이 제공하는 추가적인 기능을 위한 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnTools.png" />
                     </Button.Background>
@@ -107,7 +113,7 @@
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <Button x:Name="BtnConfig" Grid.Column="6" ToolTip="프로그램 설정을 변경합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                <Button x:Name="BtnConfig" Grid.Column="6" ToolTip="프로그램 설정 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
                     <Button.Background>
                         <ImageBrush ImageSource="./Resources/BtnConfig.png" />
                     </Button.Background>
@@ -131,10 +137,10 @@
                 <ColumnDefinition Width="13.9*"/>
                 <ColumnDefinition Width="72.2*"/>
             </Grid.ColumnDefinitions>
-            <Viewbox Grid.Column="0" Stretch="Fill" Margin="10,10,10,10">
+            <Viewbox Grid.Column="0" Stretch="Fill" Margin="10">
                 <Button x:Name="BtnCriticalPage" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
             </Viewbox>
-            <Viewbox Grid.Column="1" Stretch="Fill" Margin="10,10,10,10">
+            <Viewbox Grid.Column="1" Stretch="Fill" Margin="10">
                 <Button x:Name="BtnCards" Content="[전투책장 편집]" ToolTip="전투책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
             </Viewbox>
         </Grid>
