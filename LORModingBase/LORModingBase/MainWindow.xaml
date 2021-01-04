@@ -150,11 +150,11 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnAddCriticalBook" Content="+" ToolTip="게임에 없는 새로운 핵심책장을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnAddCriticalBook_Click"/>
+                    <Button x:Name="BtnAddCriticalBook" Content="+" ToolTip="게임에 없는 새로운 핵심책장을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="CriticalPageGridButtonClickEvents"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnLoadCriticalBook" Content="~" ToolTip="게임 내부로부터 핵심책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnLoadCriticalBook_Click"/>
+                    <Button x:Name="BtnLoadCriticalBook" Content="~" ToolTip="게임 내부로부터 핵심책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="CriticalPageGridButtonClickEvents"/>
                 </Grid>
             </Grid>
             <Grid Grid.Column="1">
@@ -184,11 +184,11 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnAddCard" Content="+" ToolTip="게임에 없는 새로운 전투책장을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnAddCard_Click"/>
+                    <Button x:Name="BtnAddCard" Content="+" ToolTip="게임에 없는 새로운 전투책장을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BattleCardGridButtonClickEvents"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnLoadCard" Content="~" ToolTip="게임 내부로부터 전투책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnLoadCard_Click"/>
+                    <Button x:Name="BtnLoadCard" Content="~" ToolTip="게임 내부로부터 전투책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BattleCardGridButtonClickEvents"/>
                 </Grid>
             </Grid>
             <Grid Grid.Column="1">

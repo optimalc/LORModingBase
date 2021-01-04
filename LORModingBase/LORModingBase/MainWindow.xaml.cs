@@ -71,7 +71,6 @@ namespace LORModingBase
         }
         #endregion
 
-
         #region Main window events
         /// <summary>
         /// Hide all main window menu grids
@@ -198,22 +197,34 @@ namespace LORModingBase
             });
         }
 
-        private void BtnAddCriticalBook_Click(object sender, RoutedEventArgs e)
+        private void CriticalPageGridButtonClickEvents(object sender, RoutedEventArgs e)
         {
-            criticalPageInfos.Add(new DS.CriticalPageInfo());
-            InitSplCriticalPage();
-        }
-
-        private void BtnLoadCriticalBook_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputGameCriticalPage((DS.CriticalPageInfo selectedCriticalPageInfo) =>
+            Button clickButton = sender as Button;
+            try
             {
-                criticalPageInfos.Add(Tools.DeepCopy.DeepClone(selectedCriticalPageInfo));
-                InitSplCriticalPage();
-            }).ShowDialog();
+                switch (clickButton.Name)
+                {
+                    case "BtnAddCriticalBook":
+                        criticalPageInfos.Add(new DS.CriticalPageInfo());
+                        InitSplCriticalPage();
+                        break;
+                    case "BtnLoadCriticalBook":
+                        new SubWindows.InputGameCriticalPage((DS.CriticalPageInfo selectedCriticalPageInfo) =>
+                        {
+                            criticalPageInfos.Add(Tools.DeepCopy.DeepClone(selectedCriticalPageInfo));
+                            InitSplCriticalPage();
+                        }).ShowDialog();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "핵심 책장 편집 윈도우의 버튼 클릭 이벤트에서 오류");
+            }
         }
-
         #endregion
+        
+
         #region EDIT MENU - Cards Page
         public static List<DS.CardInfo> cardInfos = new List<DS.CardInfo>();
 
@@ -226,19 +237,30 @@ namespace LORModingBase
             });
         }
 
-        private void BtnAddCard_Click(object sender, RoutedEventArgs e)
+        private void BattleCardGridButtonClickEvents(object sender, RoutedEventArgs e)
         {
-            cardInfos.Add(new DS.CardInfo());
-            InitSplCards();
-        }
-
-        private void BtnLoadCard_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputGameCard((DS.CardInfo selectedCardInfo) =>
+            Button clickButton = sender as Button;
+            try
             {
-                cardInfos.Add(Tools.DeepCopy.DeepClone(selectedCardInfo));
-                InitSplCards();
-            }).ShowDialog();
+                switch (clickButton.Name)
+                {
+                    case "BtnAddCard":
+                        cardInfos.Add(new DS.CardInfo());
+                        InitSplCards();
+                        break;
+                    case "BtnLoadCard":
+                        new SubWindows.InputGameCard((DS.CardInfo selectedCardInfo) =>
+                        {
+                            cardInfos.Add(Tools.DeepCopy.DeepClone(selectedCardInfo));
+                            InitSplCards();
+                        }).ShowDialog();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "전투 책장 편집 윈도우의 버튼 클릭 이벤트에서 오류");
+            }
         }
         #endregion
     }
