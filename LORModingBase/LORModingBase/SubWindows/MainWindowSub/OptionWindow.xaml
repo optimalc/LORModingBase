@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LORModingBase.SubWindows"
         mc:Ignorable="d"
-        Title="프로그램 설정" Height="300" Width="750" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+        Title="프로그램 설정" Height="300" Width="750" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../../Resources/icon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="../Resources/MainBg.png"/>
+            <ImageBrush ImageSource="../../Resources/MainBg.png"/>
         </Grid.Background>
         <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
         <Grid Grid.Row="0">
@@ -74,7 +74,7 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid.Background>
-                <ImageBrush ImageSource="../Resources/MenuBg.png"/>
+                <ImageBrush ImageSource="../../Resources/MenuBg.png"/>
             </Grid.Background>
             <Button x:Name="BtnOk" Grid.Column="0" Content="[완료]" ToolTip="창을 닫습니다" Style="{StaticResource StyBtnMenu}" Click="BtnOk_Click"/>
         </Grid>

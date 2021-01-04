@@ -184,32 +184,97 @@ namespace LORModingBase.DM
         public List<XmlDataNode> subNodes = new List<XmlDataNode>();
 
 
+        #region XmlDataNode constructor
+        public XmlDataNode() {}
+
         /// <summary>
-        /// Action single xml data node if not null
+        /// Make new xml data node with name
         /// </summary>
-        /// <param name="nameToSearch">Name to search</param>
-        /// <param name="actionXmlDataNode">Action single xml data node if not null</param>
-        public void ActionXmlDataNodeByName(string nameToSearch, Action<XmlDataNode> actionXmlDataNode)
+        /// <param name="name">Name to set</param>
+        public XmlDataNode(string name)
         {
-            XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
-            {
-                return xmlDataNode.name == nameToSearch;
-            });
-            if (foundXmlDataNode != null)
-                actionXmlDataNode(foundXmlDataNode);
+            this.name = name;
         }
 
+        /// <summary>
+        /// Make new xml data with innerText
+        /// </summary>
+        /// <param name="name">Name to set</param>
+        /// <param name="innerText">Inner text to set</param>
+        public XmlDataNode(string name, string innerText)
+        {
+            this.name = name;
+            this.innerText = innerText;
+        }
+
+        /// <summary>
+        /// Make new xml data node with name, attribute
+        /// </summary>
+        /// <param name="name">Name to set</param>
+        /// <param name="attributeName">Attribute name to set</param>
+        /// <param name="attributeValue">Attribute value to set</param>
+        public XmlDataNode(string name, string attributeName, string attributeValue)
+        {
+            this.name = name;
+            attribute[attributeName] = attributeValue;
+        }
+
+        /// <summary>
+        /// Make new data node with name, attribute dictionary
+        /// </summary>
+        /// <param name="name">Name to set</param>
+        /// <param name="attribute">Attribute dictionary to use</param>
+        public XmlDataNode(string name, Dictionary<string, string> attribute)
+        {
+            this.name = name;
+            if(attribute != null)
+                this.attribute = attribute;
+        }
+
+        /// <summary>
+        /// Make new data node with name, attribute dictionary
+        /// </summary>
+        /// <param name="name">Name to set</param>
+        /// <param name="innerText">InnerText to set</param>
+        /// <param name="attribute">Attribute dictionary to use</param>
+        public XmlDataNode(string name, string innerText, Dictionary<string, string> attribute)
+        {
+            this.name = name;
+            this.innerText = innerText;
+            if (attribute != null)
+                this.attribute = attribute;
+        }
+        #endregion
+
+        #region Search nodes functions
         /// <summary>
         /// Action multiple xml data node
         /// </summary>
         /// <param name="nameToSearch">Name to search</param>
         /// <param name="actionXmlDataNode">Action multiple xml data</param>
-        public void ActionXmlDataNodesByName(string nameToSearch, Action<XmlDataNode> actionXmlDataNode)
+        public void ActionXmlDataNodesByName(string path, Action<XmlDataNode> actionXmlDataNode)
         {
-            subNodes.FindAll((XmlDataNode xmlDataNode) =>
+            if (string.IsNullOrEmpty(path)) return;
+
+            List<string> NAME_LIST = path.Split('/').ToList();
+            if (NAME_LIST.Count > 1)
             {
-                return xmlDataNode.name == nameToSearch;
-            }).ForEachSafe(actionXmlDataNode);
+                subNodes.FindAll((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                }).ForEachSafe((XmlDataNode xmlDataNode) => {
+                    ActionXmlDataNodesByName(String.Join("/", NAME_LIST.Skip(1)), actionXmlDataNode);
+                });
+            }
+            else
+            {
+                subNodes.FindAll((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                }).ForEachSafe((XmlDataNode xmlDataNode) => {
+                    actionXmlDataNode(xmlDataNode);
+                });
+            }
         }
 
         /// <summary>
@@ -219,9 +284,9 @@ namespace LORModingBase.DM
         /// <param name="attributeName">Attribute name to search</param>
         /// <param name="attributeValue">Attribute value to search</param>
         /// <param name="actionXmlDataNode">Action single xml data node if not null</param>
-        public void ActionXmlDataNodesByAttribute(string nodeName, string attributeName, string attributeValue, Action<XmlDataNode> actionXmlDataNode)
+        public void ActionXmlDataNodesByAttribute(string path, string attributeName, string attributeValue, Action<XmlDataNode> actionXmlDataNode)
         {
-            ActionXmlDataNodesByName(nodeName, (XmlDataNode searchedNode) =>
+            ActionXmlDataNodesByName(path, (XmlDataNode searchedNode) =>
             {
                 if (searchedNode.attribute.ContainsKey(attributeName)
                   && searchedNode.attribute[attributeName] == attributeValue)
@@ -229,45 +294,115 @@ namespace LORModingBase.DM
             });
         }
 
+        /// <summary>
+        /// Get multiple xml data node
+        /// </summary>
+        /// <param name="nameToSearch">Name to search</param>
+        /// <returns>Searched xml data nodes</returns>
+        public List<XmlDataNode> GetXmlDataNodesByName(string path, List<XmlDataNode> foundXmlDataNodes = null)
+        {
+            if (string.IsNullOrEmpty(path)) return null;
 
+            if(foundXmlDataNodes == null)
+                foundXmlDataNodes = new List<XmlDataNode>();
+
+            List<string> NAME_LIST = path.Split('/').ToList();
+            if (NAME_LIST.Count > 1)
+            {
+                subNodes.FindAll((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                }).ForEachSafe((XmlDataNode xmlDataNode) => {
+                    foundXmlDataNodes.AddRange(xmlDataNode.GetXmlDataNodesByName(String.Join("/", NAME_LIST.Skip(1)), foundXmlDataNodes));
+                });
+            }
+            else
+            {
+                List<XmlDataNode> foundXmlDataNode = subNodes.FindAll((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                });
+                if (foundXmlDataNode != null)
+                    foundXmlDataNodes.AddRange(foundXmlDataNode);
+            }
+
+            return foundXmlDataNodes;
+        }
+        #endregion
+
+        #region Getting data functions
         /// <summary>
         /// Get inner text by searched name node if not null or empty
         /// </summary>
-        /// <param name="nameToSearch">Xml node data name to search</param>
+        /// <param name="path">XmlData path</param>
         /// <param name="defaultText">Default text if given node is null or empty</param>
         /// <returns>Searched text</returns>
-        public string GetInnerTextByName(string nameToSearch, string defaultText = "")
+        public string GetInnerTextByPath(string path, string defaultText = "")
         {
-            XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+            if (string.IsNullOrEmpty(path)) return null;
+
+            List<string> NAME_LIST = path.Split('/').ToList();
+            if (NAME_LIST.Count > 1)
             {
-                return xmlDataNode.name == nameToSearch;
-            });
-            if (foundXmlDataNode == null || string.IsNullOrEmpty(foundXmlDataNode.innerText))
-                return defaultText;
+                XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                });
+                if (foundXmlDataNode != null)
+                    return foundXmlDataNode.GetInnerTextByPath(String.Join("/", NAME_LIST.Skip(1)), defaultText);
+                else
+                    return defaultText;
+            }
             else
-                return foundXmlDataNode.innerText;
+            {
+                XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                });
+                if (foundXmlDataNode != null)
+                    return foundXmlDataNode.innerText;
+                else
+                    return defaultText;
+            }
         }
 
         /// <summary>
         /// Get inner text by searched attribute node if not null or empty
         /// </summary>
-        /// <param name="nodeName">Name to search</param>
+        /// <param name="path">XmlData path</param>
         /// <param name="attributeName">Attribute name to search</param>
         /// <param name="attributeValue">Attribute value to search</param>
         /// <param name="defaultText">Default text if given node is null or empty</param>
         /// <returns></returns>
-        public string GetInnerTextByAttribute(string nodeName, string attributeName, string attributeValue, string defaultText = "")
+        public string GetInnerTextByAttributeWithPath(string path, string attributeName, string attributeValue, string defaultText = "")
         {
-            XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+            if (string.IsNullOrEmpty(path)) return null;
+
+            List<string> NAME_LIST = path.Split('/').ToList();
+            if (NAME_LIST.Count > 1)
             {
-                return xmlDataNode.name == nodeName
-                    && xmlDataNode.attribute.ContainsKey(attributeName)
-                    && xmlDataNode.attribute[attributeName] == attributeValue;
-            });
-            if (foundXmlDataNode == null || string.IsNullOrEmpty(foundXmlDataNode.innerText))
-                return defaultText;
+                XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                });
+                if (foundXmlDataNode != null)
+                    return foundXmlDataNode.GetInnerTextByAttributeWithPath(String.Join("/", NAME_LIST.Skip(1)), attributeName, attributeValue, defaultText);
+                else
+                    return defaultText;
+            }
             else
-                return foundXmlDataNode.innerText;
+            {
+                XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0]
+                      && xmlDataNode.attribute.ContainsKey(attributeName)
+                        && xmlDataNode.attribute[attributeName] == attributeValue;
+                });
+                if (foundXmlDataNode != null)
+                    return foundXmlDataNode.innerText;
+                else
+                    return defaultText;
+            }
         }
 
 
@@ -280,5 +415,166 @@ namespace LORModingBase.DM
         {
             return string.IsNullOrEmpty(innerText) ? defaultText : innerText;
         }
+
+        /// <summary>
+        /// Get attribute text value safely
+        /// </summary>
+        /// <param name="attributeName">Attribute name to use</param>
+        /// <param name="defaultText">Default value if string is empty</param>
+        /// <returns>Attribute text</returns>
+        public string GetAttributesSafe(string attributeName, string defaultText = "")
+        {
+            if (!attribute.ContainsKey(attributeName) || string.IsNullOrEmpty(attribute[attributeName]))
+                return defaultText;
+            else
+                return attribute[attributeName];
+        }
+        #endregion
+
+        #region Setting data functions
+        /// <summary>
+        /// Set inner text by paths (If not exist, make new XmlData)
+        /// </summary>
+        /// <param name="path">XmlData path</param>
+        /// <param name="valueToSet">Value to set</param>
+        /// <returns>Edited XmlDataNode</returns>
+        public XmlDataNode SetXmlInfoByPath(string path, string valueToSet = "", Dictionary<string, string> attributePairsToSet = null)
+        {
+            if (string.IsNullOrEmpty(path)) return null;
+
+            List<string> NAME_LIST = path.Split('/').ToList();
+            if(NAME_LIST.Count > 1)
+            {
+                XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                });
+                if (foundXmlDataNode != null)
+                    return foundXmlDataNode.SetXmlInfoByPath(String.Join("/", NAME_LIST.Skip(1)), valueToSet, attributePairsToSet);
+                else
+                {
+                    XmlDataNode createdXmlDataNode = new XmlDataNode(NAME_LIST[0]);
+                    subNodes.Add(createdXmlDataNode);
+                    return createdXmlDataNode.SetXmlInfoByPath(String.Join("/", NAME_LIST.Skip(1)), valueToSet, attributePairsToSet);
+                }
+            }
+            else
+            {
+                XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                });
+                if (foundXmlDataNode != null)
+                {
+                    foundXmlDataNode.innerText = valueToSet;
+                    attributePairsToSet.ForEachKeyValuePairSafe((string atName, string atValue) => {
+                        attribute[atName] = atValue;
+                    });
+                    return foundXmlDataNode;
+                }
+                else
+                {
+                    XmlDataNode createdXmlDataNode = new XmlDataNode(NAME_LIST[0], valueToSet, attributePairsToSet);
+                    subNodes.Add(createdXmlDataNode);
+                    return createdXmlDataNode;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Add new XmlInfoData
+        /// </summary>
+        /// <param name="path">XmlData path</param>
+        /// <param name="valueToSet">Value to set</param>
+        /// <returns>Created XmlDataNode</returns>
+        public XmlDataNode AddXmlInfoByPath(string path, string valueToSet = "", Dictionary<string, string> attributePairsToSet = null)
+        {
+            if (string.IsNullOrEmpty(path)) return null;
+
+            List<string> NAME_LIST = path.Split('/').ToList();
+            if (NAME_LIST.Count > 1)
+            {
+                XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                });
+                if (foundXmlDataNode != null)
+                    return foundXmlDataNode.SetXmlInfoByPath(String.Join("/", NAME_LIST.Skip(1)), valueToSet, attributePairsToSet);
+                else
+                {
+                    XmlDataNode createdXmlDataNode = new XmlDataNode(NAME_LIST[0]);
+                    subNodes.Add(createdXmlDataNode);
+                    return createdXmlDataNode.SetXmlInfoByPath(String.Join("/", NAME_LIST.Skip(1)), valueToSet, attributePairsToSet);
+                }
+            }
+            else
+            {
+                XmlDataNode createdXmlDataNode = new XmlDataNode(NAME_LIST[0], valueToSet, attributePairsToSet);
+                subNodes.Add(createdXmlDataNode);
+                return createdXmlDataNode;
+            }
+        }
+        #endregion
+
+        #region Removing data funcions
+        /// <summary>
+        /// Delete xml data node from path if exists
+        /// </summary>
+        /// <param name="path">XmlData path</param>
+        public void RemoveXmlInfosByPath(string path, string innerTextToCheck = "", Dictionary<string, string> attributeToCheck = null)
+        {
+            if (string.IsNullOrEmpty(path)) return;
+
+            List<string> NAME_LIST = path.Split('/').ToList();
+            if (NAME_LIST.Count > 1)
+            {
+                XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                });
+                if (foundXmlDataNode != null)
+                    RemoveXmlInfosByPath(String.Join("/", NAME_LIST.Skip(1)), innerTextToCheck, attributeToCheck);
+            }
+            else
+            {
+                subNodes.FindAll((XmlDataNode xmlDataNode) =>
+                {
+                    if (!string.IsNullOrEmpty(innerTextToCheck) && attributeToCheck == null)
+                        return xmlDataNode.innerText == innerTextToCheck;
+                    else if ((!string.IsNullOrEmpty(innerTextToCheck) && attributeToCheck != null)
+                          && (xmlDataNode.innerText == innerTextToCheck))
+                    {
+                        bool attritubteCheck = true;
+                        attributeToCheck.ForEachKeyValuePairSafe((string atName, string atValue) =>
+                        {
+                            if (xmlDataNode.attribute.ContainsKey(atName)
+                               && xmlDataNode.attribute[atName] != atValue)
+                                attritubteCheck = false;
+                            else if (!xmlDataNode.attribute.ContainsKey(atName))
+                                attritubteCheck = false;
+                        });
+                        return attritubteCheck;
+                    }
+                    else if (string.IsNullOrEmpty(innerTextToCheck) && attributeToCheck != null)
+                    {
+                        bool attritubteCheck = true;
+                        attributeToCheck.ForEachKeyValuePairSafe((string atName, string atValue) =>
+                        {
+                            if (xmlDataNode.attribute.ContainsKey(atName)
+                               && xmlDataNode.attribute[atName] != atValue)
+                                attritubteCheck = false;
+                            else if (!xmlDataNode.attribute.ContainsKey(atName))
+                                attritubteCheck = false;
+                        });
+                        return attritubteCheck;
+                    }
+                    else
+                        return true;
+                }).ForEachSafe((XmlDataNode xmlDataToRemove) => {
+                    subNodes.Remove(xmlDataToRemove);
+                });
+            }
+        }
+        #endregion
     }
 }

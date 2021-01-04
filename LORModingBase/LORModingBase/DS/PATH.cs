@@ -29,14 +29,9 @@ namespace LORModingBase.DS
         public const string VERSION = ".\\version.txt";
     }
 
-    class GAME_PATHS
-    {
-
-    }
-
     class PATH
     {
-
+        // remove
         /// <summary>
         /// Mode resources
         /// </summary>
@@ -53,34 +48,73 @@ namespace LORModingBase.DS
         /// <summary>
         /// Resource dictionary
         /// </summary>
-        public static string DIC_RESURCE = "./resources";
+        public static string DIC_RESOURCE = "./resources";
         /// <summary>
         /// Xml bases for equip page
         /// </summary>
-        public static string RESOURCE_XML_BASE_EQUIP_PAGE = $"{DIC_RESURCE}\\EquipPage.txt";
+        public static string RESOURCE_XML_BASE_EQUIP_PAGE = $"{DIC_RESOURCE}\\EquipPage.txt";
         /// <summary>
         /// Xml bases for Books info
         /// </summary>
-        public static string RESOURCE_XML_BASE_BOOKS = $"{DIC_RESURCE}\\_Books.txt";
+        public static string RESOURCE_XML_BASE_BOOKS = $"{DIC_RESOURCE}\\_Books.txt";
         /// <summary>
         /// Xml base for Dropping books info
         /// </summary>
-        public static string RESOURCE_XML_BASE_DROP_BOOK = $"{DIC_RESURCE}\\DropBook.txt";
+        public static string RESOURCE_XML_BASE_DROP_BOOK = $"{DIC_RESOURCE}\\DropBook.txt";
 
         /// <summary>
         /// Xml bases for Card info
         /// </summary>
-        public static string RESOURCE_XML_BASE_CARD_INFO = $"{DIC_RESURCE}\\CardInfo.txt";
+        public static string RESOURCE_XML_BASE_CARD_INFO = $"{DIC_RESOURCE}\\CardInfo.txt";
         /// <summary>
         /// Xml bases for Battle cards
         /// </summary>
-        public static string RESOURCE_XML_BASE_BATTLE_CARDS = $"{DIC_RESURCE}\\_BattleCards.txt";
+        public static string RESOURCE_XML_BASE_BATTLE_CARDS = $"{DIC_RESOURCE}\\_BattleCards.txt";
         /// <summary>
         /// Xml base for Card drop table
         /// </summary>
-        public static string RESOURCE_XML_BASE_CARD_DROP_TABLE = $"{DIC_RESURCE}\\CardDropTable.txt";
+        public static string RESOURCE_XML_BASE_CARD_DROP_TABLE = $"{DIC_RESOURCE}\\CardDropTable.txt";
 
-        public static string RESOURCE_UNITY_ENGINE_DEBUG = $"{DIC_RESURCE}\\UnityEngine.dll";
+        public static string RESOURCE_UNITY_ENGINE_DEBUG = $"{DIC_RESOURCE}\\UnityEngine.dll";
+        // remove
+    }
+
+    class PROGRAM_RESOURCE_PATHS
+    {
+        /// <summary>
+        /// Resource dictionary
+        /// </summary>
+        public static string DIC_RESOURCE = "./resources";
+        /// <summary>
+        /// Xml bases for equip page
+        /// </summary>
+        public static string RESOURCE_XML_BASE_EQUIP_PAGE = $"{DIC_RESOURCE}\\EquipPage.txt";
+        /// <summary>
+        /// Xml bases for Books info
+        /// </summary>
+        public static string RESOURCE_XML_BASE_BOOKS = $"{DIC_RESOURCE}\\_Books.txt";
+        /// <summary>
+        /// Xml base for Dropping books info
+        /// </summary>
+        public static string RESOURCE_XML_BASE_DROP_BOOK = $"{DIC_RESOURCE}\\DropBook.txt";
+
+        /// <summary>
+        /// Xml bases for Card info
+        /// </summary>
+        public static string RESOURCE_XML_BASE_CARD_INFO = $"{DIC_RESOURCE}\\CardInfo.txt";
+        /// <summary>
+        /// Xml bases for Battle cards
+        /// </summary>
+        public static string RESOURCE_XML_BASE_BATTLE_CARDS = $"{DIC_RESOURCE}\\_BattleCards.txt";
+        /// <summary>
+        /// Xml base for Card drop table
+        /// </summary>
+        public static string RESOURCE_XML_BASE_CARD_DROP_TABLE = $"{DIC_RESOURCE}\\CardDropTable.txt";
+
+        /// <summary>
+        /// Modified Unity engine path 
+        /// </summary>
+        public static string RESOURCE_UNITY_ENGINE_DEBUG = $"{DIC_RESOURCE}\\UnityEngine.dll";
     }
 
     class GAME_RESOURCE_PATHS
@@ -106,51 +140,5 @@ namespace LORModingBase.DS
         /// Story localize directory
         /// </summary>
         public string RESOURCE_ROOT_STORY_LOCALIZE= "";
-
-
-        /// <summary>
-        /// EquipPage static data
-        /// </summary>
-        public string STATIC_EquipPage = "";
-        /// <summary>
-        /// StageInfo static data
-        /// </summary>
-        public string STATIC_StageInfo = "";
-        /// <summary>
-        /// DropBook static data
-        /// </summary>
-        public string STATIC_DropBook = "";
-
-        /// <summary>
-        /// Card drop table static data
-        /// </summary>
-        public string STATIC_CardDropTable = "";
-
-
-        /// <summary>
-        /// Passive Desc localized data
-        /// </summary>
-        public string LOCALIZE_PassiveDesc = "";
-        /// <summary>
-        /// Stage Name localized data
-        /// </summary>
-        public string LOCALIZE_StageName = "";
-        /// <summary>
-        /// DropBook localized data
-        /// </summary>
-        public string LOCALIZE_DropBook = "";
-        /// <summary>
-        /// Books localized data
-        /// </summary>
-        public string LOCALIZE_BOOKS = "";
-
-        /// <summary>
-        /// Battle card abilitied localized data
-        /// </summary>
-        public string LOCALIZE_BattleCardAbilities = "";
-        /// <summary>
-        /// Battle cards localized data
-        /// </summary>
-        public string LOCALIZE_BattlesCards = "";
     }
 }

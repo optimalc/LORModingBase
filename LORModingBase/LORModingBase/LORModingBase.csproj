@@ -65,6 +65,7 @@
     <Compile Include="CustomExtensions\IEnumerable.cs" />
     <Compile Include="DM\CheckDatas.cs" />
     <Compile Include="DM\Config.cs" />
+    <Compile Include="DM\EditGameData_BookInfos.cs" />
     <Compile Include="DM\ExportDatas.cs" />
     <Compile Include="DM\ImportDatas.cs" />
     <Compile Include="DM\LocalizeCore.cs" />
@@ -101,7 +102,7 @@
     <Compile Include="SubWindows\InputExtraDataForCardWindow.xaml.cs">
       <DependentUpon>InputExtraDataForCardWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\OptionWindow.xaml.cs">
+    <Compile Include="SubWindows\MainWindowSub\OptionWindow.xaml.cs">
       <DependentUpon>OptionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\InputGameCard.xaml.cs">
@@ -202,7 +203,7 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="SubWindows\OptionWindow.xaml">
+    <Page Include="SubWindows\MainWindowSub\OptionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -33,5 +33,15 @@ namespace LORModingBase.CustomExtensions
             }
             return findList;
         }
+
+        /// <summary>
+        /// Key value for each for dictionary if not null
+        /// </summary>
+        public static void ForEachKeyValuePairSafe<A, B>(this Dictionary<A, B> dicToForEach, Action<A, B> dicForEachAction)
+        {
+            if (dicToForEach == null) return;
+            foreach (KeyValuePair<A, B> eachPair in dicToForEach)
+                dicForEachAction(eachPair.Key, eachPair.Value);
+        }
     }
 }

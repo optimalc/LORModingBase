@@ -45,7 +45,7 @@ namespace LORModingBase.SubWindows
         {
             try
             {
-                if (File.Exists(DS.PATH.RESOURCE_UNITY_ENGINE_DEBUG))
+                if (File.Exists(DS.PROGRAM_RESOURCE_PATHS.RESOURCE_UNITY_ENGINE_DEBUG))
                 {
                     File.Delete($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\Managed\\UnityEngine.dll");
 

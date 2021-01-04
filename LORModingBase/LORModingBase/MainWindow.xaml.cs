@@ -60,6 +60,8 @@ namespace LORModingBase
                 this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)}";
 
             DM.GameInfos.LoadAllDatas();
+
+            DM.EditGameData_BookInfos.InitDatas();
         }
         #endregion
 
@@ -192,9 +194,9 @@ namespace LORModingBase
         private void InitSplCriticalPage()
         {
             SplCriticalPage.Children.Clear();
-            criticalPageInfos.ForEach((DS.CriticalPageInfo criticalPageInfo) =>
+            DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.ActionXmlDataNodesByName("Book", (DM.XmlDataNode xmlDataNode) =>
             {
-                SplCriticalPage.Children.Add(new UC.EditCriticalPage(criticalPageInfo, InitSplCriticalPage));
+                SplCriticalPage.Children.Add(new UC.EditCriticalPage(xmlDataNode, InitSplCriticalPage));
             });
         }
 
@@ -206,7 +208,8 @@ namespace LORModingBase
                 switch (clickButton.Name)
                 {
                     case "BtnAddCriticalBook":
-                        criticalPageInfos.Add(new DS.CriticalPageInfo());
+                        DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.AddXmlInfoByPath("Book",
+                            attributePairsToSet: new Dictionary<string, string>() { { "ID", Tools.MathTools.GetRandomNumber(DS.FilterDatas.CARD_DIV_SPECIAL, DS.FilterDatas.CARD_DIV_FINAL_STORY).ToString() } });
                         InitSplCriticalPage();
                         break;
                     case "BtnLoadCriticalBook":

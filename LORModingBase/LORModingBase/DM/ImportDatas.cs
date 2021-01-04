@@ -19,6 +19,9 @@ namespace LORModingBase.DM
         {
             MainWindow.criticalPageInfos.Clear();
             MainWindow.cardInfos.Clear();
+
+            DM.EditGameData_BookInfos.InitDatas();
+
             TARGET_MODE_DIC = dicToLoad;
 
             ImportDatas_CriticalPages();

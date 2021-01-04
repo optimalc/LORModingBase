@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,126 +11,133 @@ namespace LORModingBase.UC
     /// </summary>
     public partial class EditCriticalPage : UserControl
     {
-        DS.CriticalPageInfo innerCriticalPageInfo = null;
+        DM.XmlDataNode innerCriticalPageNode = null;
         Action initStack = null;
 
         #region Init controls
-        public EditCriticalPage(DS.CriticalPageInfo criticalPageInfo, Action initStack)
+        public EditCriticalPage(DM.XmlDataNode innerCriticalPageNode, Action initStack)
         {
-            this.innerCriticalPageInfo = criticalPageInfo;
-            this.initStack = initStack;
-            InitializeComponent();
-
-            #region 일반적인 핵심책장 정보 UI 반영시키기
-            ChangeRarityUIInit(criticalPageInfo.rarity);
-            if (!string.IsNullOrEmpty(criticalPageInfo.episodeDes))
+            try
             {
-                BtnEpisode.Content = criticalPageInfo.episodeDes;
-                BtnEpisode.ToolTip = criticalPageInfo.episodeDes;
-            }
+                this.innerCriticalPageNode = innerCriticalPageNode;
+                this.initStack = initStack;
+                InitializeComponent();
 
-            TbxPageName.Text = criticalPageInfo.name;
-            TbxPageUniqueID.Text = criticalPageInfo.bookID;
+                #region 일반적인 핵심책장 정보 UI 반영시키기
+                ChangeRarityUIInit(innerCriticalPageNode.GetInnerTextByPath("Rarity"));
 
-            TbxHP.Text = criticalPageInfo.HP;
-            TbxBR.Text = criticalPageInfo.breakNum;
-            TbxSpeedDiceMin.Text = criticalPageInfo.minSpeedCount;
-            TbxSpeedDiceMax.Text = criticalPageInfo.maxSpeedCount;
+                BtnEpisode.Content = innerCriticalPageNode.GetInnerTextByPath("Episode");
+                BtnEpisode.ToolTip = innerCriticalPageNode.GetInnerTextByPath("Episode");
 
-            if (!string.IsNullOrEmpty(criticalPageInfo.iconDes))
-            {
-                BtnBookIcon.Content = criticalPageInfo.iconDes;
-                BtnBookIcon.ToolTip = criticalPageInfo.iconDes;
-            }
-            if (!string.IsNullOrEmpty(criticalPageInfo.iconDes))
-            {
-                BtnSkin.Content = criticalPageInfo.skinDes;
-                BtnSkin.ToolTip = criticalPageInfo.skinDes;
-            }
+                TbxPageName.Text = innerCriticalPageNode.GetInnerTextByPath("Name");
+                TbxPageUniqueID.Text = innerCriticalPageNode.GetAttributesSafe("ID");
 
-            BtnSResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.SResist];
-            BtnPResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.PResist];
-            BtnHResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.HResist];
+                TbxHP.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HP");
+                TbxBR.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/Break");
+                TbxSpeedDiceMin.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SpeedMin");
+                TbxSpeedDiceMax.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/Speed");
 
-            BtnBSResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BSResist];
-            BtnBPResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BPResist];
-            BtnBHResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BHResist];
+                BtnBookIcon.Content = innerCriticalPageNode.GetInnerTextByPath("BookIcon");
+                BtnBookIcon.ToolTip = innerCriticalPageNode.GetInnerTextByPath("BookIcon");
 
-            InitLbxPassives();
-            #endregion
+                BtnSkin.Content = innerCriticalPageNode.GetInnerTextByPath("CharacterSkin");
+                BtnSkin.ToolTip = innerCriticalPageNode.GetInnerTextByPath("CharacterSkin");
 
-            #region 핵심책장 설명부분 UI 반영시키기
-            if (criticalPageInfo.description != DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, "noDescription"))
-            {
-                BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
-                BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
-            }
-            #endregion
-            #region 유니크 전용 책장 설정 부분 UI 반영시키기
-            if (criticalPageInfo.onlyCards.Count > 0)
-            {
-                string extraInfo = "";
-                innerCriticalPageInfo.onlyCards.ForEach((string onlyCardInfo) =>
+                BtnSResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist");
+                BtnPResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist");
+                BtnHResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist");
+
+                BtnBSResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist");
+                BtnBPResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist");
+                BtnBHResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist");
+
+                InitLbxPassives();
+                #endregion
+
+                #region 핵심책장 설명부분 UI 반영시키기
+                string DESCRIPTION = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetInnerTextByAttributeWithPath("bookDescList/BookDesc", "BookID",
+                    innerCriticalPageNode.GetAttributesSafe("ID"));
+                if (!string.IsNullOrEmpty(DESCRIPTION))
                 {
-                    extraInfo += $"{onlyCardInfo}\n";
-                });
-                extraInfo = extraInfo.TrimEnd('\n');
-
-                BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
-                BookUniqueCards.ToolTip = $"이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            #endregion
-
-            #region 핵심책장 드랍 책 부분 UI 반영시키기
-            if (innerCriticalPageInfo.dropBooks.Count > 0)
-            {
-                string extraInfo = "";
-                innerCriticalPageInfo.dropBooks.ForEach((string dropBookInfo) =>
+                    BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
+                    BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
+                }
+                #endregion
+                #region 유니크 전용 책장 설정 부분 UI 반영시키기
+                if (innerCriticalPageNode.GetXmlDataNodesByName("EquipEffect/OnlyCard").Count > 0)
                 {
-                    extraInfo += $"{dropBookInfo}\n";
+                    string extraInfo = "";
+                    innerCriticalPageNode.ActionXmlDataNodesByName("EquipEffect/OnlyCard", (DM.XmlDataNode xmlDataNode) =>
+                    {
+                        extraInfo += $"{xmlDataNode.GetInnerTextSafe()}\n";
+                    });
+                    extraInfo = extraInfo.TrimEnd('\n');
+
+                    BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
+                    BookUniqueCards.ToolTip = $"이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)\n{extraInfo}";
+                }
+                #endregion
+
+                List<string> DROP_BOOKS = new List<string>();
+                DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.ActionXmlDataNodesByName("BookUse/DropItem", (DM.XmlDataNode dropItemNode) => {
+                    if (dropItemNode.GetInnerTextSafe() == innerCriticalPageNode.GetAttributesSafe("ID"))
+                        DROP_BOOKS.Add(dropItemNode.GetInnerTextSafe());
                 });
-                extraInfo = extraInfo.TrimEnd('\n');
+                #region 핵심책장 드랍 책 부분 UI 반영시키기
+                if (DROP_BOOKS.Count > 0)
+                {
+                    string extraInfo = "";
+                    DROP_BOOKS.ForEach((string DROP_DOOK) =>
+                    {
+                        extraInfo += $"{DROP_DOOK}\n";
+                    });
+                    extraInfo = extraInfo.TrimEnd('\n');
 
-                BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-                BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            #endregion
-            #region 적 전용책장 입력 부분 UI 반영시키기
-            if (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel))
-            {
-                string extraInfo = "";
-                extraInfo += $"시작시 빛의 수 : {innerCriticalPageInfo.ENEMY_StartPlayPoint}\n";
-                extraInfo += $"최대 빛의 수 : {innerCriticalPageInfo.ENEMY_MaxPlayPoint}\n";
-                extraInfo += $"최대 감정 레벨 : {innerCriticalPageInfo.ENEMY_EmotionLevel}\n";
-                extraInfo += $"추가로 드로우하는 책장의 수: {innerCriticalPageInfo.ENEMY_AddedStartDraw}";
+                    BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+                    BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
+                }
+                #endregion
+                #region 적 전용책장 입력 부분 UI 반영시키기
+                if (!string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint")) ||
+                    !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/MaxPlayPoint")) ||
+                    !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/EmotionLevel")) ||
+                    !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/AddedStartDraw")))
+                {
+                    string extraInfo = "";
+                    extraInfo += $"시작시 빛의 수 : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint")}\n";
+                    extraInfo += $"최대 빛의 수 : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/MaxPlayPoint")}\n";
+                    extraInfo += $"최대 감정 레벨 : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/EmotionLevel")}\n";
+                    extraInfo += $"추가로 드로우하는 책장의 수: {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/AddedStartDraw")}";
 
-                BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
-                BtnEnemySetting.ToolTip = $"적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            #endregion
+                    BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
+                    BtnEnemySetting.ToolTip = $"적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)\n{extraInfo}";
+                }
+                #endregion
 
-            #region 핵심책장 원거리 속성 UI 반영시키기
-            if (criticalPageInfo.rangeType == "Range")
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
-            }
-            else if (criticalPageInfo.rangeType == "Hybrid")
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
-            }
-            else
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
-            }
-            #endregion
+                #region 핵심책장 원거리 속성 UI 반영시키기
+                if (innerCriticalPageNode.GetInnerTextByPath("RangeType") == "Range")
+                {
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
+                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
+                }
+                else if (innerCriticalPageNode.GetInnerTextByPath("RangeType") == "Hybrid")
+                {
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
+                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
+                }
+                else
+                {
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
+                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
+                }
+                #endregion
 
-            CriticalPageTypeUIUpdating();
+                CriticalPageTypeUIUpdating();
+            }
+            catch(Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "핵심 책장 초기화에서 오류 발생");
+            }
         }
 
         private void ChangeRarityUIInit(string rarity)
@@ -144,22 +152,22 @@ namespace LORModingBase.UC
                 case "Common":
                     WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#5430BF4B");
                     BtnRarityCommon.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageInfo.rarity = "Common";
+                    innerCriticalPageNode.SetXmlInfoByPath("Rarity", "Common");
                     break;
                 case "Uncommon":
                     WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54306ABF");
                     BtnRarityUncommon.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageInfo.rarity = "Uncommon";
+                    innerCriticalPageNode.SetXmlInfoByPath("Rarity", "Uncommon");
                     break;
                 case "Rare":
                     WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#548030BF");
                     BtnRarityRare.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageInfo.rarity = "Rare";
+                    innerCriticalPageNode.SetXmlInfoByPath("Rarity", "Rare");
                     break;
                 case "Unique":
                     WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54F3B530");
                     BtnRarityUnique.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageInfo.rarity = "Unique";
+                    innerCriticalPageNode.SetXmlInfoByPath("Rarity", "Unique");
                     break;
             }
         }
@@ -184,23 +192,23 @@ namespace LORModingBase.UC
             switch (targetButton.Name)
             {
                 case "BtnSResist":
-                    innerCriticalPageInfo.SResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/SResist", targetButton.Content.ToString());
                     break;
                 case "BtnPResist":
-                    innerCriticalPageInfo.PResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/PResist", targetButton.Content.ToString());
                     break;
                 case "BtnHResist":
-                    innerCriticalPageInfo.HResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/HResist", targetButton.Content.ToString());
                     break;
 
                 case "BtnBSResist":
-                    innerCriticalPageInfo.BSResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/SBResist", targetButton.Content.ToString());
                     break;
                 case "BtnBPResist":
-                    innerCriticalPageInfo.BPResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/PBResist", targetButton.Content.ToString());
                     break;
                 case "BtnBHResist":
-                    innerCriticalPageInfo.BHResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
+                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/HBResist", targetButton.Content.ToString());
                     break;
             }
         }
@@ -236,9 +244,8 @@ namespace LORModingBase.UC
                 BtnEpisode.Content = CONTENT_TO_SHOW;
                 BtnEpisode.ToolTip = CONTENT_TO_SHOW;
 
-                innerCriticalPageInfo.chapter = chapter;
-                innerCriticalPageInfo.episode = episodeID;
-                innerCriticalPageInfo.episodeDes = CONTENT_TO_SHOW;
+                innerCriticalPageNode.SetXmlInfoByPath("Chapter", chapter);
+                innerCriticalPageNode.SetXmlInfoByPath("Episode", episodeID);
             }).ShowDialog();
         }
         private void BtnBookIcon_Click(object sender, RoutedEventArgs e)
@@ -249,8 +256,7 @@ namespace LORModingBase.UC
                 BtnBookIcon.Content = ICON_DESC;
                 BtnBookIcon.ToolTip = ICON_DESC;
 
-                innerCriticalPageInfo.iconName = bookIconName;
-                innerCriticalPageInfo.iconDes = ICON_DESC;
+                innerCriticalPageNode.SetXmlInfoByPath("BookIcon", bookIconName);
             }).ShowDialog();
         }
         private void BtnSkin_Click(object sender, RoutedEventArgs e)
@@ -261,8 +267,7 @@ namespace LORModingBase.UC
                 BtnSkin.Content = SKIN_DESC;
                 BtnSkin.ToolTip = SKIN_DESC;
 
-                innerCriticalPageInfo.skinName = bookSkinName;
-                innerCriticalPageInfo.skinDes = SKIN_DESC;
+                innerCriticalPageNode.SetXmlInfoByPath("CharacterSkin", bookSkinName);
             }).ShowDialog();
         }
 
@@ -335,18 +340,19 @@ namespace LORModingBase.UC
         #region Passive events
         private void InitLbxPassives()
         {
-            LbxPassives.Items.Clear();
-            innerCriticalPageInfo.passiveIDs.ForEach((string passiveName) =>
-            {
-                LbxPassives.Items.Add(passiveName);
-            });
+            //LbxPassives.Items.Clear();
+            //innerCriticalPageInfo.passiveIDs.ForEach((string passiveName) =>
+            //{
+            //    LbxPassives.Items.Add(passiveName);
+            //});
         }
 
         private void BtnAddPassive_Click(object sender, RoutedEventArgs e)
         {
             new SubWindows.InputBookPassiveWindow((string passiveDec) =>
             {
-                innerCriticalPageInfo.passiveIDs.Add(passiveDec);
+                innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/Passive", passiveDec
+                    , new Dictionary<string, string>() { { "Level" , "10" } });
                 InitLbxPassives();
             }).ShowDialog();
         }
@@ -355,233 +361,227 @@ namespace LORModingBase.UC
         {
             if(LbxPassives.SelectedItem != null)
             {
-                int passiveIndexToDelete = innerCriticalPageInfo.passiveIDs.FindIndex((string passiveName) => {
-                    return passiveName == LbxPassives.SelectedItem.ToString();
-                });
-                if(passiveIndexToDelete != -1)
-                {
-                    innerCriticalPageInfo.passiveIDs.RemoveAt(passiveIndexToDelete);
-                    InitLbxPassives();
-                }
+                innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString());
+                InitLbxPassives();
             }
         }
         #endregion
         #region Text change events
         private void TbxPageName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            innerCriticalPageInfo.name = TbxPageName.Text;
+            innerCriticalPageNode.SetXmlInfoByPath("Name", TbxPageName.Text);
         }
 
         private void TbxPageUniqueID_TextChanged(object sender, TextChangedEventArgs e)
         {
-            innerCriticalPageInfo.bookID = TbxPageUniqueID.Text;
+            innerCriticalPageNode.attribute["ID"] = TbxPageUniqueID.Text;
             CriticalPageTypeUIUpdating();
         }
 
         private void TbxHP_TextChanged(object sender, TextChangedEventArgs e)
         {
-            innerCriticalPageInfo.HP = TbxHP.Text;
+            innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/HP", TbxHP.Text);
         }
 
         private void TbxBR_TextChanged(object sender, TextChangedEventArgs e)
         {
-            innerCriticalPageInfo.breakNum = TbxBR.Text;
+            innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/Break", TbxBR.Text);
         }
 
         private void TbxSpeedDiceMin_TextChanged(object sender, TextChangedEventArgs e)
         {
-            innerCriticalPageInfo.minSpeedCount = TbxSpeedDiceMin.Text;
+            innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/SpeedMin", TbxSpeedDiceMin.Text);
         }
 
         private void TbxSpeedDiceMax_TextChanged(object sender, TextChangedEventArgs e)
         {
-            innerCriticalPageInfo.maxSpeedCount = TbxSpeedDiceMax.Text;
+            innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/Speed", TbxSpeedDiceMax.Text);
         }
         #endregion
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.criticalPageInfos.Remove(innerCriticalPageInfo);
+            DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.subNodes.Remove(innerCriticalPageNode);
             initStack();
         }
 
         #region Right button events (Upside)
         private void BtnCiricalBookInfo_Click(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputCriticalBookDescription((string inputedDes) =>
-            {
-                innerCriticalPageInfo.description = inputedDes;
-                BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
-                BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
-            }, innerCriticalPageInfo.description).ShowDialog();
+            //new SubWindows.InputCriticalBookDescription((string inputedDes) =>
+            //{
+            //    innerCriticalPageInfo.description = inputedDes;
+            //    BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
+            //    BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
+            //}, innerCriticalPageInfo.description).ShowDialog();
         }
 
         private void BtnDropBooks_Click(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputDropBookInfosWindow(innerCriticalPageInfo.dropBooks).ShowDialog();
+            //new SubWindows.InputDropBookInfosWindow(innerCriticalPageInfo.dropBooks).ShowDialog();
 
-            if(innerCriticalPageInfo.dropBooks.Count > 0)
-            {
-                string extraInfo = "";
-                innerCriticalPageInfo.dropBooks.ForEach((string dropBookInfo) =>
-                {
-                    extraInfo += $"{dropBookInfo}\n";
-                });
-                extraInfo = extraInfo.TrimEnd('\n');
+            //if(innerCriticalPageInfo.dropBooks.Count > 0)
+            //{
+            //    string extraInfo = "";
+            //    innerCriticalPageInfo.dropBooks.ForEach((string dropBookInfo) =>
+            //    {
+            //        extraInfo += $"{dropBookInfo}\n";
+            //    });
+            //    extraInfo = extraInfo.TrimEnd('\n');
 
-                BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-                BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            else
-            {
-                BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
-                BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
-            }
+            //    BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+            //    BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
+            //}
+            //else
+            //{
+            //    BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
+            //    BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
+            //}
         }
 
         private void BtnEnemySetting_Click(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputEnemyInfoWindow(innerCriticalPageInfo).ShowDialog();
+            //new SubWindows.InputEnemyInfoWindow(innerCriticalPageInfo).ShowDialog();
 
-            string extraInfo = "";
-            extraInfo += $"시작시 빛의 수 : {innerCriticalPageInfo.ENEMY_StartPlayPoint}\n";
-            extraInfo += $"최대 빛의 수 : {innerCriticalPageInfo.ENEMY_MaxPlayPoint}\n";
-            extraInfo += $"최대 감정 레벨 : {innerCriticalPageInfo.ENEMY_EmotionLevel}\n";
-            extraInfo += $"추가로 드로우하는 책장의 수: {innerCriticalPageInfo.ENEMY_AddedStartDraw}";
+            //string extraInfo = "";
+            //extraInfo += $"시작시 빛의 수 : {innerCriticalPageInfo.ENEMY_StartPlayPoint}\n";
+            //extraInfo += $"최대 빛의 수 : {innerCriticalPageInfo.ENEMY_MaxPlayPoint}\n";
+            //extraInfo += $"최대 감정 레벨 : {innerCriticalPageInfo.ENEMY_EmotionLevel}\n";
+            //extraInfo += $"추가로 드로우하는 책장의 수: {innerCriticalPageInfo.ENEMY_AddedStartDraw}";
 
-            if (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel))
-            {
-                BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
-                BtnEnemySetting.ToolTip = $"적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            else
-            {
-                BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
-                BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력))";
-            }
+            //if (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
+            //    !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
+            //    !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
+            //    !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel))
+            //{
+            //    BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
+            //    BtnEnemySetting.ToolTip = $"적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)\n{extraInfo}";
+            //}
+            //else
+            //{
+            //    BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
+            //    BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력))";
+            //}
             CriticalPageTypeUIUpdating();
         }
 
         private void BookUniqueCards_Click(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputUniqueCardsWindow(innerCriticalPageInfo.onlyCards).ShowDialog();
+            //new SubWindows.InputUniqueCardsWindow(innerCriticalPageInfo.onlyCards).ShowDialog();
 
-            if (innerCriticalPageInfo.onlyCards.Count > 0)
-            {
-                string extraInfo = "";
-                innerCriticalPageInfo.onlyCards.ForEach((string onlyCardInfo) =>
-                {
-                    extraInfo += $"{onlyCardInfo}\n";
-                });
-                extraInfo = extraInfo.TrimEnd('\n');
+            //if (innerCriticalPageInfo.onlyCards.Count > 0)
+            //{
+            //    string extraInfo = "";
+            //    innerCriticalPageInfo.onlyCards.ForEach((string onlyCardInfo) =>
+            //    {
+            //        extraInfo += $"{onlyCardInfo}\n";
+            //    });
+            //    extraInfo = extraInfo.TrimEnd('\n');
 
-                BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
-                BookUniqueCards.ToolTip = $"이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            else
-            {
-                BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoUniqueCard.png");
-                BookUniqueCards.ToolTip = "이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (미입력)";
-            }
+            //    BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
+            //    BookUniqueCards.ToolTip = $"이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)\n{extraInfo}";
+            //}
+            //else
+            //{
+            //    BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoUniqueCard.png");
+            //    BookUniqueCards.ToolTip = "이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (미입력)";
+            //}
         }
         #endregion
 
         private void BtnRangeType_Click(object sender, RoutedEventArgs e)
         {
-            switch(innerCriticalPageInfo.rangeType)
-            {
-                case "Range":
-                    innerCriticalPageInfo.rangeType = "Hybrid";
-                    break;
-                case "Hybrid":
-                    innerCriticalPageInfo.rangeType = "Nomal";
-                    break;
-                default:
-                    innerCriticalPageInfo.rangeType = "Range";
-                    break;
-            }
+            //switch(innerCriticalPageInfo.rangeType)
+            //{
+            //    case "Range":
+            //        innerCriticalPageInfo.rangeType = "Hybrid";
+            //        break;
+            //    case "Hybrid":
+            //        innerCriticalPageInfo.rangeType = "Nomal";
+            //        break;
+            //    default:
+            //        innerCriticalPageInfo.rangeType = "Range";
+            //        break;
+            //}
 
-            #region 핵심책장 원거리 속성 UI 반영시키기
-            if (innerCriticalPageInfo.rangeType == "Range")
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
-            }
-            else if (innerCriticalPageInfo.rangeType == "Hybrid")
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
-            }
-            else
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
-            }
-            #endregion
+            //#region 핵심책장 원거리 속성 UI 반영시키기
+            //if (innerCriticalPageInfo.rangeType == "Range")
+            //{
+            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
+            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
+            //}
+            //else if (innerCriticalPageInfo.rangeType == "Hybrid")
+            //{
+            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
+            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
+            //}
+            //else
+            //{
+            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
+            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
+            //}
+            //#endregion
         }
     
         private void CriticalPageTypeUIUpdating()
         {
-            try
-            {
-                bool BOOK_ID_CHECK = false;
-                if(!string.IsNullOrEmpty(innerCriticalPageInfo.bookID))
-                {
-                    int BOOK_ID = Convert.ToInt32(innerCriticalPageInfo.bookID);
-                    BOOK_ID_CHECK = (BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_ENEMY) || (BOOK_ID > DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM && BOOK_ID < (DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM + 1000000));
-                }
+            //try
+            //{
+            //    bool BOOK_ID_CHECK = false;
+            //    if(!string.IsNullOrEmpty(innerCriticalPageInfo.bookID))
+            //    {
+            //        int BOOK_ID = Convert.ToInt32(innerCriticalPageInfo.bookID);
+            //        BOOK_ID_CHECK = (BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_ENEMY) || (BOOK_ID > DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM && BOOK_ID < (DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM + 1000000));
+            //    }
 
-                bool FORCE_ENEMY = innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE;
-                bool FORCE_USER = innerCriticalPageInfo.USER_TYPE_CH_FORCE;
-                bool FORECLY_INPUTED = FORCE_ENEMY || FORCE_USER;
+            //    bool FORCE_ENEMY = innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE;
+            //    bool FORCE_USER = innerCriticalPageInfo.USER_TYPE_CH_FORCE;
+            //    bool FORECLY_INPUTED = FORCE_ENEMY || FORCE_USER;
 
-                if ((BOOK_ID_CHECK || FORCE_ENEMY) && !FORCE_USER)
-                {
-                    innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = true;
-                    BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeEnemy.png");
-                    BtnCriticalPageType.ToolTip = $"클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 적 전용 책장[{(FORECLY_INPUTED ? "수동" : "자동")}]) {DS.LongDescription.EditCriticalPage_TypeChange}";
-                }
-                else
-                {
-                    innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = false;
-                    BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeUser.png");
-                    BtnCriticalPageType.ToolTip = $"클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 유저 전용 책장[{(FORECLY_INPUTED ? "수동" : "자동")}]) {DS.LongDescription.EditCriticalPage_TypeChange}";
-                }
-            }
-            catch
-            {
+            //    if ((BOOK_ID_CHECK || FORCE_ENEMY) && !FORCE_USER)
+            //    {
+            //        innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = true;
+            //        BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeEnemy.png");
+            //        BtnCriticalPageType.ToolTip = $"클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 적 전용 책장[{(FORECLY_INPUTED ? "수동" : "자동")}]) {DS.LongDescription.EditCriticalPage_TypeChange}";
+            //    }
+            //    else
+            //    {
+            //        innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = false;
+            //        BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeUser.png");
+            //        BtnCriticalPageType.ToolTip = $"클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 유저 전용 책장[{(FORECLY_INPUTED ? "수동" : "자동")}]) {DS.LongDescription.EditCriticalPage_TypeChange}";
+            //    }
+            //}
+            //catch
+            //{
 
-            }
+            //}
         }
 
         private void BtnCriticalPageType_Click(object sender, RoutedEventArgs e)
         {
-            if(!innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE && !innerCriticalPageInfo.USER_TYPE_CH_FORCE)
-            {
-                innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = true;
-                innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
-            }
-            else if(innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE)
-            {
-                innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
-                innerCriticalPageInfo.USER_TYPE_CH_FORCE = true;
-            }
-            else if (innerCriticalPageInfo.USER_TYPE_CH_FORCE)
-            {
-                innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
-                innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
-            }
+            //if(!innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE && !innerCriticalPageInfo.USER_TYPE_CH_FORCE)
+            //{
+            //    innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = true;
+            //    innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
+            //}
+            //else if(innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE)
+            //{
+            //    innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
+            //    innerCriticalPageInfo.USER_TYPE_CH_FORCE = true;
+            //}
+            //else if (innerCriticalPageInfo.USER_TYPE_CH_FORCE)
+            //{
+            //    innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
+            //    innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
+            //}
 
             CriticalPageTypeUIUpdating();
         }
 
         private void BtnCopyPage_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.criticalPageInfos.Add(Tools.DeepCopy.DeepClone(innerCriticalPageInfo));
-            initStack();
+            //MainWindow.criticalPageInfos.Add(Tools.DeepCopy.DeepClone(innerCriticalPageInfo));
+            //initStack();
         }
     }
 }
