@@ -50,14 +50,22 @@ namespace LORModingBase.DM
             InitGameResourcePaths();
         }
 
+        /// <summary>
+        /// Initiailize all global game resource paths
+        /// </summary>
         public static void InitGameResourcePaths()
         {
             GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC = $"{config.LORFolderPath}\\{DS.GAME_RESOURCE_PATHS.RESOURCE_BASE_MODE}\\StaticInfo";
             GAME_RESOURCE_PATHS.RESOURCE_ROOT_LOCALIZE = $"{config.LORFolderPath}\\{DS.GAME_RESOURCE_PATHS.RESOURCE_BASE_MODE}\\Localize\\{config.localizeOption}";
         
             GAME_RESOURCE_PATHS.STATIC_EquipPage = $"{GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC}\\EquipPage";
+            GAME_RESOURCE_PATHS.STATIC_StageInfo = $"{GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC}\\StageInfo";
+            GAME_RESOURCE_PATHS.STATIC_DropBook = $"{GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC}\\DropBook";
 
             GAME_RESOURCE_PATHS.LOCALIZE_PassiveDesc = $"{GAME_RESOURCE_PATHS.RESOURCE_ROOT_LOCALIZE}\\PassiveDesc";
+            GAME_RESOURCE_PATHS.LOCALIZE_StageName = $"{GAME_RESOURCE_PATHS.RESOURCE_ROOT_LOCALIZE}\\StageName";
+            GAME_RESOURCE_PATHS.LOCALIZE_DropBook = $"{GAME_RESOURCE_PATHS.RESOURCE_ROOT_LOCALIZE}\\etc\\{DM.Config.config.localizeOption.ToUpper()}_Dropbook.txt";
+            GAME_RESOURCE_PATHS.LOCALIZE_BOOKS = $"{GAME_RESOURCE_PATHS.RESOURCE_ROOT_LOCALIZE}\\Books";
         }
 
 

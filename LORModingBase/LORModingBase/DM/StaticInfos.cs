@@ -11,6 +11,15 @@ namespace LORModingBase.DM
         /// Equip page static data
         /// </summary>
         public static XmlData XmlData_EquipPage = null;
+        /// <summary>
+        /// Stage info static data
+        /// </summary>
+        public static XmlData XmlData_StageInfo = null;
+        /// <summary>
+        /// DropBook static data
+        /// </summary>
+        public static XmlData XmlData_DropBook = null;
+
 
         /// <summary>
         /// Load all static datas
@@ -31,9 +40,15 @@ namespace LORModingBase.DM
             LoadData_Dropbooks(); // Card drop book load
         }
 
+
+        /// <summary>
+        /// Load static infos for book
+        /// </summary>
         public static void LoadBookStaticInfos()
         {
             XmlData_EquipPage = new XmlData(DM.Config.GAME_RESOURCE_PATHS.STATIC_EquipPage);
+            XmlData_StageInfo = new XmlData(DM.Config.GAME_RESOURCE_PATHS.STATIC_StageInfo);
+            XmlData_DropBook = new XmlData(DM.Config.GAME_RESOURCE_PATHS.STATIC_DropBook);
         }
     }
 }

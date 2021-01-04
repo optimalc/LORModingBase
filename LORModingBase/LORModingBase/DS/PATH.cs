@@ -103,10 +103,30 @@ namespace LORModingBase.DS
         /// EquipPage static data
         /// </summary>
         public string STATIC_EquipPage = "";
+        /// <summary>
+        /// StageInfo static data
+        /// </summary>
+        public string STATIC_StageInfo = "";
+        /// <summary>
+        /// DropBook static data
+        /// </summary>
+        public string STATIC_DropBook = "";
 
         /// <summary>
         /// Passive Desc localized data
         /// </summary>
         public string LOCALIZE_PassiveDesc = "";
+        /// <summary>
+        /// Stage Name localized data
+        /// </summary>
+        public string LOCALIZE_StageName = "";
+        /// <summary>
+        /// DropBook localized data
+        /// </summary>
+        public string LOCALIZE_DropBook = "";
+        /// <summary>
+        /// Books localized data
+        /// </summary>
+        public string LOCALIZE_BOOKS = "";
     }
 }
