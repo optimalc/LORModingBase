@@ -20,12 +20,22 @@ namespace LORModingBase.SubWindows
     /// </summary>
     public partial class ExtraToolsWindow : Window
     {
+        #region Initilize controls
         public ExtraToolsWindow()
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.ETC);
             UpdateUI();
         }
 
+        private void UpdateUI()
+        {
+            CbxIsLogPlusMod.IsChecked = DM.Config.config.isLogPlusMod;
+        }
+        #endregion
+
+
+        #region Button click events
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -40,7 +50,9 @@ namespace LORModingBase.SubWindows
                     File.Delete($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\Managed\\UnityEngine.dll");
 
                     File.Copy(DS.PATH.RESOURCE_UNITY_ENGINE_DEBUG, $"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\Managed\\UnityEngine.dll");
-                    Tools.MessageBoxTools.ShowInfoMessageBox($"정상적으로 적용되었습니다. \\Library Of Ruina\\LibraryOfRuina_Data\\BaseMods에 로그 메세지가 텍스트 파일로 출력됩니다", "적용 완료");
+                    Tools.MessageBoxTools.ShowInfoMessageBox(
+                        DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ETC, $"BtnExecuteDebugRedirect_Click_Info_1"),
+                        DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ETC, $"BtnExecuteDebugRedirect_Click_Info_2"));
 
                     File.Create($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugLogMessage.txt");
                     File.Create($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\debugErrorMessage.txt");
@@ -49,18 +61,16 @@ namespace LORModingBase.SubWindows
                         Tools.ProcessTools.OpenExplorer($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods");
                 }
                 else
-                    new Exception("툴 관련 리소스가 없습니다. 공식 홈페이지에서 관련 데이터를 다운받으세요");
+                    new Exception(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ETC, $"BtnExecuteDebugRedirect_Click_Error_1"));
             }
             catch (Exception ex)
             {
-                Tools.MessageBoxTools.ShowErrorMessageBox("툴 적용 과정에서 오류가 발생했습니다", ex, "툴 적용 오류");
+                Tools.MessageBoxTools.ShowErrorMessageBox(
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ETC, $"BtnExecuteDebugRedirect_Click_Error_2"), 
+                    ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ETC, $"BtnExecuteDebugRedirect_Click_Error_3"));
             }
-        }
-
-        private void UpdateUI()
-        {
-            CbxIsLogPlusMod.IsChecked = DM.Config.config.isLogPlusMod;
-        }
+        } 
+        #endregion
 
         private void CbxIsLogPlusMod_Click(object sender, RoutedEventArgs e)
         {
