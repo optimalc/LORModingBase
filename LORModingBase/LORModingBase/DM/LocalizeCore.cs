@@ -54,6 +54,7 @@ namespace LORModingBase.DM
             });
         }
 
+
         /// <summary>
         /// Get localized option (LanguageCode, Language)
         /// </summary>
@@ -82,6 +83,18 @@ namespace LORModingBase.DM
             return localizePair;
         }
 
+
+        /// <summary>
+        /// Check if specific language key exists
+        /// </summary>
+        /// <param name="LANGUAGE_FILE_NAME">Language file name</param>
+        /// <param name="keyName">Key name to use</param>
+        /// <returns>True if key exists</returns>
+        public static bool IsLanguageKeyExist(string LANGUAGE_FILE_NAME, string keyName)
+        {
+            return localizedData[DM.Config.config.localizeOption][LANGUAGE_FILE_NAME].ContainsKey(keyName);
+        }
+
         /// <summary>
         /// Get localized language data
         /// </summary>
@@ -90,9 +103,13 @@ namespace LORModingBase.DM
         /// <returns>Localized data</returns>
         public static string GetLanguageData(string LANGUAGE_FILE_NAME, string keyName)
         {
-            return localizedData[DM.Config.config.localizeOption][LANGUAGE_FILE_NAME][keyName];
+            if (IsLanguageKeyExist(LANGUAGE_FILE_NAME, keyName))
+                return localizedData[DM.Config.config.localizeOption][LANGUAGE_FILE_NAME][keyName];
+            else
+                return "Language load failed";
         }
     
+
         /// <summary>
         /// Get language dictionary for specific file name
         /// </summary>

@@ -150,6 +150,7 @@
     <Compile Include="Tools\MathTools.cs" />
     <Compile Include="Tools\ProcessTools.cs" />
     <Compile Include="Tools\ThreadTools.cs" />
+    <Compile Include="Tools\WindowControls.cs" />
     <Compile Include="Tools\XmlFile.cs" />
     <Compile Include="UC\EditCard.xaml.cs">
       <DependentUpon>EditCard.xaml</DependentUpon>

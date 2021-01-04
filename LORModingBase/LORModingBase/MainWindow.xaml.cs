@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
+using LORModingBase.CustomExtensions;
 
 namespace LORModingBase
 {
@@ -19,7 +21,8 @@ namespace LORModingBase
             try
             {
                 InitLORPathResourceLabel();
-                LocalizeWindow();
+                Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.MAIN_WINDOW);
+                ExtraLocalizeWindow();
 
                 InitSplCriticalPage();
                 InitSplCards();
@@ -30,7 +33,7 @@ namespace LORModingBase
             }
         }
 
-        private void LocalizeWindow()
+        private void ExtraLocalizeWindow()
         {
             BtnCriticalPage.Content = $"[{DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttribute("text", "id", "ui_passivesuccession_title", "Edit Key Page")}]";
         }
