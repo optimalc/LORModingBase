@@ -98,6 +98,15 @@ namespace LORModingBase.DS
         /// Localize root directory
         /// </summary>
         public string RESOURCE_ROOT_LOCALIZE = "";
+        /// <summary>
+        /// Story effect info directory
+        /// </summary>
+        public string RESOURCE_ROOT_STORY_EFFECT_INFO = "";
+        /// <summary>
+        /// Story localize directory
+        /// </summary>
+        public string RESOURCE_ROOT_STORY_LOCALIZE= "";
+
 
         /// <summary>
         /// EquipPage static data
@@ -111,6 +120,12 @@ namespace LORModingBase.DS
         /// DropBook static data
         /// </summary>
         public string STATIC_DropBook = "";
+
+        /// <summary>
+        /// Card drop table static data
+        /// </summary>
+        public string STATIC_CardDropTable = "";
+
 
         /// <summary>
         /// Passive Desc localized data
@@ -128,5 +143,14 @@ namespace LORModingBase.DS
         /// Books localized data
         /// </summary>
         public string LOCALIZE_BOOKS = "";
+
+        /// <summary>
+        /// Battle card abilitied localized data
+        /// </summary>
+        public string LOCALIZE_BattleCardAbilities = "";
+        /// <summary>
+        /// Battle cards localized data
+        /// </summary>
+        public string LOCALIZE_BattlesCards = "";
     }
 }

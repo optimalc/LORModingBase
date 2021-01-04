@@ -40,7 +40,6 @@ namespace LORModingBase
                 this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)}";
 
             DM.StaticInfos.LoadAllDatas();
-            DM.LocalizeInfos.LoadAllDatas();
         }
 
         /// <summary>
