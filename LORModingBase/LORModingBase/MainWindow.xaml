@@ -131,9 +131,12 @@
                 <ColumnDefinition Width="13.9*"/>
                 <ColumnDefinition Width="72.2*"/>
             </Grid.ColumnDefinitions>
-
-            <Button x:Name="BtnCriticalPage" Grid.Column="0" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
-            <Button x:Name="BtnCards" Grid.Column="1" Content="[전투책장 편집]" ToolTip="전투책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+            <Viewbox Grid.Column="0" Stretch="Fill" Margin="10,10,10,10">
+                <Button x:Name="BtnCriticalPage" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+            </Viewbox>
+            <Viewbox Grid.Column="1" Stretch="Fill" Margin="10,10,10,10">
+                <Button x:Name="BtnCards" Content="[전투책장 편집]" ToolTip="전투책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+            </Viewbox>
         </Grid>
         <Grid Grid.Row="2" Name="GrdCriticalPage">
             <Grid.ColumnDefinitions>
