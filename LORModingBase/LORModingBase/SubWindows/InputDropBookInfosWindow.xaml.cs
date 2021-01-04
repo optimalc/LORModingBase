@@ -33,7 +33,7 @@ namespace LORModingBase.SubWindows
 
         private void InitListBoxes()
         {
-            DM.StaticInfos.dropBookInfos.ForEach((DS.DropBookInfo bookDropInfo) =>
+            DM.GameInfos.dropBookInfos.ForEach((DS.DropBookInfo bookDropInfo) =>
             {
                 switch(bookDropInfo.chapter)
                 {

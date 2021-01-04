@@ -247,7 +247,30 @@ namespace LORModingBase.DM
             else
                 return foundXmlDataNode.innerText;
         }
-    
+
+        /// <summary>
+        /// Get inner text by searched attribute node if not null or empty
+        /// </summary>
+        /// <param name="nodeName">Name to search</param>
+        /// <param name="attributeName">Attribute name to search</param>
+        /// <param name="attributeValue">Attribute value to search</param>
+        /// <param name="defaultText">Default text if given node is null or empty</param>
+        /// <returns></returns>
+        public string GetInnerTextByAttribute(string nodeName, string attributeName, string attributeValue, string defaultText = "")
+        {
+            XmlDataNode foundXmlDataNode = subNodes.Find((XmlDataNode xmlDataNode) =>
+            {
+                return xmlDataNode.name == nodeName
+                    && xmlDataNode.attribute.ContainsKey(attributeName)
+                    && xmlDataNode.attribute[attributeName] == attributeValue;
+            });
+            if (foundXmlDataNode == null || string.IsNullOrEmpty(foundXmlDataNode.innerText))
+                return defaultText;
+            else
+                return foundXmlDataNode.innerText;
+        }
+
+
         /// <summary>
         /// Get innner text value safely
         /// </summary>

@@ -25,7 +25,7 @@ namespace LORModingBase.SubWindows
 
         private void InitListBoxes()
         {
-            DM.StaticInfos.bookSkinInfos.ForEach((DS.BookSkinInfo skinInfo) =>
+            DM.GameInfos.bookSkinInfos.ForEach((DS.BookSkinInfo skinInfo) =>
             {
                 switch(skinInfo.chapter)
                 {

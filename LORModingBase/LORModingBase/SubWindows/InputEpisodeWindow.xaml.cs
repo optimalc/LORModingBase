@@ -26,7 +26,7 @@ namespace LORModingBase.SubWindows
 
         private void InitListBoxes()
         {
-            DM.StaticInfos.stageInfos.ForEach((DS.StageInfo stageInfo) =>
+            DM.GameInfos.stageInfos.ForEach((DS.StageInfo stageInfo) =>
             {
                 switch(stageInfo.Chapter)
                 {

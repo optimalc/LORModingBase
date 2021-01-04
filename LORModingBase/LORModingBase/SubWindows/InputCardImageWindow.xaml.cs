@@ -54,7 +54,7 @@ namespace LORModingBase.SubWindows
             {
                 LbxCardImages.Items.Clear();
 
-                foreach (DS.CardInfo cardInfo in DM.StaticInfos.gameCardInfos)
+                foreach (DS.CardInfo cardInfo in DM.GameInfos.gameCardInfos)
                 {
                     string IMAGE_DES = cardInfo.cardImage;
                     if (!string.IsNullOrEmpty(TbxSearch.Text) && !IMAGE_DES.ToLower().Replace(" ", "").Contains(TbxSearch.Text.ToLower().Replace(" ", ""))) continue;

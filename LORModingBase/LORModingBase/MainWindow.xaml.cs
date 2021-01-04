@@ -19,6 +19,9 @@ namespace LORModingBase
             try
             {
                 InitLORPathResourceLabel();
+                this.DataContext = DM.LocalizeCore.GetLanguageDictionary(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW);
+                LocalizeExtra();
+
                 InitSplCriticalPage();
                 InitSplCards();
             }
@@ -26,7 +29,12 @@ namespace LORModingBase
             {
                 MessageBox.Show(ex.Message, "초기화 과정 중 오류", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        } 
+        }
+
+        private void LocalizeExtra()
+        {
+            BtnCriticalPage.Content = $"[{DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttribute("text", "id", "ui_passivesuccession_title", "Edit Key Page")}]";
+        }
 
         /// <summary>
         /// Load config datas etc...
@@ -39,7 +47,7 @@ namespace LORModingBase
             if (File.Exists(DS.PROGRAM_PATHS.VERSION))
                 this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)}";
 
-            DM.StaticInfos.LoadAllDatas();
+            DM.GameInfos.LoadAllDatas();
         }
 
         /// <summary>

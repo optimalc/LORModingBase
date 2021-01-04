@@ -33,7 +33,7 @@ namespace LORModingBase.SubWindows
 
         private void InitListBoxes()
         {
-            DM.StaticInfos.gameCardInfos.ForEach((DS.CardInfo cardInfo) =>
+            DM.GameInfos.gameCardInfos.ForEach((DS.CardInfo cardInfo) =>
             {
                 if (cardInfo.option != "OnlyPage")
                     return;

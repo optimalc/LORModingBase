@@ -57,7 +57,7 @@ namespace LORModingBase.SubWindows
             {
                 LbxCriticalPages.Items.Clear();
 
-                foreach (DS.CriticalPageInfo criticalPageInfo in DM.StaticInfos.gameCriticalPageInfos)
+                foreach (DS.CriticalPageInfo criticalPageInfo in DM.GameInfos.gameCriticalPageInfos)
                 {
                     string extraInfo = "";
                     string extraChpater = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, "noChapter");
@@ -68,7 +68,7 @@ namespace LORModingBase.SubWindows
                     else if (BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_ENEMY)
                     {
                         extraInfo += "[적 전용 책장] ";
-                        DS.CriticalPageInfo foundCriticalPageInfo = DM.StaticInfos.gameCriticalPageInfos.Find((DS.CriticalPageInfo pageInfo) =>
+                        DS.CriticalPageInfo foundCriticalPageInfo = DM.GameInfos.gameCriticalPageInfos.Find((DS.CriticalPageInfo pageInfo) =>
                         {
                             return pageInfo.bookID == (BOOK_ID + 100000).ToString();
                         });
@@ -115,7 +115,7 @@ namespace LORModingBase.SubWindows
         {
             if (LbxCriticalPages.SelectedIndex != -1)
             {
-                DS.CriticalPageInfo criticalPageInfo = DM.StaticInfos.gameCriticalPageInfos.Find((DS.CriticalPageInfo pageInfo) =>
+                DS.CriticalPageInfo criticalPageInfo = DM.GameInfos.gameCriticalPageInfos.Find((DS.CriticalPageInfo pageInfo) =>
                 {
                     return pageInfo.bookID == LbxCriticalPages.SelectedItem.ToString().Split(':').Last();
                 });

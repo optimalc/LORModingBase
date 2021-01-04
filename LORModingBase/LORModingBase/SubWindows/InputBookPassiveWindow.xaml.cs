@@ -52,7 +52,7 @@ namespace LORModingBase.SubWindows
             {
                 LbxPassive.Items.Clear();
 
-                foreach (KeyValuePair<string, List<DS.PassiveInfo>> passiveInfoPair in DM.StaticInfos.passiveInfos)
+                foreach (KeyValuePair<string, List<DS.PassiveInfo>> passiveInfoPair in DM.GameInfos.passiveInfos)
                 {
 
                     foreach (DS.PassiveInfo passiveInfoValue in passiveInfoPair.Value)

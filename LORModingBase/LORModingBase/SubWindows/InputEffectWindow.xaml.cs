@@ -78,7 +78,7 @@ namespace LORModingBase.SubWindows
             {
                 LbxEffects.Items.Clear();
 
-                foreach(KeyValuePair<string, List<string>> effectKeyPair in DM.StaticInfos.cardEffectDic)
+                foreach(KeyValuePair<string, List<string>> effectKeyPair in DM.GameInfos.cardEffectDic)
                 {
                     string EFFECT_DES = $"{String.Join(" ", effectKeyPair.Value.ToArray())}:{effectKeyPair.Key}";
 

@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace LORModingBase.DM
 {
-    partial class StaticInfos
+    partial class GameInfos
     {
         #region Passive info to load
         /// <summary>
@@ -235,7 +235,7 @@ namespace LORModingBase.DM
                     foreach (XmlNode onlyCardNode in onlyCardNodes)
                     {
                         if (!string.IsNullOrEmpty(onlyCardNode.InnerText))
-                            criticalPageInfo.onlyCards.Add(DM.StaticInfos.GetDescriptionForBook.GetUniqueCardDescription(onlyCardNode.InnerText));
+                            criticalPageInfo.onlyCards.Add(DM.GameInfos.GetDescriptionForBook.GetUniqueCardDescription(onlyCardNode.InnerText));
                     }
                     #endregion
 
@@ -307,7 +307,7 @@ namespace LORModingBase.DM
             {
                 if (!string.IsNullOrEmpty(episodeID))
                 {
-                    DS.StageInfo foundStageInfo = DM.StaticInfos.stageInfos.Find((DS.StageInfo stageInfo) =>
+                    DS.StageInfo foundStageInfo = DM.GameInfos.stageInfos.Find((DS.StageInfo stageInfo) =>
                     {
                         return stageInfo.stageID == episodeID;
                     });
@@ -329,7 +329,7 @@ namespace LORModingBase.DM
             {
                 if (!string.IsNullOrEmpty(skinName))
                 {
-                    DS.BookSkinInfo foundSkinInfo = DM.StaticInfos.bookSkinInfos.Find((DS.BookSkinInfo skinInfo) =>
+                    DS.BookSkinInfo foundSkinInfo = DM.GameInfos.bookSkinInfos.Find((DS.BookSkinInfo skinInfo) =>
                     {
                         return skinInfo.skinName == skinName;
                     });
@@ -351,7 +351,7 @@ namespace LORModingBase.DM
             {
                 if (!string.IsNullOrEmpty(iconName))
                 {
-                    DS.DropBookInfo foundDropBookInfo = DM.StaticInfos.dropBookInfos.Find((DS.DropBookInfo dropInfo) =>
+                    DS.DropBookInfo foundDropBookInfo = DM.GameInfos.dropBookInfos.Find((DS.DropBookInfo dropInfo) =>
                     {
                         return dropInfo.iconName == iconName;
                     });
@@ -371,7 +371,7 @@ namespace LORModingBase.DM
             /// <returns>DES</returns>
             public static string GetPassiveDescription(string passiveID)
             {
-                string foundPassiveDesc = DM.StaticInfos.passiveList.Find((string passiveDesc) =>
+                string foundPassiveDesc = DM.GameInfos.passiveList.Find((string passiveDesc) =>
                 {
                     return passiveDesc.Split(':').Last() == passiveID;
                 });
@@ -388,7 +388,7 @@ namespace LORModingBase.DM
             /// <returns>DES</returns>
             public static string GetUniqueCardDescription(string cardID)
             {
-                DS.CardInfo foundCardInfo = DM.StaticInfos.gameCardInfos.Find((DS.CardInfo cardInfo) =>
+                DS.CardInfo foundCardInfo = DM.GameInfos.gameCardInfos.Find((DS.CardInfo cardInfo) =>
                 {
                     return cardInfo.cardID == cardID;
                 });
@@ -405,7 +405,7 @@ namespace LORModingBase.DM
             /// <returns>DES</returns>
             public static string GetBookChapterDescription(string bookID)
             {
-                DS.DropBookInfo founDropBookInfo = DM.StaticInfos.dropBookInfos.Find((DS.DropBookInfo dropBookInfo) =>
+                DS.DropBookInfo founDropBookInfo = DM.GameInfos.dropBookInfos.Find((DS.DropBookInfo dropBookInfo) =>
                 {
                     return dropBookInfo.bookID == bookID;
                 });

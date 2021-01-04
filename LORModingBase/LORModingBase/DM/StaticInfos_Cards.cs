@@ -9,7 +9,7 @@ namespace LORModingBase.DM
     /// <summary>
     /// Static infos for card datas
     /// </summary>
-    partial class StaticInfos
+    partial class GameInfos
     {
         #region Card effects data load
         /// <summary>
@@ -220,7 +220,7 @@ namespace LORModingBase.DM
             {
                 if (!string.IsNullOrEmpty(artworkName))
                 {
-                    DS.CardInfo foundCardInfo = DM.StaticInfos.gameCardInfos.Find((DS.CardInfo cardInfo) =>
+                    DS.CardInfo foundCardInfo = DM.GameInfos.gameCardInfos.Find((DS.CardInfo cardInfo) =>
                     {
                         return cardInfo.cardImage.Split(':').Last() == artworkName;
                     });

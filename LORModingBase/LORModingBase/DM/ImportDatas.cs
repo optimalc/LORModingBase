@@ -51,16 +51,16 @@ namespace LORModingBase.DM
 
                 #region 책 아이콘 정보 불러오기
                 criticalPageInfo.iconName = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "BookIcon");
-                criticalPageInfo.iconDes = DM.StaticInfos.GetDescriptionForBook.GetIconDescription(criticalPageInfo.iconName);
+                criticalPageInfo.iconDes = DM.GameInfos.GetDescriptionForBook.GetIconDescription(criticalPageInfo.iconName);
                 #endregion
                 #region 책 에피소드 정보 불러오기
                 criticalPageInfo.episode = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Episode");
                 criticalPageInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "Chapter");
-                criticalPageInfo.episodeDes = DM.StaticInfos.GetDescriptionForBook.GetEpisodeDescription(criticalPageInfo.episode, criticalPageInfo.chapter);
+                criticalPageInfo.episodeDes = DM.GameInfos.GetDescriptionForBook.GetEpisodeDescription(criticalPageInfo.episode, criticalPageInfo.chapter);
                 #endregion
                 #region 책 스킨 정보 불러오기
                 criticalPageInfo.skinName = Tools.XmlFile.GetXmlNodeSafe.ToString(bookNode, "CharacterSkin");
-                criticalPageInfo.skinDes = DM.StaticInfos.GetDescriptionForBook.GetSkinDescription(criticalPageInfo.skinName);
+                criticalPageInfo.skinDes = DM.GameInfos.GetDescriptionForBook.GetSkinDescription(criticalPageInfo.skinName);
                 #endregion
 
                 if (bookNode["RangeType"] != null)
@@ -93,7 +93,7 @@ namespace LORModingBase.DM
                     foreach (XmlNode onlyCardNode in onlyCardNodes)
                     {
                         if (!string.IsNullOrEmpty(onlyCardNode.InnerText))
-                            criticalPageInfo.onlyCards.Add(DM.StaticInfos.GetDescriptionForBook.GetUniqueCardDescription(onlyCardNode.InnerText));
+                            criticalPageInfo.onlyCards.Add(DM.GameInfos.GetDescriptionForBook.GetUniqueCardDescription(onlyCardNode.InnerText));
                     }
                     #endregion
 
@@ -101,7 +101,7 @@ namespace LORModingBase.DM
                     foreach (XmlNode passiveNode in passiveNodes)
                     {
                         if (!string.IsNullOrEmpty(passiveNode.InnerText))
-                            criticalPageInfo.passiveIDs.Add(DM.StaticInfos.GetDescriptionForBook.GetPassiveDescription(passiveNode.InnerText));
+                            criticalPageInfo.passiveIDs.Add(DM.GameInfos.GetDescriptionForBook.GetPassiveDescription(passiveNode.InnerText));
                     }
                 }
                 MainWindow.criticalPageInfos.Add(criticalPageInfo);
@@ -172,7 +172,7 @@ namespace LORModingBase.DM
                     });
                     if (foundCriticalPageInfo != null)
                     {
-                        DS.DropBookInfo foundDropBookInfo = DM.StaticInfos.dropBookInfos.Find((DS.DropBookInfo dropInfo) =>
+                        DS.DropBookInfo foundDropBookInfo = DM.GameInfos.dropBookInfos.Find((DS.DropBookInfo dropInfo) =>
                         {
                             return dropInfo.bookID == bookUseNode.Attributes["ID"].Value;
                         });
@@ -201,7 +201,7 @@ namespace LORModingBase.DM
                 cardInfo.cardID = Tools.XmlFile.GetAttributeSafe.ToString(cardNode, "ID");
 
                 cardInfo.name = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Name");
-                cardInfo.cardImage = DM.StaticInfos.GetDescriptionForCard.GetArtworkDescription(Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Artwork"));
+                cardInfo.cardImage = DM.GameInfos.GetDescriptionForCard.GetArtworkDescription(Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Artwork"));
                 if (Directory.Exists($"{TARGET_MODE_DIC}\\ArtWork"))
                 {
                     string IMAGE_NAME = cardInfo.cardImage.Split(':').Last();
@@ -212,7 +212,7 @@ namespace LORModingBase.DM
                 }
 
                 cardInfo.rarity = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Rarity");
-                cardInfo.cardScript = DM.StaticInfos.GetDescriptionForCard.GetScriptDescription(Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Script"));
+                cardInfo.cardScript = DM.GameInfos.GetDescriptionForCard.GetScriptDescription(Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Script"));
                 cardInfo.chapter = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Chapter");
                 cardInfo.priority = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Priority");
                 cardInfo.option = Tools.XmlFile.GetXmlNodeSafe.ToString(cardNode, "Option");
@@ -237,7 +237,7 @@ namespace LORModingBase.DM
                         type = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Type"),
                         detail = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Detail"),
                         motion = Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Motion"),
-                        script = DM.StaticInfos.GetDescriptionForCard.GetScriptDescription(Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Script"))
+                        script = DM.GameInfos.GetDescriptionForCard.GetScriptDescription(Tools.XmlFile.GetAttributeSafe.ToString(behaviourNode, "Script"))
                     });
                 }
 

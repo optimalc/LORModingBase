@@ -205,7 +205,7 @@ namespace LORModingBase.DM
             XmlNode rootNode = Tools.XmlFile.SelectSingleNode(DROP_BOOK_PATH, "//BookUseXmlRoot");
             foreach (string dropBookID in dropBookDic.Keys)
             {
-                DS.DropBookInfo foundDropBookInfo = DM.StaticInfos.dropBookInfos.Find((DS.DropBookInfo info) =>
+                DS.DropBookInfo foundDropBookInfo = DM.GameInfos.dropBookInfos.Find((DS.DropBookInfo info) =>
                 {
                     return info.bookID == dropBookID;
                 });
@@ -424,9 +424,9 @@ namespace LORModingBase.DM
                 dropTableElement.SetAttribute("ID", dropBookID);
 
                 List<string> dropItemList = new List<string>();
-                if (DM.StaticInfos.dropBookDic.ContainsKey(dropBookID))
+                if (DM.GameInfos.dropBookDic.ContainsKey(dropBookID))
                 {
-                    foreach(string existedID in DM.StaticInfos.dropBookDic[dropBookID])
+                    foreach(string existedID in DM.GameInfos.dropBookDic[dropBookID])
                     {
                         Tools.XmlFile.AddNewNodeWithInnerText(dropTableElement, "Card", existedID);
                         dropItemList.Add(existedID);

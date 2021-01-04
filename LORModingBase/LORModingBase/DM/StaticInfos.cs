@@ -8,30 +8,20 @@ namespace LORModingBase.DM
     /// <summary>
     /// Game static datas management
     /// </summary>
-    partial class StaticInfos
+    partial class GameInfos
     {
+        /// <summary>
+        /// Static XmlData dictionary
+        /// </summary>
         public static Dictionary<string, XmlData> staticInfos = new Dictionary<string, XmlData>();
+        /// <summary>
+        /// Localized XmlData dictionary
+        /// </summary>
         public static Dictionary<string, XmlData> localizeInfos = new Dictionary<string, XmlData>();
+        /// <summary>
+        /// Stoary XmlData dictionary
+        /// </summary>
         public static Dictionary<string, XmlData> storyInfos = new Dictionary<string, XmlData>();
-
-        /// <summary>
-        /// Equip page static data
-        /// </summary>
-        public static XmlData XmlData_EquipPage = null;
-        /// <summary>
-        /// Stage info static data
-        /// </summary>
-        public static XmlData XmlData_StageInfo = null;
-        /// <summary>
-        /// DropBook static data
-        /// </summary>
-        public static XmlData XmlData_DropBook = null;
-
-        /// <summary>
-        /// Card drop table static data
-        /// </summary>
-        public static XmlData XmlData_CardDropTable = null;
-
 
         /// <summary>
         /// Load all static datas

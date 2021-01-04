@@ -70,7 +70,7 @@ namespace LORModingBase.SubWindows
             {
                 LbxCards.Items.Clear();
 
-                foreach (DS.CardInfo cardInfo in DM.StaticInfos.gameCardInfos)
+                foreach (DS.CardInfo cardInfo in DM.GameInfos.gameCardInfos)
                 {
                     string extraInfo = "";
                     int CARD_ID = Convert.ToInt32(cardInfo.cardID);
@@ -138,7 +138,7 @@ namespace LORModingBase.SubWindows
         {
             if (LbxCards.SelectedIndex != -1)
             {
-                DS.CardInfo CardInfo = DM.StaticInfos.gameCardInfos.Find((DS.CardInfo cardInfo) =>
+                DS.CardInfo CardInfo = DM.GameInfos.gameCardInfos.Find((DS.CardInfo cardInfo) =>
                 {
                     return cardInfo.cardID == LbxCards.SelectedItem.ToString().Split(':').Last();
                 });
