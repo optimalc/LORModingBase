@@ -68,6 +68,7 @@
     <Compile Include="DM\ExportDatas.cs" />
     <Compile Include="DM\ImportDatas.cs" />
     <Compile Include="DM\LocalizeCore.cs" />
+    <Compile Include="DM\LocalizeInfos.cs" />
     <Compile Include="DM\StaticInfos.cs" />
     <Compile Include="DM\StaticInfos_Books.cs" />
     <Compile Include="DM\StaticInfos_Cards.cs" />

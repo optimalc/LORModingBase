@@ -3,20 +3,21 @@
 namespace LORModingBase.DM
 {
     /// <summary>
-    /// Game episode data managerment
+    /// Game static datas management
     /// </summary>
     partial class StaticInfos
     {
-        public static XmlData bookXmlData = null;
+        /// <summary>
+        /// Equip page static data
+        /// </summary>
+        public static XmlData XmlData_EquipPage = null;
 
         /// <summary>
         /// Load all static datas
         /// </summary>
         public static void LoadAllDatas()
         {
-            #region Load book datas
-            new XmlData($"{DM.Config.GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC}\\Card").SaveNodeData("textData.txt");
-            #endregion
+            LoadBookStaticInfos();
 
             #region Load card data -> StaticInfo_Cards.cs
             LoadData_CardEffect();
@@ -28,6 +29,11 @@ namespace LORModingBase.DM
             LoadDatas_SkinAndBookIconInfo(); 
             #endregion
             LoadData_Dropbooks(); // Card drop book load
+        }
+
+        public static void LoadBookStaticInfos()
+        {
+            XmlData_EquipPage = new XmlData(DM.Config.GAME_RESOURCE_PATHS.STATIC_EquipPage);
         }
     }
 }

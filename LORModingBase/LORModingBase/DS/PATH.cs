@@ -98,5 +98,15 @@ namespace LORModingBase.DS
         /// Localize root directory
         /// </summary>
         public string RESOURCE_ROOT_LOCALIZE = "";
+
+        /// <summary>
+        /// EquipPage static data
+        /// </summary>
+        public string STATIC_EquipPage = "";
+
+        /// <summary>
+        /// Passive Desc localized data
+        /// </summary>
+        public string LOCALIZE_PassiveDesc = "";
     }
 }

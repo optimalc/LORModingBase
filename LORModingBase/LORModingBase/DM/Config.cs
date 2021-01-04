@@ -54,6 +54,10 @@ namespace LORModingBase.DM
         {
             GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC = $"{config.LORFolderPath}\\{DS.GAME_RESOURCE_PATHS.RESOURCE_BASE_MODE}\\StaticInfo";
             GAME_RESOURCE_PATHS.RESOURCE_ROOT_LOCALIZE = $"{config.LORFolderPath}\\{DS.GAME_RESOURCE_PATHS.RESOURCE_BASE_MODE}\\Localize\\{config.localizeOption}";
+        
+            GAME_RESOURCE_PATHS.STATIC_EquipPage = $"{GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC}\\EquipPage";
+
+            GAME_RESOURCE_PATHS.LOCALIZE_PassiveDesc = $"{GAME_RESOURCE_PATHS.RESOURCE_ROOT_LOCALIZE}\\PassiveDesc";
         }
 
 
