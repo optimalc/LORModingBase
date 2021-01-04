@@ -19,8 +19,7 @@ namespace LORModingBase
             try
             {
                 InitLORPathResourceLabel();
-                this.DataContext = DM.LocalizeCore.GetLanguageDictionary(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW);
-                LocalizeExtra();
+                LocalizeWindow();
 
                 InitSplCriticalPage();
                 InitSplCards();
@@ -31,7 +30,7 @@ namespace LORModingBase
             }
         }
 
-        private void LocalizeExtra()
+        private void LocalizeWindow()
         {
             BtnCriticalPage.Content = $"[{DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttribute("text", "id", "ui_passivesuccession_title", "Edit Key Page")}]";
         }

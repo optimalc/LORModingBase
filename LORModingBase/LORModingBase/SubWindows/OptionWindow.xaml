@@ -30,7 +30,7 @@
                     <ColumnDefinition Width="60*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="{Binding [LORposition]}" ContentStringFormat="&lt; {0} &gt;" FontSize="15"  Style="{StaticResource StyLbl}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Content="&lt; 라오루 위치 &gt;" FontSize="15"  Style="{StaticResource StyLbl}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox x:Name="TbxLORPath" Grid.Column="1" Text="" ToolTip="라오루 폴더를 지정합니다.&#x0a;폴더 경로는 보통 '...\Steam\steamapps\common\Library Of Ruina'입니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewMouseLeftButtonDown="TbxLORPath_PreviewMouseLeftButtonDown"/>
             </Grid>
             <Grid Grid.Row="1">
