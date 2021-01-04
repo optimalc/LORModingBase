@@ -18,6 +18,7 @@ namespace LORModingBase.SubWindows
         {
             InitializeComponent();
             this.initResourceFunc = initResourceFunc;
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.OPTION);
 
             InitSettingUIs();
         } 
@@ -25,17 +26,17 @@ namespace LORModingBase.SubWindows
         private void InitSettingUIs()
         {
             TbxLORPath.Text = DM.Config.config.LORFolderPath;
-            TbxLORPath.ToolTip = $"{DS.LongDescription.LORPathHelp}\n현재 설정된 경로 : {DM.Config.config.LORFolderPath}";
+            TbxLORPath.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"%TbxLORPath_ToolTip%")}{DM.Config.config.LORFolderPath}";
 
             if (!Directory.Exists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}"))
             {
                 LblBaseModeResource.Content = "X";
-                LblBaseModeResource.ToolTip = "모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)";
+                LblBaseModeResource.ToolTip = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"LblBaseModeResourceDes_Error");
             }
             else
             {
                 LblBaseModeResource.Content = "O";
-                LblBaseModeResource.ToolTip = "리소스가 정상적으로 발견되었습니다";
+                LblBaseModeResource.ToolTip = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"LblBaseModeResourceDes_Info");
             }
 
             CbxDirectBaseModeExport.IsChecked = DM.Config.config.isDirectBaseModeExport;
@@ -45,61 +46,82 @@ namespace LORModingBase.SubWindows
         }
         #endregion
 
-        #region Button events
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-        #endregion
 
-        private void TbxLORPath_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void OptionWindowTextBoxLeftButtonDownEvents(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Tools.Dialog.SelectDirectory((string selectedDir) =>
+            TextBox clickTextBox = sender as TextBox;
+            try
             {
-                try
+                switch (clickTextBox.Name)
                 {
-                    DM.Config.config.LORFolderPath = selectedDir;
-                    DM.Config.SaveData();
-                    InitSettingUIs();
+                    case "TbxLORPath":
+                        Tools.Dialog.SelectDirectory((string selectedDir) =>
+                        {
+                            try
+                            {
+                                DM.Config.config.LORFolderPath = selectedDir;
+                                DM.Config.SaveData();
+                                InitSettingUIs();
 
-                    initResourceFunc();
+                                initResourceFunc();
+                            }
+                            catch (Exception ex)
+                            {
+                                Tools.MessageBoxTools.ShowErrorMessageBox(ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"OptionWindowTextBoxLeftButtonDownEvents_Error"));
+                            }
+                        });
+                        break;
+                    case "TbxProgramLanguage":
+                        new SubWindows.InputLanguageWindow((string languageName) =>
+                        {
+                            try
+                            {
+                                DM.Config.config.localizeOption = DM.LocalizeCore.GetLocalizeOptionRev()[languageName];
+                                DM.Config.SaveData();
+
+                                System.Windows.Forms.Application.Restart();
+                                System.Windows.Application.Current.Shutdown();
+                            }
+                            catch (Exception ex)
+                            {
+                                Tools.MessageBoxTools.ShowErrorMessageBox(ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"OptionWindowTextBoxLeftButtonDownEvents_Error")); ;
+                            }
+                        }).ShowDialog();
+                        break;
+
                 }
-                catch (Exception ex)
-                {
-                    Tools.MessageBoxTools.ShowErrorMessageBox(ex, "변경된 경로를 반영하는 과정에서 오류");
-                }
-            });
-        }
-
-        private void CbxDirectBaseModeExport_Click(object sender, RoutedEventArgs e)
-        {
-            DM.Config.config.isDirectBaseModeExport = (bool)CbxDirectBaseModeExport.IsChecked;
-            InitSettingUIs();
-        }
-
-        private void CbxExecuteAfterExport_Click(object sender, RoutedEventArgs e)
-        {
-            DM.Config.config.isExecuteAfterExport = (bool)CbxExecuteAfterExport.IsChecked;
-            InitSettingUIs();
-        }
-
-        private void TbxProgramLanguage_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            new SubWindows.InputLanguageWindow((string languageName) =>
+            }
+            catch (Exception ex)
             {
-                try
-                {
-                    DM.Config.config.localizeOption = DM.LocalizeCore.GetLocalizeOptionRev()[languageName];
-                    DM.Config.SaveData();
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "Error");
+            }
+        }
 
-                    System.Windows.Forms.Application.Restart();
-                    System.Windows.Application.Current.Shutdown();
-                }
-                catch (Exception ex)
+        private void OptionWindowClickCheckboxEvents(object sender, RoutedEventArgs e)
+        {
+            CheckBox clickCheckBox = sender as CheckBox;
+            try
+            {
+                switch (clickCheckBox.Name)
                 {
-                    Tools.MessageBoxTools.ShowErrorMessageBox(ex, "변경된 경로를 반영하는 과정에서 오류");;
+                    case "CbxDirectBaseModeExport":
+                        DM.Config.config.isDirectBaseModeExport = (bool)CbxDirectBaseModeExport.IsChecked;
+                        InitSettingUIs();
+                        break;
+                    case "LblExecuteAfterExport":
+                        DM.Config.config.isExecuteAfterExport = (bool)CbxExecuteAfterExport.IsChecked;
+                        InitSettingUIs();
+                        break;
                 }
-            }).ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "Error");
+            }
         }
     }
 }

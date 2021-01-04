@@ -130,5 +130,6 @@ namespace LORModingBase.DM
         public static string CARD_INFO = "cardInfo";
         public static string BOOK_INFO = "bookInfo";
         public static string MAIN_WINDOW = "mainWindow";
+        public static string ETC = "etc";
     }
 }

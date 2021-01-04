@@ -37,6 +37,9 @@ namespace LORModingBase.Tools
         /// <param name="languageDictionary">Language dictionary to this</param>
         public static void LocalizeWindowControls(Window window, string languageDictionary)
         {
+            if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{window.Name}%"))
+                window.Title = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{window.Name}%");
+
             FindLogicalChildren<Button>(window).ForEachSafe((Button btn) => {
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{btn.Name}%"))
                     btn.Content = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{btn.Name}%");
@@ -49,6 +52,7 @@ namespace LORModingBase.Tools
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{lbl.Name}_ToolTip%"))
                     lbl.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{lbl.Name}_ToolTip%");
             });
+
             FindLogicalChildren<TextBox>(window).ForEachSafe((TextBox tbx) => {
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{tbx.Name}_ToolTip%"))
                     tbx.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{tbx.Name}_ToolTip%");
@@ -56,6 +60,10 @@ namespace LORModingBase.Tools
             FindLogicalChildren<ListBox>(window).ForEachSafe((ListBox lbx) => {
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{lbx.Name}_ToolTip%"))
                     lbx.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{lbx.Name}_ToolTip%");
+            });
+            FindLogicalChildren<CheckBox>(window).ForEachSafe((CheckBox cbk) => {
+                if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{cbk.Name}_ToolTip%"))
+                    cbk.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{cbk.Name}_ToolTip%");
             });
         }
     }

@@ -22,8 +22,6 @@ namespace LORModingBase
                 LoadAllRelatedDatasAfterChangePath();
 
                 Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.MAIN_WINDOW);
-                ExtraLocalizeWindow();
-
                 InitSplCriticalPage();
                 InitSplCards();
             }
@@ -31,11 +29,6 @@ namespace LORModingBase
             {
                 Tools.MessageBoxTools.ShowErrorMessageBox(ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindow_Error"));
             }
-        }
-
-        private void ExtraLocalizeWindow()
-        {
-            BtnCriticalPage.Content = $"[{DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttribute("text", "id", "ui_passivesuccession_title", "Edit Key Page")}]";
         }
 
         /// <summary>
