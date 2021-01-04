@@ -22,8 +22,8 @@
             <Grid.Background>
                 <ImageBrush ImageSource="./Resources/MenuBg.png"/>
             </Grid.Background>
-            <Button x:Name="BtnSave" Grid.Column="0" Content="[내보내기]" ToolTip="설정된 정보들로 모드 폴더를 생성합니다" Style="{StaticResource StyBtnMenu}" Click="BtnSave_Click"/>
-            <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" ToolTip="특정 모드 폴더의 정보들을 불러옵니다" Style="{StaticResource StyBtnMenu}" Click="BtnLoad_Click"/>
+            <Button x:Name="BtnSave" Grid.Column="0" Content="[내보내기]" ToolTip="설정된 정보들로 모드 폴더를 생성합니다" Style="{StaticResource StyBtnMenu}" Click="ButtonClickEvents"/>
+            <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" ToolTip="특정 모드 폴더의 정보들을 불러옵니다" Style="{StaticResource StyBtnMenu}" Click="ButtonClickEvents"/>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="23*"/>
@@ -132,8 +132,8 @@
                 <ColumnDefinition Width="72.2*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="BtnCriticalPage" Grid.Column="0" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="BtnCriticalPage_Click"/>
-            <Button x:Name="BtnCards" Grid.Column="1" Content="[전투책장 편집]" ToolTip="전투책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="BtnCards_Click"/>
+            <Button x:Name="BtnCriticalPage" Grid.Column="0" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="ButtonClickEvents"/>
+            <Button x:Name="BtnCards" Grid.Column="1" Content="[전투책장 편집]" ToolTip="전투책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="ButtonClickEvents"/>
         </Grid>
         <Grid Grid.Row="2" Name="GrdCriticalPage">
             <Grid.ColumnDefinitions>

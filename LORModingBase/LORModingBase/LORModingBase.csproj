@@ -148,6 +148,7 @@
     <Compile Include="Tools\Dialog.cs" />
     <Compile Include="Tools\JsonFile.cs" />
     <Compile Include="Tools\MathTools.cs" />
+    <Compile Include="Tools\MessageBoxTools.cs" />
     <Compile Include="Tools\ProcessTools.cs" />
     <Compile Include="Tools\ThreadTools.cs" />
     <Compile Include="Tools\WindowControls.cs" />

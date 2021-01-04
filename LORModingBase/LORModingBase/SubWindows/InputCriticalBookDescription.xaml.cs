@@ -27,7 +27,7 @@ namespace LORModingBase.SubWindows
         {
             if(string.IsNullOrEmpty(TbxDescription.Text))
             {
-                MessageBox.Show("핵심 책장에 대한 설명을 입력하세요", "미입력", MessageBoxButton.OK, MessageBoxImage.Error);
+                Tools.MessageBoxTools.ShowErrorMessageBox("핵심 책장에 대한 설명을 입력하세요", "미입력");
                 return;
             }
             afterDesInputed(TbxDescription.Text);

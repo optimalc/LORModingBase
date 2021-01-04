@@ -66,7 +66,7 @@ namespace LORModingBase.SubWindows
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "변경된 경로를 반영하는 과정에서 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Tools.MessageBoxTools.ShowErrorMessageBox(ex, "변경된 경로를 반영하는 과정에서 오류");
                 }
             });
         }
@@ -97,7 +97,7 @@ namespace LORModingBase.SubWindows
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "변경된 경로를 반영하는 과정에서 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Tools.MessageBoxTools.ShowErrorMessageBox(ex, "변경된 경로를 반영하는 과정에서 오류");;
                 }
             }).ShowDialog();
         }

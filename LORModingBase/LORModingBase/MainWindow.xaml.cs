@@ -16,7 +16,7 @@ namespace LORModingBase
         public MainWindow()
         {
             InitializeComponent();
-            BtnCriticalPage_Click(null, null);
+            ButtonClickEvents(BtnCriticalPage, null);
 
             try
             {
@@ -29,7 +29,7 @@ namespace LORModingBase
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "초기화 과정 중 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "초기화 과정 중 오류");
             }
         }
 
@@ -77,46 +77,78 @@ namespace LORModingBase
             LoadDatas();
         }
         #endregion
-        
+
         #region Top menu button events
-        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        private void HideAllGrid()
         {
-            try
-            {
-                if (string.IsNullOrEmpty(TbxModeName.Text))
-                    throw new Exception("모드명이 입력되어 있지 않습니다.");
+            GrdCriticalPage.Visibility = Visibility.Collapsed;
+            BtnCriticalPage.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
 
-                DM.CheckDatas.CheckAllDatas();
-                string MOD_DIR_TO_USE = DM.ExportDatas.ExportAllDatas(TbxModeName.Text);
-
-                MessageBox.Show("내보내기가 정상적으로 완료되었습니다.", "완료", MessageBoxButton.OK, MessageBoxImage.Information);
-                Tools.ProcessTools.OpenExplorer(MOD_DIR_TO_USE);
-
-                if (DM.Config.config.isExecuteAfterExport)
-                    BtnStartGame_Click(null, null);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"내보내는 도중 오류가 발생했습니다. : {ex.Message}", "내보내기 오류", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            GrdCards.Visibility = Visibility.Collapsed;
+            BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
         }
 
-        private void BtnLoad_Click(object sender, RoutedEventArgs e)
+        private void ButtonClickEvents(object sender, RoutedEventArgs e)
         {
+            Button clickButton = sender as Button;
             try
             {
-                Tools.Dialog.SelectDirectory((string selectedDir) =>
+                switch (clickButton.Name)
                 {
-                    DM.ImportDatas.ImportAllDatas(selectedDir);
-                    MessageBox.Show("성공적으로 로드되었습니다.", "완료", MessageBoxButton.OK, MessageBoxImage.Information);
+                    case "BtnCriticalPage":
+                        HideAllGrid();
+                        GrdCriticalPage.Visibility = Visibility.Visible;
+                        BtnCriticalPage.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        break;
+                    case "BtnCards":
+                        HideAllGrid();
+                        GrdCards.Visibility = Visibility.Visible;
+                        BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        break;
 
-                    InitSplCriticalPage();
-                    InitSplCards();
-                }, $"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes");
+                    case "BtnSave":
+                        try
+                        {
+                            if (string.IsNullOrEmpty(TbxModeName.Text))
+                                throw new Exception("모드명이 입력되어 있지 않습니다.");
+
+                            DM.CheckDatas.CheckAllDatas();
+                            string MOD_DIR_TO_USE = DM.ExportDatas.ExportAllDatas(TbxModeName.Text);
+
+                            Tools.MessageBoxTools.ShowInfoMessageBox("내보내기가 정상적으로 완료되었습니다.", "완료");
+                            Tools.ProcessTools.OpenExplorer(MOD_DIR_TO_USE);
+
+                            if (DM.Config.config.isExecuteAfterExport)
+                                BtnStartGame_Click(null, null);
+                        }
+                        catch (Exception ex)
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox("내보내는 도중 오류가 발생했습니다.", ex, "내보내기 오류");
+                        }
+                        break;
+                    case "BtnLoad":
+                        try
+                        {
+                            Tools.Dialog.SelectDirectory((string selectedDir) =>
+                            {
+                                DM.ImportDatas.ImportAllDatas(selectedDir);
+                                Tools.MessageBoxTools.ShowInfoMessageBox("성공적으로 로드되었습니다.", "완료");
+
+                                InitSplCriticalPage();
+                                InitSplCards();
+                            }, $"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes");
+                        }
+                        catch (Exception ex)
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox("불러오는 도중 오류가 발생했습니다.", ex, "불러오기 오류");
+                        }
+                        break;
+
+                }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show($"불러오는 도중 오류가 발생했습니다. : {ex.Message}", "불러오기 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "버튼 클릭 이벤트에서 오류");
             }
         }
 
@@ -159,31 +191,6 @@ namespace LORModingBase
 
                 new SubWindows.ExtraLogWindow().Show();
             }
-        }
-        #endregion
-
-        #region Top Second menu click event
-        private void HideAllGrid()
-        {
-            GrdCriticalPage.Visibility = Visibility.Collapsed;
-            BtnCriticalPage.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
-
-            GrdCards.Visibility = Visibility.Collapsed;
-            BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
-        }
-
-        private void BtnCriticalPage_Click(object sender, RoutedEventArgs e)
-        {
-            HideAllGrid();
-            GrdCriticalPage.Visibility = Visibility.Visible;
-            BtnCriticalPage.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
-        }
-
-        private void BtnCards_Click(object sender, RoutedEventArgs e)
-        {
-            HideAllGrid();
-            GrdCards.Visibility = Visibility.Visible;
-            BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
         }
         #endregion
 

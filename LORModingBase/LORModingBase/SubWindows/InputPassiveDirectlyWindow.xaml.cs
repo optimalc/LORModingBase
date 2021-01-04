@@ -59,7 +59,7 @@ namespace LORModingBase.SubWindows
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "입력 과정 중 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "입력 과정 중 오류");
             }
         }
     }
