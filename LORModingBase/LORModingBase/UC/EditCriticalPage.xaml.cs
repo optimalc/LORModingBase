@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -24,7 +25,7 @@ namespace LORModingBase.UC
                 InitializeComponent();
 
                 #region 일반적인 핵심책장 정보 UI 반영시키기
-                ChangeRarityUIInit(innerCriticalPageNode.GetInnerTextByPath("Rarity"));
+                ChangeRarityButtonEvents(BtnRarity_Common, null);
 
                 BtnEpisode.Content = innerCriticalPageNode.GetInnerTextByPath("Episode");
                 BtnEpisode.ToolTip = innerCriticalPageNode.GetInnerTextByPath("Episode");
@@ -43,13 +44,13 @@ namespace LORModingBase.UC
                 BtnSkin.Content = innerCriticalPageNode.GetInnerTextByPath("CharacterSkin");
                 BtnSkin.ToolTip = innerCriticalPageNode.GetInnerTextByPath("CharacterSkin");
 
-                BtnSResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist");
-                BtnPResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist");
-                BtnHResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist");
+                Btn_SResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist");
+                Btn_PResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist");
+                Btn_HResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist");
 
-                BtnBSResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist");
-                BtnBPResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist");
-                BtnBHResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist");
+                Btn_SBResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist");
+                Btn_PBResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist");
+                Btn_HBResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist");
 
                 InitLbxPassives();
                 #endregion
@@ -64,10 +65,10 @@ namespace LORModingBase.UC
                 }
                 #endregion
                 #region 유니크 전용 책장 설정 부분 UI 반영시키기
-                if (innerCriticalPageNode.GetXmlDataNodesByName("EquipEffect/OnlyCard").Count > 0)
+                if (innerCriticalPageNode.GetXmlDataNodesByPath("EquipEffect/OnlyCard").Count > 0)
                 {
                     string extraInfo = "";
-                    innerCriticalPageNode.ActionXmlDataNodesByName("EquipEffect/OnlyCard", (DM.XmlDataNode xmlDataNode) =>
+                    innerCriticalPageNode.ActionXmlDataNodesByPath("EquipEffect/OnlyCard", (DM.XmlDataNode xmlDataNode) =>
                     {
                         extraInfo += $"{xmlDataNode.GetInnerTextSafe()}\n";
                     });
@@ -79,7 +80,8 @@ namespace LORModingBase.UC
                 #endregion
 
                 List<string> DROP_BOOKS = new List<string>();
-                DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.ActionXmlDataNodesByName("BookUse/DropItem", (DM.XmlDataNode dropItemNode) => {
+                DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.ActionXmlDataNodesByPath("BookUse/DropItem", (DM.XmlDataNode dropItemNode) =>
+                {
                     if (dropItemNode.GetInnerTextSafe() == innerCriticalPageNode.GetAttributesSafe("ID"))
                         DROP_BOOKS.Add(dropItemNode.GetInnerTextSafe());
                 });
@@ -134,107 +136,56 @@ namespace LORModingBase.UC
 
                 CriticalPageTypeUIUpdating();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Tools.MessageBoxTools.ShowErrorMessageBox(ex, "핵심 책장 초기화에서 오류 발생");
             }
         }
 
-        private void ChangeRarityUIInit(string rarity)
+        /// <summary>
+        /// Change rarity button events
+        /// </summary>
+        private void ChangeRarityButtonEvents(object sender, RoutedEventArgs e)
         {
-            BtnRarityCommon.Background = null;
-            BtnRarityUncommon.Background = null;
-            BtnRarityRare.Background = null;
-            BtnRarityUnique.Background = null;
+            Button rarityButton = sender as Button;
 
-            switch (rarity)
-            {
-                case "Common":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#5430BF4B");
-                    BtnRarityCommon.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageNode.SetXmlInfoByPath("Rarity", "Common");
-                    break;
-                case "Uncommon":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54306ABF");
-                    BtnRarityUncommon.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageNode.SetXmlInfoByPath("Rarity", "Uncommon");
-                    break;
-                case "Rare":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#548030BF");
-                    BtnRarityRare.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageNode.SetXmlInfoByPath("Rarity", "Rare");
-                    break;
-                case "Unique":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54F3B530");
-                    BtnRarityUnique.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageNode.SetXmlInfoByPath("Rarity", "Unique");
-                    break;
-            }
+            BtnRarity_Common.Background = null;
+            BtnRarity_Uncommon.Background = null;
+            BtnRarity_Rare.Background = null;
+            BtnRarity_Unique.Background = null;
+
+            rarityButton.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
+            WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr(rarityButton.Tag.ToString());
+            innerCriticalPageNode.SetXmlInfoByPath("Rarity", rarityButton.Name.Split('_').Last());
         }
-        
-        private void InitResistFromButton(Button targetButton, bool isLeft)
+
+        /// <summary>
+        /// Resist button events
+        /// </summary>
+        private void InitResistFromButtonEvents(object sender, MouseButtonEventArgs e)
         {
+            Button resistButton = sender as Button;
+
             // Down index
-            if(isLeft)
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
-                int RESISTS_INDEX = DS.GameInfo.resistInfo_Doc.IndexOf(targetButton.Content.ToString()) - 1;
-                if (RESISTS_INDEX < 0) RESISTS_INDEX = DS.GameInfo.resistInfo_Doc.Count - 1;
-                targetButton.Content = DS.GameInfo.resistInfo_Doc[RESISTS_INDEX];
+                int RESISTS_INDEX = DS.GameInfo.resistInfo_Code.IndexOf(resistButton.Content.ToString()) - 1;
+                if (RESISTS_INDEX < 0) RESISTS_INDEX = DS.GameInfo.resistInfo_Code.Count - 1;
+                resistButton.Content = DS.GameInfo.resistInfo_Code[RESISTS_INDEX];
+                resistButton.Tag = DS.GameInfo.resistInfo_Code[RESISTS_INDEX];
             }
             // Up index
             else
             {
-                int RESISTS_INDEX = DS.GameInfo.resistInfo_Doc.IndexOf(targetButton.Content.ToString()) + 1;
-                if (RESISTS_INDEX >= DS.GameInfo.resistInfo_Doc.Count) RESISTS_INDEX = 0;
-                targetButton.Content = DS.GameInfo.resistInfo_Doc[RESISTS_INDEX];
+                int RESISTS_INDEX = DS.GameInfo.resistInfo_Code.IndexOf(resistButton.Content.ToString()) + 1;
+                if (RESISTS_INDEX >= DS.GameInfo.resistInfo_Code.Count) RESISTS_INDEX = 0;
+                resistButton.Content = DS.GameInfo.resistInfo_Code[RESISTS_INDEX];
+                resistButton.Tag = DS.GameInfo.resistInfo_Code[RESISTS_INDEX];
             }
-
-            switch (targetButton.Name)
-            {
-                case "BtnSResist":
-                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/SResist", targetButton.Content.ToString());
-                    break;
-                case "BtnPResist":
-                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/PResist", targetButton.Content.ToString());
-                    break;
-                case "BtnHResist":
-                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/HResist", targetButton.Content.ToString());
-                    break;
-
-                case "BtnBSResist":
-                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/SBResist", targetButton.Content.ToString());
-                    break;
-                case "BtnBPResist":
-                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/PBResist", targetButton.Content.ToString());
-                    break;
-                case "BtnBHResist":
-                    innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/HBResist", targetButton.Content.ToString());
-                    break;
-            }
+            innerCriticalPageNode.SetXmlInfoByPath($"EquipEffect/{resistButton.Name.Split('_').Last()}", resistButton.Tag.ToString());
         }
         #endregion
         #region Button events
-        #region Rarity buttons
-        private void BtnRarityCommon_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Common");
-        }
-
-        private void BtnRarityUncommon_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Uncommon");
-        }
-
-        private void BtnRarityRare_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Rare");
-        }
-
-        private void BtnRarityUnique_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Unique");
-        }
-        #endregion
 
         private void BtnEpisode_Click(object sender, RoutedEventArgs e)
         {
@@ -270,71 +221,6 @@ namespace LORModingBase.UC
                 innerCriticalPageNode.SetXmlInfoByPath("CharacterSkin", bookSkinName);
             }).ShowDialog();
         }
-
-        #region HP resist buttons
-        private void BtnSResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnSResist, true);
-        }
-
-        private void BtnSResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnSResist, false);
-        }
-
-        private void BtnPResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnPResist, true);
-        }
-
-        private void BtnPResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnPResist, false);
-        }
-
-        private void BtnHResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnHResist, true);
-        }
-
-        private void BtnHResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnHResist, false);
-        }
-        #endregion
-        #region Break resist buttons
-        private void BtnBSResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBSResist, true);
-        }
-
-        private void BtnBSResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBSResist, false);
-        }
-
-
-        private void BtnBPResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBPResist, true);
-        }
-
-        private void BtnBPResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBPResist, false);
-        }
-
-        private void BtnBHResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBHResist, true);
-        }
-
-        private void BtnBHResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBHResist, false);
-        }
-        #endregion
-
         #endregion
 
         #region Passive events
@@ -352,14 +238,14 @@ namespace LORModingBase.UC
             new SubWindows.InputBookPassiveWindow((string passiveDec) =>
             {
                 innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/Passive", passiveDec
-                    , new Dictionary<string, string>() { { "Level" , "10" } });
+                    , new Dictionary<string, string>() { { "Level", "10" } });
                 InitLbxPassives();
             }).ShowDialog();
         }
 
         private void BtnDeletePassive_Click(object sender, RoutedEventArgs e)
         {
-            if(LbxPassives.SelectedItem != null)
+            if (LbxPassives.SelectedItem != null)
             {
                 innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString());
                 InitLbxPassives();
@@ -375,6 +261,7 @@ namespace LORModingBase.UC
         private void TbxPageUniqueID_TextChanged(object sender, TextChangedEventArgs e)
         {
             innerCriticalPageNode.attribute["ID"] = TbxPageUniqueID.Text;
+            innerCriticalPageNode.SetXmlInfoByPath("TextId", TbxPageUniqueID.Text);
             CriticalPageTypeUIUpdating();
         }
 
@@ -522,7 +409,7 @@ namespace LORModingBase.UC
             //}
             //#endregion
         }
-    
+
         private void CriticalPageTypeUIUpdating()
         {
             //try

@@ -10,6 +10,7 @@ namespace LORModingBase.DM
     /// <summary>
     /// Xml data management class
     /// </summary>
+    [Serializable]
     class XmlData
     {
         /// <summary>
@@ -163,6 +164,7 @@ namespace LORModingBase.DM
     /// <summary>
     /// Each xml node in XmlData
     /// </summary>
+    [Serializable]
     public class XmlDataNode
     {
         /// <summary>
@@ -252,7 +254,7 @@ namespace LORModingBase.DM
         /// </summary>
         /// <param name="nameToSearch">Name to search</param>
         /// <param name="actionXmlDataNode">Action multiple xml data</param>
-        public void ActionXmlDataNodesByName(string path, Action<XmlDataNode> actionXmlDataNode)
+        public void ActionXmlDataNodesByPath(string path, Action<XmlDataNode> actionXmlDataNode)
         {
             if (string.IsNullOrEmpty(path)) return;
 
@@ -263,7 +265,7 @@ namespace LORModingBase.DM
                 {
                     return xmlDataNode.name == NAME_LIST[0];
                 }).ForEachSafe((XmlDataNode xmlDataNode) => {
-                    ActionXmlDataNodesByName(String.Join("/", NAME_LIST.Skip(1)), actionXmlDataNode);
+                    ActionXmlDataNodesByPath(String.Join("/", NAME_LIST.Skip(1)), actionXmlDataNode);
                 });
             }
             else
@@ -284,9 +286,9 @@ namespace LORModingBase.DM
         /// <param name="attributeName">Attribute name to search</param>
         /// <param name="attributeValue">Attribute value to search</param>
         /// <param name="actionXmlDataNode">Action single xml data node if not null</param>
-        public void ActionXmlDataNodesByAttribute(string path, string attributeName, string attributeValue, Action<XmlDataNode> actionXmlDataNode)
+        public void ActionXmlDataNodesByAttributeWihtPath(string path, string attributeName, string attributeValue, Action<XmlDataNode> actionXmlDataNode)
         {
-            ActionXmlDataNodesByName(path, (XmlDataNode searchedNode) =>
+            ActionXmlDataNodesByPath(path, (XmlDataNode searchedNode) =>
             {
                 if (searchedNode.attribute.ContainsKey(attributeName)
                   && searchedNode.attribute[attributeName] == attributeValue)
@@ -297,9 +299,10 @@ namespace LORModingBase.DM
         /// <summary>
         /// Get multiple xml data node
         /// </summary>
-        /// <param name="nameToSearch">Name to search</param>
+        /// <param name="path">XmlDataNode path to search</param>
+        /// <param name="foundXmlDataNodes">Rollback para</param>
         /// <returns>Searched xml data nodes</returns>
-        public List<XmlDataNode> GetXmlDataNodesByName(string path, List<XmlDataNode> foundXmlDataNodes = null)
+        public List<XmlDataNode> GetXmlDataNodesByPath(string path, List<XmlDataNode> foundXmlDataNodes = null)
         {
             if (string.IsNullOrEmpty(path)) return null;
 
@@ -313,18 +316,80 @@ namespace LORModingBase.DM
                 {
                     return xmlDataNode.name == NAME_LIST[0];
                 }).ForEachSafe((XmlDataNode xmlDataNode) => {
-                    foundXmlDataNodes.AddRange(xmlDataNode.GetXmlDataNodesByName(String.Join("/", NAME_LIST.Skip(1)), foundXmlDataNodes));
+                    foundXmlDataNodes.AddRange(xmlDataNode.GetXmlDataNodesByPath(String.Join("/", NAME_LIST.Skip(1)), foundXmlDataNodes));
                 });
             }
             else
-            {
-                List<XmlDataNode> foundXmlDataNode = subNodes.FindAll((XmlDataNode xmlDataNode) =>
+                foundXmlDataNodes.AddRange(subNodes.FindAll((XmlDataNode xmlDataNode) =>
                 {
                     return xmlDataNode.name == NAME_LIST[0];
+                }));
+
+            return foundXmlDataNodes;
+        }
+
+        /// <summary>
+        /// Get multiple xml data node
+        /// </summary>
+        /// <param name="path">XmlDataNode path to search</param>
+        /// <param name="innerTextToCheck">Inner text to check</param>
+        /// <param name="attributeToCheck">Attribute dic to check</param>
+        /// <param name="foundXmlDataNodes">Rollback para</param>
+        /// <returns>Searched xml data nodes</returns>
+        public List<XmlDataNode> GetXmlDataNodesByPathWithXmlInfo(string path, string innerTextToCheck = "", 
+            Dictionary<string, string> attributeToCheck = null, List<XmlDataNode> foundXmlDataNodes = null)
+        {
+            if (string.IsNullOrEmpty(path)) return null;
+
+            if (foundXmlDataNodes == null)
+                foundXmlDataNodes = new List<XmlDataNode>();
+
+            List<string> NAME_LIST = path.Split('/').ToList();
+            if (NAME_LIST.Count > 1)
+            {
+                subNodes.FindAll((XmlDataNode xmlDataNode) =>
+                {
+                    return xmlDataNode.name == NAME_LIST[0];
+                }).ForEachSafe((XmlDataNode xmlDataNode) => {
+                    foundXmlDataNodes.AddRange(xmlDataNode.GetXmlDataNodesByPathWithXmlInfo(String.Join("/", NAME_LIST.Skip(1)),
+                        innerTextToCheck, attributeToCheck, foundXmlDataNodes));
                 });
-                if (foundXmlDataNode != null)
-                    foundXmlDataNodes.AddRange(foundXmlDataNode);
             }
+            else
+                foundXmlDataNodes.AddRange(subNodes.FindAll((XmlDataNode xmlDataNode) =>
+                {
+                    if (!string.IsNullOrEmpty(innerTextToCheck) && attributeToCheck == null)
+                        return xmlDataNode.innerText == innerTextToCheck;
+                    else if ((!string.IsNullOrEmpty(innerTextToCheck) && attributeToCheck != null)
+                          && (xmlDataNode.innerText == innerTextToCheck))
+                    {
+                        bool attritubteCheck = true;
+                        attributeToCheck.ForEachKeyValuePairSafe((string atName, string atValue) =>
+                        {
+                            if (xmlDataNode.attribute.ContainsKey(atName)
+                               && xmlDataNode.attribute[atName] != atValue)
+                                attritubteCheck = false;
+                            else if (!xmlDataNode.attribute.ContainsKey(atName))
+                                attritubteCheck = false;
+                        });
+                        return attritubteCheck;
+                    }
+                    else if (string.IsNullOrEmpty(innerTextToCheck) && attributeToCheck != null)
+                    {
+                        bool attritubteCheck = true;
+                        attributeToCheck.ForEachKeyValuePairSafe((string atName, string atValue) =>
+                        {
+                            if (xmlDataNode.attribute.ContainsKey(atName)
+                               && xmlDataNode.attribute[atName] != atValue)
+                                attritubteCheck = false;
+                            else if (!xmlDataNode.attribute.ContainsKey(atName))
+                                attritubteCheck = false;
+                        });
+                        return attritubteCheck;
+                    }
+                    else
+                        return true;
+                }));
 
             return foundXmlDataNodes;
         }
@@ -516,11 +581,13 @@ namespace LORModingBase.DM
         }
         #endregion
 
-        #region Removing data funcions
+        #region Removing data functions
         /// <summary>
         /// Delete xml data node from path if exists
         /// </summary>
         /// <param name="path">XmlData path</param>
+        /// <param name="innerTextToCheck">Inner text to check</param>
+        /// <param name="attributeToCheck">Attribute dic to check</param>
         public void RemoveXmlInfosByPath(string path, string innerTextToCheck = "", Dictionary<string, string> attributeToCheck = null)
         {
             if (string.IsNullOrEmpty(path)) return;
@@ -574,6 +641,17 @@ namespace LORModingBase.DM
                     subNodes.Remove(xmlDataToRemove);
                 });
             }
+        }
+        #endregion
+
+        #region Extra data functions
+        /// <summary>
+        /// Copy XmlDataNode and return it
+        /// </summary>
+        /// <returns>Copied XmlDataNode</returns>
+        public XmlDataNode Copy()
+        {
+            return Tools.DeepCopy.DeepClone(this);
         }
         #endregion
     }

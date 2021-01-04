@@ -194,7 +194,7 @@ namespace LORModingBase
         private void InitSplCriticalPage()
         {
             SplCriticalPage.Children.Clear();
-            DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.ActionXmlDataNodesByName("Book", (DM.XmlDataNode xmlDataNode) =>
+            DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode xmlDataNode) =>
             {
                 SplCriticalPage.Children.Add(new UC.EditCriticalPage(xmlDataNode, InitSplCriticalPage));
             });
@@ -208,8 +208,8 @@ namespace LORModingBase
                 switch (clickButton.Name)
                 {
                     case "BtnAddCriticalBook":
-                        DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.AddXmlInfoByPath("Book",
-                            attributePairsToSet: new Dictionary<string, string>() { { "ID", Tools.MathTools.GetRandomNumber(DS.FilterDatas.CARD_DIV_SPECIAL, DS.FilterDatas.CARD_DIV_FINAL_STORY).ToString() } });
+                        DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(
+                            DM.EditGameData_BookInfos.AddNewStaticEquipPageBase());
                         InitSplCriticalPage();
                         break;
                     case "BtnLoadCriticalBook":
