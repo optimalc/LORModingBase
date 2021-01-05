@@ -54,9 +54,9 @@
                 <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
 
                 <Label Grid.Column="0" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
-                <TextBox x:Name="TbxPageName" Grid.Column="1" Text="" ToolTip="핵심책장의 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxPageName_TextChanged"/>
+                <TextBox x:Name="TbxPageName_Name" Grid.Column="1" Text="" ToolTip="핵심책장의 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
                 <Label Grid.Column="2" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
-                <TextBox x:Name="TbxPageUniqueID" Grid.Column="3" Text="" ToolTip="핵심책장의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxPageUniqueID_TextChanged"/>
+                <TextBox x:Name="TbxPageUniqueID" Grid.Column="3" Text="" ToolTip="핵심책장의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
             </Grid>
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
@@ -81,7 +81,7 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <TextBox x:Name="TbxHP" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxHP_TextChanged" ToolTip="체력을 입력합니다"/>
+                <TextBox x:Name="TbxHP_EquipEffect_HP" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox" ToolTip="체력을 입력합니다"/>
 
                 <Image Grid.Column="2" Source="../Resources/iconBR.png" RenderTransformOrigin="0.5,0.5" ToolTip="흐트러짐 저항">
                     <Image.RenderTransform>
@@ -93,7 +93,7 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <TextBox x:Name="TbxBR" Grid.Column="3" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxBR_TextChanged" ToolTip="흐트러짐 저항을 입력합니다"/>
+                <TextBox x:Name="TbxBR_EquipEffect_Break" Grid.Column="3" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox" ToolTip="흐트러짐 저항을 입력합니다"/>
 
                 <Image Grid.Column="4" Source="../Resources/iconSpeedDice.png" RenderTransformOrigin="0.5,0.5" ToolTip="속도 주사위 범위">
                     <Image.RenderTransform>
@@ -105,9 +105,9 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <TextBox x:Name="TbxSpeedDiceMin" Grid.Column="5" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0" TextChanged="TbxSpeedDiceMin_TextChanged" ToolTip="속도 주사위의 최솟값을 입력합니다"/>
+                <TextBox x:Name="TbxSpeedDiceMin_EquipEffect_SpeedMin" Grid.Column="5" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0" TextChanged="ReflectTextChangeInTextBox" ToolTip="속도 주사위의 최솟값을 입력합니다"/>
                 <Label Grid.Column="5" Content="~" FontSize="15"  Style="{StaticResource StyLbl}" Margin="18,0,0,0"/>
-                <TextBox x:Name="TbxSpeedDiceMax" Grid.Column="6" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0" TextChanged="TbxSpeedDiceMax_TextChanged" ToolTip="속도 주사위의 최대값을 입력합니다"/>
+                <TextBox x:Name="TbxSpeedDiceMax_EquipEffect_Speed" Grid.Column="6" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0" TextChanged="ReflectTextChangeInTextBox" ToolTip="속도 주사위의 최대값을 입력합니다"/>
             </Grid>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>

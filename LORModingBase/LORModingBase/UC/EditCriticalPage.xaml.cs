@@ -30,13 +30,13 @@ namespace LORModingBase.UC
                 BtnEpisode.Content = innerCriticalPageNode.GetInnerTextByPath("Episode");
                 BtnEpisode.ToolTip = innerCriticalPageNode.GetInnerTextByPath("Episode");
 
-                TbxPageName.Text = innerCriticalPageNode.GetInnerTextByPath("Name");
+                TbxPageName_Name.Text = innerCriticalPageNode.GetInnerTextByPath("Name");
                 TbxPageUniqueID.Text = innerCriticalPageNode.GetAttributesSafe("ID");
 
-                TbxHP.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HP");
-                TbxBR.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/Break");
-                TbxSpeedDiceMin.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SpeedMin");
-                TbxSpeedDiceMax.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/Speed");
+                TbxHP_EquipEffect_HP.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HP");
+                TbxBR_EquipEffect_Break.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/Break");
+                TbxSpeedDiceMin_EquipEffect_SpeedMin.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SpeedMin");
+                TbxSpeedDiceMax_EquipEffect_Speed.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/Speed");
 
                 BtnBookIcon.Content = innerCriticalPageNode.GetInnerTextByPath("BookIcon");
                 BtnBookIcon.ToolTip = innerCriticalPageNode.GetInnerTextByPath("BookIcon");
@@ -253,36 +253,27 @@ namespace LORModingBase.UC
         }
         #endregion
         #region Text change events
-        private void TbxPageName_TextChanged(object sender, TextChangedEventArgs e)
+        /// <summary>
+        /// Reflect text chagnes in TextBox
+        /// </summary>
+        private void ReflectTextChangeInTextBox(object sender, TextChangedEventArgs e)
         {
-            innerCriticalPageNode.SetXmlInfoByPath("Name", TbxPageName.Text);
-        }
-
-        private void TbxPageUniqueID_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageNode.attribute["ID"] = TbxPageUniqueID.Text;
-            innerCriticalPageNode.SetXmlInfoByPath("TextId", TbxPageUniqueID.Text);
-            CriticalPageTypeUIUpdating();
-        }
-
-        private void TbxHP_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/HP", TbxHP.Text);
-        }
-
-        private void TbxBR_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/Break", TbxBR.Text);
-        }
-
-        private void TbxSpeedDiceMin_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/SpeedMin", TbxSpeedDiceMin.Text);
-        }
-
-        private void TbxSpeedDiceMax_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/Speed", TbxSpeedDiceMax.Text);
+            TextBox tbx = sender as TextBox;
+            switch (tbx.Name)
+            {
+                case "TbxPageUniqueID":
+                    innerCriticalPageNode.attribute["ID"] = tbx.Text;
+                    innerCriticalPageNode.SetXmlInfoByPath("TextId", tbx.Text);
+                    CriticalPageTypeUIUpdating();
+                    break;
+                default:
+                    List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
+                    if(SPLIT_NAME.Count == 2)
+                        innerCriticalPageNode.SetXmlInfoByPath(SPLIT_NAME.Last(), tbx.Text);
+                    else if(SPLIT_NAME.Count > 2)
+                        innerCriticalPageNode.SetXmlInfoByPath(String.Join("/", SPLIT_NAME.Skip(1)), tbx.Text);
+                    break;
+            }
         }
         #endregion
 
