@@ -208,7 +208,10 @@ namespace LORModingBase.UC
                 case "BtnEpisode":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
-
+                        innerCriticalPageNode.SetXmlInfoByPath("Episode", selectedItem);
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                        BtnEpisode.Content = selectedItem;
+                        BtnEpisode.ToolTip = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
             }

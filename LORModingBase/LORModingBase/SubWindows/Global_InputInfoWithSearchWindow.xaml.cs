@@ -31,11 +31,24 @@ namespace LORModingBase.SubWindows
         {
             InitializeComponent();
             this.afterSelectItem = afterSelectItem;
+            List<string> searchTypes = new List<string>();
+            selectItems = new List<string>();
+
             switch (preset)
             {
                 case InputInfoWithSearchWindow_PRESET.EPISODE:
+                    DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode stageNode) =>
+                    {
+                        string STAGE_ID = stageNode.GetAttributesSafe("id");
+                        if(!string.IsNullOrEmpty(STAGE_ID))
+                        {
+                            if (Convert.ToInt32(STAGE_ID) < DS.FilterDatas.STAGEINFO_DIV_NOT_CREATURE)
+                                selectItems.Add(STAGE_ID);
+                        }
+                    });
                     break;
             }
+            InitLbxSearchType(searchTypes);
         }
         #endregion
 
@@ -83,7 +96,7 @@ namespace LORModingBase.SubWindows
         {
             if (LbxItems.SelectedItem != null)
             {
-                afterSelectItem(LbxItems.ToString());
+                afterSelectItem(LbxItems.SelectedItem.ToString());
                 this.Close();
             }
         }

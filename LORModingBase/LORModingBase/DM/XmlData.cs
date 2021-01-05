@@ -286,7 +286,7 @@ namespace LORModingBase.DM
         /// <param name="attributeName">Attribute name to search</param>
         /// <param name="attributeValue">Attribute value to search</param>
         /// <param name="actionXmlDataNode">Action single xml data node if not null</param>
-        public void ActionXmlDataNodesByAttributeWihtPath(string path, string attributeName, string attributeValue, Action<XmlDataNode> actionXmlDataNode)
+        public void ActionXmlDataNodesByAttributeWithPath(string path, string attributeName, string attributeValue, Action<XmlDataNode> actionXmlDataNode)
         {
             ActionXmlDataNodesByPath(path, (XmlDataNode searchedNode) =>
             {

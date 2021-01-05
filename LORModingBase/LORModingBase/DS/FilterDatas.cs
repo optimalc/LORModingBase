@@ -37,5 +37,7 @@ namespace LORModingBase.DS
         public const int CARD_DIV_CREATURE = 1000000;
         public const int CARD_DIV_SPECIAL = 2000000;
         public const int CARD_DIV_FINAL_STORY = 9000000;
+
+        public const int STAGEINFO_DIV_NOT_CREATURE = 200000;
     }
 }

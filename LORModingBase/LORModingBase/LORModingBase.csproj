@@ -67,6 +67,7 @@
     <Compile Include="DM\Config.cs" />
     <Compile Include="DM\EditGameData_BookInfos.cs" />
     <Compile Include="DM\ExportDatas.cs" />
+    <Compile Include="DM\GetLocalizedDescriptions.cs" />
     <Compile Include="DM\ImportDatas.cs" />
     <Compile Include="DM\LocalizeCore.cs" />
     <Compile Include="DM\GameInfos.cs" />
@@ -143,9 +144,6 @@
     </Compile>
     <Compile Include="SubWindows\InputEpisodeDirectlyWindow.xaml.cs">
       <DependentUpon>InputEpisodeDirectlyWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputEpisodeWindow.xaml.cs">
-      <DependentUpon>InputEpisodeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\ColorTools.cs" />
     <Compile Include="Tools\DeepCopy.cs" />
@@ -259,10 +257,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\InputEpisodeDirectlyWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SubWindows\InputEpisodeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
