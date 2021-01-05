@@ -71,6 +71,14 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(PASSIVE_ID);
                     });
                     break;
+                case InputInfoWithSearchWindow_PRESET.CRITICAL_BOOKS:
+                    DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode eqNode) =>
+                    {
+                        string EQ_BOOK_ID = eqNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(EQ_BOOK_ID))
+                            selectItems.Add(EQ_BOOK_ID);
+                    });
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -142,6 +150,7 @@ namespace LORModingBase.SubWindows
         EPISODE,
         BOOK_ICON,
         CHARACTER_SKIN,
-        PASSIVE
+        PASSIVE,
+        CRITICAL_BOOKS
     };
 }

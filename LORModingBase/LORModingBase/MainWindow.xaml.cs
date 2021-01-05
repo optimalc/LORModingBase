@@ -217,11 +217,41 @@ namespace LORModingBase
                         InitSplCriticalPage();
                         break;
                     case "BtnLoadCriticalBook":
-                        new SubWindows.InputGameCriticalPage((DS.CriticalPageInfo selectedCriticalPageInfo) =>
+                        new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                         {
-                            criticalPageInfos.Add(Tools.DeepCopy.DeepClone(selectedCriticalPageInfo));
-                            InitSplCriticalPage();
-                        }).ShowDialog();
+                            List<DM.XmlDataNode> foundEqNodes = DM.GameInfos.staticInfos["EquipPage"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
+                                attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            if(foundEqNodes.Count > 0)
+                            {
+                                DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(foundEqNodes[0].Copy());
+
+                                List<DM.XmlDataNode> foundLocalizeBooks = DM.GameInfos.localizeInfos["Books"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                                    attributeToCheck: new Dictionary<string, string>() { { "BookID", selectedItem } });
+                                if(foundLocalizeBooks.Count > 0)
+                                {
+                                    if (!DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.CheckIfGivenPathWithXmlInfoExists("bookDescList/BookDesc",
+                                               attributeToCheck: new Dictionary<string, string>() { { "BookID", selectedItem } })) ;
+                                        DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.subNodes.Add(foundLocalizeBooks[0].Copy());
+                                }
+
+                                DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPath("BookUse").ForEach((DM.XmlDataNode bookUseNode) =>
+                                {
+                                    List<string> dropItems = new List<string>();
+                                    bookUseNode.GetXmlDataNodesByPath("DropItem").ForEach((DM.XmlDataNode dropItemNode) =>
+                                    {
+                                        dropItems.Add(dropItemNode.innerText);
+                                    });
+                                    if(dropItems.Contains(selectedItem))
+                                    {
+                                        if(!DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.CheckIfGivenPathWithXmlInfoExists("BookUse", 
+                                            attributeToCheck:new Dictionary<string, string>() { { "ID", selectedItem} }));
+                                            DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.subNodes.Add(bookUseNode.Copy());
+                                    }
+                                });
+
+                                InitSplCriticalPage();
+                            }
+                        }, SubWindows.InputInfoWithSearchWindow_PRESET.CRITICAL_BOOKS).ShowDialog();
                         break;
                 }
             }
