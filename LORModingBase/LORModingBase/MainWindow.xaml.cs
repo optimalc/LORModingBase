@@ -327,6 +327,8 @@ namespace LORModingBase
 
         private void LbxTextEditor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (LbxTextEditor.SelectedItem != null)
+                LblTextEditor.Content = LbxTextEditor.SelectedItem.ToString();
             UpdateDebugInfo();
         }
     }

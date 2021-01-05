@@ -324,6 +324,7 @@
                     <ImageBrush ImageSource="./Resources/MenuBg.png"/>
                 </Grid.Background>
                 <ComboBox Name="LbxTextEditor" Margin="5" ToolTip="텍스트를 표시할 데이터를 변경합니다" SelectionChanged="LbxTextEditor_SelectionChanged"/>
+                <Label Content="TestFile.txt" Name="LblTextEditor" FontSize="20" FontFamily="Nirmala UI" FontWeight="Bold" Padding="8" Foreground="#FF121212" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,2,0,1.6" Width="270"/>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.Background>

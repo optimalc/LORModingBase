@@ -115,9 +115,6 @@
     <Compile Include="SubWindows\InputGameCard.xaml.cs">
       <DependentUpon>InputGameCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\InputUniqueCardsWindow.xaml.cs">
-      <DependentUpon>InputUniqueCardsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SubWindows\InputEnemyInfoWindow.xaml.cs">
       <DependentUpon>InputEnemyInfoWindow.xaml</DependentUpon>
     </Compile>
@@ -211,10 +208,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\InputGameCard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputUniqueCardsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
