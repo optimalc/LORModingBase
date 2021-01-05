@@ -87,6 +87,9 @@
     <Compile Include="SubWindows\ExtraLogWindow.xaml.cs">
       <DependentUpon>ExtraLogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\Global_InputInfoWithSearchWindow.xaml.cs">
+      <DependentUpon>Global_InputInfoWithSearchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputLanguageWindow.xaml.cs">
       <DependentUpon>InputLanguageWindow.xaml</DependentUpon>
     </Compile>
@@ -180,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubWindows\ExtraLogWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindows\Global_InputInfoWithSearchWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

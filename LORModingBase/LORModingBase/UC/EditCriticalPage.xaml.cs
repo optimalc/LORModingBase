@@ -45,8 +45,11 @@ namespace LORModingBase.UC
                 }
                 TbxPageUniqueID.Text = innerCriticalPageNode.GetAttributesSafe("ID");
 
-                BtnEpisode.Content = innerCriticalPageNode.GetInnerTextByPath("Episode");
-                BtnEpisode.ToolTip = innerCriticalPageNode.GetInnerTextByPath("Episode");
+                innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("Episode", (string innerText) =>
+                {
+                    BtnEpisode.Content = innerCriticalPageNode.GetInnerTextByPath("Episode");
+                    BtnEpisode.ToolTip = innerCriticalPageNode.GetInnerTextByPath("Episode");
+                });
 
                 BtnBookIcon.Content = innerCriticalPageNode.GetInnerTextByPath("BookIcon");
                 BtnBookIcon.ToolTip = innerCriticalPageNode.GetInnerTextByPath("BookIcon");
@@ -197,17 +200,18 @@ namespace LORModingBase.UC
         #endregion
         #region Button events
 
-        private void BtnEpisode_Click(object sender, RoutedEventArgs e)
+        private void SelectItemButtonEvents(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputEpisodeWindow((string chapter, string episodeID, string episodeDoc) =>
+            Button btn = sender as Button;
+            switch (btn.Name)
             {
-                string CONTENT_TO_SHOW = $"{DS.GameInfo.chapter_Dic[chapter]} / {episodeDoc}:{episodeID}";
-                BtnEpisode.Content = CONTENT_TO_SHOW;
-                BtnEpisode.ToolTip = CONTENT_TO_SHOW;
+                case "BtnEpisode":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
 
-                innerCriticalPageNode.SetXmlInfoByPath("Chapter", chapter);
-                innerCriticalPageNode.SetXmlInfoByPath("Episode", episodeID);
-            }).ShowDialog();
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
+                    break;
+            }
         }
         private void BtnBookIcon_Click(object sender, RoutedEventArgs e)
         {

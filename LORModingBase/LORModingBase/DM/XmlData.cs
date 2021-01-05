@@ -432,6 +432,19 @@ namespace LORModingBase.DM
         }
 
         /// <summary>
+        /// Action if given path has inner text
+        /// </summary>
+        /// <param name="path">XmlData path</param>
+        /// <param name="actionForInnerText">Action for not empty innertext</param>
+        public void ActionIfInnertTextIsNotNullOrEmpty(string path, Action<string> actionForInnerText)
+        {
+            string SEARCHED_TEXT = GetInnerTextByPath(path);
+            if (!string.IsNullOrEmpty(SEARCHED_TEXT))
+                actionForInnerText(SEARCHED_TEXT);
+        }
+
+
+        /// <summary>
         /// Get inner text by searched attribute node if not null or empty
         /// </summary>
         /// <param name="path">XmlData path</param>
@@ -468,6 +481,20 @@ namespace LORModingBase.DM
                 else
                     return defaultText;
             }
+        }
+
+        /// <summary>
+        /// Action if given path has inner text
+        /// </summary>
+        /// <param name="path">XmlData path</param>
+        /// <param name="attributeName">Attribute name to search</param>
+        /// <param name="attributeValue">Attribute value to search</param>
+        /// <param name="actionForInnerText">Action for not empty innertext</param>
+        public void ActionIfInnertTextIsNotNullOrEmptyWithAttribute(string path, string attributeName, string attributeValue, Action<string> actionForInnerText)
+        {
+            string SEARCHED_TEXT = GetInnerTextByAttributeWithPath(path, attributeName, attributeValue);
+            if (!string.IsNullOrEmpty(SEARCHED_TEXT))
+                actionForInnerText(SEARCHED_TEXT);
         }
 
 
