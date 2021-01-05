@@ -213,6 +213,8 @@ namespace LORModingBase.UC
         }
         #endregion
 
+
+        #region Button events
         /// <summary>
         /// Button events that need search window
         /// </summary>
@@ -253,7 +255,7 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCriticalPageNode.AddXmlInfoByPath("EquipEffect/Passive", selectedItem
-                ,            new Dictionary<string, string>() { { "Level", "10" } });
+                , new Dictionary<string, string>() { { "Level", "10" } });
                         InitLbxPassives();
                         MainWindow.mainWindow.UpdateDebugInfo();
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.PASSIVE).ShowDialog();
@@ -261,13 +263,36 @@ namespace LORModingBase.UC
                 case "BtnDeletePassive":
                     if (LbxPassives.SelectedItem != null)
                     {
-                        innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString(), deleteOnce:true);
+                        innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString(), deleteOnce: true);
                         InitLbxPassives();
                         MainWindow.mainWindow.UpdateDebugInfo();
                     }
                     break;
             }
         }
+
+        /// <summary>
+        /// Right menu button events
+        /// </summary>
+        private void RightMenuButtonEvents(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            switch (btn.Name)
+            {
+                case "BtnCopyPage":
+                    DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(innerCriticalPageNode.Copy());
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    break;
+                case "BtnDelete":
+                    DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Remove(innerCriticalPageNode);
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    break;
+            }
+        } 
+        #endregion
+
 
         /// <summary>
         /// Reflect text chagnes in TextBox
@@ -292,12 +317,7 @@ namespace LORModingBase.UC
         }
 
 
-        private void BtnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Remove(innerCriticalPageNode);
-            initStack();
-            MainWindow.mainWindow.UpdateDebugInfo();
-        }
+
 
         #region Right button events (Upside)
         private void BtnCiricalBookInfo_Click(object sender, RoutedEventArgs e)
@@ -433,12 +453,6 @@ namespace LORModingBase.UC
             //    innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
             //    innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
             //}
-        }
-
-        private void BtnCopyPage_Click(object sender, RoutedEventArgs e)
-        {
-            //MainWindow.criticalPageInfos.Add(Tools.DeepCopy.DeepClone(innerCriticalPageInfo));
-            //initStack();
         }
     }
 }
