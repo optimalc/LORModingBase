@@ -534,8 +534,7 @@ namespace LORModingBase.UC
                                 DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.RemoveXmlInfosByPath("BookUse",
                                     attributeToCheck: new Dictionary<string, string> { { "ID", bookUseNode.attribute["ID"] } }, deleteOnce: true);
                             }
-                        }
-                    });
+                        }});
 
                     DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Remove(innerCriticalPageNode);
                     initStack();
@@ -610,6 +609,30 @@ namespace LORModingBase.UC
             switch (tbx.Name)
             {
                 case "TbxPageUniqueID":
+                    string PREV_PAGE_ID = innerCriticalPageNode.attribute["ID"];
+                    #region Books info localizing ID refrect
+                    if (DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.CheckIfGivenPathWithXmlInfoExists("bookDescList/BookDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "BookID", PREV_PAGE_ID } }))
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", PREV_PAGE_ID } });
+
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].attribute["BookID"] = tbx.Text;
+                        }
+                    }
+                    #endregion
+                    #region Drop table info ID refrect
+                    DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseNode) =>
+                    {
+                        bookUseNode.GetXmlDataNodesByPathWithXmlInfo("DropItem").ForEachSafe((DM.XmlDataNode dropBookNode) =>
+                        {
+                            if (dropBookNode.innerText == PREV_PAGE_ID)
+                                dropBookNode.innerText = tbx.Text;
+                        });
+                    });
+                    #endregion
                     innerCriticalPageNode.attribute["ID"] = tbx.Text;
                     innerCriticalPageNode.SetXmlInfoByPath("TextId", tbx.Text);
                     break;
