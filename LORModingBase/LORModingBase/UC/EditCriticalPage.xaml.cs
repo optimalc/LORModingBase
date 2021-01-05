@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using LORModingBase.CustomExtensions;
 
 namespace LORModingBase.UC
 {
@@ -25,18 +26,27 @@ namespace LORModingBase.UC
                 InitializeComponent();
 
                 #region 일반적인 핵심책장 정보 UI 반영시키기
-                ChangeRarityButtonEvents(BtnRarity_Common, null);
+                Tools.WindowControls.InitTextBoxControlsByUsingName(this, innerCriticalPageNode);
+
+                switch(innerCriticalPageNode.GetInnerTextByPath("Rarity"))
+                {
+                    case "Common":
+                        ChangeRarityButtonEvents(BtnRarity_Common, null);
+                        break;
+                    case "Uncommon":
+                        ChangeRarityButtonEvents(BtnRarity_Uncommon, null);
+                        break;
+                    case "Rare":
+                        ChangeRarityButtonEvents(BtnRarity_Rare, null);
+                        break;
+                    case "Unique":
+                        ChangeRarityButtonEvents(BtnRarity_Unique, null);
+                        break;
+                }
+                TbxPageUniqueID.Text = innerCriticalPageNode.GetAttributesSafe("ID");
 
                 BtnEpisode.Content = innerCriticalPageNode.GetInnerTextByPath("Episode");
                 BtnEpisode.ToolTip = innerCriticalPageNode.GetInnerTextByPath("Episode");
-
-                TbxPageName_Name.Text = innerCriticalPageNode.GetInnerTextByPath("Name");
-                TbxPageUniqueID.Text = innerCriticalPageNode.GetAttributesSafe("ID");
-
-                TbxHP_EquipEffect_HP.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HP");
-                TbxBR_EquipEffect_Break.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/Break");
-                TbxSpeedDiceMin_EquipEffect_SpeedMin.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SpeedMin");
-                TbxSpeedDiceMax_EquipEffect_Speed.Text = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/Speed");
 
                 BtnBookIcon.Content = innerCriticalPageNode.GetInnerTextByPath("BookIcon");
                 BtnBookIcon.ToolTip = innerCriticalPageNode.GetInnerTextByPath("BookIcon");

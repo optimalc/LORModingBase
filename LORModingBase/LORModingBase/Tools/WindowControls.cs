@@ -64,12 +64,16 @@ namespace LORModingBase.Tools
         /// </summary>
         /// <param name="window">Window to localize</param>
         /// <param name="languageDictionary">Language dictionary to this</param>
-        public static void LocalizeWindowControls(Window window, string languageDictionary)
+        public static void LocalizeWindowControls(Control rootControl, string languageDictionary)
         {
-            if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{window.Name}%"))
-                window.Title = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{window.Name}%");
+            if(rootControl is Window)
+            {
+                Window rootWindow = rootControl as Window;
+                if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{rootControl.Name}%"))
+                    rootWindow.Title = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{rootControl.Name}%");
+            }
 
-            FindLogicalChildren<Button>(window).ForEachSafe((Button btn) => {
+            FindLogicalChildren<Button>(rootControl).ForEachSafe((Button btn) => {
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{btn.Name}%"))
                 {
                     string LANGUAGE_CONTENT = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{btn.Name}%");
@@ -86,7 +90,7 @@ namespace LORModingBase.Tools
                     ApplyTranslateOption(btn, SPLITED_INFO.Skip(1).ToList());
                 }
             });
-            FindLogicalChildren<Label>(window).ForEachSafe((Label lbl) => {
+            FindLogicalChildren<Label>(rootControl).ForEachSafe((Label lbl) => {
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{lbl.Name}%"))
                 {
                     string LANGUAGE_CONTENT = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{lbl.Name}%");
@@ -104,17 +108,38 @@ namespace LORModingBase.Tools
                 }
             });
 
-            FindLogicalChildren<TextBox>(window).ForEachSafe((TextBox tbx) => {
+            FindLogicalChildren<TextBox>(rootControl).ForEachSafe((TextBox tbx) => {
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{tbx.Name}_ToolTip%"))
                     tbx.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{tbx.Name}_ToolTip%");
             });
-            FindLogicalChildren<ListBox>(window).ForEachSafe((ListBox lbx) => {
+            FindLogicalChildren<ListBox>(rootControl).ForEachSafe((ListBox lbx) => {
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{lbx.Name}_ToolTip%"))
                     lbx.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{lbx.Name}_ToolTip%");
             });
-            FindLogicalChildren<CheckBox>(window).ForEachSafe((CheckBox cbk) => {
+            FindLogicalChildren<CheckBox>(rootControl).ForEachSafe((CheckBox cbk) => {
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{cbk.Name}_ToolTip%"))
                     cbk.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{cbk.Name}_ToolTip%");
+            });
+        }
+
+        /// <summary>
+        /// Init content by using name
+        /// </summary>
+        /// <param name="window">Window to use</param>
+        /// <param name="nodeToUse">Xml data node to get</param>
+        /// <param name="ignoreNameList">Name list that will be ingnored</param>
+        public static void InitTextBoxControlsByUsingName(Control rootControl, DM.XmlDataNode nodeToUse, List<string> ignoreNameList = null)
+        {
+            FindLogicalChildren<TextBox>(rootControl).ForEachSafe((TextBox tbx) =>
+            {
+                if (ignoreNameList != null && ignoreNameList.Contains(tbx.Text))
+                    return;
+
+                List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
+                if (SPLIT_NAME.Count == 2)
+                    tbx.Text = nodeToUse.GetInnerTextByPath(SPLIT_NAME.Last());
+                else if (SPLIT_NAME.Count > 2)
+                    tbx.Text = nodeToUse.GetInnerTextByPath(String.Join("/", SPLIT_NAME.Skip(1)));
             });
         }
     }
