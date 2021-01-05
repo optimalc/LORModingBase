@@ -199,6 +199,18 @@ namespace LORModingBase.UC
             }
             innerCriticalPageNode.SetXmlInfoByPath($"EquipEffect/{resistButton.Name.Split('_').Last()}", resistButton.Tag.ToString());
         }
+
+        /// <summary>
+        /// Initialize passive list
+        /// </summary>
+        private void InitLbxPassives()
+        {
+            LbxPassives.Items.Clear();
+            innerCriticalPageNode.ActionXmlDataNodesByPath("EquipEffect/Passive", (DM.XmlDataNode passiveNode) =>
+            {
+                LbxPassives.Items.Add(passiveNode.innerText);
+            });
+        }
         #endregion
 
         /// <summary>
@@ -236,6 +248,24 @@ namespace LORModingBase.UC
                         BtnSkin.ToolTip = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN).ShowDialog();
                     break;
+
+                case "BtnAddPassive":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        innerCriticalPageNode.AddXmlInfoByPath("EquipEffect/Passive", selectedItem
+                ,            new Dictionary<string, string>() { { "Level", "10" } });
+                        InitLbxPassives();
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.PASSIVE).ShowDialog();
+                    break;
+                case "BtnDeletePassive":
+                    if (LbxPassives.SelectedItem != null)
+                    {
+                        innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString(), deleteOnce:true);
+                        InitLbxPassives();
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    }
+                    break;
             }
         }
 
@@ -261,35 +291,6 @@ namespace LORModingBase.UC
             }
         }
 
-        #region Passive events
-        private void InitLbxPassives()
-        {
-            //LbxPassives.Items.Clear();
-            //innerCriticalPageInfo.passiveIDs.ForEach((string passiveName) =>
-            //{
-            //    LbxPassives.Items.Add(passiveName);
-            //});
-        }
-
-        private void BtnAddPassive_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputBookPassiveWindow((string passiveDec) =>
-            {
-                innerCriticalPageNode.SetXmlInfoByPath("EquipEffect/Passive", passiveDec
-                    , new Dictionary<string, string>() { { "Level", "10" } });
-                InitLbxPassives();
-            }).ShowDialog();
-        }
-
-        private void BtnDeletePassive_Click(object sender, RoutedEventArgs e)
-        {
-            if (LbxPassives.SelectedItem != null)
-            {
-                innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString());
-                InitLbxPassives();
-            }
-        }
-        #endregion
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {

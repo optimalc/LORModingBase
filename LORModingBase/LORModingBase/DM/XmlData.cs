@@ -146,11 +146,12 @@ namespace LORModingBase.DM
         private void MakeEachNodeData(XmlWriter writer, XmlDataNode xmlDataNodeToUse)
         {
             writer.WriteStartElement(xmlDataNodeToUse.name);
-            if(!string.IsNullOrEmpty(xmlDataNodeToUse.innerText))
-                writer.WriteString(xmlDataNodeToUse.innerText);
 
             foreach (KeyValuePair<string, string> attributeKeyPair in xmlDataNodeToUse.attribute)
                 writer.WriteAttributeString(attributeKeyPair.Key, attributeKeyPair.Value);
+
+            if (!string.IsNullOrEmpty(xmlDataNodeToUse.innerText))
+                writer.WriteString(xmlDataNodeToUse.innerText);
 
             xmlDataNodeToUse.subNodes.ForEachSafe((XmlDataNode xmlDataNode) =>
             {
@@ -593,12 +594,12 @@ namespace LORModingBase.DM
                     return xmlDataNode.name == NAME_LIST[0];
                 });
                 if (foundXmlDataNode != null)
-                    return foundXmlDataNode.SetXmlInfoByPath(String.Join("/", NAME_LIST.Skip(1)), valueToSet, attributePairsToSet);
+                    return foundXmlDataNode.AddXmlInfoByPath(String.Join("/", NAME_LIST.Skip(1)), valueToSet, attributePairsToSet);
                 else
                 {
                     XmlDataNode createdXmlDataNode = new XmlDataNode(NAME_LIST[0]);
                     subNodes.Add(createdXmlDataNode);
-                    return createdXmlDataNode.SetXmlInfoByPath(String.Join("/", NAME_LIST.Skip(1)), valueToSet, attributePairsToSet);
+                    return createdXmlDataNode.AddXmlInfoByPath(String.Join("/", NAME_LIST.Skip(1)), valueToSet, attributePairsToSet);
                 }
             }
             else
@@ -618,7 +619,8 @@ namespace LORModingBase.DM
         /// <param name="path">XmlData path</param>
         /// <param name="innerTextToCheck">Inner text to check</param>
         /// <param name="attributeToCheck">Attribute dic to check</param>
-        public void RemoveXmlInfosByPath(string path, string innerTextToCheck = "", Dictionary<string, string> attributeToCheck = null)
+        /// <param name="deleteOnce">If it true, Delete only first found XmlDataNode</param>
+        public void RemoveXmlInfosByPath(string path, string innerTextToCheck = "", Dictionary<string, string> attributeToCheck = null, bool deleteOnce = false)
         {
             if (string.IsNullOrEmpty(path)) return;
 
@@ -630,12 +632,15 @@ namespace LORModingBase.DM
                     return xmlDataNode.name == NAME_LIST[0];
                 });
                 if (foundXmlDataNode != null)
-                    foundXmlDataNode.RemoveXmlInfosByPath(String.Join("/", NAME_LIST.Skip(1)), innerTextToCheck, attributeToCheck);
+                    foundXmlDataNode.RemoveXmlInfosByPath(String.Join("/", NAME_LIST.Skip(1)), innerTextToCheck, attributeToCheck, deleteOnce);
             }
             else
             {
-                subNodes.FindAll((XmlDataNode xmlDataNode) =>
+                List<XmlDataNode> foundNodesToRemove = subNodes.FindAll((XmlDataNode xmlDataNode) =>
                 {
+                    if (xmlDataNode.name != NAME_LIST[0])
+                        return false;
+
                     if (!string.IsNullOrEmpty(innerTextToCheck) && attributeToCheck == null)
                         return xmlDataNode.innerText == innerTextToCheck;
                     else if ((!string.IsNullOrEmpty(innerTextToCheck) && attributeToCheck != null)
@@ -667,9 +672,15 @@ namespace LORModingBase.DM
                     }
                     else
                         return true;
-                }).ForEachSafe((XmlDataNode xmlDataToRemove) => {
-                    subNodes.Remove(xmlDataToRemove);
                 });
+
+                if (deleteOnce && foundNodesToRemove.Count > 0)
+                    subNodes.Remove(foundNodesToRemove[0]);
+                else if(!deleteOnce)
+                    foundNodesToRemove.ForEachSafe((XmlDataNode xmlDataToRemove) =>
+                    {
+                        subNodes.Remove(xmlDataToRemove);
+                    });
                 MainWindow.mainWindow.UpdateDebugInfo();
             }
         }

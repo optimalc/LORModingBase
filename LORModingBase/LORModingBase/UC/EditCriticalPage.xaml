@@ -253,10 +253,10 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnAddPassive" Grid.Column="0" Content="패시브 추가" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnAddPassive_Click" ToolTip="핵심 책장에 패시브를 추가합니다"/>
+                    <Button x:Name="BtnAddPassive" Grid.Column="0" Content="패시브 추가" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="핵심 책장에 패시브를 추가합니다"/>
 
                     <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnDeletePassive" Grid.Column="1" Content="패시브 삭제" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDeletePassive_Click" ToolTip="선택된 핵심책장 패시브를 삭제합니다"/>
+                    <Button x:Name="BtnDeletePassive" Grid.Column="1" Content="패시브 삭제" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="선택된 핵심책장 패시브를 삭제합니다"/>
                 </Grid>
                 <Rectangle Grid.Row="1" Grid.RowSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <ListBox x:Name="LbxPassives" Grid.Row="1"  Style="{StaticResource StyListBox}"/>

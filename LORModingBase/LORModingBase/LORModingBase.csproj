@@ -127,9 +127,6 @@
     <Compile Include="SubWindows\InputDropBookInfosWindow.xaml.cs">
       <DependentUpon>InputDropBookInfosWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\InputBookPassiveWindow.xaml.cs">
-      <DependentUpon>InputBookPassiveWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SubWindows\InputCriticalBookDescription.xaml.cs">
       <DependentUpon>InputCriticalBookDescription.xaml</DependentUpon>
     </Compile>
@@ -227,10 +224,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubWindows\InputDropBookInfosWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputBookPassiveWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

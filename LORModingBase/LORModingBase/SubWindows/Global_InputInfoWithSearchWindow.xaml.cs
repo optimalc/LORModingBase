@@ -63,6 +63,14 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(SKIN_NAME);
                     });
                     break;
+                case InputInfoWithSearchWindow_PRESET.PASSIVE:
+                    DM.GameInfos.staticInfos["PassiveList"].rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode passiveNode) =>
+                    {
+                        string PASSIVE_ID = passiveNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(PASSIVE_ID))
+                            selectItems.Add(PASSIVE_ID);
+                    });
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -133,6 +141,7 @@ namespace LORModingBase.SubWindows
     {
         EPISODE,
         BOOK_ICON,
-        CHARACTER_SKIN
+        CHARACTER_SKIN,
+        PASSIVE
     };
 }

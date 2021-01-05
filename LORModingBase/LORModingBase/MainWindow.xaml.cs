@@ -315,10 +315,12 @@ namespace LORModingBase
                     TbxTextEditor.Text = File.ReadAllText(DS.PROGRAM_PATHS.DEBUG_TEST);
 
                 TbxTextEditorLog.Text = $"데이터가 정상적으로 생성됨";
+                TbxTextEditorLog.ToolTip = $"데이터가 정상적으로 생성됨";
             }
             catch(Exception ex)
             {
-                TbxTextEditorLog.Text = $"데이터 생성 도중 에러 발생 : {ex.Message}";
+                TbxTextEditorLog.Text = $"데이터 생성 도중 에러 발생 \n> {ex.Message}";
+                TbxTextEditorLog.ToolTip = $"데이터 생성 도중 에러 발생 \n> {ex.Message}";
             }
         }
         #endregion
