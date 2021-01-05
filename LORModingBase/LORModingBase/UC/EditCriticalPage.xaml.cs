@@ -249,6 +249,51 @@ namespace LORModingBase.UC
         }
 
         /// <summary>
+        /// Button events that need to multiple items to be selected
+        /// </summary>
+        private void SelectItemListButtonEvents(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            switch (btn.Name)
+            {
+                case "BookUniqueCards":
+                    List<string> selectedUniqCards = new List<string>();
+                    innerCriticalPageNode.GetXmlDataNodesByPath("EquipEffect/OnlyCard").ForEachSafe((DM.XmlDataNode onlyCardNode) =>
+                    {
+                        selectedUniqCards.Add(onlyCardNode.GetInnerTextSafe());
+                    });
+
+                    new SubWindows.Global_AddItemToListWindow((string addedItem) =>
+                    {
+                        innerCriticalPageNode.AddXmlInfoByPath("EquipEffect/OnlyCard", addedItem);
+                    }, (string deletedItem) => {
+
+                        innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/OnlyCard", deletedItem, deleteOnce:true);
+                    }, selectedUniqCards, SubWindows.AddItemToListWindow_PRESET.ONLY_CARD).ShowDialog();
+
+
+                    if (innerCriticalPageNode.GetXmlDataNodesByPath("EquipEffect/OnlyCard").Count > 0)
+                    {
+                        string extraInfo = "";
+                        innerCriticalPageNode.ActionXmlDataNodesByPath("EquipEffect/OnlyCard", (DM.XmlDataNode xmlDataNode) =>
+                        {
+                            extraInfo += $"{xmlDataNode.GetInnerTextSafe()}\n";
+                        });
+                        extraInfo = extraInfo.TrimEnd('\n');
+
+                        BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
+                        BookUniqueCards.ToolTip = $"이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)\n{extraInfo}";
+                    }
+                    else
+                    {
+                        BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoUniqueCard.png");
+                        BookUniqueCards.ToolTip = "이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (미입력)";
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
         /// Right menu button events
         /// </summary>
         private void RightMenuButtonEvents(object sender, RoutedEventArgs e)
@@ -404,29 +449,6 @@ namespace LORModingBase.UC
             //{
             //    BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
             //    BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력))";
-            //}
-        }
-
-        private void BookUniqueCards_Click(object sender, RoutedEventArgs e)
-        {
-            //new SubWindows.InputUniqueCardsWindow(innerCriticalPageInfo.onlyCards).ShowDialog();
-
-            //if (innerCriticalPageInfo.onlyCards.Count > 0)
-            //{
-            //    string extraInfo = "";
-            //    innerCriticalPageInfo.onlyCards.ForEach((string onlyCardInfo) =>
-            //    {
-            //        extraInfo += $"{onlyCardInfo}\n";
-            //    });
-            //    extraInfo = extraInfo.TrimEnd('\n');
-
-            //    BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
-            //    BookUniqueCards.ToolTip = $"이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)\n{extraInfo}";
-            //}
-            //else
-            //{
-            //    BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoUniqueCard.png");
-            //    BookUniqueCards.ToolTip = "이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (미입력)";
             //}
         }
         #endregion

@@ -317,7 +317,7 @@ namespace LORModingBase.DM
                 {
                     return xmlDataNode.name == NAME_LIST[0];
                 }).ForEachSafe((XmlDataNode xmlDataNode) => {
-                    foundXmlDataNodes.AddRange(xmlDataNode.GetXmlDataNodesByPath(String.Join("/", NAME_LIST.Skip(1)), foundXmlDataNodes));
+                    xmlDataNode.GetXmlDataNodesByPath(String.Join("/", NAME_LIST.Skip(1)), foundXmlDataNodes);
                 });
             }
             else
@@ -352,8 +352,8 @@ namespace LORModingBase.DM
                 {
                     return xmlDataNode.name == NAME_LIST[0];
                 }).ForEachSafe((XmlDataNode xmlDataNode) => {
-                    foundXmlDataNodes.AddRange(xmlDataNode.GetXmlDataNodesByPathWithXmlInfo(String.Join("/", NAME_LIST.Skip(1)),
-                        innerTextToCheck, attributeToCheck, foundXmlDataNodes));
+                    xmlDataNode.GetXmlDataNodesByPathWithXmlInfo(String.Join("/", NAME_LIST.Skip(1)),
+                        innerTextToCheck, attributeToCheck, foundXmlDataNodes);
                 });
             }
             else

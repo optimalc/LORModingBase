@@ -6,73 +6,60 @@ using System.Windows.Input;
 namespace LORModingBase.SubWindows
 {
     /// <summary>
-    /// Global_InputInfoWithSearchWindow.xaml에 대한 상호 작용 논리
+    /// Global_AddItemToListWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Global_InputInfoWithSearchWindow : Window
+    public partial class Global_AddItemToListWindow : Window
     {
-        Action<string> afterSelectItem = null;
+        Action<string> afterAddItem = null;
+        Action<string> afterDeleteItem = null;
+        List<string> selectedItems = null;
         List<string> selectItems = null;
 
         #region Constructor and preset
-        public Global_InputInfoWithSearchWindow(Action<string> afterSelectItem, List<string> searchTypes, List<string> selectItems,
-            string windowTitle= "사용할 내용을 더블클릭", string helpMessage="※ 사용할 내용을 더블클릭 하세요", string ItemHelpMessage="얻어진 내용들" )
+        public Global_AddItemToListWindow(Action<string> afterAddItem, Action<string> afterDeleteItem, List<string> selectedItems, List<string> searchTypes, List<string> selectItems,
+            string windowTitle= "사용할 내용을 더블클릭", string helpMessage="※ 사용할 내용을 더블클릭 하세요", 
+            string ItemHelpMessage="얻어진 내용들", string selectedItemsHelpMessage= "선택된 항목들" )
         {
             InitializeComponent();
-            this.afterSelectItem = afterSelectItem;
+            this.afterAddItem = afterAddItem;
+            this.afterDeleteItem = afterDeleteItem;
+
+            this.selectedItems = selectedItems;
             this.selectItems = selectItems;
+
             InitLbxSearchType(searchTypes);
+            InitLbxSelectedItems();
 
             this.Title = windowTitle;
             LblHelpMessage.Content = helpMessage;
             LblItemHelpMessage.Content = ItemHelpMessage;
+            LblSelectedItemLists.Content = selectedItemsHelpMessage;
         }
 
-        public Global_InputInfoWithSearchWindow(Action<string> afterSelectItem, InputInfoWithSearchWindow_PRESET preset)
+        public Global_AddItemToListWindow(Action<string> afterAddItem, Action<string> afterDeleteItem, List<string> selectedItems, AddItemToListWindow_PRESET preset)
         {
             InitializeComponent();
-            this.afterSelectItem = afterSelectItem;
+            this.afterAddItem = afterAddItem;
+            this.afterDeleteItem = afterDeleteItem;
+            this.selectedItems = selectedItems;
+
             List<string> searchTypes = new List<string>();
             selectItems = new List<string>();
 
             switch (preset)
             {
-                case InputInfoWithSearchWindow_PRESET.EPISODE:
-                    DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode stageNode) =>
+                case AddItemToListWindow_PRESET.ONLY_CARD:
+                    DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                     {
-                        string STAGE_ID = stageNode.GetAttributesSafe("id");
-                        if(!string.IsNullOrEmpty(STAGE_ID))
-                        {
-                            if (Convert.ToInt32(STAGE_ID) < DS.FilterDatas.STAGEINFO_DIV_NOT_CREATURE)
-                                selectItems.Add(STAGE_ID);
-                        }
-                    });
-                    break;
-                case InputInfoWithSearchWindow_PRESET.BOOK_ICON:
-                    DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse/BookIcon", (DM.XmlDataNode bookIconNode) =>
-                    {
-                        string ICON_NAME = bookIconNode.GetInnerTextSafe();
-                        if (!string.IsNullOrEmpty(ICON_NAME))
-                            selectItems.Add(ICON_NAME);
-                    });
-                    break;
-                case InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN:
-                    DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book/CharacterSkin", (DM.XmlDataNode skinNode) =>
-                    {
-                        string SKIN_NAME = skinNode.GetInnerTextSafe();
-                        if (!string.IsNullOrEmpty(SKIN_NAME))
-                            selectItems.Add(SKIN_NAME);
-                    });
-                    break;
-                case InputInfoWithSearchWindow_PRESET.PASSIVE:
-                    DM.GameInfos.staticInfos["PassiveList"].rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode passiveNode) =>
-                    {
-                        string PASSIVE_ID = passiveNode.GetAttributesSafe("ID");
-                        if (!string.IsNullOrEmpty(PASSIVE_ID))
-                            selectItems.Add(PASSIVE_ID);
+                        string CARD_ID = cardNode.GetAttributesSafe("ID");
+                        if(!string.IsNullOrEmpty(CARD_ID))
+                            selectItems.Add(CARD_ID);
                     });
                     break;
             }
+
             InitLbxSearchType(searchTypes);
+            InitLbxSelectedItems();
         }
         #endregion
 
@@ -91,6 +78,15 @@ namespace LORModingBase.SubWindows
                 LbxSearchType.SelectedIndex = 0;
                 InitSearchItems();
             }
+        }
+
+        private void InitLbxSelectedItems()
+        {
+            LbxSelectedItems.Items.Clear();
+            selectedItems.ForEach((string selectedItem) =>
+            {
+                LbxSelectedItems.Items.Add(selectedItem);
+            });
         }
 
         private void InitSearchItems()
@@ -116,14 +112,28 @@ namespace LORModingBase.SubWindows
         }
         #endregion
 
+        #region Add or Remove item functions
         private void LbxItems_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (LbxItems.SelectedItem != null)
             {
-                afterSelectItem(LbxItems.SelectedItem.ToString());
-                this.Close();
+                afterAddItem(LbxItems.SelectedItem.ToString());
+                selectedItems.Add(LbxItems.SelectedItem.ToString());
+                InitLbxSelectedItems();
             }
         }
+
+        private void LbxSelectedItems_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (LbxSelectedItems.SelectedItem != null)
+            {
+                afterDeleteItem(LbxSelectedItems.SelectedItem.ToString());
+                selectedItems.Remove(LbxSelectedItems.SelectedItem.ToString());
+                InitLbxSelectedItems();
+            }
+        }
+        #endregion
+
         #region Search help methodes
         private void LbxSearchType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
@@ -133,15 +143,17 @@ namespace LORModingBase.SubWindows
         private void TbxSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             InitSearchItems();
-        } 
+        }
         #endregion
+
+        private void BtnOk_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 
-    public enum InputInfoWithSearchWindow_PRESET
+    public enum AddItemToListWindow_PRESET
     {
-        EPISODE,
-        BOOK_ICON,
-        CHARACTER_SKIN,
-        PASSIVE
+        ONLY_CARD
     };
 }
