@@ -55,6 +55,14 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(ICON_NAME);
                     });
                     break;
+                case InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN:
+                    DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book/CharacterSkin", (DM.XmlDataNode skinNode) =>
+                    {
+                        string SKIN_NAME = skinNode.GetInnerTextSafe();
+                        if (!string.IsNullOrEmpty(SKIN_NAME))
+                            selectItems.Add(SKIN_NAME);
+                    });
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -124,6 +132,7 @@ namespace LORModingBase.SubWindows
     public enum InputInfoWithSearchWindow_PRESET
     {
         EPISODE,
-        BOOK_ICON
+        BOOK_ICON,
+        CHARACTER_SKIN
     };
 }

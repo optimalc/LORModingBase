@@ -118,7 +118,7 @@
                 <Button x:Name="BtnBookIcon" Grid.Column="0" Content="책 아이콘 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="핵심 책장의 이미지를 선택합니다"/>
 
                 <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnSkin" Grid.Column="1" Content="캐릭터 스킨 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnSkin_Click" ToolTip="핵심 책장과 관련된 캐릭터 스킨을 선택합니다"/>
+                <Button x:Name="BtnSkin" Grid.Column="1" Content="캐릭터 스킨 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="핵심 책장과 관련된 캐릭터 스킨을 선택합니다"/>
             </Grid>
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
@@ -328,7 +328,7 @@
                 </Button.Background>
             </Button>
             
-            <Rectangle Grid.Row="4" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Rectangle Grid.Row="4" Grid.RowSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
             <Button x:Name="BtnRangeType" Grid.Row="4"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" Click="BtnRangeType_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
@@ -342,22 +342,9 @@
                     <ImageBrush ImageSource="../Resources/TypeNomal.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnCriticalPageType" Grid.Row="5"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 유저 전용 책장) &#x0a; ※ 적 적용 책장은 '에피소드 선택 여부', '책장이 어느 책으로부터 드랍될 것인지의 여부'를 확인하지 않습니다 &#x0a; ※ 적 전용 데이터 입력여부 &amp; 고유 ID가 1000 ~ 200000인 경우 적 전용 책장으로 인식합니다" RenderTransformOrigin="0.5,0.5" Click="BtnCriticalPageType_Click">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="10" ScaleY="10"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-                <Button.Background>
-                    <ImageBrush ImageSource="../Resources/TypeUser.png"/>
-                </Button.Background>
-            </Button>
 
-            <Rectangle Grid.Row="6" Grid.RowSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-            <Button x:Name="BtnCopyPage" Grid.Row="6"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장을 복제해서 새로운 핵심 책장을 만듭니다" Click="BtnCopyPage_Click">
+            <Rectangle Grid.Row="5" Grid.RowSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnCopyPage" Grid.Row="5"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장을 복제해서 새로운 핵심 책장을 만듭니다" Click="BtnCopyPage_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="12"/>

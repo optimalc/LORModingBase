@@ -227,7 +227,6 @@ namespace LORModingBase.UC
             }
         }
 
-
         private void BtnUnqueType_Click(object sender, RoutedEventArgs e)
         {
             switch (innerCardInfo.option)

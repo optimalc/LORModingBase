@@ -121,9 +121,6 @@
     <Compile Include="SubWindows\InputGameCriticalPage.xaml.cs">
       <DependentUpon>InputGameCriticalPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\InputBookSkinWindow.xaml.cs">
-      <DependentUpon>InputBookSkinWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SubWindows\InputChapterWindow.xaml.cs">
       <DependentUpon>InputChapterWindow.xaml</DependentUpon>
     </Compile>
@@ -132,9 +129,6 @@
     </Compile>
     <Compile Include="SubWindows\InputBookPassiveWindow.xaml.cs">
       <DependentUpon>InputBookPassiveWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputBookIconWindow.xaml.cs">
-      <DependentUpon>InputBookIconWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\InputCriticalBookDescription.xaml.cs">
       <DependentUpon>InputCriticalBookDescription.xaml</DependentUpon>
@@ -228,10 +222,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SubWindows\InputBookSkinWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="SubWindows\InputChapterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -241,10 +231,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\InputBookPassiveWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputBookIconWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

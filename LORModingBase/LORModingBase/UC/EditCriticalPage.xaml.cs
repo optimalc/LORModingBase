@@ -150,8 +150,6 @@ namespace LORModingBase.UC
                     BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
                 }
                 #endregion
-
-                CriticalPageTypeUIUpdating();
             }
             catch (Exception ex)
             {
@@ -202,8 +200,10 @@ namespace LORModingBase.UC
             innerCriticalPageNode.SetXmlInfoByPath($"EquipEffect/{resistButton.Name.Split('_').Last()}", resistButton.Tag.ToString());
         }
         #endregion
-        #region Button events
 
+        /// <summary>
+        /// Button events that need search window
+        /// </summary>
         private void SelectItemButtonEvents(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -227,21 +227,39 @@ namespace LORModingBase.UC
                         BtnBookIcon.ToolTip = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.BOOK_ICON).ShowDialog();
                     break;
+                case "BtnSkin":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        innerCriticalPageNode.SetXmlInfoByPath("CharacterSkin", selectedItem);
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                        BtnSkin.Content = selectedItem;
+                        BtnSkin.ToolTip = selectedItem;
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN).ShowDialog();
+                    break;
             }
         }
 
-        private void BtnSkin_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Reflect text chagnes in TextBox
+        /// </summary>
+        private void ReflectTextChangeInTextBox(object sender, TextChangedEventArgs e)
         {
-            new SubWindows.InputBookSkinWindow((string chpater, string bookSkinName, string bookSkinDesc) =>
+            TextBox tbx = sender as TextBox;
+            switch (tbx.Name)
             {
-                string SKIN_DESC = $"{bookSkinDesc}:{bookSkinName}";
-                BtnSkin.Content = SKIN_DESC;
-                BtnSkin.ToolTip = SKIN_DESC;
-
-                innerCriticalPageNode.SetXmlInfoByPath("CharacterSkin", bookSkinName);
-            }).ShowDialog();
+                case "TbxPageUniqueID":
+                    innerCriticalPageNode.attribute["ID"] = tbx.Text;
+                    innerCriticalPageNode.SetXmlInfoByPath("TextId", tbx.Text);
+                    break;
+                default:
+                    List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
+                    if (SPLIT_NAME.Count == 2)
+                        innerCriticalPageNode.SetXmlInfoByPath(SPLIT_NAME.Last(), tbx.Text);
+                    else if (SPLIT_NAME.Count > 2)
+                        innerCriticalPageNode.SetXmlInfoByPath(String.Join("/", SPLIT_NAME.Skip(1)), tbx.Text);
+                    break;
+            }
         }
-        #endregion
 
         #region Passive events
         private void InitLbxPassives()
@@ -269,30 +287,6 @@ namespace LORModingBase.UC
             {
                 innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString());
                 InitLbxPassives();
-            }
-        }
-        #endregion
-        #region Text change events
-        /// <summary>
-        /// Reflect text chagnes in TextBox
-        /// </summary>
-        private void ReflectTextChangeInTextBox(object sender, TextChangedEventArgs e)
-        {
-            TextBox tbx = sender as TextBox;
-            switch (tbx.Name)
-            {
-                case "TbxPageUniqueID":
-                    innerCriticalPageNode.attribute["ID"] = tbx.Text;
-                    innerCriticalPageNode.SetXmlInfoByPath("TextId", tbx.Text);
-                    CriticalPageTypeUIUpdating();
-                    break;
-                default:
-                    List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
-                    if(SPLIT_NAME.Count == 2)
-                        innerCriticalPageNode.SetXmlInfoByPath(SPLIT_NAME.Last(), tbx.Text);
-                    else if(SPLIT_NAME.Count > 2)
-                        innerCriticalPageNode.SetXmlInfoByPath(String.Join("/", SPLIT_NAME.Skip(1)), tbx.Text);
-                    break;
             }
         }
         #endregion
@@ -361,7 +355,6 @@ namespace LORModingBase.UC
             //    BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
             //    BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력))";
             //}
-            CriticalPageTypeUIUpdating();
         }
 
         private void BookUniqueCards_Click(object sender, RoutedEventArgs e)
@@ -422,40 +415,6 @@ namespace LORModingBase.UC
             //#endregion
         }
 
-        private void CriticalPageTypeUIUpdating()
-        {
-            //try
-            //{
-            //    bool BOOK_ID_CHECK = false;
-            //    if(!string.IsNullOrEmpty(innerCriticalPageInfo.bookID))
-            //    {
-            //        int BOOK_ID = Convert.ToInt32(innerCriticalPageInfo.bookID);
-            //        BOOK_ID_CHECK = (BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_ENEMY) || (BOOK_ID > DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM && BOOK_ID < (DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM + 1000000));
-            //    }
-
-            //    bool FORCE_ENEMY = innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE;
-            //    bool FORCE_USER = innerCriticalPageInfo.USER_TYPE_CH_FORCE;
-            //    bool FORECLY_INPUTED = FORCE_ENEMY || FORCE_USER;
-
-            //    if ((BOOK_ID_CHECK || FORCE_ENEMY) && !FORCE_USER)
-            //    {
-            //        innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = true;
-            //        BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeEnemy.png");
-            //        BtnCriticalPageType.ToolTip = $"클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 적 전용 책장[{(FORECLY_INPUTED ? "수동" : "자동")}]) {DS.LongDescription.EditCriticalPage_TypeChange}";
-            //    }
-            //    else
-            //    {
-            //        innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = false;
-            //        BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeUser.png");
-            //        BtnCriticalPageType.ToolTip = $"클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 유저 전용 책장[{(FORECLY_INPUTED ? "수동" : "자동")}]) {DS.LongDescription.EditCriticalPage_TypeChange}";
-            //    }
-            //}
-            //catch
-            //{
-
-            //}
-        }
-
         private void BtnCriticalPageType_Click(object sender, RoutedEventArgs e)
         {
             //if(!innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE && !innerCriticalPageInfo.USER_TYPE_CH_FORCE)
@@ -473,8 +432,6 @@ namespace LORModingBase.UC
             //    innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
             //    innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
             //}
-
-            CriticalPageTypeUIUpdating();
         }
 
         private void BtnCopyPage_Click(object sender, RoutedEventArgs e)
