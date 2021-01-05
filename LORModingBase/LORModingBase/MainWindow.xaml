@@ -15,9 +15,7 @@
                 </GradientStopCollection>
             </GradientBrush.GradientStops>
         </LinearGradientBrush>
-
         <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#54FFFFFF" />
-
         <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -27,13 +25,13 @@
                 <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="2"
                   Background="{DynamicResource WindowBackgroundBrush}"
                   BorderThickness="1" />
-                                <Border 
+                <Border 
                   Grid.Column="0"
                   CornerRadius="2,0,0,2" 
                   Margin="1" 
                   Background="{StaticResource WindowBackgroundBrush}" 
                   BorderThickness="0,0,1,0" />
-                                <Path 
+                <Path 
                   x:Name="Arrow"
                   Grid.Column="1"     
                   HorizontalAlignment="Center"
@@ -41,12 +39,9 @@
                   Data="M 0 0 L 4 4 L 8 0 Z"/>
             </Grid>
         </ControlTemplate>
-
         <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
             <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
         </ControlTemplate>
-
-
         <Style x:Key="{x:Type ComboBox}" TargetType="ComboBox">
             <Setter Property="Template">
                 <Setter.Value>
