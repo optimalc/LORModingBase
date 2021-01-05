@@ -15,6 +15,7 @@ namespace LORModingBase
         public MainWindow()
         {
             InitializeComponent();
+            InitLbxTextEditor();
             MainWindowButtonClickEvents(BtnCriticalPage, null);
 
             try
@@ -227,9 +228,7 @@ namespace LORModingBase
                     DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"CriticalPageGridButtonClickEvents_Error_1"));
             }
         }
-        #endregion
-        
-
+        #endregion   
         #region EDIT MENU - Cards Page
         public static List<DS.CardInfo> cardInfos = new List<DS.CardInfo>();
 
@@ -269,5 +268,53 @@ namespace LORModingBase
             }
         }
         #endregion
+
+
+        #region Text editor functions
+        List<string> EDITOR_SELECTION_MENU = new List<string>()
+        {
+            "EquipPage.txt",
+            "DropBook.txt",
+            "Books.txt"
+        };
+        private void InitLbxTextEditor()
+        {
+            LbxTextEditor.Items.Clear();
+            EDITOR_SELECTION_MENU.ForEach((string menu) =>
+            {
+                LbxTextEditor.Items.Add(menu);
+            });
+        }
+
+        /// <summary>
+        /// Update debugging info
+        /// </summary>
+        public void UpdateDebugInfo()
+        {
+            try
+            {
+                switch (LbxTextEditor.SelectedIndex)
+                {
+                    case 0:
+                        DM.EditGameData_BookInfos.StaticEquipPage.SaveNodeData(DS.PROGRAM_PATHS.DEBUG_TEST);
+                        break;
+
+                }
+                if(File.Exists(DS.PROGRAM_PATHS.DEBUG_TEST))
+                    TbxTextEditor.Text = File.ReadAllText(DS.PROGRAM_PATHS.DEBUG_TEST);
+
+                TbxTextEditorLog.Text = $"데이터가 정상적으로 생성됨";
+            }
+            catch(Exception ex)
+            {
+                TbxTextEditorLog.Text = $"데이터 생성 도중 에러 발생 : {ex.Message}";
+            }
+        }
+        #endregion
+
+        private void LbxTextEditor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateDebugInfo();
+        }
     }
 }

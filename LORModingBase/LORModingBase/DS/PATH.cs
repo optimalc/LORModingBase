@@ -27,6 +27,11 @@ namespace LORModingBase.DS
         /// Version info file
         /// </summary>
         public const string VERSION = ".\\version.txt";
+
+        /// <summary>
+        /// Debug test file
+        /// </summary>
+        public const string DEBUG_TEST = ".\\debugTest.txt";
     }
 
     class PATH
