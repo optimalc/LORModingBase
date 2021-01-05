@@ -506,6 +506,37 @@ namespace LORModingBase.UC
                         DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.RemoveXmlInfosByPath("bookDescList/BookDesc",
                        attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
 
+                    DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseNode) =>
+                    {
+                        bookUseNode.RemoveXmlInfosByPath("DropItem", innerCriticalPageNode.attribute["ID"], deleteOnce: true);
+
+                        List<DM.XmlDataNode> baseBookUseNode = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", bookUseNode.attribute["ID"] } });
+                        if (baseBookUseNode.Count > 0)
+                        {
+                            DM.XmlDataNode FOUND_DROP_BOOK_IN_GAME = baseBookUseNode[0];
+
+                            List<string> foundDropBookDropItems = new List<string>();
+                            bookUseNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode DropItem) =>
+                            {
+                                foundDropBookDropItems.Add(DropItem.innerText);
+                            });
+
+                            List<string> foundDropBookInGameItems = new List<string>();
+                            FOUND_DROP_BOOK_IN_GAME.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode DropItem) =>
+                            {
+                                foundDropBookInGameItems.Add(DropItem.innerText);
+                            });
+
+                            if (foundDropBookDropItems.Count == foundDropBookInGameItems.Count
+                                && foundDropBookDropItems.Except(foundDropBookInGameItems).Count() == 0)
+                            {
+                                DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.RemoveXmlInfosByPath("BookUse",
+                                    attributeToCheck: new Dictionary<string, string> { { "ID", bookUseNode.attribute["ID"] } }, deleteOnce: true);
+                            }
+                        }
+                    });
+
                     DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Remove(innerCriticalPageNode);
                     initStack();
                     MainWindow.mainWindow.UpdateDebugInfo();
