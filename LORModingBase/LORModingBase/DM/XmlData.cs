@@ -535,12 +535,14 @@ namespace LORModingBase.DM
                     attributePairsToSet.ForEachKeyValuePairSafe((string atName, string atValue) => {
                         attribute[atName] = atValue;
                     });
+                    MainWindow.mainWindow.UpdateDebugInfo();
                     return foundXmlDataNode;
                 }
                 else
                 {
                     XmlDataNode createdXmlDataNode = new XmlDataNode(NAME_LIST[0], valueToSet, attributePairsToSet);
                     subNodes.Add(createdXmlDataNode);
+                    MainWindow.mainWindow.UpdateDebugInfo();
                     return createdXmlDataNode;
                 }
             }
@@ -576,6 +578,7 @@ namespace LORModingBase.DM
             {
                 XmlDataNode createdXmlDataNode = new XmlDataNode(NAME_LIST[0], valueToSet, attributePairsToSet);
                 subNodes.Add(createdXmlDataNode);
+                MainWindow.mainWindow.UpdateDebugInfo();
                 return createdXmlDataNode;
             }
         }
@@ -640,6 +643,7 @@ namespace LORModingBase.DM
                 }).ForEachSafe((XmlDataNode xmlDataToRemove) => {
                     subNodes.Remove(xmlDataToRemove);
                 });
+                MainWindow.mainWindow.UpdateDebugInfo();
             }
         }
         #endregion

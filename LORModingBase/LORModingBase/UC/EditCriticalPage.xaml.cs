@@ -290,6 +290,7 @@ namespace LORModingBase.UC
         {
             DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Remove(innerCriticalPageNode);
             initStack();
+            MainWindow.mainWindow.UpdateDebugInfo();
         }
 
         #region Right button events (Upside)

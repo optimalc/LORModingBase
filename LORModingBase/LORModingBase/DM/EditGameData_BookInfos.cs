@@ -73,6 +73,7 @@ namespace LORModingBase.DM
                 xmlDataNodeToAdd.SetXmlInfoByPath("EquipEffect/PBResist", "Normal");
                 xmlDataNodeToAdd.SetXmlInfoByPath("EquipEffect/HBResist", "Normal");
 
+                MainWindow.mainWindow.UpdateDebugInfo();
                 return xmlDataNodeToAdd;
             }
             else

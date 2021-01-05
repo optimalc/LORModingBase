@@ -11,11 +11,13 @@ namespace LORModingBase
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow mainWindow = null;
+
         #region Init controls
         public MainWindow()
         {
             InitializeComponent();
-            InitLbxTextEditor();
+            mainWindow = this;
             MainWindowButtonClickEvents(BtnCriticalPage, null);
 
             try
@@ -25,6 +27,7 @@ namespace LORModingBase
                 Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.MAIN_WINDOW);
                 InitSplCriticalPage();
                 InitSplCards();
+                InitLbxTextEditor();
             }
             catch(Exception ex)
             {
@@ -284,6 +287,8 @@ namespace LORModingBase
             {
                 LbxTextEditor.Items.Add(menu);
             });
+            if (LbxTextEditor.Items.Count > 0)
+                LbxTextEditor.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -297,6 +302,12 @@ namespace LORModingBase
                 {
                     case 0:
                         DM.EditGameData_BookInfos.StaticEquipPage.SaveNodeData(DS.PROGRAM_PATHS.DEBUG_TEST);
+                        break;
+                    case 1:
+                        DM.EditGameData_BookInfos.StaticDropBook.SaveNodeData(DS.PROGRAM_PATHS.DEBUG_TEST);
+                        break;
+                    case 2:
+                        DM.EditGameData_BookInfos.LocalizedBooks.SaveNodeData(DS.PROGRAM_PATHS.DEBUG_TEST);
                         break;
 
                 }
