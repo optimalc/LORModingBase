@@ -394,6 +394,13 @@ namespace LORModingBase.UC
                     MainWindow.mainWindow.UpdateDebugInfo();
                     break;
                 case "BtnDelete":
+                    if( DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.CheckIfGivenPathWithXmlInfoExists("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } })
+                        && !DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.CheckIfGivenPathWithXmlInfoExists("Book",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", innerCriticalPageNode.GetAttributesSafe("ID") } }))
+                        DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.RemoveXmlInfosByPath("bookDescList/BookDesc",
+                       attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+
                     DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Remove(innerCriticalPageNode);
                     initStack();
                     MainWindow.mainWindow.UpdateDebugInfo();
