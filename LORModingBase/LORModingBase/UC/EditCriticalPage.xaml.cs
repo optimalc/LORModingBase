@@ -470,6 +470,42 @@ namespace LORModingBase.UC
                     innerCriticalPageNode.attribute["ID"] = tbx.Text;
                     innerCriticalPageNode.SetXmlInfoByPath("TextId", tbx.Text);
                     break;
+                case "TbxPageName_Name":
+                    innerCriticalPageNode.SetXmlInfoByPath("Name", tbx.Text);
+                    if (DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.CheckIfGivenPathWithXmlInfoExists("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } }))
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].SetXmlInfoByPath("BookName", tbx.Text);
+                        }
+                    }
+                    else
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPath("bookDescList");
+
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].subNodes.Add(DM.EditGameData_BookInfos.MakeNewStaticBooksBase(
+                                innerCriticalPageNode.GetAttributesSafe("ID"),
+                                innerCriticalPageNode.GetInnerTextByPath("Name"),
+                                ""));
+                        }
+                        else
+                        {
+                            DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("bookDescList")
+                                .subNodes.Add(DM.EditGameData_BookInfos.MakeNewStaticBooksBase(
+                                innerCriticalPageNode.GetAttributesSafe("ID"),
+                                innerCriticalPageNode.GetInnerTextByPath("Name"),
+                                ""));
+                        }
+
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    }
+                    break;
                 default:
                     List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
                     if (SPLIT_NAME.Count == 2)
@@ -504,24 +540,5 @@ namespace LORModingBase.UC
             //}
         }
         #endregion
-
-        private void BtnCriticalPageType_Click(object sender, RoutedEventArgs e)
-        {
-            //if(!innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE && !innerCriticalPageInfo.USER_TYPE_CH_FORCE)
-            //{
-            //    innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = true;
-            //    innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
-            //}
-            //else if(innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE)
-            //{
-            //    innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
-            //    innerCriticalPageInfo.USER_TYPE_CH_FORCE = true;
-            //}
-            //else if (innerCriticalPageInfo.USER_TYPE_CH_FORCE)
-            //{
-            //    innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
-            //    innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
-            //}
-        }
     }
 }

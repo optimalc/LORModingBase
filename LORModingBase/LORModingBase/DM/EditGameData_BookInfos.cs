@@ -105,6 +105,11 @@ namespace LORModingBase.DM
                         xmlDataNodeToAdd.AddXmlInfoByPath("TextList/Desc", DESC_TO_ADD);
                     }
                 }
+                else
+                {
+                    xmlDataNodeToAdd.RemoveXmlInfosByPath("TextList/Desc");
+                    xmlDataNodeToAdd.MakeEmptyNodeGivenPathIfNotExist("TextList/Desc");
+                }
 
                 return xmlDataNodeToAdd;
             }
