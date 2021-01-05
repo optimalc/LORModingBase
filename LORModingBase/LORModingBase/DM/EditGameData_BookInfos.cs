@@ -35,13 +35,14 @@ namespace LORModingBase.DM
             StaticDropBook = new XmlData(DM.GameInfos.staticInfos["DropBook"]);
 
             LocalizedBooks = new XmlData(DM.GameInfos.localizeInfos["Books"]);
+            LocalizedBooks.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("bookDescList");
         }
     
         /// <summary>
-        /// Add new equip page base by basic node in game data
+        /// Make new equip page base by basic node in game data
         /// </summary>
         /// <returns>Created new equip page</returns>
-        public static XmlDataNode AddNewStaticEquipPageBase()
+        public static XmlDataNode MakeNewStaticEquipPageBase()
         {
             List<XmlDataNode> foundXmlDataNodes = DM.GameInfos.staticInfos["EquipPage"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
                 attributeToCheck: new Dictionary<string, string>() { { "ID", "200001" } });
@@ -72,8 +73,39 @@ namespace LORModingBase.DM
                 xmlDataNodeToAdd.SetXmlInfoByPath("EquipEffect/SBResist", "Normal");
                 xmlDataNodeToAdd.SetXmlInfoByPath("EquipEffect/PBResist", "Normal");
                 xmlDataNodeToAdd.SetXmlInfoByPath("EquipEffect/HBResist", "Normal");
+                return xmlDataNodeToAdd;
+            }
+            else
+                return null;
+        }
 
-                MainWindow.mainWindow.UpdateDebugInfo();
+        /// <summary>
+        /// Make new static books base by basic node in game data
+        /// </summary>
+        /// <returns>Created books info</returns>
+        public static XmlDataNode MakeNewStaticBooksBase(string bookIdToSet="", string nameToSet="", string desc="")
+        {
+            List <XmlDataNode> foundXmlDataNodes = DM.GameInfos.localizeInfos["Books"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                attributeToCheck: new Dictionary<string, string>() { { "BookID", "200001" } });
+
+            if (foundXmlDataNodes.Count > 0)
+            {
+                XmlDataNode xmlDataNodeToAdd = foundXmlDataNodes[0].Copy();
+
+                xmlDataNodeToAdd.attribute["BookID"] = bookIdToSet;
+                xmlDataNodeToAdd.SetXmlInfoByPath("BookName", nameToSet);
+
+                if(!string.IsNullOrEmpty(desc))
+                {
+                    xmlDataNodeToAdd.RemoveXmlInfosByPath("TextList/Desc");
+
+                    foreach (string desPart in desc.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.None))
+                    {
+                        string DESC_TO_ADD = desPart.Replace("\r\n", " ").Replace("\r", "").Replace("\n", "");
+                        xmlDataNodeToAdd.AddXmlInfoByPath("TextList/Desc", DESC_TO_ADD);
+                    }
+                }
+
                 return xmlDataNodeToAdd;
             }
             else

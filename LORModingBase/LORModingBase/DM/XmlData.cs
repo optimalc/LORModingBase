@@ -394,6 +394,19 @@ namespace LORModingBase.DM
 
             return foundXmlDataNodes;
         }
+
+        /// <summary>
+        /// Returns whether given path with attriubte is exists
+        /// </summary>
+        /// <param name="path">XmlDataNode path to search</param>
+        /// <param name="innerTextToCheck">Inner text to check</param>
+        /// <param name="attributeToCheck">Attribute dic to check</param>
+        /// <returns>If exists, return true. Else, return false</returns>
+        public bool CheckIfGivenPathWithXmlInfoExists(string path, string innerTextToCheck = "",
+            Dictionary<string, string> attributeToCheck = null)
+        {
+            return GetXmlDataNodesByPathWithXmlInfo(path, innerTextToCheck, attributeToCheck).Count > 0;
+        }
         #endregion
 
         #region Getting data functions
@@ -623,6 +636,16 @@ namespace LORModingBase.DM
                 MainWindow.mainWindow.UpdateDebugInfo();
                 return createdXmlDataNode;
             }
+        }
+       
+        /// <summary>
+        /// Make empty node if not exists
+        /// </summary>
+        /// <param name="path">Node to create</param>
+        /// <returns>Created empty node</returns>
+        public XmlDataNode MakeEmptyNodeGivenPathIfNotExist(string path)
+        {
+            return SetXmlInfoByPath(path);
         }
         #endregion
 

@@ -79,9 +79,9 @@ namespace LORModingBase.UC
                 #endregion
 
                 #region 핵심책장 설명부분 UI 반영시키기
-                string DESCRIPTION = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetInnerTextByAttributeWithPath("bookDescList/BookDesc", "BookID",
-                    innerCriticalPageNode.GetAttributesSafe("ID"));
-                if (!string.IsNullOrEmpty(DESCRIPTION))
+                List<DM.XmlDataNode> foundXmlDataNodes = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+                if (foundXmlDataNodes.Count > 0)
                 {
                     BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
                     BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
@@ -301,6 +301,49 @@ namespace LORModingBase.UC
             Button btn = sender as Button;
             switch (btn.Name)
             {
+                case "BtnCiricalBookInfo":
+                    new SubWindows.Global_InputOneColumnData((string description) =>
+                    {
+                        DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.RemoveXmlInfosByPath("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+
+                        if (!string.IsNullOrEmpty(description))
+                        {
+                            List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPath("bookDescList");
+
+                            if(foundXmlDataNode.Count > 0)
+                            {
+                                foundXmlDataNode[0].subNodes.Add(DM.EditGameData_BookInfos.MakeNewStaticBooksBase(
+                                    innerCriticalPageNode.GetAttributesSafe("ID"),
+                                    innerCriticalPageNode.GetInnerTextByPath("Name"),
+                                    description));
+                            }
+                            else
+                            {
+                                DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("bookDescList")
+                                    .subNodes.Add(DM.EditGameData_BookInfos.MakeNewStaticBooksBase(
+                                    innerCriticalPageNode.GetAttributesSafe("ID"),
+                                    innerCriticalPageNode.GetInnerTextByPath("Name"),
+                                    description));
+                            }
+
+                            MainWindow.mainWindow.UpdateDebugInfo();
+                        }
+                    }).ShowDialog();
+
+                    List<DM.XmlDataNode> foundXmlDataNodes = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+                    if (foundXmlDataNodes.Count > 0)
+                    {
+                        BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
+                        BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
+                    }
+                    else
+                    {
+                        BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNobookInfo.png");
+                        BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (미입력)";
+                    }
+                    break;
                 case "BtnEnemySetting":
                     new SubWindows.Global_MultipleValueInputed(new Dictionary<string, string>() {
                         { "시작시 빛의 수", "시작할때 적이 가지게 되는 빛의 개수를 입력합니다"},
@@ -438,16 +481,6 @@ namespace LORModingBase.UC
         }
 
         #region Right button events (Upside)
-        private void BtnCiricalBookInfo_Click(object sender, RoutedEventArgs e)
-        {
-            //new SubWindows.InputCriticalBookDescription((string inputedDes) =>
-            //{
-            //    innerCriticalPageInfo.description = inputedDes;
-            //    BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
-            //    BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
-            //}, innerCriticalPageInfo.description).ShowDialog();
-        }
-
         private void BtnDropBooks_Click(object sender, RoutedEventArgs e)
         {
             //new SubWindows.InputDropBookInfosWindow(innerCriticalPageInfo.dropBooks).ShowDialog();

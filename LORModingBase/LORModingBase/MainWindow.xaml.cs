@@ -213,7 +213,7 @@ namespace LORModingBase
                 {
                     case "BtnAddCriticalBook":
                         DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(
-                            DM.EditGameData_BookInfos.AddNewStaticEquipPageBase());
+                            DM.EditGameData_BookInfos.MakeNewStaticEquipPageBase());
                         InitSplCriticalPage();
                         break;
                     case "BtnLoadCriticalBook":

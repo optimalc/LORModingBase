@@ -97,6 +97,9 @@
     <Compile Include="SubWindows\Global_MultipleValueInputed.xaml.cs">
       <DependentUpon>Global_MultipleValueInputed.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\Global_InputOneColumnData.xaml.cs">
+      <DependentUpon>Global_InputOneColumnData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputLanguageWindow.xaml.cs">
       <DependentUpon>InputLanguageWindow.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\Global_MultipleValueInputed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindows\Global_InputOneColumnData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
