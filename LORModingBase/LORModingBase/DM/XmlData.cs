@@ -577,6 +577,20 @@ namespace LORModingBase.DM
         }
 
         /// <summary>
+        /// Set inner text by paths. But, if valueToSet is empty, It remove the given path
+        /// </summary>
+        /// <param name="path">XmlData path</param>
+        /// <param name="valueToSet">Value to set</param>
+        /// <param name="attributePairsToSet"></param>
+        public void SetXmlInfoByPathAndEmptyWillRemove(string path, string valueToSet = "", Dictionary<string, string> attributePairsToSet = null)
+        {
+            if (string.IsNullOrEmpty(valueToSet))
+                RemoveXmlInfosByPath(path, deleteOnce: true);
+            else
+                SetXmlInfoByPath(path, valueToSet, attributePairsToSet);
+        }
+
+        /// <summary>
         /// Add new XmlInfoData
         /// </summary>
         /// <param name="path">XmlData path</param>

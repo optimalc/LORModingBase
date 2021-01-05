@@ -329,7 +329,7 @@
             </Button>
             
             <Rectangle Grid.Row="4" Grid.RowSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-            <Button x:Name="BtnRangeType" Grid.Row="4"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" Click="BtnRangeType_Click">
+            <Button x:Name="BtnRangeType" Grid.Row="4"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" PreviewMouseDown="TypeLoopButtonEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="10"/>

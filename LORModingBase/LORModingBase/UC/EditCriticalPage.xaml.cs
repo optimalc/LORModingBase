@@ -140,6 +140,7 @@ namespace LORModingBase.UC
                 #endregion
 
                 #region 핵심책장 원거리 속성 UI 반영시키기
+                BtnRangeType.Tag = innerCriticalPageNode.GetInnerTextByPath("RangeType");
                 if (innerCriticalPageNode.GetInnerTextByPath("RangeType") == "Range")
                 {
                     BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
@@ -207,7 +208,6 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCriticalPageNode.SetXmlInfoByPath("Episode", selectedItem);
-                        MainWindow.mainWindow.UpdateDebugInfo();
                         BtnEpisode.Content = selectedItem;
                         BtnEpisode.ToolTip = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
@@ -216,7 +216,6 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCriticalPageNode.SetXmlInfoByPath("BookIcon", selectedItem);
-                        MainWindow.mainWindow.UpdateDebugInfo();
                         BtnBookIcon.Content = selectedItem;
                         BtnBookIcon.ToolTip = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.BOOK_ICON).ShowDialog();
@@ -225,7 +224,6 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCriticalPageNode.SetXmlInfoByPath("CharacterSkin", selectedItem);
-                        MainWindow.mainWindow.UpdateDebugInfo();
                         BtnSkin.Content = selectedItem;
                         BtnSkin.ToolTip = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN).ShowDialog();
@@ -237,7 +235,6 @@ namespace LORModingBase.UC
                         innerCriticalPageNode.AddXmlInfoByPath("EquipEffect/Passive", selectedItem
                 , new Dictionary<string, string>() { { "Level", "10" } });
                         InitLbxPassives();
-                        MainWindow.mainWindow.UpdateDebugInfo();
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.PASSIVE).ShowDialog();
                     break;
                 case "BtnDeletePassive":
@@ -274,44 +271,14 @@ namespace LORModingBase.UC
         #endregion
 
         #region Type change button events
-        private void BtnRangeType_Click(object sender, RoutedEventArgs e)
-        {
-            //switch(innerCriticalPageInfo.rangeType)
-            //{
-            //    case "Range":
-            //        innerCriticalPageInfo.rangeType = "Hybrid";
-            //        break;
-            //    case "Hybrid":
-            //        innerCriticalPageInfo.rangeType = "Nomal";
-            //        break;
-            //    default:
-            //        innerCriticalPageInfo.rangeType = "Range";
-            //        break;
-            //}
-
-            //#region 핵심책장 원거리 속성 UI 반영시키기
-            //if (innerCriticalPageInfo.rangeType == "Range")
-            //{
-            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
-            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
-            //}
-            //else if (innerCriticalPageInfo.rangeType == "Hybrid")
-            //{
-            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
-            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
-            //}
-            //else
-            //{
-            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
-            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
-            //}
-            //#endregion
-        }
-
         /// <summary>
         /// Resist info code
         /// </summary>
         private List<string> RESIST_LOOP_LIST = new List<string>() { "Vulnerable", "Weak", "Normal", "Endure", "Resist", "Immune" };
+        /// <summary>
+        /// Resist info code
+        /// </summary>
+        private List<string> RANGE_LOOP_LIST = new List<string>() { "", "Range", "Hybrid" };
 
         /// <summary>
         /// Type loop button events
@@ -323,13 +290,18 @@ namespace LORModingBase.UC
             List<string> LOOP_LIST = null;
             if (loopButton.Name.Contains("Resist"))
                 LOOP_LIST = RESIST_LOOP_LIST;
+            else if (loopButton.Name == "BtnRangeType")
+                LOOP_LIST = RANGE_LOOP_LIST;
+            if (LOOP_LIST == null)
+                return;
 
             // Down index
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 int LEFT_INDEX = LOOP_LIST.IndexOf(loopButton.Tag.ToString()) - 1;
                 if (LEFT_INDEX < 0) LEFT_INDEX = LOOP_LIST.Count - 1;
-                loopButton.Content = LOOP_LIST[LEFT_INDEX];
+                if (loopButton.Name.Contains("Resist"))
+                    loopButton.Content = LOOP_LIST[LEFT_INDEX];
                 loopButton.Tag = LOOP_LIST[LEFT_INDEX];
             }
             // Up index
@@ -337,12 +309,19 @@ namespace LORModingBase.UC
             {
                 int RIGHT_INDEX = LOOP_LIST.IndexOf(loopButton.Tag.ToString()) + 1;
                 if (RIGHT_INDEX >= LOOP_LIST.Count) RIGHT_INDEX = 0;
-                loopButton.Content = LOOP_LIST[RIGHT_INDEX];
+                if (loopButton.Name.Contains("Resist"))
+                    loopButton.Content = LOOP_LIST[RIGHT_INDEX];
                 loopButton.Tag = LOOP_LIST[RIGHT_INDEX];
             }
 
             if (loopButton.Name.Contains("Resist"))
                 innerCriticalPageNode.SetXmlInfoByPath($"EquipEffect/{loopButton.Name.Split('_').Last()}", loopButton.Tag.ToString());
+            else if (loopButton.Name == "BtnRangeType")
+            {
+                string RANGE_NAME = (string.IsNullOrEmpty(loopButton.Tag.ToString()) ? "Nomal" : loopButton.Tag.ToString());
+                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{RANGE_NAME}.png");
+                innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("RangeType", loopButton.Tag.ToString());
+            }
         }
         #endregion
 
