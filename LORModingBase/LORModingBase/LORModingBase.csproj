@@ -100,8 +100,8 @@
     <Compile Include="SubWindows\Global_InputOneColumnData.xaml.cs">
       <DependentUpon>Global_InputOneColumnData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\InputLanguageWindow.xaml.cs">
-      <DependentUpon>InputLanguageWindow.xaml</DependentUpon>
+    <Compile Include="SubWindows\Global_ListSeleteWindow.xaml.cs">
+      <DependentUpon>Global_ListSeleteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\ToEXTUrl.xaml.cs">
       <DependentUpon>ToEXTUrl.xaml</DependentUpon>
@@ -194,7 +194,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SubWindows\InputLanguageWindow.xaml">
+    <Page Include="SubWindows\Global_ListSeleteWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

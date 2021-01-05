@@ -76,21 +76,7 @@ namespace LORModingBase.SubWindows
                         });
                         break;
                     case "TbxProgramLanguage":
-                        new SubWindows.InputLanguageWindow((string languageName) =>
-                        {
-                            try
-                            {
-                                DM.Config.config.localizeOption = DM.LocalizeCore.GetLocalizeOptionRev()[languageName];
-                                DM.Config.SaveData();
-
-                                System.Windows.Forms.Application.Restart();
-                                System.Windows.Application.Current.Shutdown();
-                            }
-                            catch (Exception ex)
-                            {
-                                Tools.MessageBoxTools.ShowErrorMessageBox(ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"OptionWindowTextBoxLeftButtonDownEvents_Error")); ;
-                            }
-                        }).ShowDialog();
+                        new SubWindows.Global_ListSeleteWindow(null, Global_ListSeleteWindow_PRESET.LANGUAGES).ShowDialog();
                         break;
 
                 }
