@@ -1,7 +1,10 @@
 ﻿using LORModingBase.CustomExtensions;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace LORModingBase.Tools
 {
@@ -31,6 +34,32 @@ namespace LORModingBase.Tools
         }
 
         /// <summary>
+        /// Apply extra UI option
+        /// </summary>
+        /// <param name="targetControl">Target control to change UI</param>
+        /// <param name="optionStr">Option strings</param>
+        public static void ApplyTranslateOption(Control targetControl, List<string> SPLITED_INFO)
+        {
+            if (SPLITED_INFO.Count > 0)
+            {
+                List<string> TRANSFORM_INFO = SPLITED_INFO[0].Split(',').ToList();
+                TransformGroup myTransformGroup = new TransformGroup();
+                myTransformGroup.Children.Add(
+                    new ScaleTransform(Convert.ToDouble(TRANSFORM_INFO[0]), Convert.ToDouble(TRANSFORM_INFO[1]))
+                );
+                if (SPLITED_INFO.Count > 1)
+                {
+                    List<string> POSITION_INFO = SPLITED_INFO[1].Split(',').ToList();
+                    myTransformGroup.Children.Add(
+                          new TranslateTransform(Convert.ToDouble(POSITION_INFO[0]), Convert.ToDouble(POSITION_INFO[1]))
+                    );
+                }
+
+                targetControl.RenderTransform = myTransformGroup;
+            }
+        }
+
+        /// <summary>
         /// Localize all window uis
         /// </summary>
         /// <param name="window">Window to localize</param>
@@ -42,15 +71,37 @@ namespace LORModingBase.Tools
 
             FindLogicalChildren<Button>(window).ForEachSafe((Button btn) => {
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{btn.Name}%"))
-                    btn.Content = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{btn.Name}%");
+                {
+                    string LANGUAGE_CONTENT = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{btn.Name}%");
+                    List<string> SPLITED_INFO = LANGUAGE_CONTENT.Split('$').ToList();
+                    btn.Content = SPLITED_INFO[0];
+                    ApplyTranslateOption(btn, SPLITED_INFO.Skip(1).ToList());
+                }
+
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{btn.Name}_ToolTip%"))
-                    btn.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{btn.Name}_ToolTip%");
+                {
+                    string LANGUAGE_CONTENT = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{btn.Name}_ToolTip%");
+                    List<string> SPLITED_INFO = LANGUAGE_CONTENT.Split('$').ToList();
+                    btn.ToolTip = SPLITED_INFO[0];
+                    ApplyTranslateOption(btn, SPLITED_INFO.Skip(1).ToList());
+                }
             });
             FindLogicalChildren<Label>(window).ForEachSafe((Label lbl) => {
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{lbl.Name}%"))
-                    lbl.Content = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{lbl.Name}%");
+                {
+                    string LANGUAGE_CONTENT = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{lbl.Name}%");
+                    List<string> SPLITED_INFO = LANGUAGE_CONTENT.Split('$').ToList();
+                    lbl.Content = SPLITED_INFO[0];
+                    ApplyTranslateOption(lbl, SPLITED_INFO.Skip(1).ToList());
+                }
+
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{lbl.Name}_ToolTip%"))
-                    lbl.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{lbl.Name}_ToolTip%");
+                {
+                    string LANGUAGE_CONTENT = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{lbl.Name}_ToolTip%");
+                    List<string> SPLITED_INFO = LANGUAGE_CONTENT.Split('$').ToList();
+                    lbl.ToolTip = SPLITED_INFO[0];
+                    ApplyTranslateOption(lbl, SPLITED_INFO.Skip(1).ToList());
+                }
             });
 
             FindLogicalChildren<TextBox>(window).ForEachSafe((TextBox tbx) => {
