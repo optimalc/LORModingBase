@@ -47,15 +47,19 @@ namespace LORModingBase.UC
 
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("Episode", (string innerText) =>
                 {
-                    BtnEpisode.Content = innerCriticalPageNode.GetInnerTextByPath("Episode");
-                    BtnEpisode.ToolTip = innerCriticalPageNode.GetInnerTextByPath("Episode");
+                    BtnEpisode.Content = innerText;
+                    BtnEpisode.ToolTip = innerText;
                 });
-
-                BtnBookIcon.Content = innerCriticalPageNode.GetInnerTextByPath("BookIcon");
-                BtnBookIcon.ToolTip = innerCriticalPageNode.GetInnerTextByPath("BookIcon");
-
-                BtnSkin.Content = innerCriticalPageNode.GetInnerTextByPath("CharacterSkin");
-                BtnSkin.ToolTip = innerCriticalPageNode.GetInnerTextByPath("CharacterSkin");
+                innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("BookIcon", (string innerText) =>
+                {
+                    BtnBookIcon.Content = innerText;
+                    BtnBookIcon.ToolTip = innerText;
+                });
+                innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("CharacterSkin", (string innerText) =>
+                {
+                    BtnSkin.Content = innerText;
+                    BtnSkin.ToolTip = innerText;
+                });
 
                 Btn_SResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist");
                 Btn_PResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist");
@@ -214,19 +218,18 @@ namespace LORModingBase.UC
                         BtnEpisode.ToolTip = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
+                case "BtnBookIcon":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        innerCriticalPageNode.SetXmlInfoByPath("BookIcon", selectedItem);
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                        BtnBookIcon.Content = selectedItem;
+                        BtnBookIcon.ToolTip = selectedItem;
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.BOOK_ICON).ShowDialog();
+                    break;
             }
         }
-        private void BtnBookIcon_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputBookIconWindow((string chpater, string bookIconName, string bookIconDesc) =>
-            {
-                string ICON_DESC = $"{bookIconDesc}:{bookIconName}";
-                BtnBookIcon.Content = ICON_DESC;
-                BtnBookIcon.ToolTip = ICON_DESC;
 
-                innerCriticalPageNode.SetXmlInfoByPath("BookIcon", bookIconName);
-            }).ShowDialog();
-        }
         private void BtnSkin_Click(object sender, RoutedEventArgs e)
         {
             new SubWindows.InputBookSkinWindow((string chpater, string bookSkinName, string bookSkinDesc) =>

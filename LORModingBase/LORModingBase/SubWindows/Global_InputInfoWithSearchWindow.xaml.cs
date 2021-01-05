@@ -47,6 +47,14 @@ namespace LORModingBase.SubWindows
                         }
                     });
                     break;
+                case InputInfoWithSearchWindow_PRESET.BOOK_ICON:
+                    DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse/BookIcon", (DM.XmlDataNode bookIconNode) =>
+                    {
+                        string ICON_NAME = bookIconNode.GetInnerTextSafe();
+                        if (!string.IsNullOrEmpty(ICON_NAME))
+                            selectItems.Add(ICON_NAME);
+                    });
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -115,6 +123,7 @@ namespace LORModingBase.SubWindows
 
     public enum InputInfoWithSearchWindow_PRESET
     {
-        EPISODE
+        EPISODE,
+        BOOK_ICON
     };
 }

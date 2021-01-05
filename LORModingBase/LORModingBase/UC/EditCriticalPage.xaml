@@ -115,7 +115,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnBookIcon" Grid.Column="0" Content="책 아이콘 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnBookIcon_Click" ToolTip="핵심 책장의 이미지를 선택합니다"/>
+                <Button x:Name="BtnBookIcon" Grid.Column="0" Content="책 아이콘 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="핵심 책장의 이미지를 선택합니다"/>
 
                 <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Button x:Name="BtnSkin" Grid.Column="1" Content="캐릭터 스킨 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnSkin_Click" ToolTip="핵심 책장과 관련된 캐릭터 스킨을 선택합니다"/>
