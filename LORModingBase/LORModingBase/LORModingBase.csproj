@@ -79,9 +79,7 @@
     <Compile Include="DS\CriticalPageInfos.cs" />
     <Compile Include="DS\FilterDatas.cs" />
     <Compile Include="DS\GameInfo.cs" />
-    <Compile Include="DS\LongDescription.cs" />
     <Compile Include="DS\PATH.cs" />
-    <Compile Include="DS\XmlData.cs" />
     <Compile Include="SubWindows\ExtraToolsWindow.xaml.cs">
       <DependentUpon>ExtraToolsWindow.xaml</DependentUpon>
     </Compile>

@@ -19,12 +19,10 @@ namespace LORModingBase.DM
         /// Editing data for StaticDropBook
         /// </summary>
         public static XmlData StaticDropBook = null;
-
         /// <summary>
         /// Editing data for LocalizedBooks
         /// </summary>
         public static XmlData LocalizedBooks = null;
-
 
         /// <summary>
         /// Initial each XmlDatas
@@ -146,6 +144,16 @@ namespace LORModingBase.DM
             }
             else
                 return null;
+        }
+    
+        /// <summary>
+        /// Export each datas
+        /// </summary>
+        public static void ExportDatas(string baseDic)
+        {
+            StaticEquipPage.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(StaticEquipPage, baseDic));
+            StaticDropBook.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(StaticDropBook, baseDic));
+            LocalizedBooks.SaveNodeData(DM.ExportDatas.GetLocalizePathToSave(LocalizedBooks, baseDic));
         }
     }
 }

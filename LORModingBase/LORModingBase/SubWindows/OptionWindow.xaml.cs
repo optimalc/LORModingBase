@@ -96,10 +96,12 @@ namespace LORModingBase.SubWindows
                 {
                     case "CbxDirectBaseModeExport":
                         DM.Config.config.isDirectBaseModeExport = (bool)CbxDirectBaseModeExport.IsChecked;
+                        DM.Config.SaveData();
                         InitSettingUIs();
                         break;
-                    case "LblExecuteAfterExport":
+                    case "CbxExecuteAfterExport":
                         DM.Config.config.isExecuteAfterExport = (bool)CbxExecuteAfterExport.IsChecked;
+                        DM.Config.SaveData();
                         InitSettingUIs();
                         break;
                 }

@@ -120,6 +120,12 @@ namespace LORModingBase.DM
             XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
             xmlWriterSettings.Indent = true;
 
+            List<string> dataFileSplit = dataFilePath.Split('\\').ToList();
+            dataFileSplit.RemoveAt(dataFileSplit.Count - 1);
+            string DIC_PATH = String.Join("\\", dataFileSplit);
+            if (!Directory.Exists(DIC_PATH))
+                Directory.CreateDirectory(DIC_PATH);
+
             using (XmlWriter writer = XmlWriter.Create(dataFilePath, xmlWriterSettings))
             {
                 writer.WriteStartDocument();

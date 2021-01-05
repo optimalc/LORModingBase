@@ -49,7 +49,7 @@ namespace LORModingBase.SubWindows
                 {
                     File.Delete($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\Managed\\UnityEngine.dll");
 
-                    File.Copy(DS.PATH.RESOURCE_UNITY_ENGINE_DEBUG, $"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\Managed\\UnityEngine.dll");
+                    File.Copy(DS.PROGRAM_RESOURCE_PATHS.RESOURCE_UNITY_ENGINE_DEBUG, $"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\Managed\\UnityEngine.dll");
                     Tools.MessageBoxTools.ShowInfoMessageBox(
                         DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ETC, $"BtnExecuteDebugRedirect_Click_Info_1"),
                         DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ETC, $"BtnExecuteDebugRedirect_Click_Info_2"));
