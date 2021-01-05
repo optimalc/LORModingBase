@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using LORModingBase.CustomExtensions;
 
 namespace LORModingBase.SubWindows
 {
@@ -45,11 +46,23 @@ namespace LORModingBase.SubWindows
                         }
                         catch (Exception ex)
                         {
-                            Tools.MessageBoxTools.ShowErrorMessageBox(ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"OptionWindowTextBoxLeftButtonDownEvents_Error")); ;
+                            Tools.MessageBoxTools.ShowErrorMessageBox(ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"OptionWindowTextBoxLeftButtonDownEvents_Error"));
                         }
                     };
                     itemToLoad = DM.LocalizeCore.GetLocalizeOptionRev().Keys.ToList();
                     this.Title = "Double click language you want";
+                    break;
+                case Global_ListSeleteWindow_PRESET.EXT_URL:
+                    this.afterSelect = (string selectedURL) =>
+                    {
+                        System.Diagnostics.Process.Start(selectedURL.Split('>')[1].Trim());
+                    };
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ETC, "EXT_TITLE");
+                    DM.LocalizeCore.GetLanguageDictionary(DM.LANGUAGE_FILE_NAME.ETC).ForEachKeyValuePairSafe((string key, string value) =>
+                    {
+                        if (key.Contains("EXT_URL_"))
+                            itemToLoad.Add(value);
+                    });
                     break;
             }
             itemToLoad.ForEach((string item) =>
@@ -70,6 +83,7 @@ namespace LORModingBase.SubWindows
 
     public enum Global_ListSeleteWindow_PRESET
     {
-        LANGUAGES
+        LANGUAGES,
+        EXT_URL
     }
 }

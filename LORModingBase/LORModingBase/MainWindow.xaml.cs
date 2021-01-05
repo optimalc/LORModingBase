@@ -172,7 +172,7 @@ namespace LORModingBase
                         break;
 
                     case "BtnExtURL":
-                        new SubWindows.ToEXTUrl().ShowDialog();
+                        new SubWindows.Global_ListSeleteWindow(null, SubWindows.Global_ListSeleteWindow_PRESET.EXT_URL).ShowDialog();
                         break;
                     case "BtnTools":
                         new SubWindows.ExtraToolsWindow().ShowDialog();

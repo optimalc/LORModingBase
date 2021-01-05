@@ -103,9 +103,6 @@
     <Compile Include="SubWindows\Global_ListSeleteWindow.xaml.cs">
       <DependentUpon>Global_ListSeleteWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\ToEXTUrl.xaml.cs">
-      <DependentUpon>ToEXTUrl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SubWindows\InputEffectWindow.xaml.cs">
       <DependentUpon>InputEffectWindow.xaml</DependentUpon>
     </Compile>
@@ -195,10 +192,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\Global_ListSeleteWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\ToEXTUrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
