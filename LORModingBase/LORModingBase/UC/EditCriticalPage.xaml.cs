@@ -62,12 +62,18 @@ namespace LORModingBase.UC
                 });
 
                 Btn_SResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist");
+                Btn_SResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist");
                 Btn_PResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist");
+                Btn_PResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist");
                 Btn_HResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist");
+                Btn_HResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist");
 
                 Btn_SBResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist");
+                Btn_SBResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist");
                 Btn_PBResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist");
+                Btn_PBResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist");
                 Btn_HBResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist");
+                Btn_HBResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist");
 
                 InitLbxPassives();
                 #endregion
@@ -175,32 +181,6 @@ namespace LORModingBase.UC
         }
 
         /// <summary>
-        /// Resist button events
-        /// </summary>
-        private void InitResistFromButtonEvents(object sender, MouseButtonEventArgs e)
-        {
-            Button resistButton = sender as Button;
-
-            // Down index
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                int RESISTS_INDEX = DS.GameInfo.resistInfo_Code.IndexOf(resistButton.Content.ToString()) - 1;
-                if (RESISTS_INDEX < 0) RESISTS_INDEX = DS.GameInfo.resistInfo_Code.Count - 1;
-                resistButton.Content = DS.GameInfo.resistInfo_Code[RESISTS_INDEX];
-                resistButton.Tag = DS.GameInfo.resistInfo_Code[RESISTS_INDEX];
-            }
-            // Up index
-            else
-            {
-                int RESISTS_INDEX = DS.GameInfo.resistInfo_Code.IndexOf(resistButton.Content.ToString()) + 1;
-                if (RESISTS_INDEX >= DS.GameInfo.resistInfo_Code.Count) RESISTS_INDEX = 0;
-                resistButton.Content = DS.GameInfo.resistInfo_Code[RESISTS_INDEX];
-                resistButton.Tag = DS.GameInfo.resistInfo_Code[RESISTS_INDEX];
-            }
-            innerCriticalPageNode.SetXmlInfoByPath($"EquipEffect/{resistButton.Name.Split('_').Last()}", resistButton.Tag.ToString());
-        }
-
-        /// <summary>
         /// Initialize passive list
         /// </summary>
         private void InitLbxPassives()
@@ -290,7 +270,80 @@ namespace LORModingBase.UC
                     MainWindow.mainWindow.UpdateDebugInfo();
                     break;
             }
-        } 
+        }
+        #endregion
+
+        #region Type change button events
+        private void BtnRangeType_Click(object sender, RoutedEventArgs e)
+        {
+            //switch(innerCriticalPageInfo.rangeType)
+            //{
+            //    case "Range":
+            //        innerCriticalPageInfo.rangeType = "Hybrid";
+            //        break;
+            //    case "Hybrid":
+            //        innerCriticalPageInfo.rangeType = "Nomal";
+            //        break;
+            //    default:
+            //        innerCriticalPageInfo.rangeType = "Range";
+            //        break;
+            //}
+
+            //#region 핵심책장 원거리 속성 UI 반영시키기
+            //if (innerCriticalPageInfo.rangeType == "Range")
+            //{
+            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
+            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
+            //}
+            //else if (innerCriticalPageInfo.rangeType == "Hybrid")
+            //{
+            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
+            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
+            //}
+            //else
+            //{
+            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
+            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
+            //}
+            //#endregion
+        }
+
+        /// <summary>
+        /// Resist info code
+        /// </summary>
+        private List<string> RESIST_LOOP_LIST = new List<string>() { "Vulnerable", "Weak", "Normal", "Endure", "Resist", "Immune" };
+
+        /// <summary>
+        /// Type loop button events
+        /// </summary>
+        private void TypeLoopButtonEvents(object sender, MouseButtonEventArgs e)
+        {
+            Button loopButton = sender as Button;
+
+            List<string> LOOP_LIST = null;
+            if (loopButton.Name.Contains("Resist"))
+                LOOP_LIST = RESIST_LOOP_LIST;
+
+            // Down index
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                int LEFT_INDEX = LOOP_LIST.IndexOf(loopButton.Tag.ToString()) - 1;
+                if (LEFT_INDEX < 0) LEFT_INDEX = LOOP_LIST.Count - 1;
+                loopButton.Content = LOOP_LIST[LEFT_INDEX];
+                loopButton.Tag = LOOP_LIST[LEFT_INDEX];
+            }
+            // Up index
+            else
+            {
+                int RIGHT_INDEX = LOOP_LIST.IndexOf(loopButton.Tag.ToString()) + 1;
+                if (RIGHT_INDEX >= LOOP_LIST.Count) RIGHT_INDEX = 0;
+                loopButton.Content = LOOP_LIST[RIGHT_INDEX];
+                loopButton.Tag = LOOP_LIST[RIGHT_INDEX];
+            }
+
+            if (loopButton.Name.Contains("Resist"))
+                innerCriticalPageNode.SetXmlInfoByPath($"EquipEffect/{loopButton.Name.Split('_').Last()}", loopButton.Tag.ToString());
+        }
         #endregion
 
 
@@ -315,9 +368,6 @@ namespace LORModingBase.UC
                     break;
             }
         }
-
-
-
 
         #region Right button events (Upside)
         private void BtnCiricalBookInfo_Click(object sender, RoutedEventArgs e)
@@ -401,40 +451,6 @@ namespace LORModingBase.UC
             //}
         }
         #endregion
-
-        private void BtnRangeType_Click(object sender, RoutedEventArgs e)
-        {
-            //switch(innerCriticalPageInfo.rangeType)
-            //{
-            //    case "Range":
-            //        innerCriticalPageInfo.rangeType = "Hybrid";
-            //        break;
-            //    case "Hybrid":
-            //        innerCriticalPageInfo.rangeType = "Nomal";
-            //        break;
-            //    default:
-            //        innerCriticalPageInfo.rangeType = "Range";
-            //        break;
-            //}
-
-            //#region 핵심책장 원거리 속성 UI 반영시키기
-            //if (innerCriticalPageInfo.rangeType == "Range")
-            //{
-            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
-            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
-            //}
-            //else if (innerCriticalPageInfo.rangeType == "Hybrid")
-            //{
-            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
-            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
-            //}
-            //else
-            //{
-            //    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
-            //    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
-            //}
-            //#endregion
-        }
 
         private void BtnCriticalPageType_Click(object sender, RoutedEventArgs e)
         {

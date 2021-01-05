@@ -144,7 +144,7 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="Btn_SResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="참격 피해의 내성을 살정합니다" PreviewMouseDown="InitResistFromButtonEvents"/>
+                    <Button x:Name="Btn_SResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="참격 피해의 내성을 살정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
@@ -161,7 +161,7 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="Btn_PResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="관통 피해의 내성을 살정합니다" PreviewMouseDown="InitResistFromButtonEvents"/>
+                    <Button x:Name="Btn_PResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="관통 피해의 내성을 살정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
                 </Grid>
                 <Grid Grid.Column="2">
                     <Grid.ColumnDefinitions>
@@ -178,7 +178,7 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="Btn_HResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="타격 피해의 내성을 살정합니다" PreviewMouseDown="InitResistFromButtonEvents"/>
+                    <Button x:Name="Btn_HResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="타격 피해의 내성을 살정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="6">
@@ -205,7 +205,7 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="Btn_SBResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="참격 흐트러짐 피해의 내성을 살정합니다" PreviewMouseDown="InitResistFromButtonEvents"/>
+                    <Button x:Name="Btn_SBResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="참격 흐트러짐 피해의 내성을 살정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
@@ -222,7 +222,7 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="Btn_PBResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left"  ToolTip="관통 흐트러짐 피해의 내성을 살정합니다" PreviewMouseDown="InitResistFromButtonEvents"/>
+                    <Button x:Name="Btn_PBResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left"  ToolTip="관통 흐트러짐 피해의 내성을 살정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
                 </Grid>
                 <Grid Grid.Column="2">
                     <Grid.ColumnDefinitions>
@@ -239,7 +239,7 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="Btn_HBResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="타격 흐트러짐 피해의 내성을 살정합니다" PreviewMouseDown="InitResistFromButtonEvents"/>
+                    <Button x:Name="Btn_HBResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="타격 흐트러짐 피해의 내성을 살정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="7">
