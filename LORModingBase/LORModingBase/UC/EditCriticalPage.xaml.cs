@@ -288,7 +288,7 @@ namespace LORModingBase.UC
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.subNodes.Remove(innerCriticalPageNode);
+            DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Remove(innerCriticalPageNode);
             initStack();
         }
 
