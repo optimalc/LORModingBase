@@ -102,25 +102,31 @@ namespace LORModingBase.UC
                 }
                 #endregion
 
-                List<string> DROP_BOOKS = new List<string>();
-                DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.ActionXmlDataNodesByPath("BookUse/DropItem", (DM.XmlDataNode dropItemNode) =>
+                #region 드랍 목록에 반영시키기
+                List<string> selectedDropBooks = new List<string>();
+                DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseID) =>
                 {
-                    if (dropItemNode.GetInnerTextSafe() == innerCriticalPageNode.GetAttributesSafe("ID"))
-                        DROP_BOOKS.Add(dropItemNode.GetInnerTextSafe());
+                    if (bookUseID.CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
+                        selectedDropBooks.Add(bookUseID.attribute["ID"]);
                 });
-                #region 핵심책장 드랍 책 부분 UI 반영시키기
-                if (DROP_BOOKS.Count > 0)
+
+                if (selectedDropBooks.Count > 0)
                 {
                     string extraInfo = "";
-                    DROP_BOOKS.ForEach((string DROP_DOOK) =>
+                    selectedDropBooks.ForEach((string dropBookInfo) =>
                     {
-                        extraInfo += $"{DROP_DOOK}\n";
+                        extraInfo += $"{dropBookInfo}\n";
                     });
                     extraInfo = extraInfo.TrimEnd('\n');
 
                     BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
                     BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
                 }
+                else
+                {
+                    BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
+                    BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
+                } 
                 #endregion
                 #region 적 전용책장 입력 부분 UI 반영시키기
                 if (!string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint")) ||
@@ -256,6 +262,105 @@ namespace LORModingBase.UC
             Button btn = sender as Button;
             switch (btn.Name)
             {
+                case "BtnDropBooks":
+                    List<string> selectedDropBooks = new List<string>();
+                    DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseID) =>
+                    {
+                        if (bookUseID.CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
+                            selectedDropBooks.Add(bookUseID.attribute["ID"]);
+                    });
+
+                    new SubWindows.Global_AddItemToListWindow((string addedDropBookItemID) =>
+                    {
+                        if (DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.CheckIfGivenPathWithXmlInfoExists("BookUse",
+                            attributeToCheck: new Dictionary<string, string> { { "ID", addedDropBookItemID } }))
+                        {
+                            List<DM.XmlDataNode> foundDropBookNode = DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                                attributeToCheck: new Dictionary<string, string> { { "ID", addedDropBookItemID } });
+                            if(foundDropBookNode.Count > 0
+                                && !foundDropBookNode[0].CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
+                                foundDropBookNode[0].AddXmlInfoByPath("DropItem", innerCriticalPageNode.attribute["ID"],
+                                                            new Dictionary<string, string>() { { "Type", "Equip" } });
+                        }
+                        else
+                        {
+                            DM.XmlDataNode madeDropBookNode = DM.EditGameData_BookInfos.MakeNewLocalizeDropBook(addedDropBookItemID);
+                            if(!madeDropBookNode.CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
+                            {
+                                madeDropBookNode.AddXmlInfoByPath("DropItem", innerCriticalPageNode.attribute["ID"],
+                                    new Dictionary<string, string>() { { "Type", "Equip" } });
+                                DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.subNodes.Add(madeDropBookNode);
+                            }
+                        }
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    }, (string deletedDropBookItemID) => {
+                        if (DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.CheckIfGivenPathWithXmlInfoExists("BookUse",
+                            attributeToCheck: new Dictionary<string, string> { { "ID", deletedDropBookItemID } }))
+                        {
+                            List<DM.XmlDataNode> foundDropBookNode = DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                              attributeToCheck: new Dictionary<string, string> { { "ID", deletedDropBookItemID } });
+                            if (foundDropBookNode.Count > 0)
+                            {
+                                DM.XmlDataNode FOUND_DROP_BOOK_NODE = foundDropBookNode[0];
+                                FOUND_DROP_BOOK_NODE.RemoveXmlInfosByPath("DropItem", innerCriticalPageNode.attribute["ID"], deleteOnce:true);
+
+                                List<DM.XmlDataNode> baseBookUseNode = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", deletedDropBookItemID } });
+                                if(baseBookUseNode.Count > 0)
+                                {
+                                    DM.XmlDataNode FOUND_DROP_BOOK_IN_GAME = baseBookUseNode[0];
+
+                                    List<string> foundDropBookDropItems = new List<string>();
+                                    FOUND_DROP_BOOK_NODE.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode DropItem) =>
+                                    {
+                                        foundDropBookDropItems.Add(DropItem.innerText);
+                                    });
+
+                                    List<string> foundDropBookInGameItems = new List<string>();
+                                    FOUND_DROP_BOOK_IN_GAME.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode DropItem) =>
+                                    {
+                                        foundDropBookInGameItems.Add(DropItem.innerText);
+                                    });
+
+                                    if (foundDropBookDropItems.Count == foundDropBookInGameItems.Count
+                                        && foundDropBookDropItems.Except(foundDropBookInGameItems).Count() == 0)
+                                    {
+                                        DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.RemoveXmlInfosByPath("BookUse",
+                                            attributeToCheck: new Dictionary<string, string> { { "ID", deletedDropBookItemID } }, deleteOnce:true);
+                                    }
+                                }
+                            }
+                            MainWindow.mainWindow.UpdateDebugInfo();
+                        }
+                    }, selectedDropBooks, SubWindows.AddItemToListWindow_PRESET.DROP_BOOK).ShowDialog();
+
+                    #region Update dropbook Input
+                    List<string> selectedDropBooks_toUpdate = new List<string>();
+                    DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseID) =>
+                    {
+                        if (bookUseID.CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
+                            selectedDropBooks_toUpdate.Add(bookUseID.attribute["ID"]);
+                    });
+
+                    if (selectedDropBooks_toUpdate.Count > 0)
+                    {
+                        string extraInfo = "";
+                        selectedDropBooks_toUpdate.ForEach((string dropBookInfo) =>
+                        {
+                            extraInfo += $"{dropBookInfo}\n";
+                        });
+                        extraInfo = extraInfo.TrimEnd('\n');
+
+                        BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+                        BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
+                    }
+                    else
+                    {
+                        BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
+                        BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
+                    } 
+                    #endregion
+                    break;
                 case "BookUniqueCards":
                     List<string> selectedUniqCards = new List<string>();
                     innerCriticalPageNode.GetXmlDataNodesByPath("EquipEffect/OnlyCard").ForEachSafe((DM.XmlDataNode onlyCardNode) =>
@@ -313,7 +418,7 @@ namespace LORModingBase.UC
 
                             if(foundXmlDataNode.Count > 0)
                             {
-                                foundXmlDataNode[0].subNodes.Add(DM.EditGameData_BookInfos.MakeNewStaticBooksBase(
+                                foundXmlDataNode[0].subNodes.Add(DM.EditGameData_BookInfos.MakeNewLocalizeBooksBase(
                                     innerCriticalPageNode.GetAttributesSafe("ID"),
                                     innerCriticalPageNode.GetInnerTextByPath("Name"),
                                     description));
@@ -321,7 +426,7 @@ namespace LORModingBase.UC
                             else
                             {
                                 DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("bookDescList")
-                                    .subNodes.Add(DM.EditGameData_BookInfos.MakeNewStaticBooksBase(
+                                    .subNodes.Add(DM.EditGameData_BookInfos.MakeNewLocalizeBooksBase(
                                     innerCriticalPageNode.GetAttributesSafe("ID"),
                                     innerCriticalPageNode.GetInnerTextByPath("Name"),
                                     description));
@@ -496,7 +601,7 @@ namespace LORModingBase.UC
 
                         if (foundXmlDataNode.Count > 0)
                         {
-                            foundXmlDataNode[0].subNodes.Add(DM.EditGameData_BookInfos.MakeNewStaticBooksBase(
+                            foundXmlDataNode[0].subNodes.Add(DM.EditGameData_BookInfos.MakeNewLocalizeBooksBase(
                                 innerCriticalPageNode.GetAttributesSafe("ID"),
                                 innerCriticalPageNode.GetInnerTextByPath("Name"),
                                 ""));
@@ -504,7 +609,7 @@ namespace LORModingBase.UC
                         else
                         {
                             DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("bookDescList")
-                                .subNodes.Add(DM.EditGameData_BookInfos.MakeNewStaticBooksBase(
+                                .subNodes.Add(DM.EditGameData_BookInfos.MakeNewLocalizeBooksBase(
                                 innerCriticalPageNode.GetAttributesSafe("ID"),
                                 innerCriticalPageNode.GetInnerTextByPath("Name"),
                                 ""));
@@ -522,30 +627,5 @@ namespace LORModingBase.UC
                     break;
             }
         }
-
-        #region Right button events (Upside)
-        private void BtnDropBooks_Click(object sender, RoutedEventArgs e)
-        {
-            //new SubWindows.InputDropBookInfosWindow(innerCriticalPageInfo.dropBooks).ShowDialog();
-
-            //if(innerCriticalPageInfo.dropBooks.Count > 0)
-            //{
-            //    string extraInfo = "";
-            //    innerCriticalPageInfo.dropBooks.ForEach((string dropBookInfo) =>
-            //    {
-            //        extraInfo += $"{dropBookInfo}\n";
-            //    });
-            //    extraInfo = extraInfo.TrimEnd('\n');
-
-            //    BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-            //    BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
-            //}
-            //else
-            //{
-            //    BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
-            //    BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
-            //}
-        }
-        #endregion
     }
 }

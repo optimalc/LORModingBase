@@ -38,6 +38,7 @@ namespace LORModingBase.DM
             LocalizedBooks.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("bookDescList");
         }
     
+
         /// <summary>
         /// Make new equip page base by basic node in game data
         /// </summary>
@@ -80,10 +81,40 @@ namespace LORModingBase.DM
         }
 
         /// <summary>
-        /// Make new static books base by basic node in game data
+        /// Make new localize books with given bookUseID
+        /// </summary>
+        /// <param name="bookUseID">BookUseID to use</param>
+        /// <returns>If given bookUseIs is already used in game. Load it</returns>
+        public static XmlDataNode MakeNewLocalizeDropBook(string bookUseID = "")
+        {
+            List<XmlDataNode> foundBookUseIds = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                attributeToCheck: new Dictionary<string, string>() { { "ID", bookUseID } });
+            if (foundBookUseIds != null && foundBookUseIds.Count > 0)
+                return foundBookUseIds[0].Copy();
+            else
+            {
+                List<XmlDataNode> baseBookUseNode = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                    attributeToCheck: new Dictionary<string, string>() { { "ID", "31" } });
+                if (baseBookUseNode.Count > 0)
+                {
+                    XmlDataNode bookUseIdBase = baseBookUseNode[0].Copy();
+                    bookUseIdBase.attribute["ID"] = bookUseID;
+                    bookUseIdBase.SetXmlInfoByPath("Name", "");
+                    bookUseIdBase.SetXmlInfoByPath("TextId", "");
+                    bookUseIdBase.SetXmlInfoByPath("Chapter", "");
+                    return bookUseIdBase;
+                }
+                else
+                    return null;
+            }
+        }
+
+
+        /// <summary>
+        /// Make new localize books base by basic node in game data
         /// </summary>
         /// <returns>Created books info</returns>
-        public static XmlDataNode MakeNewStaticBooksBase(string bookIdToSet="", string nameToSet="", string desc="")
+        public static XmlDataNode MakeNewLocalizeBooksBase(string bookIdToSet="", string nameToSet="", string desc="")
         {
             List <XmlDataNode> foundXmlDataNodes = DM.GameInfos.localizeInfos["Books"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
                 attributeToCheck: new Dictionary<string, string>() { { "BookID", "200001" } });

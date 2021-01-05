@@ -56,6 +56,14 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(CARD_ID);
                     });
                     break;
+                case AddItemToListWindow_PRESET.DROP_BOOK:
+                    DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
+                    {
+                        string BOOK_USE_ID = bookUseNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BOOK_USE_ID))
+                            selectItems.Add(BOOK_USE_ID);
+                    });
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -154,6 +162,7 @@ namespace LORModingBase.SubWindows
 
     public enum AddItemToListWindow_PRESET
     {
-        ONLY_CARD
+        ONLY_CARD,
+        DROP_BOOK
     };
 }
