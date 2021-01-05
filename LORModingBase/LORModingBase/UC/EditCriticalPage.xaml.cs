@@ -301,6 +301,50 @@ namespace LORModingBase.UC
             Button btn = sender as Button;
             switch (btn.Name)
             {
+                case "BtnEnemySetting":
+                    new SubWindows.Global_MultipleValueInputed(new Dictionary<string, string>() {
+                        { "시작시 빛의 수", "시작할때 적이 가지게 되는 빛의 개수를 입력합니다"},
+                        { "최대 빛의 수", "적이 가지게 되는 빛의 최대 개수를 입력합니다" },
+                        { "최대 감정 레벨", "적이 가지게 되는 최대 감정레벨을 입력합니다" },
+                        { "추가로 드로우하는 책장의 수", "적이 책장을 추가로 드러우 할 때의 수치입니다" }
+                    }, new List<string>()
+                    {
+                        innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint"),
+                        innerCriticalPageNode.GetInnerTextByPath("EquipEffect/MaxPlayPoint"),
+                        innerCriticalPageNode.GetInnerTextByPath("EquipEffect/EmotionLevel"),
+                        innerCriticalPageNode.GetInnerTextByPath("EquipEffect/AddedStartDraw")
+                    }, new List<Action<string>>()
+                    {
+                        (string inputedVar) => {
+                            innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("EquipEffect/StartPlayPoint", inputedVar);},
+                        (string inputedVar) => {
+                            innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("EquipEffect/MaxPlayPoint", inputedVar);},
+                        (string inputedVar) => {
+                            innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("EquipEffect/EmotionLevel", inputedVar);},
+                        (string inputedVar) => {
+                            innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("EquipEffect/AddedStartDraw", inputedVar);}
+                    }).ShowDialog();
+
+                    if (!string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint")) ||
+                        !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/MaxPlayPoint")) ||
+                        !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/EmotionLevel")) ||
+                        !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/AddedStartDraw")))
+                    {
+                        string extraInfo = "";
+                        extraInfo += $"시작시 빛의 수 : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint")}\n";
+                        extraInfo += $"최대 빛의 수 : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/MaxPlayPoint")}\n";
+                        extraInfo += $"최대 감정 레벨 : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/EmotionLevel")}\n";
+                        extraInfo += $"추가로 드로우하는 책장의 수: {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/AddedStartDraw")}";
+
+                        BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
+                        BtnEnemySetting.ToolTip = $"적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)\n{extraInfo}";
+                    }
+                    else
+                    {
+                        BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
+                        BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력))";
+                    }
+                    break;
                 case "BtnCopyPage":
                     DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(innerCriticalPageNode.Copy());
                     initStack();
@@ -424,31 +468,6 @@ namespace LORModingBase.UC
             //{
             //    BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
             //    BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
-            //}
-        }
-
-        private void BtnEnemySetting_Click(object sender, RoutedEventArgs e)
-        {
-            //new SubWindows.InputEnemyInfoWindow(innerCriticalPageInfo).ShowDialog();
-
-            //string extraInfo = "";
-            //extraInfo += $"시작시 빛의 수 : {innerCriticalPageInfo.ENEMY_StartPlayPoint}\n";
-            //extraInfo += $"최대 빛의 수 : {innerCriticalPageInfo.ENEMY_MaxPlayPoint}\n";
-            //extraInfo += $"최대 감정 레벨 : {innerCriticalPageInfo.ENEMY_EmotionLevel}\n";
-            //extraInfo += $"추가로 드로우하는 책장의 수: {innerCriticalPageInfo.ENEMY_AddedStartDraw}";
-
-            //if (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
-            //    !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
-            //    !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
-            //    !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel))
-            //{
-            //    BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
-            //    BtnEnemySetting.ToolTip = $"적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)\n{extraInfo}";
-            //}
-            //else
-            //{
-            //    BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
-            //    BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력))";
             //}
         }
         #endregion

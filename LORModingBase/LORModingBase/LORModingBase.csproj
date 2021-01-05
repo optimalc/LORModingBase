@@ -94,6 +94,9 @@
     <Compile Include="SubWindows\Global_InputInfoWithSearchWindow.xaml.cs">
       <DependentUpon>Global_InputInfoWithSearchWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\Global_MultipleValueInputed.xaml.cs">
+      <DependentUpon>Global_MultipleValueInputed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\InputLanguageWindow.xaml.cs">
       <DependentUpon>InputLanguageWindow.xaml</DependentUpon>
     </Compile>
@@ -114,9 +117,6 @@
     </Compile>
     <Compile Include="SubWindows\InputGameCard.xaml.cs">
       <DependentUpon>InputGameCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputEnemyInfoWindow.xaml.cs">
-      <DependentUpon>InputEnemyInfoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\InputGameCriticalPage.xaml.cs">
       <DependentUpon>InputGameCriticalPage.xaml</DependentUpon>
@@ -183,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="SubWindows\Global_MultipleValueInputed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SubWindows\InputLanguageWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -208,10 +212,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\InputGameCard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputEnemyInfoWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
