@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using LORModingBase.CustomExtensions;
 
 namespace LORModingBase
 {
@@ -230,8 +231,13 @@ namespace LORModingBase
                                 if(foundLocalizeBooks.Count > 0)
                                 {
                                     if (!DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.CheckIfGivenPathWithXmlInfoExists("bookDescList/BookDesc",
-                                               attributeToCheck: new Dictionary<string, string>() { { "BookID", selectedItem } })) ;
-                                        DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.subNodes.Add(foundLocalizeBooks[0].Copy());
+                                               attributeToCheck: new Dictionary<string, string>() { { "BookID", selectedItem } }))
+                                    {
+                                        DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPath("bookDescList").ActionOneItemSafe((DM.XmlDataNode bookDescList) =>
+                                        {
+                                            bookDescList.subNodes.Add(foundLocalizeBooks[0].Copy());
+                                        });
+                                    }
                                 }
 
                                 DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPath("BookUse").ForEach((DM.XmlDataNode bookUseNode) =>

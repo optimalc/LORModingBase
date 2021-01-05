@@ -407,6 +407,20 @@ namespace LORModingBase.UC
             switch (btn.Name)
             {
                 case "BtnCiricalBookInfo":
+                    string prevStory = "";
+                    List<DM.XmlDataNode> foundXmlDataNodesToPrevInput = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+                    if(foundXmlDataNodesToPrevInput.Count > 0)
+                    {
+                        List<string> descInnerTexts = new List<string>();
+                        foundXmlDataNodesToPrevInput[0].GetXmlDataNodesByPath("TextList/Desc").ForEachSafe((DM.XmlDataNode descNode) =>
+                        {
+                            if (!string.IsNullOrEmpty(descNode.innerText))
+                                descInnerTexts.Add(descNode.innerText);
+                        });
+                        prevStory = String.Join("\r\n\r\n", descInnerTexts).Replace(".", ".\r\n");
+                    }
+
                     new SubWindows.Global_InputOneColumnData((string description) =>
                     {
                         DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.RemoveXmlInfosByPath("bookDescList/BookDesc",
@@ -434,7 +448,7 @@ namespace LORModingBase.UC
 
                             MainWindow.mainWindow.UpdateDebugInfo();
                         }
-                    }).ShowDialog();
+                    }, prevStory).ShowDialog();
 
                     List<DM.XmlDataNode> foundXmlDataNodes = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
                             attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });

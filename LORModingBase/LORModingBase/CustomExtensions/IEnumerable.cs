@@ -43,5 +43,14 @@ namespace LORModingBase.CustomExtensions
             foreach (KeyValuePair<A, B> eachPair in dicToForEach)
                 dicForEachAction(eachPair.Key, eachPair.Value);
         }
+
+        /// <summary>
+        /// Action for one item if not null or empty
+        /// </summary>
+        public static void ActionOneItemSafe<A>(this List<A> listToAction, Action<A> action)
+        {
+            if (listToAction != null && listToAction.Count > 0)
+                action(listToAction[0]);
+        }
     }
 }
