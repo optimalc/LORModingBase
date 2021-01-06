@@ -44,6 +44,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(STAGE_ID) && Convert.ToInt32(STAGE_ID) < DS.FilterDatas.STAGEINFO_DIV_NOT_CREATURE && STAGE_ID != "1")
                             selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STAGE_ID));
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case InputInfoWithSearchWindow_PRESET.BOOK_ICON:
                     DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
@@ -54,6 +55,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(BOOK_ICON_NAME))
                             selectItems.Add($"{CHPATER_NAME} / {BOOK_ICON_DES}:{BOOK_ICON_NAME}");
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN:
                     DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode bookNode) =>
@@ -64,6 +66,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(SKIN_NAME))
                             selectItems.Add($"{CHPATER_NAME} / {BOOK_DES}:{SKIN_NAME}");
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case InputInfoWithSearchWindow_PRESET.PASSIVE:
                     DM.GameInfos.staticInfos["PassiveList"].rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode passiveNode) =>
@@ -82,6 +85,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(EQ_BOOK_ID))
                             selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForBook(EQ_BOOK_ID));
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
 
 
@@ -93,6 +97,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(ARTWORK_NAME))
                             selectItems.Add($"{CARD_DES}:{ARTWORK_NAME}");
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
 
                 case InputInfoWithSearchWindow_PRESET.CARD_ABILITES:
@@ -119,6 +124,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(CARD_ID))
                             selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID));
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
             }
             InitLbxSearchType(searchTypes);

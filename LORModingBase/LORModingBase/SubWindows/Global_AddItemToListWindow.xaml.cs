@@ -56,6 +56,7 @@ namespace LORModingBase.SubWindows
                         if(!string.IsNullOrEmpty(CARD_ID))
                             selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID));
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case AddItemToListWindow_PRESET.DROP_BOOK:
                     DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
@@ -64,6 +65,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(BOOK_USE_ID))
                             selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(BOOK_USE_ID));
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
 
                 case AddItemToListWindow_PRESET.DROP_TABLE:
@@ -73,6 +75,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(DROP_TABLE_ID))
                             selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(DROP_TABLE_ID));
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
             }
 

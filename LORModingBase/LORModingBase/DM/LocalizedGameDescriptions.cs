@@ -255,4 +255,22 @@ namespace LORModingBase.DM
                 return $"Drop Table ID : {dropTableID}";
         }
     }
+
+    /// <summary>
+    /// Get localized filter list
+    /// </summary>
+    class GetLocalizedFilterList
+    {
+        /// <summary>
+        /// Get localized chpater lists
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetLocalizedChapters(int maxChapterNum=7)
+        {
+            List<string> chapters = new List<string>();
+            for(int chpaterNum=1; chpaterNum<=maxChapterNum; chpaterNum++)
+                chapters.Add(LocalizedGameDescriptions.GetDescriptionForChapter(chpaterNum.ToString()));
+            return chapters;
+        }
+    }
 }
