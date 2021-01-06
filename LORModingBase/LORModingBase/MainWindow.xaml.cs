@@ -107,6 +107,10 @@ namespace LORModingBase
                     case "BtnSetWorkingSpace":
                         new SubWindows.Global_ListSeleteWithEditWindow(null, null, null, null,
                             SubWindows.Global_ListSeleteWithEditWindow_PRESET.WORKING_SPACE).ShowDialog();
+
+                        InitSplCriticalPage();
+                        InitSplCards();
+                        InitLbxTextEditor();
                         break;
 
                     case "BtnStartGame":

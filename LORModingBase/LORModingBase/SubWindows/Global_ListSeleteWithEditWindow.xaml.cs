@@ -59,6 +59,14 @@ namespace LORModingBase.SubWindows
                     this.afterSelect = (string selectedDirName) =>
                     {
                         DM.Config.ChangeWorkingDirectory(selectedDirName);
+
+                        if (File.Exists(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_BookInfos.StaticEquipPage = new DM.XmlData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_BookInfos.StaticDropBook = new DM.XmlData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_BookInfos.LocalizedBooks = new DM.XmlData(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory));
+
                         this.Close();
                     };
 

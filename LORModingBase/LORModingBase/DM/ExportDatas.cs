@@ -30,8 +30,6 @@ namespace LORModingBase.DM
                 Directory.Delete(MDOE_DIR_TO_USE, true);
             Directory.CreateDirectory(MDOE_DIR_TO_USE);
 
-            DM.EditGameData_BookInfos.ExportDatas(MDOE_DIR_TO_USE);
-
             return MDOE_DIR_TO_USE;
             if (MainWindow.cardInfos.Count > 0)
             {
