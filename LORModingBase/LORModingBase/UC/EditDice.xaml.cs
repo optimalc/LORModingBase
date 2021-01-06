@@ -42,7 +42,7 @@ namespace LORModingBase.UC
 
         private void UpdateEffectGrid()
         {
-            string DICE_SCRIPT = innerBehaviourNode.attribute["Script"];
+            string DICE_SCRIPT = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(innerBehaviourNode.attribute["Script"])}:{innerBehaviourNode.attribute["Script"]}";
             LblEffect.Content = DICE_SCRIPT;
             LblEffect.ToolTip = DICE_SCRIPT;
             RectAllInfo.Visibility = Visibility.Collapsed;

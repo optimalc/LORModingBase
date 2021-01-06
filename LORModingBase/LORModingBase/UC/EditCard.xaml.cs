@@ -62,8 +62,8 @@ namespace LORModingBase.UC
 
             innerCardNode.ActionIfInnertTextIsNotNullOrEmpty("Script", (string innerText) =>
             {
-                BtnCardEffect.Content = innerText;
-                BtnCardEffect.ToolTip = innerText;
+                BtnCardEffect.Content = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(innerText)}:{innerText}";
+                BtnCardEffect.ToolTip = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(innerText)}:{innerText}";
             });
             InitSqlDices();
 
@@ -102,7 +102,7 @@ namespace LORModingBase.UC
                 string extraInfo = "";
                 selectedCardDropTables.ForEach((string dropBookInfo) =>
                 {
-                    extraInfo += $"{dropBookInfo}\n";
+                    extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(dropBookInfo)}\n";
                 });
                 extraInfo = extraInfo.TrimEnd('\n');
 
@@ -259,7 +259,7 @@ namespace LORModingBase.UC
                     DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPath("DropTable").ForEachSafe((DM.XmlDataNode cardDropTableID) =>
                     {
                         if (cardDropTableID.CheckIfGivenPathWithXmlInfoExists("Card", innerCardNode.GetAttributesSafe("ID")))
-                            selectedCardDropTables.Add(cardDropTableID.attribute["ID"]);
+                            selectedCardDropTables.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(cardDropTableID.attribute["ID"]));
                     });
 
                     new SubWindows.Global_AddItemToListWindow((string addedDropTableItemID) =>
@@ -353,7 +353,7 @@ namespace LORModingBase.UC
                         string extraInfo = "";
                         selectedCardDropTablesToCheck.ForEach((string dropBookInfo) =>
                         {
-                            extraInfo += $"{dropBookInfo}\n";
+                            extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(dropBookInfo)}\n";
                         });
                         extraInfo = extraInfo.TrimEnd('\n');
 
@@ -482,8 +482,8 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCardNode.SetXmlInfoByPath("Script", selectedItem);
-                        BtnCardEffect.Content = selectedItem;
-                        BtnCardEffect.ToolTip = selectedItem;
+                        BtnCardEffect.Content = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(selectedItem)}:{selectedItem}";
+                        BtnCardEffect.ToolTip = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(selectedItem)}:{selectedItem}";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ABILITES).ShowDialog();
                     break;
                 case "BtnAddDice":

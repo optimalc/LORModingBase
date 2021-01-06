@@ -119,6 +119,26 @@ namespace LORModingBase.DM
             else
                 return $"Card ID : {cardID}";
         }
+    
+        /// <summary>
+        /// Get description for Passive name
+        /// </summary>
+        /// <param name="passiveName">Passive name to use</param>
+        /// <returns>Card passive description</returns>
+        public static string GetDescriptionForCardPassive(string passiveName)
+        {
+            if (string.IsNullOrEmpty(passiveName)) return "";
+            List<XmlDataNode> cardPassiveNodes = DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
+                attributeToCheck: new Dictionary<string, string>() { { "ID", passiveName } });
+            if (cardPassiveNodes.Count > 0)
+            {
+                string PASSIVE_DESC = cardPassiveNodes[0].GetInnerTextByPath("Desc");
+                if (string.IsNullOrEmpty(PASSIVE_DESC)) return $"Passive Name : {passiveName}";
+                else return PASSIVE_DESC;
+            }
+            else
+                return $"Passive Name : {passiveName}";
+        }
     }
 
     /// <summary>
@@ -212,6 +232,27 @@ namespace LORModingBase.DM
             }
             else
                 return $"Card ID : {cardID}";
+        }
+    
+        /// <summary>
+        /// Get full description for DropTable
+        /// </summary>
+        /// <param name="dropTableID">Drop table ID to use</param>
+        /// <returns>DropTable full description</returns>
+        public static string GetFullDescriptionForDropTable(string dropTableID)
+        {
+            List<XmlDataNode> foundDataNodes = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+             attributeToCheck: new Dictionary<string, string>() { { "ID", dropTableID } });
+            if (foundDataNodes.Count > 0)
+            {
+                XmlDataNode CARD_NODE = foundDataNodes[0];
+                string DROP_BOOK_DES = LocalizedGameDescriptions.GetDescriptionForETC(CARD_NODE.GetInnerTextByPath("TextId"));
+                string CHAPTER_DES = LocalizedGameDescriptions.GetDescriptionForChapter(CARD_NODE.GetInnerTextByPath("Chapter"));
+
+                return $"{CHAPTER_DES} / {DROP_BOOK_DES}:{dropTableID}";
+            }
+            else
+                return $"Drop Table ID : {dropTableID}";
         }
     }
 }

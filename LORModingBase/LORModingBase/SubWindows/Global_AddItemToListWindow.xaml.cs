@@ -71,7 +71,7 @@ namespace LORModingBase.SubWindows
                     {
                         string DROP_TABLE_ID = cardDropTableID.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(DROP_TABLE_ID))
-                            selectItems.Add(DROP_TABLE_ID);
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(DROP_TABLE_ID));
                     });
                     break;
             }

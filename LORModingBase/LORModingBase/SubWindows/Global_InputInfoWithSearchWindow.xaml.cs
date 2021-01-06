@@ -100,7 +100,7 @@ namespace LORModingBase.SubWindows
                     {
                         string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(ABILITIY_ID))
-                            selectItems.Add(ABILITIY_ID);
+                            selectItems.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID)}:{ABILITIY_ID}");
                     });
                     break;
                 case InputInfoWithSearchWindow_PRESET.DICE_ABILITES:
@@ -108,7 +108,7 @@ namespace LORModingBase.SubWindows
                     {
                         string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(ABILITIY_ID))
-                            selectItems.Add(ABILITIY_ID);
+                            selectItems.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID)}:{ABILITIY_ID}");
                     });
                     break;
 
@@ -117,7 +117,7 @@ namespace LORModingBase.SubWindows
                     {
                         string CARD_ID = cardNode.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(CARD_ID))
-                            selectItems.Add(CARD_ID);
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID));
                     });
                     break;
             }

@@ -196,7 +196,7 @@ namespace LORModingBase.UC
             LbxPassives.Items.Clear();
             innerCriticalPageNode.ActionXmlDataNodesByPath("EquipEffect/Passive", (DM.XmlDataNode passiveNode) =>
             {
-                LbxPassives.Items.Add(DM.LocalizedGameDescriptions.GetDescriptionForPassive(passiveNode.innerText));
+                LbxPassives.Items.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForPassive(passiveNode.innerText)}:{passiveNode.innerText}");
             });
         }
         #endregion
@@ -249,7 +249,7 @@ namespace LORModingBase.UC
                 case "BtnDeletePassive":
                     if (LbxPassives.SelectedItem != null)
                     {
-                        innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString(), deleteOnce: true);
+                        innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString().Split(':').Last(), deleteOnce: true);
                         InitLbxPassives();
                         MainWindow.mainWindow.UpdateDebugInfo();
                     }
