@@ -86,11 +86,12 @@ namespace LORModingBase.SubWindows
 
 
                 case InputInfoWithSearchWindow_PRESET.CARD_ARTWORK:
-                    DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card/Artwork", (DM.XmlDataNode artworkNode) =>
+                    DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                     {
-                        string ARTWORK_NAME = artworkNode.innerText;
+                        string ARTWORK_NAME = cardNode.GetInnerTextByPath("Artwork");
+                        string CARD_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(cardNode.GetAttributesSafe("ID"));
                         if (!string.IsNullOrEmpty(ARTWORK_NAME))
-                            selectItems.Add(ARTWORK_NAME);
+                            selectItems.Add($"{CARD_DES}:{ARTWORK_NAME}");
                     });
                     break;
 
