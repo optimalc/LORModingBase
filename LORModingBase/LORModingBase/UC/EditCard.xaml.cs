@@ -356,6 +356,11 @@ namespace LORModingBase.UC
                     MainWindow.mainWindow.UpdateDebugInfo();
                     break;
                 case "BtnDelete":
+                    if (DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.CheckIfGivenPathWithXmlInfoExists("cardDescList/BattleCardDesc",
+                      attributeToCheck: new Dictionary<string, string>() { { "ID", innerCardNode.GetAttributesSafe("ID") } }))
+                        DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.RemoveXmlInfosByPath("cardDescList/BattleCardDesc",
+                       attributeToCheck: new Dictionary<string, string>() { { "ID", innerCardNode.GetAttributesSafe("ID") } }, deleteOnce:true);
+
                     DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPath("DropTable").ForEach((DM.XmlDataNode dropTableNode) =>
                     {
                         dropTableNode.RemoveXmlInfosByPath("Card", innerCardNode.GetAttributesSafe("ID"));
@@ -425,29 +430,6 @@ namespace LORModingBase.UC
                 BtnExtraInfo.ToolTip = "중요성이 떨어지는 더 많은 추가적인 정보를 입력합니다 (미입력)";
             }
         }
-
-        private void BtnDropCards_Click(object sender, RoutedEventArgs e)
-        {
-            //new SubWindows.InputDropBookInfosWindow(innerCardInfo.dropBooks).ShowDialog();
-
-            //if (innerCardInfo.dropBooks.Count > 0)
-            //{
-            //    string extraInfo = "";
-            //    innerCardInfo.dropBooks.ForEach((string dropBookInfo) =>
-            //    {
-            //        extraInfo += $"{dropBookInfo}\n";
-            //    });
-            //    extraInfo = extraInfo.TrimEnd('\n');
-
-            //    BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-            //    BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
-            //}
-            //else
-            //{
-            //    BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
-            //    BtnDropCards.ToolTip = "이 전투책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
-            //}
-        }
         #endregion
 
         /// <summary>
@@ -503,6 +485,39 @@ namespace LORModingBase.UC
                     break;
                 case "TbxCardName":
                     innerCardNode.SetXmlInfoByPath("Name", tbx.Text);
+
+                    if (DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.CheckIfGivenPathWithXmlInfoExists("cardDescList/BattleCardDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", innerCardNode.GetAttributesSafe("ID") } }))
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("cardDescList/BattleCardDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", innerCardNode.GetAttributesSafe("ID") } });
+
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].SetXmlInfoByPath("LocalizedName", tbx.Text);
+                        }
+                    }
+                    else
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.GetXmlDataNodesByPath("cardDescList");
+
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].subNodes.Add(DM.EditGameData_CardInfos.MakeNewLocalizedBattleCardsBase(
+                               innerCardNode.GetAttributesSafe("ID"),
+                               innerCardNode.GetInnerTextByPath("Name")));
+                        }
+                        else
+                        {
+                            DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("cardDescList")
+                                .subNodes.Add(DM.EditGameData_CardInfos.MakeNewLocalizedBattleCardsBase(
+                               innerCardNode.GetAttributesSafe("ID"),
+                               innerCardNode.GetInnerTextByPath("Name")));
+                        }
+
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    }
+
                     break;
                 case "TbxCardUniqueID":
                     innerCardNode.attribute["ID"] = tbx.Text;
