@@ -94,7 +94,7 @@ namespace LORModingBase.UC
                     string extraInfo = "";
                     innerCriticalPageNode.ActionXmlDataNodesByPath("EquipEffect/OnlyCard", (DM.XmlDataNode xmlDataNode) =>
                     {
-                        extraInfo += $"{xmlDataNode.GetInnerTextSafe()}\n";
+                        extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(xmlDataNode.GetInnerTextSafe())}\n";
                     });
                     extraInfo = extraInfo.TrimEnd('\n');
 
@@ -376,7 +376,7 @@ namespace LORModingBase.UC
                     List<string> selectedUniqCards = new List<string>();
                     innerCriticalPageNode.GetXmlDataNodesByPath("EquipEffect/OnlyCard").ForEachSafe((DM.XmlDataNode onlyCardNode) =>
                     {
-                        selectedUniqCards.Add(onlyCardNode.GetInnerTextSafe());
+                        selectedUniqCards.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(onlyCardNode.GetInnerTextSafe()));
                     });
 
                     new SubWindows.Global_AddItemToListWindow((string addedItem) =>
@@ -393,7 +393,7 @@ namespace LORModingBase.UC
                         string extraInfo = "";
                         innerCriticalPageNode.ActionXmlDataNodesByPath("EquipEffect/OnlyCard", (DM.XmlDataNode xmlDataNode) =>
                         {
-                            extraInfo += $"{xmlDataNode.GetInnerTextSafe()}\n";
+                            extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(xmlDataNode.GetInnerTextSafe())}\n";
                         });
                         extraInfo = extraInfo.TrimEnd('\n');
 

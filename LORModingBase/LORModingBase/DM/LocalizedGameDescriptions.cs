@@ -118,6 +118,26 @@ namespace LORModingBase.DM
             else
                 return $"Passive ID : {passiveID}";
         }
+    
+        /// <summary>
+        /// Get description for Card ID
+        /// </summary>
+        /// <param name="cardID">Card id to use</param>
+        /// <returns>Card description</returns>
+        public static string GetDecriptionForCard(string cardID)
+        {
+            if (string.IsNullOrEmpty(cardID)) return "";
+            List<XmlDataNode> cardNodes = DM.GameInfos.localizeInfos["BattlesCards"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("cardDescList/BattleCardDesc",
+                attributeToCheck: new Dictionary<string, string>() { { "ID", cardID } });
+            if (cardNodes.Count > 0)
+            {
+                string CARD_NAME = cardNodes[0].GetInnerTextByPath("LocalizedName");
+                if (string.IsNullOrEmpty(CARD_NAME)) return $"Card ID : {cardID}";
+                else return CARD_NAME;
+            }
+            else
+                return $"Card ID : {cardID}";
+        }
     }
 
     /// <summary>
@@ -140,8 +160,8 @@ namespace LORModingBase.DM
                 string STAGE_ID = STAGE_NODE.GetAttributesSafe("id");
                 string CHPATER_NUM = STAGE_NODE.GetInnerTextByPath("Chapter");
 
-                string STAGE_DES = DM.LocalizedGameDescriptions.GetDescriptionForStage(STAGE_ID);
-                string CHAPTER_DES = DM.LocalizedGameDescriptions.GetDescriptionForChapter(CHPATER_NUM);
+                string STAGE_DES = LocalizedGameDescriptions.GetDescriptionForStage(STAGE_ID);
+                string CHAPTER_DES = LocalizedGameDescriptions.GetDescriptionForChapter(CHPATER_NUM);
                 return $"{CHAPTER_DES} / {STAGE_DES}:{STAGE_ID}";
             }
             else
@@ -163,8 +183,8 @@ namespace LORModingBase.DM
                 string BOOK_ID = STAGE_NODE.GetAttributesSafe("ID");
                 string CHPATER_NUM = STAGE_NODE.GetInnerTextByPath("Chapter");
 
-                string BOOK_DES = DM.LocalizedGameDescriptions.GetDescriptionForBook(BOOK_ID);
-                string CHAPTER_DES = DM.LocalizedGameDescriptions.GetDescriptionForChapter(CHPATER_NUM);
+                string BOOK_DES = LocalizedGameDescriptions.GetDescriptionForBook(BOOK_ID);
+                string CHAPTER_DES = LocalizedGameDescriptions.GetDescriptionForChapter(CHPATER_NUM);
                 return $"{CHAPTER_DES} / {BOOK_DES}:{BOOK_ID}";
             }
             else
@@ -172,7 +192,7 @@ namespace LORModingBase.DM
         }
     
         /// <summary>
-        /// Get description for DropBook
+        /// Get full description for DropBook
         /// </summary>
         /// <param name="dropBookID">Drop book ID to use</param>
         /// <returns>Dropbook description</returns>
@@ -184,12 +204,33 @@ namespace LORModingBase.DM
             {
                 XmlDataNode DROP_BOOK_NODE = foundDataNodes[0];
                 string DROP_BOOK_DES = LocalizedGameDescriptions.GetDescriptionForETC(DROP_BOOK_NODE.GetInnerTextByPath("TextId"));
-                string CHAPTER_DES = DM.LocalizedGameDescriptions.GetDescriptionForChapter(DROP_BOOK_NODE.GetInnerTextByPath("Chapter"));
+                string CHAPTER_DES = LocalizedGameDescriptions.GetDescriptionForChapter(DROP_BOOK_NODE.GetInnerTextByPath("Chapter"));
 
                 return $"{CHAPTER_DES} / {DROP_BOOK_DES}:{dropBookID}";
             }
             else
                 return $"Drop Book ID : {dropBookID}";
+        }
+    
+        /// <summary>
+        /// Get full description for Card
+        /// </summary>
+        /// <param name="cardID">Card id to use</param>
+        /// <returns>Card full desscription</returns>
+        public static string GetFullDescriptionForCard(string cardID)
+        {
+            List<XmlDataNode> foundDataNodes = DM.GameInfos.staticInfos["Card"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card",
+                attributeToCheck: new Dictionary<string, string>() { { "ID", cardID } });
+            if (foundDataNodes.Count > 0)
+            {
+                XmlDataNode CARD_NODE = foundDataNodes[0];
+                string CARD_NAME_DES = LocalizedGameDescriptions.GetDecriptionForCard(CARD_NODE.GetAttributesSafe("ID"));
+                string CHAPTER_DES = LocalizedGameDescriptions.GetDescriptionForChapter(CARD_NODE.GetInnerTextByPath("Chapter"));
+
+                return $"{CHAPTER_DES} / {CARD_NAME_DES}:{cardID}";
+            }
+            else
+                return $"Card ID : {cardID}";
         }
     }
 }

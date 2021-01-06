@@ -54,7 +54,7 @@ namespace LORModingBase.SubWindows
                     {
                         string CARD_ID = cardNode.GetAttributesSafe("ID");
                         if(!string.IsNullOrEmpty(CARD_ID))
-                            selectItems.Add(CARD_ID);
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID));
                     });
                     break;
                 case AddItemToListWindow_PRESET.DROP_BOOK:
