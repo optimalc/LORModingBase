@@ -192,7 +192,11 @@ namespace LORModingBase
                                 attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
                             if(foundEqNodes.Count > 0)
                             {
-                                DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(foundEqNodes[0].Copy());
+                                DM.XmlDataNode EQ_NODE_TO_USE = foundEqNodes[0].Copy();
+                                EQ_NODE_TO_USE.SetXmlInfoByPath("Name",
+                                    DM.LocalizedGameDescriptions.GetDescriptionForBooks(EQ_NODE_TO_USE.GetAttributesSafe("ID")));
+
+                                DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(EQ_NODE_TO_USE);
 
                                 List<DM.XmlDataNode> foundLocalizeBooks = DM.GameInfos.localizeInfos["Books"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
                                     attributeToCheck: new Dictionary<string, string>() { { "BookID", selectedItem } });
@@ -271,7 +275,11 @@ namespace LORModingBase
                                 attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
                             if (foundCardNodes.Count > 0)
                             {
-                                DM.EditGameData_CardInfos.StaticCard.rootDataNode.subNodes.Add(foundCardNodes[0].Copy());
+                                DM.XmlDataNode CARD_NODE_TO_USE = foundCardNodes[0].Copy();
+                                CARD_NODE_TO_USE.SetXmlInfoByPath("Name",
+                                    DM.LocalizedGameDescriptions.GetDecriptionForCard(CARD_NODE_TO_USE.GetAttributesSafe("ID")));
+
+                                DM.EditGameData_CardInfos.StaticCard.rootDataNode.subNodes.Add(CARD_NODE_TO_USE);
 
                                 List<DM.XmlDataNode> foundLocalizeCards = DM.GameInfos.localizeInfos["BattlesCards"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("cardDescList/BattleCardDesc",
                                     attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
