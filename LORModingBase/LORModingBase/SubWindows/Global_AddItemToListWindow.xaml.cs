@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -61,7 +62,7 @@ namespace LORModingBase.SubWindows
                     {
                         string BOOK_USE_ID = bookUseNode.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(BOOK_USE_ID))
-                            selectItems.Add(BOOK_USE_ID);
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(BOOK_USE_ID));
                     });
                     break;
 
@@ -134,7 +135,7 @@ namespace LORModingBase.SubWindows
         {
             if (LbxItems.SelectedItem != null)
             {
-                afterAddItem(LbxItems.SelectedItem.ToString());
+                afterAddItem(LbxItems.SelectedItem.ToString().Split(':').Last());
                 selectedItems.Add(LbxItems.SelectedItem.ToString());
                 InitLbxSelectedItems();
             }
@@ -144,7 +145,7 @@ namespace LORModingBase.SubWindows
         {
             if (LbxSelectedItems.SelectedItem != null)
             {
-                afterDeleteItem(LbxSelectedItems.SelectedItem.ToString());
+                afterDeleteItem(LbxSelectedItems.SelectedItem.ToString().Split(':').Last());
                 selectedItems.Remove(LbxSelectedItems.SelectedItem.ToString());
                 InitLbxSelectedItems();
             }

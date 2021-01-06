@@ -116,7 +116,7 @@ namespace LORModingBase.UC
                     string extraInfo = "";
                     selectedDropBooks.ForEach((string dropBookInfo) =>
                     {
-                        extraInfo += $"{dropBookInfo}\n";
+                        extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(dropBookInfo)}\n";
                     });
                     extraInfo = extraInfo.TrimEnd('\n');
 
@@ -270,7 +270,7 @@ namespace LORModingBase.UC
                     DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseID) =>
                     {
                         if (bookUseID.CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
-                            selectedDropBooks.Add(bookUseID.attribute["ID"]);
+                            selectedDropBooks.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(bookUseID.attribute["ID"]));
                     });
 
                     new SubWindows.Global_AddItemToListWindow((string addedDropBookItemID) =>
@@ -358,7 +358,7 @@ namespace LORModingBase.UC
                         string extraInfo = "";
                         selectedDropBooks_toUpdate.ForEach((string dropBookInfo) =>
                         {
-                            extraInfo += $"{dropBookInfo}\n";
+                            extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(dropBookInfo)}\n";
                         });
                         extraInfo = extraInfo.TrimEnd('\n');
 

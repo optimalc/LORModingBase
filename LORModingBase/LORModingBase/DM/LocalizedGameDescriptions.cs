@@ -170,5 +170,26 @@ namespace LORModingBase.DM
             else
                 return $"Book ID : {bookID}";
         }
+    
+        /// <summary>
+        /// Get description for DropBook
+        /// </summary>
+        /// <param name="dropBookID">Drop book ID to use</param>
+        /// <returns>Dropbook description</returns>
+        public static string GetFullDescriptionForDropBook(string dropBookID)
+        {
+            List<XmlDataNode> foundDataNodes = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                attributeToCheck: new Dictionary<string, string>() { { "ID", dropBookID } });
+            if (foundDataNodes.Count > 0)
+            {
+                XmlDataNode DROP_BOOK_NODE = foundDataNodes[0];
+                string DROP_BOOK_DES = LocalizedGameDescriptions.GetDescriptionForETC(DROP_BOOK_NODE.GetInnerTextByPath("TextId"));
+                string CHAPTER_DES = DM.LocalizedGameDescriptions.GetDescriptionForChapter(DROP_BOOK_NODE.GetInnerTextByPath("Chapter"));
+
+                return $"{CHAPTER_DES} / {DROP_BOOK_DES}:{dropBookID}";
+            }
+            else
+                return $"Drop Book ID : {dropBookID}";
+        }
     }
 }
