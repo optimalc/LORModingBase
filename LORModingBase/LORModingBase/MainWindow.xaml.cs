@@ -244,9 +244,9 @@ namespace LORModingBase
         private void InitSplCards()
         {
             SplCards.Children.Clear();
-            cardInfos.ForEach((DS.CardInfo cardInfo) =>
+            DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode xmlDataNode) =>
             {
-                SplCards.Children.Add(new UC.EditCard(cardInfo, InitSplCards));
+                SplCards.Children.Add(new UC.EditCard(xmlDataNode, InitSplCards));
             });
         }
 
@@ -264,7 +264,8 @@ namespace LORModingBase
                 switch (clickButton.Name)
                 {
                     case "BtnAddCard":
-                        cardInfos.Add(new DS.CardInfo());
+                        DM.EditGameData_CardInfos.StaticCard.rootDataNode.subNodes.Add(
+                            DM.EditGameData_CardInfos.MakeNewCardBase());
                         InitSplCards();
                         break;
                     case "BtnLoadCard":
@@ -290,7 +291,10 @@ namespace LORModingBase
         {
             "EquipPage.txt",
             "DropBook.txt",
-            "Books.txt"
+            "Books.txt",
+            "CardInfo.txt",
+            "CardDropTable.txt",
+            "BattlesCards.txt"
         };
         private void InitLbxTextEditor()
         {
@@ -316,6 +320,10 @@ namespace LORModingBase
                     DM.EditGameData_BookInfos.StaticDropBook.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory));
                     DM.EditGameData_BookInfos.LocalizedBooks.SaveNodeData(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory));
 
+                    DM.EditGameData_CardInfos.StaticCard.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory));
+                    DM.EditGameData_CardInfos.StaticCardDropTable.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory));
+                    DM.EditGameData_CardInfos.LocalizedBattleCards.SaveNodeData(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory));
+
                     string debugFileName = "";
                     switch (LbxTextEditor.SelectedIndex)
                     {
@@ -329,6 +337,15 @@ namespace LORModingBase
                             debugFileName = DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory);
                             break;
 
+                        case 3:
+                            debugFileName = DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory);
+                            break;
+                        case 4:
+                            debugFileName = DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory);
+                            break;
+                        case 5:
+                            debugFileName = DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory);
+                            break;
                     }
                     if (File.Exists(debugFileName))
                         TbxTextEditor.Text = File.ReadAllText(debugFileName);

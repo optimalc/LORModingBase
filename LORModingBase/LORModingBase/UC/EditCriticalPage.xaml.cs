@@ -159,7 +159,7 @@ namespace LORModingBase.UC
                 }
                 else
                 {
-                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNear.png");
                     BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
                 }
                 #endregion
@@ -583,8 +583,10 @@ namespace LORModingBase.UC
             if (LOOP_LIST == null)
                 return;
 
+            if (loopButton.Tag == null || LOOP_LIST.IndexOf(loopButton.Tag.ToString()) < 0)
+                loopButton.Tag = LOOP_LIST[0];
             // Down index
-            if (e.LeftButton == MouseButtonState.Pressed)
+            else if (e.LeftButton == MouseButtonState.Pressed)
             {
                 int LEFT_INDEX = LOOP_LIST.IndexOf(loopButton.Tag.ToString()) - 1;
                 if (LEFT_INDEX < 0) LEFT_INDEX = LOOP_LIST.Count - 1;
@@ -606,7 +608,7 @@ namespace LORModingBase.UC
                 innerCriticalPageNode.SetXmlInfoByPath($"EquipEffect/{loopButton.Name.Split('_').Last()}", loopButton.Tag.ToString());
             else if (loopButton.Name == "BtnRangeType")
             {
-                string RANGE_NAME = (string.IsNullOrEmpty(loopButton.Tag.ToString()) ? "Nomal" : loopButton.Tag.ToString());
+                string RANGE_NAME = (string.IsNullOrEmpty(loopButton.Tag.ToString()) ? "Near" : loopButton.Tag.ToString());
                 BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{RANGE_NAME}.png");
                 innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("RangeType", loopButton.Tag.ToString());
             }
@@ -619,6 +621,9 @@ namespace LORModingBase.UC
         /// </summary>
         private void ReflectTextChangeInTextBox(object sender, TextChangedEventArgs e)
         {
+            if (innerCriticalPageNode == null)
+                return;
+
             TextBox tbx = sender as TextBox;
             switch (tbx.Name)
             {

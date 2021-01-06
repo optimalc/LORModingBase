@@ -320,7 +320,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\TypeHybrid.png" />
-    <Resource Include="Resources\TypeNomal.png" />
+    <Resource Include="Resources\TypeNear.png" />
     <Resource Include="Resources\TypeRange.png" />
   </ItemGroup>
   <ItemGroup>
@@ -345,8 +345,8 @@
     <Resource Include="Resources\BtnEffect.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\TypeNotUniquePage.png" />
-    <Resource Include="Resources\TypeUniquePage.png" />
+    <Resource Include="Resources\TypeNoOption.png" />
+    <Resource Include="Resources\TypeOnlyPage.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\TypeFarArea.png" />
@@ -355,18 +355,18 @@
     <Resource Include="Resources\TypeFarAreaEach.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\iconEvasion.png" />
-    <Resource Include="Resources\iconGuard.png" />
-    <Resource Include="Resources\iconStadbyEvasion.png" />
-    <Resource Include="Resources\iconStadbyGuard.png" />
-    <Resource Include="Resources\iconStadbyHit.png" />
-    <Resource Include="Resources\iconStadbyPenetrate.png" />
-    <Resource Include="Resources\iconStadbySlash.png" />
+    <Resource Include="Resources\icon_Def_Evasion.png" />
+    <Resource Include="Resources\icon_Def_Guard.png" />
+    <Resource Include="Resources\icon_Stadby_Evasion.png" />
+    <Resource Include="Resources\icon_Stadby_Guard.png" />
+    <Resource Include="Resources\icon_Stadby_Hit.png" />
+    <Resource Include="Resources\icon_Stadby_Penetrate.png" />
+    <Resource Include="Resources\icon_Stadby_Slash.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\iconHit.png" />
-    <Resource Include="Resources\iconPenetrate.png" />
-    <Resource Include="Resources\iconSlash.png" />
+    <Resource Include="Resources\icon_Atk_Hit.png" />
+    <Resource Include="Resources\icon_Atk_Penetrate.png" />
+    <Resource Include="Resources\icon_Atk_Slash.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\TypeBasic.png" />
@@ -390,6 +390,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\BtnStartGame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TypeFar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

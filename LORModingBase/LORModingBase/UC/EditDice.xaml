@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="60*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="BtnDiceType" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 주사위의 속성을 변경합니다. (현재 : 참격 주사위)" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Click">
+            <Button x:Name="BtnDiceType" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 주사위의 속성을 변경합니다. (현재 : 참격 주사위)" RenderTransformOrigin="0.5,0.5" Click="NomalButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -29,7 +29,7 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconSlash.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Atk_Slash.png"/>
                 </Button.Background>
             </Button>
             
@@ -38,8 +38,8 @@
                     <ColumnDefinition Width="33*"/>
                     <ColumnDefinition Width="33*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="TbxMinDice" Grid.Column="0" Text="1" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="최소 주사위 값을 입력합니다" VerticalAlignment="Center" TextAlignment="Center" Background="#7F223082" TextChanged="TbxMinDice_TextChanged"/>
-                <TextBox x:Name="TbxMaxDice" Grid.Column="2" Text="6" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="최대 주사위 값을 입력합니다" TextAlignment="Center" Background="#7F5A1212" TextChanged="TbxMaxDice_TextChanged"/>
+                <TextBox x:Name="TbxMinDice_Min" Grid.Column="0" Text="1" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="최소 주사위 값을 입력합니다" VerticalAlignment="Center" TextAlignment="Center" Background="#7F223082" TextChanged="ReflectTextChangeInTextBox"/>
+                <TextBox x:Name="TbxMaxDice_Dice" Grid.Column="2" Text="6" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="최대 주사위 값을 입력합니다" TextAlignment="Center" Background="#7F5A1212" TextChanged="ReflectTextChangeInTextBox"/>
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
@@ -48,7 +48,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="BtnEffect" Grid.Column="0" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="주사위에 특수 효과를 추가합니다" Click="BtnEffect_Click" >
+                <Button x:Name="BtnEffect" Grid.Column="0" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="주사위에 특수 효과를 추가합니다" Click="NomalButtonClickEvents" >
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="7" ScaleY="8"/>
@@ -61,7 +61,7 @@
                         <ImageBrush ImageSource="../Resources/BtnEffect.png"/>
                     </Button.Background>
                 </Button>
-                <Button x:Name="BtnDelete" Grid.Column="4" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDelete_Click" ToolTip="주사위를 삭제합니다" >
+                <Button x:Name="BtnDelete" Grid.Column="4" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="NomalButtonClickEvents" ToolTip="주사위를 삭제합니다" >
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="6" ScaleY="8"/>
@@ -89,7 +89,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="BtnDiceType_Atk_Slash" Grid.Column="0"  Style="{StaticResource StyBtnMenu}" ToolTip="참격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Atk_Slash_Click">
+            <Button x:Name="BtnDiceType_Atk_Slash" Grid.Column="0"  Style="{StaticResource StyBtnMenu}" ToolTip="참격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -99,10 +99,10 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconSlash.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Atk_Slash.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDiceType_Atk_Penetrate" Grid.Column="1"  Style="{StaticResource StyBtnMenu}" ToolTip="관통 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Atk_Penetrate_Click">
+            <Button x:Name="BtnDiceType_Atk_Penetrate" Grid.Column="1"  Style="{StaticResource StyBtnMenu}" ToolTip="관통 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -112,10 +112,10 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconPenetrate.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Atk_Penetrate.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDiceType_Atk_Hit" Grid.Column="2"  Style="{StaticResource StyBtnMenu}" ToolTip="타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Atk_Hit_Click">
+            <Button x:Name="BtnDiceType_Atk_Hit" Grid.Column="2"  Style="{StaticResource StyBtnMenu}" ToolTip="타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -125,38 +125,11 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconHit.png"/>
-                </Button.Background>
-            </Button>
-
-            <Button x:Name="BtnDiceType_Def_Guard" Grid.Column="3"  Style="{StaticResource StyBtnMenu}" ToolTip="방어 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Def_Guard_Click">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="8" ScaleY="10"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform X="2"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-                <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconGuard.png"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="BtnDiceType_Def_Evasion" Grid.Column="4"  Style="{StaticResource StyBtnMenu}" ToolTip="회피 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Def_Evasion_Click">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="8" ScaleY="10"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform X="2"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-                <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconEvasion.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Atk_Hit.png"/>
                 </Button.Background>
             </Button>
 
-            <Button x:Name="BtnDiceType_Stadby_Slash" Grid.Column="5"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 참격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Stadby_Slash_Click">
+            <Button x:Name="BtnDiceType_Def_Guard" Grid.Column="3"  Style="{StaticResource StyBtnMenu}" ToolTip="방어 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -166,10 +139,10 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconStadbySlash.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Def_Guard.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDiceType_Stadby_Penetrate" Grid.Column="6"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Stadby_Penetrate_Click">
+            <Button x:Name="BtnDiceType_Def_Evasion" Grid.Column="4"  Style="{StaticResource StyBtnMenu}" ToolTip="회피 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -179,10 +152,11 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconStadbyPenetrate.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Def_Evasion.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDiceType_Stadby_Hit" Grid.Column="7"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Stadby_Hit_Click">
+
+            <Button x:Name="BtnDiceType_Stadby_Slash" Grid.Column="5"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 참격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -192,10 +166,10 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconStadbyHit.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Stadby_Slash.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDiceType_Stadby_Guard" Grid.Column="8"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 방어 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Stadby_Guard_Click">
+            <Button x:Name="BtnDiceType_Stadby_Penetrate" Grid.Column="6"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -205,10 +179,10 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconStadbyGuard.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Stadby_Penetrate.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDiceType_Stadby_Evasion" Grid.Column="9"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 회피 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="BtnDiceType_Stadby_Evasion_Click">
+            <Button x:Name="BtnDiceType_Stadby_Hit" Grid.Column="7"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -218,7 +192,33 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/iconStadbyEvasion.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Stadby_Hit.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnDiceType_Stadby_Guard" Grid.Column="8"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 방어 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="8" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="2"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/icon_Stadby_Guard.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnDiceType_Stadby_Evasion" Grid.Column="9"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 회피 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="8" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="2"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/icon_Stadby_Evasion.png"/>
                 </Button.Background>
             </Button>
         </Grid>

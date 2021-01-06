@@ -339,7 +339,7 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/TypeNomal.png"/>
+                    <ImageBrush ImageSource="../Resources/TypeNear.png"/>
                 </Button.Background>
             </Button>
 

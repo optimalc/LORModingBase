@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LORModingBase.CustomExtensions;
 
 namespace LORModingBase.UC
 {
@@ -20,43 +21,86 @@ namespace LORModingBase.UC
     /// </summary>
     public partial class EditCard : UserControl
     {
-        DS.CardInfo innerCardInfo = null;
+        DM.XmlDataNode innerCardNode = null;
         Action initStack = null;
 
         #region Init controls
-        public EditCard(DS.CardInfo innerCardInfo, Action initStack)
+        public EditCard(DM.XmlDataNode innerCardNode, Action initStack)
         {
             InitializeComponent();
-            this.innerCardInfo = innerCardInfo;
+            this.innerCardNode = innerCardNode;
             this.initStack = initStack;
 
-            TbxCost.Text = innerCardInfo.cost;
-            ChangeRarityUIInit(innerCardInfo.rarity);
-
-            TbxCardName.Text = innerCardInfo.name;
-            TbxCardUniqueID.Text = innerCardInfo.cardID;
-
-            if (!string.IsNullOrEmpty(innerCardInfo.cardImage))
+            innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) =>
             {
-                BtnCardImage.Content = innerCardInfo.cardImage;
-                BtnCardImage.ToolTip = innerCardInfo.cardImage;
-            }
-            if (!string.IsNullOrEmpty(innerCardInfo.cardScript))
+                TbxCost.Text = specNode.GetAttributesSafe("Cost");
+            });
+            switch (innerCardNode.GetInnerTextByPath("Rarity"))
             {
-                BtnCardEffect.Content = innerCardInfo.cardScript;
-                BtnCardEffect.ToolTip = innerCardInfo.cardScript;
+                case "Common":
+                    ChangeRarityButtonEvents(BtnRarity_Common, null);
+                    break;
+                case "Uncommon":
+                    ChangeRarityButtonEvents(BtnRarity_Uncommon, null);
+                    break;
+                case "Rare":
+                    ChangeRarityButtonEvents(BtnRarity_Rare, null);
+                    break;
+                case "Unique":
+                    ChangeRarityButtonEvents(BtnRarity_Unique, null);
+                    break;
             }
+
+            TbxCardName.Text = innerCardNode.GetInnerTextByPath("Name");
+            TbxCardUniqueID.Text = innerCardNode.GetAttributesSafe("ID");
+
+            innerCardNode.ActionIfInnertTextIsNotNullOrEmpty("Artwork", (string innerText) =>
+            {
+                BtnCardImage.Content = innerText;
+                BtnCardImage.ToolTip = innerText;
+            });
+
+            innerCardNode.ActionIfInnertTextIsNotNullOrEmpty("Script", (string innerText) =>
+            {
+                BtnCardEffect.Content = innerText;
+                BtnCardEffect.ToolTip = innerText;
+            });
             InitSqlDices();
 
             UpdateExtrainfoIcon();
-            UpdateRangeTypeUI();
-            UpdateUniqueTypeUI();
+            innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) => {
+                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{specNode.GetAttributesSafe("Range")}.png");
+                BtnRangeType.Tag = specNode.GetAttributesSafe("Range");
+            });
+
+            List<DM.XmlDataNode> optionNodes = innerCardNode.GetXmlDataNodesByPath("Option");
+            if (optionNodes.Count > 0)
+            {
+                DM.XmlDataNode OPTION_NODE = optionNodes[0];
+                if (OPTION_LOOP_LIST.Contains(OPTION_NODE.innerText))
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{OPTION_NODE.innerText}.png");
+                else
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/TypeETC.png");
+                BtnUnqueType.Tag = OPTION_NODE.innerText;
+            }
+            else
+            {
+                BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/TypeNoOption.png");
+                BtnUnqueType.Tag = "";
+            }
 
             #region 드랍되는 곳 체크
-            if (innerCardInfo.dropBooks.Count > 0)
+            List<string> selectedCardDropTables = new List<string>();
+            DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPath("CardDropTable").ForEachSafe((DM.XmlDataNode cardDropTableID) =>
+            {
+                if (cardDropTableID.CheckIfGivenPathWithXmlInfoExists("Card", innerCardNode.attribute["ID"]))
+                    selectedCardDropTables.Add(cardDropTableID.attribute["ID"]);
+            });
+
+            if (selectedCardDropTables.Count > 0)
             {
                 string extraInfo = "";
-                innerCardInfo.dropBooks.ForEach((string dropBookInfo) =>
+                selectedCardDropTables.ForEach((string dropBookInfo) =>
                 {
                     extraInfo += $"{dropBookInfo}\n";
                 });
@@ -64,75 +108,187 @@ namespace LORModingBase.UC
 
                 BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
                 BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
-            } 
+            }
             #endregion
         }
 
-        private void ChangeRarityUIInit(string rarity)
+        /// <summary>
+        /// Change rarity button events
+        /// </summary>
+        private void ChangeRarityButtonEvents(object sender, RoutedEventArgs e)
         {
-            BtnRarityCommon.Background = null;
-            BtnRarityUncommon.Background = null;
-            BtnRarityRare.Background = null;
-            BtnRarityUnique.Background = null;
+            Button rarityButton = sender as Button;
 
-            switch (rarity)
+            BtnRarity_Common.Background = null;
+            BtnRarity_Uncommon.Background = null;
+            BtnRarity_Rare.Background = null;
+            BtnRarity_Unique.Background = null;
+
+            rarityButton.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
+            WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr(rarityButton.Tag.ToString());
+            innerCardNode.SetXmlInfoByPath("Rarity", rarityButton.Name.Split('_').Last());
+        }
+
+        /// <summary>
+        /// Init dice stack panel
+        /// </summary>
+        private void InitSqlDices()
+        {
+            SqlDices.Children.Clear();
+            innerCardNode.GetXmlDataNodesByPath("BehaviourList/Behaviour").ForEachSafe((DM.XmlDataNode behaviourNode) =>
             {
-                case "Common":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#5430BF4B");
-                    BtnRarityCommon.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCardInfo.rarity = "Common";
-                    break;
-                case "Uncommon":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54306ABF");
-                    BtnRarityUncommon.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCardInfo.rarity = "Uncommon";
-                    break;
-                case "Rare":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#548030BF");
-                    BtnRarityRare.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCardInfo.rarity = "Rare";
-                    break;
-                case "Unique":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54F3B530");
-                    BtnRarityUnique.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCardInfo.rarity = "Unique";
-                    break;
-            }
-        } 
+                SqlDices.Children.Add(new EditDice(innerCardNode, behaviourNode, InitSqlDices));
+            });
+        }
         #endregion
 
-        #region Rarity buttons
-        private void BtnRarityCommon_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Common");
-        }
+        #region Type change button events
+        /// <summary>
+        /// Ranege info name
+        /// </summary>
+        private List<string> RANGE_LOOP_LIST = new List<string>() { "Near", "Far", "FarArea", "FarAreaEach" };
 
-        private void BtnRarityUncommon_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Uncommon");
-        }
+        /// <summary>
+        /// Option info name
+        /// </summary>
+        private List<string> OPTION_LOOP_LIST = new List<string>() { "", "OnlyPage", "Basic", "EGO" };
 
-        private void BtnRarityRare_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Type loop button events
+        /// </summary>
+        private void TypeLoopButtonEvents(object sender, MouseButtonEventArgs e)
         {
-            ChangeRarityUIInit("Rare");
-        }
+            Button loopButton = sender as Button;
 
-        private void BtnRarityUnique_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Unique");
+            List<string> LOOP_LIST = null;
+            if (loopButton.Name == "BtnRangeType")
+                LOOP_LIST = RANGE_LOOP_LIST;
+            else if (loopButton.Name == "BtnUnqueType")
+                LOOP_LIST = OPTION_LOOP_LIST;
+            if (LOOP_LIST == null)
+                return;
+
+            if (loopButton.Tag == null || LOOP_LIST.IndexOf(loopButton.Tag.ToString()) < 0)
+                loopButton.Tag = LOOP_LIST[0];
+            // Down index
+            else if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                int LEFT_INDEX = LOOP_LIST.IndexOf(loopButton.Tag.ToString()) - 1;
+                if (LEFT_INDEX < 0) LEFT_INDEX = LOOP_LIST.Count - 1;
+                loopButton.Tag = LOOP_LIST[LEFT_INDEX];
+            }
+            // Up index
+            else
+            {
+                int RIGHT_INDEX = LOOP_LIST.IndexOf(loopButton.Tag.ToString()) + 1;
+                if (RIGHT_INDEX >= LOOP_LIST.Count) RIGHT_INDEX = 0;
+                loopButton.Tag = LOOP_LIST[RIGHT_INDEX];
+            }
+
+            if (loopButton.Name == "BtnRangeType")
+            {
+                loopButton.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{loopButton.Tag}.png");
+                innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) => {
+                    specNode.attribute["Range"] = loopButton.Tag.ToString();
+                });
+            }
+            else if (loopButton.Name == "BtnUnqueType")
+            {
+                string UNIQUE_NAME = (string.IsNullOrEmpty(loopButton.Tag.ToString()) ? "NoOption" : loopButton.Tag.ToString());
+                loopButton.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{UNIQUE_NAME}.png");
+                innerCardNode.SetXmlInfoByPathAndEmptyWillRemove("Option", loopButton.Tag.ToString());
+            }
+            MainWindow.mainWindow.UpdateDebugInfo();
         }
         #endregion
 
         #region Right side buttons
-        private void BtnExtraInfo_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Right menu button events
+        /// </summary>
+        private void RightMenuButtonEvents(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputExtraDataForCardWindow(innerCardInfo).ShowDialog();
-            UpdateExtrainfoIcon();
+            Button btn = sender as Button;
+            switch (btn.Name)
+            {
+                case "BtnExtraInfo":
+                    string AffectionPrev = "";
+                    innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) =>
+                    {
+                        AffectionPrev = specNode.GetAttributesSafe("Affection");
+                    });
+
+                    new SubWindows.Global_MultipleValueInputed(new Dictionary<string, string>() {
+                        { "챕터", "카드가 속하는 챕터 번호입니다"},
+                        { "책장 우선 순위(적)", "적이 책장을 선택할때 참조하게 되는 우선순위를 설정합니다" },
+                        { "책장 우선 순위(유저)", "유저가 책장을 선택할때 참조하게 되는 우선순위를 설정합니다" },
+                        { "우선순위 스크립트 명", "이 스크립트는 우선순위를 지정할때 사용됩니다" },
+                        { "특정 감정이상에서만 사용가능", "특정 감정레벨 이상에서만 사용이 가능하도록 만듭니다" },
+                        { "광역 전투책장 코드", "광역 전투책장에서 주로 사용하며, 광역 전투책장 적용시 자동으로 설정됩니다" }
+                    }, new List<string>()
+                    {
+                        innerCardNode.GetInnerTextByPath("Chapter"),
+                        innerCardNode.GetInnerTextByPath("Priority"),
+                        innerCardNode.GetInnerTextByPath("SortPriority"),
+                        innerCardNode.GetInnerTextByPath("PriorityScript"),
+                        innerCardNode.GetInnerTextByPath("EmotionLimit"),
+                        AffectionPrev
+                    }, new List<Action<string>>()
+                    {
+                        (string inputedVar) => {
+                            innerCardNode.SetXmlInfoByPathAndEmptyWillRemove("Chapter", inputedVar);},
+                        (string inputedVar) => {
+                            innerCardNode.SetXmlInfoByPathAndEmptyWillRemove("Priority", inputedVar);},
+                        (string inputedVar) => {
+                            innerCardNode.SetXmlInfoByPathAndEmptyWillRemove("SortPriority", inputedVar);},
+                        (string inputedVar) => {
+                            innerCardNode.SetXmlInfoByPathAndEmptyWillRemove("PriorityScript", inputedVar);},
+                        (string inputedVar) => {
+                            innerCardNode.SetXmlInfoByPathAndEmptyWillRemove("EmotionLimit", inputedVar);},
+                        (string inputedVar) => {
+                            innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) =>
+                            {
+                                specNode.attribute["Affection"] = inputedVar;
+                                MainWindow.mainWindow.UpdateDebugInfo();
+                            });}
+                    }).ShowDialog();
+                    UpdateExtrainfoIcon();
+                    break;
+                case "BtnDropCards":
+                    break;
+                case "BtnCopyCard":
+                    DM.EditGameData_CardInfos.StaticCard.rootDataNode.subNodes.Add(innerCardNode.Copy());
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    break;
+                case "BtnDelete":
+                    DM.EditGameData_CardInfos.StaticCard.rootDataNode.subNodes.Remove(innerCardNode);
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    break;
+            }
         }
 
         private void UpdateExtrainfoIcon()
         {
-            if(!string.IsNullOrEmpty(innerCardInfo.chapter))
+            string CHAPTER = innerCardNode.GetInnerTextByPath("Chapter");
+            string PRIORITY = innerCardNode.GetInnerTextByPath("Priority");
+            string SORT_PRIORITY = innerCardNode.GetInnerTextByPath("SortPriority");
+            string PRIORITY_SCRIPT = innerCardNode.GetInnerTextByPath("PriorityScript");
+            string EMOTION_LIMIT = innerCardNode.GetInnerTextByPath("EmotionLimit");
+
+            string AFFECTION = "";
+            innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) =>
+            {
+                AFFECTION = specNode.GetAttributesSafe("Affection");
+            });
+
+            if (!string.IsNullOrEmpty(CHAPTER) ||
+                !string.IsNullOrEmpty(PRIORITY) ||
+                !string.IsNullOrEmpty(SORT_PRIORITY) ||
+                !string.IsNullOrEmpty(PRIORITY_SCRIPT) ||
+                !string.IsNullOrEmpty(EMOTION_LIMIT) ||
+                !string.IsNullOrEmpty(AFFECTION))
             {
                 BtnExtraInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
                 BtnExtraInfo.ToolTip = "중요성이 떨어지는 더 많은 추가적인 정보를 입력합니다 (입력됨)";
@@ -146,201 +302,93 @@ namespace LORModingBase.UC
 
         private void BtnDropCards_Click(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputDropBookInfosWindow(innerCardInfo.dropBooks).ShowDialog();
+            //new SubWindows.InputDropBookInfosWindow(innerCardInfo.dropBooks).ShowDialog();
 
-            if (innerCardInfo.dropBooks.Count > 0)
-            {
-                string extraInfo = "";
-                innerCardInfo.dropBooks.ForEach((string dropBookInfo) =>
-                {
-                    extraInfo += $"{dropBookInfo}\n";
-                });
-                extraInfo = extraInfo.TrimEnd('\n');
+            //if (innerCardInfo.dropBooks.Count > 0)
+            //{
+            //    string extraInfo = "";
+            //    innerCardInfo.dropBooks.ForEach((string dropBookInfo) =>
+            //    {
+            //        extraInfo += $"{dropBookInfo}\n";
+            //    });
+            //    extraInfo = extraInfo.TrimEnd('\n');
 
-                BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-                BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            else
-            {
-                BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
-                BtnDropCards.ToolTip = "이 전투책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
-            }
-        }
-
-        private void BtnCopyCard_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.cardInfos.Add(Tools.DeepCopy.DeepClone(innerCardInfo));
-            initStack();
-        }
-
-        private void BtnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.cardInfos.Remove(innerCardInfo);
-            initStack();
-        }
-        #endregion
-        #region Type Change Buttons
-        private void BtnRangeType_Click(object sender, RoutedEventArgs e)
-        {
-            switch (innerCardInfo.rangeType)
-            {
-                case "Near":
-                    innerCardInfo.rangeType = "Far";
-                    innerCardInfo.EXTRA_Affection = "";
-                    break;
-                case "Far":
-                    innerCardInfo.rangeType = "FarArea";
-                    innerCardInfo.EXTRA_Affection = "Team";
-                    break;
-                case "FarArea":
-                    innerCardInfo.rangeType = "FarAreaEach";
-                    innerCardInfo.EXTRA_Affection = "Team";
-                    break;
-                case "FarAreaEach":
-                    innerCardInfo.rangeType = "Near";
-                    innerCardInfo.EXTRA_Affection = "";
-                    break;
-            }
-            UpdateRangeTypeUI();
-        }
-
-        private void UpdateRangeTypeUI()
-        {
-            switch (innerCardInfo.rangeType)
-            {
-                case "Near":
-                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 근거리 책장)";
-                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
-                    break;
-                case "Far":
-                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 책장)";
-                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
-                    break;
-                case "FarArea":
-                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 광역 합산 책장)";
-                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeFarArea.png");
-                    break;
-                case "FarAreaEach":
-                    BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 광역 개별 책장)";
-                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeFarAreaEach.png");
-                    break;
-            }
-        }
-
-        private void BtnUnqueType_Click(object sender, RoutedEventArgs e)
-        {
-            switch (innerCardInfo.option)
-            {
-                case "":
-                    innerCardInfo.option = "OnlyPage";
-                    break;
-                case "OnlyPage":
-                    innerCardInfo.option = "Basic";
-                    break;
-                case "Basic":
-                    innerCardInfo.option = "EGO";
-                    break;
-                default:
-                    innerCardInfo.option = "";
-                    break;
-            }
-            UpdateUniqueTypeUI();
-        }
-
-        private void UpdateUniqueTypeUI()
-        {
-            switch (innerCardInfo.option)
-            {
-                case "":
-                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : 일반 책장)\n특수한 속성이 없습니다";
-                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNotUniquePage.png");
-                    break;
-                case "OnlyPage":
-                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : 고유 책장)\n특정 핵심 책장만 착용이 가능합니다";
-                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeUniquePage.png");
-                    break;
-                case "Basic":
-                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : 기본 책장)\n기본적으로 포함되며, 무제한으로 사용할 수 있습니다.";
-                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeBasic.png");
-                    break;
-                case "EGO":
-                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : EGO 책장)\nEGO 책장이 가지는 고유한 옵션입니다";
-                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeEGO.png");
-                    break;
-
-                case "Personal":
-                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : Personal)\n분류되지 않음 - 보라 눈물 책장에서 주로 사용되는 옵션";
-                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeETC.png");
-                    break;
-                case "NoInventory":
-                    BtnUnqueType.ToolTip = "클릭시 책장의 추가 옵션을 변경합니다. (현재 : NoInventory)\n분류되지 않음 - 비나 책장에서 주로 사용되는 옵션";
-                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeETC.png");
-                    break;
-                default:
-                    BtnUnqueType.ToolTip = $"클릭시 책장의 추가 옵션을 변경합니다. (현재 : {innerCardInfo.option})\n분류되지 않음";
-                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeETC.png");
-                    break;
-            }
+            //    BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+            //    BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
+            //}
+            //else
+            //{
+            //    BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
+            //    BtnDropCards.ToolTip = "이 전투책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
+            //}
         }
         #endregion
 
         #region Left side buttons
-        private void BtnCardImage_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Button events that need search window
+        /// </summary>
+        private void SelectItemButtonEvents(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputCardImageWindow((string cardImageDes) =>
+            Button btn = sender as Button;
+            switch (btn.Name)
             {
-                BtnCardImage.Content = cardImageDes;
-                BtnCardImage.ToolTip = cardImageDes;
-                innerCardInfo.cardImage = cardImageDes;
-            }).ShowDialog();
-        }
+                case "BtnCardImage_Click":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
 
-        private void BtnCardEffect_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputEffectWindow((string effectDes) =>
-            {
-                BtnCardEffect.Content = effectDes;
-                BtnCardEffect.ToolTip = effectDes.Replace(".", ".\n");
-                innerCardInfo.cardScript = effectDes;
-            }, isCardEffect: true).ShowDialog();
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
+                    break;
+                case "BtnCardEffect_Click":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                   
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.BOOK_ICON).ShowDialog();
+                    break;
+                case "BtnAddDice":
+                    innerCardNode.GetXmlDataNodesByPath("BehaviourList").ForEachSafe((DM.XmlDataNode behaviourListNode) =>
+                    {
+                        behaviourListNode.subNodes.Add(DM.EditGameData_CardInfos.MakeNewDiceBase());
+                    });
+                    InitSqlDices();
+                    break;
+            }
         }
         #endregion
 
-        #region Text change events
-        private void TbxCost_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if(innerCardInfo != null)
-                innerCardInfo.cost = TbxCost.Text;
-        }
 
-        private void TbxCardName_TextChanged(object sender, TextChangedEventArgs e)
+        /// <summary>
+        /// Reflect text chagnes in TextBox
+        /// </summary>
+        private void ReflectTextChangeInTextBox(object sender, TextChangedEventArgs e)
         {
-            if (innerCardInfo != null)
-                innerCardInfo.name = TbxCardName.Text;
-        }
+            if (innerCardNode == null)
+                return;
 
-        private void TbxCardUniqueID_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (innerCardInfo != null)
-                innerCardInfo.cardID = TbxCardUniqueID.Text;
-        }
-        #endregion
-
-        #region Controls for dices
-        private void InitSqlDices()
-        {
-            SqlDices.Children.Clear();
-            innerCardInfo.dices.ForEach((DS.Dice dice) =>
+            TextBox tbx = sender as TextBox;
+            switch (tbx.Name)
             {
-                SqlDices.Children.Add(new EditDice(innerCardInfo.dices, dice, InitSqlDices));
-            });
+                case "TbxCost":
+                    innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) => {
+                        specNode.attribute["Cost"] = tbx.Text;
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    });
+                    break;
+                case "TbxCardName":
+                    innerCardNode.SetXmlInfoByPath("Name", tbx.Text);
+                    break;
+                case "TbxCardUniqueID":
+                    innerCardNode.attribute["ID"] = tbx.Text;
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    break;
+                default:
+                    List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
+                    if (SPLIT_NAME.Count == 2)
+                        innerCardNode.SetXmlInfoByPath(SPLIT_NAME.Last(), tbx.Text);
+                    else if (SPLIT_NAME.Count > 2)
+                        innerCardNode.SetXmlInfoByPath(String.Join("/", SPLIT_NAME.Skip(1)), tbx.Text);
+                    break;
+            }
         }
-
-        private void BtnAddDice_Click(object sender, RoutedEventArgs e)
-        {
-            innerCardInfo.dices.Add(new DS.Dice());
-            InitSqlDices();
-        }
-        #endregion
     }
 }
