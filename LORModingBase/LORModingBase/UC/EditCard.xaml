@@ -45,9 +45,9 @@
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
 
-                <Label Grid.Column="0" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <Label x:Name="LblCardName" Grid.Column="0" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <TextBox x:Name="TbxCardName" Grid.Column="1" Text="" ToolTip="전투책장의 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
-                <Label Grid.Column="2" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <Label x:Name="LblCardUniqueID" Grid.Column="2" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <TextBox x:Name="TbxCardUniqueID" Grid.Column="3" Text="" ToolTip="전투책장의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
             </Grid>
             <Grid Grid.Row="2">

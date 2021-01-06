@@ -120,6 +120,10 @@ namespace LORModingBase.Tools
                 if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{cbk.Name}_ToolTip%"))
                     cbk.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{cbk.Name}_ToolTip%");
             });
+            FindLogicalChildren<Image>(rootControl).ForEachSafe((Image img) => {
+                if (DM.LocalizeCore.IsLanguageKeyExist(languageDictionary, $"%{img.Name}_ToolTip%"))
+                    img.ToolTip = DM.LocalizeCore.GetLanguageData(languageDictionary, $"%{img.Name}_ToolTip%");
+            });
         }
 
         /// <summary>
