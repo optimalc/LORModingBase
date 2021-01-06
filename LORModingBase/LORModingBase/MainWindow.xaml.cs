@@ -169,6 +169,12 @@ namespace LORModingBase
             Button clickButton = sender as Button;
             try
             {
+                if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                {
+                    Tools.MessageBoxTools.ShowErrorMessageBox("작업 공간이 지정되어 있지 않습니다.", "미지정 오류");
+                    return;
+                }
+
                 switch (clickButton.Name)
                 {
                     case "BtnAddCriticalBook":
@@ -244,6 +250,12 @@ namespace LORModingBase
             Button clickButton = sender as Button;
             try
             {
+                if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                {
+                    Tools.MessageBoxTools.ShowErrorMessageBox("작업 공간이 지정되어 있지 않습니다.", "미지정 오류");
+                    return;
+                }
+
                 switch (clickButton.Name)
                 {
                     case "BtnAddCard":
@@ -293,24 +305,32 @@ namespace LORModingBase
         {
             try
             {
-                switch (LbxTextEditor.SelectedIndex)
+                if(!string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
                 {
-                    case 0:
-                        DM.EditGameData_BookInfos.StaticEquipPage.SaveNodeData(DS.PROGRAM_PATHS.DEBUG_TEST);
-                        break;
-                    case 1:
-                        DM.EditGameData_BookInfos.StaticDropBook.SaveNodeData(DS.PROGRAM_PATHS.DEBUG_TEST);
-                        break;
-                    case 2:
-                        DM.EditGameData_BookInfos.LocalizedBooks.SaveNodeData(DS.PROGRAM_PATHS.DEBUG_TEST);
-                        break;
+                    DM.EditGameData_BookInfos.StaticEquipPage.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory));
+                    DM.EditGameData_BookInfos.StaticDropBook.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory));
+                    DM.EditGameData_BookInfos.LocalizedBooks.SaveNodeData(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory));
 
+                    string debugFileName = "";
+                    switch (LbxTextEditor.SelectedIndex)
+                    {
+                        case 0:
+                            debugFileName = DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory);
+                            break;
+                        case 1:
+                            debugFileName = DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory);
+                            break;
+                        case 2:
+                            debugFileName = DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory);
+                            break;
+
+                    }
+                    if (File.Exists(debugFileName))
+                        TbxTextEditor.Text = File.ReadAllText(debugFileName);
+
+                    TbxTextEditorLog.Text = $"데이터가 정상적으로 생성됨";
+                    TbxTextEditorLog.ToolTip = $"데이터가 정상적으로 생성됨";
                 }
-                if(File.Exists(DS.PROGRAM_PATHS.DEBUG_TEST))
-                    TbxTextEditor.Text = File.ReadAllText(DS.PROGRAM_PATHS.DEBUG_TEST);
-
-                TbxTextEditorLog.Text = $"데이터가 정상적으로 생성됨";
-                TbxTextEditorLog.ToolTip = $"데이터가 정상적으로 생성됨";
             }
             catch(Exception ex)
             {
