@@ -56,11 +56,13 @@ namespace LORModingBase.SubWindows
                     });
                     break;
                 case InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN:
-                    DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book/CharacterSkin", (DM.XmlDataNode skinNode) =>
+                    DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode bookNode) =>
                     {
-                        string SKIN_NAME = skinNode.GetInnerTextSafe();
+                        string CHPATER_NAME = DM.LocalizedGameDescriptions.GetDescriptionForChapter(bookNode.GetInnerTextByPath("Chapter"));
+                        string BOOK_DES = DM.LocalizedGameDescriptions.GetDescriptionForBooks(bookNode.GetInnerTextByPath("TextId"));
+                        string SKIN_NAME = bookNode.GetInnerTextByPath("CharacterSkin");
                         if (!string.IsNullOrEmpty(SKIN_NAME))
-                            selectItems.Add(SKIN_NAME);
+                            selectItems.Add($"{CHPATER_NAME} / {BOOK_DES}:{SKIN_NAME}");
                     });
                     break;
                 case InputInfoWithSearchWindow_PRESET.PASSIVE:

@@ -83,6 +83,17 @@ namespace LORModingBase.DM
             else
                 return $"Book ID : {BooksNodes}";
         }
+        
+        /// <summary>
+        /// Get description for character ID
+        /// </summary>
+        /// <param name="characterID">Character ID to use</param>
+        /// <returns>Character name description</returns>
+        public static string GetDescriptionForCharacter(string characterID)
+        {
+            if (string.IsNullOrEmpty(characterID)) return "";
+            return DM.GameInfos.localizeInfos["CharactersName"].rootDataNode.GetInnerTextByAttributeWithPath("Name", "ID", characterID, $"ChID : {characterID}");
+        }
     }
 
     /// <summary>
