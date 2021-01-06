@@ -47,8 +47,9 @@ namespace LORModingBase.UC
 
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("Episode", (string innerText) =>
                 {
-                    BtnEpisode.Content = innerText;
-                    BtnEpisode.ToolTip = innerText;
+                    string STAGE_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(innerText);
+                    BtnEpisode.Content = STAGE_DES;
+                    BtnEpisode.ToolTip = STAGE_DES;
                 });
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("BookIcon", (string innerText) =>
                 {
@@ -214,8 +215,10 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCriticalPageNode.SetXmlInfoByPath("Episode", selectedItem);
-                        BtnEpisode.Content = selectedItem;
-                        BtnEpisode.ToolTip = selectedItem;
+
+                        string STAGE_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(selectedItem);
+                        BtnEpisode.Content = STAGE_DES;
+                        BtnEpisode.ToolTip = STAGE_DES;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
                 case "BtnBookIcon":

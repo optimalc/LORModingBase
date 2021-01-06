@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -40,11 +41,8 @@ namespace LORModingBase.SubWindows
                     DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode stageNode) =>
                     {
                         string STAGE_ID = stageNode.GetAttributesSafe("id");
-                        if(!string.IsNullOrEmpty(STAGE_ID))
-                        {
-                            if (Convert.ToInt32(STAGE_ID) < DS.FilterDatas.STAGEINFO_DIV_NOT_CREATURE)
-                                selectItems.Add(STAGE_ID);
-                        }
+                        if (!string.IsNullOrEmpty(STAGE_ID) && Convert.ToInt32(STAGE_ID) < DS.FilterDatas.STAGEINFO_DIV_NOT_CREATURE && STAGE_ID != "1")
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STAGE_ID));
                     });
                     break;
                 case InputInfoWithSearchWindow_PRESET.BOOK_ICON:
@@ -164,7 +162,7 @@ namespace LORModingBase.SubWindows
         {
             if (LbxItems.SelectedItem != null)
             {
-                afterSelectItem(LbxItems.SelectedItem.ToString());
+                afterSelectItem(LbxItems.SelectedItem.ToString().Split(':').Last());
                 this.Close();
             }
         }
