@@ -46,11 +46,13 @@ namespace LORModingBase.SubWindows
                     });
                     break;
                 case InputInfoWithSearchWindow_PRESET.BOOK_ICON:
-                    DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse/BookIcon", (DM.XmlDataNode bookIconNode) =>
+                    DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
                     {
-                        string ICON_NAME = bookIconNode.GetInnerTextSafe();
-                        if (!string.IsNullOrEmpty(ICON_NAME))
-                            selectItems.Add(ICON_NAME);
+                        string BOOK_ICON_NAME = bookUseNode.GetInnerTextByPath("BookIcon");
+                        string BOOK_ICON_DES = DM.LocalizedGameDescriptions.GetDescriptionForETC(bookUseNode.GetInnerTextByPath("TextId"));
+                        string CHPATER_NAME = DM.LocalizedGameDescriptions.GetDescriptionForChapter(bookUseNode.GetInnerTextByPath("Chapter"));
+                        if (!string.IsNullOrEmpty(BOOK_ICON_NAME))
+                            selectItems.Add($"{CHPATER_NAME} / {BOOK_ICON_DES}:{BOOK_ICON_NAME}");
                     });
                     break;
                 case InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN:
