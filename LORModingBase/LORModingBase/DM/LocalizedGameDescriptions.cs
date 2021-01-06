@@ -94,6 +94,30 @@ namespace LORModingBase.DM
             if (string.IsNullOrEmpty(characterID)) return "";
             return DM.GameInfos.localizeInfos["CharactersName"].rootDataNode.GetInnerTextByAttributeWithPath("Name", "ID", characterID, $"ChID : {characterID}");
         }
+    
+        /// <summary>
+        /// Get description for passive ID
+        /// </summary>
+        /// <param name="passiveID">Passive ID to use</param>
+        /// <returns>Passive des</returns>
+        public static string GetDescriptionForPassive(string passiveID, bool nameOnly = false)
+        {
+            if (string.IsNullOrEmpty(passiveID)) return "";
+            List<XmlDataNode> PassiveNodes = DM.GameInfos.localizeInfos["PassiveDesc"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("PassiveDesc",
+                attributeToCheck: new Dictionary<string, string>() { { "ID", passiveID } });
+            if (PassiveNodes.Count > 0)
+            {
+                string PASSIVE_NAME = PassiveNodes[0].GetInnerTextByPath("Name");
+                string PASSIVE_DESC = PassiveNodes[0].GetInnerTextByPath("Desc");
+                if (string.IsNullOrEmpty(PASSIVE_NAME)) return $"Passive ID : {passiveID}";
+                if (nameOnly)
+                    return PASSIVE_NAME;
+                else
+                    return $"{PASSIVE_NAME} / {PASSIVE_DESC}";
+            }
+            else
+                return $"Passive ID : {passiveID}";
+        }
     }
 
     /// <summary>

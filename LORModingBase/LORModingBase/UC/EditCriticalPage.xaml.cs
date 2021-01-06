@@ -196,7 +196,7 @@ namespace LORModingBase.UC
             LbxPassives.Items.Clear();
             innerCriticalPageNode.ActionXmlDataNodesByPath("EquipEffect/Passive", (DM.XmlDataNode passiveNode) =>
             {
-                LbxPassives.Items.Add(passiveNode.innerText);
+                LbxPassives.Items.Add(DM.LocalizedGameDescriptions.GetDescriptionForPassive(passiveNode.innerText));
             });
         }
         #endregion
@@ -242,7 +242,7 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCriticalPageNode.AddXmlInfoByPath("EquipEffect/Passive", selectedItem
-                , new Dictionary<string, string>() { { "Level", "10" } });
+                            , new Dictionary<string, string>() { { "Level", "10" } });
                         InitLbxPassives();
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.PASSIVE).ShowDialog();
                     break;

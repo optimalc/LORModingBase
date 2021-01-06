@@ -69,8 +69,10 @@ namespace LORModingBase.SubWindows
                     DM.GameInfos.staticInfos["PassiveList"].rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode passiveNode) =>
                     {
                         string PASSIVE_ID = passiveNode.GetAttributesSafe("ID");
-                        if (!string.IsNullOrEmpty(PASSIVE_ID))
-                            selectItems.Add(PASSIVE_ID);
+                        string PASSIVE_DES = DM.LocalizedGameDescriptions.GetDescriptionForPassive(passiveNode.GetAttributesSafe("ID"));
+
+                        if (!DS.FilterDatas.EXCLUDE_PASSIVE_CODE.Contains(PASSIVE_ID))
+                            selectItems.Add($"{PASSIVE_DES}:{PASSIVE_ID}");
                     });
                     break;
                 case InputInfoWithSearchWindow_PRESET.CRITICAL_BOOKS:
