@@ -292,19 +292,12 @@ namespace LORModingBase.UC
                             if (foundCardDropTableNode.Count > 0)
                             {
                                 DM.XmlDataNode FOUND_CARD_DROP_TABLE_NODE = foundCardDropTableNode[0];
-                                FOUND_CARD_DROP_TABLE_NODE.RemoveXmlInfosByPath("Card", innerCardNode.GetAttributesSafe("ID"));
 
                                 List<DM.XmlDataNode> baseCardDropTableNode = DM.GameInfos.staticInfos["CardDropTable"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("DropTable",
                                     attributeToCheck: new Dictionary<string, string>() { { "ID", deletedDropTableItemID } });
                                 if (baseCardDropTableNode.Count > 0)
                                 {
                                     DM.XmlDataNode FOUND_CARD_DROP_TABLE_IN_GAME = baseCardDropTableNode[0];
-
-                                    List<string> foundCardDropTables = new List<string>();
-                                    FOUND_CARD_DROP_TABLE_NODE.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
-                                    {
-                                        foundCardDropTables.Add(cardNode.innerText);
-                                    });
 
                                     List<string> foundCardDropTablesInGameItems = new List<string>();
                                     FOUND_CARD_DROP_TABLE_IN_GAME.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
@@ -313,11 +306,34 @@ namespace LORModingBase.UC
                                     });
 
 
-                                    if (foundCardDropTables.Count == foundCardDropTablesInGameItems.Count
-                                        && foundCardDropTables.Except(foundCardDropTablesInGameItems).Count() == 0)
+                                    if (DM.EditGameData_CardInfos.StaticCard.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card",
+                                             attributeToCheck: new Dictionary<string, string>() { { "ID", innerCardNode.GetAttributesSafe("ID") } }).Count == 1
+                                             && !foundCardDropTablesInGameItems.Contains(innerCardNode.GetAttributesSafe("ID")))
+                                        FOUND_CARD_DROP_TABLE_NODE.RemoveXmlInfosByPath("Card", innerCardNode.GetAttributesSafe("ID"));
+
+
+                                    List<string> foundCardDropTables = new List<string>();
+                                    FOUND_CARD_DROP_TABLE_NODE.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                                     {
-                                        DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.RemoveXmlInfosByPath("DropTable",
-                                            attributeToCheck: new Dictionary<string, string>() { { "ID", deletedDropTableItemID } }, deleteOnce: true);
+                                        foundCardDropTables.Add(cardNode.innerText);
+                                    });
+
+
+                                    if (foundCardDropTables.Count == foundCardDropTablesInGameItems.Count
+                                        && foundCardDropTables.Except(foundCardDropTablesInGameItems).Count() == 0
+                                        && DM.EditGameData_CardInfos.StaticCard.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card",
+                                        attributeToCheck: new Dictionary<string, string>() { { "ID", innerCardNode.GetAttributesSafe("ID") } }).Count == 1)
+                                    {
+                                        bool isContainAnyExistCard = false;
+                                        DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                                        {
+                                            if (foundCardDropTables.Contains(cardNode.GetAttributesSafe("ID")) &&
+                                                    cardNode.GetAttributesSafe("ID") != innerCardNode.GetAttributesSafe("ID"))
+                                                isContainAnyExistCard = true;
+                                        });
+                                        if (!isContainAnyExistCard)
+                                            DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.RemoveXmlInfosByPath("DropTable",
+                                                attributeToCheck: new Dictionary<string, string>() { { "ID", deletedDropTableItemID } }, deleteOnce: true);
                                     }
                                 }
                             }
@@ -363,19 +379,11 @@ namespace LORModingBase.UC
 
                     DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPath("DropTable").ForEach((DM.XmlDataNode dropTableNode) =>
                     {
-                        dropTableNode.RemoveXmlInfosByPath("Card", innerCardNode.GetAttributesSafe("ID"));
-
                         List<DM.XmlDataNode> baseCardDropTableNode = DM.GameInfos.staticInfos["CardDropTable"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("DropTable",
                             attributeToCheck: new Dictionary<string, string>() { { "ID", dropTableNode.GetAttributesSafe("ID") } });
                         if (baseCardDropTableNode.Count > 0)
                         {
                             DM.XmlDataNode FOUND_CARD_DROP_TABLE_IN_GAME = baseCardDropTableNode[0];
-
-                            List<string> foundCardDropTables = new List<string>();
-                            dropTableNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
-                            {
-                                foundCardDropTables.Add(cardNode.innerText);
-                            });
 
                             List<string> foundCardDropTablesInGameItems = new List<string>();
                             FOUND_CARD_DROP_TABLE_IN_GAME.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
@@ -383,12 +391,34 @@ namespace LORModingBase.UC
                                 foundCardDropTablesInGameItems.Add(cardNode.innerText);
                             });
 
+                            if (DM.EditGameData_CardInfos.StaticCard.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card",
+                                attributeToCheck: new Dictionary<string, string>() { { "ID", innerCardNode.GetAttributesSafe("ID") } }).Count == 1
+                                && !foundCardDropTablesInGameItems.Contains(innerCardNode.GetAttributesSafe("ID")))
+                            {
+                                dropTableNode.RemoveXmlInfosByPath("Card", innerCardNode.GetAttributesSafe("ID"));
+                            }
+
+                            List<string> foundCardDropTables = new List<string>();
+                            dropTableNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                            {
+                                foundCardDropTables.Add(cardNode.innerText);
+                            });
 
                             if (foundCardDropTables.Count == foundCardDropTablesInGameItems.Count
-                                && foundCardDropTables.Except(foundCardDropTablesInGameItems).Count() == 0)
+                                && foundCardDropTables.Except(foundCardDropTablesInGameItems).Count() == 0 &&
+                                    DM.EditGameData_CardInfos.StaticCard.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", innerCardNode.GetAttributesSafe("ID") } }).Count == 1)
                             {
-                                DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.RemoveXmlInfosByPath("DropTable",
-                                    attributeToCheck: new Dictionary<string, string>() { { "ID", dropTableNode.GetAttributesSafe("ID") } }, deleteOnce: true);
+                                bool isContainAnyExistCard = false;
+                                DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                                {
+                                    if (foundCardDropTables.Contains(cardNode.GetAttributesSafe("ID")) &&
+                                        cardNode.GetAttributesSafe("ID") != innerCardNode.GetAttributesSafe("ID"))
+                                        isContainAnyExistCard = true;
+                                });
+                                if(!isContainAnyExistCard)
+                                    DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.RemoveXmlInfosByPath("DropTable",
+                                        attributeToCheck: new Dictionary<string, string>() { { "ID", dropTableNode.GetAttributesSafe("ID") } }, deleteOnce: true);
                             }
                         }
                     });
