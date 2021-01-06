@@ -76,6 +76,8 @@ namespace LORModingBase.UC
             innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) => {
                 BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{specNode.GetAttributesSafe("Range")}.png");
                 BtnRangeType.Tag = specNode.GetAttributesSafe("Range");
+                if(BtnRangeType.Tag != null && !string.IsNullOrEmpty(BtnRangeType.Tag.ToString()))
+                    BtnRangeType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnRangeType_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Type_{BtnRangeType.Tag}")})";
             });
 
             List<DM.XmlDataNode> optionNodes = innerCardNode.GetXmlDataNodesByPath("Option");
@@ -87,11 +89,13 @@ namespace LORModingBase.UC
                 else
                     BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/TypeETC.png");
                 BtnUnqueType.Tag = OPTION_NODE.innerText;
+                BtnUnqueType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnUnqueType_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Type_{BtnUnqueType.Tag}")})";
             }
             else
             {
                 BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/TypeNoOption.png");
                 BtnUnqueType.Tag = "";
+                BtnUnqueType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnUnqueType_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Type_NoOption")})";
             }
 
             #region 드랍되는 곳 체크
@@ -112,7 +116,7 @@ namespace LORModingBase.UC
                 extraInfo = extraInfo.TrimEnd('\n');
 
                 BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-                BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
+                BtnDropCards.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnDropCards_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{extraInfo}";
             }
             #endregion
         }
@@ -193,14 +197,34 @@ namespace LORModingBase.UC
             if (loopButton.Name == "BtnRangeType")
             {
                 loopButton.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{loopButton.Tag}.png");
+                loopButton.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnRangeType_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Type_{loopButton.Tag}")})";
                 innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) => {
                     specNode.attribute["Range"] = loopButton.Tag.ToString();
                 });
+
+                switch (loopButton.Tag.ToString())
+                {
+                    case "FarArea":
+                    case "FarAreaEach":
+                        innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) =>
+                        {
+                            specNode.attribute["Affection"] = "Team";
+                        });
+                        break;
+                    default:
+                        innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) =>
+                        {
+                            if(specNode.attribute.ContainsKey("Affection"))
+                                specNode.attribute.Remove("Affection");
+                        });
+                        break;
+                }
             }
             else if (loopButton.Name == "BtnUnqueType")
             {
                 string UNIQUE_NAME = (string.IsNullOrEmpty(loopButton.Tag.ToString()) ? "NoOption" : loopButton.Tag.ToString());
                 loopButton.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{UNIQUE_NAME}.png");
+                loopButton.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnUnqueType_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Type_{UNIQUE_NAME}")})";
                 innerCardNode.SetXmlInfoByPathAndEmptyWillRemove("Option", loopButton.Tag.ToString());
             }
             MainWindow.mainWindow.UpdateDebugInfo();
@@ -224,12 +248,12 @@ namespace LORModingBase.UC
                     });
 
                     new SubWindows.Global_MultipleValueInputed(new Dictionary<string, string>() {
-                        { "챕터", "카드가 속하는 챕터 번호입니다"},
-                        { "책장 우선 순위(적)", "적이 책장을 선택할때 참조하게 되는 우선순위를 설정합니다" },
-                        { "책장 우선 순위(유저)", "유저가 책장을 선택할때 참조하게 되는 우선순위를 설정합니다" },
-                        { "우선순위 스크립트 명", "이 스크립트는 우선순위를 지정할때 사용됩니다" },
-                        { "특정 감정이상에서만 사용가능", "특정 감정레벨 이상에서만 사용이 가능하도록 만듭니다" },
-                        { "광역 전투책장 코드", "광역 전투책장에서 주로 사용하며, 광역 전투책장 적용시 자동으로 설정됩니다" }
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Chapter"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnDropCards_ToolTip%")},
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"PriorityEnemy"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"PriorityEnemy_ToolTip") },
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"PriorityUser"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"PriorityUser_ToolTip") },
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"PriorityScript"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"PriorityScript_ToolTip") },
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"EmotionLimit"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"EmotionLimit_ToolTip") },
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"WideAreaCode"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"WideAreaCode_ToolTip") }
                     }, new List<string>()
                     {
                         innerCardNode.GetInnerTextByPath("Chapter"),
@@ -363,12 +387,12 @@ namespace LORModingBase.UC
                         extraInfo = extraInfo.TrimEnd('\n');
 
                         BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-                        BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
+                        BtnDropCards.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnDropCards_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{extraInfo}";
                     }
                     else
                     {
                         BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
-                        BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
+                        BtnDropCards.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnDropCards_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
                     }
                     break;
                 case "BtnCopyCard":
@@ -457,12 +481,12 @@ namespace LORModingBase.UC
                 !string.IsNullOrEmpty(AFFECTION))
             {
                 BtnExtraInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
-                BtnExtraInfo.ToolTip = "중요성이 떨어지는 더 많은 추가적인 정보를 입력합니다 (입력됨)";
+                BtnExtraInfo.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"ExtraInput")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})";
             }
             else
             {
                 BtnExtraInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNobookInfo.png");
-                BtnExtraInfo.ToolTip = "중요성이 떨어지는 더 많은 추가적인 정보를 입력합니다 (미입력)";
+                BtnExtraInfo.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"ExtraInput")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
             }
         }
         #endregion
