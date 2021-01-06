@@ -9,13 +9,15 @@ namespace LORModingBase.SubWindows
     public partial class Global_InputOneColumnData : Window
     {
         Action<string> afterDataInputed = null;
+        Action<string> afterClose = null;
 
         public Global_InputOneColumnData(Action<string> afterDataInputed, string prevData = "",
-            string windowTitle="항목 입력", string tbxToolTip="항목을 입력합니다")
+            string windowTitle="항목 입력", string tbxToolTip="항목을 입력합니다", Action<string> afterClose = null)
         {
             InitializeComponent();
             TbxData.Text = prevData;
             this.afterDataInputed = afterDataInputed;
+            this.afterClose = afterClose;
 
             this.Title = windowTitle;
             TbxData.ToolTip = tbxToolTip;
@@ -28,6 +30,7 @@ namespace LORModingBase.SubWindows
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
+            afterClose?.Invoke(TbxData.Text);
             this.Close();
         }
     }

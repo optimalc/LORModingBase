@@ -56,6 +56,42 @@ namespace LORModingBase.SubWindows
                         itemToLoad.Add(eachDir.Split('\\').Last());
                     });
 
+                    this.afterSelect = (string selectedDirName) =>
+                    {
+                        DM.Config.ChangeWorkingDirectory(selectedDirName);
+                        this.Close();
+                    };
+
+                    this.afterAdd = () =>
+                    {
+                        new SubWindows.Global_InputOneColumnData(null, afterClose:(string inputedName) =>
+                        {
+                            if(!Directory.Exists($"{DirToSearch}\\{inputedName}"))
+                            {
+                                Directory.CreateDirectory($"{DirToSearch}\\{inputedName}");
+                                LbxItems.Items.Add(inputedName);
+                            }
+                        }, windowTitle: "생성할 모드명을 입력", tbxToolTip: "생성시킬 모드명을 입력합니다.").ShowDialog();
+                    };
+
+                    this.afterEdit = (string selectedName) =>
+                    {
+                        new SubWindows.Global_InputOneColumnData(null, afterClose: (string inputedName) =>
+                        {
+                            if (Directory.Exists($"{DirToSearch}\\{selectedName}"))
+                            {
+                                Directory.Move($"{DirToSearch}\\{selectedName}", $"{DirToSearch}\\{inputedName}");
+                                LbxItems.Items[LbxItems.Items.IndexOf(selectedName)] = inputedName;
+                            }
+                        }, prevData: selectedName,  windowTitle: "편집된 모드명을 입력", tbxToolTip: "편집된 모드명을 입력합니다.").ShowDialog();
+                    };
+
+                    this.afterDelete = (string selectedName) =>
+                    {
+                        Directory.Delete($"{DirToSearch}\\{selectedName}", true);
+                        LbxItems.Items.Remove(selectedName);
+                    };
+
                     break;
             }
             itemToLoad.ForEach((string item) =>
