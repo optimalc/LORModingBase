@@ -139,6 +139,16 @@ namespace LORModingBase.DM
             else
                 return $"Passive Name : {passiveName}";
         }
+    
+        /// <summary>
+        /// Get description for resistName
+        /// </summary>
+        /// <param name="resistName">Resist name to use</param>
+        /// <returns>Localized resist name</returns>
+        public static string GetDescriptionForResist(string resistName)
+        {
+            return GetDescriptionForETC($"ui_resistance_{resistName.ToLower()}");
+        }
     }
 
     /// <summary>

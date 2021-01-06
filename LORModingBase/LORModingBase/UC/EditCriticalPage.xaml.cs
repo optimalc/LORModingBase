@@ -62,19 +62,19 @@ namespace LORModingBase.UC
                     BtnSkin.ToolTip = innerText;
                 });
 
-                Btn_SResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist");
-                Btn_SResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist");
-                Btn_PResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist");
-                Btn_PResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist");
-                Btn_HResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist");
-                Btn_HResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist");
+                Btn_SResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist"));
+                Btn_SResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist"));
+                Btn_PResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist"));
+                Btn_PResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist"));
+                Btn_HResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist"));
+                Btn_HResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist"));
 
-                Btn_SBResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist");
-                Btn_SBResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist");
-                Btn_PBResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist");
-                Btn_PBResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist");
-                Btn_HBResist.Content = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist");
-                Btn_HBResist.Tag = innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist");
+                Btn_SBResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist"));
+                Btn_SBResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist"));
+                Btn_PBResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist"));
+                Btn_PBResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist"));
+                Btn_HBResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist"));
+                Btn_HBResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist"));
 
                 InitLbxPassives();
                 #endregion
@@ -621,7 +621,11 @@ namespace LORModingBase.UC
             }
 
             if (loopButton.Name.Contains("Resist"))
+            {
                 innerCriticalPageNode.SetXmlInfoByPath($"EquipEffect/{loopButton.Name.Split('_').Last()}", loopButton.Tag.ToString());
+                loopButton.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(loopButton.Tag.ToString());
+                loopButton.ToolTip = DM.LocalizedGameDescriptions.GetDescriptionForResist(loopButton.Tag.ToString());
+            }
             else if (loopButton.Name == "BtnRangeType")
             {
                 string RANGE_NAME = (string.IsNullOrEmpty(loopButton.Tag.ToString()) ? "Near" : loopButton.Tag.ToString());
