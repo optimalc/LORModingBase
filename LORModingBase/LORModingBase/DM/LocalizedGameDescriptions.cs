@@ -34,25 +34,6 @@ namespace LORModingBase.DM
             string LOC_CHAPTER_NAME = GetDescriptionForETC($"ui_maintitle_citystate_{chapterNum}");
             return (string.IsNullOrEmpty(LOC_CHAPTER_NAME) ? $"Chpater : {chapterNum}" : LOC_CHAPTER_NAME);
         }
-
-        /// <summary>
-        /// Get description of Book
-        /// </summary>
-        /// <param name="bookID">Book id to use</param>
-        /// <returns>Book description</returns>
-        public static string GetDescriptionForBook(string bookID)
-        {
-            if (string.IsNullOrEmpty(bookID)) return "";
-            List<XmlDataNode> bookNodes = DM.GameInfos.localizeInfos["BattlesCards"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("cardDescList/BattleCardDesc",
-                attributeToCheck: new Dictionary<string, string>() { { "ID", bookID } });
-            if (bookNodes.Count > 0)
-            {
-                string LOCAL_BOOK_NAME = bookNodes[0].GetInnerTextByPath("LocalizedName");
-                return string.IsNullOrEmpty(LOCAL_BOOK_NAME) ? $"Book ID : {bookID}" : LOCAL_BOOK_NAME;
-            }
-            else
-                return $"Book ID : {bookID}";
-        }
     
         /// <summary>
         /// Get description of ETC name
@@ -180,12 +161,12 @@ namespace LORModingBase.DM
             if (foundDataNodes.Count > 0)
             {
                 XmlDataNode STAGE_NODE = foundDataNodes[0];
-                string BOOK_ID = STAGE_NODE.GetAttributesSafe("ID");
+                string TEXT_ID = STAGE_NODE.GetInnerTextByPath("TextId");
                 string CHPATER_NUM = STAGE_NODE.GetInnerTextByPath("Chapter");
 
-                string BOOK_DES = LocalizedGameDescriptions.GetDescriptionForBook(BOOK_ID);
+                string BOOK_DES = LocalizedGameDescriptions.GetDescriptionForBooks(TEXT_ID);
                 string CHAPTER_DES = LocalizedGameDescriptions.GetDescriptionForChapter(CHPATER_NUM);
-                return $"{CHAPTER_DES} / {BOOK_DES}:{BOOK_ID}";
+                return $"{CHAPTER_DES} / {BOOK_DES}:{bookID}";
             }
             else
                 return $"Book ID : {bookID}";
