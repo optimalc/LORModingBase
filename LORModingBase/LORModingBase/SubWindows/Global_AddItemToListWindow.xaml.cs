@@ -124,7 +124,7 @@ namespace LORModingBase.SubWindows
                             LbxItems.Items.Add(selectItem);
                             break;
                         default:
-                            if (selectItem.ToLower().Contains(LbxSearchType.SelectedIndex.ToString().ToLower()))
+                            if (selectItem.ToLower().Contains(LbxSearchType.SelectedItem.ToString().ToLower()))
                                 LbxItems.Items.Add(selectItem);
                             break;
                     }

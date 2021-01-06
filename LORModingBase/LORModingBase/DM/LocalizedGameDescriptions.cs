@@ -307,5 +307,19 @@ namespace LORModingBase.DM
             });
             return passives;
         }
+    
+        /// <summary>
+        /// Get localized '[On Use]' string
+        /// </summary>
+        /// <returns></returns>
+        public static string GetOnUseString()
+        {
+            List<XmlDataNode> onUsePassive = DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
+             attributeToCheck: new Dictionary<string, string>() { { "ID", "recoverHp1" } });
+            if (onUsePassive.Count > 0)
+                return onUsePassive[0].GetInnerTextByPath("Desc").Split('[')[1].Split(']')[0];
+            else
+                return "";
+        }
     }
 }

@@ -104,9 +104,13 @@ namespace LORModingBase.SubWindows
                 case InputInfoWithSearchWindow_PRESET.CARD_ABILITES:
                     DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
                     {
-                        string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
+                        string ABILITIY_ID = abilityNode.GetAttributesSafe("ID"); 
                         if (!string.IsNullOrEmpty(ABILITIY_ID))
-                            selectItems.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID)}:{ABILITIY_ID}");
+                        {
+                            string ABILITY_DES = DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID);
+                            if(ABILITY_DES.Contains(DM.GetLocalizedFilterList.GetOnUseString()))
+                                selectItems.Add($"{ABILITY_DES}:{ABILITIY_ID}");
+                        }
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
@@ -115,7 +119,11 @@ namespace LORModingBase.SubWindows
                     {
                         string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(ABILITIY_ID))
-                            selectItems.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID)}:{ABILITIY_ID}");
+                        {
+                            string ABILITY_DES = DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID);
+                            if (!ABILITY_DES.Contains(DM.GetLocalizedFilterList.GetOnUseString()))
+                                selectItems.Add($"{ABILITY_DES}:{ABILITIY_ID}");
+                        }
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
@@ -165,7 +173,7 @@ namespace LORModingBase.SubWindows
                             LbxItems.Items.Add(selectItem);
                             break;
                         default:
-                            if (selectItem.ToLower().Contains(LbxSearchType.SelectedIndex.ToString().ToLower()))
+                            if (selectItem.ToLower().Contains(LbxSearchType.SelectedItem.ToString().ToLower()))
                                 LbxItems.Items.Add(selectItem);
                             break;
                     }
