@@ -61,6 +61,16 @@
                 <Label Grid.Column="0" Content="&lt; Language &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <TextBox x:Name="TbxProgramLanguage" Grid.Column="1" Text="" ToolTip="Change program language (Restart required)" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewMouseLeftButtonDown="OptionWindowTextBoxLeftButtonDownEvents"/>
             </Grid>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="&lt; Developer Mode &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <CheckBox x:Name="CbxDeveloperMode" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="OptionWindowClickCheckboxEvents"
+                          ToolTip="Enable developer mode for a more advanced option (Restart required)"/>
+            </Grid>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.Background>

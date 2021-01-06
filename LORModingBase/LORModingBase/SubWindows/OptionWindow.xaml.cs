@@ -40,6 +40,7 @@ namespace LORModingBase.SubWindows
             }
 
             CbxDirectBaseModeExport.IsChecked = DM.Config.config.isDirectBaseModeExport;
+            CbxDeveloperMode.IsChecked = DM.Config.config.isDeveloperMode;
             TbxProgramLanguage.Text = DM.LocalizeCore.GetLocalizeOption()[DM.Config.config.localizeOption];
         }
         #endregion
@@ -96,6 +97,12 @@ namespace LORModingBase.SubWindows
                         DM.Config.config.isDirectBaseModeExport = (bool)CbxDirectBaseModeExport.IsChecked;
                         DM.Config.SaveData();
                         InitSettingUIs();
+                        break;
+                    case "CbxDeveloperMode":
+                        DM.Config.config.isDeveloperMode = (bool)CbxDeveloperMode.IsChecked;
+                        DM.Config.SaveData();
+                        System.Windows.Forms.Application.Restart();
+                        System.Windows.Application.Current.Shutdown();
                         break;
                 }
             }

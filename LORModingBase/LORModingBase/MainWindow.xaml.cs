@@ -62,7 +62,13 @@ namespace LORModingBase
                 Directory.CreateDirectory(DS.PROGRAM_PATHS.DIC_EXPORT_DATAS);
 
             if (File.Exists(DS.PROGRAM_PATHS.VERSION))
-                this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)}";
+            {
+                if(DM.Config.config.isDeveloperMode)
+                    this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)} (Developer Mode)";
+                else
+                    this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)}";
+
+            }
 
             DM.GameInfos.LoadAllDatas();
 
