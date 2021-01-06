@@ -176,7 +176,7 @@ namespace LORModingBase
             {
                 if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
                 {
-                    Tools.MessageBoxTools.ShowErrorMessageBox("작업 공간이 지정되어 있지 않습니다.", "미지정 오류");
+                    MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
                     return;
                 }
 
@@ -257,7 +257,7 @@ namespace LORModingBase
             {
                 if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
                 {
-                    Tools.MessageBoxTools.ShowErrorMessageBox("작업 공간이 지정되어 있지 않습니다.", "미지정 오류");
+                    MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
                     return;
                 }
 

@@ -70,12 +70,12 @@ namespace LORModingBase.UC
                     GldChangeAttackType.Visibility = Visibility.Visible;
                     break;
                 case "BtnEffect":
-                    //new SubWindows.InputEffectWindow((string effectDes) =>
-                    //{
-                    //    innerDice.script = effectDes;
-                    //    UpdateEffectGrid();
-                    //}, isCardEffect: false).ShowDialog();
-                    UpdateEffectGrid();
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        innerBehaviourNode.attribute["Script"] = selectedItem;
+                        UpdateEffectGrid();
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.DICE_ABILITES).ShowDialog();
                     break;
                 case "BtnDelete":
                     innerCardCardNode.ActionXmlDataNodesByPath("BehaviourList", (DM.XmlDataNode behaviourListNode) =>

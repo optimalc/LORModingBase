@@ -105,32 +105,11 @@
     <Compile Include="SubWindows\Global_ListSeleteWindow.xaml.cs">
       <DependentUpon>Global_ListSeleteWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\InputEffectWindow.xaml.cs">
-      <DependentUpon>InputEffectWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputCardImageWindow.xaml.cs">
-      <DependentUpon>InputCardImageWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputExtraDataForCardWindow.xaml.cs">
-      <DependentUpon>InputExtraDataForCardWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SubWindows\OptionWindow.xaml.cs">
       <DependentUpon>OptionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\InputGameCard.xaml.cs">
       <DependentUpon>InputGameCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputGameCriticalPage.xaml.cs">
-      <DependentUpon>InputGameCriticalPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputChapterWindow.xaml.cs">
-      <DependentUpon>InputChapterWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputDropBookInfosWindow.xaml.cs">
-      <DependentUpon>InputDropBookInfosWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputCriticalBookDescription.xaml.cs">
-      <DependentUpon>InputCriticalBookDescription.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\InputPassiveDirectlyWindow.xaml.cs">
       <DependentUpon>InputPassiveDirectlyWindow.xaml</DependentUpon>
@@ -201,18 +180,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SubWindows\InputEffectWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputCardImageWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputExtraDataForCardWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
     <Page Include="SubWindows\OptionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -220,22 +187,6 @@
     <Page Include="SubWindows\InputGameCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputGameCriticalPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputChapterWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SubWindows\InputDropBookInfosWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputCriticalBookDescription.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubWindows\InputPassiveDirectlyWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

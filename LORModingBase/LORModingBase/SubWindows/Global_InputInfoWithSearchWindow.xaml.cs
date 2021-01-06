@@ -88,6 +88,22 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(ARTWORK_NAME);
                     });
                     break;
+                case InputInfoWithSearchWindow_PRESET.CARD_ABILITES:
+                    DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
+                    {
+                        string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(ABILITIY_ID))
+                            selectItems.Add(ABILITIY_ID);
+                    });
+                    break;
+                case InputInfoWithSearchWindow_PRESET.DICE_ABILITES:
+                    DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
+                    {
+                        string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(ABILITIY_ID))
+                            selectItems.Add(ABILITIY_ID);
+                    });
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -162,6 +178,8 @@ namespace LORModingBase.SubWindows
         PASSIVE,
         CRITICAL_BOOKS,
 
-        CARD_ARTWORK
+        CARD_ARTWORK,
+        CARD_ABILITES,
+        DICE_ABILITES
     };
 }

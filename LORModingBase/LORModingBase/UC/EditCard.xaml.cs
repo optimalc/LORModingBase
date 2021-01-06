@@ -343,8 +343,10 @@ namespace LORModingBase.UC
                 case "BtnCardEffect":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
-                   
-                    }, SubWindows.InputInfoWithSearchWindow_PRESET.BOOK_ICON).ShowDialog();
+                        innerCardNode.SetXmlInfoByPath("Script", selectedItem);
+                        BtnCardEffect.Content = selectedItem;
+                        BtnCardEffect.ToolTip = selectedItem;
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ABILITES).ShowDialog();
                     break;
                 case "BtnAddDice":
                     innerCardNode.GetXmlDataNodesByPath("BehaviourList").ForEachSafe((DM.XmlDataNode behaviourListNode) =>
