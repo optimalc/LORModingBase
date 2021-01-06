@@ -16,6 +16,11 @@ namespace LORModingBase.DM
 
         public static DS.GAME_RESOURCE_PATHS GAME_RESOURCE_PATHS = new DS.GAME_RESOURCE_PATHS();
 
+        /// <summary>
+        /// Current working directory
+        /// </summary>
+        public static string CurrentWorkingDirectory = "";
+
 
         #region Save / Load config data
         /// <summary>
@@ -71,5 +76,17 @@ namespace LORModingBase.DM
             InitGameResourcePaths();
         }
         #endregion
+
+        /// <summary>
+        /// Change working direcotry with given mode name
+        /// </summary>
+        /// <param name="modeName">Mode name to use</param>
+        public static void ChangeWorkingDirectory(string modeName)
+        {
+            if (DM.Config.config.isDirectBaseModeExport)
+                CurrentWorkingDirectory = $"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\{modeName}";
+            else
+                CurrentWorkingDirectory = $"{DS.PROGRAM_PATHS.DIC_EXPORT_DATAS}\\{modeName}";
+        }
     }
 }

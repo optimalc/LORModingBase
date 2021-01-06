@@ -40,8 +40,6 @@ namespace LORModingBase.SubWindows
             }
 
             CbxDirectBaseModeExport.IsChecked = DM.Config.config.isDirectBaseModeExport;
-            CbxExecuteAfterExport.IsChecked = DM.Config.config.isExecuteAfterExport;
-
             TbxProgramLanguage.Text = DM.LocalizeCore.GetLocalizeOption()[DM.Config.config.localizeOption];
         }
         #endregion
@@ -96,11 +94,6 @@ namespace LORModingBase.SubWindows
                 {
                     case "CbxDirectBaseModeExport":
                         DM.Config.config.isDirectBaseModeExport = (bool)CbxDirectBaseModeExport.IsChecked;
-                        DM.Config.SaveData();
-                        InitSettingUIs();
-                        break;
-                    case "CbxExecuteAfterExport":
-                        DM.Config.config.isExecuteAfterExport = (bool)CbxExecuteAfterExport.IsChecked;
                         DM.Config.SaveData();
                         InitSettingUIs();
                         break;

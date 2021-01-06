@@ -113,30 +113,13 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="50*"/>
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.Background>
                     <ImageBrush ImageSource="./Resources/MenuBg.png"/>
                 </Grid.Background>
-                <Viewbox Grid.Column="0" Stretch="Fill" Margin="10">
-                    <Button x:Name="BtnSave" Content="[내보내기]" ToolTip="설정된 정보들로 모드 폴더를 생성합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
-                </Viewbox>
-                <Viewbox Grid.Column="1" Stretch="Fill" Margin="10">
-                    <Button x:Name="BtnLoad" Content="[불러오기]" ToolTip="특정 모드 폴더의 정보들을 불러옵니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
-                </Viewbox>
-                <Grid Grid.Column="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="23*"/>
-                        <ColumnDefinition Width="80*"/>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox Grid.Column="0" Stretch="Fill" Margin="0,5">
-                        <Label Name="LblModeName" Content="모드명 :" Style="{StaticResource StyLbl}"/>
-                    </Viewbox>
-                    <TextBox x:Name="TbxModeName" Grid.Column="1" Text="TEST_MODE" ToolTip="생성시에 사용할 모드명을 입력합니다" Style="{StaticResource StyTbx}"/>
-                </Grid>
+                <Button x:Name="BtnSetWorkingSpace" Content="[작업 공간 설정하기]" ToolTip="작업 공간을 설정합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents" HorizontalAlignment="Left" Padding="10,1,1,1"/>
                 <Grid Grid.Column="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="58*"/>

@@ -104,50 +104,9 @@ namespace LORModingBase
                         BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
                         break;
 
-                    case "BtnSave":
-                        try
-                        {
-                            if (string.IsNullOrEmpty(TbxModeName.Text))
-                                throw new Exception(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_1"));
-
-                            DM.CheckDatas.CheckAllDatas();
-                            string MOD_DIR_TO_USE = DM.ExportDatas.ExportAllDatas(TbxModeName.Text);
-
-                            Tools.MessageBoxTools.ShowInfoMessageBox(
-                                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Info_1"),
-                                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Info_2"));
-                            Tools.ProcessTools.OpenExplorer(MOD_DIR_TO_USE);
-
-                            if (DM.Config.config.isExecuteAfterExport)
-                                MainWindowButtonClickEvents(BtnStartGame, null);
-                        }
-                        catch (Exception ex)
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox(
-                                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_2"),
-                                ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_3"));
-                        }
-                        break;
-                    case "BtnLoad":
-                        try
-                        {
-                            Tools.Dialog.SelectDirectory((string selectedDir) =>
-                            {
-                                DM.ImportDatas.ImportAllDatas(selectedDir);
-                                Tools.MessageBoxTools.ShowInfoMessageBox(
-                                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Info_3")
-                                    ,DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Info_2"));
-
-                                InitSplCriticalPage();
-                                InitSplCards();
-                            }, $"{Tools.ProcessTools.GetWorkingDirectory()}\\exportedModes");
-                        }
-                        catch (Exception ex)
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox(
-                                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_4"),
-                                ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_5"));
-                        }
+                    case "BtnSetWorkingSpace":
+                        new SubWindows.Global_ListSeleteWithEditWindow(null, null, null, null,
+                            SubWindows.Global_ListSeleteWithEditWindow_PRESET.WORKING_SPACE).ShowDialog();
                         break;
 
                     case "BtnStartGame":

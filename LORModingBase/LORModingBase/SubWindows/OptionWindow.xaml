@@ -58,16 +58,6 @@
                     <ColumnDefinition Width="60*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="LblExecuteAfterExport" Grid.Column="0" Content="&lt; 내보내기 후 게임 자동 실행 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
-                <CheckBox x:Name="CbxExecuteAfterExport" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-                          ToolTip="체크를 하면 내보내기 후 게임을 자동으로 실행시킵니다" Click="OptionWindowClickCheckboxEvents"/>
-            </Grid>
-            <Grid Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40*"/>
-                    <ColumnDefinition Width="60*"/>
-                </Grid.ColumnDefinitions>
-
                 <Label Grid.Column="0" Content="&lt; Language &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <TextBox x:Name="TbxProgramLanguage" Grid.Column="1" Text="" ToolTip="Change program language (Restart required)" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewMouseLeftButtonDown="OptionWindowTextBoxLeftButtonDownEvents"/>
             </Grid>

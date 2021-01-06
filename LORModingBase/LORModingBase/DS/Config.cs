@@ -10,9 +10,7 @@
         /// </summary>
         public string LORFolderPath = "";
 
-        public bool isDirectBaseModeExport = false;
-
-        public bool isExecuteAfterExport = false;
+        public bool isDirectBaseModeExport = true;
 
         public bool isLogPlusMod = false;
 
