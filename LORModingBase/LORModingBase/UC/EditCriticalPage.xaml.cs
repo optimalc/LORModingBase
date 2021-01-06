@@ -54,12 +54,12 @@ namespace LORModingBase.UC
                 });
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("BookIcon", (string innerText) =>
                 {
-                    BtnBookIcon.Content = innerText;
+                    BtnBookIcon.Content = DM.GetLocalizedFilterList.ViewNameFilter(innerText);
                     BtnBookIcon.ToolTip = innerText;
                 });
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("CharacterSkin", (string innerText) =>
                 {
-                    BtnSkin.Content = innerText;
+                    BtnSkin.Content = DM.GetLocalizedFilterList.ViewNameFilter(innerText);
                     BtnSkin.ToolTip = innerText;
                 });
 
@@ -226,7 +226,7 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCriticalPageNode.SetXmlInfoByPath("BookIcon", selectedItem);
-                        BtnBookIcon.Content = selectedItem;
+                        BtnBookIcon.Content = DM.GetLocalizedFilterList.ViewNameFilter(selectedItem);
                         BtnBookIcon.ToolTip = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.BOOK_ICON).ShowDialog();
                     break;
@@ -234,7 +234,7 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCriticalPageNode.SetXmlInfoByPath("CharacterSkin", selectedItem);
-                        BtnSkin.Content = selectedItem;
+                        BtnSkin.Content = DM.GetLocalizedFilterList.ViewNameFilter(selectedItem);
                         BtnSkin.ToolTip = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN).ShowDialog();
                     break;

@@ -28,6 +28,7 @@ namespace LORModingBase.UC
         public EditCard(DM.XmlDataNode innerCardNode, Action initStack)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.CARD_INFO);
             this.innerCardNode = innerCardNode;
             this.initStack = initStack;
 
@@ -56,13 +57,13 @@ namespace LORModingBase.UC
 
             innerCardNode.ActionIfInnertTextIsNotNullOrEmpty("Artwork", (string innerText) =>
             {
-                BtnCardImage.Content = innerText;
+                BtnCardImage.Content = DM.GetLocalizedFilterList.ViewNameFilter(innerText);
                 BtnCardImage.ToolTip = innerText;
             });
 
             innerCardNode.ActionIfInnertTextIsNotNullOrEmpty("Script", (string innerText) =>
             {
-                BtnCardEffect.Content = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(innerText)}:{innerText}";
+                BtnCardEffect.Content = DM.GetLocalizedFilterList.ViewNameFilter(innerText);
                 BtnCardEffect.ToolTip = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(innerText)}:{innerText}";
             });
             InitSqlDices();
@@ -474,7 +475,7 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCardNode.SetXmlInfoByPath("Artwork", selectedItem);
-                        BtnCardImage.Content = selectedItem;
+                        BtnCardImage.Content = DM.GetLocalizedFilterList.ViewNameFilter(selectedItem);
                         BtnCardImage.ToolTip = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ARTWORK).ShowDialog();
                     break;
@@ -482,7 +483,7 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCardNode.SetXmlInfoByPath("Script", selectedItem);
-                        BtnCardEffect.Content = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(selectedItem)}:{selectedItem}";
+                        BtnCardEffect.Content = DM.GetLocalizedFilterList.ViewNameFilter(selectedItem);
                         BtnCardEffect.ToolTip = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(selectedItem)}:{selectedItem}";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ABILITES).ShowDialog();
                     break;

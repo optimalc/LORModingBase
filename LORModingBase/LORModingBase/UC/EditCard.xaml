@@ -45,9 +45,13 @@
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
 
-                <Label x:Name="LblCardName" Grid.Column="0" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Label x:Name="LblCardName" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
                 <TextBox x:Name="TbxCardName" Grid.Column="1" Text="" ToolTip="전투책장의 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
-                <Label x:Name="LblCardUniqueID" Grid.Column="2" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="2" Stretch="Fill">
+                    <Label x:Name="LblCardUniqueID" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
                 <TextBox x:Name="TbxCardUniqueID" Grid.Column="3" Text="" ToolTip="전투책장의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
             </Grid>
             <Grid Grid.Row="2">
@@ -56,10 +60,14 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnCardImage" Grid.Column="0" Content="카드 이미지 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장에 표시될 이미지를 선택합니다" Click="SelectItemButtonEvents"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Button x:Name="BtnCardImage" Content="카드 이미지 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장에 표시될 이미지를 선택합니다" Click="SelectItemButtonEvents"/>
+                </Viewbox>
 
                 <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnCardEffect" Grid.Column="1" Content="카드 효과 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장 자체의 효과를 선택합니다" Click="SelectItemButtonEvents"/>
+                <Viewbox Grid.Column="3" Stretch="Fill">
+                    <Button x:Name="BtnCardEffect" Content="카드 효과 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장 자체의 효과를 선택합니다" Click="SelectItemButtonEvents"/>
+                </Viewbox>
             </Grid>
             <Grid Grid.Row="3">
                 <Grid.RowDefinitions>
@@ -71,7 +79,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnAddDice" Grid.Column="0" Content="▼ 주사위 추가 ▼" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장에 주사위를 추가합니다" Click="SelectItemButtonEvents"/>
+                    <Viewbox Grid.Column="3" Stretch="Fill">
+                        <Button x:Name="BtnAddDice" Grid.Column="0" Content="▼ 주사위 추가 ▼" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장에 주사위를 추가합니다" Click="SelectItemButtonEvents"/>
+                    </Viewbox>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Rectangle Grid.Column="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>

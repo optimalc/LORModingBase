@@ -30,6 +30,7 @@ namespace LORModingBase.UC
             this.innerBehaviourNode = innerBehaviourNode;
             this.stackInitFunc = stackInitFunc;
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.CARD_INFO);
 
             TbxMinDice_Min.Text = innerBehaviourNode.GetAttributesSafe("Min");
             TbxMaxDice_Dice.Text = innerBehaviourNode.GetAttributesSafe("Dice");

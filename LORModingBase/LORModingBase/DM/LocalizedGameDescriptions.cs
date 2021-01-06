@@ -331,5 +331,18 @@ namespace LORModingBase.DM
             else
                 return "";
         }
+    
+        /// <summary>
+        /// Get filtered string for all UI
+        /// </summary>
+        /// <param name="nameToUse"></param>
+        /// <returns></returns>
+        public static string ViewNameFilter(string nameToUse)
+        {
+            if (nameToUse.Length < 20)
+                return nameToUse.PadRight(20 - nameToUse.Length);
+            else
+                return nameToUse.Substring(0, 20);
+        }
     }
 }
