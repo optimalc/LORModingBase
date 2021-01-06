@@ -57,14 +57,18 @@ namespace LORModingBase.UC
 
             innerCardNode.ActionIfInnertTextIsNotNullOrEmpty("Artwork", (string innerText) =>
             {
-                BtnCardImage.Content = DM.GetLocalizedFilterList.ViewNameFilter(innerText);
                 BtnCardImage.ToolTip = innerText;
+
+                BtnCardImage.Content = "          ";
+                LblCardImage.Content = innerText;
             });
 
             innerCardNode.ActionIfInnertTextIsNotNullOrEmpty("Script", (string innerText) =>
             {
-                BtnCardEffect.Content = DM.GetLocalizedFilterList.ViewNameFilter(innerText);
                 BtnCardEffect.ToolTip = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(innerText)}:{innerText}";
+
+                BtnCardEffect.Content = "          ";
+                LblCardEffect.Content = innerText;
             });
             InitSqlDices();
 
@@ -475,16 +479,20 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCardNode.SetXmlInfoByPath("Artwork", selectedItem);
-                        BtnCardImage.Content = DM.GetLocalizedFilterList.ViewNameFilter(selectedItem);
                         BtnCardImage.ToolTip = selectedItem;
+
+                        BtnCardImage.Content = "          ";
+                        LblCardImage.Content = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ARTWORK).ShowDialog();
                     break;
                 case "BtnCardEffect":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCardNode.SetXmlInfoByPath("Script", selectedItem);
-                        BtnCardEffect.Content = DM.GetLocalizedFilterList.ViewNameFilter(selectedItem);
                         BtnCardEffect.ToolTip = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(selectedItem)}:{selectedItem}";
+
+                        BtnCardEffect.Content = "          ";
+                        LblCardEffect.Content = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ABILITES).ShowDialog();
                     break;
                 case "BtnAddDice":

@@ -49,6 +49,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblEpisode" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="1" Stretch="Fill" Margin="55,7">
                     <Button x:Name="BtnEpisode" Content="적용할 에피소드를 선택" ToolTip="핵심책장과 관련된 에피소드를 설정합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                 </Viewbox>
@@ -130,11 +131,13 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblBookIconViewLabel" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="0" Stretch="Fill" Margin="12,7">
                     <Button x:Name="BtnBookIcon" Content="책 아이콘 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="핵심 책장의 이미지를 선택합니다"/>
                 </Viewbox>
 
                 <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblSkin" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="1" Stretch="Fill" Margin="8,7">
                     <Button x:Name="BtnSkin" Content="캐릭터 스킨 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="핵심 책장과 관련된 캐릭터 스킨을 선택합니다"/>
                 </Viewbox>

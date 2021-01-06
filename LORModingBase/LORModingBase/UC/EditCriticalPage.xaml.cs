@@ -49,18 +49,24 @@ namespace LORModingBase.UC
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("Episode", (string innerText) =>
                 {
                     string STAGE_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(innerText);
-                    BtnEpisode.Content = STAGE_DES;
                     BtnEpisode.ToolTip = STAGE_DES;
+
+                    LblEpisode.Content = STAGE_DES;
+                    BtnEpisode.Content = "          ";
                 });
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("BookIcon", (string innerText) =>
                 {
-                    BtnBookIcon.Content = DM.GetLocalizedFilterList.ViewNameFilter(innerText);
                     BtnBookIcon.ToolTip = innerText;
+
+                    LblBookIconViewLabel.Content = innerText;
+                    BtnBookIcon.Content = "          ";
                 });
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("CharacterSkin", (string innerText) =>
                 {
-                    BtnSkin.Content = DM.GetLocalizedFilterList.ViewNameFilter(innerText);
                     BtnSkin.ToolTip = innerText;
+
+                    LblSkin.Content = innerText;
+                    BtnSkin.Content = "          ";
                 });
 
                 Btn_SResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist"));
@@ -218,24 +224,31 @@ namespace LORModingBase.UC
                         innerCriticalPageNode.SetXmlInfoByPath("Episode", selectedItem);
 
                         string STAGE_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(selectedItem);
-                        BtnEpisode.Content = STAGE_DES;
                         BtnEpisode.ToolTip = STAGE_DES;
+
+                        LblEpisode.Content = STAGE_DES;
+                        BtnEpisode.Content = "          ";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
                 case "BtnBookIcon":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCriticalPageNode.SetXmlInfoByPath("BookIcon", selectedItem);
-                        BtnBookIcon.Content = DM.GetLocalizedFilterList.ViewNameFilter(selectedItem);
                         BtnBookIcon.ToolTip = selectedItem;
+
+                        LblBookIconViewLabel.Content = selectedItem;
+                        BtnBookIcon.Content = "          ";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.BOOK_ICON).ShowDialog();
                     break;
                 case "BtnSkin":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerCriticalPageNode.SetXmlInfoByPath("CharacterSkin", selectedItem);
-                        BtnSkin.Content = DM.GetLocalizedFilterList.ViewNameFilter(selectedItem);
+
                         BtnSkin.ToolTip = selectedItem;
+
+                        LblSkin.Content = selectedItem;
+                        BtnSkin.Content = "          ";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN).ShowDialog();
                     break;
 

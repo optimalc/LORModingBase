@@ -60,11 +60,13 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblCardImage" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="0" Stretch="Fill">
                     <Button x:Name="BtnCardImage" Content="카드 이미지 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장에 표시될 이미지를 선택합니다" Click="SelectItemButtonEvents"/>
                 </Viewbox>
 
                 <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblCardEffect" Grid.Column="3" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="3" Stretch="Fill">
                     <Button x:Name="BtnCardEffect" Content="카드 효과 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="전투 책장 자체의 효과를 선택합니다" Click="SelectItemButtonEvents"/>
                 </Viewbox>
