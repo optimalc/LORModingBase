@@ -324,7 +324,6 @@ namespace LORModingBase.UC
         }
         #endregion
 
-        #region Left side buttons
         /// <summary>
         /// Button events that need search window
         /// </summary>
@@ -333,13 +332,15 @@ namespace LORModingBase.UC
             Button btn = sender as Button;
             switch (btn.Name)
             {
-                case "BtnCardImage_Click":
+                case "BtnCardImage":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
-
-                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
+                        innerCardNode.SetXmlInfoByPath("Artwork", selectedItem);
+                        BtnCardImage.Content = selectedItem;
+                        BtnCardImage.ToolTip = selectedItem;
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ARTWORK).ShowDialog();
                     break;
-                case "BtnCardEffect_Click":
+                case "BtnCardEffect":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                    
@@ -354,8 +355,6 @@ namespace LORModingBase.UC
                     break;
             }
         }
-        #endregion
-
 
         /// <summary>
         /// Reflect text chagnes in TextBox

@@ -85,7 +85,7 @@
           MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                     <Border 
             x:Name="DropDownBorder"
-            Background="{StaticResource WindowBackgroundBrush}"
+            Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"
             BorderThickness="1"/>
                                     <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
                                         <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />

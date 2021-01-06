@@ -79,6 +79,15 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(EQ_BOOK_ID);
                     });
                     break;
+
+                case InputInfoWithSearchWindow_PRESET.CARD_ARTWORK:
+                    DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card/Artwork", (DM.XmlDataNode artworkNode) =>
+                    {
+                        string ARTWORK_NAME = artworkNode.innerText;
+                        if (!string.IsNullOrEmpty(ARTWORK_NAME))
+                            selectItems.Add(ARTWORK_NAME);
+                    });
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -151,6 +160,8 @@ namespace LORModingBase.SubWindows
         BOOK_ICON,
         CHARACTER_SKIN,
         PASSIVE,
-        CRITICAL_BOOKS
+        CRITICAL_BOOKS,
+
+        CARD_ARTWORK
     };
 }
