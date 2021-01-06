@@ -64,10 +64,17 @@ namespace LORModingBase
             if (File.Exists(DS.PROGRAM_PATHS.VERSION))
             {
                 if(DM.Config.config.isDeveloperMode)
+                {
                     this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)} (Developer Mode)";
+                    BtnLanguageReload.Visibility = Visibility.Visible;
+                    BtnProgramReload.Visibility = Visibility.Visible;
+                }
                 else
+                {
                     this.Title = $"LOR Moding Base {File.ReadAllText(DS.PROGRAM_PATHS.VERSION)}";
-
+                    BtnLanguageReload.Visibility = Visibility.Collapsed;
+                    BtnProgramReload.Visibility = Visibility.Collapsed;
+                }
             }
 
             DM.GameInfos.LoadAllDatas();
@@ -152,6 +159,15 @@ namespace LORModingBase
                         new SubWindows.OptionWindow(LoadAllRelatedDatasAfterChangePath).ShowDialog();
                         break;
 
+                    case "BtnLanguageReload":
+                        DM.LocalizeCore.LoadAllDatas();
+                        InitSplCriticalPage();
+                        InitSplCards();
+                        break;
+                    case "BtnProgramReload":
+                        System.Windows.Forms.Application.Restart();
+                        System.Windows.Application.Current.Shutdown();
+                        break;
                 }
             }
             catch (Exception ex)

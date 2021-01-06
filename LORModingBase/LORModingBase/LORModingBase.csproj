@@ -317,5 +317,11 @@
   <ItemGroup>
     <Resource Include="Resources\TypeFar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnReloadLanguage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnReload.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
