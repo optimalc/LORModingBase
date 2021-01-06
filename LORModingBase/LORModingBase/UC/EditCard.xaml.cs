@@ -91,7 +91,7 @@ namespace LORModingBase.UC
 
             #region 드랍되는 곳 체크
             List<string> selectedCardDropTables = new List<string>();
-            DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPath("CardDropTable").ForEachSafe((DM.XmlDataNode cardDropTableID) =>
+            DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPath("DropTable").ForEachSafe((DM.XmlDataNode cardDropTableID) =>
             {
                 if (cardDropTableID.CheckIfGivenPathWithXmlInfoExists("Card", innerCardNode.attribute["ID"]))
                     selectedCardDropTables.Add(cardDropTableID.attribute["ID"]);
@@ -255,6 +255,100 @@ namespace LORModingBase.UC
                     UpdateExtrainfoIcon();
                     break;
                 case "BtnDropCards":
+                    List<string> selectedCardDropTables = new List<string>();
+                    DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPath("DropTable").ForEachSafe((DM.XmlDataNode cardDropTableID) =>
+                    {
+                        if (cardDropTableID.CheckIfGivenPathWithXmlInfoExists("Card", innerCardNode.GetAttributesSafe("ID")))
+                            selectedCardDropTables.Add(cardDropTableID.attribute["ID"]);
+                    });
+
+                    new SubWindows.Global_AddItemToListWindow((string addedDropTableItemID) =>
+                    {
+                        if (DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.CheckIfGivenPathWithXmlInfoExists("DropTable",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", addedDropTableItemID } }))
+                        {
+                            List<DM.XmlDataNode> foundCardDropTableNode = (DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("DropTable",
+                             attributeToCheck: new Dictionary<string, string>() { { "ID", addedDropTableItemID } }));
+                            if (foundCardDropTableNode.Count > 0
+                               && !foundCardDropTableNode[0].CheckIfGivenPathWithXmlInfoExists("Card", innerCardNode.GetAttributesSafe("ID")))
+                                foundCardDropTableNode[0].AddXmlInfoByPath("Card", innerCardNode.GetAttributesSafe("ID"));
+                        }
+                        else
+                        {
+                            DM.XmlDataNode madeDropTableNode = DM.EditGameData_CardInfos.MakeNewStaticCardDropTableBase(addedDropTableItemID);
+                            if (!madeDropTableNode.CheckIfGivenPathWithXmlInfoExists("Card", innerCardNode.GetAttributesSafe("ID")))
+                            {
+                                madeDropTableNode.AddXmlInfoByPath("Card", innerCardNode.GetAttributesSafe("ID"));
+                                DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.subNodes.Add(madeDropTableNode);
+                            }
+                        }
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    }, (string deletedDropTableItemID) => {
+                        if (DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.CheckIfGivenPathWithXmlInfoExists("DropTable",
+                          attributeToCheck: new Dictionary<string, string>() { { "ID", deletedDropTableItemID } }))
+                        {
+                            List<DM.XmlDataNode> foundCardDropTableNode = (DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("DropTable",
+                             attributeToCheck: new Dictionary<string, string>() { { "ID", deletedDropTableItemID } }));
+                            if (foundCardDropTableNode.Count > 0)
+                            {
+                                DM.XmlDataNode FOUND_CARD_DROP_TABLE_NODE = foundCardDropTableNode[0];
+                                FOUND_CARD_DROP_TABLE_NODE.RemoveXmlInfosByPath("Card", innerCardNode.GetAttributesSafe("ID"));
+
+                                List<DM.XmlDataNode> baseCardDropTableNode = DM.GameInfos.staticInfos["CardDropTable"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("DropTable",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", deletedDropTableItemID } });
+                                if (baseCardDropTableNode.Count > 0)
+                                {
+                                    DM.XmlDataNode FOUND_CARD_DROP_TABLE_IN_GAME = baseCardDropTableNode[0];
+
+                                    List<string> foundCardDropTables = new List<string>();
+                                    FOUND_CARD_DROP_TABLE_NODE.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                                    {
+                                        foundCardDropTables.Add(cardNode.innerText);
+                                    });
+
+                                    List<string> foundCardDropTablesInGameItems = new List<string>();
+                                    FOUND_CARD_DROP_TABLE_IN_GAME.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                                    {
+                                        foundCardDropTablesInGameItems.Add(cardNode.innerText);
+                                    });
+
+
+                                    if (foundCardDropTables.Count == foundCardDropTablesInGameItems.Count
+                                        && foundCardDropTables.Except(foundCardDropTablesInGameItems).Count() == 0)
+                                    {
+                                        DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.RemoveXmlInfosByPath("DropTable",
+                                            attributeToCheck: new Dictionary<string, string>() { { "ID", deletedDropTableItemID } }, deleteOnce: true);
+                                    }
+                                }
+                            }
+                            MainWindow.mainWindow.UpdateDebugInfo();
+                        }
+                    }, selectedCardDropTables, SubWindows.AddItemToListWindow_PRESET.DROP_TABLE).ShowDialog();
+
+                    List<string> selectedCardDropTablesToCheck = new List<string>();
+                    DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPath("DropTable").ForEachSafe((DM.XmlDataNode cardDropTableID) =>
+                    {
+                        if (cardDropTableID.CheckIfGivenPathWithXmlInfoExists("Card", innerCardNode.attribute["ID"]))
+                            selectedCardDropTablesToCheck.Add(cardDropTableID.attribute["ID"]);
+                    });
+
+                    if (selectedCardDropTablesToCheck.Count > 0)
+                    {
+                        string extraInfo = "";
+                        selectedCardDropTablesToCheck.ForEach((string dropBookInfo) =>
+                        {
+                            extraInfo += $"{dropBookInfo}\n";
+                        });
+                        extraInfo = extraInfo.TrimEnd('\n');
+
+                        BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+                        BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
+                    }
+                    else
+                    {
+                        BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
+                        BtnDropCards.ToolTip = $"이 전투책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
+                    }
                     break;
                 case "BtnCopyCard":
                     DM.EditGameData_CardInfos.StaticCard.rootDataNode.subNodes.Add(innerCardNode.Copy());
@@ -262,6 +356,38 @@ namespace LORModingBase.UC
                     MainWindow.mainWindow.UpdateDebugInfo();
                     break;
                 case "BtnDelete":
+                    DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPath("DropTable").ForEach((DM.XmlDataNode dropTableNode) =>
+                    {
+                        dropTableNode.RemoveXmlInfosByPath("Card", innerCardNode.GetAttributesSafe("ID"));
+
+                        List<DM.XmlDataNode> baseCardDropTableNode = DM.GameInfos.staticInfos["CardDropTable"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("DropTable",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", dropTableNode.GetAttributesSafe("ID") } });
+                        if (baseCardDropTableNode.Count > 0)
+                        {
+                            DM.XmlDataNode FOUND_CARD_DROP_TABLE_IN_GAME = baseCardDropTableNode[0];
+
+                            List<string> foundCardDropTables = new List<string>();
+                            dropTableNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                            {
+                                foundCardDropTables.Add(cardNode.innerText);
+                            });
+
+                            List<string> foundCardDropTablesInGameItems = new List<string>();
+                            FOUND_CARD_DROP_TABLE_IN_GAME.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                            {
+                                foundCardDropTablesInGameItems.Add(cardNode.innerText);
+                            });
+
+
+                            if (foundCardDropTables.Count == foundCardDropTablesInGameItems.Count
+                                && foundCardDropTables.Except(foundCardDropTablesInGameItems).Count() == 0)
+                            {
+                                DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.RemoveXmlInfosByPath("DropTable",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", dropTableNode.GetAttributesSafe("ID") } }, deleteOnce: true);
+                            }
+                        }
+                    });
+
                     DM.EditGameData_CardInfos.StaticCard.rootDataNode.subNodes.Remove(innerCardNode);
                     initStack();
                     MainWindow.mainWindow.UpdateDebugInfo();
