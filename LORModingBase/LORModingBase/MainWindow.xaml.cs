@@ -220,7 +220,7 @@ namespace LORModingBase
                                     if(dropItems.Contains(selectedItem))
                                     {
                                         if(!DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.CheckIfGivenPathWithXmlInfoExists("BookUse", 
-                                            attributeToCheck:new Dictionary<string, string>() { { "ID", selectedItem} }));
+                                            attributeToCheck:new Dictionary<string, string>() { { "ID", bookUseNode.GetAttributesSafe("ID") } }))
                                             DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.subNodes.Add(bookUseNode.Copy());
                                     }
                                 });
@@ -269,11 +269,46 @@ namespace LORModingBase
                         InitSplCards();
                         break;
                     case "BtnLoadCard":
-                        new SubWindows.InputGameCard((DS.CardInfo selectedCardInfo) =>
+                        new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                         {
-                            cardInfos.Add(Tools.DeepCopy.DeepClone(selectedCardInfo));
-                            InitSplCards();
-                        }).ShowDialog();
+                            List<DM.XmlDataNode> foundCardNodes = DM.GameInfos.staticInfos["Card"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card",
+                                attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            if (foundCardNodes.Count > 0)
+                            {
+                                DM.EditGameData_CardInfos.StaticCard.rootDataNode.subNodes.Add(foundCardNodes[0].Copy());
+
+                                List<DM.XmlDataNode> foundLocalizeCards = DM.GameInfos.localizeInfos["BattlesCards"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("cardDescList/BattleCardDesc",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                                if (foundLocalizeCards.Count > 0)
+                                {
+                                    if (!DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.CheckIfGivenPathWithXmlInfoExists("cardDescList/BattleCardDesc",
+                                               attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } }))
+                                    {
+                                        DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.GetXmlDataNodesByPath("cardDescList").ActionOneItemSafe((DM.XmlDataNode cardDescList) =>
+                                        {
+                                            cardDescList.subNodes.Add(foundLocalizeCards[0].Copy());
+                                        });
+                                    }
+                                }
+
+                                DM.GameInfos.staticInfos["CardDropTable"].rootDataNode.GetXmlDataNodesByPath("DropTable").ForEach((DM.XmlDataNode dropTableNode) =>
+                                {
+                                    List<string> deopCards = new List<string>();
+                                    dropTableNode.GetXmlDataNodesByPath("Card").ForEach((DM.XmlDataNode dropCardNode) =>
+                                    {
+                                        deopCards.Add(dropCardNode.innerText);
+                                    });
+                                    if (deopCards.Contains(selectedItem))
+                                    {
+                                        if (!DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.CheckIfGivenPathWithXmlInfoExists("DropTable",
+                                            attributeToCheck: new Dictionary<string, string>() { { "ID", dropTableNode.GetAttributesSafe("ID") } }))
+                                            DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.subNodes.Add(dropTableNode.Copy());
+                                    }
+                                });
+
+                                InitSplCards();
+                            }
+                        }, SubWindows.InputInfoWithSearchWindow_PRESET.CARDS).ShowDialog();
                         break;
                 }
             }

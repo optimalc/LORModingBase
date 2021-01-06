@@ -80,6 +80,7 @@ namespace LORModingBase.SubWindows
                     });
                     break;
 
+
                 case InputInfoWithSearchWindow_PRESET.CARD_ARTWORK:
                     DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card/Artwork", (DM.XmlDataNode artworkNode) =>
                     {
@@ -88,6 +89,7 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(ARTWORK_NAME);
                     });
                     break;
+
                 case InputInfoWithSearchWindow_PRESET.CARD_ABILITES:
                     DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
                     {
@@ -102,6 +104,15 @@ namespace LORModingBase.SubWindows
                         string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(ABILITIY_ID))
                             selectItems.Add(ABILITIY_ID);
+                    });
+                    break;
+
+                case InputInfoWithSearchWindow_PRESET.CARDS:
+                    DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                    {
+                        string CARD_ID = cardNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(CARD_ID))
+                            selectItems.Add(CARD_ID);
                     });
                     break;
             }
@@ -180,6 +191,7 @@ namespace LORModingBase.SubWindows
 
         CARD_ARTWORK,
         CARD_ABILITES,
-        DICE_ABILITES
+        DICE_ABILITES,
+        CARDS
     };
 }
