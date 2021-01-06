@@ -77,6 +77,7 @@ namespace LORModingBase.SubWindows
                         if (!DS.FilterDatas.EXCLUDE_PASSIVE_CODE.Contains(PASSIVE_ID))
                             selectItems.Add($"{PASSIVE_DES}:{PASSIVE_ID}");
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
                 case InputInfoWithSearchWindow_PRESET.CRITICAL_BOOKS:
                     DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode eqNode) =>
@@ -107,6 +108,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(ABILITIY_ID))
                             selectItems.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID)}:{ABILITIY_ID}");
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
                 case InputInfoWithSearchWindow_PRESET.DICE_ABILITES:
                     DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
@@ -115,6 +117,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(ABILITIY_ID))
                             selectItems.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID)}:{ABILITIY_ID}");
                     });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
 
                 case InputInfoWithSearchWindow_PRESET.CARDS:

@@ -272,5 +272,40 @@ namespace LORModingBase.DM
                 chapters.Add(LocalizedGameDescriptions.GetDescriptionForChapter(chpaterNum.ToString()));
             return chapters;
         }
+
+        /// <summary>
+        /// Get localized passives
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetLocalizedPassives()
+        {
+            List<string> passives = new List<string>();
+            List<string> ETC_PASSIVE_NAMES = new List<string>() {
+                "ui_ability_speeddice",
+                "ui_filter_dice",
+                "ui_dice_slash",
+                "ui_dice_penetrate",
+                "ui_dice_hit",
+                "ui_dice_guard",
+                "ui_dice_evasion",
+                "ui_buf_burn",
+                "ui_buf_paralysis",
+                "ui_buf_bleeding",
+                "ui_buf_vulnerable",
+                "ui_buf_weak",
+                "ui_buf_disarm",
+                "ui_buf_binding",
+                "ui_buf_protection",
+                "ui_buf_strength",
+                "ui_buf_endurance",
+                "ui_buf_quickness",
+                "ui_ability_energy"
+            };
+            ETC_PASSIVE_NAMES.ForEach((string ETC_PASSIVE_NAME) =>
+            {
+                passives.Add(LocalizedGameDescriptions.GetDescriptionForETC(ETC_PASSIVE_NAME));
+            });
+            return passives;
+        }
     }
 }
