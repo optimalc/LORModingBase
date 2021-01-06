@@ -24,6 +24,7 @@ namespace LORModingBase.UC
                 this.innerCriticalPageNode = innerCriticalPageNode;
                 this.initStack = initStack;
                 InitializeComponent();
+                Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.CARD_INFO);
 
                 #region 일반적인 핵심책장 정보 UI 반영시키기
                 Tools.WindowControls.InitTextBoxControlsByUsingName(this, innerCriticalPageNode);
