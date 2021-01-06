@@ -514,12 +514,34 @@ namespace LORModingBase.UC
                                innerCardNode.GetAttributesSafe("ID"),
                                innerCardNode.GetInnerTextByPath("Name")));
                         }
-
                         MainWindow.mainWindow.UpdateDebugInfo();
                     }
-
                     break;
                 case "TbxCardUniqueID":
+                    string PREV_CARD_ID = innerCardNode.GetAttributesSafe("ID");
+                    #region Card info locailizing refrect
+                    if (DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.CheckIfGivenPathWithXmlInfoExists("cardDescList/BattleCardDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", PREV_CARD_ID } }))
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("cardDescList/BattleCardDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", PREV_CARD_ID } });
+
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].attribute["ID"] = tbx.Text;
+                        }
+                    }
+                    #endregion
+                    #region Card Drop Table Reflect
+                    DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.GetXmlDataNodesByPath("DropTable").ForEachSafe((DM.XmlDataNode dropTableNode) =>
+                    {
+                        dropTableNode.GetXmlDataNodesByPathWithXmlInfo("Card").ForEachSafe((DM.XmlDataNode cardNode) =>
+                        {
+                            if (cardNode.innerText == PREV_CARD_ID)
+                                cardNode.innerText = tbx.Text;
+                        });
+                    });
+                    #endregion
                     innerCardNode.attribute["ID"] = tbx.Text;
                     MainWindow.mainWindow.UpdateDebugInfo();
                     break;
