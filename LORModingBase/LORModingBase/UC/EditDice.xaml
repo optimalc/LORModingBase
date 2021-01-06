@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="60*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="BtnDiceType" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 주사위의 속성을 변경합니다. (현재 : 참격 주사위)" RenderTransformOrigin="0.5,0.5" Click="NomalButtonClickEvents">
+            <Button x:Name="BtnDiceType" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 주사위의 속성을 변경합니다." RenderTransformOrigin="0.5,0.5" Click="NomalButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -61,7 +61,7 @@
                         <ImageBrush ImageSource="../Resources/BtnEffect.png"/>
                     </Button.Background>
                 </Button>
-                <Button x:Name="BtnDelete" Grid.Column="4" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="NomalButtonClickEvents" ToolTip="주사위를 삭제합니다" >
+                <Button x:Name="BtnDeleteDice" Grid.Column="4" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="NomalButtonClickEvents" ToolTip="주사위를 삭제합니다" >
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="6" ScaleY="8"/>

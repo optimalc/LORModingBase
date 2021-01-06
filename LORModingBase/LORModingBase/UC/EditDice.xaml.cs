@@ -78,7 +78,7 @@ namespace LORModingBase.UC
                         MainWindow.mainWindow.UpdateDebugInfo();
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.DICE_ABILITES).ShowDialog();
                     break;
-                case "BtnDelete":
+                case "BtnDeleteDice":
                     innerCardCardNode.ActionXmlDataNodesByPath("BehaviourList", (DM.XmlDataNode behaviourListNode) =>
                     {
                         behaviourListNode.subNodes.Remove(innerBehaviourNode);
@@ -93,13 +93,14 @@ namespace LORModingBase.UC
         {
             Button btn = sender as Button;
             List<string> SPLIT_NAME = btn.Name.Split('_').ToList();
-            if (SPLIT_NAME.Count > 3)
+            if (SPLIT_NAME.Count >= 3)
             {
                 innerBehaviourNode.attribute["Type"] = SPLIT_NAME[1];
                 innerBehaviourNode.attribute["Detail"] = SPLIT_NAME[2];
 
                 BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/icon_{innerBehaviourNode.attribute["Type"] }_{innerBehaviourNode.attribute["Detail"]}.png");
             }
+
             GldInfo.Visibility = Visibility.Visible;
             GldChangeAttackType.Visibility = Visibility.Collapsed;
             MainWindow.mainWindow.UpdateDebugInfo();
