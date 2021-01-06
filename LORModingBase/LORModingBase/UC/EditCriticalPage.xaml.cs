@@ -284,7 +284,7 @@ namespace LORModingBase.UC
                         }
                         else
                         {
-                            DM.XmlDataNode madeDropBookNode = DM.EditGameData_BookInfos.MakeNewLocalizeDropBook(addedDropBookItemID);
+                            DM.XmlDataNode madeDropBookNode = DM.EditGameData_BookInfos.MakeNewStaticDropBookBase(addedDropBookItemID);
                             if(!madeDropBookNode.CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
                             {
                                 madeDropBookNode.AddXmlInfoByPath("DropItem", innerCriticalPageNode.attribute["ID"],

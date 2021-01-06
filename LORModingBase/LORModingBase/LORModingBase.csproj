@@ -66,6 +66,7 @@
     <Compile Include="DM\CheckDatas.cs" />
     <Compile Include="DM\Config.cs" />
     <Compile Include="DM\EditGameData_BookInfos.cs" />
+    <Compile Include="DM\EditGameData_CardInfos.cs" />
     <Compile Include="DM\ExportDatas.cs" />
     <Compile Include="DM\GetLocalizedDescriptions.cs" />
     <Compile Include="DM\ImportDatas.cs" />

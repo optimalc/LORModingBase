@@ -67,6 +67,7 @@ namespace LORModingBase
             DM.GameInfos.LoadAllDatas();
 
             DM.EditGameData_BookInfos.InitDatas();
+            DM.EditGameData_CardInfos.InitDatas();
         }
         #endregion
 

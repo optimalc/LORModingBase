@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LORModingBase.DM
 {
@@ -49,7 +46,7 @@ namespace LORModingBase.DM
             {
                 XmlDataNode xmlDataNodeToAdd = foundXmlDataNodes[0].Copy();
 
-                string RANDOM_BOOK_ID = Tools.MathTools.GetRandomNumber(DS.FilterDatas.CARD_DIV_SPECIAL, DS.FilterDatas.CARD_DIV_FINAL_STORY).ToString();
+                string RANDOM_BOOK_ID = Tools.MathTools.GetRandomNumber(DS.FilterDatas.CRITICAL_PAGE_DIV_USER, DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM).ToString();
                 xmlDataNodeToAdd.attribute["ID"] = RANDOM_BOOK_ID;
                 xmlDataNodeToAdd.SetXmlInfoByPath("TextId", RANDOM_BOOK_ID);
 
@@ -79,11 +76,11 @@ namespace LORModingBase.DM
         }
 
         /// <summary>
-        /// Make new localize books with given bookUseID
+        /// Make new static drop books with given bookUseID
         /// </summary>
         /// <param name="bookUseID">BookUseID to use</param>
         /// <returns>If given bookUseIs is already used in game. Load it</returns>
-        public static XmlDataNode MakeNewLocalizeDropBook(string bookUseID = "")
+        public static XmlDataNode MakeNewStaticDropBookBase(string bookUseID = "")
         {
             List<XmlDataNode> foundBookUseIds = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
                 attributeToCheck: new Dictionary<string, string>() { { "ID", bookUseID } });
@@ -106,7 +103,6 @@ namespace LORModingBase.DM
                     return null;
             }
         }
-
 
         /// <summary>
         /// Make new localize books base by basic node in game data
