@@ -67,20 +67,12 @@
     <Compile Include="DM\Config.cs" />
     <Compile Include="DM\EditGameData_BookInfos.cs" />
     <Compile Include="DM\EditGameData_CardInfos.cs" />
-    <Compile Include="DM\ExportDatas.cs" />
     <Compile Include="DM\LocalizedGameDescriptions.cs" />
-    <Compile Include="DM\GetLocalizedDescriptions.cs" />
-    <Compile Include="DM\ImportDatas.cs" />
     <Compile Include="DM\LocalizeCore.cs" />
     <Compile Include="DM\GameInfos.cs" />
-    <Compile Include="DM\StaticInfos_Books.cs" />
-    <Compile Include="DM\StaticInfos_Cards.cs" />
     <Compile Include="DM\XmlData.cs" />
-    <Compile Include="DS\CardInfos.cs" />
     <Compile Include="DS\Config.cs" />
-    <Compile Include="DS\CriticalPageInfos.cs" />
     <Compile Include="DS\FilterDatas.cs" />
-    <Compile Include="DS\GameInfo.cs" />
     <Compile Include="DS\PATH.cs" />
     <Compile Include="SubWindows\ExtraToolsWindow.xaml.cs">
       <DependentUpon>ExtraToolsWindow.xaml</DependentUpon>
@@ -108,15 +100,6 @@
     </Compile>
     <Compile Include="SubWindows\OptionWindow.xaml.cs">
       <DependentUpon>OptionWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputGameCard.xaml.cs">
-      <DependentUpon>InputGameCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputPassiveDirectlyWindow.xaml.cs">
-      <DependentUpon>InputPassiveDirectlyWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputEpisodeDirectlyWindow.xaml.cs">
-      <DependentUpon>InputEpisodeDirectlyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\ColorTools.cs" />
     <Compile Include="Tools\DeepCopy.cs" />
@@ -184,18 +167,6 @@
     <Page Include="SubWindows\OptionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputGameCard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputPassiveDirectlyWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputEpisodeDirectlyWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\EditCard.xaml">
       <SubType>Designer</SubType>

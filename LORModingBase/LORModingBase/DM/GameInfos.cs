@@ -24,31 +24,24 @@ namespace LORModingBase.DM
         public static Dictionary<string, XmlData> storyInfos = new Dictionary<string, XmlData>();
 
         /// <summary>
-        /// Load all static datas
+        /// Load all static & localize & story datas
         /// </summary>
         public static void LoadAllDatas()
         {
             LoadForGivenDirectoryRoot(DM.Config.GAME_RESOURCE_PATHS.RESOURCE_ROOT_LOCALIZE, localizeInfos);
             LoadForGivenDirectoryRoot(DM.Config.GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC, staticInfos);
 
+            #region Load story dictionary
             storyInfos.Clear();
             storyInfos["EffectInfo"] = new XmlData(DM.Config.GAME_RESOURCE_PATHS.RESOURCE_ROOT_STORY_EFFECT_INFO);
             storyInfos["Localize"] = new XmlData(Directory.GetFiles(DM.Config.GAME_RESOURCE_PATHS.RESOURCE_ROOT_STORY_LOCALIZE)
-                .FindAll_Contains(DM.Config.config.localizeOption.ToUpper()));
-
-
-            #region Load card data -> StaticInfo_Cards.cs
-            LoadData_CardEffect();
-            LoadData_CardsInfo();
+                .FindAll_Contains(DM.Config.config.localizeOption.ToUpper())); 
             #endregion
-            #region Load book datas -> StaticInfo_Books.cs
-            LoadDatas_PassiveInfo();
-            LoadDatas_StageInfo();
-            LoadDatas_SkinAndBookIconInfo(); 
-            #endregion
-            LoadData_Dropbooks(); // Card drop book load
         }
 
+        /// <summary>
+        /// Load all datas for given directory
+        /// </summary>
         public static void LoadForGivenDirectoryRoot(string directoryRootPath, Dictionary<string, XmlData> XmlDataDic)
         {
             XmlDataDic.Clear();

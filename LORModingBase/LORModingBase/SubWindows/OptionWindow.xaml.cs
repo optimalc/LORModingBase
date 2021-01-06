@@ -28,7 +28,7 @@ namespace LORModingBase.SubWindows
             TbxLORPath.Text = DM.Config.config.LORFolderPath;
             TbxLORPath.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"%TbxLORPath_ToolTip%")}{DM.Config.config.LORFolderPath}";
 
-            if (!Directory.Exists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}"))
+            if (!Directory.Exists(DM.Config.GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC))
             {
                 LblBaseModeResource.Content = "X";
                 LblBaseModeResource.ToolTip = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"LblBaseModeResourceDes_Error");

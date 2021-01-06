@@ -60,19 +60,19 @@ namespace LORModingBase.SubWindows
                     {
                         DM.Config.ChangeWorkingDirectory(selectedDirName);
 
-                        if (File.Exists(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory)))
-                            DM.EditGameData_BookInfos.StaticEquipPage = new DM.XmlData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory));
-                        if (File.Exists(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory)))
-                            DM.EditGameData_BookInfos.StaticDropBook = new DM.XmlData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory));
-                        if (File.Exists(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory)))
-                            DM.EditGameData_BookInfos.LocalizedBooks = new DM.XmlData(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_BookInfos.StaticEquipPage = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_BookInfos.StaticDropBook = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_BookInfos.LocalizedBooks = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory));
 
-                        if (File.Exists(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory)))
-                            DM.EditGameData_CardInfos.StaticCard = new DM.XmlData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory));
-                        if (File.Exists(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory)))
-                            DM.EditGameData_CardInfos.StaticCardDropTable = new DM.XmlData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory));
-                        if (File.Exists(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory)))
-                            DM.EditGameData_CardInfos.LocalizedBattleCards = new DM.XmlData(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_CardInfos.StaticCard = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_CardInfos.StaticCardDropTable = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_CardInfos.LocalizedBattleCards = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory));
 
                         this.Close();
                     };

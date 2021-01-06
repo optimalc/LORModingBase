@@ -77,6 +77,7 @@ namespace LORModingBase.DM
         }
         #endregion
 
+
         /// <summary>
         /// Change working direcotry with given mode name
         /// </summary>
@@ -87,6 +88,31 @@ namespace LORModingBase.DM
                 CurrentWorkingDirectory = $"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods\\{modeName}";
             else
                 CurrentWorkingDirectory = $"{DS.PROGRAM_PATHS.DIC_EXPORT_DATAS}\\{modeName}";
+        }
+
+
+        /// <summary>
+        /// Get save path from static path
+        /// </summary>
+        public static string GetStaticPathToSave(XmlData xmlData, string baseDic)
+        {
+            if (xmlData == null) return "";
+            if (xmlData.currentXmlFilePaths.Count <= 0) return "";
+            int FOUND_INDEX = xmlData.currentXmlFilePaths[0].IndexOf("StaticInfo");
+            if (FOUND_INDEX < 0) return "";
+            return $"{baseDic}\\{xmlData.currentXmlFilePaths[0].Substring(FOUND_INDEX)}";
+        }
+
+        /// <summary>
+        /// Get save path from localize path
+        /// </summary>
+        public static string GetLocalizePathToSave(XmlData xmlData, string baseDic)
+        {
+            if (xmlData == null) return "";
+            if (xmlData.currentXmlFilePaths.Count <= 0) return "";
+            int FOUND_INDEX = xmlData.currentXmlFilePaths[0].IndexOf("Localize");
+            if (FOUND_INDEX < 0) return "";
+            return $"{baseDic}\\{xmlData.currentXmlFilePaths[0].Substring(FOUND_INDEX)}";
         }
     }
 }

@@ -54,7 +54,7 @@ namespace LORModingBase
             }
             #endregion
             #region Check LOR mode resources
-            if(!Directory.Exists($"{DM.Config.config.LORFolderPath}\\{DS.PATH.RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO}"))
+            if(!Directory.Exists(DM.Config.GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC))
                 throw new Exception(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"LoadAllRelatedDatasAfterChangePath_Error_2"));
             #endregion
 
@@ -158,8 +158,6 @@ namespace LORModingBase
 
 
         #region EDIT MENU - Critical Page Infos
-        public static List<DS.CriticalPageInfo> criticalPageInfos = new List<DS.CriticalPageInfo>();
-
         private void InitSplCriticalPage()
         {
             SplCriticalPage.Children.Clear();
@@ -239,8 +237,6 @@ namespace LORModingBase
         }
         #endregion   
         #region EDIT MENU - Cards Page
-        public static List<DS.CardInfo> cardInfos = new List<DS.CardInfo>();
-
         private void InitSplCards()
         {
             SplCards.Children.Clear();
@@ -351,35 +347,35 @@ namespace LORModingBase
             {
                 if(!string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
                 {
-                    DM.EditGameData_BookInfos.StaticEquipPage.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory));
-                    DM.EditGameData_BookInfos.StaticDropBook.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory));
-                    DM.EditGameData_BookInfos.LocalizedBooks.SaveNodeData(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory));
+                    DM.EditGameData_BookInfos.StaticEquipPage.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory));
+                    DM.EditGameData_BookInfos.StaticDropBook.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory));
+                    DM.EditGameData_BookInfos.LocalizedBooks.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory));
 
-                    DM.EditGameData_CardInfos.StaticCard.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory));
-                    DM.EditGameData_CardInfos.StaticCardDropTable.SaveNodeData(DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory));
-                    DM.EditGameData_CardInfos.LocalizedBattleCards.SaveNodeData(DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory));
+                    DM.EditGameData_CardInfos.StaticCard.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory));
+                    DM.EditGameData_CardInfos.StaticCardDropTable.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory));
+                    DM.EditGameData_CardInfos.LocalizedBattleCards.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory));
 
                     string debugFileName = "";
                     switch (LbxTextEditor.SelectedIndex)
                     {
                         case 0:
-                            debugFileName = DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory);
+                            debugFileName = DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory);
                             break;
                         case 1:
-                            debugFileName = DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory);
+                            debugFileName = DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory);
                             break;
                         case 2:
-                            debugFileName = DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory);
+                            debugFileName = DM.Config.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory);
                             break;
 
                         case 3:
-                            debugFileName = DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory);
+                            debugFileName = DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory);
                             break;
                         case 4:
-                            debugFileName = DM.ExportDatas.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory);
+                            debugFileName = DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory);
                             break;
                         case 5:
-                            debugFileName = DM.ExportDatas.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory);
+                            debugFileName = DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory);
                             break;
                     }
                     if (File.Exists(debugFileName))
