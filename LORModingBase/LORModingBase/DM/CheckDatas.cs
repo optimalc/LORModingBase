@@ -34,6 +34,7 @@ namespace LORModingBase.DM
         {
             #region Key Page Check
             string CRITICAL = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Critical");
+            List<string> KEY_PAGE_ID_LIST = new List<string>();
             DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.ActionXmlDataNodesByPath("Book", (XmlDataNode bookNode) =>
             {
                 string BOOK_NODE_ID = bookNode.GetAttributesSafe("ID");
@@ -43,10 +44,18 @@ namespace LORModingBase.DM
                     MakeCriticalMessage("KeyPage_Critical_1", BOOK_NODE_NAME);
                 if (string.IsNullOrEmpty(BOOK_NODE_NAME))
                     MakeCriticalMessage("KeyPage_Critical_2", BOOK_NODE_ID);
+
+                if(!string.IsNullOrEmpty(BOOK_NODE_ID))
+                {
+                    if(KEY_PAGE_ID_LIST.Contains(BOOK_NODE_ID))
+                        MakeCriticalMessage("KeyPage_Critical_3", BOOK_NODE_ID);
+                    KEY_PAGE_ID_LIST.Add(BOOK_NODE_ID);
+                }
             });
             #endregion
 
             #region Cards Check
+            List<string> CARD_PAGE_ID_LIST = new List<string>();
             DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (XmlDataNode bookNode) =>
             {
                 string CARD_NODE_ID = bookNode.GetAttributesSafe("ID");
@@ -56,6 +65,13 @@ namespace LORModingBase.DM
                     MakeCriticalMessage("Card_Critical_1", CARD_NODE_NAME);
                 if (string.IsNullOrEmpty(CARD_NODE_NAME))
                     MakeCriticalMessage("Card_Critical_2", CARD_NODE_ID);
+
+                if (!string.IsNullOrEmpty(CARD_NODE_ID))
+                {
+                    if (CARD_PAGE_ID_LIST.Contains(CARD_NODE_ID))
+                        MakeCriticalMessage("Card_Critical_3", CARD_NODE_ID);
+                    CARD_PAGE_ID_LIST.Add(CARD_NODE_ID);
+                }
             });
             #endregion
         }
