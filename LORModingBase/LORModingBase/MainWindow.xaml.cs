@@ -175,6 +175,15 @@ namespace LORModingBase
                         System.Windows.Forms.Application.Restart();
                         System.Windows.Application.Current.Shutdown();
                         break;
+
+                    case "BtnResources":
+                        if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                        {
+                            MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
+                            return;
+                        }
+                        new SubWindows.ResourceWindow().ShowDialog();
+                        break;
                 }
             }
             catch (Exception ex)

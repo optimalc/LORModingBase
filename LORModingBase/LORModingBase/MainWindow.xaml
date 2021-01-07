@@ -122,7 +122,8 @@
                 <Button x:Name="BtnSetWorkingSpace" Content="[작업 공간 설정하기]" ToolTip="작업 공간을 설정합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents" HorizontalAlignment="Left" Padding="10,1,1,1"/>
                 <Grid Grid.Column="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="44*"/>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="7*"/>
                         <ColumnDefinition Width="7*"/>
                         <ColumnDefinition Width="7*"/>
                         <ColumnDefinition Width="7*"/>
@@ -158,7 +159,20 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
-                    <Button x:Name="BtnStartGame" Grid.Column="3" ToolTip="게임을 시작시킵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                    <Button x:Name="BtnResources" Grid.Column="3" ToolTip="외부 커스텀 리소스들을 관리합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                        <Button.Background>
+                            <ImageBrush ImageSource="./Resources/BtnResources.png" />
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="15" ScaleY="15"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-27" Y="-30"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="BtnStartGame" Grid.Column="4" ToolTip="게임을 시작시킵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
                         <Button.Background>
                             <ImageBrush ImageSource="./Resources/BtnStartGame.png" />
                         </Button.Background>
@@ -171,7 +185,7 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
-                    <Button x:Name="BtnOpenBaseFolder" Grid.Column="4" ToolTip="기반모드 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                    <Button x:Name="BtnOpenBaseFolder" Grid.Column="5" ToolTip="기반모드 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
                         <Button.Background>
                             <ImageBrush ImageSource="./Resources/BtnOpenBaseFolder.png" />
                         </Button.Background>
@@ -184,7 +198,7 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
-                    <Button x:Name="BtnOpenExportFolder" Grid.Column="5" ToolTip="프로그램이 생성된 모드 폴더를 내보내는 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                    <Button x:Name="BtnOpenExportFolder" Grid.Column="6" ToolTip="프로그램이 생성된 모드 폴더를 내보내는 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
                         <Button.Background>
                             <ImageBrush ImageSource="./Resources/BtnOpenExportFolder.png" />
                         </Button.Background>
@@ -197,7 +211,7 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
-                    <Button x:Name="BtnExtURL" Grid.Column="6" ToolTip="툴과 관련된 외부 URL 이동을 위한 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                    <Button x:Name="BtnExtURL" Grid.Column="7" ToolTip="툴과 관련된 외부 URL 이동을 위한 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
                         <Button.Background>
                             <ImageBrush ImageSource="./Resources/BtnExtURL.png" />
                         </Button.Background>
@@ -210,7 +224,7 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
-                    <Button x:Name="BtnTools" Grid.Column="7" ToolTip="이 프로그램이 제공하는 추가적인 기능을 위한 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                    <Button x:Name="BtnTools" Grid.Column="8" ToolTip="이 프로그램이 제공하는 추가적인 기능을 위한 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
                         <Button.Background>
                             <ImageBrush ImageSource="./Resources/BtnTools.png" />
                         </Button.Background>
@@ -223,7 +237,7 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
-                    <Button x:Name="BtnConfig" Grid.Column="8" ToolTip="프로그램 설정 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                    <Button x:Name="BtnConfig" Grid.Column="9" ToolTip="프로그램 설정 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
                         <Button.Background>
                             <ImageBrush ImageSource="./Resources/BtnConfig.png" />
                         </Button.Background>
