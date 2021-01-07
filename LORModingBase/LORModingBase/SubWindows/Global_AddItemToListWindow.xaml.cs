@@ -22,6 +22,7 @@ namespace LORModingBase.SubWindows
             string ItemHelpMessage="얻어진 내용들", string selectedItemsHelpMessage= "선택된 항목들" )
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterAddItem = afterAddItem;
             this.afterDeleteItem = afterDeleteItem;
 
@@ -40,6 +41,7 @@ namespace LORModingBase.SubWindows
         public Global_AddItemToListWindow(Action<string> afterAddItem, Action<string> afterDeleteItem, List<string> selectedItems, AddItemToListWindow_PRESET preset)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterAddItem = afterAddItem;
             this.afterDeleteItem = afterDeleteItem;
             this.selectedItems = selectedItems;
@@ -50,6 +52,7 @@ namespace LORModingBase.SubWindows
             switch (preset)
             {
                 case AddItemToListWindow_PRESET.ONLY_CARD:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"ONLY_CARD_TITLE");
                     DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                     {
                         string CARD_ID = cardNode.GetAttributesSafe("ID");
@@ -59,6 +62,7 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case AddItemToListWindow_PRESET.DROP_BOOK:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DROP_BOOK_TITLE");
                     DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
                     {
                         string BOOK_USE_ID = bookUseNode.GetAttributesSafe("ID");
@@ -69,6 +73,7 @@ namespace LORModingBase.SubWindows
                     break;
 
                 case AddItemToListWindow_PRESET.DROP_TABLE:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DROP_TABLE_TITLE");
                     DM.GameInfos.staticInfos["CardDropTable"].rootDataNode.ActionXmlDataNodesByPath("DropTable", (DM.XmlDataNode cardDropTableID) =>
                     {
                         string DROP_TABLE_ID = cardDropTableID.GetAttributesSafe("ID");
@@ -88,7 +93,7 @@ namespace LORModingBase.SubWindows
         private void InitLbxSearchType(List<string> searchTypes)
         {
             LbxSearchType.Items.Clear();
-            LbxSearchType.Items.Add("필터 없음");
+            LbxSearchType.Items.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"SEARCH_NO_FILTER"));
             searchTypes.ForEach((string searchType) =>
             {
                 LbxSearchType.Items.Add(searchType);
@@ -118,15 +123,17 @@ namespace LORModingBase.SubWindows
                 foreach (string selectItem in selectItems)
                 {
                     if (!string.IsNullOrEmpty(TbxSearch.Text) && !selectItem.ToLower().Replace(" ", "").Contains(TbxSearch.Text.ToLower().Replace(" ", ""))) continue;
-                    switch (LbxSearchType.SelectedItem.ToString())
+                    if (LbxSearchType.SelectedIndex == 0)
+                        LbxItems.Items.Add(selectItem);
+                    else
                     {
-                        case "필터 없음":
-                            LbxItems.Items.Add(selectItem);
-                            break;
-                        default:
-                            if (selectItem.ToLower().Contains(LbxSearchType.SelectedItem.ToString().ToLower()))
-                                LbxItems.Items.Add(selectItem);
-                            break;
+                        switch (LbxSearchType.SelectedItem.ToString())
+                        {
+                            default:
+                                if (selectItem.ToLower().Contains(LbxSearchType.SelectedItem.ToString().ToLower()))
+                                    LbxItems.Items.Add(selectItem);
+                                break;
+                        }
                     }
                 }
             }
