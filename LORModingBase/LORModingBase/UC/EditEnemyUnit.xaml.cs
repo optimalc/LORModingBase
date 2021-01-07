@@ -26,6 +26,7 @@ namespace LORModingBase.UC
         public EditEnemyUnit(DM.XmlDataNode innerEnemyNode, Action initStack)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.ENEMY_INFO);
             this.innerEnemyNode = innerEnemyNode;
             this.initStack = initStack;
 

@@ -27,6 +27,7 @@ namespace LORModingBase.UC
         public EditDeck(DM.XmlDataNode innerDeckNode, Action initStack)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.DECK_INFO);
             this.innerDeckNode = innerDeckNode;
             this.initStack = initStack;
 

@@ -27,15 +27,17 @@ namespace LORModingBase.UC
         public EditWave(DM.XmlDataNode waveNode, DM.XmlDataNode stageNode, Action stackInitFunc)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.STAGE_INFO);
             this.waveNode = waveNode;
             this.stageNode = stageNode;
             this.stackInitFunc = stackInitFunc;
 
             waveNode.ActionIfInnertTextIsNotNullOrEmpty("Formation", (string innerText) =>
             {
-                BtnFormation.ToolTip = innerText;
+                string FORMATION_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"FORMATION");
+                BtnFormation.ToolTip = $"{FORMATION_WORD} : {innerText}";
 
-                LblFormation.Content = innerText;
+                LblFormation.Content = $"{FORMATION_WORD} : {innerText}";
                 BtnFormation.Content = "          ";
             });
 
@@ -71,9 +73,10 @@ namespace LORModingBase.UC
                     {
                         waveNode.SetXmlInfoByPath("Formation", selectedItem);
 
-                        BtnFormation.ToolTip = selectedItem;
+                        string FORMATION_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"FORMATION");
+                        BtnFormation.ToolTip = $"{FORMATION_WORD} : {selectedItem}";
 
-                        LblFormation.Content = selectedItem;
+                        LblFormation.Content = $"{FORMATION_WORD} : {selectedItem}";
                         BtnFormation.Content = "          ";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.FORMATION).ShowDialog();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);

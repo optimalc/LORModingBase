@@ -37,16 +37,18 @@ namespace LORModingBase.UC
 
             innerStageNode.ActionIfInnertTextIsNotNullOrEmpty("StoryType", (string innerText) =>
             {
-                BtnStage.ToolTip = innerText;
+                string EPISODE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"EPISODE");
+                BtnStage.ToolTip = $"{EPISODE_WORD} : {innerText}";
 
-                LblStage.Content = innerText;
+                LblStage.Content = $"{EPISODE_WORD} : {innerText}"; ;
                 BtnStage.Content = "          ";
             });
             innerStageNode.ActionIfInnertTextIsNotNullOrEmpty("FloorNum", (string innerText) =>
             {
-                BtnFloor.ToolTip = innerText;
+                string FLOOR_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"AVALIABLE_FLOOR");
+                BtnFloor.ToolTip = $"{FLOOR_WORD} : {innerText}";
 
-                LblFloor.Content = innerText;
+                LblFloor.Content = $"{FLOOR_WORD} : {innerText}";
                 BtnFloor.Content = "          ";
             });
 
@@ -59,8 +61,9 @@ namespace LORModingBase.UC
                 });
                 extraInfo = extraInfo.TrimEnd('/');
 
-                LblInvitation.Content = extraInfo;
-                BtnInvitation.ToolTip = extraInfo;
+                string INVITATION_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"INVITATION_BOOK");
+                LblInvitation.Content = $"{INVITATION_WORD} : {extraInfo}";
+                BtnInvitation.ToolTip = $"{INVITATION_WORD} : {extraInfo}";
                 BtnInvitation.Content = "          ";
             }
 
@@ -74,7 +77,7 @@ namespace LORModingBase.UC
                 extraInfo = extraInfo.TrimEnd('\n');
 
                 BtnCondition.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesCondition.png");
-                BtnCondition.ToolTip = $"선택된 컨디션\n{extraInfo}";
+                BtnCondition.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"STAGE_CONDITION")}\n{extraInfo}";
             }
 
             string MAP_INFO = innerStageNode.GetInnerTextByPath("MapInfo");
@@ -177,9 +180,10 @@ namespace LORModingBase.UC
                                 DM.XmlDataNode copyedStageNode = stageNode.Copy();
                                 innerStageNode.subNodes.AddRange(copyedStageNode.GetXmlDataNodesByPath("Story"));
 
-                                BtnStage.ToolTip = selectedItem;
+                                string EPISODE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"EPISODE");
+                                BtnStage.ToolTip = $"{EPISODE_WORD} : {selectedItem}";
 
-                                LblStage.Content = selectedItem;
+                                LblStage.Content = $"{EPISODE_WORD} : {selectedItem}"; ;
                                 BtnStage.Content = "          ";
                             });
                         MainWindow.mainWindow.UpdateDebugInfo();
@@ -189,9 +193,10 @@ namespace LORModingBase.UC
                 case "BtnFloor":
                     new SubWindows.Global_ListSeleteWindow((string floorNumStr) => {
                         innerStageNode.SetXmlInfoByPath("FloorNum", floorNumStr);
-                        BtnFloor.ToolTip = floorNumStr;
+                        string FLOOR_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"AVALIABLE_FLOOR");
+                        BtnFloor.ToolTip = $"{FLOOR_WORD} : {floorNumStr}";
 
-                        LblFloor.Content = floorNumStr;
+                        LblFloor.Content = $"{FLOOR_WORD} : {floorNumStr}";
                         BtnFloor.Content = "          ";
 
                         MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
@@ -226,9 +231,16 @@ namespace LORModingBase.UC
                         });
                         extraInfo = extraInfo.TrimEnd('/');
 
-                        LblInvitation.Content = extraInfo;
-                        BtnInvitation.ToolTip = extraInfo;
+                        string INVITATION_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"INVITATION_BOOK");
+                        LblInvitation.Content = $"{INVITATION_WORD} : {extraInfo}";
+                        BtnInvitation.ToolTip = $"{INVITATION_WORD} : {extraInfo}";
                         BtnInvitation.Content = "          ";
+                    }
+                    else
+                    {
+                        LblInvitation.Content = "";
+                        BtnInvitation.ToolTip = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"%BtnInvitation_ToolTip%").Split('$')[0];
+                        BtnInvitation.Content = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"%BtnInvitation%").Split('$')[0];
                     }
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
@@ -279,12 +291,12 @@ namespace LORModingBase.UC
                         extraInfo = extraInfo.TrimEnd('\n');
 
                         BtnCondition.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesCondition.png");
-                        BtnCondition.ToolTip = $"선택된 컨디션\n{extraInfo}";
+                        BtnCondition.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"STAGE_CONDITION")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{extraInfo}";
                     }
                     else
                     {
                         BtnCondition.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoCondition.png");
-                        BtnCondition.ToolTip = $"컨디션이 선택되지 않음";
+                        BtnCondition.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"%BtnCondition_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
                     }
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
@@ -298,12 +310,12 @@ namespace LORModingBase.UC
                     if (!string.IsNullOrEmpty(MAP_INFO))
                     {
                         BtnMapInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesMapInfo.png");
-                        BtnMapInfo.ToolTip = innerStageNode.GetInnerTextByPath("MapInfo");
+                        BtnMapInfo.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"%BtnMapInfo_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{innerStageNode.GetInnerTextByPath("MapInfo")}";
                     }
                     else
                     {
                         BtnMapInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoMapInfo.png");
-                        BtnMapInfo.ToolTip = "MapInfo가 선택되지 않음";
+                        BtnMapInfo.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"%BtnMapInfo_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
 
                     }
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
