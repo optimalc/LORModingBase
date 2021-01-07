@@ -1,3 +1,34 @@
+[*] 분석된
+StaticInfo/StageInfo/StageInfo.txt
+<Stage id="2"> <!-- 스테이지 ID --> (ROW 0)
+    <Name>쥐</Name> <!-- 스테이지 이름 --> (ROW 0)
+    <Wave> <!-- 스테이지 웨이브 (여러개 가능) --> (다수의 개수)
+        <Formation>2</Formation> <!-- 유닛의 전형 위치(유닛 수에 의존적임) -->
+        <AvailableUnit>4</AvailableUnit> <!-- 이용 가능한 유닛의 수 -->
+        <Unit>3</Unit>  <!-- 적 유닛의 번호 (여러개 가능) -->
+        <Unit>1</Unit>
+        <Unit>2</Unit>  (대형 선택 창 이후에 추가 가능)
+    </Wave>
+    <FloorNum>1</FloorNum> <!-- 허용되는 최대 층의 개수 -->
+    <Invitation Combine="BookRecipe"> <!-- 필요한 책 -->
+        <Book>31</Book>
+    </Invitation>
+    <Chapter>1</Chapter> <!-- 속한 챕터 --> (Row 1)
+    <StoryType>Rats</StoryType> <!-- 어느 스토리에 속하는가 --> (Row 1)
+    <Story Condition="Start">1_2_1</Story> <!-- 스토리 시작 고유 번호 --> (Row 1)
+    <Story Condition="End">1_2_2</Story> <!-- 스토리 끝 고유 번호 --> (Row 1)
+    <Condition> (Prev stage : right)
+        <Stage>40001</Stage> <- 이전 스테이지
+    </Condition>
+    <MapInfo>Tomerry</MapInfo> <!-- 맵 정보 --> (right)
+</Stage>
+<Formation>14</Formation> <- 얘들 대형 StaticInfoFormationInfo 에 있음 (대형 선택 창으로)
+
+Localize/StageName/...
+<CharactersNameRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Name ID="2">쥐</Name><!- 각 ID에 속하는 이름 ->
+
+---
 1. Localize, StaticInfo 폴더 생성
 ---
 2. Localize 안에 kr 생성

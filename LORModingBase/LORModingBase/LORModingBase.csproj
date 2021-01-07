@@ -123,6 +123,12 @@
     <Compile Include="UC\EditDice.xaml.cs">
       <DependentUpon>EditDice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\EditStage.xaml.cs">
+      <DependentUpon>EditStage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\EditWave.xaml.cs">
+      <DependentUpon>EditWave.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -184,6 +190,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\EditDice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditStage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditWave.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -335,6 +349,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\BtnResources.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconNoCondition.png" />
+    <Resource Include="Resources\IconYesCondition.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconNoMapInfo.png" />
+    <Resource Include="Resources\IconYesMapInfo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
