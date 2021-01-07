@@ -323,5 +323,8 @@
   <ItemGroup>
     <Resource Include="Resources\BtnReload.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnReverseLoad.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -26,14 +26,19 @@ namespace LORModingBase
                 LoadAllRelatedDatasAfterChangePath();
 
                 Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.MAIN_WINDOW);
-                InitSplCriticalPage();
-                InitSplCards();
+                ReloadAllStackDatas();
                 InitLbxTextEditor();
             }
             catch(Exception ex)
             {
                 Tools.MessageBoxTools.ShowErrorMessageBox(ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindow_Error"));
             }
+        }
+
+        private void ReloadAllStackDatas()
+        {
+            InitSplCriticalPage();
+            InitSplCards();
         }
 
         /// <summary>
@@ -126,8 +131,7 @@ namespace LORModingBase
                         new SubWindows.Global_ListSeleteWithEditWindow(null, null, null, null,
                             SubWindows.Global_ListSeleteWithEditWindow_PRESET.WORKING_SPACE).ShowDialog();
 
-                        InitSplCriticalPage();
-                        InitSplCards();
+                        ReloadAllStackDatas();
                         InitLbxTextEditor();
                         break;
 
@@ -165,8 +169,7 @@ namespace LORModingBase
 
                     case "BtnLanguageReload":
                         DM.LocalizeCore.LoadAllDatas();
-                        InitSplCriticalPage();
-                        InitSplCards();
+                        ReloadAllStackDatas();
                         break;
                     case "BtnProgramReload":
                         System.Windows.Forms.Application.Restart();
@@ -335,7 +338,6 @@ namespace LORModingBase
                                             DM.EditGameData_CardInfos.StaticCardDropTable.rootDataNode.subNodes.Add(dropTableNode.Copy());
                                     }
                                 });
-
                                 InitSplCards();
                             }
                         }, SubWindows.InputInfoWithSearchWindow_PRESET.CARDS).ShowDialog();
@@ -353,6 +355,7 @@ namespace LORModingBase
 
         #region Text editor functions
         public static List<string> EDITOR_SELECTION_MENU = new List<string>();
+
         private void InitLbxTextEditor()
         {
             LbxTextEditor.Items.Clear();
@@ -400,12 +403,55 @@ namespace LORModingBase
                 TbxTextEditorLog.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Error_1")} \n> {ex.Message}";
             }
         }
+
+        private void EditorButtonClickEvents(object sender, RoutedEventArgs e)
+        {
+            Button clickButton = sender as Button;
+            try
+            {
+                switch (clickButton.Name)
+                {
+                    case "BtnReverseLoad":
+                        if (LbxTextEditor.SelectedItem != null)
+                        {
+                            string FILE_NAME_TO_RELOAD = DM.Config.GetPathFromRelativePath(LbxTextEditor.SelectedItem.ToString(), DM.Config.CurrentWorkingDirectory);
+                            if (File.Exists(FILE_NAME_TO_RELOAD))
+                            {
+                                File.WriteAllText(FILE_NAME_TO_RELOAD, TbxTextEditor.Text);
+                                DM.XmlData RELOADED_XML_DATA = new DM.XmlData(FILE_NAME_TO_RELOAD);
+
+                                switch(LbxTextEditor.SelectedIndex)
+                                {
+                                    case 0: DM.EditGameData_BookInfos.StaticEquipPage = RELOADED_XML_DATA; break;
+                                    case 1: DM.EditGameData_BookInfos.StaticDropBook = RELOADED_XML_DATA; break;
+                                    case 2: DM.EditGameData_BookInfos.LocalizedBooks = RELOADED_XML_DATA; break;
+
+                                    case 3: DM.EditGameData_CardInfos.StaticCard = RELOADED_XML_DATA; break;
+                                    case 4: DM.EditGameData_CardInfos.StaticCardDropTable = RELOADED_XML_DATA; break;
+                                    case 5: DM.EditGameData_CardInfos.LocalizedBattleCards = RELOADED_XML_DATA; break;
+                                }
+                                ReloadAllStackDatas();
+                            }
+                            TbxTextEditor.Text = File.ReadAllText(FILE_NAME_TO_RELOAD);
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"MainWindowButtonClickEvents_Error_7"));
+            }
+        }
         #endregion
 
         private void LbxTextEditor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (LbxTextEditor.SelectedItem != null)
+            {
                 LblTextEditor.Content = LbxTextEditor.SelectedItem.ToString();
+                LblTextEditor.ToolTip = LbxTextEditor.SelectedItem.ToString();
+            }
             UpdateDebugInfo();
         }
     }

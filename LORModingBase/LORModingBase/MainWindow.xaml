@@ -335,12 +335,32 @@
                     <ImageBrush ImageSource="./Resources/MenuBg.png"/>
                 </Grid.Background>
                 <ComboBox Name="LbxTextEditor" Margin="5" ToolTip="텍스트를 표시할 데이터를 변경합니다" SelectionChanged="LbxTextEditor_SelectionChanged"/>
-                <Label Content="TestFile.txt" Name="LblTextEditor" FontSize="20" FontFamily="Nirmala UI" FontWeight="Bold" Padding="8" Foreground="#FF121212" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,2,0,1.6" Width="270"/>
+                <Label Content="TestFile.txt" Name="LblTextEditor" FontSize="15" FontFamily="Nirmala UI" FontWeight="Bold" Padding="8" Foreground="#FF121212" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,2,0,1.6" Width="270"/>
             </Grid>
             <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <Grid.Background>
                     <ImageBrush ImageSource="./Resources/MenuBg.png"/>
                 </Grid.Background>
+                <Button x:Name="BtnReverseLoad" Grid.Column="0" ToolTip="편집기에서 편집된 내용을 프로그램으로 로드시킵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="EditorButtonClickEvents">
+                    <Button.Background>
+                        <ImageBrush ImageSource="./Resources/BtnReverseLoad.png" />
+                    </Button.Background>
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="15" ScaleY="15"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-27" Y="-30"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.Background>

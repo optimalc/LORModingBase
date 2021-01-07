@@ -11,7 +11,7 @@ namespace LORModingBase.DM
     /// Xml data management class
     /// </summary>
     [Serializable]
-    class XmlData
+    public class XmlData
     {
         /// <summary>
         /// Current loaded xml file path
