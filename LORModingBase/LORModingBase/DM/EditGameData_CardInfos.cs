@@ -35,6 +35,11 @@ namespace LORModingBase.DM
 
             LocalizedBattleCards = new XmlData(DM.GameInfos.localizeInfos["BattlesCards"]);
             LocalizedBattleCards.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("cardDescList");
+
+
+            MainWindow.EDITOR_SELECTION_MENU.Add(DM.Config.GetStaticPathToSave(StaticCard, "", returnOnlyRelativePath: true));
+            MainWindow.EDITOR_SELECTION_MENU.Add(DM.Config.GetStaticPathToSave(StaticCardDropTable, "", returnOnlyRelativePath: true));
+            MainWindow.EDITOR_SELECTION_MENU.Add(DM.Config.GetLocalizePathToSave(LocalizedBattleCards, "", returnOnlyRelativePath: true));
         }
 
 

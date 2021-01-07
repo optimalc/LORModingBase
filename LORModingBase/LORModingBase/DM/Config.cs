@@ -94,25 +94,42 @@ namespace LORModingBase.DM
         /// <summary>
         /// Get save path from static path
         /// </summary>
-        public static string GetStaticPathToSave(XmlData xmlData, string baseDic)
+        public static string GetStaticPathToSave(XmlData xmlData, string baseDic, bool returnOnlyRelativePath = false)
         {
             if (xmlData == null) return "";
             if (xmlData.currentXmlFilePaths.Count <= 0) return "";
             int FOUND_INDEX = xmlData.currentXmlFilePaths[0].IndexOf("StaticInfo");
             if (FOUND_INDEX < 0) return "";
-            return $"{baseDic}\\{xmlData.currentXmlFilePaths[0].Substring(FOUND_INDEX)}";
+            if (returnOnlyRelativePath)
+                return xmlData.currentXmlFilePaths[0].Substring(FOUND_INDEX);
+            else
+                return $"{baseDic}\\{xmlData.currentXmlFilePaths[0].Substring(FOUND_INDEX)}";
         }
 
         /// <summary>
         /// Get save path from localize path
         /// </summary>
-        public static string GetLocalizePathToSave(XmlData xmlData, string baseDic)
+        public static string GetLocalizePathToSave(XmlData xmlData, string baseDic, bool returnOnlyRelativePath = false)
         {
             if (xmlData == null) return "";
             if (xmlData.currentXmlFilePaths.Count <= 0) return "";
             int FOUND_INDEX = xmlData.currentXmlFilePaths[0].IndexOf("Localize");
             if (FOUND_INDEX < 0) return "";
-            return $"{baseDic}\\{xmlData.currentXmlFilePaths[0].Substring(FOUND_INDEX)}";
+            if (returnOnlyRelativePath)
+                return xmlData.currentXmlFilePaths[0].Substring(FOUND_INDEX);
+            else
+                return $"{baseDic}\\{xmlData.currentXmlFilePaths[0].Substring(FOUND_INDEX)}";
+        }
+
+        /// <summary>
+        /// Get full path from relative path
+        /// </summary>
+        /// <param name="relativePath">Relative path to use</param>
+        /// <param name="baseDic">Base directory</param>
+        /// <returns>Full path</returns>
+        public static string GetPathFromRelativePath(string relativePath, string baseDic)
+        {
+            return $"{baseDic}\\{relativePath}";
         }
     }
 }

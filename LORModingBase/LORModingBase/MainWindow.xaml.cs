@@ -82,6 +82,7 @@ namespace LORModingBase
 
             DM.GameInfos.LoadAllDatas();
 
+            MainWindow.EDITOR_SELECTION_MENU.Clear();
             DM.EditGameData_BookInfos.InitDatas();
             DM.EditGameData_CardInfos.InitDatas();
         }
@@ -351,15 +352,7 @@ namespace LORModingBase
 
 
         #region Text editor functions
-        List<string> EDITOR_SELECTION_MENU = new List<string>()
-        {
-            "EquipPage.txt",
-            "DropBook.txt",
-            "Books.txt",
-            "CardInfo.txt",
-            "CardDropTable.txt",
-            "BattlesCards.txt"
-        };
+        public static List<string> EDITOR_SELECTION_MENU = new List<string>();
         private void InitLbxTextEditor()
         {
             LbxTextEditor.Items.Clear();
@@ -389,30 +382,12 @@ namespace LORModingBase
                     DM.EditGameData_CardInfos.LocalizedBattleCards.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory));
 
                     string debugFileName = "";
-                    switch (LbxTextEditor.SelectedIndex)
+                    if(LbxTextEditor.SelectedItem != null)
                     {
-                        case 0:
-                            debugFileName = DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory);
-                            break;
-                        case 1:
-                            debugFileName = DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory);
-                            break;
-                        case 2:
-                            debugFileName = DM.Config.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory);
-                            break;
-
-                        case 3:
-                            debugFileName = DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory);
-                            break;
-                        case 4:
-                            debugFileName = DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory);
-                            break;
-                        case 5:
-                            debugFileName = DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory);
-                            break;
+                        debugFileName = DM.Config.GetPathFromRelativePath(LbxTextEditor.SelectedItem.ToString(), DM.Config.CurrentWorkingDirectory);
+                        if (File.Exists(debugFileName))
+                            TbxTextEditor.Text = File.ReadAllText(debugFileName);
                     }
-                    if (File.Exists(debugFileName))
-                        TbxTextEditor.Text = File.ReadAllText(debugFileName);
 
                     DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"WORKING_SPACE_TITLE");
                     TbxTextEditorLog.Text = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Complete_1");

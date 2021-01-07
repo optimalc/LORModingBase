@@ -31,6 +31,11 @@ namespace LORModingBase.DM
 
             LocalizedBooks = new XmlData(DM.GameInfos.localizeInfos["Books"]);
             LocalizedBooks.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("bookDescList");
+
+
+            MainWindow.EDITOR_SELECTION_MENU.Add(DM.Config.GetStaticPathToSave(StaticEquipPage, "", returnOnlyRelativePath: true));
+            MainWindow.EDITOR_SELECTION_MENU.Add(DM.Config.GetStaticPathToSave(StaticDropBook, "", returnOnlyRelativePath: true));
+            MainWindow.EDITOR_SELECTION_MENU.Add(DM.Config.GetLocalizePathToSave(LocalizedBooks, "", returnOnlyRelativePath: true));
         }
     
 
