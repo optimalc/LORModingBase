@@ -166,7 +166,23 @@ namespace LORModingBase.UC
                 case "BtnStage":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
+                        DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
+                            attributeToCheck: new Dictionary<string, string>() { { "id", selectedItem } }).ActionOneItemSafe((DM.XmlDataNode stageNode) =>
+                            {
+                                innerStageNode.SetXmlInfoByPath("Chapter", stageNode.GetInnerTextByPath("Chapter"));
+                                innerStageNode.SetXmlInfoByPath("StoryType", stageNode.GetInnerTextByPath("StoryType"));
 
+                                innerStageNode.RemoveXmlInfosByPath("Story");
+                                DM.XmlDataNode copyedStageNode = stageNode.Copy();
+                                innerStageNode.subNodes.AddRange(copyedStageNode.GetXmlDataNodesByPath("Story"));
+
+                                BtnStage.ToolTip = selectedItem;
+
+                                LblStage.Content = selectedItem;
+                                BtnStage.Content = "          ";
+                            });
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
                 case "BtnFloor":
