@@ -53,11 +53,28 @@ namespace LORModingBase.SubWindows
             {
                 case AddItemToListWindow_PRESET.ONLY_CARD:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"ONLY_CARD_TITLE");
+                    #region Add custom items
+                    DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                    {
+                        if(cardNode.GetInnerTextByPath("Option") == "OnlyPage")
+                        {
+                            string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                            string CUSTOM_NAME = cardNode.GetInnerTextByPath("Name");
+                            string CUSTOM_ID = cardNode.GetAttributesSafe("ID");
+                            if(!string.IsNullOrEmpty(CUSTOM_ID))
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:{CUSTOM_ID}");
+                        }
+                    });
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
                     DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                     {
-                        string CARD_ID = cardNode.GetAttributesSafe("ID");
-                        if(!string.IsNullOrEmpty(CARD_ID))
-                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID));
+                        if (cardNode.GetInnerTextByPath("Option") == "OnlyPage")
+                        {
+                            string CARD_ID = cardNode.GetAttributesSafe("ID");
+                            if (!string.IsNullOrEmpty(CARD_ID))
+                                selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID));
+                        }
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
