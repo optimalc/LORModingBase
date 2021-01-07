@@ -82,5 +82,32 @@ namespace LORModingBase.DM
             else
                 return null;
         }
+    
+        /// <summary>
+        /// Make new wav info base by basic node in game data
+        /// </summary>
+        /// <returns></returns>
+        public static XmlDataNode MakeNewWaveInfoBase()
+        {
+            List<XmlDataNode> baseBookUseNode = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
+                   attributeToCheck: new Dictionary<string, string>() { { "id", "2" } });
+            if (baseBookUseNode.Count > 0)
+            {
+                XmlDataNode STAGE_NODE_TO_USE = baseBookUseNode[0];
+
+                List<XmlDataNode> baseWaveNode = STAGE_NODE_TO_USE.GetXmlDataNodesByPath("Wave");
+                if (baseWaveNode.Count > 0)
+                {
+                    XmlDataNode baseWaveNodeToUse = baseWaveNode[0].Copy();
+                    baseWaveNodeToUse.SetXmlInfoByPath("Formation", "");
+                    baseWaveNodeToUse.RemoveXmlInfosByPath("Unit");
+                    return baseWaveNodeToUse;
+                }
+                else
+                    return null;
+            }
+            else
+                return null;
+        }
     }
 }

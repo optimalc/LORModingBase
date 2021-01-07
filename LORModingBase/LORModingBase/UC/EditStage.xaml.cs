@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LORModingBase.CustomExtensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace LORModingBase.UC
         DM.XmlDataNode innerStageNode = null;
         Action initStack = null;
 
+        #region Init controls
         public EditStage(DM.XmlDataNode stageNode, Action initStack)
         {
             InitializeComponent();
@@ -76,12 +78,28 @@ namespace LORModingBase.UC
             }
 
             string MAP_INFO = innerStageNode.GetInnerTextByPath("MapInfo");
-            if(!string.IsNullOrEmpty(MAP_INFO))
+            if (!string.IsNullOrEmpty(MAP_INFO))
             {
                 BtnMapInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesMapInfo.png");
                 BtnMapInfo.ToolTip = innerStageNode.GetInnerTextByPath("MapInfo");
             }
+
+            InitSqlWaves();
         }
+
+        /// <summary>
+        /// Init eave stack panel
+        /// </summary>
+        private void InitSqlWaves()
+        {
+            SqlWaves.Children.Clear();
+            innerStageNode.GetXmlDataNodesByPath("Wave").ForEachSafe((DM.XmlDataNode waveNode) =>
+            {
+                SqlWaves.Children.Add(new EditWave(waveNode, innerStageNode, InitSqlWaves));
+            });
+        } 
+        #endregion
+
 
         /// <summary>
         /// Reflect text chagnes in TextBox
@@ -164,6 +182,9 @@ namespace LORModingBase.UC
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
                 case "BtnAddWave":
+                    innerStageNode.subNodes.Add(DM.EditGameData_StageInfo.MakeNewWaveInfoBase());
+                    InitSqlWaves();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
             }
         }

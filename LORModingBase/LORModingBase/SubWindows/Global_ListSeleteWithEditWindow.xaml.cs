@@ -77,6 +77,11 @@ namespace LORModingBase.SubWindows
                         if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_CardInfos.LocalizedBattleCards = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory));
 
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_StageInfo.StaticStageInfo, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_StageInfo.StaticStageInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_StageInfo.StaticStageInfo, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_StageInfo.LocalizedStageName, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_StageInfo.LocalizedStageName = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_StageInfo.LocalizedStageName, DM.Config.CurrentWorkingDirectory));
+
                         this.Close();
                     };
 

@@ -39,6 +39,7 @@ namespace LORModingBase
         {
             InitSplCriticalPage();
             InitSplCards();
+            InitSplStages();
         }
 
         /// <summary>

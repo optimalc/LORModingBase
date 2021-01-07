@@ -5,56 +5,67 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LORModingBase.UC"
              mc:Ignorable="d" 
-             Width="225" Height="150">
+             Width="225" Height="80">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="4"/>
-            <Label x:Name="LblEpisode" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
-            <Viewbox Grid.Column="1" Stretch="Fill" Margin="55,7">
-                <Button x:Name="BtnFormation" Content="유닛의 전형 선택" ToolTip="해당 웨이브의 유닛 전형을 선택합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            </Viewbox>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="35*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54BF9E9E"/>
+                <Label x:Name="LblFormation" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="1" Stretch="Fill">
+                    <Button x:Name="BtnFormation" Content="유닛의 전형 선택" ToolTip="해당 웨이브의 유닛 전형을 선택합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E"/>
+
+                <Image x:Name="ImgAvailableUnit" Grid.Column="0" Source="../Resources/IconGroup.png" RenderTransformOrigin="0.5,0.5" ToolTip="이용가능한 최대 유닛의 수를 입력합니다">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBox x:Name="TbxAvailableUnit" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox" ToolTip="이용가능한 최대 유닛의 수를 입력합니다"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54BF9E9E"/>
+                <Button x:Name="BtnDeleteWave" Grid.Column="4" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="NomalButtonClickEvents" ToolTip="웨이브를 삭제합니다" >
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="6" ScaleY="8"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-8" Y="-14"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Resources/BtnBin.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
         </Grid>
-        <Grid Grid.Row="1" Name="GrdUnit1">
-            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="4"/>
-            <Label x:Name="LblUnit1" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
-            <Viewbox Grid.Column="1" Stretch="Fill" Margin="55,7">
-                <Button x:Name="BtnUnit1" Content="첫번째 유닛" ToolTip="해당 웨이브의 첫번째 유닛을 선택합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            </Viewbox>
-        </Grid>
-        <Grid Grid.Row="2" Name="GrdUnit2">
-            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="4"/>
-            <Label x:Name="LblUnit2" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
-            <Viewbox Grid.Column="1" Stretch="Fill" Margin="55,7">
-                <Button x:Name="BtnUnit2" Content="두번째 유닛" ToolTip="해당 웨이브의 두번째 유닛을 선택합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            </Viewbox>
-        </Grid>
-        <Grid Grid.Row="3" Name="GrdUnit3">
-            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="4"/>
-            <Label x:Name="LblUnit3" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
-            <Viewbox Grid.Column="1" Stretch="Fill" Margin="55,7">
-                <Button x:Name="BtnUnit3" Content="세번째 유닛" ToolTip="해당 웨이브의 세번째 유닛을 선택합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            </Viewbox>
-        </Grid>
-        <Grid Grid.Row="4" Name="GrdUnit4">
-            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="4"/>
-            <Label x:Name="LblUnit4" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
-            <Viewbox Grid.Column="1" Stretch="Fill" Margin="55,7">
-                <Button x:Name="BtnUnit4" Content="네번째 유닛" ToolTip="해당 웨이브의 네번째 유닛을 선택합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            </Viewbox>
-        </Grid>
-        <Grid Grid.Row="5" Name="GrdUnit5">
-            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="4"/>
-            <Label x:Name="LblUnit5" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
-            <Viewbox Grid.Column="5" Stretch="Fill" Margin="55,7">
-                <Button x:Name="BtnUnit5" Content="다섯번째 유닛" ToolTip="해당 웨이브의 다섯번째 유닛을 선택합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54BF9E9E" Margin="4"/>
+            <Label x:Name="LblUnits" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+            <Viewbox Grid.Column="1" Stretch="Fill">
+                <Button x:Name="BtnUnits" Content="유닛들을 선택" ToolTip="해당 웨이브에 나올 유닛들을 선택합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
             </Viewbox>
         </Grid>
     </Grid>

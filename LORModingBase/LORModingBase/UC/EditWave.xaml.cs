@@ -21,13 +21,41 @@ namespace LORModingBase.UC
     public partial class EditWave : UserControl
     {
         DM.XmlDataNode waveNode;
+        DM.XmlDataNode stageNode;
         Action stackInitFunc = null;
 
-        public EditWave(DM.XmlDataNode waveNode, Action stackInitFunc)
+        public EditWave(DM.XmlDataNode waveNode, DM.XmlDataNode stageNode, Action stackInitFunc)
         {
             InitializeComponent();
             this.waveNode = waveNode;
+            this.stageNode = stageNode;
             this.stackInitFunc = stackInitFunc;
+
+            waveNode.ActionIfInnertTextIsNotNullOrEmpty("Formation", (string innerText) =>
+            {
+                BtnFormation.ToolTip = innerText;
+
+                LblFormation.Content = innerText;
+                BtnFormation.Content = "          ";
+            });
+
+            List<DM.XmlDataNode> unitNodes = waveNode.GetXmlDataNodesByPathWithXmlInfo("Unit");
+            string unitStr = "";
+            if(unitNodes.Count > 0)
+            {
+                unitNodes.ForEach((DM.XmlDataNode unitNode) =>
+                {
+                    unitStr += $"{unitNode.innerText} /";
+                });
+                unitStr = unitStr.Trim('/');
+                if(!string.IsNullOrEmpty(unitStr.Trim()))
+                {
+                    BtnUnits.ToolTip = unitStr;
+
+                    LblUnits.Content = unitStr;
+                    BtnUnits.Content = "          ";
+                }
+            }
         }
 
         /// <summary>
@@ -44,29 +72,39 @@ namespace LORModingBase.UC
 
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
-                case "BtnUnit1":
+                case "BtnUnits":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
 
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
-                case "BtnUnit3":
-                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
-                    {
+            }
+        }
 
-                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
+        private void NomalButtonClickEvents(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            switch (btn.Name)
+            {
+                case "BtnDeleteWave":
+                    stageNode.subNodes.Remove(waveNode);
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    stackInitFunc();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
-                case "BtnUnit4":
-                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
-                    {
+            }
+        }
 
-                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
-                    break;
-                case "BtnUnit5":
-                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
-                    {
+        private void ReflectTextChangeInTextBox(object sender, TextChangedEventArgs e)
+        {
+            if (waveNode == null)
+                return;
 
-                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
+            TextBox tbx = sender as TextBox;
+            switch (tbx.Name)
+            {
+                case "TbxAvailableUnit":
+                    waveNode.SetXmlInfoByPathAndEmptyWillRemove("AvailableUnit", tbx.Text);
                     break;
             }
         }

@@ -359,5 +359,8 @@
     <Resource Include="Resources\IconNoMapInfo.png" />
     <Resource Include="Resources\IconYesMapInfo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconGroup.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
