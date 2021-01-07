@@ -104,6 +104,9 @@ namespace LORModingBase
 
             GrdCards.Visibility = Visibility.Collapsed;
             BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
+
+            GrdStages.Visibility = Visibility.Collapsed;
+            BtnStages.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
         }
 
         /// <summary>
@@ -127,6 +130,11 @@ namespace LORModingBase
                         GrdCards.Visibility = Visibility.Visible;
                         BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
                         ChangeDebugLocation(DEBUG_LOCATION.STATIC_CARD);
+                        break;
+                    case "BtnStages":
+                        HideAllGrid();
+                        GrdStages.Visibility = Visibility.Visible;
+                        BtnStages.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
                         break;
 
                     case "BtnSetWorkingSpace":
@@ -352,6 +360,42 @@ namespace LORModingBase
                                 InitSplCards();
                             }
                         }, SubWindows.InputInfoWithSearchWindow_PRESET.CARDS).ShowDialog();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"BattleCardGridButtonClickEvents_Error_1"));
+            }
+        }
+        #endregion
+        #region EDIT MENU - Stage Infos
+        private void InitSplStages()
+        {
+            SplStages.Children.Clear();
+            //DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode xmlDataNode) =>
+            //{
+            //    SplCards.Children.Add(new UC.EditCard(xmlDataNode, InitSplCards));
+            //});
+        }
+
+        private void StageGridButtonClickEvents(object sender, RoutedEventArgs e)
+        {
+
+            Button clickButton = sender as Button;
+            try
+            {
+                if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                {
+                    MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
+                    return;
+                }
+
+                switch (clickButton.Name)
+                {
+                    case "BtnLoadStage":
+                        InitSplStages();
                         break;
                 }
             }

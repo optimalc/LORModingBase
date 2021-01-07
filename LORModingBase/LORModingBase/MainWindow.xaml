@@ -259,13 +259,17 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="13.9*"/>
                     <ColumnDefinition Width="13.9*"/>
-                    <ColumnDefinition Width="72.2*"/>
+                    <ColumnDefinition Width="13.9*"/>
+                    <ColumnDefinition Width="58.3*"/>
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.Column="0" Stretch="Fill" Margin="10">
                     <Button x:Name="BtnCriticalPage" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
                 </Viewbox>
                 <Viewbox Grid.Column="1" Stretch="Fill" Margin="10">
                     <Button x:Name="BtnCards" Content="[전투책장 편집]" ToolTip="전투책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="2" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnStages" Content="[스테이지 편집]" ToolTip="스테이지 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Row="2" Name="GrdCriticalPage">
@@ -327,6 +331,40 @@
                 <Grid Grid.Column="1">
                     <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
                         <StackPanel x:Name="SplCards" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Name="GrdStages">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="95*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MainBg.png"/>
+                </Grid.Background>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnAddStage" Content="+" ToolTip="게임에 없는 새로운 스테이지를 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnLoadStage" Content="~" ToolTip="게임 내부로부터 스테이지 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="StageGridButtonClickEvents"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="SplStages" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <StackPanel.Resources>
                                 <Style TargetType="{x:Type Grid}">
                                     <Setter Property="Margin" Value="5,5,5,5"/>
