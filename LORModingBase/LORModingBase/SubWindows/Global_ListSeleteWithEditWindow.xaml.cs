@@ -23,6 +23,7 @@ namespace LORModingBase.SubWindows
             List<string> itemToLoad, string windowTitle = "항목 선택 메뉴")
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelect = afterSelect;
             this.afterAdd = afterAdd;
             this.afterEdit = afterEdit;
@@ -38,6 +39,7 @@ namespace LORModingBase.SubWindows
         public Global_ListSeleteWithEditWindow(Action<string> afterSelect, Action afterAdd, Action<string> afterEdit, Action<string> afterDelete, Global_ListSeleteWithEditWindow_PRESET PRESET)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelect = afterSelect;
             this.afterAdd = afterAdd;
             this.afterEdit = afterEdit;
@@ -46,6 +48,7 @@ namespace LORModingBase.SubWindows
             switch (PRESET)
             {
                 case Global_ListSeleteWithEditWindow_PRESET.WORKING_SPACE:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"WORKING_SPACE_TITLE");
                     string DirToSearch = "";
                     if (DM.Config.config.isDirectBaseModeExport)
                         DirToSearch = $"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data\\BaseMods";
@@ -86,7 +89,8 @@ namespace LORModingBase.SubWindows
                                 Directory.CreateDirectory($"{DirToSearch}\\{inputedName}");
                                 LbxItems.Items.Add(inputedName);
                             }
-                        }, windowTitle: "생성할 모드명을 입력", tbxToolTip: "생성시킬 모드명을 입력합니다.").ShowDialog();
+                        }, windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"WORKING_SPACE_TITLE_ADD_TITLE"), 
+                        tbxToolTip: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"WORKING_SPACE_TITLE_ADD_TOOLTIP")).ShowDialog();
                     };
 
                     this.afterEdit = (string selectedName) =>
@@ -95,10 +99,14 @@ namespace LORModingBase.SubWindows
                         {
                             if (Directory.Exists($"{DirToSearch}\\{selectedName}"))
                             {
-                                Directory.Move($"{DirToSearch}\\{selectedName}", $"{DirToSearch}\\{inputedName}");
-                                LbxItems.Items[LbxItems.Items.IndexOf(selectedName)] = inputedName;
+                                if($"{DirToSearch}\\{selectedName}" != $"{DirToSearch}\\{inputedName}")
+                                {
+                                    Directory.Move($"{DirToSearch}\\{selectedName}", $"{DirToSearch}\\{inputedName}");
+                                    LbxItems.Items[LbxItems.Items.IndexOf(selectedName)] = inputedName;
+                                }
                             }
-                        }, prevData: selectedName,  windowTitle: "편집된 모드명을 입력", tbxToolTip: "편집된 모드명을 입력합니다.").ShowDialog();
+                        }, prevData: selectedName,  windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"WORKING_SPACE_TITLE_EDIT_TITLE"), 
+                        tbxToolTip: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"WORKING_SPACE_TITLE_EDIT_TOOLTIP")).ShowDialog();
                     };
 
                     this.afterDelete = (string selectedName) =>

@@ -131,5 +131,6 @@ namespace LORModingBase.DM
         public static string BOOK_INFO = "bookInfo";
         public static string MAIN_WINDOW = "mainWindow";
         public static string ETC = "etc";
+        public static string GLOBAL_WINDOW = "global";
     }
 }

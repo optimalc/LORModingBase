@@ -15,6 +15,7 @@ namespace LORModingBase.SubWindows
             string windowTitle="항목 입력", string tbxToolTip="항목을 입력합니다", Action<string> afterClose = null)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             TbxData.Text = prevData;
             this.afterDataInputed = afterDataInputed;
             this.afterClose = afterClose;
