@@ -92,7 +92,14 @@ namespace LORModingBase.DM
         /// <returns>True if key exists</returns>
         public static bool IsLanguageKeyExist(string LANGUAGE_FILE_NAME, string keyName)
         {
-            return localizedData[DM.Config.config.localizeOption][LANGUAGE_FILE_NAME].ContainsKey(keyName);
+            try
+            {
+                return localizedData[DM.Config.config.localizeOption][LANGUAGE_FILE_NAME].ContainsKey(keyName);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>

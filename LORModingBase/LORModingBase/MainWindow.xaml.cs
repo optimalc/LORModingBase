@@ -41,8 +41,11 @@ namespace LORModingBase
         /// </summary>
         private void LoadAllRelatedDatasAfterChangePath()
         {
+            bool configFileExisted = File.Exists(DS.PROGRAM_PATHS.CONFIG);
             DM.Config.LoadData();
             DM.LocalizeCore.LoadAllDatas();
+            if (!configFileExisted)
+                MainWindowButtonClickEvents(BtnConfig, null);
 
             #region Check LOR folder exists. If exists, init LblLORPath
             if (!Directory.Exists(DM.Config.config.LORFolderPath) || !Directory.Exists($"{DM.Config.config.LORFolderPath}\\LibraryOfRuina_Data") 
