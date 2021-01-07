@@ -121,8 +121,14 @@
     <Compile Include="UC\EditCriticalPage.xaml.cs">
       <DependentUpon>EditCriticalPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\EditDeck.xaml.cs">
+      <DependentUpon>EditDeck.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\EditDice.xaml.cs">
       <DependentUpon>EditDice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\EditEnemyUnit.xaml.cs">
+      <DependentUpon>EditEnemyUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC\EditStage.xaml.cs">
       <DependentUpon>EditStage.xaml</DependentUpon>
@@ -190,7 +196,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC\EditDeck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC\EditDice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditEnemyUnit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

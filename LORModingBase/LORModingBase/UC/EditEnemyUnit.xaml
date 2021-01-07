@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="LORModingBase.UC.EditEnemyUnit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LORModingBase.UC"
+             mc:Ignorable="d" 
+             Height="400" Width="320">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle x:Name="WindowBg" Fill="#549C3CBD" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="22*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Label x:Name="LblNameID" Content="이름 ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxNameID" Grid.Column="1" Text="" ToolTip="적 유닛의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+                
+                <Viewbox Grid.Column="2" Stretch="Fill">
+                    <Label x:Name="LblEnemyName" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxEnemyName" Grid.Column="4" Text="" ToolTip="적 유닛 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Rectangle Grid.Column="3" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Label x:Name="LblMinHeight" Content="키 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxMinHeight" Grid.Column="1" Text="" ToolTip="적 유닛 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+                <TextBox x:Name="TbxMaxHeight" Grid.Column="2" Text="" ToolTip="적 유닛의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+                
+                <Viewbox Grid.Column="3" Stretch="Fill">
+                    <Label x:Name="LblEnemyUniqueID" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxEnemyUniqueID" Grid.Column="4" Text="" ToolTip="적 유닛의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblBookID" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Button x:Name="BtnBookID" Content="책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                </Viewbox>
+
+                <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblDeckID" Grid.Column="3" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="3" Stretch="Fill">
+                    <Button x:Name="BtnDeckID" Content="덱 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에 들어가기 위한 초대장에 들어갈 책을 설정합니다" Click="SelectItemButtonEvents"/>
+                </Viewbox>
+            </Grid>
+            
+            <Grid Grid.Row="3">
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblDropTable0" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Button x:Name="BtnDropTable0" Content="감정 레벨 0에서 드랍 책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblDropTable1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Button x:Name="BtnDropTable1" Content="감정 레벨 1에서 드랍 책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="5">
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblDropTable2" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Button x:Name="BtnDropTable2" Content="감정 레벨 2에서 드랍 책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="6">
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblDropTable3" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Button x:Name="BtnDropTable3" Content="감정 레벨 3에서 드랍 책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                </Viewbox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="37*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+
+            <Rectangle Grid.Row="2" Grid.RowSpan="6" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnCopyEnemy" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="스테이지를 복제해서 새로운 스테이지를 만듭니다" Click="RightMenuButtonEvents">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-17"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnCopy.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="RightMenuButtonEvents" ToolTip="스테이지를 삭제합니다" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-21"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnBin.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

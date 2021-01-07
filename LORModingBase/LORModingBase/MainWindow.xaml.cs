@@ -109,6 +109,12 @@ namespace LORModingBase
 
             GrdStages.Visibility = Visibility.Collapsed;
             BtnStages.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
+
+            GrdEmemy.Visibility = Visibility.Collapsed;
+            BtnEnemy.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
+
+            GrdDecks.Visibility = Visibility.Collapsed;
+            BtnDecks.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
         }
 
         /// <summary>
@@ -137,6 +143,18 @@ namespace LORModingBase
                         HideAllGrid();
                         GrdStages.Visibility = Visibility.Visible;
                         BtnStages.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_STAGE_INFO);
+                        break;
+                    case "BtnEnemy":
+                        HideAllGrid();
+                        GrdEmemy.Visibility = Visibility.Visible;
+                        BtnEnemy.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_STAGE_INFO);
+                        break;
+                    case "BtnDecks":
+                        HideAllGrid();
+                        GrdDecks.Visibility = Visibility.Visible;
+                        BtnDecks.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
                         ChangeDebugLocation(DEBUG_LOCATION.STATIC_STAGE_INFO);
                         break;
 
@@ -425,6 +443,132 @@ namespace LORModingBase
                                 }
                                 InitSplStages();
                             }
+                        }, SubWindows.InputInfoWithSearchWindow_PRESET.STAGES).ShowDialog();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"BattleCardGridButtonClickEvents_Error_1"));
+            }
+        }
+        #endregion
+        #region EDIT MENU - Enemy Infos
+        private void InitSplEnemy()
+        {
+            SplEnemy.Children.Clear();
+            //DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode xmlDataNode) =>
+            //{
+            //    SplStages.Children.Add(new UC.EditStage(xmlDataNode, InitSplStages));
+            //});
+        }
+
+        private void EnemyGridButtonClickEvents(object sender, RoutedEventArgs e)
+        {
+
+            Button clickButton = sender as Button;
+            try
+            {
+                if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                {
+                    MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
+                    return;
+                }
+
+                switch (clickButton.Name)
+                {
+                    case "BtnAddEnemy":
+                        //DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.subNodes.Add(
+                        //DM.EditGameData_StageInfo.MakeNewStageInfoBase());
+                        InitSplEnemy();
+                        break;
+                    case "BtnLoadEnemy":
+                        new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                        {
+                            //List<DM.XmlDataNode> foundStageIds = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
+                            //        attributeToCheck: new Dictionary<string, string>() { { "id", selectedItem } });
+                            //if (foundStageIds.Count > 0)
+                            //{
+                            //    DM.XmlDataNode STAGE_NODE_TO_USE = foundStageIds[0].Copy();
+                            //    DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.subNodes.Add(STAGE_NODE_TO_USE);
+
+                            //    List<DM.XmlDataNode> foundLocalizeStageNames = DM.GameInfos.localizeInfos["StageName"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Name",
+                            //        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            //    if (foundLocalizeStageNames.Count > 0)
+                            //    {
+                            //        STAGE_NODE_TO_USE.SetXmlInfoByPath("Name", foundLocalizeStageNames[0].innerText);
+                            //        if (!DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.CheckIfGivenPathWithXmlInfoExists("Name",
+                            //                   attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } }))
+                            //        {
+                            //            DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.subNodes.Add(foundLocalizeStageNames[0].Copy());
+                            //        }
+                                //}
+                            //    InitSplEnemy();
+                            //}
+                        }, SubWindows.InputInfoWithSearchWindow_PRESET.STAGES).ShowDialog();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"BattleCardGridButtonClickEvents_Error_1"));
+            }
+        }
+        #endregion
+        #region EDIT MENU - Deck Infos
+        private void InitSplDecks()
+        {
+            SplDecks.Children.Clear();
+            //DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode xmlDataNode) =>
+            //{
+            //    SplStages.Children.Add(new UC.EditStage(xmlDataNode, InitSplStages));
+            //});
+        }
+
+        private void DecksGridButtonClickEvents(object sender, RoutedEventArgs e)
+        {
+
+            Button clickButton = sender as Button;
+            try
+            {
+                if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                {
+                    MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
+                    return;
+                }
+
+                switch (clickButton.Name)
+                {
+                    case "BtnAddStage":
+                        //DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.subNodes.Add(
+                        //DM.EditGameData_StageInfo.MakeNewStageInfoBase());
+                        InitSplDecks();
+                        break;
+                    case "BtnLoadStage":
+                        new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                        {
+                            //List<DM.XmlDataNode> foundStageIds = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
+                            //        attributeToCheck: new Dictionary<string, string>() { { "id", selectedItem } });
+                            //if (foundStageIds.Count > 0)
+                            //{
+                            //    DM.XmlDataNode STAGE_NODE_TO_USE = foundStageIds[0].Copy();
+                            //    DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.subNodes.Add(STAGE_NODE_TO_USE);
+
+                            //    List<DM.XmlDataNode> foundLocalizeStageNames = DM.GameInfos.localizeInfos["StageName"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Name",
+                            //        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            //    if (foundLocalizeStageNames.Count > 0)
+                            //    {
+                            //        STAGE_NODE_TO_USE.SetXmlInfoByPath("Name", foundLocalizeStageNames[0].innerText);
+                            //        if (!DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.CheckIfGivenPathWithXmlInfoExists("Name",
+                            //                   attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } }))
+                            //        {
+                            //            DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.subNodes.Add(foundLocalizeStageNames[0].Copy());
+                            //        }
+                            //    }
+                            //    InitSplDecks();
+                            //}
                         }, SubWindows.InputInfoWithSearchWindow_PRESET.STAGES).ShowDialog();
                         break;
                 }

@@ -141,5 +141,8 @@ namespace LORModingBase.DM
         public static string GLOBAL_WINDOW = "global";
         public static string LOGGING = "logging";
         public static string STAGE_INFO = "stageInfo";
+
+        public static string ENEMY_INFO = "enemyInfo";
+        public static string DECK_INFO = "deckInfo";
     }
 }
