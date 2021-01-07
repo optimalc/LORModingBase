@@ -411,14 +411,15 @@ namespace LORModingBase
                     if (File.Exists(debugFileName))
                         TbxTextEditor.Text = File.ReadAllText(debugFileName);
 
-                    TbxTextEditorLog.Text = $"데이터가 정상적으로 생성됨";
-                    TbxTextEditorLog.ToolTip = $"데이터가 정상적으로 생성됨";
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"WORKING_SPACE_TITLE");
+                    TbxTextEditorLog.Text = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Complete_1");
+                    TbxTextEditorLog.ToolTip = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Complete_1");
                 }
             }
             catch(Exception ex)
             {
-                TbxTextEditorLog.Text = $"데이터 생성 도중 에러 발생 \n> {ex.Message}";
-                TbxTextEditorLog.ToolTip = $"데이터 생성 도중 에러 발생 \n> {ex.Message}";
+                TbxTextEditorLog.Text = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Error_1")} \n> {ex.Message}";
+                TbxTextEditorLog.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Error_1")} \n> {ex.Message}";
             }
         }
         #endregion

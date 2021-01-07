@@ -132,5 +132,6 @@ namespace LORModingBase.DM
         public static string MAIN_WINDOW = "mainWindow";
         public static string ETC = "etc";
         public static string GLOBAL_WINDOW = "global";
+        public static string LOGGING = "logging";
     }
 }
