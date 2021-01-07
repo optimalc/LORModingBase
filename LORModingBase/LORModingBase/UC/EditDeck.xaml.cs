@@ -23,12 +23,26 @@ namespace LORModingBase.UC
         DM.XmlDataNode innerDeckNode = null;
         Action initStack = null;
 
+        #region Init controls
         public EditDeck(DM.XmlDataNode innerDeckNode, Action initStack)
         {
             InitializeComponent();
             this.innerDeckNode = innerDeckNode;
             this.initStack = initStack;
+
+            TbxDeckID.Text = innerDeckNode.GetAttributesSafe("ID");
+            InitLbxCards();
         }
+
+        public void InitLbxCards()
+        {
+            LbxCards.Items.Clear();
+            innerDeckNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+            {
+                LbxCards.Items.Add(cardNode.innerText);
+            });
+        } 
+        #endregion
 
         /// <summary>
         /// Reflect text chagnes in TextBox
@@ -42,6 +56,7 @@ namespace LORModingBase.UC
             switch (tbx.Name)
             {
                 case "TbxDeckID":
+                    innerDeckNode.attribute["ID"] = tbx.Text;
                     break;
             }
             MainWindow.mainWindow.UpdateDebugInfo();
@@ -53,8 +68,21 @@ namespace LORModingBase.UC
             switch (btn.Name)
             {
                 case "BtnAddDeck":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        innerDeckNode.AddXmlInfoByPath("Card", selectedItem);
+                        InitLbxCards();
+                        
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.CARDS).ShowDialog();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DECKS);
                     break;
                 case "BtnDeleteDeck":
+                    if(LbxCards.SelectedItem != null)
+                    {
+                        innerDeckNode.RemoveXmlInfosByPath("Card", LbxCards.SelectedItem.ToString(), deleteOnce:true);
+                        InitLbxCards();
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DECKS);
                     break;
             }
         }
@@ -68,8 +96,16 @@ namespace LORModingBase.UC
             switch (btn.Name)
             {
                 case "BtnCopyDeck":
+                    DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.subNodes.Add(innerDeckNode.Copy());
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DECKS);
                     break;
                 case "BtnDelete":
+                    DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.subNodes.Remove(innerDeckNode);
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DECKS);
                     break;
             }
         }

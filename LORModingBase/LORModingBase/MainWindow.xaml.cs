@@ -40,6 +40,8 @@ namespace LORModingBase
             InitSplCriticalPage();
             InitSplCards();
             InitSplStages();
+            InitSplEnemy();
+            InitSplDecks();
         }
 
         /// <summary>
@@ -151,13 +153,13 @@ namespace LORModingBase
                         HideAllGrid();
                         GrdEmemy.Visibility = Visibility.Visible;
                         BtnEnemy.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
-                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_STAGE_INFO);
+                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_ENEMY_INFO);
                         break;
                     case "BtnDecks":
                         HideAllGrid();
                         GrdDecks.Visibility = Visibility.Visible;
                         BtnDecks.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
-                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_STAGE_INFO);
+                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_DECKS);
                         break;
 
                     case "BtnSetWorkingSpace":
@@ -499,7 +501,6 @@ namespace LORModingBase
                                     attributeToCheck: new Dictionary<string, string>() { { "ID", ENEMY_NODE_TO_USE.GetInnerTextByPath("NameID") } });
                                 if (foundLocalizeCharNames.Count > 0)
                                 {
-                                    ENEMY_NODE_TO_USE.SetXmlInfoByPath("Name", foundLocalizeCharNames[0].innerText);
                                     if (!DM.EditGameData_EnemyInfo.LocalizedCharactersName.rootDataNode.CheckIfGivenPathWithXmlInfoExists("Name",
                                                attributeToCheck: new Dictionary<string, string>() { { "ID", ENEMY_NODE_TO_USE.GetInnerTextByPath("NameID") } }))
                                     {
@@ -679,10 +680,10 @@ namespace LORModingBase
             STATIC_STAGE_INFO=6,
             LOCALIZED_STAGE_NAME=7,
 
-            ENEMY_INFO=8,
-            CHAR_NAME=9,
+            STATIC_ENEMY_INFO=8,
+            LOCALIZED_CHAR_NAME=9,
 
-            DECKS=10
+            STATIC_DECKS=10
         }
 
 
