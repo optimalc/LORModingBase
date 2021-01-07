@@ -48,25 +48,29 @@ namespace LORModingBase.UC
 
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("Episode", (string innerText) =>
                 {
+                    string STAGE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"EPISODE");
                     string STAGE_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(innerText);
-                    BtnEpisode.ToolTip = STAGE_DES;
+                    BtnEpisode.ToolTip = $"{STAGE_WORD} : {STAGE_DES}";
 
-                    LblEpisode.Content = STAGE_DES;
+                    LblEpisode.Content = $"{STAGE_WORD} : {STAGE_DES}";
                     BtnEpisode.Content = "          ";
                 });
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("BookIcon", (string innerText) =>
                 {
-                    BtnBookIcon.ToolTip = innerText;
+                    string ICON_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"ICON");
+                    BtnBookIcon.ToolTip = $"{ICON_WORD} : {innerText}";
 
-                    LblBookIconViewLabel.Content = innerText;
+                    LblBookIconViewLabel.Content = $"{ICON_WORD} : {innerText}";
                     BtnBookIcon.Content = "          ";
                 });
 
                 innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("CharacterSkin", (string innerText) =>
                 {
-                    BtnSkin.ToolTip = innerText;
+                    string SKIN_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"SKIN");
 
-                    LblSkin.Content = innerText;
+                    BtnSkin.ToolTip = $"{SKIN_WORD} : {innerText}";
+
+                    LblSkin.Content = $"{SKIN_WORD} : {innerText}";
                     BtnSkin.Content = "          ";
                 });
 
@@ -225,10 +229,11 @@ namespace LORModingBase.UC
                     {
                         innerCriticalPageNode.SetXmlInfoByPath("Episode", selectedItem);
 
+                        string STAGE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"EPISODE");
                         string STAGE_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(selectedItem);
-                        BtnEpisode.ToolTip = STAGE_DES;
+                        BtnEpisode.ToolTip = $"{STAGE_WORD} : {STAGE_DES}";
 
-                        LblEpisode.Content = STAGE_DES;
+                        LblEpisode.Content = $"{STAGE_WORD} : {STAGE_DES}";
                         BtnEpisode.Content = "          ";
 
                         MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
@@ -237,10 +242,12 @@ namespace LORModingBase.UC
                 case "BtnBookIcon":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
-                        innerCriticalPageNode.SetXmlInfoByPath("BookIcon", selectedItem);
-                        BtnBookIcon.ToolTip = selectedItem;
+                        string ICON_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"ICON");
 
-                        LblBookIconViewLabel.Content = selectedItem;
+                        innerCriticalPageNode.SetXmlInfoByPath("BookIcon", selectedItem);
+                        BtnBookIcon.ToolTip = $"{ICON_WORD} : {selectedItem}";
+
+                        LblBookIconViewLabel.Content = $"{ICON_WORD} : {selectedItem}";
                         BtnBookIcon.Content = "          ";
 
                         MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
@@ -249,11 +256,13 @@ namespace LORModingBase.UC
                 case "BtnSkin":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
+                        string SKIN_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"SKIN");
+
                         innerCriticalPageNode.SetXmlInfoByPath("CharacterSkin", selectedItem);
 
-                        BtnSkin.ToolTip = selectedItem;
+                        BtnSkin.ToolTip = $"{SKIN_WORD} : {selectedItem}";
 
-                        LblSkin.Content = selectedItem;
+                        LblSkin.Content = $"{SKIN_WORD} : {selectedItem}";
                         BtnSkin.Content = "          ";
 
                         MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);

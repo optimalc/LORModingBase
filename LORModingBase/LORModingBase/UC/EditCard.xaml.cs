@@ -57,18 +57,22 @@ namespace LORModingBase.UC
 
             innerCardNode.ActionIfInnertTextIsNotNullOrEmpty("Artwork", (string innerText) =>
             {
-                BtnCardImage.ToolTip = innerText;
+                string IMAGE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"IMAGE");
+
+                BtnCardImage.ToolTip = $"{IMAGE_WORD} : {innerText}";
 
                 BtnCardImage.Content = "          ";
-                LblCardImage.Content = innerText;
+                LblCardImage.Content = $"{IMAGE_WORD} : {innerText}";
             });
 
             innerCardNode.ActionIfInnertTextIsNotNullOrEmpty("Script", (string innerText) =>
             {
-                BtnCardEffect.ToolTip = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(innerText)}:{innerText}";
+                string ABILITY_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"ABILITY");
+
+                BtnCardEffect.ToolTip = $"{ABILITY_WORD} : {DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(innerText)}:{innerText}";
 
                 BtnCardEffect.Content = "          ";
-                LblCardEffect.Content = innerText;
+                LblCardEffect.Content = $"{ABILITY_WORD} : {innerText}";
             });
             InitSqlDices();
 
@@ -509,22 +513,26 @@ namespace LORModingBase.UC
                 case "BtnCardImage":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
+                        string IMAGE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"IMAGE");
+
                         innerCardNode.SetXmlInfoByPath("Artwork", selectedItem);
-                        BtnCardImage.ToolTip = selectedItem;
+                        BtnCardImage.ToolTip = $"{IMAGE_WORD} : {selectedItem}";
 
                         BtnCardImage.Content = "          ";
-                        LblCardImage.Content = selectedItem;
+                        LblCardImage.Content = $"{IMAGE_WORD} : {selectedItem}";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ARTWORK).ShowDialog();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
                 case "BtnCardEffect":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
+                        string ABILITY_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"ABILITY");
+
                         innerCardNode.SetXmlInfoByPath("Script", selectedItem);
-                        BtnCardEffect.ToolTip = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(selectedItem)}:{selectedItem}";
+                        BtnCardEffect.ToolTip = $"{ABILITY_WORD} : {DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(selectedItem)}:{selectedItem}";
 
                         BtnCardEffect.Content = "          ";
-                        LblCardEffect.Content = selectedItem;
+                        LblCardEffect.Content = $"{ABILITY_WORD} : {selectedItem}";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ABILITES).ShowDialog();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
