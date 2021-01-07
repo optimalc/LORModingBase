@@ -168,6 +168,16 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
+
+                case InputInfoWithSearchWindow_PRESET.STAGES:
+                    DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode stageNode) =>
+                    {
+                        string STAGE_ID = stageNode.GetAttributesSafe("id");
+                        if (!string.IsNullOrEmpty(STAGE_ID))
+                            selectItems.Add(STAGE_ID);
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -247,6 +257,8 @@ namespace LORModingBase.SubWindows
         CARD_ARTWORK,
         CARD_ABILITES,
         DICE_ABILITES,
-        CARDS
+        CARDS,
+
+        STAGES
     };
 }

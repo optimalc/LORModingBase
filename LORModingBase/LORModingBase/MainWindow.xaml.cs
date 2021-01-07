@@ -136,6 +136,7 @@ namespace LORModingBase
                         HideAllGrid();
                         GrdStages.Visibility = Visibility.Visible;
                         BtnStages.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_STAGE_INFO);
                         break;
 
                     case "BtnSetWorkingSpace":
@@ -375,10 +376,10 @@ namespace LORModingBase
         private void InitSplStages()
         {
             SplStages.Children.Clear();
-            //DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode xmlDataNode) =>
-            //{
-            //    SplCards.Children.Add(new UC.EditCard(xmlDataNode, InitSplCards));
-            //});
+            DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode xmlDataNode) =>
+            {
+                SplStages.Children.Add(new UC.EditStage(xmlDataNode, InitSplStages));
+            });
         }
 
         private void StageGridButtonClickEvents(object sender, RoutedEventArgs e)
@@ -395,8 +396,35 @@ namespace LORModingBase
 
                 switch (clickButton.Name)
                 {
-                    case "BtnLoadStage":
+                    case "BtnAddStage":
+                        DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.subNodes.Add(
+                        DM.EditGameData_StageInfo.MakeNewStageInfoBase());
                         InitSplStages();
+                        break;
+                    case "BtnLoadStage":
+                        new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                        {
+                            List<DM.XmlDataNode> foundStageIds = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
+                                    attributeToCheck: new Dictionary<string, string>() { { "id", selectedItem } });
+                            if (foundStageIds.Count > 0)
+                            {
+                                DM.XmlDataNode STAGE_NODE_TO_USE = foundStageIds[0].Copy();
+                                DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.subNodes.Add(STAGE_NODE_TO_USE);
+
+                                List <DM.XmlDataNode> foundLocalizeStageNames = DM.GameInfos.localizeInfos["StageName"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Name",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                                if (foundLocalizeStageNames.Count > 0)
+                                {
+                                    STAGE_NODE_TO_USE.SetXmlInfoByPath("Name", foundLocalizeStageNames[0].innerText);
+                                    if (!DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.CheckIfGivenPathWithXmlInfoExists("Name",
+                                               attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } }))
+                                    {
+                                        DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.subNodes.Add(foundLocalizeStageNames[0].Copy());
+                                    }
+                                }
+                                InitSplStages();
+                            }
+                        }, SubWindows.InputInfoWithSearchWindow_PRESET.STAGES).ShowDialog();
                         break;
                 }
             }

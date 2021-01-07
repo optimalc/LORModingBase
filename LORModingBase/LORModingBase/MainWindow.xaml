@@ -355,7 +355,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                        <Button x:Name="BtnAddStage" Content="+" ToolTip="게임에 없는 새로운 스테이지를 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                        <Button x:Name="BtnAddStage" Content="+" ToolTip="게임에 없는 새로운 스테이지를 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="StageGridButtonClickEvents"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>

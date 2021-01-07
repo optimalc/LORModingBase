@@ -43,7 +43,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Label x:Name="LblEpisode" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Label x:Name="LblStage" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="1" Stretch="Fill" Margin="55,7">
                     <Button x:Name="BtnStage" Content="적용할 스테이지를 선택" ToolTip="해당 스테이지와 관련된 스테이지를 설정합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                 </Viewbox>

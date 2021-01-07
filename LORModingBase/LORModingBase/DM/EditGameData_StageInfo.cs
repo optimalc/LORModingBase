@@ -29,43 +29,36 @@ namespace LORModingBase.DM
             LocalizedStageName = new XmlData(DM.GameInfos.localizeInfos["StageName"]);
 
             MainWindow.EDITOR_SELECTION_MENU.Add(DM.Config.GetStaticPathToSave(StaticStageInfo, "", returnOnlyRelativePath: true));
-            MainWindow.EDITOR_SELECTION_MENU.Add(DM.Config.GetStaticPathToSave(LocalizedStageName, "", returnOnlyRelativePath: true));
+            MainWindow.EDITOR_SELECTION_MENU.Add(DM.Config.GetLocalizePathToSave(LocalizedStageName, "", returnOnlyRelativePath: true));
         }
 
         /// <summary>
         /// Make new stage info base by basic node in game data
         /// </summary>
         /// <returns>Created new equip page</returns>
-        public static XmlDataNode MakeNewStageInfoBase(string stageID)
+        public static XmlDataNode MakeNewStageInfoBase()
         {
-            List<XmlDataNode> foundBookUseIds = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
-             attributeToCheck: new Dictionary<string, string>() { { "ID", stageID } });
-            if (foundBookUseIds != null && foundBookUseIds.Count > 0)
-                return foundBookUseIds[0].Copy();
-            else
+            List<XmlDataNode> baseBookUseNode = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
+                    attributeToCheck: new Dictionary<string, string>() { { "id", "2" } });
+            if (baseBookUseNode.Count > 0)
             {
-                List<XmlDataNode> baseBookUseNode = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
-                    attributeToCheck: new Dictionary<string, string>() { { "ID", "2" } });
-                if (baseBookUseNode.Count > 0)
+                XmlDataNode bookUseIdBase = baseBookUseNode[0].Copy();
+                bookUseIdBase.attribute["id"] = Tools.MathTools.GetRandomNumber(1000000, 9999999).ToString();
+                bookUseIdBase.SetXmlInfoByPath("Name", "");
+                bookUseIdBase.SetXmlInfoByPath("Chapter", "");
+                bookUseIdBase.SetXmlInfoByPath("StoryType", "");
+
+                bookUseIdBase.RemoveXmlInfosByPath("Wave");
+                bookUseIdBase.RemoveXmlInfosByPath("Invitation/Book");
+
+                bookUseIdBase.ActionXmlDataNodesByPath("Story", (XmlDataNode storyNode) =>
                 {
-                    XmlDataNode bookUseIdBase = baseBookUseNode[0].Copy();
-                    bookUseIdBase.attribute["id"] = stageID;
-                    bookUseIdBase.SetXmlInfoByPath("Name", "");
-                    bookUseIdBase.SetXmlInfoByPath("Chapter", "");
-                    bookUseIdBase.SetXmlInfoByPath("StoryType", "");
-
-                    bookUseIdBase.RemoveXmlInfosByPath("Wave");
-                    bookUseIdBase.RemoveXmlInfosByPath("Invitation/Book");
-
-                    bookUseIdBase.ActionXmlDataNodesByPath("Story", (XmlDataNode storyNode) =>
-                    {
-                        storyNode.innerText = "";
-                    });
-                    return bookUseIdBase;
-                }
-                else
-                    return null;
+                    storyNode.innerText = "";
+                });
+                return bookUseIdBase;
             }
+            else
+                return null;
         }
 
         /// <summary>

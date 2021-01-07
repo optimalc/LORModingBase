@@ -21,13 +21,66 @@ namespace LORModingBase.UC
     public partial class EditStage : UserControl
     {
         DM.XmlDataNode innerStageNode = null;
-        Action stackInitFunc = null;
+        Action initStack = null;
 
-        public EditStage(DM.XmlDataNode stageNode, Action stackInitFunc)
+        public EditStage(DM.XmlDataNode stageNode, Action initStack)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.STAGE_INFO);
             this.innerStageNode = stageNode;
-            this.stackInitFunc = stackInitFunc;
+            this.initStack = initStack;
+
+            TbxStageName.Text = innerStageNode.GetInnerTextByPath("Name");
+            TbxStageUniqueID.Text = innerStageNode.GetAttributesSafe("id");
+
+            innerStageNode.ActionIfInnertTextIsNotNullOrEmpty("StoryType", (string innerText) =>
+            {
+                BtnStage.ToolTip = innerText;
+
+                LblStage.Content = innerText;
+                BtnStage.Content = "          ";
+            });
+            innerStageNode.ActionIfInnertTextIsNotNullOrEmpty("FloorNum", (string innerText) =>
+            {
+                BtnFloor.ToolTip = innerText;
+
+                LblFloor.Content = innerText;
+                BtnFloor.Content = "          ";
+            });
+
+            if (innerStageNode.GetXmlDataNodesByPath("Invitation/Book").Count > 0)
+            {
+                string extraInfo = "";
+                innerStageNode.ActionXmlDataNodesByPath("Invitation/Book", (DM.XmlDataNode xmlDataNode) =>
+                {
+                    extraInfo += $"{xmlDataNode.GetInnerTextSafe()}/";
+                });
+                extraInfo = extraInfo.TrimEnd('/');
+
+                LblInvitation.Content = extraInfo;
+                BtnInvitation.ToolTip = extraInfo;
+                BtnInvitation.Content = "          ";
+            }
+
+            if (innerStageNode.GetXmlDataNodesByPath("Condition/Stage").Count > 0)
+            {
+                string extraInfo = "";
+                innerStageNode.ActionXmlDataNodesByPath("Condition/Stage", (DM.XmlDataNode xmlDataNode) =>
+                {
+                    extraInfo += $"{xmlDataNode.GetInnerTextSafe()}\n";
+                });
+                extraInfo = extraInfo.TrimEnd('\n');
+
+                BtnCondition.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesCondition.png");
+                BtnCondition.ToolTip = $"선택된 컨디션\n{extraInfo}";
+            }
+
+            string MAP_INFO = innerStageNode.GetInnerTextByPath("MapInfo");
+            if(!string.IsNullOrEmpty(MAP_INFO))
+            {
+                BtnMapInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesMapInfo.png");
+                BtnMapInfo.ToolTip = innerStageNode.GetInnerTextByPath("MapInfo");
+            }
         }
 
         /// <summary>
@@ -42,8 +95,44 @@ namespace LORModingBase.UC
             switch (tbx.Name)
             {
                 case "TbxStageName":
+                    innerStageNode.SetXmlInfoByPath("Name", tbx.Text);
+                    if (DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.CheckIfGivenPathWithXmlInfoExists("Name",
+                    attributeToCheck: new Dictionary<string, string>() { { "ID", innerStageNode.GetAttributesSafe("id") } }))
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Name",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", innerStageNode.GetAttributesSafe("id") } });
+
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].innerText = tbx.Text;
+                        }
+                    }
+                    else
+                    {
+                        DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.subNodes.Add(DM.EditGameData_StageInfo.MakeNewStageNameBase(
+                                innerStageNode.GetAttributesSafe("id"),
+                                innerStageNode.GetInnerTextByPath("Name")));
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_STAGE_NAME);
                     break;
                 case "TbxStageUniqueID":
+                    string PREV_STAGE_ID = innerStageNode.attribute["id"];
+                    #region Stage info localizing ID refrect
+                    if (DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.CheckIfGivenPathWithXmlInfoExists("Name",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", PREV_STAGE_ID } }))
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Name",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", PREV_STAGE_ID } });
+
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].attribute["ID"] = tbx.Text;
+                        }
+                    }
+                    #endregion
+                    innerStageNode.attribute["id"] = tbx.Text;
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
+                    MainWindow.mainWindow.UpdateDebugInfo();
                     break;
             }
         }
@@ -92,8 +181,20 @@ namespace LORModingBase.UC
                 case "BtnMapInfo":
                     break;
                 case "BtnCopyStage":
+                    DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.subNodes.Add(innerStageNode.Copy());
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
                 case "BtnDelete":
+                    if (DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.CheckIfGivenPathWithXmlInfoExists("Name",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", innerStageNode.GetAttributesSafe("id") } }))
+                        DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.RemoveXmlInfosByPath("Name",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", innerStageNode.GetAttributesSafe("id") } });
+                    DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.subNodes.Remove(innerStageNode);
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
             }
         }

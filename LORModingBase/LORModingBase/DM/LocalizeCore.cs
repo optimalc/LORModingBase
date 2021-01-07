@@ -140,5 +140,6 @@ namespace LORModingBase.DM
         public static string ETC = "etc";
         public static string GLOBAL_WINDOW = "global";
         public static string LOGGING = "logging";
+        public static string STAGE_INFO = "stageInfo";
     }
 }
