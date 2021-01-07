@@ -19,6 +19,7 @@ namespace LORModingBase.SubWindows
             string windowTitle= "사용할 내용을 더블클릭", string helpMessage="※ 사용할 내용을 더블클릭 하세요", string ItemHelpMessage="얻어진 내용들" )
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelectItem = afterSelectItem;
             this.selectItems = selectItems;
             InitLbxSearchType(searchTypes);
@@ -31,6 +32,7 @@ namespace LORModingBase.SubWindows
         public Global_InputInfoWithSearchWindow(Action<string> afterSelectItem, InputInfoWithSearchWindow_PRESET preset)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelectItem = afterSelectItem;
             List<string> searchTypes = new List<string>();
             selectItems = new List<string>();
@@ -38,6 +40,7 @@ namespace LORModingBase.SubWindows
             switch (preset)
             {
                 case InputInfoWithSearchWindow_PRESET.EPISODE:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"EPISODE_TITLE");
                     DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode stageNode) =>
                     {
                         string STAGE_ID = stageNode.GetAttributesSafe("id");
@@ -47,6 +50,7 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case InputInfoWithSearchWindow_PRESET.BOOK_ICON:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"BOOK_ICON_TITLE");
                     DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
                     {
                         string BOOK_ICON_NAME = bookUseNode.GetInnerTextByPath("BookIcon");
@@ -58,6 +62,7 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CHARACTER_SKIN_TITLE");
                     DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode bookNode) =>
                     {
                         string CHPATER_NAME = DM.LocalizedGameDescriptions.GetDescriptionForChapter(bookNode.GetInnerTextByPath("Chapter"));
@@ -69,6 +74,8 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case InputInfoWithSearchWindow_PRESET.PASSIVE:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"PASSIVE_TITLE");
+                    LblHelpMessage.Content = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"PASSIVE_HELP");
                     DM.GameInfos.staticInfos["PassiveList"].rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode passiveNode) =>
                     {
                         string PASSIVE_ID = passiveNode.GetAttributesSafe("ID");
@@ -80,6 +87,7 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
                 case InputInfoWithSearchWindow_PRESET.CRITICAL_BOOKS:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CRITICAL_BOOKS_TITLE");
                     DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode eqNode) =>
                     {
                         string EQ_BOOK_ID = eqNode.GetAttributesSafe("ID");
@@ -91,6 +99,7 @@ namespace LORModingBase.SubWindows
 
 
                 case InputInfoWithSearchWindow_PRESET.CARD_ARTWORK:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARD_ARTWORK_TITLE");
                     DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                     {
                         string ARTWORK_NAME = cardNode.GetInnerTextByPath("Artwork");
@@ -102,6 +111,7 @@ namespace LORModingBase.SubWindows
                     break;
 
                 case InputInfoWithSearchWindow_PRESET.CARD_ABILITES:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARD_ABILITES_TITLE");
                     DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
                     {
                         string ABILITIY_ID = abilityNode.GetAttributesSafe("ID"); 
@@ -115,6 +125,7 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
                 case InputInfoWithSearchWindow_PRESET.DICE_ABILITES:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DICE_ABILITES_TITLE");
                     DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
                     {
                         string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
@@ -129,6 +140,7 @@ namespace LORModingBase.SubWindows
                     break;
 
                 case InputInfoWithSearchWindow_PRESET.CARDS:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARDS_TITLE");
                     DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                     {
                         string CARD_ID = cardNode.GetAttributesSafe("ID");
@@ -146,7 +158,7 @@ namespace LORModingBase.SubWindows
         private void InitLbxSearchType(List<string> searchTypes)
         {
             LbxSearchType.Items.Clear();
-            LbxSearchType.Items.Add("필터 없음");
+            LbxSearchType.Items.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"SEARCH_NO_FILTER"));
             searchTypes.ForEach((string searchType) =>
             {
                 LbxSearchType.Items.Add(searchType);
@@ -167,15 +179,17 @@ namespace LORModingBase.SubWindows
                 foreach (string selectItem in selectItems)
                 {
                     if (!string.IsNullOrEmpty(TbxSearch.Text) && !selectItem.ToLower().Replace(" ", "").Contains(TbxSearch.Text.ToLower().Replace(" ", ""))) continue;
-                    switch (LbxSearchType.SelectedItem.ToString())
+                    if(LbxSearchType.SelectedIndex == 0)
+                        LbxItems.Items.Add(selectItem);
+                    else
                     {
-                        case "필터 없음":
-                            LbxItems.Items.Add(selectItem);
-                            break;
-                        default:
-                            if (selectItem.ToLower().Contains(LbxSearchType.SelectedItem.ToString().ToLower()))
-                                LbxItems.Items.Add(selectItem);
-                            break;
+                        switch (LbxSearchType.SelectedItem.ToString())
+                        {
+                            default:
+                                if (selectItem.ToLower().Contains(LbxSearchType.SelectedItem.ToString().ToLower()))
+                                    LbxItems.Items.Add(selectItem);
+                                break;
+                        }
                     }
                 }
             }
