@@ -64,6 +64,10 @@ namespace LORModingBase.SubWindows
                             itemToLoad.Add(value);
                     });
                     break;
+                case Global_ListSeleteWindow_PRESET.FLOORS:
+                    for(int floor=1; floor<10; floor++)
+                        itemToLoad.Add(floor.ToString());
+                    break;
             }
             itemToLoad.ForEach((string item) =>
             {
@@ -84,6 +88,7 @@ namespace LORModingBase.SubWindows
     public enum Global_ListSeleteWindow_PRESET
     {
         LANGUAGES,
-        EXT_URL
+        EXT_URL,
+        FLOORS
     }
 }

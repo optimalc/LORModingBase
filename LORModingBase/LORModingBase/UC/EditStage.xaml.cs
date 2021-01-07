@@ -186,16 +186,50 @@ namespace LORModingBase.UC
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
                 case "BtnFloor":
-                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
-                    {
+                    new SubWindows.Global_ListSeleteWindow((string floorNumStr) => {
+                        innerStageNode.SetXmlInfoByPath("FloorNum", floorNumStr);
+                        BtnFloor.ToolTip = floorNumStr;
 
-                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
+                        LblFloor.Content = floorNumStr;
+                        BtnFloor.Content = "          ";
+
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
+                    }, SubWindows.Global_ListSeleteWindow_PRESET.FLOORS).ShowDialog();
                     break;
                 case "BtnInvitation":
-                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    List<string> selectedDropBooks = new List<string>();
+                    innerStageNode.ActionXmlDataNodesByPath("Invitation/Book", (DM.XmlDataNode xmlDataNode) =>
                     {
+                        selectedDropBooks.Add(xmlDataNode.innerText);
+                    });
 
-                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
+                   new SubWindows.Global_AddItemToListWindow((string addedDropBookItemID) =>
+                    {
+                        innerStageNode.ActionXmlDataNodesByPath("Invitation", (DM.XmlDataNode invitationNode) =>
+                        {
+                            invitationNode.AddXmlInfoByPath("Book", addedDropBookItemID);
+                        });
+                    }, (string deletedDropBookItemID) => {
+                        innerStageNode.ActionXmlDataNodesByPath("Invitation", (DM.XmlDataNode invitationNode) =>
+                        {
+                            invitationNode.RemoveXmlInfosByPath("Book", deletedDropBookItemID);
+                        });
+                    }, selectedDropBooks, SubWindows.AddItemToListWindow_PRESET.DROP_BOOK).ShowDialog();
+
+                    if (innerStageNode.GetXmlDataNodesByPath("Invitation/Book").Count > 0)
+                    {
+                        string extraInfo = "";
+                        innerStageNode.ActionXmlDataNodesByPath("Invitation/Book", (DM.XmlDataNode xmlDataNode) =>
+                        {
+                            extraInfo += $"{xmlDataNode.GetInnerTextSafe()}/";
+                        });
+                        extraInfo = extraInfo.TrimEnd('/');
+
+                        LblInvitation.Content = extraInfo;
+                        BtnInvitation.ToolTip = extraInfo;
+                        BtnInvitation.Content = "          ";
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
                 case "BtnAddWave":
                     innerStageNode.subNodes.Add(DM.EditGameData_StageInfo.MakeNewWaveInfoBase());
@@ -214,6 +248,44 @@ namespace LORModingBase.UC
             switch (btn.Name)
             {
                 case "BtnCondition":
+                    List<string> selectedConditions = new List<string>();
+                    innerStageNode.ActionXmlDataNodesByPath("Condition/Stage", (DM.XmlDataNode xmlDataNode) =>
+                    {
+                        selectedConditions.Add(xmlDataNode.innerText);
+                    });
+
+                    new SubWindows.Global_AddItemToListWindow((string addedStageID) =>
+                    {
+                        innerStageNode.AddXmlInfoByPath("Condition/Stage", addedStageID);
+                    }, (string deletedStageID) => {
+                        innerStageNode.RemoveXmlInfosByPath("Condition/Stage", deletedStageID);
+                        List<DM.XmlDataNode> conditonNode = innerStageNode.GetXmlDataNodesByPath("Condition");
+                        if(conditonNode.Count > 0)
+                        {
+                            DM.XmlDataNode CONDITION_NODE = conditonNode[0];
+                            if (CONDITION_NODE.GetXmlDataNodesByPath("Stage").Count <= 0)
+                                innerStageNode.RemoveXmlInfosByPath("Condition");
+                        }
+                    }, selectedConditions, SubWindows.AddItemToListWindow_PRESET.STAGES).ShowDialog();
+
+                    if (innerStageNode.GetXmlDataNodesByPath("Condition/Stage").Count > 0)
+                    {
+                        string extraInfo = "";
+                        innerStageNode.ActionXmlDataNodesByPath("Condition/Stage", (DM.XmlDataNode xmlDataNode) =>
+                        {
+                            extraInfo += $"{xmlDataNode.GetInnerTextSafe()}\n";
+                        });
+                        extraInfo = extraInfo.TrimEnd('\n');
+
+                        BtnCondition.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesCondition.png");
+                        BtnCondition.ToolTip = $"선택된 컨디션\n{extraInfo}";
+                    }
+                    else
+                    {
+                        BtnCondition.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoCondition.png");
+                        BtnCondition.ToolTip = $"컨디션이 선택되지 않음";
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
                 case "BtnMapInfo":
                     break;

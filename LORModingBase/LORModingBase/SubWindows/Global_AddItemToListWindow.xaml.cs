@@ -99,6 +99,15 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
+                case AddItemToListWindow_PRESET.STAGES:
+                    DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode stageID) =>
+                    {
+                        string STAGE_ID = stageID.GetAttributesSafe("id");
+                        if (!string.IsNullOrEmpty(STAGE_ID))
+                            selectItems.Add(STAGE_ID);
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -202,6 +211,7 @@ namespace LORModingBase.SubWindows
         ONLY_CARD,
         DROP_BOOK,
 
-        DROP_TABLE
+        DROP_TABLE,
+        STAGES
     };
 }
