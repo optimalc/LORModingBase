@@ -288,6 +288,24 @@ namespace LORModingBase.UC
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
                 case "BtnMapInfo":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        innerStageNode.SetXmlInfoByPathAndEmptyWillRemove("MapInfo", selectedItem);   
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.MAP_INFO).ShowDialog();
+
+                    string MAP_INFO = innerStageNode.GetInnerTextByPath("MapInfo");
+                    if (!string.IsNullOrEmpty(MAP_INFO))
+                    {
+                        BtnMapInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesMapInfo.png");
+                        BtnMapInfo.ToolTip = innerStageNode.GetInnerTextByPath("MapInfo");
+                    }
+                    else
+                    {
+                        BtnMapInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoMapInfo.png");
+                        BtnMapInfo.ToolTip = "MapInfo가 선택되지 않음";
+
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
                 case "BtnCopyStage":
                     DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.subNodes.Add(innerStageNode.Copy());

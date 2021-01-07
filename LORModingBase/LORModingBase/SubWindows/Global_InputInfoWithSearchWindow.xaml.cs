@@ -178,6 +178,15 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
+                case InputInfoWithSearchWindow_PRESET.MAP_INFO:
+                    DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage/MapInfo", (DM.XmlDataNode mapInfoNode) =>
+                    {
+                        string MAP_INFO_ID = mapInfoNode.innerText;
+                        if (!string.IsNullOrEmpty(MAP_INFO_ID))
+                            selectItems.Add(MAP_INFO_ID);
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -259,6 +268,7 @@ namespace LORModingBase.SubWindows
         DICE_ABILITES,
         CARDS,
 
-        STAGES
+        STAGES,
+        MAP_INFO
     };
 }
