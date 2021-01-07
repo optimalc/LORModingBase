@@ -194,6 +194,7 @@ namespace LORModingBase.UC
             rarityButton.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
             WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr(rarityButton.Tag.ToString());
             innerCriticalPageNode.SetXmlInfoByPath("Rarity", rarityButton.Name.Split('_').Last());
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
         }
 
         /// <summary>
@@ -229,6 +230,8 @@ namespace LORModingBase.UC
 
                         LblEpisode.Content = STAGE_DES;
                         BtnEpisode.Content = "          ";
+
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
                 case "BtnBookIcon":
@@ -239,6 +242,8 @@ namespace LORModingBase.UC
 
                         LblBookIconViewLabel.Content = selectedItem;
                         BtnBookIcon.Content = "          ";
+
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.BOOK_ICON).ShowDialog();
                     break;
                 case "BtnSkin":
@@ -250,6 +255,8 @@ namespace LORModingBase.UC
 
                         LblSkin.Content = selectedItem;
                         BtnSkin.Content = "          ";
+
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN).ShowDialog();
                     break;
 
@@ -259,6 +266,8 @@ namespace LORModingBase.UC
                         innerCriticalPageNode.AddXmlInfoByPath("EquipEffect/Passive", selectedItem
                             , new Dictionary<string, string>() { { "Level", "10" } });
                         InitLbxPassives();
+
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.PASSIVE).ShowDialog();
                     break;
                 case "BtnDeletePassive":
@@ -267,6 +276,7 @@ namespace LORModingBase.UC
                         innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString().Split(':').Last(), deleteOnce: true);
                         InitLbxPassives();
                         MainWindow.mainWindow.UpdateDebugInfo();
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     }
                     break;
             }
@@ -384,8 +394,9 @@ namespace LORModingBase.UC
                     {
                         BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
                         BtnDropBooks.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnDropBooks_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
-                    } 
+                    }
                     #endregion
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DROP_BOOK);
                     break;
                 case "BookUniqueCards":
                     List<string> selectedUniqCards = new List<string>();
@@ -420,6 +431,7 @@ namespace LORModingBase.UC
                         BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoUniqueCard.png");
                         BookUniqueCards.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BookUniqueCards_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
                     }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     break;
             }
         }
@@ -472,6 +484,7 @@ namespace LORModingBase.UC
                                     description));
                             }
 
+                            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_BOOKS);
                             MainWindow.mainWindow.UpdateDebugInfo();
                         }
                     }, prevStory,
@@ -534,11 +547,13 @@ namespace LORModingBase.UC
                         BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
                         BtnEnemySetting.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnEnemySetting_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
                     }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     break;
                 case "BtnCopyPage":
                     DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(innerCriticalPageNode.Copy());
                     initStack();
                     MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     break;
                 case "BtnDelete":
                     if( DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.CheckIfGivenPathWithXmlInfoExists("bookDescList/BookDesc",
@@ -586,6 +601,7 @@ namespace LORModingBase.UC
                     DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Remove(innerCriticalPageNode);
                     initStack();
                     MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     break;
             }
         }
@@ -642,6 +658,7 @@ namespace LORModingBase.UC
                 innerCriticalPageNode.SetXmlInfoByPath($"EquipEffect/{loopButton.Name.Split('_').Last()}", loopButton.Tag.ToString());
                 loopButton.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(loopButton.Tag.ToString());
                 loopButton.ToolTip = DM.LocalizedGameDescriptions.GetDescriptionForResist(loopButton.Tag.ToString());
+                MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
             }
             else if (loopButton.Name == "BtnRangeType")
             {
@@ -664,6 +681,7 @@ namespace LORModingBase.UC
                     BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNear.png");
                     BtnRangeType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"BtnRangeType_ToolTip")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"TypeNear")})";
                 }
+                MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
             }
         }
         #endregion
@@ -707,6 +725,7 @@ namespace LORModingBase.UC
                     #endregion
                     innerCriticalPageNode.attribute["ID"] = tbx.Text;
                     innerCriticalPageNode.SetXmlInfoByPath("TextId", tbx.Text);
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     break;
                 case "TbxPageName_Name":
                     innerCriticalPageNode.SetXmlInfoByPath("Name", tbx.Text);
@@ -740,9 +759,9 @@ namespace LORModingBase.UC
                                 innerCriticalPageNode.GetInnerTextByPath("Name"),
                                 ""));
                         }
-
                         MainWindow.mainWindow.UpdateDebugInfo();
                     }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_BOOKS);
                     break;
                 default:
                     List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
@@ -750,6 +769,7 @@ namespace LORModingBase.UC
                         innerCriticalPageNode.SetXmlInfoByPath(SPLIT_NAME.Last(), tbx.Text);
                     else if (SPLIT_NAME.Count > 2)
                         innerCriticalPageNode.SetXmlInfoByPath(String.Join("/", SPLIT_NAME.Skip(1)), tbx.Text);
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     break;
             }
         }

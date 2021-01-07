@@ -136,6 +136,7 @@ namespace LORModingBase.UC
             rarityButton.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
             WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr(rarityButton.Tag.ToString());
             innerCardNode.SetXmlInfoByPath("Rarity", rarityButton.Name.Split('_').Last());
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
         }
 
         /// <summary>
@@ -210,6 +211,7 @@ namespace LORModingBase.UC
                         {
                             specNode.attribute["Affection"] = "Team";
                         });
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                         break;
                     default:
                         innerCardNode.ActionXmlDataNodesByPath("Spec", (DM.XmlDataNode specNode) =>
@@ -217,6 +219,7 @@ namespace LORModingBase.UC
                             if(specNode.attribute.ContainsKey("Affection"))
                                 specNode.attribute.Remove("Affection");
                         });
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                         break;
                 }
             }
@@ -282,6 +285,7 @@ namespace LORModingBase.UC
                             });}
                     }).ShowDialog();
                     UpdateExtrainfoIcon();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
                 case "BtnDropCards":
                     List<string> selectedCardDropTables = new List<string>();
@@ -394,11 +398,13 @@ namespace LORModingBase.UC
                         BtnDropCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
                         BtnDropCards.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnDropCards_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
                     }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD_DROP_TABLE);
                     break;
                 case "BtnCopyCard":
                     DM.EditGameData_CardInfos.StaticCard.rootDataNode.subNodes.Add(innerCardNode.Copy());
                     initStack();
                     MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
                 case "BtnDelete":
                     if (DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.CheckIfGivenPathWithXmlInfoExists("cardDescList/BattleCardDesc",
@@ -455,6 +461,7 @@ namespace LORModingBase.UC
                     DM.EditGameData_CardInfos.StaticCard.rootDataNode.subNodes.Remove(innerCardNode);
                     initStack();
                     MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
             }
         }
@@ -508,6 +515,7 @@ namespace LORModingBase.UC
                         BtnCardImage.Content = "          ";
                         LblCardImage.Content = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ARTWORK).ShowDialog();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
                 case "BtnCardEffect":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
@@ -518,6 +526,7 @@ namespace LORModingBase.UC
                         BtnCardEffect.Content = "          ";
                         LblCardEffect.Content = selectedItem;
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CARD_ABILITES).ShowDialog();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
                 case "BtnAddDice":
                     innerCardNode.GetXmlDataNodesByPath("BehaviourList").ForEachSafe((DM.XmlDataNode behaviourListNode) =>
@@ -525,6 +534,7 @@ namespace LORModingBase.UC
                         behaviourListNode.subNodes.Add(DM.EditGameData_CardInfos.MakeNewDiceBase());
                     });
                     InitSqlDices();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
             }
         }
@@ -545,6 +555,7 @@ namespace LORModingBase.UC
                         specNode.attribute["Cost"] = tbx.Text;
                         MainWindow.mainWindow.UpdateDebugInfo();
                     });
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
                 case "TbxCardName":
                     innerCardNode.SetXmlInfoByPath("Name", tbx.Text);
@@ -579,6 +590,7 @@ namespace LORModingBase.UC
                         }
                         MainWindow.mainWindow.UpdateDebugInfo();
                     }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_BATTLE_CARDS);
                     break;
                 case "TbxCardUniqueID":
                     string PREV_CARD_ID = innerCardNode.GetAttributesSafe("ID");
@@ -607,6 +619,7 @@ namespace LORModingBase.UC
                     #endregion
                     innerCardNode.attribute["ID"] = tbx.Text;
                     MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
                 default:
                     List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
@@ -614,6 +627,7 @@ namespace LORModingBase.UC
                         innerCardNode.SetXmlInfoByPath(SPLIT_NAME.Last(), tbx.Text);
                     else if (SPLIT_NAME.Count > 2)
                         innerCardNode.SetXmlInfoByPath(String.Join("/", SPLIT_NAME.Skip(1)), tbx.Text);
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
             }
         }

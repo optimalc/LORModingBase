@@ -77,6 +77,7 @@ namespace LORModingBase.UC
                         UpdateEffectGrid();
                         MainWindow.mainWindow.UpdateDebugInfo();
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.DICE_ABILITES).ShowDialog();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
                 case "BtnDeleteDice":
                     innerCardCardNode.ActionXmlDataNodesByPath("BehaviourList", (DM.XmlDataNode behaviourListNode) =>
@@ -85,6 +86,7 @@ namespace LORModingBase.UC
                         MainWindow.mainWindow.UpdateDebugInfo();
                         stackInitFunc();
                     });
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
             }
         }
@@ -104,6 +106,7 @@ namespace LORModingBase.UC
             GldInfo.Visibility = Visibility.Visible;
             GldChangeAttackType.Visibility = Visibility.Collapsed;
             MainWindow.mainWindow.UpdateDebugInfo();
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
         }
 
         /// <summary>
@@ -121,6 +124,7 @@ namespace LORModingBase.UC
                     List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
                     if (SPLIT_NAME.Count == 2)
                         innerBehaviourNode.attribute[SPLIT_NAME.Last()] = tbx.Text;
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
             }
             MainWindow.mainWindow.UpdateDebugInfo();

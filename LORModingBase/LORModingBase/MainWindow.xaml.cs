@@ -120,11 +120,13 @@ namespace LORModingBase
                         HideAllGrid();
                         GrdCriticalPage.Visibility = Visibility.Visible;
                         BtnCriticalPage.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                         break;
                     case "BtnCards":
                         HideAllGrid();
                         GrdCards.Visibility = Visibility.Visible;
                         BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_CARD);
                         break;
 
                     case "BtnSetWorkingSpace":
@@ -430,6 +432,29 @@ namespace LORModingBase
                 TbxTextEditorLog.ToolTip = LOG_MESSAGES;
             }
         }
+
+        /// <summary>
+        /// Change debug location
+        /// </summary>
+        /// <param name="DEBUG_INDEX">Debug index to use</param>
+        public void ChangeDebugLocation(DEBUG_LOCATION DEBUG_INDEX)
+        {
+            LbxTextEditor.SelectedIndex = (int)DEBUG_INDEX;
+        }
+        /// <summary>
+        /// Debug information index
+        /// </summary>
+        public enum DEBUG_LOCATION
+        { 
+            STATIC_EQUIP_PAGE = 0,
+            STATIC_DROP_BOOK = 1,
+            LOCALIZED_BOOKS = 2,
+
+            STATIC_CARD = 3,
+            STATIC_CARD_DROP_TABLE=4,
+            LOCALIZED_BATTLE_CARDS=5
+        }
+
 
         private void EditorButtonClickEvents(object sender, RoutedEventArgs e)
         {
