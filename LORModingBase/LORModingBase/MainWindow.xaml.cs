@@ -381,18 +381,20 @@ namespace LORModingBase
         /// </summary>
         public void UpdateDebugInfo()
         {
-            string LOG_MESSAGES = "";
-            try
+            if (!string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
             {
-                if(!string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                string LOG_MESSAGES = "";
+
+                try
                 {
+
                     if (GrdCriticalPage.Visibility == Visibility.Visible)
                     {
                         DM.EditGameData_BookInfos.StaticEquipPage.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory));
                         DM.EditGameData_BookInfos.StaticDropBook.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory));
                         DM.EditGameData_BookInfos.LocalizedBooks.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory));
                     }
-                    if(GrdCards.Visibility == Visibility.Visible)
+                    if (GrdCards.Visibility == Visibility.Visible)
                     {
                         DM.EditGameData_CardInfos.StaticCard.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory));
                         DM.EditGameData_CardInfos.StaticCardDropTable.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory));
@@ -400,7 +402,7 @@ namespace LORModingBase
                     }
 
                     string debugFileName = "";
-                    if(LbxTextEditor.SelectedItem != null)
+                    if (LbxTextEditor.SelectedItem != null)
                     {
                         debugFileName = DM.Config.GetPathFromRelativePath(LbxTextEditor.SelectedItem.ToString(), DM.Config.CurrentWorkingDirectory);
                         if (File.Exists(debugFileName))
@@ -408,24 +410,25 @@ namespace LORModingBase
                     }
 
                     LOG_MESSAGES += $"[*] {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Complete_1")}\n";
+
                 }
-            }
-            catch(Exception ex)
-            {
-                LOG_MESSAGES += $"[!] {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Error_1")} \n> {ex.Message}\n";;
-            }
+                catch (Exception ex)
+                {
+                    LOG_MESSAGES += $"[!] {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Error_1")} \n> {ex.Message}\n"; ;
+                }
 
-            try
-            {
-                LOG_MESSAGES += DM.CheckDatas.CheckAllDatas();
-            }
-            catch(Exception ex)
-            {
-                LOG_MESSAGES += $"[!] {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Error_2")} \n> {ex.Message}\n";
-            }
+                try
+                {
+                    LOG_MESSAGES += DM.CheckDatas.CheckAllDatas();
+                }
+                catch (Exception ex)
+                {
+                    LOG_MESSAGES += $"[!] {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Output_Logging_Error_2")} \n> {ex.Message}\n";
+                }
 
-            TbxTextEditorLog.Text = LOG_MESSAGES;
-            TbxTextEditorLog.ToolTip = LOG_MESSAGES;
+                TbxTextEditorLog.Text = LOG_MESSAGES;
+                TbxTextEditorLog.ToolTip = LOG_MESSAGES;
+            }
         }
 
         private void EditorButtonClickEvents(object sender, RoutedEventArgs e)
