@@ -196,6 +196,24 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(formationID);
                     });
                     break;
+                case InputInfoWithSearchWindow_PRESET.ENEMIES:
+                    DM.GameInfos.staticInfos["EnemyUnitInfo"].rootDataNode.ActionXmlDataNodesByPath("Enemy", (DM.XmlDataNode enemyID) =>
+                    {
+                        string ENEMY_ID = enemyID.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(ENEMY_ID))
+                            selectItems.Add(ENEMY_ID);
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
+                case InputInfoWithSearchWindow_PRESET.DECKS:
+                    DM.GameInfos.staticInfos["Deck"].rootDataNode.ActionXmlDataNodesByPath("Deck", (DM.XmlDataNode deckID) =>
+                    {
+                        string DECK_ID = deckID.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(DECK_ID))
+                            selectItems.Add(DECK_ID);
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -280,6 +298,8 @@ namespace LORModingBase.SubWindows
         STAGES,
         MAP_INFO,
 
-        FORMATION
+        FORMATION,
+        ENEMIES,
+        DECKS
     };
 }

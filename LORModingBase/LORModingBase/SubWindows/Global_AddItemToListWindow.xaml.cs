@@ -112,7 +112,7 @@ namespace LORModingBase.SubWindows
                 case AddItemToListWindow_PRESET.ENEMIES:
                     DM.GameInfos.staticInfos["EnemyUnitInfo"].rootDataNode.ActionXmlDataNodesByPath("Enemy", (DM.XmlDataNode enemyID) =>
                     {
-                        string ENEMY_ID = enemyID.GetAttributesSafe("id");
+                        string ENEMY_ID = enemyID.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(ENEMY_ID))
                             selectItems.Add(ENEMY_ID);
                     });
