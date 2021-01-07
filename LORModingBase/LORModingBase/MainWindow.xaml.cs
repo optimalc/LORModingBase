@@ -90,6 +90,7 @@ namespace LORModingBase
             MainWindow.EDITOR_SELECTION_MENU.Clear();
             DM.EditGameData_BookInfos.InitDatas();
             DM.EditGameData_CardInfos.InitDatas();
+            DM.EditGameData_StageInfo.InitDatas();
         }
         #endregion
 
@@ -446,6 +447,11 @@ namespace LORModingBase
                         DM.EditGameData_CardInfos.StaticCardDropTable.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory));
                         DM.EditGameData_CardInfos.LocalizedBattleCards.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory));
                     }
+                    if (GrdStages.Visibility == Visibility.Visible)
+                    {
+                        DM.EditGameData_StageInfo.StaticStageInfo.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_StageInfo.StaticStageInfo, DM.Config.CurrentWorkingDirectory));
+                        DM.EditGameData_StageInfo.LocalizedStageName.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_StageInfo.LocalizedStageName, DM.Config.CurrentWorkingDirectory));
+                    }
 
                     string debugFileName = "";
                     if (LbxTextEditor.SelectedItem != null)
@@ -496,7 +502,10 @@ namespace LORModingBase
 
             STATIC_CARD = 3,
             STATIC_CARD_DROP_TABLE=4,
-            LOCALIZED_BATTLE_CARDS=5
+            LOCALIZED_BATTLE_CARDS=5,
+
+            STATIC_STAGE_INFO=6,
+            LOCALIZED_STAGE_NAME=7
         }
 
 
@@ -525,6 +534,9 @@ namespace LORModingBase
                                     case 3: DM.EditGameData_CardInfos.StaticCard = RELOADED_XML_DATA; break;
                                     case 4: DM.EditGameData_CardInfos.StaticCardDropTable = RELOADED_XML_DATA; break;
                                     case 5: DM.EditGameData_CardInfos.LocalizedBattleCards = RELOADED_XML_DATA; break;
+
+                                    case 6: DM.EditGameData_StageInfo.StaticStageInfo = RELOADED_XML_DATA; break;
+                                    case 7: DM.EditGameData_StageInfo.LocalizedStageName = RELOADED_XML_DATA; break;
                                 }
                                 ReloadAllStackDatas();
                             }
