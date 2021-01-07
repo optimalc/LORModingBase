@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LORModingBase.CustomExtensions;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -100,6 +102,23 @@ namespace LORModingBase.SubWindows
 
                 case InputInfoWithSearchWindow_PRESET.CARD_ARTWORK:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARD_ARTWORK_TITLE");
+                    #region Add custom items
+                    string IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last().Split('.')[0];
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
                     DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                     {
                         string ARTWORK_NAME = cardNode.GetInnerTextByPath("Artwork");
