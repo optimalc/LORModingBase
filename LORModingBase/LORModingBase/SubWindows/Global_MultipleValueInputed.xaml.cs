@@ -17,6 +17,7 @@ namespace LORModingBase.SubWindows
         public Global_MultipleValueInputed(Dictionary<string, string> labelContentToolTipDic, List<string> defaultValues, List<Action<string>> actionLists)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             Tools.WindowControls.FindLogicalChildren<TextBox>(this).ForEachSafe((TextBox tbxData) =>
             {
                 if(tbxData.Name.Contains("TbxData_"))

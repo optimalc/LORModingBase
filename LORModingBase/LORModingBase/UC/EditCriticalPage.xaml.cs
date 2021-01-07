@@ -474,7 +474,9 @@ namespace LORModingBase.UC
 
                             MainWindow.mainWindow.UpdateDebugInfo();
                         }
-                    }, prevStory).ShowDialog();
+                    }, prevStory,
+                    windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"KEY_PAGE_STORY_TITLE"),
+                    tbxToolTip: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"%TbxData_ToolTip%")).ShowDialog();
 
                     List<DM.XmlDataNode> foundXmlDataNodes = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
                             attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
