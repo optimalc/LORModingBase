@@ -12,11 +12,35 @@ namespace LORModingBase.DM
     class CheckDatas
     {
         /// <summary>
+        /// Logging data
+        /// </summary>
+        public static string LOG_DATA = "";
+
+        /// <summary>
         /// Check datas
         /// </summary>
-        public static void CheckAllDatas()
+        public static string CheckAllDatas()
         {
-            
+            LOG_DATA = "";
+            CheckDatas_Critical();
+            CheckDatas_Caution();
+            return LOG_DATA;
+        }
+
+        /// <summary>
+        /// Check critical infos
+        /// </summary>
+        public static void CheckDatas_Critical()
+        {
+
+        }
+
+        /// <summary>
+        /// Check caution infos
+        /// </summary>
+        public static void CheckDatas_Caution()
+        {
+
         }
     }
 }
