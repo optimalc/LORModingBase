@@ -82,6 +82,14 @@ namespace LORModingBase.SubWindows
                         if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_StageInfo.LocalizedStageName, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_StageInfo.LocalizedStageName = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_StageInfo.LocalizedStageName, DM.Config.CurrentWorkingDirectory));
 
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_EnemyInfo.LocalizedCharactersName, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_EnemyInfo.LocalizedCharactersName = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_EnemyInfo.LocalizedCharactersName, DM.Config.CurrentWorkingDirectory));
+
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_DeckInfo.StaticDeckInfo, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_DeckInfo.StaticDeckInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_DeckInfo.StaticDeckInfo, DM.Config.CurrentWorkingDirectory));
+
                         this.Close();
                     };
 

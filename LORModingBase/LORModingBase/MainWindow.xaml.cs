@@ -92,6 +92,8 @@ namespace LORModingBase
             DM.EditGameData_BookInfos.InitDatas();
             DM.EditGameData_CardInfos.InitDatas();
             DM.EditGameData_StageInfo.InitDatas();
+            DM.EditGameData_EnemyInfo.InitDatas();
+            DM.EditGameData_DeckInfo.InitDatas();
         }
         #endregion
 
@@ -678,7 +680,12 @@ namespace LORModingBase
             LOCALIZED_BATTLE_CARDS=5,
 
             STATIC_STAGE_INFO=6,
-            LOCALIZED_STAGE_NAME=7
+            LOCALIZED_STAGE_NAME=7,
+
+            ENEMY_INFO=8,
+            CHAR_NAME=9,
+
+            DECKS=10
         }
 
 
@@ -710,6 +717,11 @@ namespace LORModingBase
 
                                     case 6: DM.EditGameData_StageInfo.StaticStageInfo = RELOADED_XML_DATA; break;
                                     case 7: DM.EditGameData_StageInfo.LocalizedStageName = RELOADED_XML_DATA; break;
+
+                                    case 8: DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo = RELOADED_XML_DATA; break;
+                                    case 9: DM.EditGameData_EnemyInfo.LocalizedCharactersName = RELOADED_XML_DATA; break;
+
+                                    case 10: DM.EditGameData_DeckInfo.StaticDeckInfo = RELOADED_XML_DATA; break;
                                 }
                                 ReloadAllStackDatas();
                             }
