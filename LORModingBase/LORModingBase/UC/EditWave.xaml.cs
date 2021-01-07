@@ -69,14 +69,47 @@ namespace LORModingBase.UC
                 case "BtnFormation":
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
+                        waveNode.SetXmlInfoByPath("Formation", selectedItem);
 
-                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
+                        BtnFormation.ToolTip = selectedItem;
+
+                        LblFormation.Content = selectedItem;
+                        BtnFormation.Content = "          ";
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.FORMATION).ShowDialog();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
                 case "BtnUnits":
-                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    List<string> selectedEnemies= new List<string>();
+                    waveNode.ActionXmlDataNodesByPath("Unit", (DM.XmlDataNode unidNode) =>
                     {
+                        selectedEnemies.Add(unidNode.innerText);
+                    });
 
-                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
+                    new SubWindows.Global_AddItemToListWindow((string addedEnemyID) =>
+                    {
+                        waveNode.AddXmlInfoByPath("Unit", addedEnemyID);
+                    }, (string deletedEnemyID) => {
+                        waveNode.RemoveXmlInfosByPath("Unit", deletedEnemyID, deleteOnce: true);
+                    }, selectedEnemies, SubWindows.AddItemToListWindow_PRESET.STAGES).ShowDialog();
+
+                    List<DM.XmlDataNode> unitNodes = waveNode.GetXmlDataNodesByPathWithXmlInfo("Unit");
+                    string unitStr = "";
+                    if (unitNodes.Count > 0)
+                    {
+                        unitNodes.ForEach((DM.XmlDataNode unitNode) =>
+                        {
+                            unitStr += $"{unitNode.innerText} /";
+                        });
+                        unitStr = unitStr.Trim('/');
+                        if (!string.IsNullOrEmpty(unitStr.Trim()))
+                        {
+                            BtnUnits.ToolTip = unitStr;
+
+                            LblUnits.Content = unitStr;
+                            BtnUnits.Content = "          ";
+                        }
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
             }
         }
@@ -105,6 +138,7 @@ namespace LORModingBase.UC
             {
                 case "TbxAvailableUnit":
                     waveNode.SetXmlInfoByPathAndEmptyWillRemove("AvailableUnit", tbx.Text);
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     break;
             }
         }

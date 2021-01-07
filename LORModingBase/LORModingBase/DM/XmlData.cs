@@ -395,7 +395,7 @@ namespace LORModingBase.DM
                         return attritubteCheck;
                     }
                     else
-                        return true;
+                        return xmlDataNode.name == path;
                 }));
 
             return foundXmlDataNodes;

@@ -187,6 +187,15 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
+
+                case InputInfoWithSearchWindow_PRESET.FORMATION:
+                    DM.GameInfos.staticInfos["FormationInfo"].rootDataNode.ActionXmlDataNodesByPath("Formation", (DM.XmlDataNode formationNode) =>
+                    {
+                        string formationID = formationNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(formationID))
+                            selectItems.Add(formationID);
+                    });
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -269,6 +278,8 @@ namespace LORModingBase.SubWindows
         CARDS,
 
         STAGES,
-        MAP_INFO
+        MAP_INFO,
+
+        FORMATION
     };
 }

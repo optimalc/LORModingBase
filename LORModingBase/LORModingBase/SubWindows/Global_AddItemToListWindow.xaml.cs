@@ -108,6 +108,16 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
+
+                case AddItemToListWindow_PRESET.ENEMIES:
+                    DM.GameInfos.staticInfos["EnemyUnitInfo"].rootDataNode.ActionXmlDataNodesByPath("Enemy", (DM.XmlDataNode enemyID) =>
+                    {
+                        string ENEMY_ID = enemyID.GetAttributesSafe("id");
+                        if (!string.IsNullOrEmpty(ENEMY_ID))
+                            selectItems.Add(ENEMY_ID);
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -212,6 +222,8 @@ namespace LORModingBase.SubWindows
         DROP_BOOK,
 
         DROP_TABLE,
-        STAGES
+        STAGES,
+
+        ENEMIES
     };
 }

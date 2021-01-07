@@ -132,6 +132,7 @@ namespace LORModingBase.UC
                                 innerStageNode.GetInnerTextByPath("Name")));
                     }
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_STAGE_NAME);
+                    MainWindow.mainWindow.UpdateDebugInfo();
                     break;
                 case "TbxStageUniqueID":
                     string PREV_STAGE_ID = innerStageNode.attribute["id"];
