@@ -19,7 +19,7 @@ namespace LORModingBase.DM
         public static string GetDescriptionForStage(string stageID)
         {
             if (string.IsNullOrEmpty(stageID)) return "";
-            string LOC_STAGE_NAME = DM.GameInfos.localizeInfos["StageName"].rootDataNode.GetInnerTextByAttributeWithPath("Name", "ID", stageID, $"STAGE ID : {stageID}");
+            string LOC_STAGE_NAME = DM.GameInfos.localizeInfos["StageName"].rootDataNode.GetInnerTextByAttributeWithPath("Name", "ID", stageID, $"STAGE ID :{stageID}");
             return LOC_STAGE_NAME;
         }
 
@@ -32,7 +32,7 @@ namespace LORModingBase.DM
         {
             if (string.IsNullOrEmpty(chapterNum)) return "";
             string LOC_CHAPTER_NAME = GetDescriptionForETC($"ui_maintitle_citystate_{chapterNum}");
-            return (string.IsNullOrEmpty(LOC_CHAPTER_NAME) ? $"Chpater : {chapterNum}" : LOC_CHAPTER_NAME);
+            return (string.IsNullOrEmpty(LOC_CHAPTER_NAME) ? $"Chpater :{chapterNum}" : LOC_CHAPTER_NAME);
         }
     
         /// <summary>
@@ -43,7 +43,7 @@ namespace LORModingBase.DM
         public static string GetDescriptionForETC(string etcName)
         {
             if (string.IsNullOrEmpty(etcName)) return "";
-            return DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName, $"Etc : {etcName}");
+            return DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName, $"Etc :{etcName}");
         }
     
         /// <summary>
@@ -59,10 +59,10 @@ namespace LORModingBase.DM
             if (BooksNodes.Count > 0)
             {
                 string BOOK_NAME = BooksNodes[0].GetInnerTextByPath("BookName");
-                return string.IsNullOrEmpty(BOOK_NAME) ? $"Book ID : {bookID}" : BOOK_NAME;
+                return string.IsNullOrEmpty(BOOK_NAME) ? $"Book ID :{bookID}" : BOOK_NAME;
             }
             else
-                return $"Book ID : {BooksNodes}";
+                return $"Book ID :{BooksNodes}";
         }
         
         /// <summary>
@@ -73,7 +73,7 @@ namespace LORModingBase.DM
         public static string GetDescriptionForCharacter(string characterID)
         {
             if (string.IsNullOrEmpty(characterID)) return "";
-            return DM.GameInfos.localizeInfos["CharactersName"].rootDataNode.GetInnerTextByAttributeWithPath("Name", "ID", characterID, $"ChID : {characterID}");
+            return DM.GameInfos.localizeInfos["CharactersName"].rootDataNode.GetInnerTextByAttributeWithPath("Name", "ID", characterID, $"ChID :{characterID}");
         }
     
         /// <summary>
@@ -90,14 +90,14 @@ namespace LORModingBase.DM
             {
                 string PASSIVE_NAME = PassiveNodes[0].GetInnerTextByPath("Name");
                 string PASSIVE_DESC = PassiveNodes[0].GetInnerTextByPath("Desc");
-                if (string.IsNullOrEmpty(PASSIVE_NAME)) return $"Passive ID : {passiveID}";
+                if (string.IsNullOrEmpty(PASSIVE_NAME)) return $"Passive ID :{passiveID}";
                 if (nameOnly)
                     return PASSIVE_NAME;
                 else
                     return $"{PASSIVE_NAME} / {PASSIVE_DESC}";
             }
             else
-                return $"Passive ID : {passiveID}";
+                return $"Passive ID :{passiveID}";
         }
     
         /// <summary>
@@ -113,11 +113,11 @@ namespace LORModingBase.DM
             if (cardNodes.Count > 0)
             {
                 string CARD_NAME = cardNodes[0].GetInnerTextByPath("LocalizedName");
-                if (string.IsNullOrEmpty(CARD_NAME)) return $"Card ID : {cardID}";
+                if (string.IsNullOrEmpty(CARD_NAME)) return $"Card ID :{cardID}";
                 else return CARD_NAME;
             }
             else
-                return $"Card ID : {cardID}";
+                return $"Card ID :{cardID}";
         }
     
         /// <summary>
@@ -133,11 +133,11 @@ namespace LORModingBase.DM
             if (cardPassiveNodes.Count > 0)
             {
                 string PASSIVE_DESC = cardPassiveNodes[0].GetInnerTextByPath("Desc");
-                if (string.IsNullOrEmpty(PASSIVE_DESC)) return $"Passive Name : {passiveName}";
+                if (string.IsNullOrEmpty(PASSIVE_DESC)) return $"Passive Name :{passiveName}";
                 else return PASSIVE_DESC;
             }
             else
-                return $"Passive Name : {passiveName}";
+                return $"Passive Name :{passiveName}";
         }
     
         /// <summary>
@@ -176,9 +176,30 @@ namespace LORModingBase.DM
                 return $"{CHAPTER_DES} / {STAGE_DES}:{STAGE_ID}";
             }
             else
-                return $"Stage ID : {stageID}";
+                return $"Stage ID :{stageID}";
         }
-    
+
+        /// <summary>
+        /// Get full description of story type
+        /// </summary>
+        /// <param name="stageID">Story type name to use</param>
+        /// <returns>Full description for story type</returns>
+        public static string GetFullDescriptionForStoryType(string storyTypeName)
+        {
+            List<XmlDataNode> foundBookNodes = DM.GameInfos.staticInfos["EquipPage"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book");
+            if (foundBookNodes.Count > 0)
+            {
+                foreach(XmlDataNode bookNode in foundBookNodes)
+                {
+                    if (bookNode.GetXmlDataNodesByPathWithXmlInfo("BookIcon", storyTypeName).Count > 0)
+                        return GetFullDescriptionForStage(bookNode.GetInnerTextByPath("Episode"));
+                }
+                return $"Story Type Name :{storyTypeName}";
+            }
+            else
+                return $"Story Type Name :{storyTypeName}";
+        }
+
         /// <summary>
         /// Get full description of Book
         /// </summary>
@@ -199,7 +220,7 @@ namespace LORModingBase.DM
                 return $"{CHAPTER_DES} / {BOOK_DES}:{bookID}";
             }
             else
-                return $"Book ID : {bookID}";
+                return $"Book ID :{bookID}";
         }
     
         /// <summary>
@@ -220,7 +241,7 @@ namespace LORModingBase.DM
                 return $"{CHAPTER_DES} / {DROP_BOOK_DES}:{dropBookID}";
             }
             else
-                return $"Drop Book ID : {dropBookID}";
+                return $"Drop Book ID :{dropBookID}";
         }
     
         /// <summary>
@@ -241,7 +262,7 @@ namespace LORModingBase.DM
                 return $"{CHAPTER_DES} / {CARD_NAME_DES}:{cardID}";
             }
             else
-                return $"Card ID : {cardID}";
+                return $"Card ID :{cardID}";
         }
     
         /// <summary>
@@ -262,7 +283,7 @@ namespace LORModingBase.DM
                 return $"{CHAPTER_DES} / {DROP_BOOK_DES}:{dropTableID}";
             }
             else
-                return $"Drop Table ID : {dropTableID}";
+                return $"Drop Table ID :{dropTableID}";
         }
     }
 

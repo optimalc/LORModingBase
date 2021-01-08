@@ -38,9 +38,9 @@ namespace LORModingBase.UC
             innerStageNode.ActionIfInnertTextIsNotNullOrEmpty("StoryType", (string innerText) =>
             {
                 string EPISODE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"EPISODE");
-                BtnStage.ToolTip = $"{EPISODE_WORD} : {innerText}";
+                BtnStage.ToolTip = $"{EPISODE_WORD} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStoryType(innerText)}";
 
-                LblStage.Content = $"{EPISODE_WORD} : {innerText}"; ;
+                LblStage.Content = $"{EPISODE_WORD} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStoryType(innerText)}"; ;
                 BtnStage.Content = "          ";
             });
             innerStageNode.ActionIfInnertTextIsNotNullOrEmpty("FloorNum", (string innerText) =>
@@ -182,9 +182,9 @@ namespace LORModingBase.UC
                                 innerStageNode.subNodes.AddRange(copyedStageNode.GetXmlDataNodesByPath("Story"));
 
                                 string EPISODE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"EPISODE");
-                                BtnStage.ToolTip = $"{EPISODE_WORD} : {selectedItem}";
+                                BtnStage.ToolTip = $"{EPISODE_WORD} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(selectedItem)}";
 
-                                LblStage.Content = $"{EPISODE_WORD} : {selectedItem}"; ;
+                                LblStage.Content = $"{EPISODE_WORD} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(selectedItem)}"; ;
                                 BtnStage.Content = "          ";
                             });
                         MainWindow.mainWindow.UpdateDebugInfo();
