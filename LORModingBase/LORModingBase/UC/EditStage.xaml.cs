@@ -72,7 +72,7 @@ namespace LORModingBase.UC
                 string extraInfo = "";
                 innerStageNode.ActionXmlDataNodesByPath("Condition/Stage", (DM.XmlDataNode xmlDataNode) =>
                 {
-                    extraInfo += $"{xmlDataNode.GetInnerTextSafe()}\n";
+                    extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(xmlDataNode.GetInnerTextSafe())}\n";
                 });
                 extraInfo = extraInfo.TrimEnd('\n');
 
@@ -265,7 +265,7 @@ namespace LORModingBase.UC
                     List<string> selectedConditions = new List<string>();
                     innerStageNode.ActionXmlDataNodesByPath("Condition/Stage", (DM.XmlDataNode xmlDataNode) =>
                     {
-                        selectedConditions.Add(xmlDataNode.innerText);
+                        selectedConditions.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(xmlDataNode.innerText));
                     });
 
                     new SubWindows.Global_AddItemToListWindow((string addedStageID) =>
@@ -287,7 +287,7 @@ namespace LORModingBase.UC
                         string extraInfo = "";
                         innerStageNode.ActionXmlDataNodesByPath("Condition/Stage", (DM.XmlDataNode xmlDataNode) =>
                         {
-                            extraInfo += $"{xmlDataNode.GetInnerTextSafe()}\n";
+                            extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(xmlDataNode.GetInnerTextSafe())}\n";
                         });
                         extraInfo = extraInfo.TrimEnd('\n');
 

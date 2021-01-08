@@ -104,7 +104,7 @@ namespace LORModingBase.SubWindows
                     {
                         string STAGE_ID = stageID.GetAttributesSafe("id");
                         if (!string.IsNullOrEmpty(STAGE_ID))
-                            selectItems.Add(STAGE_ID);
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STAGE_ID));
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
