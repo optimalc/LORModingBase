@@ -41,6 +41,7 @@ namespace LORModingBase.SubWindows
         public Global_AddItemToListWindow(Action<string> afterAddItem, Action<string> afterDeleteItem, List<string> selectedItems, AddItemToListWindow_PRESET preset)
         {
             InitializeComponent();
+            string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterAddItem = afterAddItem;
             this.afterDeleteItem = afterDeleteItem;
@@ -58,14 +59,12 @@ namespace LORModingBase.SubWindows
                     {
                         if(cardNode.GetInnerTextByPath("Option") == "OnlyPage")
                         {
-                            string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
-                            string CUSTOM_NAME = cardNode.GetInnerTextByPath("Name");
-                            string CUSTOM_ID = cardNode.GetAttributesSafe("ID");
-                            if(!string.IsNullOrEmpty(CUSTOM_ID))
-                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:{CUSTOM_ID}");
+                            string CARD_ID = cardNode.GetAttributesSafe("ID");
+                            if(!string.IsNullOrEmpty(CARD_ID))
+                                selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID)}");
                         }
                     });
-                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
                     #endregion
                     DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                     {
@@ -110,6 +109,15 @@ namespace LORModingBase.SubWindows
                     break;
 
                 case AddItemToListWindow_PRESET.ENEMIES:
+                    #region Add custom items
+                    DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo.rootDataNode.ActionXmlDataNodesByPath("Enemy", (DM.XmlDataNode customNode) =>
+                    {
+                        string ENEMY_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(ENEMY_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.LocalizedGameDescriptions.GetDescriptionForEnemy(ENEMY_ID)}:{ENEMY_ID}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.staticInfos["EnemyUnitInfo"].rootDataNode.ActionXmlDataNodesByPath("Enemy", (DM.XmlDataNode enemyID) =>
                     {
                         string ENEMY_ID = enemyID.GetAttributesSafe("ID");

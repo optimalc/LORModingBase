@@ -501,6 +501,10 @@ namespace LORModingBase
                         {
                             List<DM.XmlDataNode> foundEnemyIds = DM.GameInfos.staticInfos["EnemyUnitInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Enemy",
                                     attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            if (foundEnemyIds.Count <= 0)
+                                foundEnemyIds = DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Enemy",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+
                             if (foundEnemyIds.Count > 0)
                             {
                                 DM.XmlDataNode ENEMY_NODE_TO_USE = foundEnemyIds[0].Copy();

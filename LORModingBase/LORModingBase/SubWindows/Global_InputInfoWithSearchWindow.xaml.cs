@@ -215,11 +215,20 @@ namespace LORModingBase.SubWindows
                     });
                     break;
                 case InputInfoWithSearchWindow_PRESET.ENEMIES:
+                    #region Add custom items
+                    DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo.rootDataNode.ActionXmlDataNodesByPath("Enemy", (DM.XmlDataNode customNode) =>
+                    {
+                        string ENEMY_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(ENEMY_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.LocalizedGameDescriptions.GetDescriptionForEnemy(ENEMY_ID)}:{ENEMY_ID}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.staticInfos["EnemyUnitInfo"].rootDataNode.ActionXmlDataNodesByPath("Enemy", (DM.XmlDataNode enemyID) =>
                     {
                         string ENEMY_ID = enemyID.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(ENEMY_ID))
-                            selectItems.Add(ENEMY_ID);
+                            selectItems.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForEnemy(ENEMY_ID)}:{ENEMY_ID}");
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
