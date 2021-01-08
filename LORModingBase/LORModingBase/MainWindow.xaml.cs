@@ -39,9 +39,12 @@ namespace LORModingBase
         {
             InitSplCriticalPage();
             InitSplCards();
+
             InitSplStages();
             InitSplEnemy();
             InitSplDecks();
+
+            InitSplDropBooks();
         }
 
         /// <summary>
@@ -112,6 +115,7 @@ namespace LORModingBase
             GrdCards.Visibility = Visibility.Collapsed;
             BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
 
+
             GrdStages.Visibility = Visibility.Collapsed;
             BtnStages.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
 
@@ -120,6 +124,10 @@ namespace LORModingBase
 
             GrdDecks.Visibility = Visibility.Collapsed;
             BtnDecks.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
+
+
+            GrdDropBooks.Visibility = Visibility.Collapsed;
+            BtnDropBook.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
         }
 
         /// <summary>
@@ -144,6 +152,7 @@ namespace LORModingBase
                         BtnCards.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
                         ChangeDebugLocation(DEBUG_LOCATION.STATIC_CARD);
                         break;
+
                     case "BtnStages":
                         HideAllGrid();
                         GrdStages.Visibility = Visibility.Visible;
@@ -161,6 +170,13 @@ namespace LORModingBase
                         GrdDecks.Visibility = Visibility.Visible;
                         BtnDecks.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
                         ChangeDebugLocation(DEBUG_LOCATION.STATIC_DECKS);
+                        break;
+
+                    case "BtnDropBook":
+                        HideAllGrid();
+                        GrdDropBooks.Visibility = Visibility.Visible;
+                        BtnDropBook.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_DROP_BOOK_INFO);
                         break;
 
                     case "BtnSetWorkingSpace":
@@ -583,6 +599,62 @@ namespace LORModingBase
                                 InitSplDecks();
                             }
                         }, SubWindows.InputInfoWithSearchWindow_PRESET.DECKS).ShowDialog();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"BattleCardGridButtonClickEvents_Error_1"));
+            }
+        }
+        #endregion
+        #region EDIT MENU - Drop Book Infos
+        private void InitSplDropBooks()
+        {
+            //SplDecks.Children.Clear();
+            //DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.ActionXmlDataNodesByPath("Deck", (DM.XmlDataNode xmlDataNode) =>
+            //{
+            //    SplDecks.Children.Add(new UC.EditDeck(xmlDataNode, InitSplDecks));
+            //});
+        }
+
+        private void DropBookGridButtonClickEvents(object sender, RoutedEventArgs e)
+        {
+
+            Button clickButton = sender as Button;
+            try
+            {
+                if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                {
+                    MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
+                    return;
+                }
+
+                switch (clickButton.Name)
+                {
+                    case "BtnAddDropBooks":
+                        //DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.subNodes.Add(
+                        //DM.EditGameData_DeckInfo.MakeNewDeckInfoBase());
+                        //InitSplDropBooks();
+                        break;
+                    case "BtnLoadDropBooks":
+                        //new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                        //{
+                        //    List<DM.XmlDataNode> foundDeckIds = DM.GameInfos.staticInfos["Deck"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Deck",
+                        //            attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                        //    if (foundDeckIds.Count <= 0)
+                        //        foundDeckIds = DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Deck",
+                        //                        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+
+                        //    if (foundDeckIds.Count > 0)
+                        //    {
+                        //        DM.XmlDataNode DECK_NODE_TO_USE = foundDeckIds[0].Copy();
+                        //        DECK_NODE_TO_USE.RemoveXmlInfosByPath("Random");
+                        //        DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.subNodes.Add(DECK_NODE_TO_USE);
+                        //        InitSplDropBooks();
+                        //    }
+                        //}, SubWindows.InputInfoWithSearchWindow_PRESET.DECKS).ShowDialog();
                         break;
                 }
             }
