@@ -30,16 +30,52 @@ namespace LORModingBase.UC
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.DROP_BOOK_INFO);
             this.innerBookNode = innerBookNode;
             this.initStack = initStack;
+
+            TbxBookID.Text = innerBookNode.GetAttributesSafe("ID");
+
+            TbxNameID.Text = innerBookNode.GetInnerTextByPath("TextId");
+            TbxBookName.Text = DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttributeWithPath("text", "id", innerBookNode.GetInnerTextByPath("TextId"));
+
+
+            innerBookNode.ActionIfInnertTextIsNotNullOrEmpty("BookIcon", (string innerText) =>
+            {
+                BtnBookIcon.ToolTip = innerText;
+
+                LblBookIcon.Content = innerText;
+                BtnBookIcon.Content = "          ";
+            });
+            innerBookNode.ActionIfInnertTextIsNotNullOrEmpty("Chapter", (string innerText) =>
+            {
+                BtnChapter.ToolTip = innerText;
+
+                LblChapter.Content = innerText;
+                BtnChapter.Content = "          ";
+            });
+
+            InitLbxKeyPage();
+            InitLbxCards();
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DROP_BOOK_INFO);
         }
 
         public void InitLbxKeyPage()
         {
-
+            LbxKeyPage.Items.Clear();
+            innerBookNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItemNode) =>
+            {
+                LbxKeyPage.Items.Add(dropItemNode.innerText);
+            });
         }
 
         public void InitLbxCards()
         {
-
+            LbxCards.Items.Clear();
+            DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "ID", innerBookNode.GetAttributesSafe("ID"),
+                (DM.XmlDataNode cardDropTableNode) => {
+                    cardDropTableNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                    {
+                        LbxCards.Items.Add(cardNode.innerText);
+                    });
+            });
         } 
         #endregion
 
@@ -75,7 +111,7 @@ namespace LORModingBase.UC
                     break;
                 case "TbxNameID":
                     break;
-                case "TbxEnemyName":
+                case "TbxBookName":
                     break;
             }
             MainWindow.mainWindow.UpdateDebugInfo();

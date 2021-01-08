@@ -49,9 +49,9 @@
                 <TextBox x:Name="TbxNameID" Grid.Column="1" Text="" ToolTip="책 이름의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
 
                 <Viewbox Grid.Column="2" Stretch="Fill">
-                    <Label x:Name="LblEnemyName" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                    <Label x:Name="LblBookName" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
                 </Viewbox>
-                <TextBox x:Name="TbxEnemyName" Grid.Column="4" Text="" ToolTip="책 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+                <TextBox x:Name="TbxBookName" Grid.Column="4" Text="" ToolTip="책 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>

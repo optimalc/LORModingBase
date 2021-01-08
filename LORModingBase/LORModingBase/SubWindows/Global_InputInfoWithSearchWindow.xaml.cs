@@ -248,6 +248,15 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(DM.LocalizedGameDescriptions.GetDecriptionForDeck(DECK_ID));
                     });
                     break;
+                case InputInfoWithSearchWindow_PRESET.DROP_BOOK:
+                    DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
+                    {
+                        string BOOK_USE_ID = bookUseNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BOOK_USE_ID))
+                            selectItems.Add(BOOK_USE_ID);
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -333,6 +342,8 @@ namespace LORModingBase.SubWindows
 
         FORMATION,
         ENEMIES,
-        DECKS
+        DECKS,
+
+        DROP_BOOK
     };
 }
