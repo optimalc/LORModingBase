@@ -40,9 +40,11 @@ namespace LORModingBase.UC
 
             innerBookNode.ActionIfInnertTextIsNotNullOrEmpty("BookIcon", (string innerText) =>
             {
-                BtnBookIcon.ToolTip = innerText;
+                string ICON_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"ICON");
 
-                LblBookIcon.Content = innerText;
+                BtnBookIcon.ToolTip = $"{ICON_WORD} : {innerText}";
+
+                LblBookIcon.Content = $"{ICON_WORD} : {innerText}";
                 BtnBookIcon.Content = "          ";
             });
             innerBookNode.ActionIfInnertTextIsNotNullOrEmpty("Chapter", (string innerText) =>
