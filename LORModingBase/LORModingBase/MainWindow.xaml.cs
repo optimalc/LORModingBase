@@ -350,6 +350,10 @@ namespace LORModingBase
                         {
                             List<DM.XmlDataNode> foundCardNodes = DM.GameInfos.staticInfos["Card"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card",
                                 attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            if (foundCardNodes.Count <= 0)
+                                foundCardNodes = DM.EditGameData_CardInfos.StaticCard.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card",
+                                            attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+
                             if (foundCardNodes.Count > 0)
                             {
                                 DM.XmlDataNode CARD_NODE_TO_USE = foundCardNodes[0].Copy();

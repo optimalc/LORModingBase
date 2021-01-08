@@ -34,6 +34,7 @@ namespace LORModingBase.SubWindows
         public Global_InputInfoWithSearchWindow(Action<string> afterSelectItem, InputInfoWithSearchWindow_PRESET preset)
         {
             InitializeComponent();
+            string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelectItem = afterSelectItem;
             List<string> searchTypes = new List<string>();
@@ -91,7 +92,6 @@ namespace LORModingBase.SubWindows
                 case InputInfoWithSearchWindow_PRESET.CRITICAL_BOOKS:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CRITICAL_BOOKS_TITLE");
                     #region Add custom items
-                    string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
                     DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode customNode) =>
                     {
                         string EQ_BOOK_ID = customNode.GetAttributesSafe("ID");
@@ -170,6 +170,15 @@ namespace LORModingBase.SubWindows
 
                 case InputInfoWithSearchWindow_PRESET.CARDS:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARDS_TITLE");
+                    #region Add custom items
+                    DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode customNode) =>
+                    {
+                        string CARD_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(CARD_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                     {
                         string CARD_ID = cardNode.GetAttributesSafe("ID");

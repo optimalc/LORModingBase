@@ -114,6 +114,10 @@ namespace LORModingBase.DM
             if (string.IsNullOrEmpty(cardID)) return "";
             List<XmlDataNode> cardNodes = DM.GameInfos.localizeInfos["BattlesCards"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("cardDescList/BattleCardDesc",
                 attributeToCheck: new Dictionary<string, string>() { { "ID", cardID } });
+            if (cardNodes.Count <= 0)
+                cardNodes = DM.EditGameData_CardInfos.LocalizedBattleCards.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("cardDescList/BattleCardDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", cardID } });
+
             if (cardNodes.Count > 0)
             {
                 string CARD_NAME = cardNodes[0].GetInnerTextByPath("LocalizedName");
@@ -390,6 +394,10 @@ namespace LORModingBase.DM
         {
             List<XmlDataNode> foundDataNodes = DM.GameInfos.staticInfos["Card"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card",
                 attributeToCheck: new Dictionary<string, string>() { { "ID", cardID } });
+            if (foundDataNodes.Count <= 0)
+                foundDataNodes = DM.EditGameData_CardInfos.StaticCard.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", cardID } });
+
             if (foundDataNodes.Count > 0)
             {
                 XmlDataNode CARD_NODE = foundDataNodes[0];
