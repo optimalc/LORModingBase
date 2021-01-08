@@ -56,6 +56,9 @@ namespace LORModingBase.DM
         {
             KeyPageCheck();
             CardCheck();
+            StageCheck();
+            EnemyCheck();
+            DeckCheck();
         }
 
         public static void KeyPageCheck()
@@ -99,6 +102,69 @@ namespace LORModingBase.DM
                     if (CARD_PAGE_ID_LIST.Contains(CARD_NODE_ID))
                         CheckDatas.MakeCriticalMessage("Card_Critical_3", CARD_NODE_ID);
                     CARD_PAGE_ID_LIST.Add(CARD_NODE_ID);
+                }
+            });
+        }
+    
+        public static void StageCheck()
+        {
+            List<string> STAGE_ID_LIST = new List<string>();
+            DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (XmlDataNode stageNode) =>
+            {
+                string STAGE_NODE_ID = stageNode.GetAttributesSafe("id");
+                string STAGE_NODE_NAME = stageNode.GetInnerTextByPath("Name");
+
+                if (string.IsNullOrEmpty(STAGE_NODE_ID))
+                    CheckDatas.MakeCriticalMessage("Stage_Critical_1", STAGE_NODE_NAME);
+                if (string.IsNullOrEmpty(STAGE_NODE_NAME))
+                    CheckDatas.MakeCriticalMessage("Stage_Critical_2", STAGE_NODE_ID);
+
+                if (!string.IsNullOrEmpty(STAGE_NODE_ID))
+                {
+                    if (STAGE_ID_LIST.Contains(STAGE_NODE_ID))
+                        CheckDatas.MakeCriticalMessage("Stage_Critical_3", STAGE_NODE_ID);
+                    STAGE_ID_LIST.Add(STAGE_NODE_ID);
+                }
+            });
+        }
+
+        public static void EnemyCheck()
+        {
+            List<string> ENEMY_ID_LIST = new List<string>();
+            DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo.rootDataNode.ActionXmlDataNodesByPath("Enemy", (XmlDataNode enemyNode) =>
+            {
+                string ENYME_NODE_ID = enemyNode.GetAttributesSafe("ID");
+                string ENTME_NODE_NAME_ID = enemyNode.GetInnerTextByPath("NameID");
+
+                if (string.IsNullOrEmpty(ENYME_NODE_ID))
+                    CheckDatas.MakeCriticalMessage("Enemy_Critical_1", ENTME_NODE_NAME_ID);
+                if (string.IsNullOrEmpty(ENTME_NODE_NAME_ID))
+                    CheckDatas.MakeCriticalMessage("Enemy_Critical_2", ENYME_NODE_ID);
+
+                if (!string.IsNullOrEmpty(ENYME_NODE_ID))
+                {
+                    if (ENEMY_ID_LIST.Contains(ENYME_NODE_ID))
+                        CheckDatas.MakeCriticalMessage("Enemy_Critical_3", ENYME_NODE_ID);
+                    ENEMY_ID_LIST.Add(ENYME_NODE_ID);
+                }
+            });
+        }
+
+        public static void DeckCheck()
+        {
+            List<string> DECK_ID_LIST = new List<string>();
+            DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.ActionXmlDataNodesByPath("Deck", (XmlDataNode deckNode) =>
+            {
+                string DECK_NODE_ID = deckNode.GetAttributesSafe("ID");
+
+                if (string.IsNullOrEmpty(DECK_NODE_ID))
+                    CheckDatas.MakeCriticalMessage("Deck_Critical_1");
+
+                if (!string.IsNullOrEmpty(DECK_NODE_ID))
+                {
+                    if (DECK_ID_LIST.Contains(DECK_NODE_ID))
+                        CheckDatas.MakeCriticalMessage("Deck_Critical_2", DECK_NODE_ID);
+                    DECK_ID_LIST.Add(DECK_NODE_ID);
                 }
             });
         }
