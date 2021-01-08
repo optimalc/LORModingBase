@@ -35,6 +35,7 @@ namespace LORModingBase.SubWindows
         {
             InitializeComponent();
             string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+            string IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelectItem = afterSelectItem;
             List<string> searchTypes = new List<string>();
@@ -63,6 +64,22 @@ namespace LORModingBase.SubWindows
                     break;
                 case InputInfoWithSearchWindow_PRESET.BOOK_ICON:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"BOOK_ICON_TITLE");
+                    #region Add custom items
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last().Split('.')[0];
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
                     DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
                     {
                         string BOOK_ICON_NAME = bookUseNode.GetInnerTextByPath("BookIcon");
@@ -122,7 +139,6 @@ namespace LORModingBase.SubWindows
                 case InputInfoWithSearchWindow_PRESET.CARD_ARTWORK:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARD_ARTWORK_TITLE");
                     #region Add custom items
-                    string IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
                     if (Directory.Exists(IMAGE_DIRECTORY))
                     {
                         Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>

@@ -46,9 +46,9 @@ namespace LORModingBase.DM
         public static string GetDescriptionForETC(string etcName)
         {
             if (string.IsNullOrEmpty(etcName)) return "";
-            string ETC_NAME = DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName, $"Etc :{etcName}");
+            string ETC_NAME = DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName);
             if (string.IsNullOrEmpty(ETC_NAME))
-                ETC_NAME = DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName, $"Etc :{etcName}");
+                ETC_NAME = DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName);
             return string.IsNullOrEmpty(ETC_NAME) ? $"ETC NAME :{ETC_NAME}" : ETC_NAME;
         }
     
