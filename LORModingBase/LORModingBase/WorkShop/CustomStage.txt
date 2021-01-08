@@ -1,0 +1,128 @@
+[*] 분석된
+StaticInfo/StageInfo/StageInfo.txt
+<Stage id="2"> <!-- 스테이지 ID --> (ROW 0)
+    <Name>쥐</Name> <!-- 스테이지 이름 --> (ROW 0)
+    <Wave> <!-- 스테이지 웨이브 (여러개 가능) --> (다수의 개수)
+        <Formation>2</Formation> <!-- 유닛의 전형 위치(유닛 수에 의존적임) -->
+        <AvailableUnit>4</AvailableUnit> <!-- 이용 가능한 유닛의 수 -->
+        <Unit>3</Unit>  <!-- 적 유닛의 번호 (여러개 가능) -->
+        <Unit>1</Unit>
+        <Unit>2</Unit>  (대형 선택 창 이후에 추가 가능)
+    </Wave>
+    <FloorNum>1</FloorNum> <!-- 허용되는 최대 층의 개수 -->
+    <Invitation Combine="BookRecipe"> <!-- 필요한 책 -->
+        <Book>31</Book>
+    </Invitation>
+    <Chapter>1</Chapter> <!-- 속한 챕터 --> (Row 1)
+    <StoryType>Rats</StoryType> <!-- 어느 스토리에 속하는가 --> (Row 1)
+    <Story Condition="Start">1_2_1</Story> <!-- 스토리 시작 고유 번호 --> (Row 1)
+    <Story Condition="End">1_2_2</Story> <!-- 스토리 끝 고유 번호 --> (Row 1)
+    <Condition> (Prev stage : right)
+        <Stage>40001</Stage> <- 이전 스테이지
+    </Condition>
+    <MapInfo>Tomerry</MapInfo> <!-- 맵 정보 --> (right)
+</Stage>
+<Formation>14</Formation> <- 얘들 대형 StaticInfoFormationInfo 에 있음 (대형 선택 창으로)
+
+Localize/StageName/...
+<CharactersNameRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Name ID="2">쥐</Name><!- 각 ID에 속하는 이름 ->
+
+---
+1. Localize, StaticInfo 폴더 생성
+---
+2. Localize 안에 kr 생성
+3. StageName 폴더 생성
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CharactersNameRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Name ID="니 꼴리는 숫자">스테이지 이름</Name>
+</CharactersNameRoot>
+중복 X
+---
+4. Static Info로
+5. StageInfo폴더 생성
+사람 ID 추가 가능
+
+6. StagicInfoDropBook
+-- DropBook
+
+
+Localize/StageName
+Localize/StageInfo
+
+스테이지 이름,
+스테이지 ID,
+챕터,
+초대장 ID,
+층의 개수,
+Wave ?
+
+<Condition>
+<Stage>30007</Stage>
+</Condition>
+<StoryType>ShiAssociation</StoryType>
+
+이 부분임
+이게 스토리 라인에서 표시되는 여부를 만듬
+
+난 이 스테이지를 시 협회 2챕터에 넣을거기 때문에, Stage부분의 숫자를 시 협회 1챕터 id인 40001로 변경
+
+
+<?xml version="1.0" encoding="utf-8" ?>
+<StageXmlRoot>
+<Stage id="104007">
+<Name>실험용 맵</Name>
+<Wave>
+<Formation>14</Formation>
+<AvailableUnit>4</AvailableUnit>
+<Unit>40001</Unit>
+</Wave>
+<FloorNum>8</FloorNum>
+<Invitation Combine="BookRecipe">
+<Book>240001</Book>
+<Book>240002</Book>
+</Invitation>
+<Chapter>5</Chapter>
+<Condition>
+<Stage>40001</Stage>
+</Condition>
+<StoryType>ShiAssociation</StoryType>
+</Stage>
+</StageXmlRoot>
+
+<?xml version="1.0" encoding="utf-8" ?>
+<StageXmlRoot>
+<Stage id="니가 아까 썻던 ID">
+<Name>니가 아까 썻던 스테이지 이름</Name>
+<Wave> <- 웨이브 한번 당 한 층임
+<Formation>14</Formation> <- 얘들 대형 StaticInfoFormationInfo 에 있음
+<AvailableUnit>4</AvailableUnit> <- 접대에서 사용할 수 있는 사서 수
+<Unit>40001</Unit> <- 등장하는 유닛, 최대 5명까지 가능함
+<Unit>40002</Unit> <- 유닛 추가하려면 이렇게 밑에 추가하삼
+</Wave>
+
+
+
+<Wave>
+<Formation>14</Formation>
+<AvailableUnit>4</AvailableUnit>
+<Unit>40003</Unit>
+</Wave>
+
+ㄴ 이렇게 웨이브 하나 더 추가하면 2 무대 접대가 됨
+무대는 5개까지 6개부터는 버그남
+
+
+
+<FloorNum>8</FloorNum> <- 접대 가능한 층
+<Invitation Combine="BookRecipe"> <- 접대에 필요한 책
+<Book>240001</Book>
+<Book>240002</Book>
+</Invitation>
+<Chapter>5</Chapter> <- 스테이지 챕터
+<Condition>
+<Stage>40001</Stage> <- 이전 스테이지
+</Condition>
+<StoryType>ShiAssociation</StoryType> <- 스테이지 타입
+</Stage>
+</StageXmlRoot>

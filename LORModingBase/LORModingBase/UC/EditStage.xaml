@@ -1,0 +1,164 @@
+﻿<UserControl x:Class="LORModingBase.UC.EditStage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LORModingBase.UC"
+             mc:Ignorable="d" 
+             Height="400" Width="320">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle x:Name="WindowBg" Fill="#543C91BD" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="72*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Label x:Name="LblStageName" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxStageName" Grid.Column="1" Text="" ToolTip="스테이지의 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+                <Viewbox Grid.Column="2" Stretch="Fill">
+                    <Label x:Name="LblStageUniqueID" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxStageUniqueID" Grid.Column="3" Text="" ToolTip="스테이지의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblStage" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="1" Stretch="Fill" Margin="55,7">
+                    <Button x:Name="BtnStage" Content="적용할 스테이지를 선택" ToolTip="해당 스테이지와 관련된 스테이지를 설정합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblFloor" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Button x:Name="BtnFloor" Content="허용 되는 층수 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                </Viewbox>
+
+                <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Label x:Name="LblInvitation" Grid.Column="3" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="3" Stretch="Fill">
+                    <Button x:Name="BtnInvitation" Content="초대장 책 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에 들어가기 위한 초대장에 들어갈 책을 설정합니다" Click="SelectItemButtonEvents"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12*"/>
+                    <RowDefinition Height="84*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <Viewbox Grid.Column="3" Stretch="Fill">
+                        <Button x:Name="BtnAddWave" Grid.Column="0" Content="▼ 웨이브 추가 ▼" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지의 웨이브를 추가합니다" Click="SelectItemButtonEvents"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Rectangle Grid.Column="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Visible">
+                        <StackPanel x:Name="SqlWaves" Orientation="Vertical" HorizontalAlignment="Center">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="3,3,3,3"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="37*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnCondition" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="해당 스테이지에 진입하기 위한 선 클리어 스테이지 ID를 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="RightMenuButtonEvents" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/IconNoCondition.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnMapInfo" Grid.Row="1"  Style="{StaticResource StyBtnMenu}" ToolTip="해당 스테이지만의 맵 이미지를 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="RightMenuButtonEvents" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="10"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/IconNoMapInfo.png"/>
+                </Button.Background>
+            </Button>
+
+            <Rectangle Grid.Row="2" Grid.RowSpan="6" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnCopyStage" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="스테이지를 복제해서 새로운 스테이지를 만듭니다" Click="RightMenuButtonEvents">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-17"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnCopy.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="RightMenuButtonEvents" ToolTip="스테이지를 삭제합니다" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-21"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnBin.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

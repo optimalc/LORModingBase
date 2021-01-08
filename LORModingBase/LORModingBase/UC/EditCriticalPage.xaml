@@ -31,17 +31,28 @@
                     <ColumnDefinition Width="22*"/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.ColumnSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnRarityCommon" ToolTip="보급 책장으로 지정" Grid.Column="0" Content="보급" FontSize="15" Foreground="#FF30BF4B" Style="{StaticResource StyBtnMenu}" Click="BtnRarityCommon_Click" Background="#54FFFFFF"/>
-                <Button x:Name="BtnRarityUncommon" ToolTip="고급 책장으로 지정" Grid.Column="1" Content="고급" FontSize="15" Foreground="#FF306ABF" Style="{StaticResource StyBtnMenu}" Click="BtnRarityUncommon_Click"/>
-                <Button x:Name="BtnRarityRare" ToolTip="한정 책장으로 지정" Grid.Column="2" Content="한정" FontSize="15" Foreground="#FF8030BF" Style="{StaticResource StyBtnMenu}" Click="BtnRarityRare_Click"/>
-                <Button x:Name="BtnRarityUnique" ToolTip="예술 책장으로 지정" Grid.Column="3" Content="예술" FontSize="15" Foreground="#FFF3B530" Style="{StaticResource StyBtnMenu}" Click="BtnRarityUnique_Click"/>
+                <Viewbox Grid.Column="0" Stretch="Fill" Margin="15,7">
+                    <Button x:Name="BtnRarity_Common" ToolTip="보급 책장으로 지정" Grid.Column="0" Content="보급" FontSize="15" Foreground="#FF30BF4B" Tag="#5430BF4B" Style="{StaticResource StyBtnMenu}" Background="#54FFFFFF" Click="ChangeRarityButtonEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="1" Stretch="Fill" Margin="15,7">
+                    <Button x:Name="BtnRarity_Uncommon" ToolTip="고급 책장으로 지정" Grid.Column="1" Content="고급" FontSize="15" Foreground="#FF306ABF" Tag="#54306ABF" Style="{StaticResource StyBtnMenu}" Click="ChangeRarityButtonEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="2" Stretch="Fill" Margin="15,7">
+                    <Button x:Name="BtnRarity_Rare" ToolTip="한정 책장으로 지정" Grid.Column="2" Content="한정" FontSize="15" Foreground="#FF8030BF" Tag="#548030BF" Style="{StaticResource StyBtnMenu}" Click="ChangeRarityButtonEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="3" Stretch="Fill" Margin="15,7">
+                    <Button x:Name="BtnRarity_Unique" ToolTip="예술 책장으로 지정" Grid.Column="3" Content="예술" FontSize="15" Foreground="#FFF3B530" Tag="#54F3B530" Style="{StaticResource StyBtnMenu}" Click="ChangeRarityButtonEvents"/>
+                </Viewbox>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnEpisode" Grid.Column="1" Content="적용할 에피소드를 선택" ToolTip="핵심책장과 관련된 에피소드를 설정합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnEpisode_Click"/>
+                <Label x:Name="LblEpisode" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="1" Stretch="Fill" Margin="55,7">
+                    <Button x:Name="BtnEpisode" Content="적용할 에피소드를 선택" ToolTip="핵심책장과 관련된 에피소드를 설정합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                </Viewbox>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -53,10 +64,15 @@
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
 
-                <Label Grid.Column="0" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
-                <TextBox x:Name="TbxPageName" Grid.Column="1" Text="" ToolTip="핵심책장의 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxPageName_TextChanged"/>
-                <Label Grid.Column="2" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
-                <TextBox x:Name="TbxPageUniqueID" Grid.Column="3" Text="" ToolTip="핵심책장의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxPageUniqueID_TextChanged"/>
+                <Viewbox Grid.Column="0" Stretch="Fill" Margin="-1,6">
+                    <Label x:Name="LblPageName" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxPageName_Name" Grid.Column="1" Text="" ToolTip="핵심책장의 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+
+                <Viewbox Grid.Column="2" Stretch="Fill" Margin="5,7">
+                    <Label x:Name="LblPageUniqueID" Content="고유ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxPageUniqueID" Grid.Column="3" Text="" ToolTip="핵심책장의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
             </Grid>
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
@@ -71,7 +87,7 @@
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Rectangle Grid.Column="4" Grid.ColumnSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Image Grid.Column="0" Source="../Resources/iconHP.png" RenderTransformOrigin="0.5,0.5" ToolTip="체력">
+                <Image x:Name="ImgHP" Grid.Column="0" Source="../Resources/iconHP.png" RenderTransformOrigin="0.5,0.5" ToolTip="체력">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
@@ -81,9 +97,9 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <TextBox x:Name="TbxHP" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxHP_TextChanged" ToolTip="체력을 입력합니다"/>
+                <TextBox x:Name="TbxHP_EquipEffect_HP" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox" ToolTip="체력을 입력합니다"/>
 
-                <Image Grid.Column="2" Source="../Resources/iconBR.png" RenderTransformOrigin="0.5,0.5" ToolTip="흐트러짐 저항">
+                <Image x:Name="ImgSR" Grid.Column="2" Source="../Resources/iconBR.png" RenderTransformOrigin="0.5,0.5" ToolTip="흐트러짐 저항">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleY="1.2" ScaleX="1.2"/>
@@ -93,9 +109,9 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <TextBox x:Name="TbxBR" Grid.Column="3" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="TbxBR_TextChanged" ToolTip="흐트러짐 저항을 입력합니다"/>
+                <TextBox x:Name="TbxBR_EquipEffect_Break" Grid.Column="3" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox" ToolTip="흐트러짐 저항을 입력합니다"/>
 
-                <Image Grid.Column="4" Source="../Resources/iconSpeedDice.png" RenderTransformOrigin="0.5,0.5" ToolTip="속도 주사위 범위">
+                <Image x:Name="LblSD" Grid.Column="4" Source="../Resources/iconSpeedDice.png" RenderTransformOrigin="0.5,0.5" ToolTip="속도 주사위 범위">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
@@ -105,9 +121,9 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <TextBox x:Name="TbxSpeedDiceMin" Grid.Column="5" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0" TextChanged="TbxSpeedDiceMin_TextChanged" ToolTip="속도 주사위의 최솟값을 입력합니다"/>
+                <TextBox x:Name="TbxSpeedDiceMin_EquipEffect_SpeedMin" Grid.Column="5" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0" TextChanged="ReflectTextChangeInTextBox" ToolTip="속도 주사위의 최솟값을 입력합니다"/>
                 <Label Grid.Column="5" Content="~" FontSize="15"  Style="{StaticResource StyLbl}" Margin="18,0,0,0"/>
-                <TextBox x:Name="TbxSpeedDiceMax" Grid.Column="6" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0" TextChanged="TbxSpeedDiceMax_TextChanged" ToolTip="속도 주사위의 최대값을 입력합니다"/>
+                <TextBox x:Name="TbxSpeedDiceMax_EquipEffect_Speed" Grid.Column="6" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,15,0" TextChanged="ReflectTextChangeInTextBox" ToolTip="속도 주사위의 최대값을 입력합니다"/>
             </Grid>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
@@ -115,10 +131,16 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnBookIcon" Grid.Column="0" Content="책 아이콘 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnBookIcon_Click" ToolTip="핵심 책장의 이미지를 선택합니다"/>
+                <Label x:Name="LblBookIconViewLabel" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="0" Stretch="Fill" Margin="12,7">
+                    <Button x:Name="BtnBookIcon" Content="책 아이콘 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="핵심 책장의 이미지를 선택합니다"/>
+                </Viewbox>
 
                 <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Button x:Name="BtnSkin" Grid.Column="1" Content="캐릭터 스킨 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnSkin_Click" ToolTip="핵심 책장과 관련된 캐릭터 스킨을 선택합니다"/>
+                <Label x:Name="LblSkin" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="1" Stretch="Fill" Margin="8,7">
+                    <Button x:Name="BtnSkin" Content="캐릭터 스킨 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="핵심 책장과 관련된 캐릭터 스킨을 선택합니다"/>
+                </Viewbox>
             </Grid>
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
@@ -134,7 +156,7 @@
                         <ColumnDefinition Width="45*"/>
                         <ColumnDefinition Width="55*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="../Resources/iconSResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="참격 피해 내성">
+                    <Image x:Name="ImgSResist" Grid.Column="0" Source="../Resources/iconSResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="참격 피해 내성">
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
@@ -144,14 +166,16 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="BtnSResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnSResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnSResist_PreviewMouseRightButtonDown" ToolTip="참격 피해의 내성을 살정합니다"/>
+                    <Viewbox Grid.Column="1" Stretch="Fill">
+                        <Button x:Name="Btn_SResist" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="참격 피해의 내성을 설정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
+                    </Viewbox>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="45*"/>
                         <ColumnDefinition Width="55*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="../Resources/iconPResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="관통 피해 내성">
+                    <Image x:Name="ImgPResist" Grid.Column="0" Source="../Resources/iconPResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="관통 피해 내성">
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="0.75" ScaleY="0.75"/>
@@ -161,14 +185,16 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="BtnPResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnPResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnPResist_PreviewMouseRightButtonDown" ToolTip="관통 피해의 내성을 살정합니다"/>
+                    <Viewbox Grid.Column="1" Stretch="Fill">
+                        <Button x:Name="Btn_PResist" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="관통 피해의 내성을 설정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
+                    </Viewbox>
                 </Grid>
                 <Grid Grid.Column="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="45*"/>
                         <ColumnDefinition Width="55*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="../Resources/iconHResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="타격 피해 내성">
+                    <Image x:Name="ImgHResist" Grid.Column="0" Source="../Resources/iconHResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="타격 피해 내성">
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
@@ -178,7 +204,9 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="BtnHResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnHResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnHResist_PreviewMouseRightButtonDown" ToolTip="타격 피해의 내성을 살정합니다"/>
+                    <Viewbox Grid.Column="1" Stretch="Fill">
+                        <Button x:Name="Btn_HResist" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="타격 피해의 내성을 설정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
+                    </Viewbox>
                 </Grid>
             </Grid>
             <Grid Grid.Row="6">
@@ -195,7 +223,7 @@
                         <ColumnDefinition Width="45*"/>
                         <ColumnDefinition Width="55*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="../Resources/iconBSResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="참격 흐트러짐 피해 내성">
+                    <Image x:Name="ImgBSResist" Grid.Column="0" Source="../Resources/iconBSResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="참격 흐트러짐 피해 내성">
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
@@ -205,14 +233,16 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="BtnBSResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnBSResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnBSResist_PreviewMouseRightButtonDown" ToolTip="참격 흐트러짐 피해의 내성을 살정합니다"/>
+                    <Viewbox Grid.Column="1" Stretch="Fill">
+                        <Button x:Name="Btn_SBResist" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="참격 흐트러짐 피해의 내성을 설정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
+                    </Viewbox>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="45*"/>
                         <ColumnDefinition Width="55*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="../Resources/iconBPResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="관통 흐트러짐 피해 내성">
+                    <Image x:Name="ImgBPResist" Grid.Column="0" Source="../Resources/iconBPResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="관통 흐트러짐 피해 내성">
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="0.75" ScaleY="0.75"/>
@@ -222,14 +252,16 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="BtnBPResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnBPResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnBPResist_PreviewMouseRightButtonDown" ToolTip="관통 흐트러짐 피해의 내성을 살정합니다"/>
+                    <Viewbox Grid.Column="1" Stretch="Fill">
+                        <Button x:Name="Btn_PBResist" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left"  ToolTip="관통 흐트러짐 피해의 내성을 설정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
+                    </Viewbox>
                 </Grid>
                 <Grid Grid.Column="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="45*"/>
                         <ColumnDefinition Width="55*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="../Resources/iconBHResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="타격 흐트러짐 피해 내성">
+                    <Image x:Name="ImgBHResist" Grid.Column="0" Source="../Resources/iconBHResist.png" RenderTransformOrigin="0.5,0.5" ToolTip="타격 흐트러짐 피해 내성">
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
@@ -239,7 +271,9 @@
                             </TransformGroup>
                         </Image.RenderTransform>
                     </Image>
-                    <Button x:Name="BtnBHResist" Grid.Column="1" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnBHResist_PreviewMouseLeftButtonDown" PreviewMouseRightButtonDown="BtnBHResist_PreviewMouseRightButtonDown" ToolTip="타격 흐트러짐 피해의 내성을 살정합니다"/>
+                    <Viewbox Grid.Column="1" Stretch="Fill">
+                        <Button x:Name="Btn_HBResist" Content="보통" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" ToolTip="타격 흐트러짐 피해의 내성을 설정합니다" PreviewMouseDown="TypeLoopButtonEvents"/>
+                    </Viewbox>
                 </Grid>
             </Grid>
             <Grid Grid.Row="7">
@@ -253,10 +287,14 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnAddPassive" Grid.Column="0" Content="패시브 추가" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnAddPassive_Click" ToolTip="핵심 책장에 패시브를 추가합니다"/>
+                    <Viewbox Grid.Column="0" Stretch="Fill" Margin="23,9">
+                        <Button x:Name="BtnAddPassive" Content="패시브 추가" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="핵심 책장에 패시브를 추가합니다"/>
+                    </Viewbox>
 
                     <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnDeletePassive" Grid.Column="1" Content="패시브 삭제" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDeletePassive_Click" ToolTip="선택된 핵심책장 패시브를 삭제합니다"/>
+                    <Viewbox Grid.Column="1" Stretch="Fill" Margin="23,9">
+                        <Button x:Name="BtnDeletePassive" Content="패시브 삭제" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="선택된 핵심책장 패시브를 삭제합니다"/>
+                    </Viewbox>
                 </Grid>
                 <Rectangle Grid.Row="1" Grid.RowSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <ListBox x:Name="LbxPassives" Grid.Row="1"  Style="{StaticResource StyListBox}"/>
@@ -275,7 +313,7 @@
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
             <Rectangle Grid.RowSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-            <Button x:Name="BtnCiricalBookInfo" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장에 대한 이야기를 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="BtnCiricalBookInfo_Click" >
+            <Button x:Name="BtnCiricalBookInfo" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장에 대한 이야기를 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="RightMenuButtonEvents" >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="10"/>
@@ -288,7 +326,7 @@
                     <ImageBrush ImageSource="../Resources/IconNobookInfo.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDropBooks" Grid.Row="1"  Style="{StaticResource StyBtnMenu}" ToolTip="이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="BtnDropBooks_Click" >
+            <Button x:Name="BtnDropBooks" Grid.Row="1"  Style="{StaticResource StyBtnMenu}" ToolTip="이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="SelectItemListButtonEvents" >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="10"/>
@@ -301,7 +339,7 @@
                     <ImageBrush ImageSource="../Resources/iconNoDropBook.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnEnemySetting" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="BtnEnemySetting_Click">
+            <Button x:Name="BtnEnemySetting" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="RightMenuButtonEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="10"/>
@@ -314,7 +352,7 @@
                     <ImageBrush ImageSource="../Resources/IconNoEnemy.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BookUniqueCards" Grid.Row="3"  Style="{StaticResource StyBtnMenu}" ToolTip="이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="BookUniqueCards_Click" >
+            <Button x:Name="BookUniqueCards" Grid.Row="3"  Style="{StaticResource StyBtnMenu}" ToolTip="이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (미입력)" RenderTransformOrigin="0.5,0.5" Click="SelectItemListButtonEvents" >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="10"/>
@@ -328,8 +366,8 @@
                 </Button.Background>
             </Button>
             
-            <Rectangle Grid.Row="4" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-            <Button x:Name="BtnRangeType" Grid.Row="4"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" Click="BtnRangeType_Click">
+            <Rectangle Grid.Row="4" Grid.RowSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnRangeType" Grid.Row="4"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)" RenderTransformOrigin="0.5,0.5" PreviewMouseDown="TypeLoopButtonEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="10"/>
@@ -339,25 +377,12 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/TypeNomal.png"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="BtnCriticalPageType" Grid.Row="5"  Style="{StaticResource StyBtnMenu}" ToolTip="클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 유저 전용 책장) &#x0a; ※ 적 적용 책장은 '에피소드 선택 여부', '책장이 어느 책으로부터 드랍될 것인지의 여부'를 확인하지 않습니다 &#x0a; ※ 적 전용 데이터 입력여부 &amp; 고유 ID가 1000 ~ 200000인 경우 적 전용 책장으로 인식합니다" RenderTransformOrigin="0.5,0.5" Click="BtnCriticalPageType_Click">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="10" ScaleY="10"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-                <Button.Background>
-                    <ImageBrush ImageSource="../Resources/TypeUser.png"/>
+                    <ImageBrush ImageSource="../Resources/TypeNear.png"/>
                 </Button.Background>
             </Button>
 
-            <Rectangle Grid.Row="6" Grid.RowSpan="3" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-            <Button x:Name="BtnCopyPage" Grid.Row="6"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장을 복제해서 새로운 핵심 책장을 만듭니다" Click="BtnCopyPage_Click">
+            <Rectangle Grid.Row="5" Grid.RowSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnCopyPage" Grid.Row="5"  Style="{StaticResource StyBtnMenu}" ToolTip="핵심 책장을 복제해서 새로운 핵심 책장을 만듭니다" Click="RightMenuButtonEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="12"/>
@@ -370,7 +395,7 @@
                     <ImageBrush ImageSource="../Resources/BtnCopy.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnDelete_Click" ToolTip="핵심 책장을 삭제합니다" >
+            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="RightMenuButtonEvents" ToolTip="핵심 책장을 삭제합니다" >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="12"/>

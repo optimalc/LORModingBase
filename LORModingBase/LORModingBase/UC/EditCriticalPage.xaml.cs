@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using LORModingBase.CustomExtensions;
 
 namespace LORModingBase.UC
 {
@@ -10,578 +13,780 @@ namespace LORModingBase.UC
     /// </summary>
     public partial class EditCriticalPage : UserControl
     {
-        DS.CriticalPageInfo innerCriticalPageInfo = null;
+        DM.XmlDataNode innerCriticalPageNode = null;
         Action initStack = null;
 
         #region Init controls
-        public EditCriticalPage(DS.CriticalPageInfo criticalPageInfo, Action initStack)
+        public EditCriticalPage(DM.XmlDataNode innerCriticalPageNode, Action initStack)
         {
-            this.innerCriticalPageInfo = criticalPageInfo;
-            this.initStack = initStack;
-            InitializeComponent();
-
-            #region 일반적인 핵심책장 정보 UI 반영시키기
-            ChangeRarityUIInit(criticalPageInfo.rarity);
-            if (!string.IsNullOrEmpty(criticalPageInfo.episodeDes))
+            try
             {
-                BtnEpisode.Content = criticalPageInfo.episodeDes;
-                BtnEpisode.ToolTip = criticalPageInfo.episodeDes;
-            }
+                this.innerCriticalPageNode = innerCriticalPageNode;
+                this.initStack = initStack;
+                InitializeComponent();
+                Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.BOOK_INFO);
 
-            TbxPageName.Text = criticalPageInfo.name;
-            TbxPageUniqueID.Text = criticalPageInfo.bookID;
+                #region 일반적인 핵심책장 정보 UI 반영시키기
+                Tools.WindowControls.InitTextBoxControlsByUsingName(this, innerCriticalPageNode);
 
-            TbxHP.Text = criticalPageInfo.HP;
-            TbxBR.Text = criticalPageInfo.breakNum;
-            TbxSpeedDiceMin.Text = criticalPageInfo.minSpeedCount;
-            TbxSpeedDiceMax.Text = criticalPageInfo.maxSpeedCount;
-
-            if (!string.IsNullOrEmpty(criticalPageInfo.iconDes))
-            {
-                BtnBookIcon.Content = criticalPageInfo.iconDes;
-                BtnBookIcon.ToolTip = criticalPageInfo.iconDes;
-            }
-            if (!string.IsNullOrEmpty(criticalPageInfo.iconDes))
-            {
-                BtnSkin.Content = criticalPageInfo.skinDes;
-                BtnSkin.ToolTip = criticalPageInfo.skinDes;
-            }
-
-            BtnSResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.SResist];
-            BtnPResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.PResist];
-            BtnHResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.HResist];
-
-            BtnBSResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BSResist];
-            BtnBPResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BPResist];
-            BtnBHResist.Content = DS.GameInfo.resistInfo_Dic[criticalPageInfo.BHResist];
-
-            InitLbxPassives();
-            #endregion
-
-            #region 핵심책장 설명부분 UI 반영시키기
-            if (criticalPageInfo.description != "입력된 정보가 없습니다")
-            {
-                BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
-                BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
-            }
-            #endregion
-            #region 유니크 전용 책장 설정 부분 UI 반영시키기
-            if (criticalPageInfo.onlyCards.Count > 0)
-            {
-                string extraInfo = "";
-                innerCriticalPageInfo.onlyCards.ForEach((string onlyCardInfo) =>
+                switch(innerCriticalPageNode.GetInnerTextByPath("Rarity"))
                 {
-                    extraInfo += $"{onlyCardInfo}\n";
-                });
-                extraInfo = extraInfo.TrimEnd('\n');
+                    case "Common":
+                        ChangeRarityButtonEvents(BtnRarity_Common, null);
+                        break;
+                    case "Uncommon":
+                        ChangeRarityButtonEvents(BtnRarity_Uncommon, null);
+                        break;
+                    case "Rare":
+                        ChangeRarityButtonEvents(BtnRarity_Rare, null);
+                        break;
+                    case "Unique":
+                        ChangeRarityButtonEvents(BtnRarity_Unique, null);
+                        break;
+                }
+                TbxPageUniqueID.Text = innerCriticalPageNode.GetAttributesSafe("ID");
 
-                BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
-                BookUniqueCards.ToolTip = $"이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            #endregion
-
-            #region 핵심책장 드랍 책 부분 UI 반영시키기
-            if (innerCriticalPageInfo.dropBooks.Count > 0)
-            {
-                string extraInfo = "";
-                innerCriticalPageInfo.dropBooks.ForEach((string dropBookInfo) =>
+                innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("Episode", (string innerText) =>
                 {
-                    extraInfo += $"{dropBookInfo}\n";
+                    string STAGE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"EPISODE");
+                    string STAGE_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(innerText);
+                    BtnEpisode.ToolTip = $"{STAGE_WORD} : {STAGE_DES}";
+
+                    LblEpisode.Content = $"{STAGE_WORD} : {STAGE_DES}";
+                    BtnEpisode.Content = "          ";
                 });
-                extraInfo = extraInfo.TrimEnd('\n');
+                innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("BookIcon", (string innerText) =>
+                {
+                    string ICON_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"ICON");
+                    BtnBookIcon.ToolTip = $"{ICON_WORD} : {innerText}";
 
-                BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-                BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            #endregion
-            #region 적 전용책장 입력 부분 UI 반영시키기
-            if (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel))
-            {
-                string extraInfo = "";
-                extraInfo += $"시작시 빛의 수 : {innerCriticalPageInfo.ENEMY_StartPlayPoint}\n";
-                extraInfo += $"최대 빛의 수 : {innerCriticalPageInfo.ENEMY_MaxPlayPoint}\n";
-                extraInfo += $"최대 감정 레벨 : {innerCriticalPageInfo.ENEMY_EmotionLevel}\n";
-                extraInfo += $"추가로 드로우하는 책장의 수: {innerCriticalPageInfo.ENEMY_AddedStartDraw}";
+                    LblBookIconViewLabel.Content = $"{ICON_WORD} : {innerText}";
+                    BtnBookIcon.Content = "          ";
+                });
 
-                BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
-                BtnEnemySetting.ToolTip = $"적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            #endregion
+                innerCriticalPageNode.ActionIfInnertTextIsNotNullOrEmpty("CharacterSkin", (string innerText) =>
+                {
+                    string SKIN_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"SKIN");
 
-            #region 핵심책장 원거리 속성 UI 반영시키기
-            if (criticalPageInfo.rangeType == "Range")
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
-            }
-            else if (criticalPageInfo.rangeType == "Hybrid")
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
-            }
-            else
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
-            }
-            #endregion
+                    BtnSkin.ToolTip = $"{SKIN_WORD} : {innerText}";
 
-            CriticalPageTypeUIUpdating();
+                    LblSkin.Content = $"{SKIN_WORD} : {innerText}";
+                    BtnSkin.Content = "          ";
+                });
+
+                Btn_SResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist"));
+                Btn_SResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SResist"));
+                Btn_PResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist"));
+                Btn_PResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PResist"));
+                Btn_HResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist"));
+                Btn_HResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HResist"));
+
+                Btn_SBResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist"));
+                Btn_SBResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/SBResist"));
+                Btn_PBResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist"));
+                Btn_PBResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/PBResist"));
+                Btn_HBResist.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist"));
+                Btn_HBResist.Tag = DM.LocalizedGameDescriptions.GetDescriptionForResist(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/HBResist"));
+
+                InitLbxPassives();
+                #endregion
+
+                #region 핵심책장 설명부분 UI 반영시키기
+                List<DM.XmlDataNode> foundXmlDataNodes = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+                if (foundXmlDataNodes.Count > 0)
+                {
+                    BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
+                    BtnCiricalBookInfo.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnCiricalBookInfo_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})";
+                }
+                #endregion
+                #region 유니크 전용 책장 설정 부분 UI 반영시키기
+                if (innerCriticalPageNode.GetXmlDataNodesByPath("EquipEffect/OnlyCard").Count > 0)
+                {
+                    string extraInfo = "";
+                    innerCriticalPageNode.ActionXmlDataNodesByPath("EquipEffect/OnlyCard", (DM.XmlDataNode xmlDataNode) =>
+                    {
+                        extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(xmlDataNode.GetInnerTextSafe())}\n";
+                    });
+                    extraInfo = extraInfo.TrimEnd('\n');
+
+                    BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
+                    BookUniqueCards.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BookUniqueCards_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{extraInfo}";
+                }
+                #endregion
+
+                #region 드랍 목록에 반영시키기
+                List<string> selectedDropBooks = new List<string>();
+                DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseID) =>
+                {
+                    if (bookUseID.CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
+                        selectedDropBooks.Add(bookUseID.attribute["ID"]);
+                });
+
+                if (selectedDropBooks.Count > 0)
+                {
+                    string extraInfo = "";
+                    selectedDropBooks.ForEach((string dropBookInfo) =>
+                    {
+                        extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(dropBookInfo)}\n";
+                    });
+                    extraInfo = extraInfo.TrimEnd('\n');
+
+                    BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+                    BtnDropBooks.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnDropBooks_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{extraInfo}";
+                }
+                else
+                {
+                    BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
+                    BtnDropBooks.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnDropBooks_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
+                } 
+                #endregion
+                #region 적 전용책장 입력 부분 UI 반영시키기
+                if (!string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint")) ||
+                    !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/MaxPlayPoint")) ||
+                    !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/EmotionLevel")) ||
+                    !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/AddedStartDraw")))
+                {
+                    string extraInfo = "";
+                    extraInfo += $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"StartPlayPoint")} : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint")}\n";
+                    extraInfo += $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"MaxPlayPoint")} : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/MaxPlayPoint")}\n";
+                    extraInfo += $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"EmotionLevel")} : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/EmotionLevel")}\n";
+                    extraInfo += $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"AddedStartDraw")} : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/AddedStartDraw")}";
+
+                    BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
+                    BtnEnemySetting.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnEnemySetting_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{extraInfo}";
+                }
+                #endregion
+
+                #region 핵심책장 원거리 속성 UI 반영시키기
+                BtnRangeType.Tag = innerCriticalPageNode.GetInnerTextByPath("RangeType");
+                if (innerCriticalPageNode.GetInnerTextByPath("RangeType") == "Range")
+                {
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
+                    BtnRangeType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"BtnRangeType_ToolTip")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"TypeRange")})";
+                }
+                else if (innerCriticalPageNode.GetInnerTextByPath("RangeType") == "Hybrid")
+                {
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
+                    BtnRangeType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"BtnRangeType_ToolTip")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"TypeHybrid")})";
+                }
+                else
+                {
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNear.png");
+                    BtnRangeType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"BtnRangeType_ToolTip")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"TypeNear")})";
+                }
+                #endregion
+                MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"EditCriticalPage_Error_1"));
+            }
         }
 
-        private void ChangeRarityUIInit(string rarity)
+        /// <summary>
+        /// Change rarity button events
+        /// </summary>
+        private void ChangeRarityButtonEvents(object sender, RoutedEventArgs e)
         {
-            BtnRarityCommon.Background = null;
-            BtnRarityUncommon.Background = null;
-            BtnRarityRare.Background = null;
-            BtnRarityUnique.Background = null;
+            Button rarityButton = sender as Button;
 
-            switch (rarity)
+            BtnRarity_Common.Background = null;
+            BtnRarity_Uncommon.Background = null;
+            BtnRarity_Rare.Background = null;
+            BtnRarity_Unique.Background = null;
+
+            rarityButton.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
+            WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr(rarityButton.Tag.ToString());
+            innerCriticalPageNode.SetXmlInfoByPath("Rarity", rarityButton.Name.Split('_').Last());
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+        }
+
+        /// <summary>
+        /// Initialize passive list
+        /// </summary>
+        private void InitLbxPassives()
+        {
+            LbxPassives.Items.Clear();
+            innerCriticalPageNode.ActionXmlDataNodesByPath("EquipEffect/Passive", (DM.XmlDataNode passiveNode) =>
             {
-                case "Common":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#5430BF4B");
-                    BtnRarityCommon.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageInfo.rarity = "Common";
+                LbxPassives.Items.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForPassive(passiveNode.innerText)}:{passiveNode.innerText}");
+            });
+        }
+        #endregion
+
+
+        #region Button events
+        /// <summary>
+        /// Button events that need search window
+        /// </summary>
+        private void SelectItemButtonEvents(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            switch (btn.Name)
+            {
+                case "BtnEpisode":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        innerCriticalPageNode.SetXmlInfoByPath("Episode", selectedItem);
+
+                        string STAGE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"EPISODE");
+                        string STAGE_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(selectedItem);
+                        BtnEpisode.ToolTip = $"{STAGE_WORD} : {STAGE_DES}";
+
+                        LblEpisode.Content = $"{STAGE_WORD} : {STAGE_DES}";
+                        BtnEpisode.Content = "          ";
+
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
-                case "Uncommon":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54306ABF");
-                    BtnRarityUncommon.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageInfo.rarity = "Uncommon";
+                case "BtnBookIcon":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        string ICON_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"ICON");
+
+                        innerCriticalPageNode.SetXmlInfoByPath("BookIcon", selectedItem);
+                        BtnBookIcon.ToolTip = $"{ICON_WORD} : {selectedItem}";
+
+                        LblBookIconViewLabel.Content = $"{ICON_WORD} : {selectedItem}";
+                        BtnBookIcon.Content = "          ";
+
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.BOOK_ICON).ShowDialog();
                     break;
-                case "Rare":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#548030BF");
-                    BtnRarityRare.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageInfo.rarity = "Rare";
+                case "BtnSkin":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        string SKIN_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"SKIN");
+
+                        innerCriticalPageNode.SetXmlInfoByPath("CharacterSkin", selectedItem);
+
+                        BtnSkin.ToolTip = $"{SKIN_WORD} : {selectedItem}";
+
+                        LblSkin.Content = $"{SKIN_WORD} : {selectedItem}";
+                        BtnSkin.Content = "          ";
+
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN).ShowDialog();
                     break;
-                case "Unique":
-                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54F3B530");
-                    BtnRarityUnique.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
-                    innerCriticalPageInfo.rarity = "Unique";
+
+                case "BtnAddPassive":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        innerCriticalPageNode.AddXmlInfoByPath("EquipEffect/Passive", selectedItem
+                            , new Dictionary<string, string>() { { "Level", "10" } });
+                        InitLbxPassives();
+
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.PASSIVE).ShowDialog();
+                    break;
+                case "BtnDeletePassive":
+                    if (LbxPassives.SelectedItem != null)
+                    {
+                        innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/Passive", LbxPassives.SelectedItem.ToString().Split(':').Last(), deleteOnce: true);
+                        InitLbxPassives();
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    }
                     break;
             }
         }
-        
-        private void InitResistFromButton(Button targetButton, bool isLeft)
+
+        /// <summary>
+        /// Button events that need to multiple items to be selected
+        /// </summary>
+        private void SelectItemListButtonEvents(object sender, RoutedEventArgs e)
         {
+            Button btn = sender as Button;
+            switch (btn.Name)
+            {
+                case "BtnDropBooks":
+                    List<string> selectedDropBooks = new List<string>();
+                    DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseID) =>
+                    {
+                        if (bookUseID.CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
+                            selectedDropBooks.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(bookUseID.attribute["ID"]));
+                    });
+
+                    new SubWindows.Global_AddItemToListWindow((string addedDropBookItemID) =>
+                    {
+                        if (DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.CheckIfGivenPathWithXmlInfoExists("BookUse",
+                            attributeToCheck: new Dictionary<string, string> { { "ID", addedDropBookItemID } }))
+                        {
+                            List<DM.XmlDataNode> foundDropBookNode = DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                                attributeToCheck: new Dictionary<string, string> { { "ID", addedDropBookItemID } });
+                            if(foundDropBookNode.Count > 0
+                                && !foundDropBookNode[0].CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
+                                foundDropBookNode[0].AddXmlInfoByPath("DropItem", innerCriticalPageNode.attribute["ID"],
+                                                            new Dictionary<string, string>() { { "Type", "Equip" } });
+                        }
+                        else
+                        {
+                            DM.XmlDataNode madeDropBookNode = DM.EditGameData_BookInfos.MakeNewStaticDropBookBase(addedDropBookItemID);
+                            if(!madeDropBookNode.CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
+                            {
+                                madeDropBookNode.AddXmlInfoByPath("DropItem", innerCriticalPageNode.attribute["ID"],
+                                    new Dictionary<string, string>() { { "Type", "Equip" } });
+                                DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.subNodes.Add(madeDropBookNode);
+                            }
+                        }
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    }, (string deletedDropBookItemID) => {
+                        if (DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.CheckIfGivenPathWithXmlInfoExists("BookUse",
+                            attributeToCheck: new Dictionary<string, string> { { "ID", deletedDropBookItemID } }))
+                        {
+                            List<DM.XmlDataNode> foundDropBookNode = DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                              attributeToCheck: new Dictionary<string, string> { { "ID", deletedDropBookItemID } });
+                            if (foundDropBookNode.Count > 0)
+                            {
+                                DM.XmlDataNode FOUND_DROP_BOOK_NODE = foundDropBookNode[0];
+
+                                List<DM.XmlDataNode> baseBookUseNode = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", deletedDropBookItemID } });
+                                if(baseBookUseNode.Count > 0)
+                                {
+                                    DM.XmlDataNode FOUND_DROP_BOOK_IN_GAME = baseBookUseNode[0];
+
+                                    List<string> foundDropBookInGameItems = new List<string>();
+                                    FOUND_DROP_BOOK_IN_GAME.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode DropItem) =>
+                                    {
+                                        foundDropBookInGameItems.Add(DropItem.innerText);
+                                    });
+
+                                    if (DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
+                                          attributeToCheck: new Dictionary<string, string>() { { "ID", innerCriticalPageNode.GetAttributesSafe("ID") } }).Count == 1
+                                          && !foundDropBookInGameItems.Contains(innerCriticalPageNode.GetAttributesSafe("ID")))
+                                    {
+                                        FOUND_DROP_BOOK_NODE.RemoveXmlInfosByPath("DropItem", innerCriticalPageNode.attribute["ID"], deleteOnce: true);
+                                    }
+
+                                    List<string> foundDropBookDropItems = new List<string>();
+                                    FOUND_DROP_BOOK_NODE.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode DropItem) =>
+                                    {
+                                        foundDropBookDropItems.Add(DropItem.innerText);
+                                    });
+
+                                    if (foundDropBookDropItems.Count == foundDropBookInGameItems.Count
+                                        && foundDropBookDropItems.Except(foundDropBookInGameItems).Count() == 0
+                                        && DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
+                                          attributeToCheck: new Dictionary<string, string>() { { "ID", innerCriticalPageNode.GetAttributesSafe("ID") } }).Count == 1)
+                                    {
+                                        DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.RemoveXmlInfosByPath("BookUse",
+                                            attributeToCheck: new Dictionary<string, string> { { "ID", deletedDropBookItemID } }, deleteOnce:true);
+                                    }
+                                }
+                            }
+                            MainWindow.mainWindow.UpdateDebugInfo();
+                        }
+                    }, selectedDropBooks, SubWindows.AddItemToListWindow_PRESET.DROP_BOOK).ShowDialog();
+
+                    #region Update dropbook Input
+                    List<string> selectedDropBooks_toUpdate = new List<string>();
+                    DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseID) =>
+                    {
+                        if (bookUseID.CheckIfGivenPathWithXmlInfoExists("DropItem", innerCriticalPageNode.attribute["ID"]))
+                            selectedDropBooks_toUpdate.Add(bookUseID.attribute["ID"]);
+                    });
+
+                    if (selectedDropBooks_toUpdate.Count > 0)
+                    {
+                        string extraInfo = "";
+                        selectedDropBooks_toUpdate.ForEach((string dropBookInfo) =>
+                        {
+                            extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(dropBookInfo)}\n";
+                        });
+                        extraInfo = extraInfo.TrimEnd('\n');
+
+                        BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
+                        BtnDropBooks.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnDropBooks_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{extraInfo}";
+                    }
+                    else
+                    {
+                        BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
+                        BtnDropBooks.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnDropBooks_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
+                    }
+                    #endregion
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DROP_BOOK);
+                    break;
+                case "BookUniqueCards":
+                    List<string> selectedUniqCards = new List<string>();
+                    innerCriticalPageNode.GetXmlDataNodesByPath("EquipEffect/OnlyCard").ForEachSafe((DM.XmlDataNode onlyCardNode) =>
+                    {
+                        selectedUniqCards.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(onlyCardNode.GetInnerTextSafe()));
+                    });
+
+                    new SubWindows.Global_AddItemToListWindow((string addedItem) =>
+                    {
+                        innerCriticalPageNode.AddXmlInfoByPath("EquipEffect/OnlyCard", addedItem);
+                    }, (string deletedItem) => {
+
+                        innerCriticalPageNode.RemoveXmlInfosByPath("EquipEffect/OnlyCard", deletedItem, deleteOnce:true);
+                    }, selectedUniqCards, SubWindows.AddItemToListWindow_PRESET.ONLY_CARD).ShowDialog();
+
+
+                    if (innerCriticalPageNode.GetXmlDataNodesByPath("EquipEffect/OnlyCard").Count > 0)
+                    {
+                        string extraInfo = "";
+                        innerCriticalPageNode.ActionXmlDataNodesByPath("EquipEffect/OnlyCard", (DM.XmlDataNode xmlDataNode) =>
+                        {
+                            extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(xmlDataNode.GetInnerTextSafe())}\n";
+                        });
+                        extraInfo = extraInfo.TrimEnd('\n');
+
+                        BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
+                        BookUniqueCards.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BookUniqueCards_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{extraInfo}";
+                    }
+                    else
+                    {
+                        BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoUniqueCard.png");
+                        BookUniqueCards.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BookUniqueCards_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Right menu button events
+        /// </summary>
+        private void RightMenuButtonEvents(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            switch (btn.Name)
+            {
+                case "BtnCiricalBookInfo":
+                    string prevStory = "";
+                    List<DM.XmlDataNode> foundXmlDataNodesToPrevInput = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+                    if(foundXmlDataNodesToPrevInput.Count > 0)
+                    {
+                        List<string> descInnerTexts = new List<string>();
+                        foundXmlDataNodesToPrevInput[0].GetXmlDataNodesByPath("TextList/Desc").ForEachSafe((DM.XmlDataNode descNode) =>
+                        {
+                            if (!string.IsNullOrEmpty(descNode.innerText))
+                                descInnerTexts.Add(descNode.innerText);
+                        });
+                        prevStory = String.Join("\r\n\r\n", descInnerTexts).Replace(".", ".\r\n");
+                    }
+
+                    new SubWindows.Global_InputOneColumnData((string description) =>
+                    {
+                        DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.RemoveXmlInfosByPath("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+
+                        if (!string.IsNullOrEmpty(description))
+                        {
+                            List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPath("bookDescList");
+
+                            if(foundXmlDataNode.Count > 0)
+                            {
+                                foundXmlDataNode[0].subNodes.Add(DM.EditGameData_BookInfos.MakeNewLocalizeBooksBase(
+                                    innerCriticalPageNode.GetAttributesSafe("ID"),
+                                    innerCriticalPageNode.GetInnerTextByPath("Name"),
+                                    description));
+                            }
+                            else
+                            {
+                                DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("bookDescList")
+                                    .subNodes.Add(DM.EditGameData_BookInfos.MakeNewLocalizeBooksBase(
+                                    innerCriticalPageNode.GetAttributesSafe("ID"),
+                                    innerCriticalPageNode.GetInnerTextByPath("Name"),
+                                    description));
+                            }
+
+                            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_BOOKS);
+                            MainWindow.mainWindow.UpdateDebugInfo();
+                        }
+                    }, prevStory,
+                    windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"KEY_PAGE_STORY_TITLE"),
+                    tbxToolTip: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"%TbxData_ToolTip%")).ShowDialog();
+
+                    List<DM.XmlDataNode> foundXmlDataNodes = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+                    if (foundXmlDataNodes.Count > 0)
+                    {
+                        BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
+                        BtnCiricalBookInfo.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnCiricalBookInfo_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})";
+                    }
+                    else
+                    {
+                        BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNobookInfo.png");
+                        BtnCiricalBookInfo.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnCiricalBookInfo_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
+                    }
+                    break;
+                case "BtnEnemySetting":
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    new SubWindows.Global_MultipleValueInputed(new Dictionary<string, string>() {
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"StartPlayPoint"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"StartPlayPoint_ToolTip")},
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"MaxPlayPoint"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"MaxPlayPoint_ToolTip") },
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"EmotionLevel"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"EmotionLevel_ToolTip") },
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"AddedStartDraw"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"AddedStartDraw_ToolTip")}
+                    }, new List<string>()
+                    {
+                        innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint"),
+                        innerCriticalPageNode.GetInnerTextByPath("EquipEffect/MaxPlayPoint"),
+                        innerCriticalPageNode.GetInnerTextByPath("EquipEffect/EmotionLevel"),
+                        innerCriticalPageNode.GetInnerTextByPath("EquipEffect/AddedStartDraw")
+                    }, new List<Action<string>>()
+                    {
+                        (string inputedVar) => {
+                            innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("EquipEffect/StartPlayPoint", inputedVar);},
+                        (string inputedVar) => {
+                            innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("EquipEffect/MaxPlayPoint", inputedVar);},
+                        (string inputedVar) => {
+                            innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("EquipEffect/EmotionLevel", inputedVar);},
+                        (string inputedVar) => {
+                            innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("EquipEffect/AddedStartDraw", inputedVar);}
+                    }).ShowDialog();
+
+                    if (!string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint")) ||
+                        !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/MaxPlayPoint")) ||
+                        !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/EmotionLevel")) ||
+                        !string.IsNullOrEmpty(innerCriticalPageNode.GetInnerTextByPath("EquipEffect/AddedStartDraw")))
+                    {
+                        string extraInfo = "";
+                        extraInfo += $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"StartPlayPoint")} : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/StartPlayPoint")}\n";
+                        extraInfo += $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"MaxPlayPoint")} : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/MaxPlayPoint")}\n";
+                        extraInfo += $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"EmotionLevel")} : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/EmotionLevel")}\n";
+                        extraInfo += $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"AddedStartDraw")} : {innerCriticalPageNode.GetInnerTextByPath("EquipEffect/AddedStartDraw")}";
+
+                        BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
+                        BtnEnemySetting.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnEnemySetting_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{extraInfo}";
+                    }
+                    else
+                    {
+                        BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
+                        BtnEnemySetting.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"%BtnEnemySetting_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"NotInputted")})";
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    break;
+                case "BtnCopyPage":
+                    DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(innerCriticalPageNode.Copy());
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    break;
+                case "BtnDelete":
+                    if( DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.CheckIfGivenPathWithXmlInfoExists("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } }))
+                    {
+                        if(DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book/TextId", 
+                            innerCriticalPageNode.GetInnerTextByPath("TextId")).Count == 1)
+                            DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.RemoveXmlInfosByPath("bookDescList/BookDesc",
+                                attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+                    }
+
+                    DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseNode) =>
+                    {
+                        List<DM.XmlDataNode> baseBookUseNode = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", bookUseNode.attribute["ID"] } });
+                        if (baseBookUseNode.Count > 0)
+                        {
+                            DM.XmlDataNode FOUND_DROP_BOOK_IN_GAME = baseBookUseNode[0];
+
+                            List<string> foundDropBookInGameItems = new List<string>();
+                            FOUND_DROP_BOOK_IN_GAME.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode DropItem) =>
+                            {
+                                foundDropBookInGameItems.Add(DropItem.innerText);
+                            });
+
+                            if (DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
+                                attributeToCheck: new Dictionary<string, string>() { { "ID", innerCriticalPageNode.GetAttributesSafe("ID") } }).Count == 1
+                                && !foundDropBookInGameItems.Contains(innerCriticalPageNode.GetAttributesSafe("ID")))
+                            {
+                                bookUseNode.RemoveXmlInfosByPath("DropItem", innerCriticalPageNode.attribute["ID"], deleteOnce: true);
+                            }
+
+                            List<string> foundDropBookDropItems = new List<string>();
+                            bookUseNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode DropItem) =>
+                            {
+                                foundDropBookDropItems.Add(DropItem.innerText);
+                            });
+
+                            if (foundDropBookDropItems.Count == foundDropBookInGameItems.Count
+                                && foundDropBookDropItems.Except(foundDropBookInGameItems).Count() == 0
+                                && DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
+                                attributeToCheck: new Dictionary<string, string>() { { "ID", innerCriticalPageNode.GetAttributesSafe("ID") } }).Count == 1)
+                            {
+                                DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.RemoveXmlInfosByPath("BookUse",
+                                    attributeToCheck: new Dictionary<string, string> { { "ID", bookUseNode.attribute["ID"] } }, deleteOnce: true);
+                            }
+                        }});
+
+                    DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Remove(innerCriticalPageNode);
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    break;
+            }
+        }
+        #endregion
+
+        #region Type change button events
+        /// <summary>
+        /// Resist info code
+        /// </summary>
+        private List<string> RESIST_LOOP_LIST = new List<string>() { "Vulnerable", "Weak", "Normal", "Endure", "Resist", "Immune" };
+        /// <summary>
+        /// Resist info code
+        /// </summary>
+        private List<string> RANGE_LOOP_LIST = new List<string>() { "", "Range", "Hybrid" };
+
+        /// <summary>
+        /// Type loop button events
+        /// </summary>
+        private void TypeLoopButtonEvents(object sender, MouseButtonEventArgs e)
+        {
+            Button loopButton = sender as Button;
+
+            List<string> LOOP_LIST = null;
+            if (loopButton.Name.Contains("Resist"))
+                LOOP_LIST = RESIST_LOOP_LIST;
+            else if (loopButton.Name == "BtnRangeType")
+                LOOP_LIST = RANGE_LOOP_LIST;
+            if (LOOP_LIST == null)
+                return;
+
+            if (loopButton.Tag == null || LOOP_LIST.IndexOf(loopButton.Tag.ToString()) < 0)
+                loopButton.Tag = LOOP_LIST[0];
             // Down index
-            if(isLeft)
+            else if (e.LeftButton == MouseButtonState.Pressed)
             {
-                int RESISTS_INDEX = DS.GameInfo.resistInfo_Doc.IndexOf(targetButton.Content.ToString()) - 1;
-                if (RESISTS_INDEX < 0) RESISTS_INDEX = DS.GameInfo.resistInfo_Doc.Count - 1;
-                targetButton.Content = DS.GameInfo.resistInfo_Doc[RESISTS_INDEX];
+                int LEFT_INDEX = LOOP_LIST.IndexOf(loopButton.Tag.ToString()) - 1;
+                if (LEFT_INDEX < 0) LEFT_INDEX = LOOP_LIST.Count - 1;
+                if (loopButton.Name.Contains("Resist"))
+                    loopButton.Content = LOOP_LIST[LEFT_INDEX];
+                loopButton.Tag = LOOP_LIST[LEFT_INDEX];
             }
             // Up index
             else
             {
-                int RESISTS_INDEX = DS.GameInfo.resistInfo_Doc.IndexOf(targetButton.Content.ToString()) + 1;
-                if (RESISTS_INDEX >= DS.GameInfo.resistInfo_Doc.Count) RESISTS_INDEX = 0;
-                targetButton.Content = DS.GameInfo.resistInfo_Doc[RESISTS_INDEX];
+                int RIGHT_INDEX = LOOP_LIST.IndexOf(loopButton.Tag.ToString()) + 1;
+                if (RIGHT_INDEX >= LOOP_LIST.Count) RIGHT_INDEX = 0;
+                if (loopButton.Name.Contains("Resist"))
+                    loopButton.Content = LOOP_LIST[RIGHT_INDEX];
+                loopButton.Tag = LOOP_LIST[RIGHT_INDEX];
             }
 
-            switch (targetButton.Name)
+            if (loopButton.Name.Contains("Resist"))
             {
-                case "BtnSResist":
-                    innerCriticalPageInfo.SResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
-                    break;
-                case "BtnPResist":
-                    innerCriticalPageInfo.PResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
-                    break;
-                case "BtnHResist":
-                    innerCriticalPageInfo.HResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
-                    break;
-
-                case "BtnBSResist":
-                    innerCriticalPageInfo.BSResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
-                    break;
-                case "BtnBPResist":
-                    innerCriticalPageInfo.BPResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
-                    break;
-                case "BtnBHResist":
-                    innerCriticalPageInfo.BHResist = DS.GameInfo.resistInfo_Dic_Rev[targetButton.Content.ToString()];
-                    break;
+                innerCriticalPageNode.SetXmlInfoByPath($"EquipEffect/{loopButton.Name.Split('_').Last()}", loopButton.Tag.ToString());
+                loopButton.Content = DM.LocalizedGameDescriptions.GetDescriptionForResist(loopButton.Tag.ToString());
+                loopButton.ToolTip = DM.LocalizedGameDescriptions.GetDescriptionForResist(loopButton.Tag.ToString());
+                MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
             }
-        }
-        #endregion
-        #region Button events
-        #region Rarity buttons
-        private void BtnRarityCommon_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Common");
-        }
-
-        private void BtnRarityUncommon_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Uncommon");
-        }
-
-        private void BtnRarityRare_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Rare");
-        }
-
-        private void BtnRarityUnique_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeRarityUIInit("Unique");
-        }
-        #endregion
-
-        private void BtnEpisode_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputEpisodeWindow((string chapter, string episodeID, string episodeDoc) =>
+            else if (loopButton.Name == "BtnRangeType")
             {
-                string CONTENT_TO_SHOW = $"{DS.GameInfo.chapter_Dic[chapter]} / {episodeDoc}:{episodeID}";
-                BtnEpisode.Content = CONTENT_TO_SHOW;
-                BtnEpisode.ToolTip = CONTENT_TO_SHOW;
+                string RANGE_NAME = (string.IsNullOrEmpty(loopButton.Tag.ToString()) ? "Near" : loopButton.Tag.ToString());
+                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{RANGE_NAME}.png");
+                innerCriticalPageNode.SetXmlInfoByPathAndEmptyWillRemove("RangeType", loopButton.Tag.ToString());
 
-                innerCriticalPageInfo.chapter = chapter;
-                innerCriticalPageInfo.episode = episodeID;
-                innerCriticalPageInfo.episodeDes = CONTENT_TO_SHOW;
-            }).ShowDialog();
-        }
-        private void BtnBookIcon_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputBookIconWindow((string chpater, string bookIconName, string bookIconDesc) =>
-            {
-                string ICON_DESC = $"{bookIconDesc}:{bookIconName}";
-                BtnBookIcon.Content = ICON_DESC;
-                BtnBookIcon.ToolTip = ICON_DESC;
-
-                innerCriticalPageInfo.iconName = bookIconName;
-                innerCriticalPageInfo.iconDes = ICON_DESC;
-            }).ShowDialog();
-        }
-        private void BtnSkin_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputBookSkinWindow((string chpater, string bookSkinName, string bookSkinDesc) =>
-            {
-                string SKIN_DESC = $"{bookSkinDesc}:{bookSkinName}";
-                BtnSkin.Content = SKIN_DESC;
-                BtnSkin.ToolTip = SKIN_DESC;
-
-                innerCriticalPageInfo.skinName = bookSkinName;
-                innerCriticalPageInfo.skinDes = SKIN_DESC;
-            }).ShowDialog();
-        }
-
-        #region HP resist buttons
-        private void BtnSResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnSResist, true);
-        }
-
-        private void BtnSResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnSResist, false);
-        }
-
-        private void BtnPResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnPResist, true);
-        }
-
-        private void BtnPResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnPResist, false);
-        }
-
-        private void BtnHResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnHResist, true);
-        }
-
-        private void BtnHResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnHResist, false);
-        }
-        #endregion
-        #region Break resist buttons
-        private void BtnBSResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBSResist, true);
-        }
-
-        private void BtnBSResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBSResist, false);
-        }
-
-
-        private void BtnBPResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBPResist, true);
-        }
-
-        private void BtnBPResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBPResist, false);
-        }
-
-        private void BtnBHResist_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBHResist, true);
-        }
-
-        private void BtnBHResist_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            InitResistFromButton(BtnBHResist, false);
-        }
-        #endregion
-
-        #endregion
-
-        #region Passive events
-        private void InitLbxPassives()
-        {
-            LbxPassives.Items.Clear();
-            innerCriticalPageInfo.passiveIDs.ForEach((string passiveName) =>
-            {
-                LbxPassives.Items.Add(passiveName);
-            });
-        }
-
-        private void BtnAddPassive_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputBookPassiveWindow((string passiveDec) =>
-            {
-                innerCriticalPageInfo.passiveIDs.Add(passiveDec);
-                InitLbxPassives();
-            }).ShowDialog();
-        }
-
-        private void BtnDeletePassive_Click(object sender, RoutedEventArgs e)
-        {
-            if(LbxPassives.SelectedItem != null)
-            {
-                int passiveIndexToDelete = innerCriticalPageInfo.passiveIDs.FindIndex((string passiveName) => {
-                    return passiveName == LbxPassives.SelectedItem.ToString();
-                });
-                if(passiveIndexToDelete != -1)
+                if (innerCriticalPageNode.GetInnerTextByPath("RangeType") == "Range")
                 {
-                    innerCriticalPageInfo.passiveIDs.RemoveAt(passiveIndexToDelete);
-                    InitLbxPassives();
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
+                    BtnRangeType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"BtnRangeType_ToolTip")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"TypeRange")})";
                 }
-            }
-        }
-        #endregion
-        #region Text change events
-        private void TbxPageName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageInfo.name = TbxPageName.Text;
-        }
-
-        private void TbxPageUniqueID_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageInfo.bookID = TbxPageUniqueID.Text;
-            CriticalPageTypeUIUpdating();
-        }
-
-        private void TbxHP_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageInfo.HP = TbxHP.Text;
-        }
-
-        private void TbxBR_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageInfo.breakNum = TbxBR.Text;
-        }
-
-        private void TbxSpeedDiceMin_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageInfo.minSpeedCount = TbxSpeedDiceMin.Text;
-        }
-
-        private void TbxSpeedDiceMax_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            innerCriticalPageInfo.maxSpeedCount = TbxSpeedDiceMax.Text;
-        }
-        #endregion
-
-        private void BtnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.criticalPageInfos.Remove(innerCriticalPageInfo);
-            initStack();
-        }
-
-        #region Right button events (Upside)
-        private void BtnCiricalBookInfo_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputCriticalBookDescription((string inputedDes) =>
-            {
-                innerCriticalPageInfo.description = inputedDes;
-                BtnCiricalBookInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesbookInfo.png");
-                BtnCiricalBookInfo.ToolTip = "핵심 책장에 대한 설명을 입력합니다 (입력됨)";
-            }, innerCriticalPageInfo.description).ShowDialog();
-        }
-
-        private void BtnDropBooks_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputDropBookInfosWindow(innerCriticalPageInfo.dropBooks).ShowDialog();
-
-            if(innerCriticalPageInfo.dropBooks.Count > 0)
-            {
-                string extraInfo = "";
-                innerCriticalPageInfo.dropBooks.ForEach((string dropBookInfo) =>
+                else if (innerCriticalPageNode.GetInnerTextByPath("RangeType") == "Hybrid")
                 {
-                    extraInfo += $"{dropBookInfo}\n";
-                });
-                extraInfo = extraInfo.TrimEnd('\n');
-
-                BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconYesDropBook.png");
-                BtnDropBooks.ToolTip = $"이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            else
-            {
-                BtnDropBooks.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconNoDropBook.png");
-                BtnDropBooks.ToolTip = "이 핵심책장이 어느 책에서 드랍되는지 입력합니다 (미입력)";
-            }
-        }
-
-        private void BtnEnemySetting_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputEnemyInfoWindow(innerCriticalPageInfo).ShowDialog();
-
-            string extraInfo = "";
-            extraInfo += $"시작시 빛의 수 : {innerCriticalPageInfo.ENEMY_StartPlayPoint}\n";
-            extraInfo += $"최대 빛의 수 : {innerCriticalPageInfo.ENEMY_MaxPlayPoint}\n";
-            extraInfo += $"최대 감정 레벨 : {innerCriticalPageInfo.ENEMY_EmotionLevel}\n";
-            extraInfo += $"추가로 드로우하는 책장의 수: {innerCriticalPageInfo.ENEMY_AddedStartDraw}";
-
-            if (!string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_StartPlayPoint) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_MaxPlayPoint) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_AddedStartDraw) ||
-                !string.IsNullOrEmpty(innerCriticalPageInfo.ENEMY_EmotionLevel))
-            {
-                BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesEnemy.png");
-                BtnEnemySetting.ToolTip = $"적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            else
-            {
-                BtnEnemySetting.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoEnemy.png");
-                BtnEnemySetting.ToolTip = "적 전용 책장에서 추가로 입력할 수 있는 값을 입력합니다 (미입력))";
-            }
-            CriticalPageTypeUIUpdating();
-        }
-
-        private void BookUniqueCards_Click(object sender, RoutedEventArgs e)
-        {
-            new SubWindows.InputUniqueCardsWindow(innerCriticalPageInfo.onlyCards).ShowDialog();
-
-            if (innerCriticalPageInfo.onlyCards.Count > 0)
-            {
-                string extraInfo = "";
-                innerCriticalPageInfo.onlyCards.ForEach((string onlyCardInfo) =>
-                {
-                    extraInfo += $"{onlyCardInfo}\n";
-                });
-                extraInfo = extraInfo.TrimEnd('\n');
-
-                BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesUniqueCard.png");
-                BookUniqueCards.ToolTip = $"이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (입력됨)\n{extraInfo}";
-            }
-            else
-            {
-                BookUniqueCards.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoUniqueCard.png");
-                BookUniqueCards.ToolTip = "이 핵심책장이 사용할 수 있는 고유 책장을 입력합니다 (미입력)";
-            }
-        }
-        #endregion
-
-        private void BtnRangeType_Click(object sender, RoutedEventArgs e)
-        {
-            switch(innerCriticalPageInfo.rangeType)
-            {
-                case "Range":
-                    innerCriticalPageInfo.rangeType = "Hybrid";
-                    break;
-                case "Hybrid":
-                    innerCriticalPageInfo.rangeType = "Nomal";
-                    break;
-                default:
-                    innerCriticalPageInfo.rangeType = "Range";
-                    break;
-            }
-
-            #region 핵심책장 원거리 속성 UI 반영시키기
-            if (innerCriticalPageInfo.rangeType == "Range")
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeRange.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 원거리 전용 책장)";
-            }
-            else if (innerCriticalPageInfo.rangeType == "Hybrid")
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 하이브리드 책장)";
-            }
-            else
-            {
-                BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNomal.png");
-                BtnRangeType.ToolTip = "클릭시 원거리 속성을 변경합니다. (현재 : 일반 책장)";
-            }
-            #endregion
-        }
-    
-        private void CriticalPageTypeUIUpdating()
-        {
-            try
-            {
-                bool BOOK_ID_CHECK = false;
-                if(!string.IsNullOrEmpty(innerCriticalPageInfo.bookID))
-                {
-                    int BOOK_ID = Convert.ToInt32(innerCriticalPageInfo.bookID);
-                    BOOK_ID_CHECK = (BOOK_ID < DS.FilterDatas.CRITICAL_PAGE_DIV_ENEMY) || (BOOK_ID > DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM && BOOK_ID < (DS.FilterDatas.CRITICAL_PAGE_DIV_CUSTOM + 1000000));
-                }
-
-                bool FORCE_ENEMY = innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE;
-                bool FORCE_USER = innerCriticalPageInfo.USER_TYPE_CH_FORCE;
-                bool FORECLY_INPUTED = FORCE_ENEMY || FORCE_USER;
-
-                if ((BOOK_ID_CHECK || FORCE_ENEMY) && !FORCE_USER)
-                {
-                    innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = true;
-                    BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeEnemy.png");
-                    BtnCriticalPageType.ToolTip = $"클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 적 전용 책장[{(FORECLY_INPUTED ? "수동" : "자동")}]) {DS.LongDescription.EditCriticalPage_TypeChange}";
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeHybrid.png");
+                    BtnRangeType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"BtnRangeType_ToolTip")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"TypeHybrid")})";
                 }
                 else
                 {
-                    innerCriticalPageInfo.ENEMY_IS_ENEMY_TYPE = false;
-                    BtnCriticalPageType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeUser.png");
-                    BtnCriticalPageType.ToolTip = $"클릭시 책장을 속성을 수동으로 수정합니다. (현재 : 유저 전용 책장[{(FORECLY_INPUTED ? "수동" : "자동")}]) {DS.LongDescription.EditCriticalPage_TypeChange}";
+                    BtnRangeType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/TypeNear.png");
+                    BtnRangeType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"BtnRangeType_ToolTip")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"TypeNear")})";
                 }
-            }
-            catch
-            {
-
+                MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
             }
         }
+        #endregion
 
-        private void BtnCriticalPageType_Click(object sender, RoutedEventArgs e)
+
+        /// <summary>
+        /// Reflect text chagnes in TextBox
+        /// </summary>
+        private void ReflectTextChangeInTextBox(object sender, TextChangedEventArgs e)
         {
-            if(!innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE && !innerCriticalPageInfo.USER_TYPE_CH_FORCE)
-            {
-                innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = true;
-                innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
-            }
-            else if(innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE)
-            {
-                innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
-                innerCriticalPageInfo.USER_TYPE_CH_FORCE = true;
-            }
-            else if (innerCriticalPageInfo.USER_TYPE_CH_FORCE)
-            {
-                innerCriticalPageInfo.ENEMY_TYPE_CH_FORCE = false;
-                innerCriticalPageInfo.USER_TYPE_CH_FORCE = false;
-            }
+            if (innerCriticalPageNode == null)
+                return;
 
-            CriticalPageTypeUIUpdating();
-        }
+            TextBox tbx = sender as TextBox;
+            switch (tbx.Name)
+            {
+                case "TbxPageUniqueID":
+                    string PREV_PAGE_ID = innerCriticalPageNode.attribute["ID"];
+                    #region Books info localizing ID refrect
+                    if (DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.CheckIfGivenPathWithXmlInfoExists("bookDescList/BookDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "BookID", PREV_PAGE_ID } }))
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", PREV_PAGE_ID } });
 
-        private void BtnCopyPage_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.criticalPageInfos.Add(Tools.DeepCopy.DeepClone(innerCriticalPageInfo));
-            initStack();
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].attribute["BookID"] = tbx.Text;
+                        }
+                    }
+                    #endregion
+                    #region Drop table info ID refrect
+                    DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPath("BookUse").ForEachSafe((DM.XmlDataNode bookUseNode) =>
+                    {
+                        bookUseNode.GetXmlDataNodesByPathWithXmlInfo("DropItem").ForEachSafe((DM.XmlDataNode dropBookNode) =>
+                        {
+                            if (dropBookNode.innerText == PREV_PAGE_ID)
+                                dropBookNode.innerText = tbx.Text;
+                        });
+                    });
+                    #endregion
+                    innerCriticalPageNode.attribute["ID"] = tbx.Text;
+                    innerCriticalPageNode.SetXmlInfoByPath("TextId", tbx.Text);
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    break;
+                case "TbxPageName_Name":
+                    innerCriticalPageNode.SetXmlInfoByPath("Name", tbx.Text);
+                    if (DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.CheckIfGivenPathWithXmlInfoExists("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } }))
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "BookID", innerCriticalPageNode.GetAttributesSafe("ID") } });
+
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].SetXmlInfoByPath("BookName", tbx.Text);
+                        }
+                    }
+                    else
+                    {
+                        List<DM.XmlDataNode> foundXmlDataNode = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPath("bookDescList");
+
+                        if (foundXmlDataNode.Count > 0)
+                        {
+                            foundXmlDataNode[0].subNodes.Add(DM.EditGameData_BookInfos.MakeNewLocalizeBooksBase(
+                                innerCriticalPageNode.GetAttributesSafe("ID"),
+                                innerCriticalPageNode.GetInnerTextByPath("Name"),
+                                ""));
+                        }
+                        else
+                        {
+                            DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("bookDescList")
+                                .subNodes.Add(DM.EditGameData_BookInfos.MakeNewLocalizeBooksBase(
+                                innerCriticalPageNode.GetAttributesSafe("ID"),
+                                innerCriticalPageNode.GetInnerTextByPath("Name"),
+                                ""));
+                        }
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_BOOKS);
+                    break;
+                default:
+                    List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
+                    if (SPLIT_NAME.Count == 2)
+                        innerCriticalPageNode.SetXmlInfoByPath(SPLIT_NAME.Last(), tbx.Text);
+                    else if (SPLIT_NAME.Count > 2)
+                        innerCriticalPageNode.SetXmlInfoByPath(String.Join("/", SPLIT_NAME.Skip(1)), tbx.Text);
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
+                    break;
+            }
         }
     }
 }

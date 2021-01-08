@@ -20,32 +20,36 @@ namespace LORModingBase.UC
     /// </summary>
     public partial class EditDice : UserControl
     {
-        List<DS.Dice> diceListToUse = null;
-        DS.Dice innerDice = null;
+        DM.XmlDataNode innerCardCardNode = null;
+        DM.XmlDataNode innerBehaviourNode = null;
         Action stackInitFunc = null;
 
-        public EditDice(List<DS.Dice> diceListToUse, DS.Dice innerDice, Action stackInitFunc)
+        public EditDice(DM.XmlDataNode innerCardCardNode, DM.XmlDataNode innerBehaviourNode, Action stackInitFunc)
         {
-            this.diceListToUse = diceListToUse;
+            this.innerCardCardNode = innerCardCardNode;
+            this.innerBehaviourNode = innerBehaviourNode;
             this.stackInitFunc = stackInitFunc;
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.CARD_INFO);
 
-            this.innerDice = innerDice;
-            TbxMinDice.Text = innerDice.min;
-            TbxMaxDice.Text = innerDice.max;
-
+            TbxMinDice_Min.Text = innerBehaviourNode.GetAttributesSafe("Min");
+            TbxMaxDice_Dice.Text = innerBehaviourNode.GetAttributesSafe("Dice");
+            BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/icon_{innerBehaviourNode.attribute["Type"] }_{innerBehaviourNode.attribute["Detail"]}.png");
             UpdateEffectGrid();
-            UpdateDiceTypeUI();
+
+            GldInfo.Visibility = Visibility.Visible;
+            GldChangeAttackType.Visibility = Visibility.Collapsed;
         }
 
         private void UpdateEffectGrid()
         {
-            LblEffect.Content = innerDice.script;
-            LblEffect.ToolTip = innerDice.script.Replace(".", "\n.");
+            string DICE_SCRIPT = $"{DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(innerBehaviourNode.attribute["Script"])}:{innerBehaviourNode.attribute["Script"]}";
+            LblEffect.Content = DICE_SCRIPT;
+            LblEffect.ToolTip = DICE_SCRIPT;
             RectAllInfo.Visibility = Visibility.Collapsed;
             RectDiceOnly.Visibility = Visibility.Collapsed;
 
-            if (string.IsNullOrEmpty(innerDice.script))
+            if (string.IsNullOrEmpty(DICE_SCRIPT))
             {
                 RectDiceOnly.Visibility = Visibility.Visible;
                 GldEffect.Visibility = Visibility.Collapsed;
@@ -55,167 +59,76 @@ namespace LORModingBase.UC
                 RectAllInfo.Visibility = Visibility.Visible;
                 GldEffect.Visibility = Visibility.Visible;
             }
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
         }
 
-        #region Button events
-        private void BtnEffect_Click(object sender, RoutedEventArgs e)
+        private void NomalButtonClickEvents(object sender, RoutedEventArgs e)
         {
-            new SubWindows.InputEffectWindow((string effectDes) =>
+            Button btn = sender as Button;
+            switch(btn.Name)
             {
-                innerDice.script = effectDes;
-                UpdateEffectGrid();
-            }, isCardEffect: false).ShowDialog();
-        }
-
-        private void BtnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            diceListToUse.Remove(innerDice);
-            stackInitFunc();
-        }
-        #endregion
-        #region Dice type buttons
-        private void BtnDiceType_Click(object sender, RoutedEventArgs e)
-        {
-            GldInfo.Visibility = Visibility.Collapsed;
-            GldChangeAttackType.Visibility = Visibility.Visible;
-        }
-
-        private void UpdateDiceTypeUI()
-        {
-            GldInfo.Visibility = Visibility.Visible;
-            GldChangeAttackType.Visibility = Visibility.Collapsed;
-
-            switch ($"{innerDice.type}_{innerDice.detail}")
-            {
-                case "Atk_Slash":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconSlash.png");
-                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 참격 주사위)";
+                case "BtnDiceType":
+                    GldInfo.Visibility = Visibility.Collapsed;
+                    GldChangeAttackType.Visibility = Visibility.Visible;
                     break;
-                case "Atk_Penetrate":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconPenetrate.png");
-                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 관통 주사위)";
+                case "BtnEffect":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        innerBehaviourNode.attribute["Script"] = selectedItem;
+                        UpdateEffectGrid();
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.DICE_ABILITES).ShowDialog();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
-                case "Atk_Hit":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconHit.png");
-                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 타격 주사위)";
-                    break;
-
-                case "Def_Guard":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconGuard.png");
-                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 방어 주사위)";
-                    break;
-                case "Def_Evasion":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconEvasion.png");
-                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 회피 주사위)";
-                    break;
-
-                case "Stadby_Slash":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconStadbySlash.png");
-                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 반격 참격 주사위)";
-                    break;
-                case "Stadby_Penetrate":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconStadbyPenetrate.png");
-                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 반격 관통 주사위)";
-                    break;
-                case "Stadby_Hit":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconStadbyHit.png");
-                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 반격 타격 주사위)";
-                    break;
-                case "Stadby_Guard":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconStadbyGuard.png");
-                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 반격 방어 주사위)";
-                    break;
-                case "Stadby_Evasion":
-                    BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/iconStadbyEvasion.png");
-                    BtnDiceType.ToolTip = $"클릭시 주사위의 속성을 변경합니다. (현재 : 반격 회피 주사위)";
+                case "BtnDeleteDice":
+                    innerCardCardNode.ActionXmlDataNodesByPath("BehaviourList", (DM.XmlDataNode behaviourListNode) =>
+                    {
+                        behaviourListNode.subNodes.Remove(innerBehaviourNode);
+                        MainWindow.mainWindow.UpdateDebugInfo();
+                        stackInitFunc();
+                    });
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
             }
         }
 
-
-        private void BtnDiceType_Atk_Slash_Click(object sender, RoutedEventArgs e)
+        private void DiceTypeButtonClickEvents(object sender, RoutedEventArgs e)
         {
-            innerDice.type = "Atk";
-            innerDice.detail = "Slash";
-            UpdateDiceTypeUI();
+            Button btn = sender as Button;
+            List<string> SPLIT_NAME = btn.Name.Split('_').ToList();
+            if (SPLIT_NAME.Count >= 3)
+            {
+                innerBehaviourNode.attribute["Type"] = SPLIT_NAME[1];
+                innerBehaviourNode.attribute["Detail"] = SPLIT_NAME[2];
+
+                BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/icon_{innerBehaviourNode.attribute["Type"] }_{innerBehaviourNode.attribute["Detail"]}.png");
+            }
+
+            GldInfo.Visibility = Visibility.Visible;
+            GldChangeAttackType.Visibility = Visibility.Collapsed;
+            MainWindow.mainWindow.UpdateDebugInfo();
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
         }
 
-        private void BtnDiceType_Atk_Penetrate_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Reflect text chagnes in TextBox
+        /// </summary>
+        private void ReflectTextChangeInTextBox(object sender, TextChangedEventArgs e)
         {
-            innerDice.type = "Atk";
-            innerDice.detail = "Penetrate";
-            UpdateDiceTypeUI();
-        }
+            if (innerBehaviourNode == null)
+                return;
 
-        private void BtnDiceType_Atk_Hit_Click(object sender, RoutedEventArgs e)
-        {
-            innerDice.type = "Atk";
-            innerDice.detail = "Hit";
-            UpdateDiceTypeUI();
-        }
-
-
-        private void BtnDiceType_Def_Guard_Click(object sender, RoutedEventArgs e)
-        {
-            innerDice.type = "Def";
-            innerDice.detail = "Guard";
-            UpdateDiceTypeUI();
-        }
-
-        private void BtnDiceType_Def_Evasion_Click(object sender, RoutedEventArgs e)
-        {
-            innerDice.type = "Def";
-            innerDice.detail = "Evasion";
-            UpdateDiceTypeUI();
-        }
-
-
-        private void BtnDiceType_Stadby_Slash_Click(object sender, RoutedEventArgs e)
-        {
-            innerDice.type = "Stadby";
-            innerDice.detail = "Slash";
-            UpdateDiceTypeUI();
-        }
-
-        private void BtnDiceType_Stadby_Penetrate_Click(object sender, RoutedEventArgs e)
-        {
-            innerDice.type = "Stadby";
-            innerDice.detail = "Penetrate";
-            UpdateDiceTypeUI();
-        }
-
-        private void BtnDiceType_Stadby_Hit_Click(object sender, RoutedEventArgs e)
-        {
-            innerDice.type = "Stadby";
-            innerDice.detail = "Hit";
-            UpdateDiceTypeUI();
-        }
-
-        private void BtnDiceType_Stadby_Guard_Click(object sender, RoutedEventArgs e)
-        {
-            innerDice.type = "Stadby";
-            innerDice.detail = "Guard";
-            UpdateDiceTypeUI();
-        }
-
-        private void BtnDiceType_Stadby_Evasion_Click(object sender, RoutedEventArgs e)
-        {
-            innerDice.type = "Stadby";
-            innerDice.detail = "Evasion";
-            UpdateDiceTypeUI();
-        }
-        #endregion
-
-        private void TbxMinDice_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (innerDice != null)
-                innerDice.min = TbxMinDice.Text;
-        }
-
-        private void TbxMaxDice_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (innerDice != null)
-                innerDice.max = TbxMaxDice.Text;
+            TextBox tbx = sender as TextBox;
+            switch (tbx.Name)
+            {
+                default:
+                    List<string> SPLIT_NAME = tbx.Name.Split('_').ToList();
+                    if (SPLIT_NAME.Count == 2)
+                        innerBehaviourNode.attribute[SPLIT_NAME.Last()] = tbx.Text;
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
+                    break;
+            }
+            MainWindow.mainWindow.UpdateDebugInfo();
         }
     }
 }

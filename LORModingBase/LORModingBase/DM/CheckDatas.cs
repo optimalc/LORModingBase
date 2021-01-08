@@ -12,76 +12,169 @@ namespace LORModingBase.DM
     class CheckDatas
     {
         /// <summary>
+        /// Logging data
+        /// </summary>
+        public static string LOG_DATA = "";
+
+        /// <summary>
         /// Check datas
         /// </summary>
-        public static void CheckAllDatas()
+        public static string CheckAllDatas()
         {
-            CheckCriticalPageInfos();
-            CheckCardInfos();
+            LOG_DATA = "";
+            CriticalCheck.CriticalCheckAll();
+            CautionCheck.CautionCheckAll();
+            return LOG_DATA;
         }
 
         /// <summary>
-        /// Check logic for ciritical page infos
+        /// Make ciritical log message
         /// </summary>
-        public static void CheckCriticalPageInfos()
+        /// <param name="languageID">Localize ID</param>
+        /// <param name="args">String format param</param>
+        public static void MakeCriticalMessage(string languageID, params object[] args)
         {
-            foreach (DS.CriticalPageInfo ciriticalInfo in MainWindow.criticalPageInfos)
-            {
-                if (string.IsNullOrEmpty(ciriticalInfo.bookID))
-                    throw new Exception("핵심 책장 고유 ID가 입력되지 않았습니다.");
-                if (string.IsNullOrEmpty(ciriticalInfo.name))
-                    throw new Exception("핵심 책장 이름이 입력되지 않았습니다.");
-
-                if (string.IsNullOrEmpty(ciriticalInfo.HP) || string.IsNullOrEmpty(ciriticalInfo.breakNum))
-                    throw new Exception("핵심 책장의 HP 혹은 흐트러짐 저항이 입력되지 않았습니다.");
-                if (string.IsNullOrEmpty(ciriticalInfo.minSpeedCount) || string.IsNullOrEmpty(ciriticalInfo.maxSpeedCount))
-                    throw new Exception("핵심 책장의 속도 주사위 범위가 입력되지 않았습니다.");
-
-                if (string.IsNullOrEmpty(ciriticalInfo.skinName))
-                    throw new Exception("핵심 책장의 스킨 이름이 입력되지 않았습니다.");
-                if (string.IsNullOrEmpty(ciriticalInfo.iconName))
-                    throw new Exception("핵심 책장의 아이콘 이름이 입력되지 않았습니다.");
-
-                if (string.IsNullOrEmpty(ciriticalInfo.description))
-                    throw new Exception("핵심 책장에 대한 이야기가 입력되지 않았습니다.");
-
-                if (!ciriticalInfo.ENEMY_IS_ENEMY_TYPE)
-                {
-                    if (string.IsNullOrEmpty(ciriticalInfo.chapter) || string.IsNullOrEmpty(ciriticalInfo.episode))
-                        throw new Exception("핵심 책장의 에피소드가 선택되지 않았습니다.");
-
-                    if (ciriticalInfo.dropBooks.Count <= 0)
-                        throw new Exception("핵심 책장이 어느 책에서 연소되어서 나오는지가 입력되지 않았습니다.");
-                }
-            }
+            string CRITICAL = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Critical");
+            LOG_DATA += $"[-][{CRITICAL}] {String.Format(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, languageID), args)}\n";
         }
 
         /// <summary>
-        /// Check inputed card infos
+        /// Make caution message
         /// </summary>
-        public static void CheckCardInfos()
+        /// <param name="languageID">Localize ID</param>
+        /// <param name="args">String format param</param>
+        public static void MakeCautionMessage(string languageID, params object[] args)
         {
-            foreach (DS.CardInfo cardInfo in MainWindow.cardInfos)
+            string CAUTION = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Caution");
+            LOG_DATA += $"[-][{CAUTION}] {String.Format(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, languageID), args)}\n";
+        }
+    }
+
+    class CriticalCheck
+    {
+        public static void CriticalCheckAll()
+        {
+            KeyPageCheck();
+            CardCheck();
+            StageCheck();
+            EnemyCheck();
+            DeckCheck();
+        }
+
+        public static void KeyPageCheck()
+        {
+            string CRITICAL = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.LOGGING, $"Critical");
+            List<string> KEY_PAGE_ID_LIST = new List<string>();
+            DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.ActionXmlDataNodesByPath("Book", (XmlDataNode bookNode) =>
             {
-                if (string.IsNullOrEmpty(cardInfo.cardID))
-                    throw new Exception("전투 책장 고유 ID가 입력되지 않았습니다.");
-                if (string.IsNullOrEmpty(cardInfo.name))
-                    throw new Exception("전투 책장 이름이 입력되지 않았습니다.");
+                string BOOK_NODE_ID = bookNode.GetAttributesSafe("ID");
+                string BOOK_NODE_NAME = bookNode.GetInnerTextByPath("Name");
 
-                if (string.IsNullOrEmpty(cardInfo.cardImage))
-                    throw new Exception("전투 책장 이미지가 선택되지 않았습니다.");
+                if (string.IsNullOrEmpty(BOOK_NODE_ID))
+                    CheckDatas.MakeCriticalMessage("KeyPage_Critical_1", BOOK_NODE_NAME);
+                if (string.IsNullOrEmpty(BOOK_NODE_NAME))
+                    CheckDatas.MakeCriticalMessage("KeyPage_Critical_2", BOOK_NODE_ID);
 
-                if (string.IsNullOrEmpty(cardInfo.cost))
-                    throw new Exception("전투 책장 비용이 입력되지 않았습니다.");
-
-                foreach(DS.Dice diceInfo in cardInfo.dices)
+                if (!string.IsNullOrEmpty(BOOK_NODE_ID))
                 {
-                    if (string.IsNullOrEmpty(diceInfo.max))
-                        throw new Exception("전투 책장 주사위의 최대값이 입력되지 않았습니다.");
-                    if (string.IsNullOrEmpty(diceInfo.min))
-                        throw new Exception("전투 책장 주사위의 최소값이 입력되지 않았습니다.");
+                    if (KEY_PAGE_ID_LIST.Contains(BOOK_NODE_ID))
+                        CheckDatas.MakeCriticalMessage("KeyPage_Critical_3", BOOK_NODE_ID);
+                    KEY_PAGE_ID_LIST.Add(BOOK_NODE_ID);
                 }
-            }
+            });
+        }
+
+        public static void CardCheck()
+        {
+            List<string> CARD_PAGE_ID_LIST = new List<string>();
+            DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (XmlDataNode bookNode) =>
+            {
+                string CARD_NODE_ID = bookNode.GetAttributesSafe("ID");
+                string CARD_NODE_NAME = bookNode.GetInnerTextByPath("Name");
+
+                if (string.IsNullOrEmpty(CARD_NODE_ID))
+                    CheckDatas.MakeCriticalMessage("Card_Critical_1", CARD_NODE_NAME);
+                if (string.IsNullOrEmpty(CARD_NODE_NAME))
+                    CheckDatas.MakeCriticalMessage("Card_Critical_2", CARD_NODE_ID);
+
+                if (!string.IsNullOrEmpty(CARD_NODE_ID))
+                {
+                    if (CARD_PAGE_ID_LIST.Contains(CARD_NODE_ID))
+                        CheckDatas.MakeCriticalMessage("Card_Critical_3", CARD_NODE_ID);
+                    CARD_PAGE_ID_LIST.Add(CARD_NODE_ID);
+                }
+            });
+        }
+    
+        public static void StageCheck()
+        {
+            List<string> STAGE_ID_LIST = new List<string>();
+            DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (XmlDataNode stageNode) =>
+            {
+                string STAGE_NODE_ID = stageNode.GetAttributesSafe("id");
+                string STAGE_NODE_NAME = stageNode.GetInnerTextByPath("Name");
+
+                if (string.IsNullOrEmpty(STAGE_NODE_ID))
+                    CheckDatas.MakeCriticalMessage("Stage_Critical_1", STAGE_NODE_NAME);
+                if (string.IsNullOrEmpty(STAGE_NODE_NAME))
+                    CheckDatas.MakeCriticalMessage("Stage_Critical_2", STAGE_NODE_ID);
+
+                if (!string.IsNullOrEmpty(STAGE_NODE_ID))
+                {
+                    if (STAGE_ID_LIST.Contains(STAGE_NODE_ID))
+                        CheckDatas.MakeCriticalMessage("Stage_Critical_3", STAGE_NODE_ID);
+                    STAGE_ID_LIST.Add(STAGE_NODE_ID);
+                }
+            });
+        }
+
+        public static void EnemyCheck()
+        {
+            List<string> ENEMY_ID_LIST = new List<string>();
+            DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo.rootDataNode.ActionXmlDataNodesByPath("Enemy", (XmlDataNode enemyNode) =>
+            {
+                string ENYME_NODE_ID = enemyNode.GetAttributesSafe("ID");
+                string ENTME_NODE_NAME_ID = enemyNode.GetInnerTextByPath("NameID");
+
+                if (string.IsNullOrEmpty(ENYME_NODE_ID))
+                    CheckDatas.MakeCriticalMessage("Enemy_Critical_1", ENTME_NODE_NAME_ID);
+                if (string.IsNullOrEmpty(ENTME_NODE_NAME_ID))
+                    CheckDatas.MakeCriticalMessage("Enemy_Critical_2", ENYME_NODE_ID);
+
+                if (!string.IsNullOrEmpty(ENYME_NODE_ID))
+                {
+                    if (ENEMY_ID_LIST.Contains(ENYME_NODE_ID))
+                        CheckDatas.MakeCriticalMessage("Enemy_Critical_3", ENYME_NODE_ID);
+                    ENEMY_ID_LIST.Add(ENYME_NODE_ID);
+                }
+            });
+        }
+
+        public static void DeckCheck()
+        {
+            List<string> DECK_ID_LIST = new List<string>();
+            DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.ActionXmlDataNodesByPath("Deck", (XmlDataNode deckNode) =>
+            {
+                string DECK_NODE_ID = deckNode.GetAttributesSafe("ID");
+
+                if (string.IsNullOrEmpty(DECK_NODE_ID))
+                    CheckDatas.MakeCriticalMessage("Deck_Critical_1");
+
+                if (!string.IsNullOrEmpty(DECK_NODE_ID))
+                {
+                    if (DECK_ID_LIST.Contains(DECK_NODE_ID))
+                        CheckDatas.MakeCriticalMessage("Deck_Critical_2", DECK_NODE_ID);
+                    DECK_ID_LIST.Add(DECK_NODE_ID);
+                }
+            });
+        }
+    }
+
+    class CautionCheck
+    {
+        public static void CautionCheckAll()
+        {
+
         }
     }
 }

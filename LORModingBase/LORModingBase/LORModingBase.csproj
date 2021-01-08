@@ -62,17 +62,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomExtensions\IEnumerable.cs" />
     <Compile Include="DM\CheckDatas.cs" />
     <Compile Include="DM\Config.cs" />
-    <Compile Include="DM\ExportDatas.cs" />
-    <Compile Include="DM\ImportDatas.cs" />
-    <Compile Include="DM\StaticInfos.cs" />
-    <Compile Include="DS\CardInfos.cs" />
+    <Compile Include="DM\EditGameData_BookInfos.cs" />
+    <Compile Include="DM\EditGameData_CardInfos.cs" />
+    <Compile Include="DM\EditGameData_DeckInfo.cs" />
+    <Compile Include="DM\EditGameData_EnemyInfo.cs" />
+    <Compile Include="DM\EditGameData_StageInfo.cs" />
+    <Compile Include="DM\LocalizedGameDescriptions.cs" />
+    <Compile Include="DM\LocalizeCore.cs" />
+    <Compile Include="DM\GameInfos.cs" />
+    <Compile Include="DM\XmlData.cs" />
     <Compile Include="DS\Config.cs" />
-    <Compile Include="DS\CriticalPageInfos.cs" />
     <Compile Include="DS\FilterDatas.cs" />
-    <Compile Include="DS\GameInfo.cs" />
-    <Compile Include="DS\LongDescription.cs" />
     <Compile Include="DS\PATH.cs" />
     <Compile Include="SubWindows\ExtraToolsWindow.xaml.cs">
       <DependentUpon>ExtraToolsWindow.xaml</DependentUpon>
@@ -80,67 +83,39 @@
     <Compile Include="SubWindows\ExtraLogWindow.xaml.cs">
       <DependentUpon>ExtraLogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\ToEXTUrl.xaml.cs">
-      <DependentUpon>ToEXTUrl.xaml</DependentUpon>
+    <Compile Include="SubWindows\Global_AddItemToListWindow.xaml.cs">
+      <DependentUpon>Global_AddItemToListWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\InputEffectWindow.xaml.cs">
-      <DependentUpon>InputEffectWindow.xaml</DependentUpon>
+    <Compile Include="SubWindows\Global_InputInfoWithSearchWindow.xaml.cs">
+      <DependentUpon>Global_InputInfoWithSearchWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\InputCardImageWindow.xaml.cs">
-      <DependentUpon>InputCardImageWindow.xaml</DependentUpon>
+    <Compile Include="SubWindows\ResourceWindow.xaml.cs">
+      <DependentUpon>ResourceWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubWindows\InputExtraDataForCardWindow.xaml.cs">
-      <DependentUpon>InputExtraDataForCardWindow.xaml</DependentUpon>
+    <Compile Include="SubWindows\Global_ListSeleteWithEditWindow.xaml.cs">
+      <DependentUpon>Global_ListSeleteWithEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindows\Global_MultipleValueInputed.xaml.cs">
+      <DependentUpon>Global_MultipleValueInputed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindows\Global_InputOneColumnData.xaml.cs">
+      <DependentUpon>Global_InputOneColumnData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubWindows\Global_ListSeleteWindow.xaml.cs">
+      <DependentUpon>Global_ListSeleteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubWindows\OptionWindow.xaml.cs">
       <DependentUpon>OptionWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputGameCard.xaml.cs">
-      <DependentUpon>InputGameCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputUniqueCardsWindow.xaml.cs">
-      <DependentUpon>InputUniqueCardsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputEnemyInfoWindow.xaml.cs">
-      <DependentUpon>InputEnemyInfoWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputGameCriticalPage.xaml.cs">
-      <DependentUpon>InputGameCriticalPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputBookSkinWindow.xaml.cs">
-      <DependentUpon>InputBookSkinWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputChapterWindow.xaml.cs">
-      <DependentUpon>InputChapterWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputDropBookInfosWindow.xaml.cs">
-      <DependentUpon>InputDropBookInfosWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputBookPassiveWindow.xaml.cs">
-      <DependentUpon>InputBookPassiveWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputBookIconWindow.xaml.cs">
-      <DependentUpon>InputBookIconWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputCriticalBookDescription.xaml.cs">
-      <DependentUpon>InputCriticalBookDescription.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputPassiveDirectlyWindow.xaml.cs">
-      <DependentUpon>InputPassiveDirectlyWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputEpisodeDirectlyWindow.xaml.cs">
-      <DependentUpon>InputEpisodeDirectlyWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubWindows\InputEpisodeWindow.xaml.cs">
-      <DependentUpon>InputEpisodeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\ColorTools.cs" />
     <Compile Include="Tools\DeepCopy.cs" />
     <Compile Include="Tools\Dialog.cs" />
     <Compile Include="Tools\JsonFile.cs" />
     <Compile Include="Tools\MathTools.cs" />
+    <Compile Include="Tools\MessageBoxTools.cs" />
     <Compile Include="Tools\ProcessTools.cs" />
     <Compile Include="Tools\ThreadTools.cs" />
+    <Compile Include="Tools\WindowControls.cs" />
     <Compile Include="Tools\XmlFile.cs" />
     <Compile Include="UC\EditCard.xaml.cs">
       <DependentUpon>EditCard.xaml</DependentUpon>
@@ -148,8 +123,23 @@
     <Compile Include="UC\EditCriticalPage.xaml.cs">
       <DependentUpon>EditCriticalPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\EditDeck.xaml.cs">
+      <DependentUpon>EditDeck.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\EditDice.xaml.cs">
       <DependentUpon>EditDice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\EditEnemyUnit.xaml.cs">
+      <DependentUpon>EditEnemyUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\EditStage.xaml.cs">
+      <DependentUpon>EditStage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\EditEmotionReward.xaml.cs">
+      <DependentUpon>EditEmotionReward.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\EditWave.xaml.cs">
+      <DependentUpon>EditWave.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -171,77 +161,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SubWindows\ToEXTUrl.xaml">
+    <Page Include="SubWindows\Global_AddItemToListWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SubWindows\InputEffectWindow.xaml">
+    <Page Include="SubWindows\Global_InputInfoWithSearchWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SubWindows\InputCardImageWindow.xaml">
+    <Page Include="SubWindows\ResourceWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SubWindows\InputExtraDataForCardWindow.xaml">
+    <Page Include="SubWindows\Global_ListSeleteWithEditWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="SubWindows\Global_MultipleValueInputed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindows\Global_InputOneColumnData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubWindows\Global_ListSeleteWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\OptionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputGameCard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputUniqueCardsWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputEnemyInfoWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputGameCriticalPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputBookSkinWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputChapterWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SubWindows\InputDropBookInfosWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputBookPassiveWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputBookIconWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputCriticalBookDescription.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SubWindows\InputPassiveDirectlyWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SubWindows\InputEpisodeDirectlyWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SubWindows\InputEpisodeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\EditCard.xaml">
       <SubType>Designer</SubType>
@@ -251,7 +201,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC\EditDeck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC\EditDice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditEnemyUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditStage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditEmotionReward.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC\EditWave.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,7 +288,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\TypeHybrid.png" />
-    <Resource Include="Resources\TypeNomal.png" />
+    <Resource Include="Resources\TypeNear.png" />
     <Resource Include="Resources\TypeRange.png" />
   </ItemGroup>
   <ItemGroup>
@@ -343,8 +313,8 @@
     <Resource Include="Resources\BtnEffect.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\TypeNotUniquePage.png" />
-    <Resource Include="Resources\TypeUniquePage.png" />
+    <Resource Include="Resources\TypeNoOption.png" />
+    <Resource Include="Resources\TypeOnlyPage.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\TypeFarArea.png" />
@@ -353,18 +323,18 @@
     <Resource Include="Resources\TypeFarAreaEach.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\iconEvasion.png" />
-    <Resource Include="Resources\iconGuard.png" />
-    <Resource Include="Resources\iconStadbyEvasion.png" />
-    <Resource Include="Resources\iconStadbyGuard.png" />
-    <Resource Include="Resources\iconStadbyHit.png" />
-    <Resource Include="Resources\iconStadbyPenetrate.png" />
-    <Resource Include="Resources\iconStadbySlash.png" />
+    <Resource Include="Resources\icon_Def_Evasion.png" />
+    <Resource Include="Resources\icon_Def_Guard.png" />
+    <Resource Include="Resources\icon_Stadby_Evasion.png" />
+    <Resource Include="Resources\icon_Stadby_Guard.png" />
+    <Resource Include="Resources\icon_Stadby_Hit.png" />
+    <Resource Include="Resources\icon_Stadby_Penetrate.png" />
+    <Resource Include="Resources\icon_Stadby_Slash.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\iconHit.png" />
-    <Resource Include="Resources\iconPenetrate.png" />
-    <Resource Include="Resources\iconSlash.png" />
+    <Resource Include="Resources\icon_Atk_Hit.png" />
+    <Resource Include="Resources\icon_Atk_Penetrate.png" />
+    <Resource Include="Resources\icon_Atk_Slash.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\TypeBasic.png" />
@@ -388,6 +358,35 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\BtnStartGame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TypeFar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnReloadLanguage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnReload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnReverseLoad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnResources.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconNoCondition.png" />
+    <Resource Include="Resources\IconYesCondition.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconNoMapInfo.png" />
+    <Resource Include="Resources\IconYesMapInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconBooks.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

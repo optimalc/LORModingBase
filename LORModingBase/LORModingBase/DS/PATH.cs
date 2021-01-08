@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LORModingBase.DS
 {
-    class PATH
+    class PROGRAM_PATHS
     {
         /// <summary>
         /// Export data directory
@@ -16,55 +16,58 @@ namespace LORModingBase.DS
         /// <summary>
         /// Config file
         /// </summary>
-        public const string CONFIG = "./config.json";
+        public const string CONFIG = ".\\config.json";
+
+        /// <summary>
+        /// Locaize dictionary
+        /// </summary>
+        public const string LOCAIZE_DIC = ".\\localize";
+
         /// <summary>
         /// Version info file
         /// </summary>
-        public const string VERSION = "./version.txt";
+        public const string VERSION = ".\\version.txt";
 
         /// <summary>
-        /// Mode resources
+        /// Debug test file
         /// </summary>
-        public const string RELATIVE_DIC_LOR_MODE_RESOURCES = "LibraryOfRuina_Data\\Managed\\BaseMod";
-        /// <summary>
-        /// Mode staticInfo resources
-        /// </summary>
-        public static string RELATIVE_DIC_LOR_MODE_RESOURCES_STATIC_INFO = $"{RELATIVE_DIC_LOR_MODE_RESOURCES}\\StaticInfo";
-        /// <summary>
-        /// Mode localize resources
-        /// </summary>
-        public static string RELATIVE_DIC_LOR_MODE_RESOURCES_LOCALIZE = $"{RELATIVE_DIC_LOR_MODE_RESOURCES}\\Localize";
+        public const string DEBUG_TEST = ".\\debugTest.txt";
+    }
 
+    class PROGRAM_RESOURCE_PATHS
+    {
         /// <summary>
         /// Resource dictionary
         /// </summary>
-        public static string DIC_RESURCE = "./resources";
+        public static string DIC_RESOURCE = "./resources";
         /// <summary>
-        /// Xml bases for equip page
+        /// Modified Unity engine path 
         /// </summary>
-        public static string RESOURCE_XML_BASE_EQUIP_PAGE = $"{DIC_RESURCE}\\EquipPage.txt";
+        public static string RESOURCE_UNITY_ENGINE_DEBUG = $"{DIC_RESOURCE}\\UnityEngine.dll";
+    }
+
+    class GAME_RESOURCE_PATHS
+    {
         /// <summary>
-        /// Xml bases for Books info
+        /// Mode resource directory
         /// </summary>
-        public static string RESOURCE_XML_BASE_BOOKS = $"{DIC_RESURCE}\\_Books.txt";
-        /// <summary>
-        /// Xml base for Dropping books info
-        /// </summary>
-        public static string RESOURCE_XML_BASE_DROP_BOOK = $"{DIC_RESURCE}\\DropBook.txt";
+        public const string RESOURCE_BASE_MODE = "LibraryOfRuina_Data\\Managed\\BaseMod";
 
         /// <summary>
-        /// Xml bases for Card info
+        /// Static root directory
         /// </summary>
-        public static string RESOURCE_XML_BASE_CARD_INFO = $"{DIC_RESURCE}\\CardInfo.txt";
+        public string RESOURCE_ROOT_STATIC = "";
         /// <summary>
-        /// Xml bases for Battle cards
+        /// Localize root directory
         /// </summary>
-        public static string RESOURCE_XML_BASE_BATTLE_CARDS = $"{DIC_RESURCE}\\_BattleCards.txt";
+        public string RESOURCE_ROOT_LOCALIZE = "";
         /// <summary>
-        /// Xml base for Card drop table
+        /// Story effect info directory
         /// </summary>
-        public static string RESOURCE_XML_BASE_CARD_DROP_TABLE = $"{DIC_RESURCE}\\CardDropTable.txt";
-
-        public static string RESOURCE_UNITY_ENGINE_DEBUG = $"{DIC_RESURCE}\\UnityEngine.dll";
+        public string RESOURCE_ROOT_STORY_EFFECT_INFO = "";
+        /// <summary>
+        /// Story localize directory
+        /// </summary>
+        public string RESOURCE_ROOT_STORY_LOCALIZE= "";
     }
 }

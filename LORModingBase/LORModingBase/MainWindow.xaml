@@ -5,202 +5,502 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LORModingBase"
         mc:Ignorable="d"
-        Title="LOR Moding Base" Height="600" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="Resources/icon.png">
+        Title="LOR Moding Base" Height="600" Width="1500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="Resources/icon.png">
+    <Window.Resources>
+        <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="Black" Offset="0.0"/>
+                    <GradientStop Color="#FF1A1A1A" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#54FFFFFF" />
+        <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="2"
+                  Background="{DynamicResource WindowBackgroundBrush}"
+                  BorderThickness="1" />
+                <Border 
+                  Grid.Column="0"
+                  CornerRadius="2,0,0,2" 
+                  Margin="1" 
+                  Background="{StaticResource WindowBackgroundBrush}" 
+                  BorderThickness="0,0,1,0" />
+                <Path 
+                  x:Name="Arrow"
+                  Grid.Column="1"     
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Data="M 0 0 L 4 4 L 8 0 Z"/>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
+            <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+        </ControlTemplate>
+        <Style x:Key="{x:Type ComboBox}" TargetType="ComboBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton 
+         Name="ToggleButton" 
+         Template="{StaticResource ComboBoxToggleButton}" 
+         Grid.Column="2" 
+         Focusable="false"
+         IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+         ClickMode="Press">
+                            </ToggleButton>
+                            <ContentPresenter
+        Name="ContentSite"
+        IsHitTestVisible="False" 
+        Margin="3,3,23,3"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Left" />
+                            <TextBox x:Name="PART_EditableTextBox"
+         Style="{x:Null}" 
+         Template="{StaticResource ComboBoxTextBox}" 
+         HorizontalAlignment="Left" 
+         VerticalAlignment="Center" 
+         Margin="3,3,23,3"
+         Focusable="True" 
+         Background="Transparent"
+         Visibility="Hidden"
+         IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup 
+        Name="Popup"
+        Placement="Bottom"
+        IsOpen="{TemplateBinding IsDropDownOpen}"
+        AllowsTransparency="True" 
+        Focusable="False"
+        PopupAnimation="Slide">
+                                <Grid 
+          Name="DropDown"
+          SnapsToDevicePixels="True"                
+          MinWidth="{TemplateBinding ActualWidth}"
+          MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border 
+            x:Name="DropDownBorder"
+            Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"
+            BorderThickness="1"/>
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="84*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="30*"/>
-                <ColumnDefinition Width="50*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.Background>
-                <ImageBrush ImageSource="./Resources/MenuBg.png"/>
-            </Grid.Background>
-            <Button x:Name="BtnSave" Grid.Column="0" Content="[내보내기]" ToolTip="설정된 정보들로 모드 폴더를 생성합니다" Style="{StaticResource StyBtnMenu}" Click="BtnSave_Click"/>
-            <Button x:Name="BtnLoad" Grid.Column="1" Content="[불러오기]" ToolTip="특정 모드 폴더의 정보들을 불러옵니다" Style="{StaticResource StyBtnMenu}" Click="BtnLoad_Click"/>
-            <Grid Grid.Column="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1200*"/>
+            <ColumnDefinition Width="300*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="84*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="23*"/>
-                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="모드명 : " Style="{StaticResource StyLbl}"/>
-                <TextBox x:Name="TbxModeName" Grid.Column="1" Text="TEST_MODE" ToolTip="생성시에 사용할 모드명을 입력합니다" Style="{StaticResource StyTbx}"/>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MenuBg.png"/>
+                </Grid.Background>
+                <Button x:Name="BtnSetWorkingSpace" Content="[작업 공간 설정하기]" ToolTip="작업 공간을 설정합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents" HorizontalAlignment="Left" Padding="10,1,1,1"/>
+                <Grid Grid.Column="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="BtnProgramReload" Grid.Column="1" ToolTip="Reload the program" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                        <Button.Background>
+                            <ImageBrush ImageSource="./Resources/BtnReload.png" />
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="15" ScaleY="15"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-35" Y="-31"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="BtnLanguageReload" Grid.Column="2" ToolTip="Reload language data" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                        <Button.Background>
+                            <ImageBrush ImageSource="./Resources/BtnReloadLanguage.png" />
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="20" ScaleY="15"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-40" Y="-31"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="BtnResources" Grid.Column="3" ToolTip="외부 커스텀 리소스들을 관리합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                        <Button.Background>
+                            <ImageBrush ImageSource="./Resources/BtnResources.png" />
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="15" ScaleY="15"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-27" Y="-30"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="BtnStartGame" Grid.Column="4" ToolTip="게임을 시작시킵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                        <Button.Background>
+                            <ImageBrush ImageSource="./Resources/BtnStartGame.png" />
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="15" ScaleY="15"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-27" Y="-30"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="BtnOpenBaseFolder" Grid.Column="5" ToolTip="기반모드 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                        <Button.Background>
+                            <ImageBrush ImageSource="./Resources/BtnOpenBaseFolder.png" />
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="15" ScaleY="15"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-27" Y="-30"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="BtnOpenExportFolder" Grid.Column="6" ToolTip="프로그램이 생성된 모드 폴더를 내보내는 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                        <Button.Background>
+                            <ImageBrush ImageSource="./Resources/BtnOpenExportFolder.png" />
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="15" ScaleY="15"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-27" Y="-30"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="BtnExtURL" Grid.Column="7" ToolTip="툴과 관련된 외부 URL 이동을 위한 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                        <Button.Background>
+                            <ImageBrush ImageSource="./Resources/BtnExtURL.png" />
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="15" ScaleY="15"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-27" Y="-30"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="BtnTools" Grid.Column="8" ToolTip="이 프로그램이 제공하는 추가적인 기능을 위한 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                        <Button.Background>
+                            <ImageBrush ImageSource="./Resources/BtnTools.png" />
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="15" ScaleY="15"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-27" Y="-30"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="BtnConfig" Grid.Column="9" ToolTip="프로그램 설정 창을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="MainWindowButtonClickEvents">
+                        <Button.Background>
+                            <ImageBrush ImageSource="./Resources/BtnConfig.png" />
+                        </Button.Background>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="15" ScaleY="15"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-27" Y="-30"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                </Grid>
             </Grid>
-            <Grid Grid.Column="3">
+            <Grid Grid.Row="1">
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MenuBg.png"/>
+                </Grid.Background>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="58*"/>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="13.9*"/>
+                    <ColumnDefinition Width="13.9*"/>
+                    <ColumnDefinition Width="13.9*"/>
+                    <ColumnDefinition Width="13.9*"/>
+                    <ColumnDefinition Width="13.9*"/>
+                    <ColumnDefinition Width="30.5*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="BtnStartGame" Grid.Column="1" ToolTip="게임을 시작시킵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnStartGame_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="./Resources/BtnStartGame.png" />
-                    </Button.Background>
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="15" ScaleY="15"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-30"/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                </Button>
-                <Button x:Name="BtnOpenBaseFolder" Grid.Column="2" ToolTip="기반모드의 모드 설치 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnOpenBaseFolder_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="./Resources/BtnOpenBaseFolder.png" />
-                    </Button.Background>
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="15" ScaleY="15"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-30"/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                </Button>
-                <Button x:Name="BtnOpenExportFolder" Grid.Column="3" ToolTip="프로그램이 생성된 모드 폴더를 내보내는 폴더 경로를 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnOpenExportFolder_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="./Resources/BtnOpenExportFolder.png" />
-                    </Button.Background>
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="15" ScaleY="15"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-30"/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                </Button>
-                <Button x:Name="BtnExtURL" Grid.Column="4" ToolTip="툴과 관련된 외부 URL로 이동합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnExtURL_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="./Resources/BtnExtURL.png" />
-                    </Button.Background>
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="15" ScaleY="15"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-30"/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                </Button>
-                <Button x:Name="BtnTools" Grid.Column="5" ToolTip="이 프로그램이 제공하는 추가적인 기능을 엽니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnTools_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="./Resources/BtnTools.png" />
-                    </Button.Background>
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="15" ScaleY="15"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-30"/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                </Button>
-                <Button x:Name="BtnConfig" Grid.Column="6" ToolTip="프로그램 설정을 변경합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnConfig_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="./Resources/BtnConfig.png" />
-                    </Button.Background>
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="15" ScaleY="15"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="-27" Y="-30"/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                </Button>
+                <Viewbox Grid.Column="0" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnCriticalPage" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="1" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnCards" Content="[전투책장 편집]" ToolTip="전투책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="2" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnStages" Content="[스테이지 편집]" ToolTip="스테이지 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="3" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnEnemy" Content="[적 유닛 편집]" ToolTip="적 유닛 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="4" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnDecks" Content="[덱 편집]" ToolTip="덱 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="2" Name="GrdCriticalPage">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="95*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MainBg.png"/>
+                </Grid.Background>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnAddCriticalBook" Content="+" ToolTip="게임에 없는 새로운 핵심책장을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="CriticalPageGridButtonClickEvents"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnLoadCriticalBook" Content="~" ToolTip="게임 내부로부터 핵심책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="CriticalPageGridButtonClickEvents"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="SplCriticalPage" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Name="GrdCards">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="95*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MainBg.png"/>
+                </Grid.Background>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnAddCard" Content="+" ToolTip="게임에 없는 새로운 전투책장을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BattleCardGridButtonClickEvents"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnLoadCard" Content="~" ToolTip="게임 내부로부터 전투책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BattleCardGridButtonClickEvents"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="SplCards" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Name="GrdStages">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="95*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MainBg.png"/>
+                </Grid.Background>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnAddStage" Content="+" ToolTip="게임에 없는 새로운 스테이지를 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="StageGridButtonClickEvents"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnLoadStage" Content="~" ToolTip="게임 내부로부터 스테이지 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="StageGridButtonClickEvents"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="SplStages" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="3" Name="GrdEmemy">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="95*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MainBg.png"/>
+                </Grid.Background>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnAddEnemy" Content="+" ToolTip="게임에 없는 새로운 적 데이터를 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="EnemyGridButtonClickEvents"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnLoadEnemy" Content="~" ToolTip="게임 내부로부터 적 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="EnemyGridButtonClickEvents"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="SplEnemy" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Name="GrdDecks">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="95*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MainBg.png"/>
+                </Grid.Background>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnAddDecks" Content="+" ToolTip="게임에 없는 새로운 스테이지를 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="DecksGridButtonClickEvents"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnLoadDecks" Content="~" ToolTip="게임 내부로부터 스테이지 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="DecksGridButtonClickEvents"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="SplDecks" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1">
-            <Grid.Background>
-                <ImageBrush ImageSource="./Resources/MenuBg.png"/>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="13.9*"/>
-                <ColumnDefinition Width="13.9*"/>
-                <ColumnDefinition Width="72.2*"/>
-            </Grid.ColumnDefinitions>
-
-            <Button x:Name="BtnCriticalPage" Grid.Column="0" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="BtnCriticalPage_Click"/>
-            <Button x:Name="BtnCards" Grid.Column="1" Content="[전투책장 편집]" ToolTip="전투책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="BtnCards_Click"/>
-        </Grid>
-        <Grid Grid.Row="2" Name="GrdCriticalPage">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="95*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.Background>
-                <ImageBrush ImageSource="./Resources/MainBg.png"/>
-            </Grid.Background>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnAddCriticalBook" Content="+" ToolTip="게임에 없는 새로운 핵심책장을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnAddCriticalBook_Click"/>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnLoadCriticalBook" Content="~" ToolTip="게임 내부로부터 핵심책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnLoadCriticalBook_Click"/>
-                </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="68*"/>
+                <RowDefinition Height="16*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MenuBg.png"/>
+                </Grid.Background>
+                <ComboBox Name="LbxTextEditor" Margin="5" ToolTip="텍스트를 표시할 데이터를 변경합니다" SelectionChanged="LbxTextEditor_SelectionChanged"/>
+                <Label Content="TestFile.txt" Name="LblTextEditor" FontSize="15" FontFamily="Nirmala UI" FontWeight="Bold" Padding="8" Foreground="#FF121212" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,2,0,1.6" Width="270"/>
             </Grid>
-            <Grid Grid.Column="1">
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
-                    <StackPanel x:Name="SplCriticalPage" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <StackPanel.Resources>
-                            <Style TargetType="{x:Type Grid}">
-                                <Setter Property="Margin" Value="5,5,5,5"/>
-                            </Style>
-                        </StackPanel.Resources>
-                    </StackPanel>
-                </ScrollViewer>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MenuBg.png"/>
+                </Grid.Background>
+                <Button x:Name="BtnReverseLoad" Grid.Column="0" ToolTip="편집기에서 편집된 내용을 프로그램으로 로드시킵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="EditorButtonClickEvents">
+                    <Button.Background>
+                        <ImageBrush ImageSource="./Resources/BtnReverseLoad.png" />
+                    </Button.Background>
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="15" ScaleY="15"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-27" Y="-30"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
             </Grid>
-        </Grid>
-        <Grid Grid.Row="2" Name="GrdCards">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="95*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.Background>
-                <ImageBrush ImageSource="./Resources/MainBg.png"/>
-            </Grid.Background>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnAddCard" Content="+" ToolTip="게임에 없는 새로운 전투책장을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnAddCard_Click"/>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                    <Button x:Name="BtnLoadCard" Content="~" ToolTip="게임 내부로부터 전투책장 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="BtnLoadCard_Click"/>
-                </Grid>
+            <Grid Grid.Row="2">
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MainBg.png"/>
+                </Grid.Background>
+                <TextBox x:Name="TbxTextEditor" Text="" Grid.Row="1" ToolTip="생성될 데이터를 미리 확인합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"/>
             </Grid>
-            <Grid Grid.Column="1">
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
-                    <StackPanel x:Name="SplCards" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <StackPanel.Resources>
-                            <Style TargetType="{x:Type Grid}">
-                                <Setter Property="Margin" Value="5,5,5,5"/>
-                            </Style>
-                        </StackPanel.Resources>
-                    </StackPanel>
-                </ScrollViewer>
+            <Grid Grid.Row="3">
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MenuBg.png"/>
+                </Grid.Background>
+                <TextBox x:Name="TbxTextEditorLog" Text="" Grid.Row="1" ToolTip="데이터 생성시 발생한 로그입니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"/>
             </Grid>
         </Grid>
     </Grid>

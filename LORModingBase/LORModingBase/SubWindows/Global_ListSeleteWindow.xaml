@@ -1,0 +1,16 @@
+﻿<Window x:Class="LORModingBase.SubWindows.Global_ListSeleteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LORModingBase.SubWindows"
+        mc:Ignorable="d"
+        Title="항목 선택 메뉴" Height="700" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Resources/MainBg.png"/>
+        </Grid.Background>
+        <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
+        <ListBox x:Name="LbxItems" Style="{StaticResource StyListBox}" PreviewMouseLeftButtonDown="LbxItems_PreviewMouseLeftButtonDown"/>
+    </Grid>
+</Window>

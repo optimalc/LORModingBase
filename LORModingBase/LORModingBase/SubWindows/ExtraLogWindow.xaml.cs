@@ -15,6 +15,7 @@ namespace LORModingBase.SubWindows
         public ExtraLogWindow()
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.ETC);
 
             Tools.ThreadTools.MakeSTAThreadAndStart(() =>
             {
