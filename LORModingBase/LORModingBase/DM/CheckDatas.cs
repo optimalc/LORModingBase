@@ -59,6 +59,7 @@ namespace LORModingBase.DM
             StageCheck();
             EnemyCheck();
             DeckCheck();
+            DropBookCheck();
         }
 
         public static void KeyPageCheck()
@@ -165,6 +166,25 @@ namespace LORModingBase.DM
                     if (DECK_ID_LIST.Contains(DECK_NODE_ID))
                         CheckDatas.MakeCriticalMessage("Deck_Critical_2", DECK_NODE_ID);
                     DECK_ID_LIST.Add(DECK_NODE_ID);
+                }
+            });
+        }
+    
+        public static void DropBookCheck()
+        {
+            List<string> DROP_BOOK_ID_LIST = new List<string>();
+            DM.EditGameData_DropBookInfo.StaticDropBookInfo.rootDataNode.ActionXmlDataNodesByPath("BookUse", (XmlDataNode bookUseNode) =>
+            {
+                string DROP_BOOK_ID = bookUseNode.GetAttributesSafe("ID");
+
+                if (string.IsNullOrEmpty(DROP_BOOK_ID))
+                    CheckDatas.MakeCriticalMessage("DropBook_Critical_1");
+
+                if (!string.IsNullOrEmpty(DROP_BOOK_ID))
+                {
+                    if (DROP_BOOK_ID_LIST.Contains(DROP_BOOK_ID))
+                        CheckDatas.MakeCriticalMessage("DropBook_Critical_2", DROP_BOOK_ID);
+                    DROP_BOOK_ID_LIST.Add(DROP_BOOK_ID);
                 }
             });
         }
