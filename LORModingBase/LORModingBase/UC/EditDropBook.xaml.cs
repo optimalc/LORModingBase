@@ -47,9 +47,11 @@ namespace LORModingBase.UC
             });
             innerBookNode.ActionIfInnertTextIsNotNullOrEmpty("Chapter", (string innerText) =>
             {
-                BtnChapter.ToolTip = innerText;
+                string CHAPTER_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Chapter");
+                string CHPATER_DES = DM.LocalizedGameDescriptions.GetDescriptionForChapter(innerText);
+                BtnChapter.ToolTip = $"{CHAPTER_WORD} : {CHPATER_DES}:{innerText}";
 
-                LblChapter.Content = innerText;
+                LblChapter.Content = $"{CHAPTER_WORD} : {CHPATER_DES}:{innerText}"; ;
                 BtnChapter.Content = "          ";
             });
 
@@ -63,7 +65,7 @@ namespace LORModingBase.UC
             LbxKeyPage.Items.Clear();
             innerBookNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItemNode) =>
             {
-                LbxKeyPage.Items.Add(dropItemNode.innerText);
+                LbxKeyPage.Items.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(dropItemNode.innerText));
             });
         }
 
@@ -74,7 +76,7 @@ namespace LORModingBase.UC
                 (DM.XmlDataNode cardDropTableNode) => {
                     cardDropTableNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                     {
-                        LbxCards.Items.Add(cardNode.innerText);
+                        LbxCards.Items.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(cardNode.innerText));
                     });
             });
         } 
@@ -100,10 +102,11 @@ namespace LORModingBase.UC
                     break;
                 case "BtnChapter":
                     new SubWindows.Global_ListSeleteWindow((string selectedChapterDes) => {
+                        string CHAPTER_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Chapter");
                         innerBookNode.SetXmlInfoByPath("Chapter", selectedChapterDes.Split(':').Last());
-                        BtnChapter.ToolTip = selectedChapterDes;
+                        BtnChapter.ToolTip = $"{CHAPTER_WORD} : {selectedChapterDes}";
 
-                        LblChapter.Content = selectedChapterDes;
+                        LblChapter.Content = $"{CHAPTER_WORD} : {selectedChapterDes}";
                         BtnChapter.Content = "          ";
                     }, SubWindows.Global_ListSeleteWindow_PRESET.CHAPTERS).ShowDialog();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DROP_BOOK_INFO);
@@ -113,7 +116,7 @@ namespace LORModingBase.UC
                     List<string> keyPageList = new List<string>();
                     innerBookNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItemNode) =>
                     {
-                        keyPageList.Add(dropItemNode.innerText);
+                        keyPageList.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(dropItemNode.innerText));
                     });
                     new SubWindows.Global_AddItemToListWindow((string addedItem) =>
                     {
@@ -132,7 +135,7 @@ namespace LORModingBase.UC
                         (DM.XmlDataNode cardDropTableNode) => {
                             cardDropTableNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
                             {
-                                cardList.Add(cardNode.innerText);
+                                cardList.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(cardNode.innerText));
                             });
                         });
                     new SubWindows.Global_AddItemToListWindow((string addedItem) =>
