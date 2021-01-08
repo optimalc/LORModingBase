@@ -65,38 +65,66 @@ namespace LORModingBase.SubWindows
 
                         if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_BookInfos.StaticEquipPage = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticEquipPage, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_BookInfos.StaticEquipPage = new DM.XmlData(DM.GameInfos.staticInfos["EquipPage"]);
+
                         if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_BookInfos.StaticDropBook = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_BookInfos.StaticDropBook, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_BookInfos.StaticDropBook = new DM.XmlData(DM.GameInfos.staticInfos["DropBook"]);
                         if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_BookInfos.LocalizedBooks = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_BookInfos.LocalizedBooks, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_BookInfos.LocalizedBooks = new DM.XmlData(DM.GameInfos.localizeInfos["Books"]);
 
                         if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_CardInfos.StaticCard = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCard, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_CardInfos.StaticCard = new DM.XmlData(DM.GameInfos.staticInfos["Card"]);
                         if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_CardInfos.StaticCardDropTable = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_CardInfos.StaticCardDropTable, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_CardInfos.StaticCardDropTable = new DM.XmlData(DM.GameInfos.staticInfos["CardDropTable"]);
                         if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_CardInfos.LocalizedBattleCards = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardInfos.LocalizedBattleCards, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_CardInfos.LocalizedBattleCards = new DM.XmlData(DM.GameInfos.localizeInfos["BattlesCards"]);
 
                         if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_StageInfo.StaticStageInfo, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_StageInfo.StaticStageInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_StageInfo.StaticStageInfo, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_StageInfo.StaticStageInfo = new DM.XmlData(DM.GameInfos.staticInfos["StageInfo"]);
                         if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_StageInfo.LocalizedStageName, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_StageInfo.LocalizedStageName = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_StageInfo.LocalizedStageName, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_StageInfo.LocalizedStageName = new DM.XmlData(DM.GameInfos.localizeInfos["StageName"]);
 
                         if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo = new DM.XmlData(DM.GameInfos.staticInfos["EnemyUnitInfo"]);
                         if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_EnemyInfo.LocalizedCharactersName, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_EnemyInfo.LocalizedCharactersName = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_EnemyInfo.LocalizedCharactersName, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_EnemyInfo.LocalizedCharactersName = new DM.XmlData(DM.GameInfos.localizeInfos["CharactersName"]);
 
                         if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_DeckInfo.StaticDeckInfo, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_DeckInfo.StaticDeckInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_DeckInfo.StaticDeckInfo, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_DeckInfo.StaticDeckInfo = new DM.XmlData(DM.GameInfos.staticInfos["Deck"]);
 
                         if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_DropBookInfo.StaticDropBookInfo, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_DropBookInfo.StaticDropBookInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_DropBookInfo.StaticDropBookInfo, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_DropBookInfo.StaticDropBookInfo = new DM.XmlData(DM.GameInfos.staticInfos["DropBook"]);
                         if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_DropBookInfo.StaticCardDropTableInfo, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_DropBookInfo.StaticCardDropTableInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_DropBookInfo.StaticCardDropTableInfo, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_DropBookInfo.StaticCardDropTableInfo = new DM.XmlData(DM.GameInfos.staticInfos["CardDropTable"]);
                         if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_DropBookInfo.LocalizedDropBookName, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_DropBookInfo.LocalizedDropBookName = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_DropBookInfo.LocalizedDropBookName, DM.Config.CurrentWorkingDirectory));
-
+                        else
+                            DM.EditGameData_DropBookInfo.LocalizedDropBookName = new DM.XmlData(DM.GameInfos.localizeInfos["etc"]);
                         this.Close();
                     };
 
