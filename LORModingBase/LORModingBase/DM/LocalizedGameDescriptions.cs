@@ -173,6 +173,35 @@ namespace LORModingBase.DM
             else
                 return $"Enemy ID :{enemyID}";
         }
+    
+        /// <summary>
+        /// Get description for formation
+        /// </summary>
+        /// <param name="formationID"></param>
+        /// <returns></returns>
+        public static string GetDescriptionForFormation(string formationID)
+        {
+            List<XmlDataNode> formationNodes = DM.GameInfos.staticInfos["FormationInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Formation",
+                                                    attributeToCheck: new Dictionary<string, string>() { { "ID", formationID } });
+            if (formationNodes.Count > 0)
+            {
+                XmlDataNode FORMATION_NODE = formationNodes[0];
+                string NUM_OF_PEOPLE_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"NUM_OF_PEOPLE");
+
+                List<XmlDataNode> positionNodes = FORMATION_NODE.GetXmlDataNodesByPath("Position");
+                string postionDes = "";
+                foreach(XmlDataNode positionNode in positionNodes)
+                {
+                    positionNode.ActionXmlDataNodesByPath("Vector", (XmlDataNode vector) => {
+                        postionDes += $"x({vector.GetAttributesSafe("x")}) y({vector.GetAttributesSafe("y")}),";
+                    });
+                }
+                postionDes = postionDes.Trim(',');
+                return $"{NUM_OF_PEOPLE_WORD}:{positionNodes.Count} - {postionDes}:{formationID}";
+            }
+            else
+                return $"Formation ID :{formationID}";
+        }
     }
 
     /// <summary>

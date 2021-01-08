@@ -193,7 +193,7 @@ namespace LORModingBase.SubWindows
                     {
                         string formationID = formationNode.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(formationID))
-                            selectItems.Add(formationID);
+                            selectItems.Add(DM.LocalizedGameDescriptions.GetDescriptionForFormation(formationID));
                     });
                     break;
                 case InputInfoWithSearchWindow_PRESET.ENEMIES:

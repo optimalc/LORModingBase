@@ -35,9 +35,9 @@ namespace LORModingBase.UC
             waveNode.ActionIfInnertTextIsNotNullOrEmpty("Formation", (string innerText) =>
             {
                 string FORMATION_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"FORMATION");
-                BtnFormation.ToolTip = $"{FORMATION_WORD} : {innerText}";
+                BtnFormation.ToolTip = $"{FORMATION_WORD} : {DM.LocalizedGameDescriptions.GetDescriptionForFormation(innerText)}";
 
-                LblFormation.Content = $"{FORMATION_WORD} : {innerText}";
+                LblFormation.Content = $"{FORMATION_WORD} : {DM.LocalizedGameDescriptions.GetDescriptionForFormation(innerText)}";
                 BtnFormation.Content = "          ";
             });
 
@@ -75,9 +75,9 @@ namespace LORModingBase.UC
                         waveNode.SetXmlInfoByPath("Formation", selectedItem);
 
                         string FORMATION_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"FORMATION");
-                        BtnFormation.ToolTip = $"{FORMATION_WORD} : {selectedItem}";
+                        BtnFormation.ToolTip = $"{FORMATION_WORD} : {DM.LocalizedGameDescriptions.GetDescriptionForFormation(selectedItem)}";
 
-                        LblFormation.Content = $"{FORMATION_WORD} : {selectedItem}";
+                        LblFormation.Content = $"{FORMATION_WORD} : {DM.LocalizedGameDescriptions.GetDescriptionForFormation(selectedItem)}";
                         BtnFormation.Content = "          ";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.FORMATION).ShowDialog();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
