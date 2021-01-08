@@ -437,6 +437,9 @@ namespace LORModingBase
                         {
                             List<DM.XmlDataNode> foundStageIds = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
                                     attributeToCheck: new Dictionary<string, string>() { { "id", selectedItem } });
+                            if (foundStageIds.Count <= 0)
+                                foundStageIds = DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
+                                    attributeToCheck: new Dictionary<string, string>() { { "id", selectedItem } });
 
                             if (foundStageIds.Count > 0)
                             {
@@ -456,7 +459,7 @@ namespace LORModingBase
                                 }
                                 InitSplStages();
                             }
-                        }, SubWindows.InputInfoWithSearchWindow_PRESET.STAGES).ShowDialog();
+                        }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                         break;
                 }
             }

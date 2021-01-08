@@ -19,8 +19,11 @@ namespace LORModingBase.DM
         public static string GetDescriptionForStage(string stageID)
         {
             if (string.IsNullOrEmpty(stageID)) return "";
-            string LOC_STAGE_NAME = DM.GameInfos.localizeInfos["StageName"].rootDataNode.GetInnerTextByAttributeWithPath("Name", "ID", stageID, $"STAGE ID :{stageID}");
-            return LOC_STAGE_NAME;
+            string LOC_STAGE_NAME = DM.GameInfos.localizeInfos["StageName"].rootDataNode.GetInnerTextByAttributeWithPath("Name", "ID", stageID);   
+            if(string.IsNullOrEmpty(LOC_STAGE_NAME))
+                LOC_STAGE_NAME = DM.EditGameData_StageInfo.LocalizedStageName.rootDataNode.GetInnerTextByAttributeWithPath("Name", "ID", stageID);
+
+            return string.IsNullOrEmpty(LOC_STAGE_NAME) ? $"STAGE ID :{stageID}" : LOC_STAGE_NAME;
         }
 
         /// <summary>
@@ -286,7 +289,11 @@ namespace LORModingBase.DM
         {
             List<XmlDataNode> foundDataNodes = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage", 
                 attributeToCheck:new Dictionary<string, string>() { {"id", stageID } });
-            if(foundDataNodes.Count > 0)
+            if(foundDataNodes.Count <= 0)
+                foundDataNodes = DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
+                        attributeToCheck: new Dictionary<string, string>() { { "id", stageID } });
+
+            if (foundDataNodes.Count > 0)
             {
                 XmlDataNode STAGE_NODE = foundDataNodes[0];
                 string STAGE_ID = STAGE_NODE.GetAttributesSafe("id");

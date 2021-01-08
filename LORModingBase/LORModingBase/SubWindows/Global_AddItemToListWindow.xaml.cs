@@ -99,6 +99,15 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case AddItemToListWindow_PRESET.STAGES:
+                    #region Add custom items
+                    DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode customNode) =>
+                    {
+                        string STAGE_ID = customNode.GetAttributesSafe("id");
+                        if (!string.IsNullOrEmpty(STAGE_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STAGE_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode stageID) =>
                     {
                         string STAGE_ID = stageID.GetAttributesSafe("id");

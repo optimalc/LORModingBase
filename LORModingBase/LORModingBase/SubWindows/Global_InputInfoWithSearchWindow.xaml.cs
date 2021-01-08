@@ -44,6 +44,15 @@ namespace LORModingBase.SubWindows
             {
                 case InputInfoWithSearchWindow_PRESET.EPISODE:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"EPISODE_TITLE");
+                    #region Add custom items
+                    DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode customNode) =>
+                    {
+                        string STAGE_ID = customNode.GetAttributesSafe("id");
+                        if (!string.IsNullOrEmpty(STAGE_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STAGE_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode stageNode) =>
                     {
                         string STAGE_ID = stageNode.GetAttributesSafe("id");
@@ -187,16 +196,6 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
-
-                case InputInfoWithSearchWindow_PRESET.STAGES:
-                    DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode stageNode) =>
-                    {
-                        string STAGE_ID = stageNode.GetAttributesSafe("id");
-                        if (!string.IsNullOrEmpty(STAGE_ID))
-                            selectItems.Add(STAGE_ID);
-                    });
-                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
-                    break;
                 case InputInfoWithSearchWindow_PRESET.MAP_INFO:
                     DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByPath("Stage/MapInfo", (DM.XmlDataNode mapInfoNode) =>
                     {
@@ -330,7 +329,6 @@ namespace LORModingBase.SubWindows
         DICE_ABILITES,
         CARDS,
 
-        STAGES,
         MAP_INFO,
 
         FORMATION,
