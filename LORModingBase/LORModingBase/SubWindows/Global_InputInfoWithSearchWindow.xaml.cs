@@ -94,7 +94,7 @@ namespace LORModingBase.SubWindows
                     {
                         string EQ_BOOK_ID = eqNode.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(EQ_BOOK_ID))
-                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForBook(EQ_BOOK_ID));
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(EQ_BOOK_ID));
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;

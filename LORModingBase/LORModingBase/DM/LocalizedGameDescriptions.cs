@@ -201,11 +201,11 @@ namespace LORModingBase.DM
         }
 
         /// <summary>
-        /// Get full description of Book
+        /// Get full description of Key Book
         /// </summary>
         /// <param name="bookID"></param>
         /// <returns></returns>
-        public static string GetFullDescriptionForBook(string bookID)
+        public static string GetFullDescriptionForKeyBook(string bookID)
         {
             List<XmlDataNode> foundDataNodes = DM.GameInfos.staticInfos["EquipPage"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
                 attributeToCheck: new Dictionary<string, string>() { { "ID", bookID } });
@@ -222,7 +222,35 @@ namespace LORModingBase.DM
             else
                 return $"Book ID :{bookID}";
         }
-    
+
+        /// <summary>
+        /// Get full description of Books
+        /// </summary>
+        /// <param name="bookID">Book ID to use</param>
+        /// <returns>Full description of book</returns>
+        public static string GetFullDescriptionForBooks(string bookID)
+        {
+            List<XmlDataNode> foundDataNodes = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPath("Stage");
+            if (foundDataNodes.Count > 0)
+            {
+                foreach(XmlDataNode foundDataNode in foundDataNodes)
+                {
+                    if(foundDataNode.CheckIfGivenPathWithXmlInfoExists("Invitation/Book", bookID))
+                    {
+                        string CHPATER_NUM = foundDataNode.GetInnerTextByPath("Chapter");
+
+                        string CHAPTER_DES = LocalizedGameDescriptions.GetDescriptionForChapter(CHPATER_NUM);
+                        string BOOK_DES = LocalizedGameDescriptions.GetDescriptionForBooks(bookID);
+                        return $"{CHAPTER_DES} / {BOOK_DES}:{bookID}";
+                    }
+                }
+                return $"Book ID :{bookID}";
+
+            }
+            else
+                return $"Book ID :{bookID}";
+        }
+
         /// <summary>
         /// Get full description for DropBook
         /// </summary>

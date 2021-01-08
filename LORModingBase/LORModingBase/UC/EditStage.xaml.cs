@@ -57,7 +57,7 @@ namespace LORModingBase.UC
                 string extraInfo = "";
                 innerStageNode.ActionXmlDataNodesByPath("Invitation/Book", (DM.XmlDataNode xmlDataNode) =>
                 {
-                    extraInfo += $"{xmlDataNode.GetInnerTextSafe()}/";
+                    extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(xmlDataNode.GetInnerTextSafe())}/";
                 });
                 extraInfo = extraInfo.TrimEnd('/');
 
@@ -207,7 +207,7 @@ namespace LORModingBase.UC
                     List<string> selectedDropBooks = new List<string>();
                     innerStageNode.ActionXmlDataNodesByPath("Invitation/Book", (DM.XmlDataNode xmlDataNode) =>
                     {
-                        selectedDropBooks.Add(xmlDataNode.innerText);
+                        selectedDropBooks.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(xmlDataNode.innerText));
                     });
 
                    new SubWindows.Global_AddItemToListWindow((string addedDropBookItemID) =>
@@ -228,7 +228,7 @@ namespace LORModingBase.UC
                         string extraInfo = "";
                         innerStageNode.ActionXmlDataNodesByPath("Invitation/Book", (DM.XmlDataNode xmlDataNode) =>
                         {
-                            extraInfo += $"{xmlDataNode.GetInnerTextSafe()}/";
+                            extraInfo += $"{DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(xmlDataNode.GetInnerTextSafe())}/";
                         });
                         extraInfo = extraInfo.TrimEnd('/');
 
