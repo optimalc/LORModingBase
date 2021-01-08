@@ -224,6 +224,15 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case InputInfoWithSearchWindow_PRESET.DECKS:
+                    #region Add custom items
+                    DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.ActionXmlDataNodesByPath("Deck", (DM.XmlDataNode customNode) =>
+                    {
+                        string DECK_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(DECK_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.LocalizedGameDescriptions.GetDecriptionForDeck(DECK_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.staticInfos["Deck"].rootDataNode.ActionXmlDataNodesByPath("Deck", (DM.XmlDataNode deckID) =>
                     {
                         string DECK_ID = deckID.GetAttributesSafe("ID");

@@ -241,6 +241,10 @@ namespace LORModingBase.DM
         {
             List<XmlDataNode> deckNodes = DM.GameInfos.staticInfos["Deck"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Deck",
                 attributeToCheck:new Dictionary<string, string>() { { "ID", deckID } });
+            if (deckNodes.Count <= 0)
+                deckNodes = DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Deck",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", deckID } });
+
             if (deckNodes.Count > 0)
             {
                 string deckDetailDes = "";

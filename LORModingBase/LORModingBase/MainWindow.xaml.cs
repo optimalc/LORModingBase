@@ -563,6 +563,10 @@ namespace LORModingBase
                         {
                             List<DM.XmlDataNode> foundDeckIds = DM.GameInfos.staticInfos["Deck"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Deck",
                                     attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            if (foundDeckIds.Count <= 0)
+                                foundDeckIds = DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Deck",
+                                                attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+
                             if (foundDeckIds.Count > 0)
                             {
                                 DM.XmlDataNode DECK_NODE_TO_USE = foundDeckIds[0].Copy();
