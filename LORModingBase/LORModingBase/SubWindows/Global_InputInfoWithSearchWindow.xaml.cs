@@ -183,9 +183,8 @@ namespace LORModingBase.SubWindows
                     {
                         string MAP_INFO_ID = mapInfoNode.innerText;
                         if (!string.IsNullOrEmpty(MAP_INFO_ID))
-                            selectItems.Add(MAP_INFO_ID);
+                            selectItems.Add(DM.LocalizedGameDescriptions.GetDescriptionForMapInfo(MAP_INFO_ID));
                     });
-                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
 
                 case InputInfoWithSearchWindow_PRESET.FORMATION:

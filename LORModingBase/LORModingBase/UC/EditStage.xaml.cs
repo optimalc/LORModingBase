@@ -84,7 +84,7 @@ namespace LORModingBase.UC
             if (!string.IsNullOrEmpty(MAP_INFO))
             {
                 BtnMapInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesMapInfo.png");
-                BtnMapInfo.ToolTip = innerStageNode.GetInnerTextByPath("MapInfo");
+                BtnMapInfo.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"%BtnMapInfo_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{DM.LocalizedGameDescriptions.GetDescriptionForMapInfo(innerStageNode.GetInnerTextByPath("MapInfo"))}";
             }
 
             InitSqlWaves();
@@ -311,7 +311,7 @@ namespace LORModingBase.UC
                     if (!string.IsNullOrEmpty(MAP_INFO))
                     {
                         BtnMapInfo.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesMapInfo.png");
-                        BtnMapInfo.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"%BtnMapInfo_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{innerStageNode.GetInnerTextByPath("MapInfo")}";
+                        BtnMapInfo.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"%BtnMapInfo_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{DM.LocalizedGameDescriptions.GetDescriptionForMapInfo(innerStageNode.GetInnerTextByPath("MapInfo"))}";
                     }
                     else
                     {

@@ -202,6 +202,27 @@ namespace LORModingBase.DM
             else
                 return $"Formation ID :{formationID}";
         }
+    
+        /// <summary>
+        /// Get description for Map Info Name
+        /// </summary>
+        /// <param name="mapInfoName"></param>
+        /// <returns></returns>
+        public static string GetDescriptionForMapInfo(string mapInfoName)
+        {
+            List<XmlDataNode> stageNodes = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPath("Stage");
+            if (stageNodes.Count > 0)
+            {
+                foreach (XmlDataNode staegNode in stageNodes)
+                {
+                    if(staegNode.CheckIfGivenPathWithXmlInfoExists("MapInfo", mapInfoName))
+                        return $"{GetDescriptionForStage(staegNode.GetAttributesSafe("id"))} :{mapInfoName}";
+                }
+                return $"Map Info Name :{mapInfoName}";
+            }
+            else
+                return $"Map Info Name :{mapInfoName}";
+        }
     }
 
     /// <summary>
