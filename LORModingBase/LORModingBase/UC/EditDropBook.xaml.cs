@@ -35,7 +35,7 @@ namespace LORModingBase.UC
             TbxBookID.Text = innerBookNode.GetAttributesSafe("ID");
 
             TbxNameID.Text = innerBookNode.GetInnerTextByPath("TextId");
-            TbxBookName.Text = DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttributeWithPath("text", "id", innerBookNode.GetInnerTextByPath("TextId"));
+            TbxBookName.Text = DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.GetInnerTextByAttributeWithPath("text", "id", innerBookNode.GetInnerTextByPath("TextId"));
 
 
             innerBookNode.ActionIfInnertTextIsNotNullOrEmpty("BookIcon", (string innerText) =>
