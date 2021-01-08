@@ -47,7 +47,7 @@ namespace LORModingBase.UC
             {
                 unitNodes.ForEach((DM.XmlDataNode unitNode) =>
                 {
-                    unitStr += $"{unitNode.innerText} /";
+                    unitStr += $" {DM.LocalizedGameDescriptions.GetDescriptionForEnemy(unitNode.innerText)}:{unitNode.innerText} /";
                 });
                 unitStr = unitStr.Trim('/');
                 if(!string.IsNullOrEmpty(unitStr.Trim()))
@@ -84,9 +84,9 @@ namespace LORModingBase.UC
                     break;
                 case "BtnUnits":
                     List<string> selectedEnemies= new List<string>();
-                    waveNode.ActionXmlDataNodesByPath("Unit", (DM.XmlDataNode unidNode) =>
+                    waveNode.ActionXmlDataNodesByPath("Unit", (DM.XmlDataNode unitNode) =>
                     {
-                        selectedEnemies.Add(unidNode.innerText);
+                        selectedEnemies.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForEnemy(unitNode.innerText)}:{unitNode.innerText}");
                     });
 
                     new SubWindows.Global_AddItemToListWindow((string addedEnemyID) =>
@@ -94,7 +94,7 @@ namespace LORModingBase.UC
                         waveNode.AddXmlInfoByPath("Unit", addedEnemyID);
                     }, (string deletedEnemyID) => {
                         waveNode.RemoveXmlInfosByPath("Unit", deletedEnemyID, deleteOnce: true);
-                    }, selectedEnemies, SubWindows.AddItemToListWindow_PRESET.STAGES).ShowDialog();
+                    }, selectedEnemies, SubWindows.AddItemToListWindow_PRESET.ENEMIES).ShowDialog();
 
                     List<DM.XmlDataNode> unitNodes = waveNode.GetXmlDataNodesByPathWithXmlInfo("Unit");
                     string unitStr = "";
@@ -102,7 +102,7 @@ namespace LORModingBase.UC
                     {
                         unitNodes.ForEach((DM.XmlDataNode unitNode) =>
                         {
-                            unitStr += $"{unitNode.innerText} /";
+                            unitStr += $" {DM.LocalizedGameDescriptions.GetDescriptionForEnemy(unitNode.innerText)}:{unitNode.innerText} /";
                         });
                         unitStr = unitStr.Trim('/');
                         if (!string.IsNullOrEmpty(unitStr.Trim()))

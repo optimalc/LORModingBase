@@ -149,6 +149,30 @@ namespace LORModingBase.DM
         {
             return GetDescriptionForETC($"ui_resistance_{resistName.ToLower()}");
         }
+    
+        /// <summary>
+        /// Get description for enemyID
+        /// </summary>
+        /// <param name="enemyID">Enemy ID</param>
+        /// <returns></returns>
+        public static string GetDescriptionForEnemy(string enemyID)
+        {
+            if (string.IsNullOrEmpty(enemyID)) return "";
+            List<XmlDataNode> foundEnemyNodes = DM.GameInfos.staticInfos["EnemyUnitInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Enemy",
+             attributeToCheck: new Dictionary<string, string>() { { "ID", enemyID } });
+            if (foundEnemyNodes.Count > 0)
+            {
+                string NAME_ID = foundEnemyNodes[0].GetInnerTextByPath("NameID");
+                List<XmlDataNode> charNameNodes = DM.GameInfos.localizeInfos["CharactersName"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Name",
+                    attributeToCheck: new Dictionary<string, string>() { { "ID", NAME_ID } });
+                if (charNameNodes.Count > 0)
+                    return charNameNodes[0].innerText;
+                else
+                    return $"Enemy ID :{enemyID}";
+            }
+            else
+                return $"Enemy ID :{enemyID}";
+        }
     }
 
     /// <summary>

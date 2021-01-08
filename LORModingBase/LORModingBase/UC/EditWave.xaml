@@ -52,7 +52,7 @@
                             <ScaleTransform ScaleX="6" ScaleY="8"/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform X="-8" Y="-14"/>
+                            <TranslateTransform X="-10" Y="-14"/>
                         </TransformGroup>
                     </Button.RenderTransform>
                     <Button.Background>

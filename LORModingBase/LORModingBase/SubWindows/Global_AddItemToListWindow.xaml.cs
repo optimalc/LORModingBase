@@ -114,9 +114,8 @@ namespace LORModingBase.SubWindows
                     {
                         string ENEMY_ID = enemyID.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(ENEMY_ID))
-                            selectItems.Add(ENEMY_ID);
+                            selectItems.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForEnemy(ENEMY_ID)}:{ENEMY_ID}");
                     });
-                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
             }
 
