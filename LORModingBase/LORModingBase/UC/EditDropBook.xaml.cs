@@ -110,8 +110,45 @@ namespace LORModingBase.UC
                     break;
 
                 case "BtnSelectKeyPage":
+                    List<string> keyPageList = new List<string>();
+                    innerBookNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItemNode) =>
+                    {
+                        keyPageList.Add(dropItemNode.innerText);
+                    });
+                    new SubWindows.Global_AddItemToListWindow((string addedItem) =>
+                    {
+                        innerBookNode.AddXmlInfoByPath("DropItem", addedItem, 
+                            attributePairsToSet: new Dictionary<string, string>() { { "Type","Equip" } });
+                    }, (string deletedItem) => {
+
+                        innerBookNode.RemoveXmlInfosByPath("DropItem", deletedItem, deleteOnce: true);
+                    }, keyPageList, SubWindows.AddItemToListWindow_PRESET.CRITICAL_BOOKS).ShowDialog();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DROP_BOOK_INFO);
+                    InitLbxKeyPage();
                     break;
                 case "BtnSelectCards":
+                    List<string> cardList = new List<string>();
+                    DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "ID", innerBookNode.GetAttributesSafe("ID"),
+                        (DM.XmlDataNode cardDropTableNode) => {
+                            cardDropTableNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                            {
+                                cardList.Add(cardNode.innerText);
+                            });
+                        });
+                    new SubWindows.Global_AddItemToListWindow((string addedItem) =>
+                    {
+                        DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "ID", innerBookNode.GetAttributesSafe("ID"),
+                        (DM.XmlDataNode cardDropTableNode) => {
+                         cardDropTableNode.AddXmlInfoByPath("Card", addedItem);
+                        });
+                    }, (string deletedItem) => {
+                        DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "ID", innerBookNode.GetAttributesSafe("ID"),
+                       (DM.XmlDataNode cardDropTableNode) => {
+                           cardDropTableNode.RemoveXmlInfosByPath("Card", deletedItem);
+                       });
+                    }, cardList, SubWindows.AddItemToListWindow_PRESET.CARDS).ShowDialog();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD_DROP_TABLE_INFO);
+                    InitLbxCards();
                     break;
             }
         }

@@ -134,6 +134,43 @@ namespace LORModingBase.SubWindows
                             selectItems.Add($"{DM.LocalizedGameDescriptions.GetDescriptionForEnemy(ENEMY_ID)}:{ENEMY_ID}");
                     });
                     break;
+
+                case AddItemToListWindow_PRESET.CRITICAL_BOOKS:
+                    #region Add custom items
+                    DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode customNode) =>
+                    {
+                        string EQ_BOOK_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(EQ_BOOK_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(EQ_BOOK_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode eqNode) =>
+                    {
+                        string EQ_BOOK_ID = eqNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(EQ_BOOK_ID))
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(EQ_BOOK_ID));
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
+                case AddItemToListWindow_PRESET.CARDS:
+                    #region Add custom items
+                    DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode customNode) =>
+                    {
+                        string CARD_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(CARD_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                    {
+                        string CARD_ID = cardNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(CARD_ID))
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID));
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -240,6 +277,9 @@ namespace LORModingBase.SubWindows
         DROP_TABLE,
         STAGES,
 
-        ENEMIES
+        ENEMIES,
+
+        CRITICAL_BOOKS,
+        CARDS
     };
 }
