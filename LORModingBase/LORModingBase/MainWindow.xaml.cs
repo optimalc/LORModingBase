@@ -643,9 +643,9 @@ namespace LORModingBase
                         {
                             List<DM.XmlDataNode> foundDropBookIds = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
                                     attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
-                            //if (foundDeckIds.Count <= 0)
-                            //    foundDeckIds = DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Deck",
-                            //                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            if (foundDropBookIds.Count <= 0)
+                                foundDropBookIds = DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
 
                             if (foundDropBookIds.Count > 0)
                             {

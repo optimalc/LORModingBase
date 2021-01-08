@@ -249,11 +249,20 @@ namespace LORModingBase.SubWindows
                     });
                     break;
                 case InputInfoWithSearchWindow_PRESET.DROP_BOOK:
+                    #region Add custom items
+                    DM.EditGameData_DropBookInfo.StaticDropBookInfo.rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode customNode) =>
+                    {
+                        string BOOK_USE_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BOOK_USE_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(BOOK_USE_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
                     {
                         string BOOK_USE_ID = bookUseNode.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(BOOK_USE_ID))
-                            selectItems.Add(BOOK_USE_ID);
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(BOOK_USE_ID));
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
