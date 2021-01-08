@@ -28,7 +28,6 @@ namespace LORModingBase.UC
         {
             InitializeComponent();
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.STAGE_INFO);
-            this.waveNode = waveNode;
             this.stageNode = stageNode;
             this.stackInitFunc = stackInitFunc;
 
@@ -58,6 +57,9 @@ namespace LORModingBase.UC
                     BtnUnits.Content = "          ";
                 }
             }
+
+            TbxAvailableUnit.Text = waveNode.GetInnerTextByPath("AvailableUnit");
+            this.waveNode = waveNode;
             MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
         }
 

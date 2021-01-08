@@ -140,9 +140,15 @@ namespace LORModingBase.UC
                         });
                     new SubWindows.Global_AddItemToListWindow((string addedItem) =>
                     {
-                        DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "ID", innerBookNode.GetAttributesSafe("ID"),
-                        (DM.XmlDataNode cardDropTableNode) => {
-                         cardDropTableNode.AddXmlInfoByPath("Card", addedItem);
+                       List<DM.XmlDataNode> cardDropTablesToCheck = DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("DropTable",
+                             attributeToCheck: new Dictionary<string, string>() { { "ID", innerBookNode.GetAttributesSafe("ID") } });
+                       if (cardDropTablesToCheck.Count <= 0)
+                            DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.AddXmlInfoByPath("DropTable",
+                                attributePairsToSet: new Dictionary<string, string>() { { "ID", innerBookNode.GetAttributesSafe("ID") } });
+
+                       DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "ID", innerBookNode.GetAttributesSafe("ID"),
+                            (DM.XmlDataNode cardDropTableNode) => {
+                            cardDropTableNode.AddXmlInfoByPath("Card", addedItem);
                         });
                     }, (string deletedItem) => {
                         DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "ID", innerBookNode.GetAttributesSafe("ID"),
@@ -194,6 +200,9 @@ namespace LORModingBase.UC
                     if (foundLocalizeBookNameID.Count <= 0 && !string.IsNullOrEmpty(tbx.Text))
                         DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.RemoveXmlInfosByPath("text",
                             attributeToCheck: new Dictionary<string, string>() { { "id", PREV_TEXT_ID } }); 
+                    else if(string.IsNullOrEmpty(tbx.Text))
+                        DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.RemoveXmlInfosByPath("text",
+                            attributeToCheck: new Dictionary<string, string>() { { "id", PREV_TEXT_ID } });
                     #endregion
                     MainWindow.mainWindow.UpdateDebugInfo();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_DROP_BOOK_NAME);
