@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BookXmlRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+<Book ID="5609999">
+		<Name>스티그마 창병</Name>
+		<TextId>5609997</TextId>
+		<EquipEffect>
+			<HP>141</HP>
+			<Break>81</Break>
+			<SpeedMin>1</SpeedMin>
+			<Speed>5</Speed>
+			<SResist>Normal</SResist>
+			<PResist>Endure</PResist>
+			<HResist>Normal</HResist>
+			<SBResist>Normal</SBResist>
+			<PBResist>Normal</PBResist>
+			<HBResist>Normal</HBResist>
+                                 <Passive Level="1">10001</Passive>
+                                    <Passive Level="1">5607777</Passive>
+                                    <Passive Level="1">5609997</Passive>
+                                    <Passive Level="1">5609993</Passive>
+      <StartPlayPoint>3</StartPlayPoint>
+      <MaxPlayPoint>3</MaxPlayPoint>
+		</EquipEffect>
+		<BookIcon>Stigma</BookIcon>
+                        <Chapter>6</Chapter>
+		<CharacterSkin>Custom_stigma1</CharacterSkin>
+		<Rarity>Rare</Rarity>
+<RandomFace>true</RandomFace>
+	</Book>
+<Book ID="5609991">
+		<Name>스티그마 창병 플레이어</Name>
+		<TextId>5609997</TextId>
+		<EquipEffect>
+			<HP>94</HP>
+			<Break>47</Break>
+			<SpeedMin>2</SpeedMin>
+			<Speed>6</Speed>
+			<SResist>Normal</SResist>
+			<PResist>Endure</PResist>
+			<HResist>Normal</HResist>
+			<SBResist>Normal</SBResist>
+			<PBResist>Normal</PBResist>
+			<HBResist>Normal</HBResist>
+                                 <Passive Level="1">10001</Passive>
+                                    <Passive Level="1">5607777</Passive>
+                                    <Passive Level="1">5609997</Passive>
+                                    <Passive Level="1">5609993</Passive>
+      <StartPlayPoint>3</StartPlayPoint>
+      <MaxPlayPoint>3</MaxPlayPoint>
+		</EquipEffect>
+		<BookIcon>Stigma</BookIcon>
+                        <Chapter>6</Chapter>
+                        <Episode>5609999</Episode>
+		<CharacterSkin>Custom_stigma1</CharacterSkin>
+		<Rarity>Rare</Rarity>
+	</Book>
+<Book ID="5609997">
+		<Name>스티그마 창병</Name>
+		<TextId>5609997</TextId>
+		<EquipEffect>
+			<HP>141</HP>
+			<Break>81</Break>
+			<SpeedMin>1</SpeedMin>
+			<Speed>5</Speed>
+			<SResist>Normal</SResist>
+			<PResist>Endure</PResist>
+			<HResist>Normal</HResist>
+			<SBResist>Normal</SBResist>
+			<PBResist>Normal</PBResist>
+			<HBResist>Normal</HBResist>
+                                 <Passive Level="1">10001</Passive>
+                                    <Passive Level="1">5607777</Passive>
+                                    <Passive Level="1">5609997</Passive>
+                                    <Passive Level="1">5609993</Passive>
+      <StartPlayPoint>3</StartPlayPoint>
+      <MaxPlayPoint>3</MaxPlayPoint>
+		</EquipEffect>
+		<BookIcon>Stigma</BookIcon>
+                        <Chapter>6</Chapter>
+		<CharacterSkin>Custom_stigma1</CharacterSkin>
+		<Rarity>Rare</Rarity>
+<RandomFace>true</RandomFace>
+	</Book>
+
+<Book ID="5608888">
+		<Name>스티그마 검사</Name>
+		<TextId>5608887</TextId>
+		<EquipEffect>
+			<HP>137</HP>
+			<Break>78</Break>
+			<SpeedMin>4</SpeedMin>
+			<Speed>6</Speed>
+			<SResist>Endure</SResist>
+			<PResist>Normal</PResist>
+			<HResist>Normal</HResist>
+			<SBResist>Normal</SBResist>
+			<PBResist>Normal</PBResist>
+			<HBResist>Normal</HBResist>
+                                 <Passive Level="1">10001</Passive>
+                                    <Passive Level="1">5607777</Passive>
+                                    <Passive Level="1">5609998</Passive>
+                                    <Passive Level="1">5609995</Passive>
+      <StartPlayPoint>3</StartPlayPoint>
+      <MaxPlayPoint>3</MaxPlayPoint>
+		</EquipEffect>
+		<BookIcon>Stigma</BookIcon>
+                        <Chapter>6</Chapter>
+		<CharacterSkin>Custom_stigma2</CharacterSkin>
+		<Rarity>Rare</Rarity>
+<RandomFace>true</RandomFace>
+	</Book>
+<Book ID="5608887">
+		<Name>스티그마 검사</Name>
+		<TextId>5608887</TextId>
+		<EquipEffect>
+			<HP>137</HP>
+			<Break>78</Break>
+			<SpeedMin>4</SpeedMin>
+			<Speed>6</Speed>
+			<SResist>Endure</SResist>
+			<PResist>Normal</PResist>
+			<HResist>Normal</HResist>
+			<SBResist>Normal</SBResist>
+			<PBResist>Normal</PBResist>
+			<HBResist>Normal</HBResist>
+                                 <Passive Level="1">10001</Passive>
+                                    <Passive Level="1">5607777</Passive>
+                                    <Passive Level="1">5609998</Passive>
+                                    <Passive Level="1">5609995</Passive>
+      <StartPlayPoint>3</StartPlayPoint>
+      <MaxPlayPoint>3</MaxPlayPoint>
+		</EquipEffect>
+		<BookIcon>Stigma</BookIcon>
+                        <Chapter>6</Chapter>
+		<CharacterSkin>Custom_stigma2</CharacterSkin>
+		<Rarity>Rare</Rarity>
+<RandomFace>true</RandomFace>
+	</Book>
+
+<Book ID="5608881">
+		<Name>스티그마 검사플레이</Name>
+		<TextId>5608887</TextId>
+		<EquipEffect>
+			<HP>93</HP>
+			<Break>45</Break>
+			<SpeedMin>4</SpeedMin>
+			<Speed>6</Speed>
+			<SResist>Endure</SResist>
+			<PResist>Normal</PResist>
+			<HResist>Normal</HResist>
+			<SBResist>Normal</SBResist>
+			<PBResist>Normal</PBResist>
+			<HBResist>Normal</HBResist>
+                                 <Passive Level="1">10001</Passive>
+                                    <Passive Level="1">5607777</Passive>
+                                    <Passive Level="1">5609998</Passive>
+                                    <Passive Level="1">5609995</Passive>
+      <StartPlayPoint>3</StartPlayPoint>
+      <MaxPlayPoint>3</MaxPlayPoint>
+		</EquipEffect>
+		<BookIcon>Stigma</BookIcon>
+                        <Chapter>6</Chapter>
+                        <Episode>5609999</Episode>
+		<CharacterSkin>Custom_stigma2</CharacterSkin>
+		<Rarity>Rare</Rarity>
+	</Book>
+<Book ID="5607777">
+		<Name>마나</Name>
+		<TextId>5607777</TextId>
+		<EquipEffect>
+			<HP>240</HP>
+			<Break>128</Break>
+			<SpeedMin>2</SpeedMin>
+			<Speed>7</Speed>
+			<SResist>Normal</SResist>
+			<PResist>Normal</PResist>
+			<HResist>Endure</HResist>
+			<SBResist>Endure</SBResist>
+			<PBResist>Normal</PBResist>
+			<HBResist>Normal</HBResist>
+                                 <Passive Level="1">10004</Passive>
+                                    <Passive Level="1">5609994</Passive>
+                                    <Passive Level="1">5609990</Passive>
+                                 <Passive Level="1">5607777</Passive>
+                                    <Passive Level="1">5609998</Passive>
+                                    <Passive Level="1">5609993</Passive>
+                                    <Passive Level="1">5609995</Passive>
+                                   <Passive Level="1">3007</Passive>
+      <StartPlayPoint>4</StartPlayPoint>
+      <MaxPlayPoint>4</MaxPlayPoint>
+		</EquipEffect>
+		<BookIcon>Stigma</BookIcon>
+                        <Chapter>6</Chapter>
+                        <Episode>5609999</Episode>
+		<CharacterSkin>Custom_mana</CharacterSkin>
+		<Rarity>Unique</Rarity>
+	</Book>
+<Book ID="5607771">
+		<Name>마나플</Name>
+		<TextId>5607777</TextId>
+		<EquipEffect>
+			<HP>105</HP>
+			<Break>61</Break>
+			<SpeedMin>3</SpeedMin>
+			<Speed>7</Speed>
+			<SResist>Normal</SResist>
+			<PResist>Normal</PResist>
+			<HResist>Endure</HResist>
+			<SBResist>Endure</SBResist>
+			<PBResist>Normal</PBResist>
+			<HBResist>Normal</HBResist>
+                                 <Passive Level="1">10008</Passive>
+                                 <Passive Level="1">5609990</Passive>
+                                 <Passive Level="1">5609994</Passive>
+                                 <Passive Level="1">5607777</Passive>
+
+
+      <OnlyCard>5608888</OnlyCard>
+      <OnlyCard>5607878</OnlyCard>
+      <OnlyCard>5609999</OnlyCard>
+      <StartPlayPoint>4</StartPlayPoint>
+      <MaxPlayPoint>4</MaxPlayPoint>
+		</EquipEffect>
+		<BookIcon>Stigma</BookIcon>
+                        <Chapter>6</Chapter>
+                        <Episode>5609999</Episode>
+		<CharacterSkin>Custom_manaP</CharacterSkin>
+		<Rarity>Unique</Rarity>
+	</Book>
+
+
+
+</BookXmlRoot>

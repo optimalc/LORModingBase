@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiceCardXmlRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<Card ID="5609843">
+    <Name>열기</Name>
+    <Artwork>stigma5</Artwork>
+    <Rarity>Common</Rarity>
+    <Spec Range="Near" Cost="0"/>
+    <Script>energyfire</Script>
+    <BehaviourList>
+      <Behaviour Min="3" Dice="7" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="" ActionScript="" Desc =""/>
+      <Behaviour Min="2" Dice="5" Type="Atk" Detail="Slash" Motion="J" EffectRes="stigma2" Script="" ActionScript="" Desc =""/>
+    </BehaviourList>
+    <Chapter>6</Chapter>
+    <Priority>0</Priority>
+    <PriorityScript>energyRecoverCard</PriorityScript>
+  </Card>
+<Card ID="5605464">
+    <Name>아지랑이</Name>
+    <Artwork>stigma9</Artwork>
+    <Rarity>Uncommon</Rarity>
+    <Spec Range="Near" Cost="1"/>
+    <Script>firefire</Script>
+    <BehaviourList>
+      <Behaviour Min="3" Dice="7" Type="Atk" Detail="Penetrate" Motion="Z" EffectRes="stigma9" Script="" ActionScript="" Desc =""/>
+      <Behaviour Min="4" Dice="6" Type="Atk" Detail="Slash" Motion="J" EffectRes="stigma10" Script="" ActionScript="" Desc =""/>
+    </BehaviourList>
+    <Chapter>6</Chapter>
+    <Priority>0</Priority>
+    <PriorityScript>good1CCard</PriorityScript>
+  </Card>
+<Card ID="5605743">
+    <Name>튕겨내기</Name>
+    <Artwork>stigma10</Artwork>
+    <Rarity>Rare</Rarity>
+    <Spec Range="Near" Cost="2"/>
+    <Script>youhitD2</Script>
+    <BehaviourList>
+      <Behaviour Min="3" Dice="6" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="burn2pw" ActionScript="" Desc =""/>
+      <Behaviour Min="3" Dice="7" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="burn2pw" ActionScript="" Desc =""/>
+      <Behaviour Min="1" Dice="4" Type="Atk" Detail="Slash" Motion="J" EffectRes="stigma10" Script="noparring5" ActionScript="" Desc =""/>
+    </BehaviourList>
+    <Chapter>6</Chapter>
+    <Priority>0</Priority>
+  </Card>
+<Card ID="5607777">
+    <Name>쾌속 검술</Name>
+    <Artwork>stigma2</Artwork>
+    <Rarity>Rare</Rarity>
+    <Spec Range="Near" Cost="2"/>
+    <Script>drawCard</Script>
+    <BehaviourList>
+      <Behaviour Min="4" Dice="7" Type="Atk" Detail="Slash" Motion="J" EffectRes="" Script="" ActionScript="stigmailsum" Desc =""/>
+      <Behaviour Min="4" Dice="8" Type="Atk" Detail="Slash" Motion="J" EffectRes="" Script="drawCard1atk" ActionScript="stigmailsum" Desc =""/>
+    </BehaviourList>
+    <Chapter>6</Chapter>
+    <Priority>0</Priority>
+    <PriorityScript>gooddraw</PriorityScript>
+  </Card>
+<Card ID="56056789">
+    <Name>꿰뚫는 불꽃</Name>
+    <Artwork>stigma6</Artwork>
+    <Rarity>Rare</Rarity>
+    <Spec Range="Near" Cost="4"/>
+    <Script></Script>
+    <BehaviourList>
+      <Behaviour Min="4" Dice="8" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+      <Behaviour Min="5" Dice="9" Type="Atk" Detail="Penetrate" Motion="Z" EffectRes="stigma9big" Script="burn2atk" ActionScript="" Desc =""/>
+      <Behaviour Min="7" Dice="11" Type="Atk" Detail="Penetrate" Motion="Z" EffectRes="stigma9big" Script="burnP" ActionScript="" Desc =""/>
+      <Behaviour Min="2" Dice="7" Type="Standby" Detail="Penetrate" Motion="Z" EffectRes="stigma9" Script="" Desc="" />
+    </BehaviourList>
+    <Chapter>6</Chapter>
+    <Priority>0</Priority>
+  </Card>
+<Card ID="56037625">
+    <Name>염화검</Name>
+    <Artwork>stigma7</Artwork>
+    <Rarity>Rare</Rarity>
+    <Spec Range="Near" Cost="4"/>
+    <Script>burnPlus</Script>
+    <BehaviourList>
+      <Behaviour Min="6" Dice="11" Type="Atk" Detail="Slash" Motion="J" EffectRes="stigma2" Script="burn2atk" ActionScript="" Desc =""/>
+      <Behaviour Min="7" Dice="10" Type="Atk" Detail="Slash" Motion="J" EffectRes="stigma10" Script="burn1atk" Desc="" />
+      <Behaviour Min="2" Dice="6" Type="Standby" Detail="Slash" Motion="J" EffectRes="stigma10" Script="" Desc="" />
+    </BehaviourList>
+    <Chapter>6</Chapter>
+    <Priority>0</Priority>
+  </Card>
+<Card ID="56047648">
+    <Name>낙인</Name>
+    <Artwork>stigma8</Artwork>
+    <Rarity>Uncommon</Rarity>
+    <Spec Range="Near" Cost="2"/>
+    <Script></Script>
+    <BehaviourList>
+      <Behaviour Min="6" Dice="11" Type="Atk" Detail="Penetrate" Motion="Z" EffectRes="stigma9" Script="nak1" ActionScript="" Desc =""/>
+      <Behaviour Min="4" Dice="9" Type="Def" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+    <Chapter>6</Chapter>
+    <Priority>0</Priority>
+  </Card>
+<Card ID="5608888">
+    <Name>융해 절단</Name>
+    <Artwork>stigma1</Artwork>
+    <Rarity>Rare</Rarity>
+    <Option>OnlyPage</Option>
+    <Spec Range="Near" Cost="3"/>
+    <Script>Burn2time</Script>
+    <BehaviourList>
+      <Behaviour Min="4" Dice="9" Type="Def" Detail="Evasion" Motion="E" EffectRes="stigma2" Script="" ActionScript="" Desc="" />
+      <Behaviour Min="5" Dice="9" Type="Atk" Detail="Slash" Motion="J" EffectRes="stigma2" Script="burn2atk" ActionScript="" Desc =""/>
+      <Behaviour Min="6" Dice="9" Type="Atk" Detail="Slash" Motion="J" EffectRes="stigma10" Script="burn3atk" ActionScript="" Desc =""/>
+      <Behaviour Min="2" Dice="6" Type="Standby" Detail="Guard" Motion="G" EffectRes="" Script="" Desc="" />
+    </BehaviourList>
+    <Chapter>6</Chapter>
+    <Priority>0</Priority>
+  </Card>
+
+<Card ID="5607878">
+    <Name>일점강</Name>
+    <Artwork>stigma4</Artwork>
+    <Rarity>Unique</Rarity>
+    <Option>OnlyPage</Option>
+    <Spec Range="Near" Cost="5"/>
+    <Script>ZT</Script>
+    <BehaviourList>
+      <Behaviour Min="18" Dice="26" Type="Atk" Detail="Penetrate" Motion="G" EffectRes="" Script="ZTrue" ActionScript="stigmaBoom" Desc="" />
+    </BehaviourList>
+    <SkinChange>Custom_manaSpP</SkinChange>
+    <Chapter>6</Chapter>
+    <Priority>6</Priority>
+  </Card>
+
+<Card ID="56078788">
+    <Name>일점강-마나</Name>
+    <Artwork>stigma4</Artwork>
+    <Rarity>Unique</Rarity>
+    <Option>OnlyPage</Option>
+    <Spec Range="Near" Cost="5"/>
+    <Script>ZT</Script>
+    <BehaviourList>
+      <Behaviour Min="18" Dice="26" Type="Atk" Detail="Penetrate" Motion="G" EffectRes="" Script="ZTrue" ActionScript="stigmaBoom" Desc="" />
+    </BehaviourList>
+    <SkinChange>Custom_manaSp</SkinChange>
+    <Chapter>6</Chapter>
+    <Priority>6</Priority>
+  </Card>
+
+  <Card ID="5609999">
+    <Name>휩불-선천성용</Name>
+    <Artwork>stigma3</Artwork>
+    <Rarity>Unique</Rarity>
+    <Option>OnlyPage</Option>
+    <Spec Range="FarArea" Cost="0" Affection="Team"/>
+    <Script>usecostS</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="6" Dice="9" Type="Atk" Detail="Slash" Motion="J" EffectRes="" Script="costpower" ActionScript="" Desc=""/>
+    </BehaviourList>
+    <Chapter>6</Chapter>
+    <Priority>8</Priority>
+  </Card>
+
+  <Card ID="56099999">
+    <Name>휩불</Name>
+    <Artwork>stigma3</Artwork>
+    <Rarity>Unique</Rarity>
+    <Spec Range="FarArea" Cost="0" Affection="Team"/>
+    <Script>usecost</Script>
+    <ScriptDesc></ScriptDesc>
+    <BehaviourList>
+      <Behaviour Min="6" Dice="9" Type="Atk" Detail="Slash" Motion="J" EffectRes="" Script="costpower" ActionScript="" Desc=""/>
+    </BehaviourList>
+    <Chapter>6</Chapter>
+    <Priority>8</Priority>
+  </Card>
+
+</DiceCardXmlRoot>

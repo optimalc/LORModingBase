@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattleDialogRelationRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ 
+  <Relation BookID="5609999">
+    <GroupName>stigmaG</GroupName>
+    <CharacterID>stigmaA</CharacterID>
+  </Relation>
+  <Relation BookID="5608888">
+    <GroupName>stigmaG</GroupName>
+    <CharacterID>stigmaA</CharacterID>
+  </Relation>
+  <Relation BookID="5607777">
+    <GroupName>stigmaG</GroupName>
+    <CharacterID>mana</CharacterID>
+  </Relation>
+  
+</BattleDialogRelationRoot>

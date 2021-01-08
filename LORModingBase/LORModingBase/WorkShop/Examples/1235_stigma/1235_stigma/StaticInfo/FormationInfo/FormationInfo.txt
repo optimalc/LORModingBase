@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FormationXmlRoot>
+
+  <Formation ID="5609999">
+    <Name>스티그마 정예부대</Name>
+    <Unlock>2</Unlock>
+    <Position>
+      <Name>1번 위치</Name>
+      <Vector x="12" y="12"/>
+    </Position>
+    <Position>
+      <Name>2번 위치</Name>
+      <Vector x="6" y="0"/>
+    </Position>
+    <Position>
+      <Name>3번 위치</Name>
+      <Vector x="12" y="-12"/>
+    </Position>
+    <Position>
+      <Name>4번 위치</Name>
+      <Vector x="18" y="12"/>
+    </Position>
+    <Position>
+      <Name>5번 위치</Name>
+      <Vector x="18" y="-12"/>
+    </Position>
+  </Formation>
+
+</FormationXmlRoot>

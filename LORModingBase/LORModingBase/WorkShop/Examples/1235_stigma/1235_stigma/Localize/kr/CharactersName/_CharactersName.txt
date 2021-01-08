@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CharactersNameRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <Name ID="5609999">스티그마 직속 1급 해결사</Name>
+ <Name ID="5608888">마나</Name>
+ <Name ID="26206001">강령술사</Name>
+ <Name ID="26206002">뼈무덤</Name>
+ <Name ID="26206003">광신도 격투가</Name>
+ <Name ID="26206004">광신도 수도사</Name>
+ <Name ID="26206005">예언자</Name>
+ <Name ID="26206006">내던져진 의자</Name>
+ <Name ID="26206007">박살난 의자</Name>
+ <Name ID="26206008">의자 길막이</Name>
+ <Name ID="26206009">긁어대는 곰팡이</Name>
+ <Name ID="26206010">포자 박격포</Name>
+ <Name ID="26206011">더러운 거인</Name>
+ <Name ID="26206012">광견</Name>
+ <Name ID="26206013">마귀할멈</Name>
+ <Name ID="26206014">텅빈 가마솥</Name>
+ <Name ID="26206015">가득찬 가마솥</Name>
+</CharactersNameRoot>

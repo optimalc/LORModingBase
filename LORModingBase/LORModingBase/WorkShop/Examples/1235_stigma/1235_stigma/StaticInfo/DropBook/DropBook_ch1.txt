@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BookUseXmlRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<BookUse ID="262060">
+    <TextId>dropbook_darkest</TextId>
+    <BookIcon>darkest</BookIcon>
+    <Chapter>4</Chapter>
+  </BookUse>
+
+  <BookUse ID="5607777">
+    <TextId>dropbook_sti</TextId>
+    <BookIcon>Stigma</BookIcon>
+    <Chapter>5</Chapter>
+    <DropNum>8</DropNum>
+    <DropItem Type="Equip">5609991</DropItem>
+    <DropItem Type="Equip">5608881</DropItem>
+    <DropItem Type="Card">5609843</DropItem>
+    <DropItem Type="Card">5605464</DropItem>
+    <DropItem Type="Card">5605743</DropItem>
+    <DropItem Type="Card">5607777</DropItem>
+    <DropItem Type="Card">56056789</DropItem>
+    <DropItem Type="Card">56037625</DropItem>
+    <DropItem Type="Card">56047648</DropItem>
+
+  </BookUse>
+
+  <BookUse ID="5608888">
+    <TextId>dropbook_mana</TextId>
+    <BookIcon>Stigma</BookIcon>
+    <Chapter>5</Chapter>
+    <DropNum>8</DropNum>
+    <DropItem Type="Equip">5607771</DropItem>
+    <DropItem Type="Card">5609999</DropItem>
+    <DropItem Type="Card">5608888</DropItem>
+    <DropItem Type="Card">5607878</DropItem>
+  </BookUse>
+</BookUseXmlRoot>

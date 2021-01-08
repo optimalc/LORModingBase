@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattleCardDescRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <cardDescList>
+  <BattleCardDesc ID="5607777">
+      <LocalizedName>쾌속 검술</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="5608888">
+      <LocalizedName>융해 절단</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="5609999">
+      <LocalizedName>화염 휩쓸기</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="56099999">
+      <LocalizedName>화염 휩쓸기</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="5607878">
+      <LocalizedName>일점 찌르기-강</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="56078788">
+      <LocalizedName>일점 찌르기-강</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="5609843">
+      <LocalizedName>열기</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="56056789">
+      <LocalizedName>꿰뚫는 불꽃</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="56037625">
+      <LocalizedName>염화검</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="56047648">
+      <LocalizedName>낙인</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="5605464">
+      <LocalizedName>아지랑이</LocalizedName>
+      <Ability />
+    </BattleCardDesc>
+    <BattleCardDesc ID="5605743">
+      <LocalizedName>튕겨내기</LocalizedName>
+      <Ability />
+      <Behaviour ID="2">[일방공격 시]
+위력 +5</Behaviour>
+    </BattleCardDesc>
+  </cardDescList>
+</BattleCardDescRoot>

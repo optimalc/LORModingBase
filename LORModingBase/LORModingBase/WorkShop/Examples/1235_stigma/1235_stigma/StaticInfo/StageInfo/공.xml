@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<StageXmlRoot>
+
+
+    <Stage id="5609999">
+    <Name>공방</Name>
+
+   <Wave>
+      <Formation>5609999</Formation>
+      <AvailableUnit>5</AvailableUnit>
+      <Unit>5608888</Unit>
+      <Unit>5608888</Unit>
+      <Unit>5608888</Unit>
+      <Unit>5609999</Unit>
+      <Unit>5609999</Unit>
+    </Wave> 
+   <Wave>
+      <Formation>5609999</Formation>
+      <AvailableUnit>5</AvailableUnit>
+      <Unit>5607777</Unit>
+      <Unit>5608888</Unit>
+      <Unit>5608888</Unit>
+      <Unit>5609999</Unit>
+      <Unit>5609999</Unit>
+    </Wave>
+    <FloorNum>1</FloorNum>
+    <Invitation Combine="BookRecipe">
+      <Book>250012</Book>
+      <Book>230013</Book>
+      <Book>240018</Book>
+    </Invitation>
+    <Chapter>6</Chapter>
+    <Condition>
+    <Stage>50005</Stage>
+    </Condition>
+    <StoryType>Stigma</StoryType>
+  </Stage>
+
+
+
+</StageXmlRoot>

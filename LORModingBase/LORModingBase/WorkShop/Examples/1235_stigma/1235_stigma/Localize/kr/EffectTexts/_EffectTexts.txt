@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattleEffectTextRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <effectTextList>
+    <BattleEffectText ID="stigmanak">
+      <Name>영구 화상</Name>
+      <Desc>이번 무대동안 자연적으로 제거되지 않는다.
+막이 시작될 때 자신의 화상수치가
+{0}미만 이라면
+해당 수치가 {0}이 되도록 
+화상을 부여받는다.</Desc>
+    </BattleEffectText>
+    <BattleEffectText ID="stigmanak_kid">
+      <Name>영구 화상X</Name>
+      <Desc>막이 시작 될 때 자신의 화상수치가
+X미만이면, 해당수치가X가 되도록 화상을 부여 받는다.</Desc>
+    </BattleEffectText>
+    <BattleEffectText ID="stigmanak2">
+      <Name>낙인</Name>
+      <Desc>모든 전투책장의 비용 +{0}
+받는 피해량이
+{(자신의 화상수치)%만큼 증가</Desc>
+    </BattleEffectText>
+    <BattleEffectText ID="stigmanak3">
+      <Name>낙인</Name>
+      <Desc>모든 전투책장의 비용 +{0}
+받는 피해량이
+{(자신의 화상수치)%만큼 증가</Desc>
+    </BattleEffectText>
+    <BattleEffectText ID="mana">
+      <Name>마나 전용 전투 책장</Name>
+      <Desc>마나의 책장만 장착가능</Desc>
+    </BattleEffectText>
+    <BattleEffectText ID="Sun">
+      <Name>선천성</Name>
+      <Desc>이 책장은 반드시 첫막부터
+손에 존재한다</Desc>
+    </BattleEffectText>
+  </effectTextList>
+</BattleEffectTextRoot>
