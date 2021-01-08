@@ -10,6 +10,15 @@
 
     <DropItem Type="Equip">241001</DropItem>
 </BookUse>
+/StaticInfo/CardDropTable
+<DropTable ID="200001"> <!-- 카드 드랍 테이블. 책의 ID와 동일 -->
+    <Card>101001</Card>
+    <Card>101002</Card>
+    <Card>101003</Card>
+    <Card>101004</Card>
+    <Card>101005</Card>
+    <Card>101006</Card>
+</DropTable>
 
 /Localize/kr/etc
 <!-- 책의 이름 편집 --> -> 이름 입력 창 필요

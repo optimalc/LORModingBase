@@ -90,6 +90,13 @@ namespace LORModingBase.SubWindows
                         if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_DeckInfo.StaticDeckInfo, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_DeckInfo.StaticDeckInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_DeckInfo.StaticDeckInfo, DM.Config.CurrentWorkingDirectory));
 
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_DropBookInfo.StaticDropBookInfo, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_DropBookInfo.StaticDropBookInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_DropBookInfo.StaticDropBookInfo, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_DropBookInfo.StaticCardDropTableInfo, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_DropBookInfo.StaticCardDropTableInfo = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_DropBookInfo.StaticCardDropTableInfo, DM.Config.CurrentWorkingDirectory));
+                        if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_DropBookInfo.LocalizedDropBookName, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_DropBookInfo.LocalizedDropBookName = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_DropBookInfo.LocalizedDropBookName, DM.Config.CurrentWorkingDirectory));
+
                         this.Close();
                     };
 

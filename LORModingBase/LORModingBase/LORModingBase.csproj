@@ -65,6 +65,7 @@
     <Compile Include="CustomExtensions\IEnumerable.cs" />
     <Compile Include="DM\CheckDatas.cs" />
     <Compile Include="DM\Config.cs" />
+    <Compile Include="DM\EditGameData_DropBookInfo.cs" />
     <Compile Include="DM\EditGameData_BookInfos.cs" />
     <Compile Include="DM\EditGameData_CardInfos.cs" />
     <Compile Include="DM\EditGameData_DeckInfo.cs" />
