@@ -49,7 +49,7 @@ namespace LORModingBase.DM
             string ETC_NAME = DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName);
             if (string.IsNullOrEmpty(ETC_NAME))
                 ETC_NAME = DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName);
-            return string.IsNullOrEmpty(ETC_NAME) ? $"ETC NAME :{ETC_NAME}" : ETC_NAME;
+            return string.IsNullOrEmpty(ETC_NAME) ? $"ETC NAME :{etcName}" : ETC_NAME;
         }
     
         /// <summary>
