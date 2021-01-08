@@ -56,6 +56,10 @@ namespace LORModingBase.DM
             if (string.IsNullOrEmpty(bookID)) return "";
             List<XmlDataNode> BooksNodes = DM.GameInfos.localizeInfos["Books"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
                 attributeToCheck: new Dictionary<string, string>() { { "BookID", bookID } });
+            if (BooksNodes.Count <= 0)
+                BooksNodes = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                attributeToCheck: new Dictionary<string, string>() { { "BookID", bookID } });
+
             if (BooksNodes.Count > 0)
             {
                 string BOOK_NAME = BooksNodes[0].GetInnerTextByPath("BookName");
@@ -310,6 +314,10 @@ namespace LORModingBase.DM
         {
             List<XmlDataNode> foundDataNodes = DM.GameInfos.staticInfos["EquipPage"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
                 attributeToCheck: new Dictionary<string, string>() { { "ID", bookID } });
+            if (foundDataNodes.Count <= 0)
+                foundDataNodes = DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
+                attributeToCheck: new Dictionary<string, string>() { { "ID", bookID } });
+
             if (foundDataNodes.Count > 0)
             {
                 XmlDataNode STAGE_NODE = foundDataNodes[0];

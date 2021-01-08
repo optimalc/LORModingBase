@@ -90,6 +90,16 @@ namespace LORModingBase.SubWindows
                     break;
                 case InputInfoWithSearchWindow_PRESET.CRITICAL_BOOKS:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CRITICAL_BOOKS_TITLE");
+                    #region Add custom items
+                    string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                    DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode customNode) =>
+                    {
+                        string EQ_BOOK_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(EQ_BOOK_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(EQ_BOOK_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode eqNode) =>
                     {
                         string EQ_BOOK_ID = eqNode.GetAttributesSafe("ID");

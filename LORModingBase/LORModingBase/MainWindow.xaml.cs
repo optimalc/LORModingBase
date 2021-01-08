@@ -263,7 +263,11 @@ namespace LORModingBase
                         {
                             List<DM.XmlDataNode> foundEqNodes = DM.GameInfos.staticInfos["EquipPage"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
                                 attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
-                            if(foundEqNodes.Count > 0)
+                            if (foundEqNodes.Count <= 0)
+                                foundEqNodes = DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Book",
+                                        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+
+                            if (foundEqNodes.Count > 0)
                             {
                                 DM.XmlDataNode EQ_NODE_TO_USE = foundEqNodes[0].Copy();
                                 EQ_NODE_TO_USE.SetXmlInfoByPath("Name",
@@ -429,6 +433,7 @@ namespace LORModingBase
                         {
                             List<DM.XmlDataNode> foundStageIds = DM.GameInfos.staticInfos["StageInfo"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Stage",
                                     attributeToCheck: new Dictionary<string, string>() { { "id", selectedItem } });
+
                             if (foundStageIds.Count > 0)
                             {
                                 DM.XmlDataNode STAGE_NODE_TO_USE = foundStageIds[0].Copy();
