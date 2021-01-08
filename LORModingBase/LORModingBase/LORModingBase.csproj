@@ -135,6 +135,9 @@
     <Compile Include="UC\EditStage.xaml.cs">
       <DependentUpon>EditStage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\EditEmotionReward.xaml.cs">
+      <DependentUpon>EditEmotionReward.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\EditWave.xaml.cs">
       <DependentUpon>EditWave.xaml</DependentUpon>
     </Compile>
@@ -213,6 +216,10 @@
     <Page Include="UC\EditStage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditEmotionReward.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UC\EditWave.xaml">
       <SubType>Designer</SubType>
@@ -377,6 +384,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\IconGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconBooks.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

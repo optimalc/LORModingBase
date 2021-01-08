@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="LORModingBase.UC.EditEmotionReward"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LORModingBase.UC"
+             mc:Ignorable="d" 
+             Width="225" Height="45">
+    <Grid>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="30*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54BF9E9E"/>
+                <Label x:Name="LblEmotionLevel" Grid.Column="1" Content="1" FontSize="13"  Style="{StaticResource StyLbl}"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54BF9E9E"/>
+                <Label x:Name="LblBookName" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54BF9E9E"/>
+
+                <Image x:Name="ImgBookCount" Grid.Column="0" Source="../Resources/IconBooks.png" RenderTransformOrigin="0.5,0.5" ToolTip="반환되는 책의 수">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBox x:Name="TbxBookCount" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox" ToolTip="반환되는 책의 수를 입력합니다"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

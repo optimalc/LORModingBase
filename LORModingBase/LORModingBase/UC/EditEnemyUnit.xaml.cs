@@ -23,6 +23,7 @@ namespace LORModingBase.UC
         DM.XmlDataNode innerEnemyNode = null;
         Action initStack = null;
 
+        #region Init controls
         public EditEnemyUnit(DM.XmlDataNode innerEnemyNode, Action initStack)
         {
             InitializeComponent();
@@ -56,75 +57,22 @@ namespace LORModingBase.UC
                 BtnDeckID.Content = "          ";
             });
 
-            UpdateDropTables();
+            InitRewards();
         }
 
-        private void UpdateDropTables()
+        private void InitRewards()
         {
-            innerEnemyNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "Level", "0", (DM.XmlDataNode dropTableNode) =>
+            SqlRewards.Children.Clear();
+            innerEnemyNode.ActionXmlDataNodesByPath("DropTable", (DM.XmlDataNode dropTableNode) =>
             {
-                string dropItemToAdd = "";
-                dropTableNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItemNode) =>
+                string EMOTION_LEVEL = dropTableNode.GetAttributesSafe("Level");
+                dropTableNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItem) =>
                 {
-                    dropItemToAdd += $"{dropItemNode.innerText} /";
+                    SqlRewards.Children.Add(new EditEmotionReward(dropItem, EMOTION_LEVEL));
                 });
-                dropItemToAdd.Trim('/');
-
-
-                BtnDropTable0.ToolTip = dropItemToAdd;
-
-                LblDropTable0.Content = dropItemToAdd;
-                BtnDropTable0.Content = "          ";
             });
-
-            innerEnemyNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "Level", "1", (DM.XmlDataNode dropTableNode) =>
-            {
-                string dropItemToAdd = "";
-                dropTableNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItemNode) =>
-                {
-                    dropItemToAdd += $"{dropItemNode.innerText} /";
-                });
-                dropItemToAdd.Trim('/');
-
-
-                BtnDropTable1.ToolTip = dropItemToAdd;
-
-                LblDropTable1.Content = dropItemToAdd;
-                BtnDropTable1.Content = "          ";
-            });
-
-            innerEnemyNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "Level", "2", (DM.XmlDataNode dropTableNode) =>
-            {
-                string dropItemToAdd = "";
-                dropTableNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItemNode) =>
-                {
-                    dropItemToAdd += $"{dropItemNode.innerText} /";
-                });
-                dropItemToAdd.Trim('/');
-
-
-                BtnDropTable2.ToolTip = dropItemToAdd;
-
-                LblDropTable2.Content = dropItemToAdd;
-                BtnDropTable2.Content = "          ";
-            });
-
-            innerEnemyNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "Level", "3", (DM.XmlDataNode dropTableNode) =>
-            {
-                string dropItemToAdd = "";
-                dropTableNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItemNode) =>
-                {
-                    dropItemToAdd += $"{dropItemNode.innerText} /";
-                });
-                dropItemToAdd.Trim('/');
-
-
-                BtnDropTable3.ToolTip = dropItemToAdd;
-
-                LblDropTable3.Content = dropItemToAdd;
-                BtnDropTable3.Content = "          ";
-            });
-        }
+        } 
+        #endregion
 
         /// <summary>
         /// Reflect text chagnes in TextBox
@@ -138,11 +86,21 @@ namespace LORModingBase.UC
             switch (tbx.Name)
             {
                 case "TbxNameID":
+                    #region Add new name ID if not exist
+                    string PREV_NAME_ID = innerEnemyNode.GetInnerTextByPath("NameID");
                     innerEnemyNode.SetXmlInfoByPath("NameID", tbx.Text);
                     List<DM.XmlDataNode> foundLocalizeCharNamesNameID = DM.EditGameData_EnemyInfo.LocalizedCharactersName.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Name",
                         attributeToCheck: new Dictionary<string, string>() { { "ID", innerEnemyNode.GetInnerTextByPath("NameID") } });
-                    if(foundLocalizeCharNamesNameID.Count <= 0)
+                    if (foundLocalizeCharNamesNameID.Count <= 0 && !string.IsNullOrEmpty(tbx.Text))
                         DM.EditGameData_EnemyInfo.LocalizedCharactersName.rootDataNode.subNodes.Add(DM.EditGameData_EnemyInfo.MakeNewCharactersNameBase(tbx.Text, TbxNameID.Text));
+                    #endregion
+                    #region Remove prev name ID if not exist
+                    if(!DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo.rootDataNode.CheckIfGivenPathWithXmlInfoExists("Enemy/NameID", PREV_NAME_ID))
+                        DM.EditGameData_EnemyInfo.LocalizedCharactersName.rootDataNode.RemoveXmlInfosByPath("Name",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID" , PREV_NAME_ID } });
+                    #endregion
+
+
                     MainWindow.mainWindow.UpdateDebugInfo();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_CHAR_NAME);
                     break;
@@ -200,27 +158,26 @@ namespace LORModingBase.UC
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
                     break;
 
-                case "BtnDropTable0":
-                case "BtnDropTable1":
-                case "BtnDropTable2":
-                case "BtnDropTable3":
-
+                case "BtnRewardLevel_0":
+                case "BtnRewardLevel_1":
+                case "BtnRewardLevel_2":
+                case "BtnRewardLevel_3":
+                    string DROP_BOOK_LEVEL = btn.Name.Split('_').Last();
                     List<string> dropTableItems = new List<string>();
-                    innerEnemyNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "Level", btn.Name.Last().ToString(), (DM.XmlDataNode dropTableNode) =>
+                    innerEnemyNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "Level", DROP_BOOK_LEVEL, (DM.XmlDataNode dropTableNode) =>
                     {
                         dropTableNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItemNode) =>
                         {
                             dropTableItems.Add(dropItemNode.innerText);
                         });
                     });
-                    string DROP_BOOK_LEVEL = btn.Name.Last().ToString();
                     new SubWindows.Global_AddItemToListWindow((string addedDropBookItemID) =>
                     {
-                        if (!innerEnemyNode.CheckIfGivenPathWithXmlInfoExists("DropTable", 
-                            attributeToCheck:new Dictionary<string, string>() { {"Level", DROP_BOOK_LEVEL } }))
+                        if (!innerEnemyNode.CheckIfGivenPathWithXmlInfoExists("DropTable",
+                            attributeToCheck: new Dictionary<string, string>() { { "Level", DROP_BOOK_LEVEL } }))
                         {
                             innerEnemyNode.AddXmlInfoByPath("DropTable",
-                                attributePairsToSet:new Dictionary<string, string>() { { "Level", DROP_BOOK_LEVEL } });
+                                attributePairsToSet: new Dictionary<string, string>() { { "Level", DROP_BOOK_LEVEL } });
                         }
 
                         innerEnemyNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "Level", DROP_BOOK_LEVEL, (DM.XmlDataNode dropTableNode) =>
@@ -229,8 +186,10 @@ namespace LORModingBase.UC
                                 attributePairsToSet: new Dictionary<string, string>() { { "Prob", "1" } });
                         });
 
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
                         MainWindow.mainWindow.UpdateDebugInfo();
-                    }, (string deletedDropBookItemID) => {
+                    }, (string deletedDropBookItemID) =>
+                    {
                         innerEnemyNode.ActionXmlDataNodesByAttributeWithPath("DropTable", "Level", DROP_BOOK_LEVEL, (DM.XmlDataNode dropTableNode) =>
                         {
                             dropTableNode.RemoveXmlInfosByPath("DropItem", deletedDropBookItemID);
@@ -244,9 +203,14 @@ namespace LORModingBase.UC
                                 dropIDs.Add(dropItemNode.innerText);
                             });
                         });
+                        if (dropIDs.Count <= 0)
+                            innerEnemyNode.RemoveXmlInfosByPath("DropTable",
+                                attributeToCheck: new Dictionary<string, string>() { { "Level", DROP_BOOK_LEVEL } });
+
+                        MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
                         MainWindow.mainWindow.UpdateDebugInfo();
                     }, dropTableItems, SubWindows.AddItemToListWindow_PRESET.DROP_BOOK).ShowDialog();
-                    UpdateDropTables();
+                    InitRewards();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
                     break;
             }

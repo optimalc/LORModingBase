@@ -19,10 +19,7 @@
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="22*"/>
+                <RowDefinition Height="52*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -84,34 +81,55 @@
                     <Button x:Name="BtnDeckID" Content="덱 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에 들어가기 위한 초대장에 들어갈 책을 설정합니다" Click="SelectItemButtonEvents"/>
                 </Viewbox>
             </Grid>
-            
             <Grid Grid.Row="3">
-                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Label x:Name="LblDropTable0" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="0" Stretch="Fill">
-                    <Button x:Name="BtnDropTable0" Content="감정 레벨 0에서 드랍 책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                    <Label x:Name="LblEmotionReward" Content="-- 감정 보상 목록 추가하기 --" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Row="4">
-                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Label x:Name="LblDropTable1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
-                <Viewbox Grid.Column="0" Stretch="Fill">
-                    <Button x:Name="BtnDropTable1" Content="감정 레벨 1에서 드랍 책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
-                </Viewbox>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <Viewbox Stretch="Fill">
+                        <Button x:Name="BtnRewardLevel_0" Content="레벨 0" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <Viewbox Stretch="Fill">
+                        <Button x:Name="BtnRewardLevel_1" Content="레벨 1" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <Viewbox Stretch="Fill">
+                        <Button x:Name="BtnRewardLevel_2" Content="레벨 2" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <Viewbox Stretch="Fill">
+                        <Button x:Name="BtnRewardLevel_3" Content="레벨 3" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                    </Viewbox>
+                </Grid>
+
             </Grid>
             <Grid Grid.Row="5">
-                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Label x:Name="LblDropTable2" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
-                <Viewbox Grid.Column="0" Stretch="Fill">
-                    <Button x:Name="BtnDropTable2" Content="감정 레벨 2에서 드랍 책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
-                </Viewbox>
-            </Grid>
-            <Grid Grid.Row="6">
-                <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Label x:Name="LblDropTable3" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
-                <Viewbox Grid.Column="0" Stretch="Fill">
-                    <Button x:Name="BtnDropTable3" Content="감정 레벨 3에서 드랍 책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
-                </Viewbox>
+                <Rectangle Grid.Column="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <ScrollViewer VerticalScrollBarVisibility="Visible">
+                    <StackPanel x:Name="SqlRewards" Orientation="Vertical" HorizontalAlignment="Center">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Grid}">
+                                <Setter Property="Margin" Value="1,1,1,1"/>
+                            </Style>
+                        </StackPanel.Resources>
+                    </StackPanel>
+                </ScrollViewer>
             </Grid>
         </Grid>
         <Grid Grid.Column="1">
