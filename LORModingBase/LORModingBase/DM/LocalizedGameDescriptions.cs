@@ -223,6 +223,33 @@ namespace LORModingBase.DM
             else
                 return $"Map Info Name :{mapInfoName}";
         }
+    
+        /// <summary>
+        /// Get description for Deck ID
+        /// </summary>
+        /// <param name="deckID"></param>
+        /// <returns></returns>
+        public static string GetDecriptionForDeck(string deckID)
+        {
+            List<XmlDataNode> deckNodes = DM.GameInfos.staticInfos["Deck"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Deck",
+                attributeToCheck:new Dictionary<string, string>() { { "ID", deckID } });
+            if (deckNodes.Count > 0)
+            {
+                string deckDetailDes = "";
+                foreach (XmlDataNode cardNode in deckNodes[0].GetXmlDataNodesByPathWithXmlInfo("Card"))
+                {
+                    deckDetailDes += $"{GetDecriptionForCard(cardNode.innerText)},";
+                }
+                deckDetailDes.Trim(',');
+
+                if (!string.IsNullOrEmpty(deckDetailDes))
+                    return $"{deckDetailDes} :{deckID}";
+                else
+                    return $"Deck ID :{deckID}";
+            }
+            else
+                return $"Deck ID :{deckID}";
+        }
     }
 
     /// <summary>

@@ -18,8 +18,8 @@ namespace LORModingBase.UC
             LblEmotionLevel.Content = emotionLevel;
 
             string BOOK_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"BOOK");
-            LblBookName.Content = $"{BOOK_WORD} : {dropItemNode.innerText}";
-            LblBookName.ToolTip = $"{BOOK_WORD} : {dropItemNode.innerText}";
+            LblBookName.Content = $"{BOOK_WORD} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(dropItemNode.innerText)}";
+            LblBookName.ToolTip = $"{BOOK_WORD} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(dropItemNode.innerText)}";
 
             TbxBookCount.Text = dropItemNode.GetAttributesSafe("Prob");
             MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);

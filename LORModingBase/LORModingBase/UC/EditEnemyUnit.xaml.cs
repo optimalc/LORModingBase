@@ -55,9 +55,9 @@ namespace LORModingBase.UC
             {
                 string DECK_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"DECK");
 
-                BtnDeckID.ToolTip = $"{DECK_WORD} : {innerText}";
+                BtnDeckID.ToolTip = $"{DECK_WORD} : {DM.LocalizedGameDescriptions.GetDecriptionForDeck(innerText)}";
 
-                LblDeckID.Content = $"{DECK_WORD} : {innerText}";
+                LblDeckID.Content = $"{DECK_WORD} : {DM.LocalizedGameDescriptions.GetDecriptionForDeck(innerText)}";
                 BtnDeckID.Content = "          ";
             });
 
@@ -159,9 +159,9 @@ namespace LORModingBase.UC
                         innerEnemyNode.SetXmlInfoByPath("DeckId", selectedItem);
                         string DECK_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"DECK");
 
-                        BtnDeckID.ToolTip = $"{DECK_WORD} : {selectedItem}";
+                        BtnDeckID.ToolTip = $"{DECK_WORD} : {DM.LocalizedGameDescriptions.GetDecriptionForDeck(selectedItem)}";
 
-                        LblDeckID.Content = $"{DECK_WORD} : {selectedItem}";
+                        LblDeckID.Content = $"{DECK_WORD} : {DM.LocalizedGameDescriptions.GetDecriptionForDeck(selectedItem)}";
                         BtnDeckID.Content = "          ";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.DECKS).ShowDialog();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DECKS);
@@ -177,7 +177,7 @@ namespace LORModingBase.UC
                     {
                         dropTableNode.ActionXmlDataNodesByPath("DropItem", (DM.XmlDataNode dropItemNode) =>
                         {
-                            dropTableItems.Add(dropItemNode.innerText);
+                            dropTableItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(dropItemNode.innerText));
                         });
                     });
                     new SubWindows.Global_AddItemToListWindow((string addedDropBookItemID) =>

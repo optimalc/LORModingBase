@@ -209,9 +209,8 @@ namespace LORModingBase.SubWindows
                     {
                         string DECK_ID = deckID.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(DECK_ID))
-                            selectItems.Add(DECK_ID);
+                            selectItems.Add(DM.LocalizedGameDescriptions.GetDecriptionForDeck(DECK_ID));
                     });
-                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
             }
             InitLbxSearchType(searchTypes);

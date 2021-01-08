@@ -41,7 +41,7 @@ namespace LORModingBase.UC
             LbxCards.Items.Clear();
             innerDeckNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
             {
-                LbxCards.Items.Add(cardNode.innerText);
+                LbxCards.Items.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(cardNode.innerText));
             });
         } 
         #endregion
@@ -81,7 +81,7 @@ namespace LORModingBase.UC
                 case "BtnDeleteDeck":
                     if(LbxCards.SelectedItem != null)
                     {
-                        innerDeckNode.RemoveXmlInfosByPath("Card", LbxCards.SelectedItem.ToString(), deleteOnce:true);
+                        innerDeckNode.RemoveXmlInfosByPath("Card", LbxCards.SelectedItem.ToString().Split(':').Last(), deleteOnce:true);
                         InitLbxCards();
                     }
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DECKS);
