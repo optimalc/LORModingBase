@@ -1,0 +1,15 @@
+ /StaticInfo/DropBook
+ <BookUse ID="240002"> <!-- 책의 ID (Left Row 0) -->
+    <TextId>dropbook_yujin</TextId> <!-- 텍스트 ID (Left Row 1) -->
+    <!-- 이름 /Localize/kr/etc (Left Row 1)-->
+    <BookIcon>ShiAssociation</BookIcon> <!-- BookIcon (Left Row 2)(커스텀 여부 테스트 필요) -->
+    <Chapter>5</Chapter> <!-- 챕터 몇인지 선택(Left Row 2) -->
+    <DropItem Type="Equip">240001</DropItem> <!-- 드롭 ITEM. Row 3에서 선택 박스, Row 4부터 리스트로 -->
+    <DropItem Type="Equip">240002</DropItem>
+    <DropItem Type="Equip">240003</DropItem>
+
+    <DropItem Type="Equip">241001</DropItem>
+</BookUse>
+
+/Localize/kr/etc
+<!-- 책의 이름 편집 --> -> 이름 입력 창 필요

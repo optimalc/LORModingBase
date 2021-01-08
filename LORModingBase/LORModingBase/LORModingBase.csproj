@@ -129,6 +129,9 @@
     <Compile Include="UC\EditDice.xaml.cs">
       <DependentUpon>EditDice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\EditDropBook.xaml.cs">
+      <DependentUpon>EditDropBook.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\EditEnemyUnit.xaml.cs">
       <DependentUpon>EditEnemyUnit.xaml</DependentUpon>
     </Compile>
@@ -206,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\EditDice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditDropBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

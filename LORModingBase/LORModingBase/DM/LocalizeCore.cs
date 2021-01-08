@@ -144,5 +144,6 @@ namespace LORModingBase.DM
 
         public static string ENEMY_INFO = "enemyInfo";
         public static string DECK_INFO = "deckInfo";
+        public static string DROP_BOOK_INFO = "dropBookInfo";
     }
 }
