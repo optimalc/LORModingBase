@@ -16,9 +16,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="9*"/>
-                <RowDefinition Height="9*"/>
-                <RowDefinition Height="41*"/>
-                <RowDefinition Height="41*"/>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -61,13 +61,13 @@
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Label x:Name="LblBookIcon" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="0" Stretch="Fill">
-                    <Button x:Name="BtnBookIcon" Content="책 아이콘 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="적이 사용하는하는 책의 ID를 입력합니다" Click="SelectItemButtonEvents"/>
+                    <Button x:Name="BtnBookIcon" Content="책 아이콘 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="책에 사용할 아이콘을 선택합니다" Click="SelectItemButtonEvents"/>
                 </Viewbox>
 
                 <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Label x:Name="LblChapter" Grid.Column="3" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="3" Stretch="Fill">
-                    <Button x:Name="BtnChapter" Content="속한 챕터 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="적이 사용하는 덱의 ID를 입력합니다" Click="SelectItemButtonEvents"/>
+                    <Button x:Name="BtnChapter" Content="속한 챕터 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="이 책이 속한 챕터를 선택합니다" Click="SelectItemButtonEvents"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Row="3">
@@ -81,7 +81,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Viewbox Grid.Column="3" Stretch="Fill">
-                        <Button x:Name="BtnSelectKeyPage" Grid.Column="0" Content="[ 드롭할 핵심 책장 고르기 ]" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지의 웨이브를 추가합니다" Click="SelectItemButtonEvents"/>
+                        <Button x:Name="BtnSelectKeyPage" Grid.Column="0" Content="[ 드롭할 핵심 책장 고르기 ]" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="드롭시킬 핵심 책장을 선택합니다" Click="SelectItemButtonEvents"/>
                     </Viewbox>
                 </Grid>
                 <Grid Grid.Row="1">
@@ -100,7 +100,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Viewbox Grid.Column="3" Stretch="Fill">
-                        <Button x:Name="BtnSelectCards" Grid.Column="0" Content="[ 드롭할 전투 책장 고르기 ]" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지의 웨이브를 추가합니다" Click="SelectItemButtonEvents"/>
+                        <Button x:Name="BtnSelectCards" Grid.Column="0" Content="[ 드롭할 전투 책장 고르기 ]" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="드롭시킬 전투 책장을 선택합니다" Click="SelectItemButtonEvents"/>
                     </Viewbox>
                 </Grid>
                 <Grid Grid.Row="1">
