@@ -104,6 +104,19 @@ namespace LORModingBase.UC
                 innerBehaviourNode.attribute["Detail"] = SPLIT_NAME[2];
 
                 BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/icon_{innerBehaviourNode.attribute["Type"] }_{innerBehaviourNode.attribute["Detail"]}.png");
+
+                #region Motion Update
+                switch(innerBehaviourNode.GetAttributesSafe("Detail"))
+                {
+                    case "Guard": innerBehaviourNode.attribute["Motion"] = "G"; break;
+                    case "Evasion": innerBehaviourNode.attribute["Motion"] = "E"; break;
+
+                    case "Slash": innerBehaviourNode.attribute["Motion"] = "J"; break;
+                    case "Penetrate": innerBehaviourNode.attribute["Motion"] = "Z"; break;
+                    case "Hit": innerBehaviourNode.attribute["Motion"] = "H"; break;
+                    default: innerBehaviourNode.attribute["Motion"] = "H"; break;
+                }
+                #endregion
             }
 
             GldInfo.Visibility = Visibility.Visible;
