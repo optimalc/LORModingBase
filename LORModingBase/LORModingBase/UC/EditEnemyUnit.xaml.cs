@@ -44,16 +44,20 @@ namespace LORModingBase.UC
 
             innerEnemyNode.ActionIfInnertTextIsNotNullOrEmpty("BookId", (string innerText) =>
             {
-                BtnBookID.ToolTip = innerText;
+                string BOOK_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"BOOK");
 
-                LblBookID.Content = innerText;
+                BtnBookID.ToolTip = $"{BOOK_WORD} : {innerText}";
+
+                LblBookID.Content = $"{BOOK_WORD} : {innerText}";
                 BtnBookID.Content = "          ";
             });
             innerEnemyNode.ActionIfInnertTextIsNotNullOrEmpty("DeckId", (string innerText) =>
             {
-                BtnDeckID.ToolTip = innerText;
+                string DECK_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"DECK");
 
-                LblDeckID.Content = innerText;
+                BtnDeckID.ToolTip = $"{DECK_WORD} : {innerText}";
+
+                LblDeckID.Content = $"{DECK_WORD} : {innerText}";
                 BtnDeckID.Content = "          ";
             });
 
@@ -139,9 +143,11 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerEnemyNode.SetXmlInfoByPath("BookId", selectedItem);
-                        BtnBookID.ToolTip = selectedItem;
+                        string BOOK_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"BOOK");
 
-                        LblBookID.Content = selectedItem;
+                        BtnBookID.ToolTip = $"{BOOK_WORD} : {selectedItem}";
+
+                        LblBookID.Content = $"{BOOK_WORD} : {selectedItem}";
                         BtnBookID.Content = "          ";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CRITICAL_BOOKS).ShowDialog();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
@@ -150,9 +156,11 @@ namespace LORModingBase.UC
                     new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                     {
                         innerEnemyNode.SetXmlInfoByPath("DeckId", selectedItem);
-                        BtnDeckID.ToolTip = selectedItem;
+                        string DECK_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"DECK");
 
-                        LblDeckID.Content = selectedItem;
+                        BtnDeckID.ToolTip = $"{DECK_WORD} : {selectedItem}";
+
+                        LblDeckID.Content = $"{DECK_WORD} : {selectedItem}";
                         BtnDeckID.Content = "          ";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.DECKS).ShowDialog();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);

@@ -72,18 +72,18 @@
                 <Rectangle Grid.Column="0" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Label x:Name="LblBookID" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="0" Stretch="Fill">
-                    <Button x:Name="BtnBookID" Content="책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                    <Button x:Name="BtnBookID" Content="책 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="적이 사용하는하는 책의 ID를 입력합니다" Click="SelectItemButtonEvents"/>
                 </Viewbox>
 
                 <Rectangle Grid.Column="1" Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Label x:Name="LblDeckID" Grid.Column="3" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 <Viewbox Grid.Column="3" Stretch="Fill">
-                    <Button x:Name="BtnDeckID" Content="덱 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에 들어가기 위한 초대장에 들어갈 책을 설정합니다" Click="SelectItemButtonEvents"/>
+                    <Button x:Name="BtnDeckID" Content="덱 ID 선택" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="적이 사용하는 덱의 ID를 입력합니다" Click="SelectItemButtonEvents"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Row="3">
                 <Viewbox Grid.Column="0" Stretch="Fill">
-                    <Label x:Name="LblEmotionReward" Content="-- 감정 보상 목록 추가하기 --" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                    <Label x:Name="LblEmotionReward" Content="-- 감정 보상 추가하기 --" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Row="4">
@@ -96,25 +96,25 @@
                 <Grid Grid.Column="0">
                     <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Viewbox Stretch="Fill">
-                        <Button x:Name="BtnRewardLevel_0" Content="레벨 0" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                        <Button x:Name="BtnRewardLevel_0" Content="레벨 0" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="감정레벨 1에서 반환하는 책 입력" Click="SelectItemButtonEvents"/>
                     </Viewbox>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Viewbox Stretch="Fill">
-                        <Button x:Name="BtnRewardLevel_1" Content="레벨 1" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                        <Button x:Name="BtnRewardLevel_1" Content="레벨 1" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="감정레벨 2에서 반환하는 책 입력" Click="SelectItemButtonEvents"/>
                     </Viewbox>
                 </Grid>
                 <Grid Grid.Column="2">
                     <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Viewbox Stretch="Fill">
-                        <Button x:Name="BtnRewardLevel_2" Content="레벨 2" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                        <Button x:Name="BtnRewardLevel_2" Content="레벨 2" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="감정레벨 3에서 반환하는 책 입력" Click="SelectItemButtonEvents"/>
                     </Viewbox>
                 </Grid>
                 <Grid Grid.Column="3">
                     <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Viewbox Stretch="Fill">
-                        <Button x:Name="BtnRewardLevel_3" Content="레벨 3" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다" Click="SelectItemButtonEvents"/>
+                        <Button x:Name="BtnRewardLevel_3" Content="레벨 3" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="감정레벨 4에서 반환하는 책 입력" Click="SelectItemButtonEvents"/>
                     </Viewbox>
                 </Grid>
 
@@ -146,7 +146,7 @@
             <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
 
             <Rectangle Grid.Row="2" Grid.RowSpan="6" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-            <Button x:Name="BtnCopyEnemy" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="스테이지를 복제해서 새로운 스테이지를 만듭니다" Click="RightMenuButtonEvents">
+            <Button x:Name="BtnCopyEnemy" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="적 유닛 정보를 복제해서 새로운 적 유닛 정보를 만듭니다" Click="RightMenuButtonEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="12"/>
@@ -159,7 +159,7 @@
                     <ImageBrush ImageSource="../Resources/BtnCopy.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="RightMenuButtonEvents" ToolTip="스테이지를 삭제합니다" >
+            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="RightMenuButtonEvents" ToolTip="적 유닛 정보를 삭제합니다" >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="12"/>
