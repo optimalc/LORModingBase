@@ -68,6 +68,11 @@ namespace LORModingBase.SubWindows
                     for(int floor=1; floor<10; floor++)
                         itemToLoad.Add(floor.ToString());
                     break;
+                case Global_ListSeleteWindow_PRESET.CHAPTERS:
+                    List<string> CHAPTER_NAMES = DM.GetLocalizedFilterList.GetLocalizedChapters();
+                    for (int CHPATER_INDEX = 0; CHPATER_INDEX < CHAPTER_NAMES.Count; CHPATER_INDEX++)
+                        itemToLoad.Add($"{CHAPTER_NAMES[CHPATER_INDEX]} :{CHPATER_INDEX + 1}");
+                    break;
             }
             itemToLoad.ForEach((string item) =>
             {
@@ -89,6 +94,7 @@ namespace LORModingBase.SubWindows
     {
         LANGUAGES,
         EXT_URL,
-        FLOORS
+        FLOORS,
+        CHAPTERS
     }
 }

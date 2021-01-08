@@ -86,8 +86,27 @@ namespace LORModingBase.UC
             switch (btn.Name)
             {
                 case "BtnBookIcon":
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                    {
+                        string ICON_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"ICON");
+
+                        innerBookNode.SetXmlInfoByPath("BookIcon", selectedItem);
+                        BtnBookIcon.ToolTip = $"{ICON_WORD} : {selectedItem}";
+
+                        LblBookIcon.Content = $"{ICON_WORD} : {selectedItem}";
+                        BtnBookIcon.Content = "          ";
+                    }, SubWindows.InputInfoWithSearchWindow_PRESET.BOOK_ICON).ShowDialog();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DROP_BOOK_INFO);
                     break;
                 case "BtnChapter":
+                    new SubWindows.Global_ListSeleteWindow((string selectedChapterDes) => {
+                        innerBookNode.SetXmlInfoByPath("Chapter", selectedChapterDes.Split(':').Last());
+                        BtnChapter.ToolTip = selectedChapterDes;
+
+                        LblChapter.Content = selectedChapterDes;
+                        BtnChapter.Content = "          ";
+                    }, SubWindows.Global_ListSeleteWindow_PRESET.CHAPTERS).ShowDialog();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DROP_BOOK_INFO);
                     break;
 
                 case "BtnSelectKeyPage":
