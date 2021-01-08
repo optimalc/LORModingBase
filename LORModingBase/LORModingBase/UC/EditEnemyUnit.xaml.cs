@@ -46,9 +46,9 @@ namespace LORModingBase.UC
             {
                 string BOOK_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"BOOK");
 
-                BtnBookID.ToolTip = $"{BOOK_WORD} : {innerText}";
+                BtnBookID.ToolTip = $"{BOOK_WORD} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(innerText)}";
 
-                LblBookID.Content = $"{BOOK_WORD} : {innerText}";
+                LblBookID.Content = $"{BOOK_WORD} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(innerText)}";
                 BtnBookID.Content = "          ";
             });
             innerEnemyNode.ActionIfInnertTextIsNotNullOrEmpty("DeckId", (string innerText) =>
@@ -146,9 +146,9 @@ namespace LORModingBase.UC
                         innerEnemyNode.SetXmlInfoByPath("BookId", selectedItem);
                         string BOOK_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"BOOK");
 
-                        BtnBookID.ToolTip = $"{BOOK_WORD} : {selectedItem}";
+                        BtnBookID.ToolTip = $"{BOOK_WORD} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(selectedItem)}";
 
-                        LblBookID.Content = $"{BOOK_WORD} : {selectedItem}";
+                        LblBookID.Content = $"{BOOK_WORD} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(selectedItem)}";
                         BtnBookID.Content = "          ";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.CRITICAL_BOOKS).ShowDialog();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
@@ -164,7 +164,7 @@ namespace LORModingBase.UC
                         LblDeckID.Content = $"{DECK_WORD} : {selectedItem}";
                         BtnDeckID.Content = "          ";
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.DECKS).ShowDialog();
-                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DECKS);
                     break;
 
                 case "BtnRewardLevel_0":
