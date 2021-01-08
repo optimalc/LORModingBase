@@ -88,6 +88,7 @@ namespace LORModingBase.UC
             }
 
             InitSqlWaves();
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
         }
 
         /// <summary>

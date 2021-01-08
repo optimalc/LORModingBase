@@ -62,6 +62,7 @@ namespace LORModingBase.UC
             });
 
             InitRewards();
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
         }
 
         private void InitRewards()

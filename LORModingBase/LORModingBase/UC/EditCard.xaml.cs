@@ -123,6 +123,7 @@ namespace LORModingBase.UC
                 BtnDropCards.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnDropCards_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Inputted")})\n{extraInfo}";
             }
             #endregion
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
         }
 
         /// <summary>

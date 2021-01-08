@@ -38,12 +38,12 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Viewbox Grid.Column="0" Stretch="Fill" Margin="23,9">
-                    <Button x:Name="BtnAddDeck" Content="카드 추가" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="핵심 책장에 패시브를 추가합니다"/>
+                    <Button x:Name="BtnAddDeck" Content="카드 추가" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="덱에 카드를 추가합니다"/>
                 </Viewbox>
 
                 <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                 <Viewbox Grid.Column="1" Stretch="Fill" Margin="23,9">
-                    <Button x:Name="BtnDeleteDeck" Content="카드 삭제" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="선택된 핵심책장 패시브를 삭제합니다"/>
+                    <Button x:Name="BtnDeleteDeck" Content="카드 삭제" FontSize="15"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="SelectItemButtonEvents" ToolTip="덱에 선택된 카드를 삭제합니다"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Row="2">
@@ -78,7 +78,7 @@
                     <ImageBrush ImageSource="../Resources/BtnCopy.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="RightMenuButtonEvents" ToolTip="스테이지를 삭제합니다" >
+            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="RightMenuButtonEvents" ToolTip="덱을 삭제합니다" >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="12"/>

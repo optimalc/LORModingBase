@@ -58,6 +58,7 @@ namespace LORModingBase.UC
                     BtnUnits.Content = "          ";
                 }
             }
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
         }
 
         /// <summary>

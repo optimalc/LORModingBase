@@ -22,6 +22,7 @@ namespace LORModingBase.UC
             LblBookName.ToolTip = $"{BOOK_WORD} : {dropItemNode.innerText}";
 
             TbxBookCount.Text = dropItemNode.GetAttributesSafe("Prob");
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
         }
 
         private void ReflectTextChangeInTextBox(object sender, TextChangedEventArgs e)

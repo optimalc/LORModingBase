@@ -59,6 +59,7 @@ namespace LORModingBase.UC
                 RectAllInfo.Visibility = Visibility.Visible;
                 GldEffect.Visibility = Visibility.Visible;
             }
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
         }
 
         private void NomalButtonClickEvents(object sender, RoutedEventArgs e)

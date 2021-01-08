@@ -176,6 +176,7 @@ namespace LORModingBase.UC
                     BtnRangeType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"BtnRangeType_ToolTip")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.BOOK_INFO, $"TypeNear")})";
                 }
                 #endregion
+                MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
             }
             catch (Exception ex)
             {

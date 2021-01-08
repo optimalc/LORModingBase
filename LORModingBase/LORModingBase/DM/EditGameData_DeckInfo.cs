@@ -37,6 +37,7 @@ namespace LORModingBase.DM
                 XmlDataNode deckNodeBase = baseDeckNode[0].Copy();
                 deckNodeBase.attribute["ID"] = Tools.MathTools.GetRandomNumber(999999, 5999999).ToString();
                 deckNodeBase.RemoveXmlInfosByPath("Card");
+                deckNodeBase.RemoveXmlInfosByPath("Random");
                 return deckNodeBase;
             }
             else

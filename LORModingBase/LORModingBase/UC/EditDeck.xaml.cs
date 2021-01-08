@@ -33,6 +33,7 @@ namespace LORModingBase.UC
 
             TbxDeckID.Text = innerDeckNode.GetAttributesSafe("ID");
             InitLbxCards();
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DECKS);
         }
 
         public void InitLbxCards()

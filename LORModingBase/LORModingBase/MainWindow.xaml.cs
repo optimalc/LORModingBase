@@ -557,6 +557,7 @@ namespace LORModingBase
                             if (foundDeckIds.Count > 0)
                             {
                                 DM.XmlDataNode DECK_NODE_TO_USE = foundDeckIds[0].Copy();
+                                DECK_NODE_TO_USE.RemoveXmlInfosByPath("Random");
                                 DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.subNodes.Add(DECK_NODE_TO_USE);
                                 InitSplDecks();
                             }
