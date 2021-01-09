@@ -712,11 +712,11 @@ namespace LORModingBase
         #region EDIT MENU - Passive Infos
         private void InitSplPassives()
         {
-            //SplDropBooks.Children.Clear();
-            //DM.EditGameData_DropBookInfo.StaticDropBookInfo.rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode xmlDataNode) =>
-            //{
-            //    SplDropBooks.Children.Add(new UC.EditDropBook(xmlDataNode, InitSplDropBooks));
-            //});
+            SqlPassives.Children.Clear();
+            DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode xmlDataNode) =>
+            {
+                SqlPassives.Children.Add(new UC.EditPassive(xmlDataNode, InitSplPassives));
+            });
         }
 
         private void PassiveGridButtonClickEvents(object sender, RoutedEventArgs e)
@@ -734,55 +734,41 @@ namespace LORModingBase
                 switch (clickButton.Name)
                 {
                     case "BtnAddPassives":
-                        //DM.EditGameData_DropBookInfo.StaticDropBookInfo.rootDataNode.subNodes.Add(
-                        //DM.EditGameData_DropBookInfo.MakeNewDropBookInfoBase());
+                        DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.subNodes.Add(
+                        DM.EditGameData_PassiveInfo.MakeNewPassiveListBase());
                         InitSplPassives();
                         break;
                     case "BtnLoadPassives":
                         new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
                         {
-                            //List<DM.XmlDataNode> foundDropBookIds = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
-                            //        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            List<DM.XmlDataNode> foundPassiveIds = DM.GameInfos.staticInfos["PassiveList"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Passive",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
                             //if (foundDropBookIds.Count <= 0)
                             //    foundDropBookIds = DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
                             //        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
 
-                            //if (foundDropBookIds.Count > 0)
-                            //{
-                            //    DM.XmlDataNode DROP_BOOK_NODE_TO_USE = foundDropBookIds[0].Copy();
-                            //    DM.EditGameData_DropBookInfo.StaticDropBookInfo.rootDataNode.subNodes.Add(DROP_BOOK_NODE_TO_USE);
+                            if (foundPassiveIds.Count > 0)
+                            {
+                                DM.XmlDataNode PASSIVE_NODE_TO_USE = foundPassiveIds[0].Copy();
+                                DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.subNodes.Add(PASSIVE_NODE_TO_USE);
 
 
-                            //    #region Add localized book name
-                            //    List<DM.XmlDataNode> foundLocalizeBookName = DM.GameInfos.localizeInfos["etc"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("text",
-                            //                                                                       attributeToCheck: new Dictionary<string, string>() { { "id", DROP_BOOK_NODE_TO_USE.GetInnerTextByPath("TextId") } });
-                            //    if (foundLocalizeBookName.Count > 0)
-                            //    {
-                            //        if (!DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.CheckIfGivenPathWithXmlInfoExists("text",
-                            //                   attributeToCheck: new Dictionary<string, string>() { { "id", DROP_BOOK_NODE_TO_USE.GetInnerTextByPath("TextId") } }))
-                            //        {
-                            //            DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.subNodes.Add(foundLocalizeBookName[0].Copy());
-                            //        }
-                            //    }
-                            //    #endregion
-                            //    #region Add additionanl card table info
-                            //    List<DM.XmlDataNode> foundCardDropTables = DM.GameInfos.staticInfos["CardDropTable"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("DropTable",
-                            //            attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                                #region Add localized book name
+                                List<DM.XmlDataNode> foundLocalizePassiveDesc = DM.GameInfos.localizeInfos["PassiveDesc"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("PassiveDesc",
+                                                                                                   attributeToCheck: new Dictionary<string, string>() { { "ID", PASSIVE_NODE_TO_USE.GetAttributesSafe("ID") } });
+                                if (foundLocalizePassiveDesc.Count > 0)
+                                {
+                                    if (!DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.CheckIfGivenPathWithXmlInfoExists("PassiveDesc",
+                                               attributeToCheck: new Dictionary<string, string>() { { "ID", PASSIVE_NODE_TO_USE.GetAttributesSafe("ID") } }))
+                                    {
+                                        DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.subNodes.Add(foundLocalizePassiveDesc[0].Copy());
+                                    }
+                                }
+                                #endregion
 
-                            //    if (foundCardDropTables.Count > 0)
-                            //    {
-                            //        if (!DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.CheckIfGivenPathWithXmlInfoExists("DropTable",
-                            //                attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } }))
-                            //        {
-                            //            DM.XmlDataNode CARD_DROP_TABLE_TO_USE = foundCardDropTables[0].Copy();
-                            //            DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.subNodes.Add(CARD_DROP_TABLE_TO_USE);
-                            //        }
-                            //    }
-                            //    #endregion
-
-                            //    InitSplDropBooks();
-                            //}
-                        }, SubWindows.InputInfoWithSearchWindow_PRESET.DROP_BOOK).ShowDialog();
+                                InitSplPassives();
+                            }
+                        }, SubWindows.InputInfoWithSearchWindow_PRESET.PASSIVE).ShowDialog();
                         break;
                 }
             }

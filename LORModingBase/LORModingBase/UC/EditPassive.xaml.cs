@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LORModingBase.UC
 {
@@ -27,8 +18,10 @@ namespace LORModingBase.UC
         public EditPassive(DM.XmlDataNode innerPassiveNode, Action initStack)
         {
             InitializeComponent();
-            this.innerPassiveNode = innerPassiveNode;
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.PASSIVE_INFO);
+
             this.initStack = initStack;
+            this.innerPassiveNode = innerPassiveNode;
 
             switch (innerPassiveNode.GetInnerTextByPath("Rarity"))
             {
@@ -45,6 +38,16 @@ namespace LORModingBase.UC
                     ChangeRarityButtonEvents(BtnRarity_Unique, null);
                     break;
             }
+
+            TbxCost.Text = innerPassiveNode.GetInnerTextByPath("Cost");
+            TbxPassiveID.Text = innerPassiveNode.GetAttributesSafe("ID");
+
+            DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.ActionXmlDataNodesByAttributeWithPath("PassiveDesc", "ID", innerPassiveNode.GetAttributesSafe("ID"),
+                (DM.XmlDataNode passiveDescNode) => {
+                    TbxPassiveName.Text = passiveDescNode.GetInnerTextByPath("Name");
+                    TbxPassiveDes.Text = passiveDescNode.GetInnerTextByPath("Desc");
+                });
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_PASSIVE_INTO);
         }
 
         /// <summary>
@@ -62,7 +65,7 @@ namespace LORModingBase.UC
             rarityButton.Background = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
             WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr(rarityButton.Tag.ToString());
             innerPassiveNode.SetXmlInfoByPath("Rarity", rarityButton.Name.Split('_').Last());
-            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_PASSIVE_INTO);
         } 
         #endregion
 
@@ -78,12 +81,63 @@ namespace LORModingBase.UC
             switch (tbx.Name)
             {
                 case "TbxCost":
+                    innerPassiveNode.SetXmlInfoByPath("Cost", tbx.Text);
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_PASSIVE_INTO);
                     break;
-                case "LblPassiveID":
+                case "TbxPassiveID":
+                    string PREV_PASSIVE_ID = innerPassiveNode.attribute["ID"];
+                    #region Books info localizing ID refrect
+                    if (DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.CheckIfGivenPathWithXmlInfoExists("PassiveDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", PREV_PASSIVE_ID } }))
+                    {
+                        List<DM.XmlDataNode> foundPassiveDescsForID = DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("PassiveDesc",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", PREV_PASSIVE_ID } });
+
+                        if (foundPassiveDescsForID.Count > 0)
+                        {
+                            foundPassiveDescsForID[0].attribute["ID"] = tbx.Text;
+                        }
+                    }
+                    #endregion
+                    innerPassiveNode.attribute["ID"] = tbx.Text;
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_PASSIVE_INTO);
                     break;
                 case "TbxPassiveName":
+                    if (!DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.CheckIfGivenPathWithXmlInfoExists("PassiveDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", innerPassiveNode.GetAttributesSafe("ID") } } )
+                        && !string.IsNullOrEmpty(innerPassiveNode.GetAttributesSafe("ID")))
+                    {
+                        DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.subNodes.Add(
+                            DM.EditGameData_PassiveInfo.MakeNewPassiveDescBase(TbxPassiveID.Text, TbxPassiveName.Text, TbxPassiveDes.Text));
+                    }
+
+                    List<DM.XmlDataNode> foundPassiveDescsForName = DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("PassiveDesc",
+                          attributeToCheck: new Dictionary<string, string>() { { "ID", innerPassiveNode.GetAttributesSafe("ID") } });
+
+                    if (foundPassiveDescsForName.Count > 0)
+                    {
+                        foundPassiveDescsForName[0].SetXmlInfoByPath("Name", tbx.Text);
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_PASSIVE_DESC);
                     break;
                 case "TbxPassiveDes":
+                    if (!DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.CheckIfGivenPathWithXmlInfoExists("PassiveDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", innerPassiveNode.GetAttributesSafe("ID") } })
+                        && !string.IsNullOrEmpty(innerPassiveNode.GetAttributesSafe("ID")))
+                    {
+                        DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.subNodes.Add(
+                            DM.EditGameData_PassiveInfo.MakeNewPassiveDescBase(TbxPassiveID.Text, TbxPassiveName.Text, TbxPassiveDes.Text));
+                    }
+
+                    List<DM.XmlDataNode> foundPassiveDescsForDesc = DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("PassiveDesc",
+                          attributeToCheck: new Dictionary<string, string>() { { "ID", innerPassiveNode.GetAttributesSafe("ID") } });
+
+                    if (foundPassiveDescsForDesc.Count > 0)
+                    {
+                        foundPassiveDescsForDesc[0].SetXmlInfoByPath("Desc", tbx.Text);
+                    }
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_PASSIVE_DESC);
                     break;
             }
         }
@@ -97,15 +151,28 @@ namespace LORModingBase.UC
             switch (btn.Name)
             {
                 case "BtnCopyPassive":
+                    DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.subNodes.Add(innerPassiveNode.Copy());
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_PASSIVE_INTO);
                     break;
 
                 case "BtnDelete":
+                    if (DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.CheckIfGivenPathWithXmlInfoExists("PassiveDesc",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", innerPassiveNode.GetAttributesSafe("ID") } }))
+                    {
+                        if (DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Passive", 
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", innerPassiveNode.GetAttributesSafe("ID") } }).Count == 1)
+                            DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.RemoveXmlInfosByPath("PassiveDesc",
+                               attributeToCheck: new Dictionary<string, string>() { { "ID", innerPassiveNode.GetAttributesSafe("ID") } });
+                    }
+
+                    DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.subNodes.Remove(innerPassiveNode);
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_PASSIVE_INTO);
                     break;
             }
-
-            initStack();
-            MainWindow.mainWindow.UpdateDebugInfo();
-            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
         }
     }
 }
