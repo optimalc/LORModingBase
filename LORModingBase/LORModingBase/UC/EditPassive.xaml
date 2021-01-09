@@ -45,7 +45,7 @@
                 <Viewbox Grid.Column="0" Stretch="Fill">
                     <Label x:Name="LblPassiveID" Content="고유 ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
                 </Viewbox>
-                <TextBox x:Name="TbxPassiveID" Grid.Column="1" Text="" ToolTip="패시브의 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+                <TextBox x:Name="TbxPassiveID" Grid.Column="1" Text="" ToolTip="패시브의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
 
 
                 <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
@@ -60,7 +60,7 @@
                     <RowDefinition Height="90*"/>
                 </Grid.RowDefinitions>
                 <Viewbox Grid.Row="0" Stretch="Fill">
-                    <Label x:Name="LblEmotionReward" Content="-- 패시브 관련 설명 --" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                    <Label x:Name="LblPassiveDes" Content="-- 패시브 관련 설명 --" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 </Viewbox>
                 <Grid Grid.Row="1">
                     <TextBox Margin="5" x:Name="TbxPassiveDes" Text="" Grid.Row="1" ToolTip="패시브의 설명을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" TextChanged="ReflectTextChangeInTextBox"/>

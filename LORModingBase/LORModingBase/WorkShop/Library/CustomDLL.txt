@@ -77,3 +77,8 @@ public class PassiveAbility_89898989 : PassiveAbilityBase
 		<Desc>898989 EGO가 사용 가능해짐</Desc> <!-- 관련 설명 -->
     </PassiveDesc>
 </PassiveDescRoot>
+
+[고유 ID] [이름] [DLL 생성]
+[코스트] [희귀도]
+[설명]
+
