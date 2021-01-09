@@ -26,8 +26,10 @@ namespace LORModingBase.UC
         public EditCardAbility(DM.XmlDataNode innerAbilityNode, Action initStack)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.CARD_ABILITY_INFO);
             this.innerAbilityNode = innerAbilityNode;
             this.initStack = initStack;
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_CARD_ABILITY_DESC);
         }
 
         /// <summary>
@@ -43,6 +45,11 @@ namespace LORModingBase.UC
             {
                 case "TbxAbilityID":
                     innerAbilityNode.attribute["ID"] = tbx.Text;
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_CARD_ABILITY_DESC);
+                    break;
+                case "TbxAbilityDes":
+                    innerAbilityNode.SetXmlInfoByPath("Desc", tbx.Text);
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_CARD_ABILITY_DESC);
                     break;
             }
             MainWindow.mainWindow.UpdateDebugInfo();
@@ -57,16 +64,16 @@ namespace LORModingBase.UC
             switch (btn.Name)
             {
                 case "BtnCopyAbility":
-                    //DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.subNodes.Add(innerDeckNode.Copy());
-                    //initStack();
-                    //MainWindow.mainWindow.UpdateDebugInfo();
-                    //MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DECKS);
+                    DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.subNodes.Add(innerAbilityNode.Copy());
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_CARD_ABILITY_DESC);
                     break;
                 case "BtnDelete":
-                    //DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.subNodes.Remove(innerDeckNode);
-                    //initStack();
-                    //MainWindow.mainWindow.UpdateDebugInfo();
-                    //MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_DECKS);
+                    DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.subNodes.Remove(innerAbilityNode);
+                    initStack();
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_CARD_ABILITY_DESC);
                     break;
             }
         }

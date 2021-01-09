@@ -793,11 +793,11 @@ namespace LORModingBase
         #region EDIT MENU - Card Ability Infos
         private void InitSplCardAbilities()
         {
-            //SqlPassives.Children.Clear();
-            //DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode xmlDataNode) =>
-            //{
-            //    SqlPassives.Children.Add(new UC.EditPassive(xmlDataNode, InitSplPassives));
-            //});
+            SqlCardAbilies.Children.Clear();
+            DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode xmlDataNode) =>
+            {
+                SqlCardAbilies.Children.Add(new UC.EditCardAbility(xmlDataNode, InitSplCardAbilities));
+            });
         }
 
         private void CardAbilityGridButtonClickEvents(object sender, RoutedEventArgs e)
@@ -815,41 +815,26 @@ namespace LORModingBase
                 switch (clickButton.Name)
                 {
                     case "BtnAddCardAbility":
-                        //DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.subNodes.Add(
-                        //DM.EditGameData_PassiveInfo.MakeNewPassiveListBase());
+                        DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.subNodes.Add(
+                        DM.EditGameData_CardAbilityInfo.MakeNewCardAbilityInfoBase());
                         InitSplCardAbilities();
                         break;
                     case "BtnLoadCardAbility":
-                        //new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
-                        //{
-                        //    List<DM.XmlDataNode> foundPassiveIds = DM.GameInfos.staticInfos["PassiveList"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Passive",
-                        //            attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
-                        //    if (foundPassiveIds.Count <= 0)
-                        //        foundPassiveIds = DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Passive",
-                        //            attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                        new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                        {
+                            List<DM.XmlDataNode> foundCardAbilityIds = DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
+                           attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            //if (foundCardAbilityIds.Count <= 0)
+                            //    foundCardAbilityIds = DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Deck",
+                            //                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
 
-                        //    if (foundPassiveIds.Count > 0)
-                        //    {
-                        //        DM.XmlDataNode PASSIVE_NODE_TO_USE = foundPassiveIds[0].Copy();
-                        //        DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.subNodes.Add(PASSIVE_NODE_TO_USE);
-
-
-                        //        #region Add localized book name
-                        //        List<DM.XmlDataNode> foundLocalizePassiveDesc = DM.GameInfos.localizeInfos["PassiveDesc"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("PassiveDesc",
-                        //                                                                           attributeToCheck: new Dictionary<string, string>() { { "ID", PASSIVE_NODE_TO_USE.GetAttributesSafe("ID") } });
-                        //        if (foundLocalizePassiveDesc.Count > 0)
-                        //        {
-                        //            if (!DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.CheckIfGivenPathWithXmlInfoExists("PassiveDesc",
-                        //                       attributeToCheck: new Dictionary<string, string>() { { "ID", PASSIVE_NODE_TO_USE.GetAttributesSafe("ID") } }))
-                        //            {
-                        //                DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.subNodes.Add(foundLocalizePassiveDesc[0].Copy());
-                        //            }
-                        //        }
-                        //        #endregion
-
-                        //        InitSplCardAbilities();
-                        //    }
-                        //}, SubWindows.InputInfoWithSearchWindow_PRESET.PASSIVE).ShowDialog();
+                            if (foundCardAbilityIds.Count > 0)
+                            {
+                                DM.XmlDataNode CARD_ABILITY_NODE_TO_USE = foundCardAbilityIds[0].Copy();
+                                DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.subNodes.Add(CARD_ABILITY_NODE_TO_USE);
+                                InitSplCardAbilities();
+                            }
+                        }, SubWindows.InputInfoWithSearchWindow_PRESET.ALL_ABILITES).ShowDialog();
                         break;
                 }
             }

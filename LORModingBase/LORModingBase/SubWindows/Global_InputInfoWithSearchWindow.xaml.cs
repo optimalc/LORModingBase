@@ -202,6 +202,19 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
+                case InputInfoWithSearchWindow_PRESET.ALL_ABILITES:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DICE_ABILITES_TITLE");
+                    DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
+                    {
+                        string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(ABILITIY_ID))
+                        {
+                            string ABILITY_DES = DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID);
+                            selectItems.Add($"{ABILITY_DES}:{ABILITIY_ID}");
+                        }
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
+                    break;
 
                 case InputInfoWithSearchWindow_PRESET.CARDS:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARDS_TITLE");
@@ -372,6 +385,7 @@ namespace LORModingBase.SubWindows
         CARD_ARTWORK,
         CARD_ABILITES,
         DICE_ABILITES,
+        ALL_ABILITES,
         CARDS,
 
         MAP_INFO,
