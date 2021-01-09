@@ -743,9 +743,9 @@ namespace LORModingBase
                         {
                             List<DM.XmlDataNode> foundPassiveIds = DM.GameInfos.staticInfos["PassiveList"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Passive",
                                     attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
-                            //if (foundDropBookIds.Count <= 0)
-                            //    foundDropBookIds = DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
-                            //        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            if (foundPassiveIds.Count <= 0)
+                                foundPassiveIds = DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Passive",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
 
                             if (foundPassiveIds.Count > 0)
                             {

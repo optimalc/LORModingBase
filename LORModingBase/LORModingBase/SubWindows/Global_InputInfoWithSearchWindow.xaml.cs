@@ -105,6 +105,15 @@ namespace LORModingBase.SubWindows
                 case InputInfoWithSearchWindow_PRESET.PASSIVE:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"PASSIVE_TITLE");
                     LblHelpMessage.Content = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"PASSIVE_HELP");
+                    #region Add custom items
+                    DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode customNode) =>
+                    {
+                        string PASSIVE_ID = customNode.GetAttributesSafe("ID");
+                        string PASSIVE_DES = DM.LocalizedGameDescriptions.GetDescriptionForPassive(customNode.GetAttributesSafe("ID"));
+                        selectItems.Add($"{CUSTOM_ITEM_WORD} {PASSIVE_DES}:{PASSIVE_ID}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.staticInfos["PassiveList"].rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode passiveNode) =>
                     {
                         string PASSIVE_ID = passiveNode.GetAttributesSafe("ID");
