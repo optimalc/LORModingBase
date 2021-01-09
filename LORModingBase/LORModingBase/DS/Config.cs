@@ -10,6 +10,8 @@
         /// </summary>
         public string LORFolderPath = "";
 
+        public string DLLCompilerPath = "";
+
         public bool isDirectBaseModeExport = true;
 
         public bool isLogPlusMod = false;

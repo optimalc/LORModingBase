@@ -39,10 +39,19 @@
                     <ColumnDefinition Width="60*"/>
                 </Grid.ColumnDefinitions>
 
+                <Label x:Name="LblDLLCompilerPath" Grid.Column="0" Content="&lt; DLL 컴파일러 위치 &gt;" FontSize="15"  Style="{StaticResource StyLbl}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbxDLLCompilerPath" Grid.Column="1" Text="" ToolTip="DLL 컴파일러의 위치를 지정합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewMouseLeftButtonDown="OptionWindowTextBoxLeftButtonDownEvents"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+
                 <Label x:Name="LblBaseModeResourceDes" Grid.Column="0" Content="&lt; 기반모드 리소스 인식 여부 &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <Label x:Name="LblBaseModeResource" Grid.Column="1" Content="O" FontSize="15"  Style="{StaticResource StyLbl}"/>
             </Grid>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40*"/>
                     <ColumnDefinition Width="60*"/>
@@ -52,7 +61,7 @@
                 <CheckBox x:Name="CbxDirectBaseModeExport" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="OptionWindowClickCheckboxEvents"
                           ToolTip="체크를 하면 해당 프로그램의 exportedModes 디렉토리가 아닌, 기반모드의 BaseModes 디렉토리로 바로 결과를 내보냅니다"/>
             </Grid>
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40*"/>
                     <ColumnDefinition Width="60*"/>
@@ -61,7 +70,7 @@
                 <Label Grid.Column="0" Content="&lt; Language &gt;" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <TextBox x:Name="TbxProgramLanguage" Grid.Column="1" Text="" ToolTip="Change program language (Restart required)" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewMouseLeftButtonDown="OptionWindowTextBoxLeftButtonDownEvents"/>
             </Grid>
-            <Grid Grid.Row="4">
+            <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40*"/>
                     <ColumnDefinition Width="60*"/>

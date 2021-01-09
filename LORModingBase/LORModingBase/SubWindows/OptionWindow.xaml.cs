@@ -27,6 +27,8 @@ namespace LORModingBase.SubWindows
         {
             TbxLORPath.Text = DM.Config.config.LORFolderPath;
             TbxLORPath.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"%TbxLORPath_ToolTip%")}{DM.Config.config.LORFolderPath}";
+            TbxDLLCompilerPath.Text = DM.Config.config.DLLCompilerPath;
+            TbxDLLCompilerPath.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"%TbxDLLCompilerPath_ToolTip%")}{DM.Config.config.DLLCompilerPath}"; ;
 
             if (!Directory.Exists(DM.Config.GAME_RESOURCE_PATHS.RESOURCE_ROOT_STATIC))
             {
@@ -57,6 +59,36 @@ namespace LORModingBase.SubWindows
             {
                 switch (clickTextBox.Name)
                 {
+                    case "TbxDLLCompilerPath":
+                        Tools.Dialog.SelectDirectory((string selectedDir) =>
+                        {
+                            try
+                            {
+                                bool isOk = false;
+                                Directory.GetFiles(selectedDir).ToList().ForEach((string eachFile) =>
+                                {
+                                    if (eachFile.Split('\\').Last() == "csc.exe")
+                                        isOk = true;
+                                });
+
+                                if(isOk)
+                                {
+                                    DM.Config.config.DLLCompilerPath = $"{selectedDir}\\csc.exe";
+                                    DM.Config.SaveData();
+                                    InitSettingUIs();
+
+                                    initResourceFunc();
+                                }
+                                else
+                                    Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"DLLCompilerPathError"), "Error");
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Tools.MessageBoxTools.ShowErrorMessageBox(ex, DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"OptionWindowTextBoxLeftButtonDownEvents_Error"));
+                            }
+                        });
+                        break;
                     case "TbxLORPath":
                         Tools.Dialog.SelectDirectory((string selectedDir) =>
                         {
