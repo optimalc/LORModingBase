@@ -155,6 +155,10 @@ namespace LORModingBase.DM
             if (string.IsNullOrEmpty(passiveName)) return "";
             List<XmlDataNode> cardPassiveNodes = DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
                 attributeToCheck: new Dictionary<string, string>() { { "ID", passiveName } });
+            if(cardPassiveNodes.Count <= 0)
+                cardPassiveNodes = DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
+                    attributeToCheck: new Dictionary<string, string>() { { "ID", passiveName } });
+
             if (cardPassiveNodes.Count > 0)
             {
                 string PASSIVE_DESC = cardPassiveNodes[0].GetInnerTextByPath("Desc");

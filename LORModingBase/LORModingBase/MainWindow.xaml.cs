@@ -824,9 +824,9 @@ namespace LORModingBase
                         {
                             List<DM.XmlDataNode> foundCardAbilityIds = DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
                            attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
-                            //if (foundCardAbilityIds.Count <= 0)
-                            //    foundCardAbilityIds = DM.EditGameData_DeckInfo.StaticDeckInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Deck",
-                            //                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            if (foundCardAbilityIds.Count <= 0)
+                                foundCardAbilityIds = DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
 
                             if (foundCardAbilityIds.Count > 0)
                             {

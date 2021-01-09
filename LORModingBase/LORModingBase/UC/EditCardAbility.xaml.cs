@@ -29,6 +29,9 @@ namespace LORModingBase.UC
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.CARD_ABILITY_INFO);
             this.innerAbilityNode = innerAbilityNode;
             this.initStack = initStack;
+
+            TbxAbilityID.Text = innerAbilityNode.GetAttributesSafe("ID");
+            TbxAbilityDes.Text = innerAbilityNode.GetInnerTextByPath("Desc");
             MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_CARD_ABILITY_DESC);
         }
 

@@ -176,6 +176,18 @@ namespace LORModingBase.SubWindows
 
                 case InputInfoWithSearchWindow_PRESET.CARD_ABILITES:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARD_ABILITES_TITLE");
+                    #region Add custom items
+                    DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode customNode) =>
+                    {
+                        string ABILITIY_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(ABILITIY_ID))
+                        {
+                            string ABILITY_DES = DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID);
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {ABILITY_DES}:{ABILITIY_ID}");
+                        }
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
                     {
                         string ABILITIY_ID = abilityNode.GetAttributesSafe("ID"); 
@@ -190,6 +202,18 @@ namespace LORModingBase.SubWindows
                     break;
                 case InputInfoWithSearchWindow_PRESET.DICE_ABILITES:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DICE_ABILITES_TITLE");
+                    #region Add custom items
+                    DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode customNode) =>
+                    {
+                        string ABILITIY_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(ABILITIY_ID))
+                        {
+                            string ABILITY_DES = DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID);
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {ABILITY_DES}:{ABILITIY_ID}");
+                        }
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
                     {
                         string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
@@ -203,7 +227,18 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
                 case InputInfoWithSearchWindow_PRESET.ALL_ABILITES:
-                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DICE_ABILITES_TITLE");
+                    #region Add custom items
+                    DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode customNode) =>
+                    {
+                        string ABILITIY_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(ABILITIY_ID))
+                        {
+                            string ABILITY_DES = DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID);
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {ABILITY_DES}:{ABILITIY_ID}");
+                        }
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode abilityNode) =>
                     {
                         string ABILITIY_ID = abilityNode.GetAttributesSafe("ID");
