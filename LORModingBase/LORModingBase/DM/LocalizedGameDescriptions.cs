@@ -46,7 +46,10 @@ namespace LORModingBase.DM
         public static string GetDescriptionForETC(string etcName)
         {
             if (string.IsNullOrEmpty(etcName)) return "";
-            return DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName, $"Etc :{etcName}");
+            string ETC_NAME = DM.GameInfos.localizeInfos["etc"].rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName);
+            if (string.IsNullOrEmpty(ETC_NAME))
+                ETC_NAME = DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.GetInnerTextByAttributeWithPath("text", "id", etcName);
+            return string.IsNullOrEmpty(ETC_NAME) ? $"ETC NAME :{etcName}" : ETC_NAME;
         }
     
         /// <summary>
@@ -392,6 +395,10 @@ namespace LORModingBase.DM
         {
             List<XmlDataNode> foundDataNodes = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
                 attributeToCheck: new Dictionary<string, string>() { { "ID", dropBookID } });
+            if (foundDataNodes.Count <= 0)
+                foundDataNodes = DM.EditGameData_DropBookInfo.StaticDropBookInfo.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                    attributeToCheck: new Dictionary<string, string>() { { "ID", dropBookID } });
+
             if (foundDataNodes.Count > 0)
             {
                 XmlDataNode DROP_BOOK_NODE = foundDataNodes[0];

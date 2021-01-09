@@ -1,0 +1,55 @@
+<ModInfo>
+  <ClothInfo>
+    <Name>manaS</Name>
+    <Default>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="379.5" rotation="0" head_enable="True" />
+    </Default>
+    <Guard>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="-2.384186E-06" pivot_y="-400.0002" />
+      <Head head_x="-55.19999" head_y="338.1" rotation="0" head_enable="True" />
+    </Guard>
+    <Evade>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="303.6" pivot_y="-400" />
+      <Head head_x="-41.39978" head_y="331.2" rotation="0" head_enable="True" />
+    </Evade>
+    <Damaged>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="78.2" pivot_y="-372.4001" />
+      <Head head_x="-57.5" head_y="312.8" rotation="0" head_enable="True" />
+    </Damaged>
+    <Slash>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-52.89998" head_y="340.4" rotation="0" head_enable="True" />
+    </Slash>
+    <Penetrate>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-50.59999" head_y="338.0999" rotation="0" head_enable="True" />
+    </Penetrate>
+    <Hit>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-48.3" head_y="335.8" rotation="0" head_enable="True" />
+    </Hit>
+    <Move>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-50.59999" head_y="342.7" rotation="0" head_enable="True" />
+    </Move>
+    <Fire>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-48.3" head_y="338.1" rotation="0" head_enable="True" />
+    </Fire>
+    <Aim>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="66.69998" pivot_y="-377" />
+      <Head head_x="-48.3" head_y="310.5" rotation="0" head_enable="True" />
+    </Aim>
+  </ClothInfo>
+</ModInfo>

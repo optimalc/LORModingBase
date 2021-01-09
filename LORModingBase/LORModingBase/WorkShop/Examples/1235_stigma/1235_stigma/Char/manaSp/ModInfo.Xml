@@ -1,0 +1,55 @@
+<ModInfo>
+  <ClothInfo>
+    <Name>necromancer</Name>
+    <Default>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="0" head_y="379.5" rotation="0" head_enable="False" />
+    </Default>
+    <Guard>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-57.5" head_y="374.9" rotation="0" head_enable="False" />
+    </Guard>
+    <Evade>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="312" pivot_y="-400" />
+      <Head head_x="36.8" head_y="395.6" rotation="7" head_enable="False" />
+    </Evade>
+    <Damaged>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-18.4" head_y="365.7" rotation="0" head_enable="False" />
+    </Damaged>
+    <Slash>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-23" head_y="374.9" rotation="0" head_enable="False" />
+    </Slash>
+    <Penetrate>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-57.5" head_y="374.9" rotation="0" head_enable="False" />
+    </Penetrate>
+ <Hit>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-57.5" head_y="374.9" rotation="0" head_enable="False" />
+    </Hit>
+    <Aim>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="106.65" pivot_y="-400" />
+      <Head head_x="-106.65" head_y="400" rotation="0" head_enable="False" />
+    </Aim>
+    <Fire>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-57.5" head_y="374.9" rotation="0" head_enable="False" />
+    </Fire>
+    <Move>
+      <Direction>Front</Direction>
+      <Pivot pivot_x="0" pivot_y="-400" />
+      <Head head_x="-57.5" head_y="374.9" rotation="0" head_enable="False" />
+    </Move>
+  </ClothInfo>
+</ModInfo>

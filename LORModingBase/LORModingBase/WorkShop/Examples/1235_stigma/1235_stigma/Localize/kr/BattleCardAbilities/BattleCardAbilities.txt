@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattleCardAbilityDescRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ 
+  <BattleCardAbility ID="Powered4times">
+    <Desc>이 주사위는 위력 증감의 효율을 4배로 받는다</Desc>
+  </BattleCardAbility>
+
+  <BattleCardAbility ID="energyfire">
+    <Desc>[전투 시작] 무작위 적 1명에게 화상 1 부여</Desc>
+    <Desc>[사용 시] 빛 1 회복</Desc>
+  </BattleCardAbility>
+
+  <BattleCardAbility ID="takeB4">
+    <Desc>[사용 시] 화상 4를 얻음</Desc>
+  </BattleCardAbility>
+
+  <BattleCardAbility ID="Burn2time">
+    <Desc>[사용 시] 대상이 화상 상태라면, 이 책장의 흐트러짐 피해량 +50%</Desc>
+  </BattleCardAbility>
+
+  <BattleCardAbility ID="costpower">
+    <Desc>[합산] 이 책장의 비용X5 만큼 위력 증가
+[적중] 자신의 감정단계만큼 화상 부여</Desc>
+  </BattleCardAbility>
+
+  <BattleCardAbility ID="usecost">
+    <Desc>[광역 공격 책장]</Desc>
+    <Desc>[사용 시] 막이 종료될 때, 이 책장의 비용 2 증가(최대 3번)</Desc>
+  </BattleCardAbility>
+
+  <BattleCardAbility ID="usecostS">
+    <Desc>[광역 공격 책장]</Desc>
+    <Desc>[사용 시] 막이 종료될 때, 이 책장의 비용 2 증가(최대 3번)</Desc>
+    <Desc>[선천성] 이 책장은 반드시 첫막부터 손에 존재한다</Desc>
+  </BattleCardAbility>
+
+  <BattleCardAbility ID="ZT">
+    <Desc>이 책장으로 적을 처치하거나 흐트러짐 상태로 만들었을경우</Desc>
+    <Desc>빛을 1 회복하고 책장을 1장 뽑는다.</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="ZTrue">
+    <Desc>대상의 화상수치
+만큼 모든 피해량 증가</Desc>
+  </BattleCardAbility>
+
+  <BattleCardAbility ID="nak1">
+    <Desc>[적중] 영구 화상 5 부여</Desc>
+  </BattleCardAbility>
+
+  <BattleCardAbility ID="firefire">
+    <Desc>[전투 시작] 이번 막에 사용하는 모든 공격 주사위에
+"[적중] 화상 1 부여"를 추가한다.</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="youhitD2">
+    <Desc>[합 시작 시] 대상 책장의
+모든 공격 주사위 위력 -1</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="burnPlus2">
+    <Desc>[전투 시작] 이번 막동안 부여하는 화상 수치 +2</Desc>
+  </BattleCardAbility>
+  <BattleCardAbility ID="burnP">
+    <Desc>[적중] 대상의 화상 수치만큼 피해 (최대15)</Desc>
+  </BattleCardAbility>
+</BattleCardAbilityDescRoot>

@@ -237,6 +237,16 @@ namespace LORModingBase.UC
                         LblEpisode.Content = $"{STAGE_WORD} : {STAGE_DES}";
                         BtnEpisode.Content = "          ";
 
+                        #region Input Chapter (Critical)
+                        DM.GameInfos.staticInfos["StageInfo"].rootDataNode.ActionXmlDataNodesByAttributeWithPath("Stage", "id", selectedItem, (DM.XmlDataNode episodeNode) =>
+                        {
+                            string CHPATER_INFO = episodeNode.GetInnerTextByPath("Chapter");
+                            if (string.IsNullOrEmpty(CHPATER_INFO))
+                                CHPATER_INFO = "1";
+                            innerCriticalPageNode.SetXmlInfoByPath("Chapter", CHPATER_INFO);
+                        });
+                        #endregion
+
                         MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_EQUIP_PAGE);
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;

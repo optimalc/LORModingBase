@@ -35,6 +35,7 @@ namespace LORModingBase.SubWindows
         {
             InitializeComponent();
             string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+            string IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelectItem = afterSelectItem;
             List<string> searchTypes = new List<string>();
@@ -63,6 +64,22 @@ namespace LORModingBase.SubWindows
                     break;
                 case InputInfoWithSearchWindow_PRESET.BOOK_ICON:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"BOOK_ICON_TITLE");
+                    #region Add custom items
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last().Split('.')[0];
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
                     DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
                     {
                         string BOOK_ICON_NAME = bookUseNode.GetInnerTextByPath("BookIcon");
@@ -122,7 +139,6 @@ namespace LORModingBase.SubWindows
                 case InputInfoWithSearchWindow_PRESET.CARD_ARTWORK:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARD_ARTWORK_TITLE");
                     #region Add custom items
-                    string IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
                     if (Directory.Exists(IMAGE_DIRECTORY))
                     {
                         Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
@@ -248,6 +264,24 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(DM.LocalizedGameDescriptions.GetDecriptionForDeck(DECK_ID));
                     });
                     break;
+                case InputInfoWithSearchWindow_PRESET.DROP_BOOK:
+                    #region Add custom items
+                    DM.EditGameData_DropBookInfo.StaticDropBookInfo.rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode customNode) =>
+                    {
+                        string BOOK_USE_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BOOK_USE_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(BOOK_USE_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    DM.GameInfos.staticInfos["DropBook"].rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode bookUseNode) =>
+                    {
+                        string BOOK_USE_ID = bookUseNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BOOK_USE_ID))
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForDropBook(BOOK_USE_ID));
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -333,6 +367,8 @@ namespace LORModingBase.SubWindows
 
         FORMATION,
         ENEMIES,
-        DECKS
+        DECKS,
+
+        DROP_BOOK
     };
 }

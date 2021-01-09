@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PassiveDescRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         
+
+         <PassiveDesc ID="5607777">
+                        <Name>화염 흡수 장치/업화</Name>
+    <Desc>화상으로 피해를 입지않고, 매 막 종료마다 화상 수치만큼 흐트러짐 저항 
+회복
+화상을 부여할 때, 자신에게도 화상 부여(해당 효과는 전투책장으로 화상을 부여할 때 추가 부여의 효과를 
+받지 않는다)</Desc>
+         </PassiveDesc>
+
+         <PassiveDesc ID="5608888">
+                        <Name>업화</Name>
+    <Desc>화상을 부여할 때, 자신에게도 화상 부여(해당 효과는 전투책장으로 화상을 부여할 때 추가 부여의 효과를 받지 않는다)</Desc>
+         </PassiveDesc>
+
+         <PassiveDesc ID="5609999">
+                        <Name>화염</Name>
+    <Desc>테스트용 랜덤 화상3부여</Desc>
+         </PassiveDesc>
+
+         <PassiveDesc ID="5609998">
+                        <Name>스티그마 공방검</Name>
+    <Desc>참격 주사위를 사용할 때, 해당 주사위에 "적중 화상 1 부여"를 추가한다. 참격 위력 +1 </Desc>
+         </PassiveDesc>
+
+         <PassiveDesc ID="5609997">
+                        <Name>스티그마 공방창</Name>
+    <Desc>관통 주사위를 사용할 때, 해당 주사위에 "적중 화상 1 부여"를 추가한다. 관통 위력 +1 </Desc>
+         </PassiveDesc>
+
+         <PassiveDesc ID="5609996">
+                        <Name>스티그마 공방검 /가벼운 검술</Name>
+    <Desc>참격 주사위를 사용할 때, 해당 주사위에 "적중 화상 1 부여"를 추가한다. 
+참격 위력 +1
+현재 비용이 1 이하인 책장을 사용할 때, 위력 +2</Desc>
+         </PassiveDesc>
+         <PassiveDesc ID="5609995">
+                        <Name>타오르는 무기1</Name>
+    <Desc>공격 주사위의 흐트러짐 피해량이
+((대상의 화상 수치)*5)% 만큼 증가
+(최대 100%)</Desc>
+         </PassiveDesc>
+         <PassiveDesc ID="5609993">
+                        <Name>타오르는 무기2</Name>
+    <Desc>공격 주사위의 피해량이
+((대상의 화상 수치)*5)% 만큼 증가
+(최대 100%)</Desc>
+         </PassiveDesc>
+
+         <PassiveDesc ID="5609992">
+                        <Name>낙인</Name>
+    <Desc>대상의 화상수치가 6 이상이면
+모든 주사위 위력 +1</Desc>
+         </PassiveDesc>
+
+         <PassiveDesc ID="5609994">
+                        <Name>달아오르는 검</Name>
+    <Desc>막 시작시 손에서 원래 비용이 
+가장 높은 전투책장 중
+하나의 비용이
+전 막에 화상을 부여한 횟수만큼
+감소한다. (최대 2,막 종료시 원래 비용으로 초기화)</Desc>
+         </PassiveDesc>
+         <PassiveDesc ID="5609990">
+                        <Name>융해</Name>
+    <Desc>화상상태인 적에게 공격이
+적중하면 다음 막동안 대상의
+모든 전투 책장의 비용 1 증가 
+(매 막마다 1번)
+화상상태인 적에게 모든 주사위 위력 +1</Desc>
+         </PassiveDesc>
+</PassiveDescRoot>

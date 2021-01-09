@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<localize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+             <text id="dropbook_darkest">준비된 내용은 여기까지 입니다.</text>
+             <text id="dropbook_sti">스티그마 공방의 책</text>
+             <text id="dropbook_mana">마나의 책</text>
+</localize>

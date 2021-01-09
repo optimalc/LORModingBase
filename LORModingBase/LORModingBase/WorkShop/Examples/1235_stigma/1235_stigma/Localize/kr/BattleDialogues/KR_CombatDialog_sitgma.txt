@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattleDialogRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GroupName>stigmaG</GroupName>
+  <Character ID="stigmaA">
+    <Type ID="START_BATTLE">
+      <BattleDialog ID="START_BATTLE_0">방심하지 않겠습니다.</BattleDialog>
+      <BattleDialog ID="START_BATTLE_1">특이점의 책.. 이곳은 도대체..</BattleDialog>
+      <BattleDialog ID="START_BATTLE_2">반드시 이겨야 합니다.</BattleDialog>
+    </Type>
+    <Type ID="BATTLE_VICTORY">
+      <BattleDialog ID="BATTLE_VICTORY_0">확실히 쉽지는 않았군요..</BattleDialog>
+      <BattleDialog ID="BATTLE_VICTORY_1">목적을 달성했습니다.</BattleDialog>
+    </Type>
+    <Type ID="DEATH">
+      <BattleDialog ID="DEATH_0">결국.. 이렇게 되는건가..</BattleDialog>
+      <BattleDialog ID="DEATH_1">젠장할..</BattleDialog>
+    </Type>
+    <Type ID="COLLEAGUE_DEATH">
+      <BattleDialog ID="COLLEAGUE_DEATH_0">희생을 감수하고 나아가야 합니다.</BattleDialog>
+      <BattleDialog ID="COLLEAGUE_DEATH_1">침착함을 유지해야해.</BattleDialog>
+      <BattleDialog ID="COLLEAGUE_DEATH_2">나도 저렇게..</BattleDialog>
+    </Type>
+    <Type ID="KILLS_OPPONENT">
+      <BattleDialog ID="KILLS_OPPONENT_0">이 기세를 이어갑시다.</BattleDialog>
+      <BattleDialog ID="KILLS_OPPONENT_1">한놈 처리했습니다!</BattleDialog>
+    </Type>
+  </Character>
+  <Character ID="mana">
+    <Type ID="START_BATTLE">
+      <BattleDialog ID="START_BATTLE_0">모두 최선을 다해주세요.</BattleDialog>
+      <BattleDialog ID="START_BATTLE_1">도시의 별.. 얕볼 수 없는 상대에요.</BattleDialog>
+      <BattleDialog ID="START_BATTLE_2">이길 수 있을거에요. 긴장하지 마세요.</BattleDialog>
+    </Type>
+    <Type ID="BATTLE_VICTORY">
+      <BattleDialog ID="BATTLE_VICTORY_0">공방장님이 기뻐하시겠어요.</BattleDialog>
+      <BattleDialog ID="BATTLE_VICTORY_1">특이점의 책.. 얻어가도록 하겠습니다.</BattleDialog>
+    </Type>
+    <Type ID="DEATH">
+      <BattleDialog ID="DEATH_0">괴물들의 소굴이었잖아요..</BattleDialog>
+      <BattleDialog ID="DEATH_1">이건 무슨..</BattleDialog>
+    </Type>
+    <Type ID="COLLEAGUE_DEATH">
+      <BattleDialog ID="COLLEAGUE_DEATH_0">제 불찰입니다..</BattleDialog>
+      <BattleDialog ID="COLLEAGUE_DEATH_1">..어쩔 수 없는 희생이겠죠.</BattleDialog>
+    </Type>
+    <Type ID="KILLS_OPPONENT">
+      <BattleDialog ID="KILLS_OPPONENT_0">..침착함을 유지합시다.</BattleDialog>
+      <BattleDialog ID="KILLS_OPPONENT_1">기뻐하고 있을 수 만은 없겠죠...</BattleDialog>
+    </Type>
+  </Character>
+</BattleDialogRoot>

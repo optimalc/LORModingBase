@@ -27,18 +27,20 @@ namespace LORModingBase.UC
         public EditDice(DM.XmlDataNode innerCardCardNode, DM.XmlDataNode innerBehaviourNode, Action stackInitFunc)
         {
             this.innerCardCardNode = innerCardCardNode;
-            this.innerBehaviourNode = innerBehaviourNode;
             this.stackInitFunc = stackInitFunc;
             InitializeComponent();
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.CARD_INFO);
 
             TbxMinDice_Min.Text = innerBehaviourNode.GetAttributesSafe("Min");
             TbxMaxDice_Dice.Text = innerBehaviourNode.GetAttributesSafe("Dice");
+            this.innerBehaviourNode = innerBehaviourNode;
+
             BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/icon_{innerBehaviourNode.attribute["Type"] }_{innerBehaviourNode.attribute["Detail"]}.png");
             UpdateEffectGrid();
 
             GldInfo.Visibility = Visibility.Visible;
             GldChangeAttackType.Visibility = Visibility.Collapsed;
+            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
         }
 
         private void UpdateEffectGrid()
@@ -102,6 +104,19 @@ namespace LORModingBase.UC
                 innerBehaviourNode.attribute["Detail"] = SPLIT_NAME[2];
 
                 BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/icon_{innerBehaviourNode.attribute["Type"] }_{innerBehaviourNode.attribute["Detail"]}.png");
+
+                #region Motion Update
+                switch(innerBehaviourNode.GetAttributesSafe("Detail"))
+                {
+                    case "Guard": innerBehaviourNode.attribute["Motion"] = "G"; break;
+                    case "Evasion": innerBehaviourNode.attribute["Motion"] = "E"; break;
+
+                    case "Slash": innerBehaviourNode.attribute["Motion"] = "J"; break;
+                    case "Penetrate": innerBehaviourNode.attribute["Motion"] = "Z"; break;
+                    case "Hit": innerBehaviourNode.attribute["Motion"] = "H"; break;
+                    default: innerBehaviourNode.attribute["Motion"] = "H"; break;
+                }
+                #endregion
             }
 
             GldInfo.Visibility = Visibility.Visible;

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+모든 적 캐릭터 각각에 대한 정의
+-->
+<EnemyUnitClassRoot>
+
+
+ <Enemy ID="5609999">
+    <!--스티그마창-->
+    <NameID>5609999</NameID>
+    <MinHeight>170</MinHeight>
+    <MaxHeight>170</MaxHeight>
+    
+    <BookId>5609999</BookId>
+
+        <DropTable Level="0">
+      <DropItem Prob="1">5607777</DropItem>
+    </DropTable>
+  </Enemy>
+
+ <Enemy ID="5609997">
+    <!--스티그마창 꿰불 못쓰는새끼-->
+    <NameID>5609999</NameID>
+    <MinHeight>170</MinHeight>
+    <MaxHeight>170</MaxHeight>
+    
+    <BookId>5609997</BookId>
+
+        <DropTable Level="0">
+      <DropItem Prob="1">5607777</DropItem>
+    </DropTable>
+  </Enemy>
+
+ <Enemy ID="5608888">
+    <!--스티그마검-->
+    <NameID>5609999</NameID>
+    <MinHeight>170</MinHeight>
+    <MaxHeight>170</MaxHeight>
+    
+    <BookId>5608888</BookId>
+
+        <DropTable Level="0">
+      <DropItem Prob="1">5607777</DropItem>
+    </DropTable>
+  </Enemy>
+ <Enemy ID="5608887">
+    <!--스티그마검 염화검 못쓰는새끼-->
+    <NameID>5609999</NameID>
+    <MinHeight>170</MinHeight>
+    <MaxHeight>170</MaxHeight>
+    
+    <BookId>5608887</BookId>
+
+        <DropTable Level="0">
+      <DropItem Prob="1">5607777</DropItem>
+    </DropTable>
+  </Enemy>
+ <Enemy ID="5607777">
+    <!--마나-->
+    <NameID>5608888</NameID>
+    <MinHeight>170</MinHeight>
+    <MaxHeight>170</MaxHeight>
+    
+    <BookId>5607777</BookId>
+
+
+
+    <DropTable Level="0">
+      <DropItem Prob="0.6">5607777</DropItem>
+      <DropItem Prob="0.4">5608888</DropItem>
+    </DropTable>
+
+    <DropTable Level="1">
+      <DropItem Prob="0.2">5607777</DropItem>
+      <DropItem Prob="0.8">5608888</DropItem>
+    </DropTable>
+
+    <DropTable Level="2">
+      <DropItem Prob="1">5608888</DropItem>
+    </DropTable>
+  </Enemy>
+
+</EnemyUnitClassRoot>

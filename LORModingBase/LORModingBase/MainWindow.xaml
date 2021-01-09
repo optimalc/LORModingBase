@@ -262,7 +262,8 @@
                     <ColumnDefinition Width="13.9*"/>
                     <ColumnDefinition Width="13.9*"/>
                     <ColumnDefinition Width="13.9*"/>
-                    <ColumnDefinition Width="30.5*"/>
+                    <ColumnDefinition Width="13.9*"/>
+                    <ColumnDefinition Width="16.6*"/>
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.Column="0" Stretch="Fill" Margin="10">
                     <Button x:Name="BtnCriticalPage" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
@@ -279,7 +280,11 @@
                 <Viewbox Grid.Column="4" Stretch="Fill" Margin="10">
                     <Button x:Name="BtnDecks" Content="[덱 편집]" ToolTip="덱 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
                 </Viewbox>
+                <Viewbox Grid.Column="5" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnDropBook" Content="[책 편집]" ToolTip="책 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+                </Viewbox>
             </Grid>
+            
             <Grid Grid.Row="2" Name="GrdCriticalPage">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"/>
@@ -348,6 +353,7 @@
                     </ScrollViewer>
                 </Grid>
             </Grid>
+            
             <Grid Grid.Row="2" Name="GrdStages">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"/>
@@ -441,6 +447,41 @@
                 <Grid Grid.Column="1">
                     <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
                         <StackPanel x:Name="SplDecks" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2" Name="GrdDropBooks">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="95*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MainBg.png"/>
+                </Grid.Background>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnAddDropBooks" Content="+" ToolTip="게임에 없는 새로운 책을 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="DropBookGridButtonClickEvents"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnLoadDropBooks" Content="~" ToolTip="게임 내부로부터 책 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="DropBookGridButtonClickEvents"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="SplDropBooks" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <StackPanel.Resources>
                                 <Style TargetType="{x:Type Grid}">
                                     <Setter Property="Margin" Value="5,5,5,5"/>

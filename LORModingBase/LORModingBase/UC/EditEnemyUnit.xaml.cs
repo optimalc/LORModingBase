@@ -97,7 +97,7 @@ namespace LORModingBase.UC
                     List<DM.XmlDataNode> foundLocalizeCharNamesNameID = DM.EditGameData_EnemyInfo.LocalizedCharactersName.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Name",
                         attributeToCheck: new Dictionary<string, string>() { { "ID", innerEnemyNode.GetInnerTextByPath("NameID") } });
                     if (foundLocalizeCharNamesNameID.Count <= 0 && !string.IsNullOrEmpty(tbx.Text))
-                        DM.EditGameData_EnemyInfo.LocalizedCharactersName.rootDataNode.subNodes.Add(DM.EditGameData_EnemyInfo.MakeNewCharactersNameBase(tbx.Text, TbxNameID.Text));
+                        DM.EditGameData_EnemyInfo.LocalizedCharactersName.rootDataNode.subNodes.Add(DM.EditGameData_EnemyInfo.MakeNewCharactersNameBase(tbx.Text, TbxEnemyName.Text));
                     #endregion
                     #region Remove prev name ID if not exist
                     if(!DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo.rootDataNode.CheckIfGivenPathWithXmlInfoExists("Enemy/NameID", PREV_NAME_ID))
@@ -114,7 +114,7 @@ namespace LORModingBase.UC
                         attributeToCheck: new Dictionary<string, string>() { { "ID", innerEnemyNode.GetInnerTextByPath("NameID") } });
                     if(foundLocalizeCharNames.Count > 0)
                         foundLocalizeCharNames[0].innerText = tbx.Text;
-                    else
+                    else if (!string.IsNullOrEmpty(innerEnemyNode.GetInnerTextByPath("NameID")))
                         DM.EditGameData_EnemyInfo.LocalizedCharactersName.rootDataNode.subNodes.Add(DM.EditGameData_EnemyInfo.MakeNewCharactersNameBase(TbxNameID.Text, tbx.Text));
                     MainWindow.mainWindow.UpdateDebugInfo();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.LOCALIZED_CHAR_NAME);
