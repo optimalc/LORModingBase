@@ -288,7 +288,7 @@ namespace LORModingBase
                             {
                                 DM.XmlDataNode EQ_NODE_TO_USE = foundEqNodes[0].Copy();
                                 EQ_NODE_TO_USE.SetXmlInfoByPath("Name",
-                                    DM.LocalizedGameDescriptions.GetDescriptionForBooks(EQ_NODE_TO_USE.GetAttributesSafe("ID")));
+                                    DM.LocalizedGameDescriptions.GetDescriptionForBooks(EQ_NODE_TO_USE.GetInnerTextByPath("TextId")));
 
                                 DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(EQ_NODE_TO_USE);
 
