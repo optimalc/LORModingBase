@@ -258,6 +258,9 @@ namespace LORModingBase
                         }
                         new SubWindows.ResourceWindow().ShowDialog();
                         break;
+                    case "BtnDLLEdit":
+                        new DLLEditor.DLLEditorMainWindow().ShowDialog();
+                        break;
                 }
             }
             catch (Exception ex)

@@ -63,6 +63,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomExtensions\IEnumerable.cs" />
+    <Compile Include="DLLEditor\DLLEditorMainWindow.xaml.cs">
+      <DependentUpon>DLLEditorMainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DM\CheckDatas.cs" />
     <Compile Include="DM\Config.cs" />
     <Compile Include="DM\EditGameData_CardAbilityInfo.cs" />
@@ -154,6 +157,10 @@
     <Compile Include="UC\EditWave.xaml.cs">
       <DependentUpon>EditWave.xaml</DependentUpon>
     </Compile>
+    <Page Include="DLLEditor\DLLEditorMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
