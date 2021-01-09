@@ -416,5 +416,8 @@
   <ItemGroup>
     <Resource Include="Resources\TypeEgoPersonal.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnDLLEdit.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
