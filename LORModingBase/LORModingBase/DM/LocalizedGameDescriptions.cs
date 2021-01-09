@@ -60,19 +60,26 @@ namespace LORModingBase.DM
         public static string GetDescriptionForBooks(string bookID)
         {
             if (string.IsNullOrEmpty(bookID)) return "";
-            List<XmlDataNode> BooksNodes = DM.GameInfos.localizeInfos["Books"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
-                attributeToCheck: new Dictionary<string, string>() { { "BookID", bookID } });
-            if (BooksNodes.Count <= 0)
-                BooksNodes = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
-                attributeToCheck: new Dictionary<string, string>() { { "BookID", bookID } });
 
-            if (BooksNodes.Count > 0)
-            {
-                string BOOK_NAME = BooksNodes[0].GetInnerTextByPath("BookName");
-                return string.IsNullOrEmpty(BOOK_NAME) ? $"Book ID :{bookID}" : BOOK_NAME;
-            }
+            int KEY_PAGE_ID = Convert.ToInt32(bookID);
+            if (KEY_PAGE_ID > 9000000 && KEY_PAGE_ID < 9999999)
+                return GetDescriptionForCharacter(bookID);
             else
-                return $"Book ID :{BooksNodes}";
+            {
+                List<XmlDataNode> BooksNodes = DM.GameInfos.localizeInfos["Books"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                    attributeToCheck: new Dictionary<string, string>() { { "BookID", bookID } });
+                if (BooksNodes.Count <= 0)
+                    BooksNodes = DM.EditGameData_BookInfos.LocalizedBooks.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("bookDescList/BookDesc",
+                    attributeToCheck: new Dictionary<string, string>() { { "BookID", bookID } });
+
+                if (BooksNodes.Count > 0)
+                {
+                    string BOOK_NAME = BooksNodes[0].GetInnerTextByPath("BookName");
+                    return string.IsNullOrEmpty(BOOK_NAME) ? $"Book ID :{bookID}" : BOOK_NAME;
+                }
+                else
+                    return $"Book ID :{BooksNodes}";
+            }
         }
         
         /// <summary>
@@ -350,9 +357,17 @@ namespace LORModingBase.DM
                 string TEXT_ID = STAGE_NODE.GetInnerTextByPath("TextId");
                 string CHPATER_NUM = STAGE_NODE.GetInnerTextByPath("Chapter");
 
-                string BOOK_DES = LocalizedGameDescriptions.GetDescriptionForBooks(TEXT_ID);
+                string BOOK_DES = "";
+
+                int KEY_PAGE_ID = Convert.ToInt32(bookID);
+                if (KEY_PAGE_ID > 9000000 && KEY_PAGE_ID < 9999999)
+                    BOOK_DES = LocalizedGameDescriptions.GetDescriptionForBooks(bookID);
+                else
+                    BOOK_DES = LocalizedGameDescriptions.GetDescriptionForBooks(TEXT_ID);
+
                 string CHAPTER_DES = LocalizedGameDescriptions.GetDescriptionForChapter(CHPATER_NUM);
                 string DIV_INFO_DES = GetDivideInfo.GetDividedKeyPageInfo(bookID);
+
                 return $"{DIV_INFO_DES} {CHAPTER_DES} / {BOOK_DES}:{bookID}";
             }
             else

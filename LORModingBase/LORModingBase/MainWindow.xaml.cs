@@ -287,8 +287,13 @@ namespace LORModingBase
                             if (foundEqNodes.Count > 0)
                             {
                                 DM.XmlDataNode EQ_NODE_TO_USE = foundEqNodes[0].Copy();
-                                EQ_NODE_TO_USE.SetXmlInfoByPath("Name",
-                                    DM.LocalizedGameDescriptions.GetDescriptionForBooks(EQ_NODE_TO_USE.GetInnerTextByPath("TextId")));
+                                int KEY_PAGE_ID = Convert.ToInt32(selectedItem);
+                                if (KEY_PAGE_ID > 9000000 && KEY_PAGE_ID < 9999999)
+                                    EQ_NODE_TO_USE.SetXmlInfoByPath("Name",
+                                        DM.LocalizedGameDescriptions.GetDescriptionForBooks(selectedItem));
+                                else
+                                    EQ_NODE_TO_USE.SetXmlInfoByPath("Name",
+                                        DM.LocalizedGameDescriptions.GetDescriptionForBooks(EQ_NODE_TO_USE.GetInnerTextByPath("TextId")));
 
                                 DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode.subNodes.Add(EQ_NODE_TO_USE);
 
