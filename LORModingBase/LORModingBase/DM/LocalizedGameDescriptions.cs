@@ -352,7 +352,8 @@ namespace LORModingBase.DM
 
                 string BOOK_DES = LocalizedGameDescriptions.GetDescriptionForBooks(TEXT_ID);
                 string CHAPTER_DES = LocalizedGameDescriptions.GetDescriptionForChapter(CHPATER_NUM);
-                return $"{CHAPTER_DES} / {BOOK_DES}:{bookID}";
+                string DIV_INFO_DES = GetDivideInfo.GetDividedKeyPageInfo(bookID);
+                return $"{DIV_INFO_DES} {CHAPTER_DES} / {BOOK_DES}:{bookID}";
             }
             else
                 return $"Book ID :{bookID}";

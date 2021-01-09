@@ -71,6 +71,7 @@
     <Compile Include="DM\EditGameData_DeckInfo.cs" />
     <Compile Include="DM\EditGameData_EnemyInfo.cs" />
     <Compile Include="DM\EditGameData_StageInfo.cs" />
+    <Compile Include="DM\GetDivideInfo.cs" />
     <Compile Include="DM\LocalizedGameDescriptions.cs" />
     <Compile Include="DM\LocalizeCore.cs" />
     <Compile Include="DM\GameInfos.cs" />
