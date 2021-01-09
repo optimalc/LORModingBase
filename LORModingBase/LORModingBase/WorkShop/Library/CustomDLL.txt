@@ -1,0 +1,60 @@
+- 카드 스크립트
+-- 트리거 종류
+AfterAction : 해당 책장의 주사위를 굴릴 때 마다 발동하는 트리거야.
+GetCostAdder : 해당 전투책장의 코스트를 증감시키는 코드야. 올릴 수도 있고, 내릴 수도 있어.
+OnApplyCard : 전투책장을 선택해서 상대 주사위에 지정했을 때 발동하는 트리거야.
+인겜에서 사용된 예시로는 로웰 전용책장의 모션이 있어.
+이걸 이용하면 상대를 지정만 해도 죽이는 등의 사기행위가 가능해. 물론 적이 사용했을때도 마찬가지.
+OnReleaseCard : 전투책장을 선택해서 상대 주사위에 지정한 것을 취소했을 때 발동하는 트리거야.
+마찬가지로 인겜에서는 로웰 전용책장의 모션에서 사용되었어.
+OnDiscard : 이 전투책장을 버렸을 때 발동하는 트리거야. 인겜에서는 '침착하게'카드에 적용되었어.
+OnStartBattle : 이번 막에 이 카드를 상대에게 지정하고 전투가 시작되면 발동하는 트리거야. 대표적으로 흑운회의 날칼이 있지.
+OnEndBattle : 이번 막에 이 카드를 상대에게 지정했고(사용 여부는 상관없이) 막이 종료되면 발동하는 트리거야.
+OnStartParrying : 이 카드로 합을 진행할때 발동하는 트리거야. 승패 여부 상관없이 합을 했다면 발동해.
+OnStartOneSideAction : 이 카드로 일방공격을 진행할 때 발동하는 트리거야.
+OnSucceedAttack : 공격이 적중했을 때 발동하는 트리거야. 당연히 무승부는 적용 안돼.
+OnUseCard : 해당 전투책장을 사용했을 때 발동하는 트리거야. 만약 책장을 사용하기 전에 대상이 사라져버리면 당연히 발동되지 않아.
+
+- 주사위 스크립트
+AfterAction : 이 주사위를 굴린 후에 발동하는 트리거야. 합에서 이기던 지던, 일방공격이던 아니던간에 무조건 발동하는 가불기야.
+BeforeGiveDamage : 공격에 성공해서 피해를 주기 전에 발동하는 트리거야. 주로 피해량 증가같은 스크립트나, 피해량 만큼 버프 부여,
+혹은 피해량 만큼 회복 등의 스크립트를 작성할 때 유용하게 사용해.
+BeforRollDice : 주사위를 굴리기 전에 발동하는 트리거야. 주로 주사위 값에 영향을 주는 코드(위력 증가, 최대/최소 증감 등)의 트리거로 사용되곤 해.
+OnRollDice : 주사위를 굴린 후에 발동하는 트리거야. 주로 주사위 값에 영향을 받는 코드(사의 경계 등)에 사용돼.
+OnWinParrying : 합 승리시 발동하는 트리거야.
+OnLoseParrying : 합 패배시 발동하는 트리거야.
+OnDrawParrting : 합 무승부라는 굉장히 까다로운 조건을 가진 트리거야. 인겜에선 사용된 적이 없어.
+OnSucceedAttack : 공격 적중시 발동하는 트리거야. 딜이 들어갔건 안들어갔건 적중했다면 발동해.
+OnSucceedAreaAttack : 광역 공격 적중시 발동하는 트리거야. 위의 트리거와 차이점이라면, 위의 트리거는 광역공격 책장에 적용하면
+적중해도 발동하지 않지만, 이 트리거는 광역공격 명중시에 정상적으로 작동하니까, 사실상 광역책장 전용 트리거인거야.
+OnWinParryingDefense : 방어 주사위로 합 승리시 발동하는 트리거야. 대표적으로 흑조의 공격 반사가 있어.
+
+
+-- 커스텀 핵심 책장 패시브 만들기
+[1] PassiveAbilityBase를 상속하는 패시브 디자인하기
+public class PassiveAbility_89898989 : PassiveAbilityBase
+{
+    public override void OnRoundStart()
+    {
+        base.OnRoundStart();
+        this.owner.personalEgoDetail.AddCard(898989);
+    }
+}
+
+[2] StaticInfo/PassiveList에 관련 패시브 추가하기
+<?xml version="1.0" encoding="utf-8"?>
+<PassiveXmlRoot>
+  <Passive ID="89898989"> <!-- 패시브 고유 ID -->
+    <Rarity>Uncommon</Rarity> <!-- 희귀도 -->
+    <Cost>5</Cost> <!-- 코스트 -->
+  </Passive>
+</PassiveXmlRoot>
+
+[3] Localize/KR/PassiveDesc에 관련 설명 추가하기
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PassiveDescRoot xmlns:xsi="http://www.w3.org/2001/XMLS chema-instance">
+	<PassiveDesc ID="89898989"> <!-- 패시브 고유 ID -->
+		<Name>EGO 사용가능</Name> <!-- 패시브 이름 -->
+		<Desc>898989 EGO가 사용 가능해짐</Desc> <!-- 관련 설명 -->
+    </PassiveDesc>
+</PassiveDescRoot>

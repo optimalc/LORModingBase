@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PassiveDescRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<PassiveDesc ID="89898989">
+		<Name>EGO 사용가능</Name>
+		<Desc>898989 EGO가 사용 가능해짐</Desc>
+    </PassiveDesc>
+</PassiveDescRoot>

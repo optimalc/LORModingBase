@@ -110,7 +110,7 @@ namespace LORModingBase.SubWindows
                         string PASSIVE_ID = passiveNode.GetAttributesSafe("ID");
                         string PASSIVE_DES = DM.LocalizedGameDescriptions.GetDescriptionForPassive(passiveNode.GetAttributesSafe("ID"));
 
-                        if (!DS.FilterDatas.EXCLUDE_PASSIVE_CODE.Contains(PASSIVE_ID) && Convert.ToInt32(PASSIVE_ID) > 10000)
+                        if(DM.EditGameData_BookInfos.IsPassiveAbliliable(PASSIVE_ID))
                             selectItems.Add($"{PASSIVE_DES}:{PASSIVE_ID}");
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
