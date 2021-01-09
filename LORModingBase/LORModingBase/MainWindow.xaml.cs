@@ -45,6 +45,7 @@ namespace LORModingBase
             InitSplDecks();
 
             InitSplDropBooks();
+            InitSplPassives();
         }
 
         /// <summary>
@@ -129,6 +130,9 @@ namespace LORModingBase
 
             GrdDropBooks.Visibility = Visibility.Collapsed;
             BtnDropBook.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
+
+            GrdPassives.Visibility = Visibility.Collapsed;
+            BtnPassive.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
         }
 
         /// <summary>
@@ -178,6 +182,12 @@ namespace LORModingBase
                         GrdDropBooks.Visibility = Visibility.Visible;
                         BtnDropBook.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
                         ChangeDebugLocation(DEBUG_LOCATION.STATIC_DROP_BOOK_INFO);
+                        break;
+                    case "BtnPassive":
+                        HideAllGrid();
+                        GrdPassives.Visibility = Visibility.Visible;
+                        BtnPassive.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        ChangeDebugLocation(DEBUG_LOCATION.STATIC_PASSIVE_INTO);
                         break;
 
                     case "BtnSetWorkingSpace":
@@ -699,6 +709,90 @@ namespace LORModingBase
             }
         }
         #endregion
+        #region EDIT MENU - Passive Infos
+        private void InitSplPassives()
+        {
+            //SplDropBooks.Children.Clear();
+            //DM.EditGameData_DropBookInfo.StaticDropBookInfo.rootDataNode.ActionXmlDataNodesByPath("BookUse", (DM.XmlDataNode xmlDataNode) =>
+            //{
+            //    SplDropBooks.Children.Add(new UC.EditDropBook(xmlDataNode, InitSplDropBooks));
+            //});
+        }
+
+        private void PassiveGridButtonClickEvents(object sender, RoutedEventArgs e)
+        {
+
+            Button clickButton = sender as Button;
+            try
+            {
+                if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                {
+                    MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
+                    return;
+                }
+
+                switch (clickButton.Name)
+                {
+                    case "BtnAddPassives":
+                        //DM.EditGameData_DropBookInfo.StaticDropBookInfo.rootDataNode.subNodes.Add(
+                        //DM.EditGameData_DropBookInfo.MakeNewDropBookInfoBase());
+                        InitSplPassives();
+                        break;
+                    case "BtnLoadPassives":
+                        new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                        {
+                            //List<DM.XmlDataNode> foundDropBookIds = DM.GameInfos.staticInfos["DropBook"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                            //        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            //if (foundDropBookIds.Count <= 0)
+                            //    foundDropBookIds = DM.EditGameData_BookInfos.StaticDropBook.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BookUse",
+                            //        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+
+                            //if (foundDropBookIds.Count > 0)
+                            //{
+                            //    DM.XmlDataNode DROP_BOOK_NODE_TO_USE = foundDropBookIds[0].Copy();
+                            //    DM.EditGameData_DropBookInfo.StaticDropBookInfo.rootDataNode.subNodes.Add(DROP_BOOK_NODE_TO_USE);
+
+
+                            //    #region Add localized book name
+                            //    List<DM.XmlDataNode> foundLocalizeBookName = DM.GameInfos.localizeInfos["etc"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("text",
+                            //                                                                       attributeToCheck: new Dictionary<string, string>() { { "id", DROP_BOOK_NODE_TO_USE.GetInnerTextByPath("TextId") } });
+                            //    if (foundLocalizeBookName.Count > 0)
+                            //    {
+                            //        if (!DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.CheckIfGivenPathWithXmlInfoExists("text",
+                            //                   attributeToCheck: new Dictionary<string, string>() { { "id", DROP_BOOK_NODE_TO_USE.GetInnerTextByPath("TextId") } }))
+                            //        {
+                            //            DM.EditGameData_DropBookInfo.LocalizedDropBookName.rootDataNode.subNodes.Add(foundLocalizeBookName[0].Copy());
+                            //        }
+                            //    }
+                            //    #endregion
+                            //    #region Add additionanl card table info
+                            //    List<DM.XmlDataNode> foundCardDropTables = DM.GameInfos.staticInfos["CardDropTable"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("DropTable",
+                            //            attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+
+                            //    if (foundCardDropTables.Count > 0)
+                            //    {
+                            //        if (!DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.CheckIfGivenPathWithXmlInfoExists("DropTable",
+                            //                attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } }))
+                            //        {
+                            //            DM.XmlDataNode CARD_DROP_TABLE_TO_USE = foundCardDropTables[0].Copy();
+                            //            DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.rootDataNode.subNodes.Add(CARD_DROP_TABLE_TO_USE);
+                            //        }
+                            //    }
+                            //    #endregion
+
+                            //    InitSplDropBooks();
+                            //}
+                        }, SubWindows.InputInfoWithSearchWindow_PRESET.DROP_BOOK).ShowDialog();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"BattleCardGridButtonClickEvents_Error_1"));
+            }
+        }
+        #endregion
 
 
         #region Text editor functions
@@ -759,6 +853,11 @@ namespace LORModingBase
                         DM.EditGameData_DropBookInfo.StaticDropBookInfo.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_DropBookInfo.StaticDropBookInfo, DM.Config.CurrentWorkingDirectory));
                         DM.EditGameData_DropBookInfo.StaticCardDropTableInfo.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_DropBookInfo.StaticCardDropTableInfo, DM.Config.CurrentWorkingDirectory));
                         DM.EditGameData_DropBookInfo.LocalizedDropBookName.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_DropBookInfo.LocalizedDropBookName, DM.Config.CurrentWorkingDirectory));
+                    }
+                    if (GrdPassives.Visibility == Visibility.Visible)
+                    {
+                        DM.EditGameData_PassiveInfo.StaticPassiveList.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_PassiveInfo.StaticPassiveList, DM.Config.CurrentWorkingDirectory));
+                        DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_PassiveInfo.LocalizedPassiveDesc, DM.Config.CurrentWorkingDirectory));
                     }
 
                     string debugFileName = "";

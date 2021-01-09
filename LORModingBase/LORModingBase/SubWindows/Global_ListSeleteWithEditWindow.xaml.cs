@@ -125,6 +125,15 @@ namespace LORModingBase.SubWindows
                             DM.EditGameData_DropBookInfo.LocalizedDropBookName = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_DropBookInfo.LocalizedDropBookName, DM.Config.CurrentWorkingDirectory));
                         else
                             DM.EditGameData_DropBookInfo.LocalizedDropBookName = new DM.XmlData(DM.GameInfos.localizeInfos["etc"]);
+
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_PassiveInfo.StaticPassiveList, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_PassiveInfo.StaticPassiveList = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_PassiveInfo.StaticPassiveList, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_PassiveInfo.StaticPassiveList = new DM.XmlData(DM.GameInfos.staticInfos["PassiveList"]);
+                        if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_PassiveInfo.LocalizedPassiveDesc, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_PassiveInfo.LocalizedPassiveDesc = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_PassiveInfo.LocalizedPassiveDesc, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_PassiveInfo.LocalizedPassiveDesc = new DM.XmlData(DM.GameInfos.localizeInfos["PassiveDesc"]);
                         this.Close();
                     };
 

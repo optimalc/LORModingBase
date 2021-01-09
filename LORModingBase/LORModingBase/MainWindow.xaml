@@ -263,7 +263,8 @@
                     <ColumnDefinition Width="13.9*"/>
                     <ColumnDefinition Width="13.9*"/>
                     <ColumnDefinition Width="13.9*"/>
-                    <ColumnDefinition Width="16.6*"/>
+                    <ColumnDefinition Width="13.9*"/>
+                    <ColumnDefinition Width="2.7*"/>
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.Column="0" Stretch="Fill" Margin="10">
                     <Button x:Name="BtnCriticalPage" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
@@ -282,6 +283,9 @@
                 </Viewbox>
                 <Viewbox Grid.Column="5" Stretch="Fill" Margin="10">
                     <Button x:Name="BtnDropBook" Content="[책 편집]" ToolTip="책 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="6" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnPassive" Content="[패시브 편집]" ToolTip="패시브 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
                 </Viewbox>
             </Grid>
             
@@ -482,6 +486,40 @@
                 <Grid Grid.Column="1">
                     <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
                         <StackPanel x:Name="SplDropBooks" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Name="GrdPassives">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="95*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MainBg.png"/>
+                </Grid.Background>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnAddPassives" Content="+" ToolTip="게임에 없는 새로운 패시브를 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="PassiveGridButtonClickEvents"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnLoadPassives" Content="~" ToolTip="게임 내부로부터 패시브 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="PassiveGridButtonClickEvents"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="SqlPassives" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <StackPanel.Resources>
                                 <Style TargetType="{x:Type Grid}">
                                     <Setter Property="Margin" Value="5,5,5,5"/>
