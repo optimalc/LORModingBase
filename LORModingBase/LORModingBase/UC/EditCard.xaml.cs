@@ -88,6 +88,7 @@ namespace LORModingBase.UC
             if (optionNodes.Count > 0)
             {
                 DM.XmlDataNode OPTION_NODE = optionNodes[0];
+                BtnUnqueType.Tag = OPTION_NODE.innerText;
                 if (OPTION_LOOP_LIST.Contains(OPTION_NODE.innerText))
                 {
                     BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{OPTION_NODE.innerText}.png");
@@ -98,7 +99,6 @@ namespace LORModingBase.UC
                     BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/TypeETC.png");
                     BtnUnqueType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnUnqueType_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Current")} : {OPTION_NODE.innerText})";
                 }
-                BtnUnqueType.Tag = OPTION_NODE.innerText;
             }
             else
             {
