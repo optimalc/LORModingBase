@@ -445,8 +445,9 @@ namespace LORModingBase.DM
                 XmlDataNode CARD_NODE = foundDataNodes[0];
                 string CARD_NAME_DES = LocalizedGameDescriptions.GetDecriptionForCard(CARD_NODE.GetAttributesSafe("ID"));
                 string CHAPTER_DES = LocalizedGameDescriptions.GetDescriptionForChapter(CARD_NODE.GetInnerTextByPath("Chapter"));
+                string DIV_INFO_DES = GetDivideInfo.GetDividedCardInfo(cardID);
 
-                return $"{CHAPTER_DES} / {CARD_NAME_DES}:{cardID}";
+                return $"{DIV_INFO_DES} {CHAPTER_DES} / {CARD_NAME_DES}:{cardID}";
             }
             else
                 return $"Card ID :{cardID}";
