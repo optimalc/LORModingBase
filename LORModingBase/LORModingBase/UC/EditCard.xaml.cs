@@ -171,7 +171,7 @@ namespace LORModingBase.UC
         /// <summary>
         /// Option info name
         /// </summary>
-        private List<string> OPTION_LOOP_LIST = new List<string>() { "", "OnlyPage", "Basic", "EGO" };
+        private List<string> OPTION_LOOP_LIST = new List<string>() { "", "OnlyPage", "Basic", "EGO", "EgoPersonal" };
 
         /// <summary>
         /// Type loop button events
