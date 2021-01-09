@@ -543,6 +543,7 @@ namespace LORModingBase.UC
                         behaviourListNode.subNodes.Add(DM.EditGameData_CardInfos.MakeNewDiceBase());
                     });
                     InitSqlDices();
+                    MainWindow.mainWindow.UpdateDebugInfo();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
             }
