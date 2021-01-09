@@ -88,12 +88,17 @@ namespace LORModingBase.UC
             if (optionNodes.Count > 0)
             {
                 DM.XmlDataNode OPTION_NODE = optionNodes[0];
-                if (OPTION_LOOP_LIST.Contains(OPTION_NODE.innerText))
-                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{OPTION_NODE.innerText}.png");
-                else
-                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/TypeETC.png");
                 BtnUnqueType.Tag = OPTION_NODE.innerText;
-                BtnUnqueType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnUnqueType_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Type_{BtnUnqueType.Tag}")})";
+                if (OPTION_LOOP_LIST.Contains(OPTION_NODE.innerText))
+                {
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{OPTION_NODE.innerText}.png");
+                    BtnUnqueType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnUnqueType_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Type_{BtnUnqueType.Tag}")})";
+                }
+                else
+                {
+                    BtnUnqueType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/TypeETC.png");
+                    BtnUnqueType.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnUnqueType_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Current")} : {OPTION_NODE.innerText})";
+                }
             }
             else
             {
@@ -166,7 +171,7 @@ namespace LORModingBase.UC
         /// <summary>
         /// Option info name
         /// </summary>
-        private List<string> OPTION_LOOP_LIST = new List<string>() { "", "OnlyPage", "Basic", "EGO" };
+        private List<string> OPTION_LOOP_LIST = new List<string>() { "", "OnlyPage", "Basic", "EGO", "EgoPersonal" };
 
         /// <summary>
         /// Type loop button events
@@ -234,6 +239,7 @@ namespace LORModingBase.UC
                 loopButton.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/Type{UNIQUE_NAME}.png");
                 loopButton.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"%BtnUnqueType_ToolTip%")} ({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Current")} : {DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CARD_INFO, $"Type_{UNIQUE_NAME}")})";
                 innerCardNode.SetXmlInfoByPathAndEmptyWillRemove("Option", loopButton.Tag.ToString());
+                MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
             }
             MainWindow.mainWindow.UpdateDebugInfo();
         }
@@ -543,6 +549,7 @@ namespace LORModingBase.UC
                         behaviourListNode.subNodes.Add(DM.EditGameData_CardInfos.MakeNewDiceBase());
                     });
                     InitSqlDices();
+                    MainWindow.mainWindow.UpdateDebugInfo();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
                     break;
             }

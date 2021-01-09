@@ -160,6 +160,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(EQ_BOOK_ID))
                             selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForKeyBook(EQ_BOOK_ID));
                     });
+                    searchTypes.AddRange(DM.GetDivideInfo.GetAllDividedKeyPageFilterInfo());
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
                 case AddItemToListWindow_PRESET.CARDS:
@@ -178,6 +179,7 @@ namespace LORModingBase.SubWindows
                         if (!string.IsNullOrEmpty(CARD_ID))
                             selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID));
                     });
+                    searchTypes.AddRange(DM.GetDivideInfo.GetAllDividedCardFilterInfo());
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
             }
