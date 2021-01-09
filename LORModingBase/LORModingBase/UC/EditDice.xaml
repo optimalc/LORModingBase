@@ -156,7 +156,7 @@
                 </Button.Background>
             </Button>
 
-            <Button x:Name="BtnDiceType_Stadby_Slash" Grid.Column="5"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 참격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
+            <Button x:Name="BtnDiceType_Standby_Slash" Grid.Column="5"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 참격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -166,10 +166,10 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/icon_Stadby_Slash.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Standby_Slash.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDiceType_Stadby_Penetrate" Grid.Column="6"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
+            <Button x:Name="BtnDiceType_Standby_Penetrate" Grid.Column="6"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -179,10 +179,10 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/icon_Stadby_Penetrate.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Standby_Penetrate.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDiceType_Stadby_Hit" Grid.Column="7"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
+            <Button x:Name="BtnDiceType_Standby_Hit" Grid.Column="7"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 타격 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -192,10 +192,10 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/icon_Stadby_Hit.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Standby_Hit.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDiceType_Stadby_Guard" Grid.Column="8"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 방어 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
+            <Button x:Name="BtnDiceType_Standby_Guard" Grid.Column="8"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 방어 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -205,10 +205,10 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/icon_Stadby_Guard.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Standby_Guard.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnDiceType_Stadby_Evasion" Grid.Column="9"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 회피 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
+            <Button x:Name="BtnDiceType_Standby_Evasion" Grid.Column="9"  Style="{StaticResource StyBtnMenu}" ToolTip="반격 회피 주사위로 변경합니다" RenderTransformOrigin="0.5,0.5" Click="DiceTypeButtonClickEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="8" ScaleY="10"/>
@@ -218,7 +218,7 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Resources/icon_Stadby_Evasion.png"/>
+                    <ImageBrush ImageSource="../Resources/icon_Standby_Evasion.png"/>
                 </Button.Background>
             </Button>
         </Grid>

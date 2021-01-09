@@ -333,11 +333,11 @@
   <ItemGroup>
     <Resource Include="Resources\icon_Def_Evasion.png" />
     <Resource Include="Resources\icon_Def_Guard.png" />
-    <Resource Include="Resources\icon_Stadby_Evasion.png" />
-    <Resource Include="Resources\icon_Stadby_Guard.png" />
-    <Resource Include="Resources\icon_Stadby_Hit.png" />
-    <Resource Include="Resources\icon_Stadby_Penetrate.png" />
-    <Resource Include="Resources\icon_Stadby_Slash.png" />
+    <Resource Include="Resources\icon_Standby_Evasion.png" />
+    <Resource Include="Resources\icon_Standby_Guard.png" />
+    <Resource Include="Resources\icon_Standby_Hit.png" />
+    <Resource Include="Resources\icon_Standby_Penetrate.png" />
+    <Resource Include="Resources\icon_Standby_Slash.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\icon_Atk_Hit.png" />
