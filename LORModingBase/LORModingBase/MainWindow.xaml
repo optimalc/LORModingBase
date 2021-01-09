@@ -102,10 +102,11 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1200*"/>
-            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="1139*"/>
+            <ColumnDefinition Width="56*"/>
+            <ColumnDefinition Width="298*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0.2,0.4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="8*"/>
@@ -257,14 +258,14 @@
                     <ImageBrush ImageSource="./Resources/MenuBg.png"/>
                 </Grid.Background>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="13.9*"/>
-                    <ColumnDefinition Width="13.9*"/>
-                    <ColumnDefinition Width="13.9*"/>
-                    <ColumnDefinition Width="13.9*"/>
-                    <ColumnDefinition Width="13.9*"/>
-                    <ColumnDefinition Width="13.9*"/>
-                    <ColumnDefinition Width="13.9*"/>
-                    <ColumnDefinition Width="2.7*"/>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="13*"/>
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.Column="0" Stretch="Fill" Margin="10">
                     <Button x:Name="BtnCriticalPage" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
@@ -287,8 +288,11 @@
                 <Viewbox Grid.Column="6" Stretch="Fill" Margin="10">
                     <Button x:Name="BtnPassive" Content="[패시브 편집]" ToolTip="패시브 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
                 </Viewbox>
+                <Viewbox Grid.Column="7" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnCardAbility" Content="[카드 효과 편집]" ToolTip="카드 효과 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>
+                </Viewbox>
             </Grid>
-            
+
             <Grid Grid.Row="2" Name="GrdCriticalPage">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"/>
@@ -357,7 +361,7 @@
                     </ScrollViewer>
                 </Grid>
             </Grid>
-            
+
             <Grid Grid.Row="2" Name="GrdStages">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"/>
@@ -529,8 +533,42 @@
                     </ScrollViewer>
                 </Grid>
             </Grid>
+            <Grid Grid.Row="2" Name="GrdCardAbilities">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="95*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="./Resources/MainBg.png"/>
+                </Grid.Background>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnAddCardAbility" Content="+" ToolTip="게임에 없는 새로운 카드 효과를 추가합니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="CardAbilityGridButtonClickEvents"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                        <Button x:Name="BtnLoadCardAbility" Content="~" ToolTip="게임 내부로부터 카드 효과 데이터를 불러옵니다" FontSize="50"  Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="CardAbilityGridButtonClickEvents"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="SqlCardAbilies" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Margin="55.8,0,-0.4,0.4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="8*"/>

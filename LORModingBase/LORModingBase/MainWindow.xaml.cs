@@ -46,6 +46,7 @@ namespace LORModingBase
 
             InitSplDropBooks();
             InitSplPassives();
+            InitSplCardAbilities();
         }
 
         /// <summary>
@@ -102,6 +103,7 @@ namespace LORModingBase
             DM.EditGameData_DeckInfo.InitDatas();
             DM.EditGameData_DropBookInfo.InitDatas();
             DM.EditGameData_PassiveInfo.InitDatas();
+            DM.EditGameData_CardAbilityInfo.InitDatas();
         }
         #endregion
 
@@ -133,6 +135,9 @@ namespace LORModingBase
 
             GrdPassives.Visibility = Visibility.Collapsed;
             BtnPassive.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
+
+            GrdCardAbilities.Visibility = Visibility.Collapsed;
+            BtnCardAbility.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
         }
 
         /// <summary>
@@ -188,6 +193,12 @@ namespace LORModingBase
                         GrdPassives.Visibility = Visibility.Visible;
                         BtnPassive.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
                         ChangeDebugLocation(DEBUG_LOCATION.STATIC_PASSIVE_INTO);
+                        break;
+                    case "BtnCardAbility":
+                        HideAllGrid();
+                        GrdCardAbilities.Visibility = Visibility.Visible;
+                        BtnCardAbility.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        ChangeDebugLocation(DEBUG_LOCATION.LOCALIZED_CARD_ABILITY_DESC);
                         break;
 
                     case "BtnSetWorkingSpace":
@@ -779,6 +790,76 @@ namespace LORModingBase
             }
         }
         #endregion
+        #region EDIT MENU - Card Ability Infos
+        private void InitSplCardAbilities()
+        {
+            //SqlPassives.Children.Clear();
+            //DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode xmlDataNode) =>
+            //{
+            //    SqlPassives.Children.Add(new UC.EditPassive(xmlDataNode, InitSplPassives));
+            //});
+        }
+
+        private void CardAbilityGridButtonClickEvents(object sender, RoutedEventArgs e)
+        {
+
+            Button clickButton = sender as Button;
+            try
+            {
+                if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                {
+                    MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
+                    return;
+                }
+
+                switch (clickButton.Name)
+                {
+                    case "BtnAddCardAbility":
+                        //DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.subNodes.Add(
+                        //DM.EditGameData_PassiveInfo.MakeNewPassiveListBase());
+                        InitSplCardAbilities();
+                        break;
+                    case "BtnLoadCardAbility":
+                        //new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                        //{
+                        //    List<DM.XmlDataNode> foundPassiveIds = DM.GameInfos.staticInfos["PassiveList"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Passive",
+                        //            attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                        //    if (foundPassiveIds.Count <= 0)
+                        //        foundPassiveIds = DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Passive",
+                        //            attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+
+                        //    if (foundPassiveIds.Count > 0)
+                        //    {
+                        //        DM.XmlDataNode PASSIVE_NODE_TO_USE = foundPassiveIds[0].Copy();
+                        //        DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.subNodes.Add(PASSIVE_NODE_TO_USE);
+
+
+                        //        #region Add localized book name
+                        //        List<DM.XmlDataNode> foundLocalizePassiveDesc = DM.GameInfos.localizeInfos["PassiveDesc"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("PassiveDesc",
+                        //                                                                           attributeToCheck: new Dictionary<string, string>() { { "ID", PASSIVE_NODE_TO_USE.GetAttributesSafe("ID") } });
+                        //        if (foundLocalizePassiveDesc.Count > 0)
+                        //        {
+                        //            if (!DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.CheckIfGivenPathWithXmlInfoExists("PassiveDesc",
+                        //                       attributeToCheck: new Dictionary<string, string>() { { "ID", PASSIVE_NODE_TO_USE.GetAttributesSafe("ID") } }))
+                        //            {
+                        //                DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.subNodes.Add(foundLocalizePassiveDesc[0].Copy());
+                        //            }
+                        //        }
+                        //        #endregion
+
+                        //        InitSplCardAbilities();
+                        //    }
+                        //}, SubWindows.InputInfoWithSearchWindow_PRESET.PASSIVE).ShowDialog();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"BattleCardGridButtonClickEvents_Error_1"));
+            }
+        }
+        #endregion
 
 
         #region Text editor functions
@@ -845,6 +926,8 @@ namespace LORModingBase
                         DM.EditGameData_PassiveInfo.StaticPassiveList.SaveNodeData(DM.Config.GetStaticPathToSave(DM.EditGameData_PassiveInfo.StaticPassiveList, DM.Config.CurrentWorkingDirectory));
                         DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_PassiveInfo.LocalizedPassiveDesc, DM.Config.CurrentWorkingDirectory));
                     }
+                    if (GrdCardAbilities.Visibility == Visibility.Visible)
+                        DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardAbilityInfo.LocalizedCardAbility, DM.Config.CurrentWorkingDirectory));
 
                     string debugFileName = "";
                     if (LbxTextEditor.SelectedItem != null)
@@ -910,7 +993,9 @@ namespace LORModingBase
             LOCALIZED_DROP_BOOK_NAME=13,
 
             STATIC_PASSIVE_INTO=14,
-            LOCALIZED_PASSIVE_DESC=15
+            LOCALIZED_PASSIVE_DESC=15,
+
+            LOCALIZED_CARD_ABILITY_DESC=16
         }
 
 
@@ -954,6 +1039,8 @@ namespace LORModingBase
 
                                     case 14: DM.EditGameData_PassiveInfo.StaticPassiveList = RELOADED_XML_DATA; break;
                                     case 15: DM.EditGameData_PassiveInfo.LocalizedPassiveDesc = RELOADED_XML_DATA; break;
+
+                                    case 16: DM.EditGameData_CardAbilityInfo.LocalizedCardAbility = RELOADED_XML_DATA; break;
                                 }
                                 ReloadAllStackDatas();
                             }

@@ -134,6 +134,11 @@ namespace LORModingBase.SubWindows
                             DM.EditGameData_PassiveInfo.LocalizedPassiveDesc = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_PassiveInfo.LocalizedPassiveDesc, DM.Config.CurrentWorkingDirectory));
                         else
                             DM.EditGameData_PassiveInfo.LocalizedPassiveDesc = new DM.XmlData(DM.GameInfos.localizeInfos["PassiveDesc"]);
+
+                        if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardAbilityInfo.LocalizedCardAbility, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_CardAbilityInfo.LocalizedCardAbility = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardAbilityInfo.LocalizedCardAbility, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_CardAbilityInfo.LocalizedCardAbility = new DM.XmlData(DM.GameInfos.localizeInfos["BattleCardAbilities"]);
                         this.Close();
                     };
 

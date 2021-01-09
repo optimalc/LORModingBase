@@ -148,5 +148,6 @@ namespace LORModingBase.DM
 
         public static string DIVIDE_INFO = "divideInfo";
         public static string PASSIVE_INFO = "passiveInfo";
+        public static string CARD_ABILITY_INFO = "cardAbilityInfo";
     }
 }
