@@ -100,6 +100,7 @@ namespace LORModingBase
             DM.EditGameData_EnemyInfo.InitDatas();
             DM.EditGameData_DeckInfo.InitDatas();
             DM.EditGameData_DropBookInfo.InitDatas();
+            DM.EditGameData_PassiveInfo.InitDatas();
         }
         #endregion
 
@@ -821,7 +822,10 @@ namespace LORModingBase
 
             STATIC_DROP_BOOK_INFO=11,
             STATIC_CARD_DROP_TABLE_INFO=12,
-            LOCALIZED_DROP_BOOK_NAME=13
+            LOCALIZED_DROP_BOOK_NAME=13,
+
+            STATIC_PASSIVE_INTO=14,
+            LOCALIZED_PASSIVE_DESC=15
         }
 
 
@@ -862,6 +866,9 @@ namespace LORModingBase
                                     case 11: DM.EditGameData_DropBookInfo.StaticDropBookInfo = RELOADED_XML_DATA; break;
                                     case 12: DM.EditGameData_DropBookInfo.StaticCardDropTableInfo = RELOADED_XML_DATA; break;
                                     case 13: DM.EditGameData_DropBookInfo.LocalizedDropBookName = RELOADED_XML_DATA; break;
+
+                                    case 14: DM.EditGameData_PassiveInfo.StaticPassiveList = RELOADED_XML_DATA; break;
+                                    case 15: DM.EditGameData_PassiveInfo.LocalizedPassiveDesc = RELOADED_XML_DATA; break;
                                 }
                                 ReloadAllStackDatas();
                             }

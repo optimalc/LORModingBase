@@ -1,3 +1,22 @@
+# https://www.c-sharpcorner.com/uploadfile/kirtan007/compile-dll-using-command-line-C-Sharp-compiler/
+[1] Visual Studio 설치하기
+[3] C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe를 지정 시킨다
+λ C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe /target:library /out:custom_passive.dll /r:"C:\User\Programs\BasicPrograms\Steam\steamapps\common\Library Of Ruina\L ibraryOfRuina_Data\Managed\Assembly-CSharp.dll" /r:"C:\User\Programs\BasicPrograms\Steam\steamapps\common\Library Of Ruina\LibraryOfRuina_Data\Managed\netstandard.dll" main.cs
+
+CS0012: The type 'System.Object' is defined in an assembly that is not referenced. 
+You must add a reference to assembly 'netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'.
+
+
+but copying them into the same directory as the executable, when you want to run it.
+
+/target:library 라이브러리를 빌드합니다. (약식: /t:library)
+/out:<파일> 출력 파일 이름을 지정합니다(기본값: 주 클래스가 있는 파일 또는 첫째 파일의 기본 이름).
+
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:library /out:custom_passive.dll /r:"C:\User\Programs\BasicPrograms\Steam\steamapps\common\Library Of Ruina \LibraryOfRuina_Data\Managed\Assembly-CSharp.dll" main.cs
+
+
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config에 다음 내용을 넣는다
+
 - 카드 스크립트
 -- 트리거 종류
 AfterAction : 해당 책장의 주사위를 굴릴 때 마다 발동하는 트리거야.

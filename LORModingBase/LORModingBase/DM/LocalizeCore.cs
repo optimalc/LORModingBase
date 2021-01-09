@@ -147,5 +147,6 @@ namespace LORModingBase.DM
         public static string DROP_BOOK_INFO = "dropBookInfo";
 
         public static string DIVIDE_INFO = "divideInfo";
+        public static string PASSIVE_INFO = "passiveInfo";
     }
 }

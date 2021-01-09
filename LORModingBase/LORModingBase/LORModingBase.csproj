@@ -70,6 +70,7 @@
     <Compile Include="DM\EditGameData_CardInfos.cs" />
     <Compile Include="DM\EditGameData_DeckInfo.cs" />
     <Compile Include="DM\EditGameData_EnemyInfo.cs" />
+    <Compile Include="DM\EditGameData_PassiveInfo.cs" />
     <Compile Include="DM\EditGameData_StageInfo.cs" />
     <Compile Include="DM\GetDivideInfo.cs" />
     <Compile Include="DM\LocalizedGameDescriptions.cs" />
@@ -136,6 +137,9 @@
     </Compile>
     <Compile Include="UC\EditEnemyUnit.xaml.cs">
       <DependentUpon>EditEnemyUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\EditPassive.xaml.cs">
+      <DependentUpon>EditPassive.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC\EditStage.xaml.cs">
       <DependentUpon>EditStage.xaml</DependentUpon>
@@ -219,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\EditEnemyUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditPassive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
