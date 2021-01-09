@@ -259,6 +259,13 @@ namespace LORModingBase
                         new SubWindows.ResourceWindow().ShowDialog();
                         break;
                     case "BtnDLLEdit":
+                        if (string.IsNullOrEmpty(DM.Config.config.DLLCompilerPath))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"DLLCompilerPathError2"));
+                            MainWindowButtonClickEvents(BtnConfig, null);
+                            return;
+                        }
+
                         new DLLEditor.DLLEditorMainWindow().ShowDialog();
                         break;
                 }

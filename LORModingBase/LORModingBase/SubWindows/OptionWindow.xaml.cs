@@ -80,7 +80,7 @@ namespace LORModingBase.SubWindows
                                     initResourceFunc();
                                 }
                                 else
-                                    Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"DLLCompilerPathError"), "Error");
+                                    Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"DLLCompilerPathError"));
 
                             }
                             catch (Exception ex)
@@ -114,7 +114,7 @@ namespace LORModingBase.SubWindows
             }
             catch (Exception ex)
             {
-                Tools.MessageBoxTools.ShowErrorMessageBox(ex, "Error");
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex);
             }
         }
 
