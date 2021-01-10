@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -78,6 +79,7 @@ namespace LORModingBase.DLLEditor
                     TbxTextEditor.Text += $"using {UNIQUE_USING_NAME};\n";
                 #endregion
 
+                GlobalVarValue = 1;
                 TbxTextEditor.Text += $"\nnamespace {DM.Config.config.nameSpaceToUse}\n{{";
                 rootCodeBlocks.ForEach((CodeBlock rootCodeBlock) =>
                 {
@@ -85,13 +87,26 @@ namespace LORModingBase.DLLEditor
                 });
                 TbxTextEditor.Text += $"\n}}";
             }
-        } 
+        }
 
+        private int GlobalVarValue = 1;
         private string MakeAllCodeBlockStructure(CodeBlock codeBlockToUse)
         {
             string CODE_TO_USE = codeBlockToUse.codes;
             for (int paraIndex = 0; paraIndex < codeBlockToUse.inputtedParameterList.Count; paraIndex++)
                 CODE_TO_USE = CODE_TO_USE.Replace("{{" + paraIndex.ToString() + "}}", codeBlockToUse.inputtedParameterList[paraIndex]);
+            
+            for (int varIndex = 0; varIndex < 10; varIndex++ )
+            {
+                if (CODE_TO_USE.Contains($"<<{varIndex}>>"))
+                {
+                    CODE_TO_USE = CODE_TO_USE.Replace($"<<{varIndex}>>", $"var{GlobalVarValue}");
+                    GlobalVarValue++;
+                }
+                else
+                    break;
+            }
+
 
             string subCodes = "";
             codeBlockToUse.subCodeBlocks.ForEach((CodeBlock subCodeBlock) =>

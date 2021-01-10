@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["WHILE"],
+    "inputtedParameter":["2"],
+    "subBlockWhiteFilter":["&GROUP_PASSIVE_ACTIONS"],
+    "kr":[
+        "반복 블록",
+        "특정 횟수 만큼 반복할 수 있습니다",
+        "반복 횟수"
+    ],
+    "en":[
+        "repeat n times",
+        "repeat n times",
+        "n"
+    ],
+    "jp":[
+        "repeat n times",
+        "repeat n times",
+        "n"
+    ],
+    "cn":[
+        "repeat n times",
+        "repeat n times",
+        "n"
+    ]
+}

@@ -7,5 +7,7 @@
     "passiveIfCodes/IF_OVER_EMOTION_LEVEL",
     "passiveIfCodes/IF_OVER_PLAY_POINT",
     "passiveIfCodes/IF_UNDER_PLAY_POINT",
-    "passiveIfCodes/IF_NO_USE_CARD"
+    "passiveIfCodes/IF_NO_USE_CARD",
+
+    "globalBlock/WHILE_LOOP_PASSIVE_ACTIONS"
 ]

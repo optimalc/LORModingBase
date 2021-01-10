@@ -18,5 +18,7 @@
     "cardAbilityIfCodes/IF_UNDER_HP",
     "cardAbilityIfCodes/IF_OVER_HP",
     "cardAbilityIfCodes/IF_CHARGE_OVER_AND_USE",
-    "cardAbilityIfCodes/IF_NO_PARRYING"
+    "cardAbilityIfCodes/IF_NO_PARRYING",
+
+    "globalBlock/WHILE_LOOP_DICE_ACTIONS"
 ]
