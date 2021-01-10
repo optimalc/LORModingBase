@@ -69,6 +69,7 @@
       <DependentUpon>GlobalCodeBlockControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DLLEditor\CodeBlockDataManagement.cs" />
+    <Compile Include="DLLEditor\CompileDLL.cs" />
     <Compile Include="DLLEditor\DataStructure.cs" />
     <Compile Include="DLLEditor\DLLEditorGlobalSearchWindow.xaml.cs">
       <DependentUpon>DLLEditorGlobalSearchWindow.xaml</DependentUpon>

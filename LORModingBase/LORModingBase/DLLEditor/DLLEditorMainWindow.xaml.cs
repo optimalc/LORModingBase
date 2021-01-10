@@ -112,6 +112,11 @@ namespace LORModingBase.DLLEditor
         }
         #endregion
 
+        /// <summary>
+        /// Click Events
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DLLEditorButtonClickEvents(object sender, RoutedEventArgs e)
         {
             Button clickButton = sender as Button;
@@ -133,6 +138,7 @@ namespace LORModingBase.DLLEditor
                             DLLEditorButtonClickEvents(BtnSetDLLWorkingSpace, null);
                             return;
                         }
+                        TbxLogging.Text = CompileDLL.CompileGivenCodeToDLL(TbxTextEditor.Text, targetSourceFilePath.Split('\\').Last().Split('.')[0]);
                         break;
 
                     case "BtnAddCodeBase":

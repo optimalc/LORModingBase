@@ -46,6 +46,8 @@ namespace LORModingBase.DS
         public static string RESOURCE_UNITY_ENGINE_DEBUG = $"{DIC_RESOURCE}\\UnityEngine.dll";
 
         public static string RESOURCE_ROOT_CODE_BLOCK_LIST = $"{DIC_RESOURCE}\\codeBlockRootShowList.json";
+
+        public static string RESOURCE_COMPILE_DENPENDENCIES = $"{DIC_RESOURCE}\\compileDependencies.json";
     }
 
     class GAME_RESOURCE_PATHS
