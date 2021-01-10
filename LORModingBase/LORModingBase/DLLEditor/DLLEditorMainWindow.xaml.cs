@@ -38,17 +38,17 @@ namespace LORModingBase.DLLEditor
             SqlCodeBlocks.Children.Clear();
             rootCodeBlocks.ForEach((CodeBlock codeBlock) =>
             {
-                LooplyInitDLLStacks(codeBlock);
+                LooplyInitDLLStacks(codeBlock, null);
             });
         }
 
-        private void LooplyInitDLLStacks(CodeBlock codeBlock)
+        private void LooplyInitDLLStacks(CodeBlock codeBlock, CodeBlock perentBlock)
         {
             SqlCodeBlocks.Children.Add(
-                    new CodeBlockControls.GlobalCodeBlockControl(codeBlock, InitCreatedSourceCodeTextBox, InitDLLStacks, null));
+                    new CodeBlockControls.GlobalCodeBlockControl(codeBlock, InitCreatedSourceCodeTextBox, InitDLLStacks, perentBlock));
             codeBlock.subCodeBlocks.ForEach((CodeBlock subCodeBlock) =>
             {
-                LooplyInitDLLStacks(subCodeBlock);
+                LooplyInitDLLStacks(subCodeBlock, codeBlock);
             });
         }
 
