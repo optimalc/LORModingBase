@@ -1,5 +1,5 @@
 {
-    "usings":["System"],
+    "usings":[],
     "type":["BASE"],
     "inputtedParameter":[],
     "subBlockWhiteFilter":["&GROUP_DICE_ACTIONS"],

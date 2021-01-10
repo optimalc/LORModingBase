@@ -11,5 +11,7 @@
     "diceActions/ACTION_QUICKNESS_ABILITY",
     "diceActions/ACTION_RECOVER_PLAY_POINT_BY_CARD",
     "diceActions/ACTION_DRAW_CARDS",
-    "diceActions/ACTION_TAKE_DAMAGE"
+    "diceActions/ACTION_TAKE_DAMAGE",
+
+    "cardAbilityIfCodes/IF_UNDER_HP"
 ]
