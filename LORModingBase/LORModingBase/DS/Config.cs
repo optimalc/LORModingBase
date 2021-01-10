@@ -19,5 +19,7 @@
         public bool isDeveloperMode = false;
 
         public string localizeOption = "kr";
+
+        public string nameSpaceToUse = "LOR_Moding_Base";
     }
 }

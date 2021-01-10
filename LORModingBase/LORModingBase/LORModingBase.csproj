@@ -64,6 +64,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomExtensions\IEnumerable.cs" />
+    <Compile Include="CustomExtensions\StringExtension.cs" />
     <Compile Include="DLLEditor\CodeBlockControls\GlobalCodeBlockControl.xaml.cs">
       <DependentUpon>GlobalCodeBlockControl.xaml</DependentUpon>
     </Compile>

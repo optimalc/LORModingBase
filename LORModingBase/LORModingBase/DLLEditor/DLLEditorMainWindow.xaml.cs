@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LORModingBase.CustomExtensions;
 
 namespace LORModingBase.DLLEditor
 {
@@ -27,6 +28,7 @@ namespace LORModingBase.DLLEditor
         public DLLEditorMainWindow()
         {
             InitializeComponent();
+            TbxNameSpace.Text = DM.Config.config.nameSpaceToUse;
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO);
             InitDLLStacks();
         }
@@ -46,8 +48,47 @@ namespace LORModingBase.DLLEditor
             if (!string.IsNullOrEmpty(DLLEditor.DLLEditorMainWindow.targetSourceFilePath))
             {
                 Tools.JsonFile.SaveJsonFile<List<CodeBlock>>(DLLEditor.DLLEditorMainWindow.targetSourceFilePath, rootCodeBlocks);
+
+                TbxTextEditor.Text = "";
+                #region Make using code
+                List<string> usingList = new List<string>();
+                rootCodeBlocks.ForEach((CodeBlock rootCodeBlock) =>
+                {
+                    GetAllUsingCases(rootCodeBlock, usingList);
+                });
+
+                HashSet<string> UNIQUE_USING_HASH_SET = new HashSet<string>(usingList);
+                foreach (string UNIQUE_USING_NAME in UNIQUE_USING_HASH_SET)
+                    TbxTextEditor.Text += $"using {UNIQUE_USING_NAME};\n";
+                #endregion
+                TbxTextEditor.Text += $"\nnamespace {DM.Config.config.nameSpaceToUse}\n{{\n}}";
+
+                rootCodeBlocks.ForEach((CodeBlock rootCodeBlock) =>
+                {
+                    MakeAllCodeBlockStructure(rootCodeBlock, 0);
+                });
             }
         } 
+
+        private void MakeAllCodeBlockStructure(CodeBlock codeBlockToUse, int innerPara)
+        {
+            int INDEX_TO_INPUT = TbxTextEditor.Text.IndexOfNth("{", innerPara);
+            TbxTextEditor.Text = TbxTextEditor.Text.Insert(INDEX_TO_INPUT+1, "\n" + "\t".Multiple(innerPara + 1) + codeBlockToUse.codes.Replace("\n", "\n"+"\t".Multiple(innerPara + 1)));
+            codeBlockToUse.subCodeBlocks.ForEach((CodeBlock codeBlock) =>
+            {
+                MakeAllCodeBlockStructure(codeBlockToUse, innerPara+1);
+            });
+        }
+
+        private void GetAllUsingCases(CodeBlock codeBlockToUse, List<string> usingCaseList)
+        {
+            usingCaseList.AddRange(codeBlockToUse.usings);
+            codeBlockToUse.subCodeBlocks.ForEach((CodeBlock codeBlock) =>
+            {
+                usingCaseList.AddRange(codeBlock.usings);
+                GetAllUsingCases(codeBlock, usingCaseList);
+            });
+        }
         #endregion
 
         private void DLLEditorButtonClickEvents(object sender, RoutedEventArgs e)
@@ -97,6 +138,22 @@ namespace LORModingBase.DLLEditor
             {
                 Tools.MessageBoxTools.ShowErrorMessageBox(ex,
                     DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"DLLEditorMainWindow_Error_1"));
+            }
+        }
+
+        /// <summary>
+        /// Reflect text chagnes in TextBox
+        /// </summary>
+        private void ReflectTextChangeInTextBox(object sender, TextChangedEventArgs e)
+        {
+            TextBox tbx = sender as TextBox;
+            switch (tbx.Name)
+            {
+                case "TbxNameSpace":
+                    DM.Config.config.nameSpaceToUse = TbxNameSpace.Text;
+                    DM.Config.SaveData();
+                    InitCreatedSourceCodeTextBox();
+                    break;
             }
         }
     }
