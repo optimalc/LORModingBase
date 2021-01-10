@@ -71,6 +71,11 @@ namespace LORModingBase.DLLEditor
                             DLLEditorButtonClickEvents(BtnSetDLLWorkingSpace, null);
                             return;
                         }
+
+                        new DLLEditorGlobalSearchWindow((string selectedCodeBlock) =>
+                        {
+                            InitUIDatas();
+                        }, DLLEditorGlobalSearchWindow_PRESET.BASE_BLOCK).ShowDialog();
                         break;
 
                     case "BtnClose":

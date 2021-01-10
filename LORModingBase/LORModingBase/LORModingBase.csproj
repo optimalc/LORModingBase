@@ -64,6 +64,9 @@
     </ApplicationDefinition>
     <Compile Include="CustomExtensions\IEnumerable.cs" />
     <Compile Include="DLLEditor\DataStructure.cs" />
+    <Compile Include="DLLEditor\DLLEditorGlobalSearchWindow.xaml.cs">
+      <DependentUpon>DLLEditorGlobalSearchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DLLEditor\DLLEditorMainWindow.xaml.cs">
       <DependentUpon>DLLEditorMainWindow.xaml</DependentUpon>
     </Compile>
@@ -158,6 +161,10 @@
     <Compile Include="UC\EditWave.xaml.cs">
       <DependentUpon>EditWave.xaml</DependentUpon>
     </Compile>
+    <Page Include="DLLEditor\DLLEditorGlobalSearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DLLEditor\DLLEditorMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
