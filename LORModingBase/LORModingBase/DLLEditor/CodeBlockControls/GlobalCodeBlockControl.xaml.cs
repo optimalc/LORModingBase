@@ -44,6 +44,15 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                 case CODE_BLOCK_TYPE.BASE_BLOCK:
                     WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54FFFFFF");
                     break;
+                case CODE_BLOCK_TYPE.IF_BLOCK:
+                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#5454D47F");
+                    break;
+                case CODE_BLOCK_TYPE.WHILE_BLOCK:
+                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#545471D4");
+                    break;
+                case CODE_BLOCK_TYPE.ACTION_BLOCK:
+                    WindowBg.Fill = Tools.ColorTools.GetSolidColorBrushByHexStr("#54D4A754");
+                    break;
             }
 
             LblCodeBlockType.Content = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"Type_{innerCodeBlock.type}");
@@ -100,6 +109,12 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                 switch (clickButton.Name)
                 {
                     case "BtnAddNode":
+                        new DLLEditorGlobalSearchWindow((CodeBlock selectedCodeBlock) =>
+                        {
+                            innerCodeBlock.subCodeBlocks.Add(selectedCodeBlock);
+                            updateTextBox();
+                            updateStack();
+                        }, innerCodeBlock.subBlockWhiteFilter).ShowDialog();
                         break;
                     case "BtnDelete":
                         if (perentCodeBlock == null)

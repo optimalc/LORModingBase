@@ -102,7 +102,7 @@ namespace LORModingBase.DLLEditor
             if (LbxSourceCodeBlocks.SelectedIndex != -1)
             {
                 CodeBlock SELECTED_CODE_BLOCK = CodeBlockDataManagement.GetBaseBlockFromTargetPathOrTitle(LbxSourceCodeBlocks.SelectedItem.ToString());
-                afterSelectCodeBlock(SELECTED_CODE_BLOCK);
+                afterSelectCodeBlock(SELECTED_CODE_BLOCK.Copy());
                 this.Close();
             }
         }

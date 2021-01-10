@@ -38,8 +38,17 @@ namespace LORModingBase.DLLEditor
             SqlCodeBlocks.Children.Clear();
             rootCodeBlocks.ForEach((CodeBlock codeBlock) =>
             {
-                SqlCodeBlocks.Children.Add(
+                LooplyInitDLLStacks(codeBlock);
+            });
+        }
+
+        private void LooplyInitDLLStacks(CodeBlock codeBlock)
+        {
+            SqlCodeBlocks.Children.Add(
                     new CodeBlockControls.GlobalCodeBlockControl(codeBlock, InitCreatedSourceCodeTextBox, InitDLLStacks, null));
+            codeBlock.subCodeBlocks.ForEach((CodeBlock subCodeBlock) =>
+            {
+                LooplyInitDLLStacks(subCodeBlock);
             });
         }
 
@@ -81,7 +90,7 @@ namespace LORModingBase.DLLEditor
             TbxTextEditor.Text = TbxTextEditor.Text.Insert(INDEX_TO_INPUT+1, "\n" + "\t".Multiple(innerPara + 1) + CODE_TO_USE.Replace("\n", "\n"+"\t".Multiple(innerPara + 1)));
             codeBlockToUse.subCodeBlocks.ForEach((CodeBlock codeBlock) =>
             {
-                MakeAllCodeBlockStructure(codeBlockToUse, innerPara+1);
+                MakeAllCodeBlockStructure(codeBlock, innerPara+1);
             });
         }
 

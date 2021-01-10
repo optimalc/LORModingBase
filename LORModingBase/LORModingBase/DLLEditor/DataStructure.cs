@@ -20,6 +20,7 @@ namespace LORModingBase.DLLEditor
     /// <summary>
     /// Code block data structure
     /// </summary>
+    [Serializable]
     public class CodeBlock
     {
         public string type = "";
@@ -31,5 +32,10 @@ namespace LORModingBase.DLLEditor
         public List<string> parameterList = new List<string>();
         public List<string> inputtedParameterList = new List<string>();
         public List<string> usings = new List<string>();
+
+        public CodeBlock Copy()
+        {
+            return Tools.DeepCopy.DeepClone(this);
+        }
     }
 }

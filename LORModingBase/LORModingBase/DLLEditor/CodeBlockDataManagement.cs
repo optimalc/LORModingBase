@@ -56,7 +56,10 @@ namespace LORModingBase.DLLEditor
                             string TYPE_DESC = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"Type_{createdCodeBlock.type}");
                             createdCodeBlock.title = $"{TYPE_DESC}[{KEY_TO_USE}] {loadedCodeBlockData[DM.Config.config.localizeOption][0]}:{KEY_TO_USE}/{SUB_KEY_TO_USE}";
                             createdCodeBlock.description = loadedCodeBlockData[DM.Config.config.localizeOption][1];
-                            createdCodeBlock.parameterList = loadedCodeBlockData[DM.Config.config.localizeOption][2].Split(',').ToList();
+                            if (string.IsNullOrEmpty(loadedCodeBlockData[DM.Config.config.localizeOption][2]))
+                                createdCodeBlock.parameterList = new List<string>();
+                            else
+                                createdCodeBlock.parameterList = loadedCodeBlockData[DM.Config.config.localizeOption][2].Split(',').ToList();
                         }
 
                         string SOURCE_DATA = codeBlockFile.Replace(".json", ".txt");
