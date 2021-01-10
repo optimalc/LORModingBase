@@ -26,12 +26,14 @@ namespace LORModingBase.DLLEditor
     /// </summary>
     public class CodeBlock
     {
+        public string type = "";
         public string title = "";
         public string description = "";
         public string codes = "";
         public List<string> subBlockWhiteFilter = new List<string>();
         public List<CodeBlock> subCodeBlocks = new List<CodeBlock>();
         public List<string> parameterList = new List<string>();
+        public List<string> inputtedParameterList = new List<string>();
         public List<string> usings = new List<string>();
     }
 }

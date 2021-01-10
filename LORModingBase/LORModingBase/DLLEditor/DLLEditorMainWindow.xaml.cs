@@ -32,7 +32,7 @@ namespace LORModingBase.DLLEditor
 
         private void InitDLLStacks()
         {
-            if(string.IsNullOrEmpty(DLLEditor.DLLEditorMainWindow.targetSourceFilePath))
+            if(!string.IsNullOrEmpty(DLLEditor.DLLEditorMainWindow.targetSourceFilePath))
             {
                 Tools.JsonFile.SaveJsonFile<List<CodeBlock>>(DLLEditor.DLLEditorMainWindow.targetSourceFilePath, rootCodeBlocks);
             }

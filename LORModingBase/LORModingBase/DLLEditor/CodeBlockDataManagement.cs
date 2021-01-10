@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LORModingBase.CustomExtensions;
 
 namespace LORModingBase.DLLEditor
 {
@@ -44,9 +45,15 @@ namespace LORModingBase.DLLEditor
                             createdCodeBlock.subBlockWhiteFilter = loadedCodeBlockData["subBlockWhiteFilter"];
                         if (loadedCodeBlockData.ContainsKey("usings"))
                             createdCodeBlock.usings = loadedCodeBlockData["usings"];
+
+                        if (loadedCodeBlockData.ContainsKey("type"))
+                            createdCodeBlock.type = loadedCodeBlockData["type"][0];
+                        if (loadedCodeBlockData.ContainsKey("inputtedParameter"))
+                            createdCodeBlock.inputtedParameterList = loadedCodeBlockData["inputtedParameter"];
+
                         if (loadedCodeBlockData.ContainsKey(DM.Config.config.localizeOption))
                         {
-                            createdCodeBlock.title = $"{loadedCodeBlockData[DM.Config.config.localizeOption][0]}:{KEY_TO_USE}/{SUB_KEY_TO_USE}";
+                            createdCodeBlock.title = $"[{KEY_TO_USE}] {loadedCodeBlockData[DM.Config.config.localizeOption][0]}:{KEY_TO_USE}/{SUB_KEY_TO_USE}";
                             createdCodeBlock.description = loadedCodeBlockData[DM.Config.config.localizeOption][1];
                             createdCodeBlock.parameterList = loadedCodeBlockData[DM.Config.config.localizeOption][2].Split(',').ToList();
                         }
@@ -62,6 +69,11 @@ namespace LORModingBase.DLLEditor
         }
         #endregion
         
+        /// <summary>
+        /// Get code block by using title or path
+        /// </summary>
+        /// <param name="targetPath"></param>
+        /// <returns></returns>
         public static CodeBlock GetBaseBlockFromTargetPathOrTitle(string targetPath)
         {
             targetPath = targetPath.Split(':').Last();
@@ -84,21 +96,36 @@ namespace LORModingBase.DLLEditor
         /// <summary>
         /// Get all code block list from name
         /// </summary>
-        public static List<CodeBlock> GetAllCodeBlockListFromBaseName(string codeBlockBaseName)
+        public static List<CodeBlock> GetAllCodeBlockListFromType(string codeBlockType)
         {
-            if (loadedCodeBlocks.ContainsKey(codeBlockBaseName))
-                return loadedCodeBlocks[codeBlockBaseName].Values.ToList();
-            else
-                return new List<CodeBlock>();
+            List<CodeBlock> foundCodeBlocks = new List<CodeBlock>();
+            loadedCodeBlocks.ForEachKeyValuePairSafe((string dir, Dictionary<string, CodeBlock> codeBlockDir) =>
+            {
+                codeBlockDir.ForEachKeyValuePairSafe((string blockName, CodeBlock codeBlock) =>
+                {
+                    if (codeBlock.type == codeBlockType)
+                        foundCodeBlocks.Add(codeBlock);
+                });
+            });
+            return foundCodeBlocks;
+        }
+    
+        /// <summary>
+        /// Get all code block keys
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetALLCodeBlockKeys()
+        {
+            return loadedCodeBlocks.Keys.ToList();
         }
     }
 
 
     /// <summary>
-    /// Code block base name
+    /// The type of code block
     /// </summary>
-    class CODE_BLCOK_DIR_NAME
+    class CODE_BLOCK_TYPE
     {
-        public static string BASE_BLOCK = "base";
+        public static string BASE_BLOCK = "BASE";
     }
 }

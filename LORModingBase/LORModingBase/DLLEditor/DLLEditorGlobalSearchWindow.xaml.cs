@@ -43,10 +43,11 @@ namespace LORModingBase.DLLEditor
             switch (preset)
             {
                 case DLLEditorGlobalSearchWindow_PRESET.BASE_BLOCK:
-                    codeBlockList = CodeBlockDataManagement.GetAllCodeBlockListFromBaseName(CODE_BLCOK_DIR_NAME.BASE_BLOCK);
+                    codeBlockList = CodeBlockDataManagement.GetAllCodeBlockListFromType(CODE_BLOCK_TYPE.BASE_BLOCK);
                     break;
             }
 
+            searchTypes.AddRange(CodeBlockDataManagement.GetALLCodeBlockKeys());
             InitLbxSearchType(searchTypes);
         }
 
