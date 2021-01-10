@@ -1,0 +1,4 @@
+public override void OnUseCard(BattlePlayingCardDataInUnitModel curCard)
+{
+    this.OnUseCard(curCard);
+}
