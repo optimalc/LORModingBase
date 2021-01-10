@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +20,22 @@ namespace LORModingBase.DLLEditor
     /// </summary>
     public partial class DLLEditorMainWindow : Window
     {
+        public static string targetSourceFilePath = "";
+
         public DLLEditorMainWindow()
         {
             InitializeComponent();
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO);
-            InitDLLStacks();
+            InitUIDatas();
+        }
+
+        private void InitUIDatas()
+        {
+            if(!string.IsNullOrEmpty(targetSourceFilePath) && File.Exists(targetSourceFilePath))
+            {
+                TbxTextEditor.Text = File.ReadAllText(targetSourceFilePath);
+                InitDLLStacks();
+            }
         }
 
         private void InitDLLStacks()
@@ -39,11 +51,24 @@ namespace LORModingBase.DLLEditor
                 switch (clickButton.Name)
                 {
                     case "BtnSetDLLWorkingSpace":
+                        new SubWindows.Global_ListSeleteWithEditWindow(null, null, null, null,
+                             SubWindows.Global_ListSeleteWithEditWindow_PRESET.DLL_WORKING_SPACE).ShowDialog();
+                        InitUIDatas();
                         break;
                     case "BtnCompileDLL":
+                        if (string.IsNullOrEmpty(targetSourceFilePath))
+                        {
+                            DLLEditorButtonClickEvents(BtnSetDLLWorkingSpace, null);
+                            return;
+                        }
                         break;
 
                     case "BtnAddCodeBase":
+                        if (string.IsNullOrEmpty(targetSourceFilePath))
+                        {
+                            DLLEditorButtonClickEvents(BtnSetDLLWorkingSpace, null);
+                            return;
+                        }
                         break;
 
                     case "BtnClose":

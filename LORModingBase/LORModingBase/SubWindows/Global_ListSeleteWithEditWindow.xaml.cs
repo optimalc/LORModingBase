@@ -146,7 +146,7 @@ namespace LORModingBase.SubWindows
                     {
                         new SubWindows.Global_InputOneColumnData(null, afterClose:(string inputedName) =>
                         {
-                            if(!Directory.Exists($"{DirToSearch}\\{inputedName}"))
+                            if(!string.IsNullOrEmpty(inputedName) && !Directory.Exists($"{DirToSearch}\\{inputedName}"))
                             {
                                 Directory.CreateDirectory($"{DirToSearch}\\{inputedName}");
                                 LbxItems.Items.Add(inputedName);
@@ -159,7 +159,7 @@ namespace LORModingBase.SubWindows
                     {
                         new SubWindows.Global_InputOneColumnData(null, afterClose: (string inputedName) =>
                         {
-                            if (Directory.Exists($"{DirToSearch}\\{selectedName}"))
+                            if (!string.IsNullOrEmpty(inputedName) && Directory.Exists($"{DirToSearch}\\{selectedName}"))
                             {
                                 if($"{DirToSearch}\\{selectedName}" != $"{DirToSearch}\\{inputedName}")
                                 {
@@ -174,6 +174,68 @@ namespace LORModingBase.SubWindows
                     this.afterDelete = (string selectedName) =>
                     {
                         Directory.Delete($"{DirToSearch}\\{selectedName}", true);
+                        LbxItems.Items.Remove(selectedName);
+                    };
+
+                    break;
+
+                case Global_ListSeleteWithEditWindow_PRESET.DLL_WORKING_SPACE:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE");
+                    string DLL_DIR_SEARCH_PATH = $"{DM.Config.CurrentWorkingDirectory}\\{DLLEditor.GlobalDatas.DLL_SOURCE_FILE_DIR_NAME}";
+                    if (!Directory.Exists(DLL_DIR_SEARCH_PATH))
+                        Directory.CreateDirectory(DLL_DIR_SEARCH_PATH);
+
+                    Directory.GetFiles(DLL_DIR_SEARCH_PATH).ForEachSafe((string eachTxtFile) =>
+                    {
+                        itemToLoad.Add(eachTxtFile.Split('\\').Last().Replace(".txt", ".dll"));
+                    });
+
+                    this.afterSelect = (string selectedFileName) =>
+                    {
+                        DLLEditor.DLLEditorMainWindow.targetSourceFilePath = $"{DLL_DIR_SEARCH_PATH}\\{selectedFileName.Replace(".dll", ".txt")}";
+                        this.Close();
+                    };
+
+                    this.afterAdd = () =>
+                    {
+                        new SubWindows.Global_InputOneColumnData(null, afterClose: (string inputedName) =>
+                        {
+                            if (!string.IsNullOrEmpty(inputedName) && !File.Exists($"{DLL_DIR_SEARCH_PATH}\\{inputedName}.txt"))
+                            {
+                                File.Create($"{DLL_DIR_SEARCH_PATH}\\{inputedName}.txt");
+                                LbxItems.Items.Add($"{inputedName}.dll");
+                            }
+                        }, windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE_ADD_TITLE"),
+                        tbxToolTip: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE_ADD_TOOLTIP")).ShowDialog();
+                    };
+
+                    this.afterEdit = (string selectedName) =>
+                    {
+                        new SubWindows.Global_InputOneColumnData(null, afterClose: (string inputedName) =>
+                        {
+                            if (!string.IsNullOrEmpty(inputedName) && File.Exists($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.txt"))
+                            {
+                                if (selectedName.Split('.')[0] != inputedName)
+                                {
+                                    File.Move($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.txt", $"{DLL_DIR_SEARCH_PATH}\\{inputedName}.txt");
+                                    LbxItems.Items[LbxItems.Items.IndexOf(selectedName)] = $"{inputedName}.dll";
+                                }
+                            }
+                            if (!string.IsNullOrEmpty(inputedName) && File.Exists($"{DM.Config.CurrentWorkingDirectory}\\{selectedName}"))
+                            {
+                                if (selectedName.Split('.')[0] != inputedName)
+                                {
+                                    File.Move($"{DLL_DIR_SEARCH_PATH}\\{selectedName}", $"{DLL_DIR_SEARCH_PATH}\\{inputedName}.dll");
+                                }
+                            }
+                        }, prevData: selectedName.Split('.')[0], windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE_EDIT_TITLE"),
+                        tbxToolTip: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE_EDIT_TOOLTIP")).ShowDialog();
+                    };
+
+                    this.afterDelete = (string selectedName) =>
+                    {
+                        File.Delete($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.txt");
+                        File.Delete($"{DM.Config.CurrentWorkingDirectory}\\{selectedName}");
                         LbxItems.Items.Remove(selectedName);
                     };
 
@@ -216,6 +278,7 @@ namespace LORModingBase.SubWindows
 
     public enum Global_ListSeleteWithEditWindow_PRESET
     {
-        WORKING_SPACE
+        WORKING_SPACE,
+        DLL_WORKING_SPACE
     }
 }

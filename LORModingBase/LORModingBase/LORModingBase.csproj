@@ -63,6 +63,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomExtensions\IEnumerable.cs" />
+    <Compile Include="DLLEditor\DataStructure.cs" />
     <Compile Include="DLLEditor\DLLEditorMainWindow.xaml.cs">
       <DependentUpon>DLLEditorMainWindow.xaml</DependentUpon>
     </Compile>

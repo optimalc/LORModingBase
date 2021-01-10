@@ -265,6 +265,11 @@ namespace LORModingBase
                             MainWindowButtonClickEvents(BtnConfig, null);
                             return;
                         }
+                        if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                        {
+                            MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
+                            return;
+                        }
 
                         new DLLEditor.DLLEditorMainWindow().ShowDialog();
                         break;
