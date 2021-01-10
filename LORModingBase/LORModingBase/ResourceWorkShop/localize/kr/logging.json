@@ -1,0 +1,36 @@
+{
+    "Output_Logging_Complete_1":"데이터가 정상적으로 생성됨",
+    "Output_Logging_Error_1":"데이터 생성 도중 에러 발생",
+    "Output_Logging_Error_2":"데이터 체크 도중 에러 발생",
+
+    "Critical":"치명적",
+    "Caution":"주의",
+
+    "KeyPage_Critical_1":"핵심 책장의 ID가 입력되지 않음 [이름 : {0}]",
+    "KeyPage_Critical_2":"핵심 책장의 이름이 입력되지 않음 [ID : {0}]",
+    "KeyPage_Critical_3":"중복된 핵심 책장 ID가 존재함 [ID : {0}]",
+
+    "Card_Critical_1":"전투 책장의 ID가 입력되지 않음 [이름 : {0}]",
+    "Card_Critical_2":"전투 책장의 이름이 입력되지 않음 [ID : {0}]",
+    "Card_Critical_3":"중복된 전투 책장 ID가 존재함 [ID : {0}]",
+
+    "Stage_Critical_1":"스테이지 ID가 입력되지 않음 [이름 : {0}]",
+    "Stage_Critical_2":"스테이지 이름이 입력되지 않음 [ID : {0}]",
+    "Stage_Critical_3":"중복된 스테이지 ID가 존재함 [ID : {0}]",
+
+    "Enemy_Critical_1":"적 ID가 입력되지 않음 [이름 ID : {0}]",
+    "Enemy_Critical_2":"적 이름 ID가 입력되지 않음 [ID : {0}]",
+    "Enemy_Critical_3":"중복된 적 ID가 존재함 [ID : {0}]",
+
+    "Deck_Critical_1":"덱 ID가 입력되지 않음",
+    "Deck_Critical_2":"중복된 덱 ID가 존재함 [ID : {0}]",
+
+    "DropBook_Critical_1":"책 ID가 입력되지 않음",
+    "DropBook_Critical_2":"중복된 책 ID가 존재함 [ID : {0}]",
+
+    "Passive_Critical_1":"패시브 ID가 입력되지 않음",
+    "Passive_Critical_2":"중복된 패시브 ID가 존재함 [ID : {0}]",
+
+    "CardAbility_Critical_1":"카드 효과 ID가 입력되지 않음",
+    "CardAbility_Critical_2":"중복된 카드 효과 ID가 존재함 [ID : {0}]"
+}

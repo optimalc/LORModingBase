@@ -1,0 +1,34 @@
+{
+    "%ExtraToolsWindowName%":"Extra functions tools will support",
+
+    "%LblLogRedirect1%":"※ Log redirect for more efficient debugging",
+    "%LblLogRedirect2%":"Inner game log data will be printed to the BaseMode folder for efficient debugging",
+    "%BtnExecuteDebugRedirect%":"[Execute]",
+    "%BtnExecuteDebugRedirect_ToolTip%":"Execute this function",
+
+    "BtnExecuteDebugRedirect_Click_Info_1":"Has been successfully applied. Logging message will be printed in '\\Library Of Ruina\\LibraryOfRuina_Data\\BaseMods'",
+    "BtnExecuteDebugRedirect_Click_Info_2":"Tool execution success",
+    
+    "BtnExecuteDebugRedirect_Click_Error_1":"Resources for the tool are not found. Please download it from the site",
+    "BtnExecuteDebugRedirect_Click_Error_2":"An error has occurred while executing the tool",
+    "BtnExecuteDebugRedirect_Click_Error_3":"Tool execution error",
+
+    "%LblLogManagement1%":"※ Execute logging file management system",
+    "%LblLogManagement2%":"If you start the game in this program, the Program will manage game logging files",
+    "%CbxIsLogPlusMod_ToolTip%":"If you check it, program will manage the logging file",
+
+    "%BtnOk%":"[OK]",
+    "%BtnOk_ToolTip%":"Close the window",
+
+    "EXT_TITLE":"Double click URL to open the link",
+    "EXT_URL_1":"Official Homepage > https://gall.dcinside.com/mgallery/board/view/?id=lobotomycorporation&no=464908&search_head=110&page=1",
+    "EXT_URL_2":"Guide 1 - Edit Key Page Menu > https://gall.dcinside.com/mgallery/board/view/?id=lobotomycorporation&no=467819",
+    "EXT_URL_3":"Guide 2 - Edit Combat Bookshelf Menu > https://gall.dcinside.com/mgallery/board/view/?id=lobotomycorporation&no=470793",
+    "EXT_URL_4":"Guide 3 - How to use extra tools > https://gall.dcinside.com/mgallery/board/view/?id=lobotomycorporation&no=471213",
+
+    "%ExtraLogWindowName%":"This will print a log file content",
+    "%LblLogError%":"Error Log",
+    "%TbxLogError_ToolTip%":"Error log output window",
+    "%LblLogInfo%":"Info Log",
+    "%TbxLogInfo_ToolTip%":"Info log output window"
+}

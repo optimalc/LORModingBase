@@ -1,0 +1,23 @@
+{
+    "%TbxCost_ToolTip%":"패시브의 코스트를 입력합니다",
+
+    "%BtnRarity_Common%":"보급$1,1$0,0",
+    "%BtnRarity_Common_ToolTip%":"보급 패시브로 지정",
+    "%BtnRarity_Uncommon%":"고급$1,1$2,-1",
+    "%BtnRarity_Uncommon_ToolTip%":"고급 패시브로 지정",
+    "%BtnRarity_Rare%":"한정$1,1$0,-1",
+    "%BtnRarity_Rare_ToolTip%":"한정 패시브로 지정",
+    "%BtnRarity_Unique%":"예술$1,1$-5,0",
+    "%BtnRarity_Unique_ToolTip%":"예술 패시브로 지정",
+
+    "%LblPassiveID%":"고유 ID : $1,1$3,0",
+    "%TbxPassiveID_ToolTip%":"패시브의 고유 ID를 입력합니다",
+    "%LblPassiveName%":"이름 : $0.8,1$10,0",
+    "%TbxPassiveName_ToolTip%":"패시브의 이름을 입력합니다",
+
+    "%LblPassiveDes%":"-- 패시브 관련 설명 --$0.8,1$15,0",
+    "%TbxPassiveDes_ToolTip%":"패시브의 설명을 입력합니다",
+
+    "%BtnCopyPassive_ToolTip%":"패시브를 복제해서 새로운 패시브를 만듭니다",
+    "%BtnDelete_ToolTip%":"패시브를 삭제합니다"
+}

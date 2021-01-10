@@ -1,0 +1,10 @@
+{
+    "%LblAbilityID%":"효과 ID :$0.95,1$5,0",
+    "%TbxAbilityID_ToolTip%":"효과의 고유 ID를 입력합니다",
+
+    "%LblPassiveDes%":"-- 카드 효과 관련 설명 --$0.94,1$5,0",
+    "%TbxAbilityDes_ToolTip%":"카드 효과의 설명을 입력합니다",
+
+    "%BtnCopyAbility_ToolTip%":"효과을 복제해서 새로운 효과을 만듭니다",
+    "%BtnDelete_ToolTip%":"카드 효과를 삭제합니다"
+}

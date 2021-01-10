@@ -1,0 +1,39 @@
+{
+    "%LblStageName%":"이름 : $1.2,1.2$-3,-2",
+    "%TbxStageName_ToolTip%":"스테이지의 이름을 입력",
+    "%LblStageUniqueID%":"고유 ID : $1.2,1.2$-3,-2",
+    "%TbxStageUniqueID_ToolTip%":"스테이지의 고유 ID를 입력",
+
+    "%BtnStage%":"적용할 에피소드를 선택$1.2,2.3$-15,-14",
+    "%BtnStage_ToolTip%":"스테이지과 관련된 에피소드를 설정합니다",
+
+    "%BtnFloor%":"허용 되는 층 수 선택",
+    "%BtnFloor_ToolTip%":"스테이지에서 허용하는 사용가능한 층의 개수를 입력합니다",
+
+    "%BtnInvitation%":"초대장 책 선택$0.8,0.8$10,2",
+    "%BtnInvitation_ToolTip%":"스테이지에 들어가기 위한 초대장에 들어갈 책을 설정합니다",
+
+    "%BtnAddWave%":"▼ 웨이브 추가 ▼$0.5,1$33,0",
+    "%BtnAddWave_ToolTip%":"스테이지에 웨이브를 추가합니다",
+    "%BtnCondition_ToolTip%":"해당 스테이지에 진입하기 위한 선 클리어 스테이지 ID를 입력합니다",
+    "%BtnMapInfo_ToolTip%":"맵 이미지를 입력합니다",
+    "%BtnCopyStage_ToolTip%":"스테이지를 복제해서 새로운 스테이지를 만듭니다",
+    "%BtnDelete_ToolTip%":"스테이지를 삭제합니다",
+
+    "%BtnFormation%":"유닛 대형$0.6,0.8$15,2",
+    "%BtnFormation_ToolTip%":"유닛의 대형을 선택합니다",
+
+    "%ImgAvailableUnit_ToolTip%":"웨이브에서 이용가능한 최대 인원 수",
+    "%TbxAvailableUnit_ToolTip%":"웨이브에서 이용가능한 최대 인원 수를 입력합니다",
+
+    "%BtnDeleteWave_ToolTip%":"웨이브를 삭제합니다",
+    "%BtnUnits%":"웨이브 유닛들$0.5,0.7$23,3",
+    "%BtnUnits_ToolTip%":"웨이브에 나올 유닛을 등록합니다",
+
+    "STAGE_CONDITION":"스테이지 조건",
+    "EPISODE":"에피소드",
+    "AVALIABLE_FLOOR":"이용가능 층 수",
+    "INVITATION_BOOK":"초대장 책",
+    
+    "FORMATION":"대형"
+}

@@ -1,0 +1,24 @@
+{
+    "%LblBookID%":"책 ID :$0.7,1$10,0",
+    "%TbxBookID_ToolTip%":"책의 고유 ID를 입력합니다",
+
+    "%LblNameID%":"이름 ID : $0.9,1$10,0",
+    "%TbxNameID_ToolTip%":"이름이 가지는 고유한 ID를 입력합니다",
+    "%LblBookName%":"이름 : $0.7,1$10,0",
+    "%TbxBookName_ToolTip%":"책의 이름을 입력합니다",
+
+    "%BtnBookIcon%":"책 아이콘 선택$0.8,0.7$12,4",
+    "%BtnBookIcon_ToolTip%":"사용할 책 아이콘을 선택합니다",
+
+    "%BtnChapter%":"속한 챕터 선택",
+    "%BtnChapter_ToolTip%":"속한 챕터를 선택합니다",
+
+    "%BtnSelectKeyPage%":"[ 드롭할 핵심 책장 고르기 ]$0.6,1$40,0",
+    "%BtnSelectKeyPage_ToolTip%":"드롭시킬 핵심 책장을 선택합니다",
+
+    "%BtnSelectCards%":"[ 드롭할 전투 책장 고르기 ]$0.6,1$40,0",
+    "%BtnSelectCards_ToolTip%":"드롭시킬 전투 책장을 선택합니다",
+
+    "%BtnCopyBook_ToolTip%":"책을 복제해서 새로운 책을 만듭니다",
+    "%BtnDelete_ToolTip%":"책을 삭제합니다"
+}

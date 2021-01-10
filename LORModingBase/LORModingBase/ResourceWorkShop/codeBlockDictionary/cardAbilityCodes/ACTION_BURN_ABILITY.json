@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "화상을 부여시키는 카드 효과",
+        "타겟에게 화상을 부여시킵니다",
+        "화상 수치"
+    ],
+    "en":[
+        "Burn the target",
+        "Burn the target",
+        "Degree of burning"
+    ],
+    "jp":[
+        "Burn the target",
+        "Burn the target",
+        "Degree of burning"
+    ],
+    "cn":[
+        "Burn the target",
+        "Burn the target",
+        "Degree of burning"
+    ]
+}

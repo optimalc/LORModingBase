@@ -1,0 +1,18 @@
+{
+    "language":"한국어",
+    "%ProgramSettingWindow%":"프로그램 설정",
+    "%LblLORPath%":"라오루 경로",
+    "%LblDLLCompilerPath%":"DLL 컴파일러 위치",
+    "%TbxDLLCompilerPath_ToolTip%":"DLL 컴파일러는 DLL 에디터에서 DLL을 생성하는데 사용됩니다.\nVisual Studio를 C#을 지원하는 옵션으로 설치했다면, 관련 폴더는 'C:\\Windows\\Microsoft.NET\\Framework64\\(최신 버전)'이 됩니다\n현재 경로 : ",
+    "%TbxLORPath_ToolTip%":"라오루 폴더를 지정합니다. 보통 경로는 '...\\Steam\\steamapps\\common\\Library Of Ruina'입니다.\n현재 경로 : ",
+    "%LblBaseModeResourceDes%":"기반모드 리소스 인식 여부",
+    "LblBaseModeResourceDes_Error":"모드 리소스가 없습니다. (기반 모드를 적용시키고 라오루를 한번 실행시켜주세요)",
+    "LblBaseModeResourceDes_Info":"리소스가 정상적으로 발견되었습니다",
+    "%LblDirectBaseModeExport%":"기반모드 폴더로 결과 내보내기",
+    "%CbxDirectBaseModeExport_ToolTip%":"체크를 하면 해당 프로그램의 exportedModes 디렉터리가 아닌, 기반모드의 BaseModes 디렉터리로 바로 결과를 내보냅니다",
+    "%BtnOk%":"[완료]",
+    "%BtnOk_ToolTip%":"창을 닫습니다",
+    "OptionWindowTextBoxLeftButtonDownEvents_Error":"변경된 경로를 반영하는 과정에서 오류가 발생했습니다",
+    "DLLCompilerPathError":"제시된 경로가 적절하지 않습니다. 디렉터리는 반드시 'csc.exe' 이름의 DLL 컴파일러를 가져야합니다",
+    "DLLCompilerPathError2":"이 창은 DLL 컴파일러 경로가 설정되어야 사용할 수 있습니다. 설정에서 관련 경로를 설정하세요"
+}

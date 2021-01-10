@@ -1,0 +1,6 @@
+BattleUnitModel target = base.card.target;
+if (target == null)
+{
+    return;
+}
+target.bufListDetail.AddKeywordBufByCard(KeywordBuf.Burn, {{0}}, base.owner);

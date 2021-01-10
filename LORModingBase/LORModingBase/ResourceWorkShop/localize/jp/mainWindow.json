@@ -1,0 +1,67 @@
+{
+    "%BtnCriticalPage%":"[Edit Key Page]$0.95,1",
+    "%BtnCriticalPage_ToolTip%":"Move to Edit Key Page window",
+    "%BtnCards%":"[Edit Combat Bookshelf]$1.35,1$-5,0",
+    "%BtnCards_ToolTip%":"Move to Edit Combat Bookshelf window",
+    "%BtnSetWorkingSpace%":"[Set Working Space]",
+    "%BtnSetWorkingSpace_ToolTip%":"Set working space to use",
+    
+    "%BtnStartGame_ToolTip%":"Start the game",
+    "%BtnOpenBaseFolder_ToolTip%":"Open the base mode folder",
+    "%BtnOpenExportFolder_ToolTip%":"Open the mode export folder",
+    "%BtnExtURL_ToolTip%":"Open the external URL window related to the tool",
+    "%BtnTools_ToolTip%":"Open the window for extra tool function",
+    "%BtnConfig_ToolTip%":"Open the program config window",
+
+    "%BtnAddCriticalBook_ToolTip%":"Add a new Key Page that does not exist in the game",
+    "%BtnLoadCriticalBook_ToolTip%":"Load a Key Page from game data",
+
+    "%BtnAddCard_ToolTip%":"Add a new Combat Bookshelf that does not exist in the game",
+    "%BtnLoadCard_ToolTip%":"Load a Combat Bookshelf from game data",
+
+    "MainWindow_Error":"Error in initializing",
+    "LoadAllRelatedDatasAfterChangePath_Error_1":"The Library of ruina path you set is not appropriate. Please reset path in setting window",
+    "LoadAllRelatedDatasAfterChangePath_Error_2":"Could not find mode resources in the folder you set. Install base mode and execute game once",
+
+    "MainWindowButtonClickEvents_Error_1":"Mode name is not inputted",
+    "MainWindowButtonClickEvents_Error_2":"An error has occurred while exporting",
+    "MainWindowButtonClickEvents_Error_3":"Exporting error",
+    "MainWindowButtonClickEvents_Error_4":"An error has occurred while loading",
+    "MainWindowButtonClickEvents_Error_5":"Loading error",
+    "MainWindowButtonClickEvents_Error_6":"Error is occured in main window click event",
+    "MainWindowButtonClickEvents_Error_7":"Error is occured in editor button click event",
+
+    "MainWindowButtonClickEvents_Info_1":"Exporting is completed",
+    "MainWindowButtonClickEvents_Info_2":"Success",
+    "MainWindowButtonClickEvents_Info_3":"Mode data is successfully loaded",
+
+    "CriticalPageGridButtonClickEvents_Error_1":"Error is occured in Key Page window click event",
+    "BattleCardGridButtonClickEvents_Error_1":"Error is occured in Combat Bookshelf window click event",
+
+    "%TbxTextEditor_ToolTip%":"Check realtime exported moding data",
+    "%TbxTextEditorLog_ToolTip%":"Logging for exported data",
+
+    "%LbxTextEditor_ToolTip%":"Change file name that data will be shown",
+    "%BtnReverseLoad_ToolTip%":"Load edited data in the editor to program",
+    "%BtnResources_ToolTip%":"Manage external customized resources",
+
+    "%BtnStages%":"[Edit Stage]$0.7,1$35,0",
+    "%BtnStages_ToolTip%":"Move to Edit Stage window",
+
+    "%BtnEnemy%":"[Edit Enemy Unit]",
+    "%BtnEnemy_ToolTip%":"Move to Edit Enemy Unit window",
+
+    "%BtnDecks%":"[Edit Decks]$0.7,1$-2,0",
+    "%BtnDecks_ToolTip%":"Move to Edit Decks window",
+
+    "%BtnDropBook%":"[Edit Book]$0.7,1$-33,0",
+    "%BtnDropBook_ToolTip%":"Move to Edit Book window",
+
+    "%BtnPassive%":"[Edit Passive]$0.8,1$-78,0",
+    "%BtnPassive_ToolTip%":"Move to Edit Passive window",
+
+    "%BtnCardAbility%":"[Edit Card Ability]$1,1$-130,0",
+    "%BtnCardAbility_ToolTip%":"Move to Edit Card Ability window",
+
+    "%BtnDLLEdit_ToolTip%":"Open the DLL Edit window"
+}

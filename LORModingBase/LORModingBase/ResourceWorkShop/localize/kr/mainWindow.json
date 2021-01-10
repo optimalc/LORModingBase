@@ -1,0 +1,67 @@
+{
+    "%BtnCriticalPage%":"[핵심 책장 편집]$0.95,0.95",
+    "%BtnCriticalPage_ToolTip%":"핵심책장 편집 화면으로 이동합니다",
+    "%BtnCards%":"[전투 책장 편집]$0.95,0.95$-7,0",
+    "%BtnCards_ToolTip%":"전투책장 편집 화면으로 이동합니다",
+    "%BtnSetWorkingSpace%":"[작업 공간 설정하기]",
+    "%BtnSetWorkingSpace_ToolTip%":"사용할 작업공간을 설정합니다",
+
+    "%BtnStartGame_ToolTip%":"게임을 시작시킵니다",
+    "%BtnOpenBaseFolder_ToolTip%":"기반모드 폴더 경로를 엽니다",
+    "%BtnOpenExportFolder_ToolTip%":"프로그램이 생성된 모드 폴더를 내보내는 폴더 경로를 엽니다",
+    "%BtnExtURL_ToolTip%":"툴과 관련된 외부 URL 이동을 위한 창을 엽니다",
+    "%BtnTools_ToolTip%":"이 프로그램이 제공하는 추가적인 기능을 위한 창을 엽니다",
+    "%BtnConfig_ToolTip%":"프로그램 설정 창을 엽니다",
+
+    "%BtnAddCriticalBook_ToolTip%":"게임에 없는 새로운 핵심책장을 추가합니다",
+    "%BtnLoadCriticalBook_ToolTip%":"게임 내부로부터 핵심책장 데이터를 불러옵니다",
+
+    "%BtnAddCard_ToolTip%":"게임에 없는 새로운 전투책장을 추가합니다",
+    "%BtnLoadCard_ToolTip%":"게임 내부로부터 전투책장 데이터를 불러옵니다",
+
+    "MainWindow_Error":"초기화 도중 에러 발생",
+    "LoadAllRelatedDatasAfterChangePath_Error_1":"설정된 라오루 경로가 올바르지 않습니다. 설정 화면에서 변경하세요",
+    "LoadAllRelatedDatasAfterChangePath_Error_2":"모드 리소스를 발견할 수 없습니다. 기반 모드 설치 후, 게임을 한 번 실행시키세요",
+
+    "MainWindowButtonClickEvents_Error_1":"모드 명이 입력되지 않음",
+    "MainWindowButtonClickEvents_Error_2":"내보내기 도중 오류 발생",
+    "MainWindowButtonClickEvents_Error_3":"내보내기 오류",
+    "MainWindowButtonClickEvents_Error_4":"불러오기 도중 오류 발생",
+    "MainWindowButtonClickEvents_Error_5":"불러오기 오류",
+    "MainWindowButtonClickEvents_Error_6":"메인 윈도우 클릭 이벤트에서 에러 발생",
+    "MainWindowButtonClickEvents_Error_7":"에디터 버튼 클릭 이벤트에서 에러 발생",
+
+    "MainWindowButtonClickEvents_Info_1":"내보내기 성공",
+    "MainWindowButtonClickEvents_Info_2":"성공",
+    "MainWindowButtonClickEvents_Info_3":"모드 데이터 불러오기 성공",
+
+    "CriticalPageGridButtonClickEvents_Error_1":"핵심 책장 클릭 이벤트에서 에러 발생",
+    "BattleCardGridButtonClickEvents_Error_1":"전투 책장 클릭 이벤트에서 에러 발생",
+
+    "%TbxTextEditor_ToolTip%":"실시간으로 생성되는 모드 데이터를 확인합니다",
+    "%TbxTextEditorLog_ToolTip%":"출력된 데이터들에 대한 로깅입니다",
+
+    "%LbxTextEditor_ToolTip%":"텍스트 표시의 대상에 되는 파일명을 변경합니다",
+    "%BtnReverseLoad_ToolTip%":"편집기에서 편집된 내용을 프로그램으로 로드시킵니다",
+    "%BtnResources_ToolTip%":"외부 커스텀 리소스들을 관리합니다",
+
+    "%BtnStages%":"[스테이지 편집]$0.9,0.95$-10,0",
+    "%BtnStages_ToolTip%":"스테이지 편집 화면으로 이동합니다",
+
+    "%BtnEnemy%":"[적 유닛 편집]$0.8,0.95$-15,0",
+    "%BtnEnemy_ToolTip%":"적 유닛 편집 화면으로 이동합니다",
+
+    "%BtnDecks%":"[덱 편집]$0.5,0.95$-25,0",
+    "%BtnDecks_ToolTip%":"덱 편집 화면으로 이동합니다",
+
+    "%BtnDropBook%":"[책 편집]$0.5,0.95$-65,0",
+    "%BtnDropBook_ToolTip%":"책 편집 화면으로 이동합니다",
+
+    "%BtnPassive%":"[패시브 편집]$0.8,0.95$-155,0",
+    "%BtnPassive_ToolTip%":"패시브 편집 화면으로 이동합니다",
+
+    "%BtnCardAbility%":"[카드 효과 편집]$0.95,0.95$-210,0",
+    "%BtnCardAbility_ToolTip%":"카드 효과 편집 창으로 이동합니다",
+
+    "%BtnDLLEdit_ToolTip%":"DLL 편집창을 엽니다"
+}

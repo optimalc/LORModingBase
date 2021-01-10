@@ -1,0 +1,18 @@
+{
+    "language":"日本語",
+    "%ProgramSettingWindow%":"Program setting",
+    "%LblLORPath%":"Libriary of runia Path",
+    "%LblDLLCompilerPath%":"DLL Compiler Path",
+    "%TbxDLLCompilerPath_ToolTip%":"DLL Compiler can be used for creating a new DLL in DLL Editor.\nIf you download Visual Studio with the C# Support option, You can find the related folder in 'C:\\Windows\\Microsoft.NET\\Framework64\\(Lastest Version)'\nCurrent Path : ",
+    "%TbxLORPath_ToolTip%":"Set Libriary of runia Path. Nomaly Default Path is '...\\Steam\\steamapps\\common\\Library Of Ruina'\nCurrent Path : ",
+    "%LblBaseModeResourceDes%":"Whether Library of runia resources are recognized",
+    "LblBaseModeResourceDes_Error":"Can not found resources. (Install BaseMode and start the game once)",
+    "LblBaseModeResourceDes_Info":"Resources are successfully found",
+    "%LblDirectBaseModeExport%":"Export to BaseMode folder directly",
+    "%CbxDirectBaseModeExport_ToolTip%":"If you check this, the Exporting result is moved to BaseMode, not exportedModes directory",
+    "%BtnOk%":"[OK]",
+    "%BtnOk_ToolTip%":"Close the window",
+    "OptionWindowTextBoxLeftButtonDownEvents_Error":"An error occurred in reflecting the changed path",
+    "DLLCompilerPathError":"The suggested path is inappropriate. The directory must have 'csc.exe' DLL compiler",
+    "DLLCompilerPathError2":"This window needs to set the DLL Compiler path. You can set in the setting"
+}

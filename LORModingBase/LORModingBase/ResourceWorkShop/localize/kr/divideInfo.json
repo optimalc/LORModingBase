@@ -1,0 +1,14 @@
+{
+    "DIV_KEY_PAGE_LIBRARIAN":"[사서 전용]",
+    "DIV_KEY_PAGE_ENEMY":"[적 전용]",
+    "DIV_KEY_PAGE_USER":"[유저 전용]",
+    "DIV_KEY_PAGE_CREATURE":"[환상체 전용]",
+    "DIV_ETC":"[기타]",
+
+    "DIV_CARD_BASIC":"[기본 책장]",
+    "DIV_CARD_NOMAL":"[일반 책장]",
+    "DIV_CARD_CREATURE":"[환상체 책장]",
+    "DIV_CARD_FINAL":"[마지막 이야기 책장]",
+    "DIV_CARD_EGO":"[EGO 책장]",
+    "DIV_CARD_SPECIAL":"[스폐셜 책장]"
+}

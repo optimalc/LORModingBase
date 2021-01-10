@@ -1,0 +1,81 @@
+{
+    "%BtnRarity_Common%":"Common$1,1$0,0",
+    "%BtnRarity_Common_ToolTip%":"Change to Commom Card",
+    "%BtnRarity_Uncommon%":"Uncommon$1,1$2,0",
+    "%BtnRarity_Uncommon_ToolTip%":"Change to Uncommon Card",
+    "%BtnRarity_Rare%":"Rare$1,1$0,0",
+    "%BtnRarity_Rare_ToolTip%":"Change to Rare Card",
+    "%BtnRarity_Unique%":"Unique$1,1$-5,0",
+    "%BtnRarity_Unique_ToolTip%":"Change to Unique Card",
+
+    "%TbxCost_ToolTip%":"Input the cost of Combat Bookshelf",
+    
+    "%LblCardName%":"Name : $1.2,1$-3,0",
+    "%LblCardName_ToolTip%":"Input the name for Combat Bookshelf",
+    "%LblCardUniqueID%":"Unique ID : $1.2,1$-3,0",
+    "%TbxCardUniqueID_ToolTip%":"Input the unique ID for Combat Bookshelf",
+
+    "%BtnCardImage%":"Select card image$0.9,0.7,$8,3",
+    "%BtnCardImage_ToolTip%":"Select the image that will be represented in Combat Bookshelf",
+    "%BtnCardEffect%":"Select card ability$0.9,0.7,$7,3",
+    "%BtnCardEffect_ToolTip%":"Select the ability for Combat Bookshelf",
+
+    "%BtnAddDice%":"▼ Add Dice ▼$0.5,1$25,0",
+    "%BtnAddDice_ToolTip%":"Add dice to Combat Bookshelf",
+
+    "%BtnDropCards_ToolTip%":"Input the books that will drop Combat Bookshelf",
+
+    "Chapter":"Chapter",
+    "Chapter_ToolTip":"Input chapter number that card to belong",
+    "PriorityEnemy":"Card priority (Enemy)",
+    "PriorityEnemy_ToolTip":"Input priority number that enemy will use when drawing cards",
+    "PriorityUser":"Card priority (User)",
+    "PriorityUser_ToolTip":"Input priority number that user will be affected when drawing cards",
+    "PriorityScript":"Priority script name",
+    "PriorityScript_ToolTip":"This script will be used for determining priority",
+    "EmotionLimit":"Emotion limit",
+    "EmotionLimit_ToolTip":"Can be used when emotion level is over a specific level",
+    "WideAreaCode":"Wide area card code",
+    "WideAreaCode_ToolTip":"This code can be used in a wide area card. This code will be automatically set",
+
+    "ExtraInput":"Input more specific information",
+    "%BtnCopyCard_ToolTip%":"Copy current Combat Bookshelf",
+    "%BtnDelete_ToolTip%":"Delete current Combat Bookshelf",
+
+    "%BtnRangeType_ToolTip%":"Change range type when clicking",
+    "Current":"Current",
+    "Type_Near":"Normal Combat Bookshelf",
+    "Type_Far":"Combat Bookshelf for remote use",
+    "Type_FarArea":"Combat Bookshelf for far area",
+    "Type_FarAreaEach":"Combat Bookshelf for far area each",
+
+    "%BtnUnqueType_ToolTip%":"Change additional option when clicking",
+    "Type_OnlyPage":"OnlyPage - Only specific Key Page can use",
+    "Type_Basic":"Basic - Unlimited usage",
+    "Type_EGO":"Type for EGO page",
+    "Type_EgoPersonal":"Type for personal EGO page",
+    "Type_NoOption":"Normal Combat Bookshelf",
+
+
+    "%BtnDiceType_ToolTip%":"Change dice type when clicking",
+    "%TbxMinDice_Min_ToolTip%":"Input minimum dice value",
+    "%TbxMaxDice_Dice_ToolTip%":"Input maximum dice value",
+    "%BtnEffect_ToolTip%":"Add special ability to dice",
+    "%BtnDeleteDice_ToolTip%":"Delete current dice",
+
+    "%BtnDiceType_Atk_Slash_ToolTip%":"Change to slash dice",
+    "%BtnDiceType_Atk_Penetrate_ToolTip%":"Change to penetrate dice",
+    "%BtnDiceType_Atk_Hit_ToolTip%":"Change to hit dice",
+
+    "%BtnDiceType_Def_Guard_ToolTip%":"Change to guard dice",
+    "%BtnDiceType_Def_Evasion_ToolTip%":"Change to evasion dice",
+
+    "%BtnDiceType_Standby_Slash_ToolTip%":"Change to stadby slash dice",
+    "%BtnDiceType_Standby_Penetrate_ToolTip%":"Change to stadby penetrate dice",
+    "%BtnDiceType_Standby_Hit_ToolTip%":"Change to stadby hit dice",
+    "%BtnDiceType_Standby_Guard_ToolTip%":"Change to stadby guard dice",
+    "%BtnDiceType_Standby_Evasion_ToolTip%":"Change to stadby evasion dice",
+
+    "IMAGE":"Image",
+    "ABILITY":"Ability"
+}

@@ -1,0 +1,25 @@
+{
+    "%BtnSetDLLWorkingSpace%":"[DLL 작업 공간 설정하기]",
+    "%BtnSetDLLWorkingSpace_ToolTip%":"DLL 관련 내용을 편집하기 위한 작업 공간을 설정합니다",
+    "%BtnCompileDLL%":"[DLL 컴파일하기]$0.75,1",
+    "%BtnCompileDLL_ToolTip%":"소스코드를 컴파일해서 새로운 DLL을 생성시킵니다",
+    "%BtnClose%":"[닫기]$0.9,1$10,0",
+    "%BtnClose_ToolTip%":"창을 닫습니다",
+    "%TbxTextEditor_ToolTip%":"생성된 소스코드를 확인합니다",
+    "%TbxLogging_ToolTip%":"컴파일 결과를 확인합니다",
+
+    "%BtnAddCodeBase%":"▼ 코드 기반 블록 추가 ▼",
+    "%BtnAddCodeBase_ToolTip%":"새로운 코드 기반 블록을 추가합니다",
+
+    "DLLEditorMainWindow_Error_1":"DLL 버튼 이벤트에서 에러 발생",
+
+    "Type_BASE":"[기반 블록]",
+    "Type_IF":"[조건 블록]",
+    "Type_WHILE":"[반복 블록]",
+    "Type_ACTION":"[행위 블록]",
+
+    "%BtnAddNode_ToolTip%":"이 노드에 새로운 코드 블록을 추가하기",
+    "%BtnDelete_ToolTip%":"이 블록을 삭제하기",
+
+    "SUCCESS_COMPILE":"컴파일 성공"
+}

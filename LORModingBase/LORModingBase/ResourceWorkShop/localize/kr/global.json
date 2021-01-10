@@ -1,0 +1,76 @@
+{
+    "%BtnAdd%":"+ 추가",
+    "%BtnAdd_ToolTip%":"항목을 리스트에 추가합니다",
+    "%BtnEdit%":"+ 수정",
+    "%BtnEdit_ToolTip%":"선택된 항목을 편집합니다",
+    "%BtnDelete%":"- 삭제",
+    "%BtnDelete_ToolTip%":"선택된 항목을 삭제합니다",
+    "%GlobalListSelectEditWindow%":"항목 편집 메뉴",
+
+    "%GlobalInputOneColumnData%":"항목 설명을 입력합니다",
+    "%BtnOk%":"[닫기]",
+    "%BtnOk_ToolTip%":"창을 닫습니다",
+    "%TbxData_ToolTip%":"구체적인 정보를 입력합니다",
+
+    "WORKING_SPACE_TITLE":"원하는 작업 공간을 더블 클릭",
+    "WORKING_SPACE_TITLE_ADD_TITLE":"생성할 모드명을 입력",
+    "WORKING_SPACE_TITLE_ADD_TOOLTIP":"생성할 모드명을 입력합니다. 이 이름은 폴더명으로 사용됩니다",
+    "WORKING_SPACE_TITLE_EDIT_TITLE":"변경된 모드명을 입력",
+    "WORKING_SPACE_TITLE_EDIT_TOOLTIP":"변경된 모드명이 폴더명으로 사용됩니다",
+
+    "%GlobalInputInfoWithSearchWindow%":"원하는 항목을 더블클릭",
+    "%LblHelpMessage%":"※ 원하는 항목을 더블클릭",
+    "%LblSearch%":"검색 : ",
+    "%TbxSearch_ToolTip%":"특정 단어로 검색합니다",
+    "%LblSearchType%":"검색 필터",
+    "%LblItemHelpMessage%":"얻어진 내용들",
+
+    "SEARCH_NO_FILTER":"필터 없음",
+    "EPISODE_TITLE":"적용을 원하는 에피소드를 선택",
+    "BOOK_ICON_TITLE":"적용을 원하는 책 아이콘 이름을 선택",
+    "CHARACTER_SKIN_TITLE":"적용을 원하는 캐릭터 스킨을 선택",
+    "PASSIVE_TITLE":"적용을 원하는 패시브명을 선택",
+    "PASSIVE_HELP":"몇몇 패시브들은 적용되지 않을 수 있으며, 게임 내에서 실제로 확인해봐야 합니다",
+    "CRITICAL_BOOKS_TITLE":"불러오기를 원하는 핵심 책장명을 선택",
+    
+    "CARD_ARTWORK_TITLE":"적용을 원하는 카드 이미지를 선택",
+    "CARD_ABILITES_TITLE":"적용을 원하는 카드 효과를 선택",
+    "DICE_ABILITES_TITLE":"적용을 원하는 주사위 효과를 선택",
+    "CARDS_TITLE":"불러오기를 원하는 전투 책장명을 선택",
+
+
+    "%GlobalAddItemToListWindow%":"원하는 항목을 더블클릭합니다. 선택된 항목을 삭제하고 싶으면 그 항목을 더블클릭합니다",
+    "%LblSelectedItemLists%":"선택된 항목들",
+
+    "ONLY_CARD_TITLE":"핵심 책장이 사용할 수 있는 유일 책장들을 선택",
+    "DROP_BOOK_TITLE":"핵심 책장을 드롭하는 책들을 선택",
+    "DROP_TABLE_TITLE":"전투 책장을 드롭하는 책들을 선택",
+
+    "KEY_PAGE_STORY_TITLE":"핵심 책장의 이야기를 입력",
+
+    "%GlobalMultipleValueInputed%":"추가적인 정보 입력",
+    "%BtnClearAll%":"[모두 초기화]",
+    "%BtnClearAll_ToolTip%":"모든 입력된 데이터를 지웁니다",
+
+    "CUSTOM_ITEM":"[커스텀화된 항목]",
+    "%ResourceWindowName%":"리소스 관리 창",
+    "%LblImageResource%":"이미지 리소스 관리",
+    "%BtnAddImage%":"+ 추가",
+    "%BtnAddImage_ToolTip%":"이미지를 리스트에 추가합니다",
+    "%BtnDeleteImage%":"- 삭제",
+    "%BtnDeleteImage_ToolTip%":"선택된 이미지를 삭제합니다",
+    "RESOURCE_DIALOG_TITLE":"추가하고 싶은 이미지를 선택",
+
+    "NUM_OF_PEOPLE":"사람 수",
+
+    "DLL_WORKING_SPACE_TITLE":"원하는 DLL 작업 공간을 더블클릭",
+    "DLL_WORKING_SPACE_TITLE_ADD_TITLE":"생성할 DLL명을 입력",
+    "DLL_WORKING_SPACE_TITLE_ADD_TOOLTIP":"생성할 DLL명을 입력합니다. 이 이름은 DLL, 소스코드명으로 사용됩니다",
+    "DLL_WORKING_SPACE_TITLE_EDIT_TITLE":"변경된 DLL명을 입력",
+    "DLL_WORKING_SPACE_TITLE_EDIT_TOOLTIP":"변경된 DLL명이 DLL, 소스코드명으로 사용됩니다",
+
+    "%LblSourceCodeBlocks%":"소스코드 블럭들",
+    "%LblSourceCodeDescription%":"선택된 블럭 관련 설명",
+    "%TbxSourceCodeDes_ToolTip%":"소스코드와 관련된 설명",
+    "%TbxSourceCodeDetail_ToolTip%":"소스코드 내용"
+}

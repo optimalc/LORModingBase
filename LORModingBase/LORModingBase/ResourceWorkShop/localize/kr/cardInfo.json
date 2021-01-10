@@ -1,0 +1,81 @@
+{
+    "%BtnRarity_Common%":"보급$1,1$0,0",
+    "%BtnRarity_Common_ToolTip%":"보급 책장으로 지정",
+    "%BtnRarity_Uncommon%":"고급$1,1$2,-1",
+    "%BtnRarity_Uncommon_ToolTip%":"고급 책장으로 지정",
+    "%BtnRarity_Rare%":"한정$1,1$0,-1",
+    "%BtnRarity_Rare_ToolTip%":"한정 책장으로 지정",
+    "%BtnRarity_Unique%":"예술$1,1$-5,0",
+    "%BtnRarity_Unique_ToolTip%":"예술 책장으로 지정",
+
+    "%TbxCost_ToolTip%":"전투책장의 코스트를 입력합니다",
+    
+    "%LblCardName%":"이름 : $1.2,1.2$-3,-2",
+    "%LblCardName_ToolTip%":"전투책장의 이름을 입력합니다",
+    "%LblCardUniqueID%":"고유 ID : $1.2,1.2$-3,-2",
+    "%TbxCardUniqueID_ToolTip%":"전투책장의 고유 ID를 입력합니다",
+
+    "%BtnCardImage%":"카드 이미지 선택$1,0.8,$0,2",
+    "%BtnCardImage_ToolTip%":"전투 책장에 표시될 이미지를 선택합니다",
+    "%BtnCardEffect%":"카드 효과 선택$0.8,0.8,$10,2",
+    "%BtnCardEffect_ToolTip%":"전투 책장 자체의 효과를 선택합니다",
+
+    "%BtnAddDice%":"▼ 주사위 추가 ▼$0.5,1$32,0",
+    "%BtnAddDice_ToolTip%":"전투 책장에 주사위를 추가합니다",
+
+    "%BtnDropCards_ToolTip%":"전투 책장을 드랍시킬 책 입력",
+
+    "Chapter":"챕터",
+    "Chapter_ToolTip":"이 전투책장이 어느 책에서 드랍되는지 입력합니다",
+    "PriorityEnemy":"책장 우선 순위(적)",
+    "PriorityEnemy_ToolTip":"적이 책장을 선택할때 참조하게 되는 우선순위를 설정합니다",
+    "PriorityUser":"책장 우선 순위(유저)",
+    "PriorityUser_ToolTip":"유저가 책장을 선택할때 참조하게 되는 우선순위를 설정합니다",
+    "PriorityScript":"우선순위 스크립트 명",
+    "PriorityScript_ToolTip":"이 스크립트는 우선순위를 지정할때 사용됩니다",
+    "EmotionLimit":"특정 감정이상에서만 사용가능",
+    "EmotionLimit_ToolTip":"특정 감정레벨 이상에서만 사용이 가능하도록 만듭니다",
+    "WideAreaCode":"광역 전투책장 코드",
+    "WideAreaCode_ToolTip":"광역 전투책장에서 주로 사용하며, 광역 전투책장 적용시 자동으로 설정됩니다",
+
+    "ExtraInput":"중요성이 떨어지는 더 많은 추가적인 정보를 입력합니다",
+    "%BtnCopyCard_ToolTip%":"전투 책장을 복제해서 새로운 전투 책장을 만듭니다",
+    "%BtnDelete_ToolTip%":"전투 책장을 삭제합니다",
+
+    "%BtnRangeType_ToolTip%":"클릭으로 원거리 유형 변경",
+    "Current":"현재",
+    "Type_Near":"일반 책장",
+    "Type_Far":"원거리 책장",
+    "Type_FarArea":"광역 합산 책장",
+    "Type_FarAreaEach":"광역 개별 책장",
+
+    "%BtnUnqueType_ToolTip%":"클릭으로 추가적인 옵션 변경",
+    "Type_OnlyPage":"유일 책장 - 특정 책만 사용 가능",
+    "Type_Basic":"기본 책장 - 무제한 사용 가능",
+    "Type_EGO":"EGO 책장",
+    "Type_EgoPersonal":"개인용 EGO 책장",
+    "Type_NoOption":"일반 책장",
+
+
+    "%BtnDiceType_ToolTip%":"클릭시 주사위 타입을 변경",
+    "%TbxMinDice_Min_ToolTip%":"주사위 최솟값을 입력",
+    "%TbxMaxDice_Dice_ToolTip%":"주사위 최대값을 입력",
+    "%BtnEffect_ToolTip%":"특수 효과를 추가합니다",
+    "%BtnDeleteDice_ToolTip%":"이 주사위를 삭제합니다",
+
+    "%BtnDiceType_Atk_Slash_ToolTip%":"참격 주사위로 변경시킵니다",
+    "%BtnDiceType_Atk_Penetrate_ToolTip%":"관통 주사위로 변경시킵니다",
+    "%BtnDiceType_Atk_Hit_ToolTip%":"타격 주사위로 변경시킵니다",
+
+    "%BtnDiceType_Def_Guard_ToolTip%":"방어 주사위로 변경시킵니다",
+    "%BtnDiceType_Def_Evasion_ToolTip%":"회피 주사위로 변경시킵니다",
+
+    "%BtnDiceType_Standby_Slash_ToolTip%":"반격 참격 주사위로 변경시킵니다",
+    "%BtnDiceType_Standby_Penetrate_ToolTip%":"반격 관통 주사위로 변경시킵니다",
+    "%BtnDiceType_Standby_Hit_ToolTip%":"반격 타격 주사위로 변경시킵니다",
+    "%BtnDiceType_Standby_Guard_ToolTip%":"반격 방어 주사위로 변경시킵니다",
+    "%BtnDiceType_Standby_Evasion_ToolTip%":"반격 회피 주사위로 변경시킵니다",
+
+    "IMAGE":"이미지",
+    "ABILITY":"효과"
+}
