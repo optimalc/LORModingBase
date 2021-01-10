@@ -2,7 +2,11 @@
     "usings":["System"],
     "type":["BASE"],
     "inputtedParameter":["0"],
-    "subBlockWhiteFilter":["cardAbilityCodes/BASE_ON_SUCCESS_ATTACK"],
+    "subBlockWhiteFilter":[
+        "cardAbilityCodes/BASE_ON_SUCCESS_ATTACK",
+        "cardAbilityCodes/BASE_AFTER_ACTION",
+        "cardAbilityCodes/BASE_ON_SUCCEED_AREA_ATTACK"
+    ],
     "kr":[
         "전투 책장 효과 기반 블록",
         "전투 책장에 효과를 추가하기위한 기반 블록입니다",

@@ -1,0 +1,4 @@
+public override void OnSucceedAreaAttack(BattleUnitModel target)
+{
+    base.OnSucceedAreaAttack(target);
+}
