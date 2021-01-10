@@ -1,6 +1,2 @@
-BattleUnitModel owner = base.owner;
-if (owner == null)
-{
-    return;
-}
-owner.bufListDetail.AddKeywordBufByCard(KeywordBuf.Quickness, {{0}}, base.owner);
+if(base.owner != null)
+    base.owner.bufListDetail.AddKeywordBufByCard(KeywordBuf.Quickness, {{0}}, base.owner);
