@@ -42,13 +42,20 @@ namespace LORModingBase.DLLEditor
             });
         }
 
-        private void LooplyInitDLLStacks(CodeBlock codeBlock, CodeBlock perentBlock)
+        private void LooplyInitDLLStacks(CodeBlock codeBlock, CodeBlock perentBlock, int deepth = 0)
         {
-            SqlCodeBlocks.Children.Add(
-                    new CodeBlockControls.GlobalCodeBlockControl(codeBlock, InitCreatedSourceCodeTextBox, InitDLLStacks, perentBlock));
+            CodeBlockControls.GlobalCodeBlockControl ADDED_CODE_BLOCK = new CodeBlockControls.GlobalCodeBlockControl(codeBlock, InitCreatedSourceCodeTextBox, InitDLLStacks, perentBlock);
+            
+            TransformGroup myTransformGroup = new TransformGroup();
+            myTransformGroup.Children.Add(
+                    new TranslateTransform(deepth * 25, 0)
+            );
+            ADDED_CODE_BLOCK.RenderTransform = myTransformGroup;
+            SqlCodeBlocks.Children.Add(ADDED_CODE_BLOCK);
+
             codeBlock.subCodeBlocks.ForEach((CodeBlock subCodeBlock) =>
             {
-                LooplyInitDLLStacks(subCodeBlock, codeBlock);
+                LooplyInitDLLStacks(subCodeBlock, codeBlock, deepth + 1);
             });
         }
 

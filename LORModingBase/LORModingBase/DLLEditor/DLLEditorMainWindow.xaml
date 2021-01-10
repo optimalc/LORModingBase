@@ -63,7 +63,7 @@
                     <Grid.Background>
                         <ImageBrush ImageSource="../Resources/MainBg.png"/>
                     </Grid.Background>
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
                         <StackPanel x:Name="SqlCodeBlocks" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
                             <StackPanel.Resources>
                                 <Style TargetType="{x:Type Grid}">
