@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "빛을 n 회복합니다",
+        "빛을 n 회복합니다",
+        "n"
+    ],
+    "en":[
+        "Recover n play point",
+        "Recover n play point",
+        "n"
+    ],
+    "jp":[
+        "Recover n play point",
+        "Recover n play point",
+        "n"
+    ],
+    "cn":[
+        "Recover n play point",
+        "Recover n play point",
+        "n"
+    ]
+}

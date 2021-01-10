@@ -13,7 +13,8 @@
         "passiveCodes/BASE_ON_ROUND_START",
         "passiveCodes/BASE_ON_SUCCEEDED_ATTACK",
         "passiveCodes/BASE_ON_USE_CARD",
-        "passiveCodes/BASE_ADD_SPEED_DICE"],
+        "passiveCodes/BASE_ADD_SPEED_DICE",
+        "passiveCodes/BASE_ADD_DICE_POWER"],
     "kr":[
         "핵심 책장 패시브 기반 블록",
         "핵심 책장에 패시브를 추가하기위한 기반 블록입니다",

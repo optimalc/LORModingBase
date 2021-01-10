@@ -1,0 +1,12 @@
+public override void BeforeRollDice(BattleDiceBehavior behavior)
+{
+    BattleCardTotalResult battleCardResultLog = this.owner.battleCardResultLog;
+    if (battleCardResultLog != null)
+    {
+        battleCardResultLog.SetPassiveAbility(this);
+    }
+    behavior.ApplyDiceStatBonus(new DiceStatBonus
+    {
+        power = {{0}}
+    });
+}
