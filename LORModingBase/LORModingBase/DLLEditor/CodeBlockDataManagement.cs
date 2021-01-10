@@ -70,6 +70,7 @@ namespace LORModingBase.DLLEditor
         }
         #endregion
         
+
         /// <summary>
         /// Get code block by using title or path
         /// </summary>
@@ -93,7 +94,25 @@ namespace LORModingBase.DLLEditor
             else
                 return null;
         }
-    
+
+        /// <summary>
+        /// Get multiple code block from muptiple path or title
+        /// </summary>
+        /// <param name="targetPaths"></param>
+        /// <returns></returns>
+        public static List<CodeBlock> GetMultipleBaseBlockFromTargetPathListOrTitle(List<string> targetPaths)
+        {
+            List<CodeBlock> codeBlocks = new List<CodeBlock>();
+            targetPaths.ForEach((string targetPath) =>
+            {
+                CodeBlock foundCodeBlock = GetBaseBlockFromTargetPathOrTitle(targetPath);
+                if (foundCodeBlock != null)
+                    codeBlocks.Add(foundCodeBlock);
+            });
+            return codeBlocks;
+        }
+
+
         /// <summary>
         /// Get all code block list from name
         /// </summary>

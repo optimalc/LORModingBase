@@ -32,7 +32,7 @@ namespace LORModingBase.DLLEditor
             InitLbxSearchType(searchTypes);
         }
 
-        public DLLEditorGlobalSearchWindow(Action<CodeBlock> afterSelectCodeBlock, DLLEditorGlobalSearchWindow_PRESET preset)
+        public DLLEditorGlobalSearchWindow(Action<CodeBlock> afterSelectCodeBlock, List<string> subNodesToShow)
         {
             InitializeComponent();
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
@@ -40,12 +40,13 @@ namespace LORModingBase.DLLEditor
             List<string> searchTypes = new List<string>();
 
             codeBlockList.Clear();
-            switch (preset)
+            if(subNodesToShow == null)
             {
-                case DLLEditorGlobalSearchWindow_PRESET.BASE_BLOCK:
-                    codeBlockList = CodeBlockDataManagement.GetAllCodeBlockListFromType(CODE_BLOCK_TYPE.BASE_BLOCK);
-                    break;
+                List<string> RootCodeBlockList = Tools.JsonFile.LoadJsonFile<List<string>>(DS.PROGRAM_RESOURCE_PATHS.RESOURCE_ROOT_CODE_BLOCK_LIST);
+                codeBlockList = CodeBlockDataManagement.GetMultipleBaseBlockFromTargetPathListOrTitle(RootCodeBlockList);
             }
+            else
+                codeBlockList = CodeBlockDataManagement.GetMultipleBaseBlockFromTargetPathListOrTitle(subNodesToShow);
 
             searchTypes.AddRange(CodeBlockDataManagement.GetALLLocalizedBlockType());
             searchTypes.AddRange(CodeBlockDataManagement.GetALLCodeBlockKeys());
@@ -126,10 +127,5 @@ namespace LORModingBase.DLLEditor
                 TbxSourceCodeDetail.Text = SELECTED_CODE_BLOCK.codes;
             }
         }
-    }
-
-    public enum DLLEditorGlobalSearchWindow_PRESET
-    {
-        BASE_BLOCK
     }
 }

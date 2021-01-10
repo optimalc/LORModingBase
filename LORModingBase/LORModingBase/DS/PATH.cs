@@ -44,6 +44,8 @@ namespace LORModingBase.DS
         /// Modified Unity engine path 
         /// </summary>
         public static string RESOURCE_UNITY_ENGINE_DEBUG = $"{DIC_RESOURCE}\\UnityEngine.dll";
+
+        public static string RESOURCE_ROOT_CODE_BLOCK_LIST = $"{DIC_RESOURCE}\\codeBlockRootShowList.json";
     }
 
     class GAME_RESOURCE_PATHS

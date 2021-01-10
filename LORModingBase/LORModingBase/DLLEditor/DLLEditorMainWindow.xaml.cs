@@ -131,7 +131,7 @@ namespace LORModingBase.DLLEditor
                             rootCodeBlocks.Add(selectedCodeBlock);
                             InitCreatedSourceCodeTextBox();
                             InitDLLStacks();
-                        }, DLLEditorGlobalSearchWindow_PRESET.BASE_BLOCK).ShowDialog();
+                        }, null).ShowDialog();
                         break;
 
                     case "BtnClose":
