@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using LORModingBase.CustomExtensions;
@@ -204,6 +205,9 @@ namespace LORModingBase
                     case "BtnSetWorkingSpace":
                         new SubWindows.Global_ListSeleteWithEditWindow(null, null, null, null,
                             SubWindows.Global_ListSeleteWithEditWindow_PRESET.WORKING_SPACE).ShowDialog();
+
+                        LblSetWorkingSpace.Content = $"> {DM.Config.CurrentWorkingDirectory.Split('\\').Last()}";
+                        LblSetWorkingSpace.ToolTip = DM.Config.CurrentWorkingDirectory;
 
                         ReloadAllStackDatas();
                         InitLbxTextEditor();

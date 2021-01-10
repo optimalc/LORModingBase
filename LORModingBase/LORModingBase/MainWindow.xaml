@@ -114,13 +114,15 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="32*"/>
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.Background>
                     <ImageBrush ImageSource="./Resources/MenuBg.png"/>
                 </Grid.Background>
                 <Button x:Name="BtnSetWorkingSpace" Content="[작업 공간 설정하기]" ToolTip="작업 공간을 설정합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents" HorizontalAlignment="Left" Padding="10,1,1,1"/>
+                <Label Grid.Column="1" x:Name="LblSetWorkingSpace" Content="" FontSize="13"  Style="{StaticResource StyLbl}" HorizontalAlignment="Left"/>
                 <Grid Grid.Column="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30*"/>

@@ -53,6 +53,8 @@ namespace LORModingBase.DLLEditor
                     case "BtnSetDLLWorkingSpace":
                         new SubWindows.Global_ListSeleteWithEditWindow(null, null, null, null,
                              SubWindows.Global_ListSeleteWithEditWindow_PRESET.DLL_WORKING_SPACE).ShowDialog();
+                        if (!string.IsNullOrEmpty(targetSourceFilePath))
+                            this.Title = $"DLL Editor Window - {targetSourceFilePath.Split('\\').Last().Split('.')[0]}.dll";
                         InitUIDatas();
                         break;
                     case "BtnCompileDLL":
