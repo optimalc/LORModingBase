@@ -3,6 +3,13 @@
     "passiveActionCodes/ACTION_ADD_PLAY_POINT",
     "passiveActionCodes/ACTION_GET_ENDURANCE",
     "passiveActionCodes/ACTION_GET_STRENGTH",
+    "passiveActionCodes/ACTION_GET_PROTECTION",
+    "passiveActionCodes/ACTION_RECOVER_BREAK_NUM",
+    "passiveActionCodes/ACTION_RECOVER_HP",
+    "passiveActionCodes/ACTION_SET_EMOTION_LEVEL",
+    "passiveActionCodes/ACTION_TACK_BREAK_DAMAGE",
+    "passiveActionCodes/ACTION_TACK_DAMAGE",
+    "passiveActionCodes/ACTION_ADD_COUNTER_ATTACK_DICE",
 
     "passiveIfCodes/IF_OVER_EMOTION_LEVEL",
     "passiveIfCodes/IF_OVER_PLAY_POINT",

@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "자신의 흐트러짐을 회복시키는 효과",
+        "자신의 흐트러짐을 회복시킵니다",
+        "회복 수치"
+    ],
+    "en":[
+        "Recover owner break",
+        "Recover the owner break",
+        "Degree of Recovering"
+    ],
+    "jp":[
+        "Recover owner break",
+        "Recover the owner break",
+        "Degree of Recovering"
+    ],
+    "cn":[
+        "Recover owner break",
+        "Recover the owner break",
+        "Degree of Recovering"
+    ]
+}
