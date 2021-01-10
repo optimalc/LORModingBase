@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["3"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "인내를 얻음",
+        "인내를 얻습니다",
+        "인내 수치"
+    ],
+    "en":[
+        "Get endurance",
+        "Get endurance",
+        "Degree of endurance"
+    ],
+    "jp":[
+        "Get endurance",
+        "Get endurance",
+        "Degree of endurance"
+    ],
+    "cn":[
+        "Get endurance",
+        "Get endurance",
+        "Degree of endurance"
+    ]
+}

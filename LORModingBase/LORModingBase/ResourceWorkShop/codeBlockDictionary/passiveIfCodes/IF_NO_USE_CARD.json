@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["&GROUP_PASSIVE_ACTIONS"],
+    "kr":[
+        "한막동안 책장을 사용하지 않으면",
+        "한막동안 책장을 사용하지 않은 경우 액션을 발생시키는 조건 블록입니다",
+        ""
+    ],
+    "en":[
+        "If Key Page is not used in one round",
+        "If Key Page is not used in one round",
+        ""
+    ],
+    "jp":[
+        "If Key Page is not used in one round",
+        "If Key Page is not used in one round",
+        ""
+    ],
+    "cn":[
+        "If Key Page is not used in one round",
+        "If Key Page is not used in one round",
+        ""
+    ]
+}

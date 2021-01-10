@@ -1,8 +1,11 @@
 [
     "passiveActionCodes/ACTION_ADD_PERSONAL_EGO_CARD",
     "passiveActionCodes/ACTION_ADD_PLAY_POINT",
+    "passiveActionCodes/ACTION_GET_ENDURANCE",
+    "passiveActionCodes/ACTION_GET_STRENGTH",
 
     "passiveIfCodes/IF_OVER_EMOTION_LEVEL",
     "passiveIfCodes/IF_OVER_PLAY_POINT",
-    "passiveIfCodes/IF_UNDER_PLAY_POINT"
+    "passiveIfCodes/IF_UNDER_PLAY_POINT",
+    "passiveIfCodes/IF_NO_USE_CARD"
 ]
