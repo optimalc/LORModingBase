@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["cardAbilityCodes/ACTION_BURN_ABILITY"],
+    "kr":[
+        "전투 시작시 트리거 기반 블록",
+        "전투 시작시 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Start Battle Base Block",
+        "Base block for invoking action when battle is started",
+        ""
+    ],
+    "jp":[
+        "Start Battle Base Block",
+        "Base block for invoking action when battle is started",
+        ""
+    ],
+    "cn":[
+        "Start Battle Base Block",
+        "Base block for invoking action when battle is started",
+        ""
+    ]
+}

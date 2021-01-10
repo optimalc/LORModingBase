@@ -1,0 +1,4 @@
+public override void AfterGiveDamage(int damage)
+{
+    base.AfterGiveDamage(damage);
+}

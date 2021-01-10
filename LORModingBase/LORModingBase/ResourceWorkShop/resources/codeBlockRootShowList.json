@@ -1,4 +1,5 @@
 [
     "passiveCodes/BASE_KEY_CARD_PASSIVE",
-    "cardAbilityCodes/BASE_CARD_ABILITY"
+    "cardAbilityCodes/BASE_CARD_ABILITY",
+    "diceCardSelfAbilityBase/BASE_DICE_CARD_SELF_ABILITY"
 ]
