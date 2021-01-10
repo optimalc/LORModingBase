@@ -53,7 +53,8 @@ namespace LORModingBase.DLLEditor
 
                         if (loadedCodeBlockData.ContainsKey(DM.Config.config.localizeOption))
                         {
-                            createdCodeBlock.title = $"[{KEY_TO_USE}] {loadedCodeBlockData[DM.Config.config.localizeOption][0]}:{KEY_TO_USE}/{SUB_KEY_TO_USE}";
+                            string TYPE_DESC = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"Type_{createdCodeBlock.type}");
+                            createdCodeBlock.title = $"{TYPE_DESC}[{KEY_TO_USE}] {loadedCodeBlockData[DM.Config.config.localizeOption][0]}:{KEY_TO_USE}/{SUB_KEY_TO_USE}";
                             createdCodeBlock.description = loadedCodeBlockData[DM.Config.config.localizeOption][1];
                             createdCodeBlock.parameterList = loadedCodeBlockData[DM.Config.config.localizeOption][2].Split(',').ToList();
                         }
@@ -118,6 +119,19 @@ namespace LORModingBase.DLLEditor
         {
             return loadedCodeBlocks.Keys.ToList();
         }
+    
+        public static List<string> GetALLLocalizedBlockType()
+        {
+            List<string> localizedBlockTypes = new List<string>();
+            List<string> TYPE_NAME_LIST = new List<string>() { "BASE", "IF", "WHILE", "ACTION"};
+
+            TYPE_NAME_LIST.ForEach((string TYPE_NAME) =>
+            {
+                localizedBlockTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"Type_{TYPE_NAME}"));
+            });
+
+            return localizedBlockTypes;
+        }
     }
 
 
@@ -126,6 +140,9 @@ namespace LORModingBase.DLLEditor
     /// </summary>
     class CODE_BLOCK_TYPE
     {
-        public static string BASE_BLOCK = "BASE";
+        public const string BASE_BLOCK = "BASE";
+        public const string IF_BLOCK = "IF";
+        public const string WHILE_BLOCK = "WHILE";
+        public const string ACTION_BLOCK = "ACTION";
     }
 }

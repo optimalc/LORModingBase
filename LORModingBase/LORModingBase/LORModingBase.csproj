@@ -64,8 +64,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomExtensions\IEnumerable.cs" />
-    <Compile Include="DLLEditor\CodeBlockControls\BaseCodeBlockControl.xaml.cs">
-      <DependentUpon>BaseCodeBlockControl.xaml</DependentUpon>
+    <Compile Include="DLLEditor\CodeBlockControls\GlobalCodeBlockControl.xaml.cs">
+      <DependentUpon>GlobalCodeBlockControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DLLEditor\CodeBlockDataManagement.cs" />
     <Compile Include="DLLEditor\DataStructure.cs" />
@@ -166,7 +166,7 @@
     <Compile Include="UC\EditWave.xaml.cs">
       <DependentUpon>EditWave.xaml</DependentUpon>
     </Compile>
-    <Page Include="DLLEditor\CodeBlockControls\BaseCodeBlockControl.xaml">
+    <Page Include="DLLEditor\CodeBlockControls\GlobalCodeBlockControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -443,6 +443,9 @@
   <ItemGroup>
     <Resource Include="Resources\BtnDLLEdit.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\BtnAddNode.png" />
+    <Resource Include="Resources\BtnCodeBlockInfo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

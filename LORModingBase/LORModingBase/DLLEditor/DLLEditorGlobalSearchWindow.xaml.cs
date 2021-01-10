@@ -47,6 +47,7 @@ namespace LORModingBase.DLLEditor
                     break;
             }
 
+            searchTypes.AddRange(CodeBlockDataManagement.GetALLLocalizedBlockType());
             searchTypes.AddRange(CodeBlockDataManagement.GetALLCodeBlockKeys());
             InitLbxSearchType(searchTypes);
         }

@@ -23,6 +23,7 @@ namespace LORModingBase.DLLEditor
         public static string targetSourceFilePath = "";
         public static List<CodeBlock> rootCodeBlocks = new List<CodeBlock>();
 
+        #region Init controls
         public DLLEditorMainWindow()
         {
             InitializeComponent();
@@ -32,11 +33,22 @@ namespace LORModingBase.DLLEditor
 
         private void InitDLLStacks()
         {
-            if(!string.IsNullOrEmpty(DLLEditor.DLLEditorMainWindow.targetSourceFilePath))
+            SqlCodeBlocks.Children.Clear();
+            rootCodeBlocks.ForEach((CodeBlock codeBlock) =>
+            {
+                SqlCodeBlocks.Children.Add(
+                    new CodeBlockControls.GlobalCodeBlockControl(codeBlock, InitCreatedSourceCodeTextBox, InitDLLStacks, null));
+            });
+        }
+
+        private void InitCreatedSourceCodeTextBox()
+        {
+            if (!string.IsNullOrEmpty(DLLEditor.DLLEditorMainWindow.targetSourceFilePath))
             {
                 Tools.JsonFile.SaveJsonFile<List<CodeBlock>>(DLLEditor.DLLEditorMainWindow.targetSourceFilePath, rootCodeBlocks);
             }
-        }
+        } 
+        #endregion
 
         private void DLLEditorButtonClickEvents(object sender, RoutedEventArgs e)
         {
@@ -50,6 +62,7 @@ namespace LORModingBase.DLLEditor
                              SubWindows.Global_ListSeleteWithEditWindow_PRESET.DLL_WORKING_SPACE).ShowDialog();
                         if (!string.IsNullOrEmpty(targetSourceFilePath))
                             this.Title = $"DLL Editor Window - {targetSourceFilePath.Split('\\').Last().Split('.')[0]}.dll";
+                        InitCreatedSourceCodeTextBox();
                         InitDLLStacks();
                         break;
                     case "BtnCompileDLL":
@@ -70,6 +83,7 @@ namespace LORModingBase.DLLEditor
                         new DLLEditorGlobalSearchWindow((CodeBlock selectedCodeBlock) =>
                         {
                             rootCodeBlocks.Add(selectedCodeBlock);
+                            InitCreatedSourceCodeTextBox();
                             InitDLLStacks();
                         }, DLLEditorGlobalSearchWindow_PRESET.BASE_BLOCK).ShowDialog();
                         break;
