@@ -108,9 +108,18 @@ namespace LORModingBase.DLLEditor
             List<CodeBlock> codeBlocks = new List<CodeBlock>();
             targetPaths.ForEach((string targetPath) =>
             {
-                CodeBlock foundCodeBlock = GetBaseBlockFromTargetPathOrTitle(targetPath);
-                if (foundCodeBlock != null)
-                    codeBlocks.Add(foundCodeBlock);
+                if(targetPath.Contains("&"))
+                {
+                    string GROUP_PATH = $"{DS.PROGRAM_PATHS.CODE_BLOCK_GROUP}\\{targetPath.Replace("&", "")}.json";
+                    if(File.Exists(GROUP_PATH))
+                        codeBlocks.AddRange(GetMultipleBaseBlockFromTargetPathListOrTitle(Tools.JsonFile.LoadJsonFile<List<string>>(GROUP_PATH)));
+                }
+                else
+                {
+                    CodeBlock foundCodeBlock = GetBaseBlockFromTargetPathOrTitle(targetPath);
+                    if (foundCodeBlock != null)
+                        codeBlocks.Add(foundCodeBlock);
+                }
             });
             return codeBlocks;
         }

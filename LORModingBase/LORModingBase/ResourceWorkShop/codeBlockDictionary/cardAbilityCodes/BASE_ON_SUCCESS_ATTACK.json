@@ -2,7 +2,7 @@
     "usings":[],
     "type":["BASE"],
     "inputtedParameter":[],
-    "subBlockWhiteFilter":["cardAbilityCodes/ACTION_BURN_ABILITY"],
+    "subBlockWhiteFilter":["&GROUP_DICE_ACTIONS"],
     "kr":[
         "적중 성공시 트리거 기반 블록",
         "공격이 적중에 성공했을 경우 액션를 발생시키기 위한 기반 블록입니다",

@@ -32,6 +32,11 @@ namespace LORModingBase.DS
         /// Debug test file
         /// </summary>
         public const string DEBUG_TEST = ".\\debugTest.txt";
+
+        /// <summary>
+        /// Code block group directory
+        /// </summary>
+        public const string CODE_BLOCK_GROUP = ".\\codeBlockGroup";
     }
 
     class PROGRAM_RESOURCE_PATHS

@@ -2,7 +2,7 @@
     "usings":["System"],
     "type":["BASE"],
     "inputtedParameter":[],
-    "subBlockWhiteFilter":["cardAbilityCodes/ACTION_BURN_ABILITY"],
+    "subBlockWhiteFilter":["&GROUP_DICE_ACTIONS"],
     "kr":[
         "광역 공격에 성공시 트리거 기반 블록",
         "광역 공격 성공시 액션를 발생시키기 위한 기반 블록입니다",
