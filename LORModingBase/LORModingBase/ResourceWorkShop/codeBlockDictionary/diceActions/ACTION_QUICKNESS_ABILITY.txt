@@ -1,0 +1,6 @@
+BattleUnitModel owner = base.owner;
+if (owner == null)
+{
+    return;
+}
+owner.bufListDetail.AddKeywordBufByCard(KeywordBuf.Quickness, {{0}}, base.owner);

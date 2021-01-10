@@ -1,0 +1,1 @@
+this.card.owner.bufListDetail.AddKeywordBufByCard(KeywordBuf.Protection, {{0}}, base.owner);

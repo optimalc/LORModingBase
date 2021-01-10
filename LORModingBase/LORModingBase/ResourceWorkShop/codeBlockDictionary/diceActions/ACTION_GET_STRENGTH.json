@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "힘을 얻는 카드 효과",
+        "힘을 얻습니다",
+        "얻는 힘 수치"
+    ],
+    "en":[
+        "Get strength",
+        "Get strength",
+        "Degree of strength"
+    ],
+    "jp":[
+        "Get strength",
+        "Get strength",
+        "Degree of strength"
+    ],
+    "cn":[
+        "Get strength",
+        "Get strength",
+        "Degree of strength"
+    ]
+}

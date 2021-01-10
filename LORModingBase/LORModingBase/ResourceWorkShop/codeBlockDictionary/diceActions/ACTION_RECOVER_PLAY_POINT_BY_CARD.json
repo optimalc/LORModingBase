@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "빛을 회복하는 카드 효과",
+        "빛을 회복합니다",
+        "회복하는 빛 수치"
+    ],
+    "en":[
+        "Recover Play Point",
+        "Recover Play Point",
+        "Count of play point to recover"
+    ],
+    "jp":[
+        "Recover Play Point",
+        "Recover Play Point",
+        "Count of play point to recover"
+    ],
+    "cn":[
+        "Recover Play Point",
+        "Recover Play Point",
+        "Count of play point to recover"
+    ]
+}

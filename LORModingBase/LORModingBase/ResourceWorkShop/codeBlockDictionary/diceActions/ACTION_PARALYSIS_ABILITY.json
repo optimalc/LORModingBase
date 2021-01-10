@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "마비을 부여시키는 카드 효과",
+        "대상에게 마비를 부여시킵니다",
+        "마비 수치"
+    ],
+    "en":[
+        "Paralysis the target",
+        "Make the target Paralysis",
+        "Degree of Paralysis"
+    ],
+    "jp":[
+        "Paralysis the target",
+        "Make the target Paralysis",
+        "Degree of Paralysis"
+    ],
+    "cn":[
+        "Paralysis the target",
+        "Make the target Paralysis",
+        "Degree of Paralysis"
+    ]
+}

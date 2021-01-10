@@ -4,5 +4,10 @@
     "diceActions/ACTION_DISARM_ABILITY",
     "diceActions/ACTION_RECOVER_HP",
     "diceActions/ACTION_VULNERABLE_ABILITY",
-    "diceActions/ACTION_WEAK_ABILITY"
+    "diceActions/ACTION_ENDURANCE_ABILITY",
+    "diceActions/ACTION_GET_STRENGTH",
+    "diceActions/ACTION_PARALYSIS_ABILITY",
+    "diceActions/ACTION_PROTECTION_ABILITY",
+    "diceActions/ACTION_QUICKNESS_ABILITY",
+    "diceActions/ACTION_RECOVER_PLAY_POINT_BY_CARD"
 ]

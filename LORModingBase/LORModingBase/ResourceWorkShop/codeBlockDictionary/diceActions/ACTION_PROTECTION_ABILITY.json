@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "자신에게 보호를 부여시키는 카드 효과",
+        "자신에게 보호를 부여합니다",
+        "보호 수치"
+    ],
+    "en":[
+        "Give protection to owner",
+        "Give protection to owner",
+        "Degree of Protection"
+    ],
+    "jp":[
+        "Give protection to owner",
+        "Give protection to owner",
+        "Degree of Protection"
+    ],
+    "cn":[
+        "Give protection to owner",
+        "Give protection to owner",
+        "Degree of Protection"
+    ]
+}
