@@ -24,6 +24,7 @@ namespace LORModingBase.DLLEditor
         /// </summary>
         public static void LoadData()
         {
+            loadedCodeBlocks.Clear();
             if (!Directory.Exists(CODE_BLOCK_DICTIONARY_DIC))
                 Directory.CreateDirectory(CODE_BLOCK_DICTIONARY_DIC);
 
@@ -59,10 +60,11 @@ namespace LORModingBase.DLLEditor
         }
         #endregion
         
-        public static CodeBlock GetBaseBlockFromWhiteListData(string targetPath)
+        public static CodeBlock GetBaseBlockFromTargetPathOrTitle(string targetPath)
         {
+            targetPath = targetPath.Split(':').Last();
             List<string> WHITE_LIST_SPLIT_DATAS = targetPath.Split('/').ToList();
-            if (WHITE_LIST_SPLIT_DATAS.Count > 2)
+            if (WHITE_LIST_SPLIT_DATAS.Count == 2)
             {
                 string ROOT_KEY = WHITE_LIST_SPLIT_DATAS[0];
                 string SUB_KEY = WHITE_LIST_SPLIT_DATAS[1];
@@ -76,5 +78,25 @@ namespace LORModingBase.DLLEditor
             else
                 return null;
         }
+    
+        /// <summary>
+        /// Get all code block list from name
+        /// </summary>
+        public static List<CodeBlock> GetAllCodeBlockListFromBaseName(string codeBlockBaseName)
+        {
+            if (loadedCodeBlocks.ContainsKey(codeBlockBaseName))
+                return loadedCodeBlocks[codeBlockBaseName].Values.ToList();
+            else
+                return new List<CodeBlock>();
+        }
+    }
+
+
+    /// <summary>
+    /// Code block base name
+    /// </summary>
+    class CODE_BLCOK_DIR_NAME
+    {
+        public static string BASE_BLOCK = "base";
     }
 }

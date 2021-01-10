@@ -20,7 +20,7 @@ namespace LORModingBase.DLLEditor
     /// <summary>
     /// Code block data structure
     /// </summary>
-    class CodeBlock
+    public class CodeBlock
     {
         public string title = "";
         public string description = "";

@@ -72,9 +72,9 @@ namespace LORModingBase.DLLEditor
                             return;
                         }
 
-                        new DLLEditorGlobalSearchWindow((string selectedCodeBlock) =>
+                        new DLLEditorGlobalSearchWindow((CodeBlock selectedCodeBlock) =>
                         {
-                            InitUIDatas();
+                            InitDLLStacks();
                         }, DLLEditorGlobalSearchWindow_PRESET.BASE_BLOCK).ShowDialog();
                         break;
 

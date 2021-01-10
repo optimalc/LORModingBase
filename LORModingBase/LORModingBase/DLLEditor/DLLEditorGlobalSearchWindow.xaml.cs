@@ -19,30 +19,31 @@ namespace LORModingBase.DLLEditor
     /// </summary>
     public partial class DLLEditorGlobalSearchWindow : Window
     {
-        Action<string> afterSelectItem = null;
-        List<string> selectItems = null;
+        Action<CodeBlock> afterSelectCodeBlock = null;
+        List<CodeBlock> codeBlockList = new List<CodeBlock>();
 
         #region Init controls
-        public DLLEditorGlobalSearchWindow(Action<string> afterSelectItem, List<string> searchTypes, List<string> selectItems)
+        public DLLEditorGlobalSearchWindow(Action<CodeBlock> afterSelectCodeBlock, List<CodeBlock> codeBlockList, List<string> searchTypes)
         {
             InitializeComponent();
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
-            this.afterSelectItem = afterSelectItem;
-            this.selectItems = selectItems;
+            this.codeBlockList = codeBlockList;
+            this.afterSelectCodeBlock = afterSelectCodeBlock;
             InitLbxSearchType(searchTypes);
         }
 
-        public DLLEditorGlobalSearchWindow(Action<string> afterSelectItem, DLLEditorGlobalSearchWindow_PRESET preset)
+        public DLLEditorGlobalSearchWindow(Action<CodeBlock> afterSelectCodeBlock, DLLEditorGlobalSearchWindow_PRESET preset)
         {
             InitializeComponent();
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
-            this.afterSelectItem = afterSelectItem;
+            this.afterSelectCodeBlock = afterSelectCodeBlock;
             List<string> searchTypes = new List<string>();
-            selectItems = new List<string>();
 
+            codeBlockList.Clear();
             switch (preset)
             {
                 case DLLEditorGlobalSearchWindow_PRESET.BASE_BLOCK:
+                    codeBlockList = CodeBlockDataManagement.GetAllCodeBlockListFromBaseName(CODE_BLCOK_DIR_NAME.BASE_BLOCK);
                     break;
             }
 
@@ -70,31 +71,35 @@ namespace LORModingBase.DLLEditor
             if (LbxSearchType.SelectedItem != null)
             {
                 LbxSourceCodeBlocks.Items.Clear();
-                foreach (string selectItem in selectItems)
+                foreach (CodeBlock codeBlock in codeBlockList)
                 {
-                    if (!string.IsNullOrEmpty(TbxSearch.Text) && !selectItem.ToLower().Replace(" ", "").Contains(TbxSearch.Text.ToLower().Replace(" ", ""))) continue;
+                    string SEARCH_STR = $"{codeBlock.title.ToLower()}{codeBlock.description.ToLower()}{codeBlock.codes.ToLower()}";
+                    if (!string.IsNullOrEmpty(TbxSearch.Text) && !SEARCH_STR.Replace(" ", "").Contains(TbxSearch.Text.ToLower().Replace(" ", ""))) continue;
                     if (LbxSearchType.SelectedIndex == 0)
-                        LbxSourceCodeBlocks.Items.Add(selectItem);
+                        LbxSourceCodeBlocks.Items.Add(codeBlock.title);
                     else
                     {
                         switch (LbxSearchType.SelectedItem.ToString())
                         {
                             default:
-                                if (selectItem.ToLower().Contains(LbxSearchType.SelectedItem.ToString().ToLower()))
-                                    LbxSourceCodeBlocks.Items.Add(selectItem);
+                                if (SEARCH_STR.Contains(LbxSearchType.SelectedItem.ToString().ToLower()))
+                                    LbxSourceCodeBlocks.Items.Add(codeBlock.title);
                                 break;
                         }
                     }
                 }
+                if (LbxSourceCodeBlocks.Items.Count > 0)
+                    LbxSourceCodeBlocks.SelectedIndex = 0;
             }
         }
         #endregion
 
         private void LbxItems_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (LbxSourceCodeBlocks.SelectedItem != null)
+            if (LbxSourceCodeBlocks.SelectedIndex != -1)
             {
-                afterSelectItem(LbxSourceCodeBlocks.SelectedItem.ToString().Split(':').Last());
+                CodeBlock SELECTED_CODE_BLOCK = CodeBlockDataManagement.GetBaseBlockFromTargetPathOrTitle(LbxSourceCodeBlocks.SelectedItem.ToString());
+                afterSelectCodeBlock(SELECTED_CODE_BLOCK);
                 this.Close();
             }
         }
@@ -112,7 +117,12 @@ namespace LORModingBase.DLLEditor
 
         private void LbxSourceCodeBlocks_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            if(LbxSourceCodeBlocks.SelectedIndex != -1)
+            {
+                CodeBlock SELECTED_CODE_BLOCK = CodeBlockDataManagement.GetBaseBlockFromTargetPathOrTitle(LbxSourceCodeBlocks.SelectedItem.ToString());
+                TbxSourceCodeDes.Text = SELECTED_CODE_BLOCK.description;
+                TbxSourceCodeDetail.Text = SELECTED_CODE_BLOCK.codes;
+            }
         }
     }
 
