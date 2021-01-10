@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "자신에게 데미지",
+        "자신에게 데미지를 줍니다",
+        "데미지 수치"
+    ],
+    "en":[
+        "Take damage",
+        "Take damage",
+        "The degree of damage"
+    ],
+    "jp":[
+        "Take damage",
+        "Take damage",
+        "The degree of damage"
+    ],
+    "cn":[
+        "Take damage",
+        "Take damage",
+        "The degree of damage"
+    ]
+}
