@@ -68,31 +68,37 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                     case 0:
                         GrdPara_0.Visibility = Visibility.Visible;
                         LblPara_0.Content = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_0.ToolTip = innerCodeBlock.parameterList[paraIndex];
                         TbxPara_0.Text = innerCodeBlock.inputtedParameterList[paraIndex];
                         break;
                     case 1:
                         GrdPara_1.Visibility = Visibility.Visible;
                         LblPara_1.Content = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_1.ToolTip = innerCodeBlock.parameterList[paraIndex];
                         TbxPara_1.Text = innerCodeBlock.inputtedParameterList[paraIndex];
                         break;
                     case 2:
                         GrdPara_2.Visibility = Visibility.Visible;
                         LblPara_2.Content = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_2.ToolTip = innerCodeBlock.parameterList[paraIndex];
                         TbxPara_2.Text = innerCodeBlock.inputtedParameterList[paraIndex];
                         break;
                     case 3:
                         GrdPara_3.Visibility = Visibility.Visible;
                         LblPara_3.Content = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_3.ToolTip = innerCodeBlock.parameterList[paraIndex];
                         TbxPara_3.Text = innerCodeBlock.inputtedParameterList[paraIndex];
                         break;
                     case 4:
                         GrdPara_4.Visibility = Visibility.Visible;
                         LblPara_4.Content = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_4.ToolTip = innerCodeBlock.parameterList[paraIndex];
                         TbxPara_4.Text = innerCodeBlock.inputtedParameterList[paraIndex];
                         break;
                     case 5:
                         GrdPara_5.Visibility = Visibility.Visible;
                         LblPara_5.Content = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_5.ToolTip = innerCodeBlock.parameterList[paraIndex];
                         TbxPara_5.Text = innerCodeBlock.inputtedParameterList[paraIndex];
                         break;
                 } 

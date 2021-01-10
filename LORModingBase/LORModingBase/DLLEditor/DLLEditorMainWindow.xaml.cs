@@ -74,23 +74,23 @@ namespace LORModingBase.DLLEditor
 
                 rootCodeBlocks.ForEach((CodeBlock rootCodeBlock) =>
                 {
-                    MakeAllCodeBlockStructure(rootCodeBlock, 0);
+                    MakeAllCodeBlockStructure(rootCodeBlock, 0, TbxTextEditor.Text.Count(f => f == '}')-1);
                 });
             }
         } 
 
-        private void MakeAllCodeBlockStructure(CodeBlock codeBlockToUse, int innerPara)
+        private void MakeAllCodeBlockStructure(CodeBlock codeBlockToUse, int innerPara, int endPara)
         {
-            int INDEX_TO_INPUT = TbxTextEditor.Text.IndexOfNth("{", innerPara);
+            int INDEX_TO_INPUT = TbxTextEditor.Text.IndexOfNth("}", endPara);
 
             string CODE_TO_USE = codeBlockToUse.codes;
-            for(int paraIndex=0; paraIndex<codeBlockToUse.inputtedParameterList.Count; paraIndex++)
+            for (int paraIndex = 0; paraIndex < codeBlockToUse.inputtedParameterList.Count; paraIndex++)
                 CODE_TO_USE = CODE_TO_USE.Replace("{{" + paraIndex.ToString() + "}}", codeBlockToUse.inputtedParameterList[paraIndex]);
 
-            TbxTextEditor.Text = TbxTextEditor.Text.Insert(INDEX_TO_INPUT+1, "\n" + "\t".Multiple(innerPara + 1) + CODE_TO_USE.Replace("\n", "\n"+"\t".Multiple(innerPara + 1)));
+            TbxTextEditor.Text = TbxTextEditor.Text.Insert(INDEX_TO_INPUT - innerPara - 1, "\n" + "\t".Multiple(innerPara + 1) + CODE_TO_USE.Replace("\n", "\n"+"\t".Multiple(innerPara + 1)));
             codeBlockToUse.subCodeBlocks.ForEach((CodeBlock codeBlock) =>
             {
-                MakeAllCodeBlockStructure(codeBlock, innerPara+1);
+                MakeAllCodeBlockStructure(codeBlock, innerPara + 1, endPara);
             });
         }
 
