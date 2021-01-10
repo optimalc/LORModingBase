@@ -22,6 +22,40 @@ namespace LORModingBase.DLLEditor
         public DLLEditorMainWindow()
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO);
+            InitDLLStacks();
+        }
+
+        private void InitDLLStacks()
+        {
+
+        }
+
+        private void DLLEditorButtonClickEvents(object sender, RoutedEventArgs e)
+        {
+            Button clickButton = sender as Button;
+            try
+            {
+                switch (clickButton.Name)
+                {
+                    case "BtnSetDLLWorkingSpace":
+                        break;
+                    case "BtnCompileDLL":
+                        break;
+
+                    case "BtnAddCodeBase":
+                        break;
+
+                    case "BtnClose":
+                        this.Close();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"DLLEditorMainWindow_Error_1"));
+            }
         }
     }
 }

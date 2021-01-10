@@ -8,10 +8,6 @@
         Title="DLL Editor Window" Height="600" Width="1500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="../Resources/icon.png">
     <Grid>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200*"/>
-                <ColumnDefinition Width="100*"/>
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="8*"/>
@@ -19,13 +15,61 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="16*"/>
+                    <ColumnDefinition Width="16*"/>
+                    <ColumnDefinition Width="62*"/>
+                    <ColumnDefinition Width="6*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.Background>
                     <ImageBrush ImageSource="../Resources/MenuBg.png"/>
                 </Grid.Background>
-                <Button x:Name="BtnSetDLLWorkingSpace" Content="[DLL 작업 공간 지정하기]" ToolTip="DLL 작업 공간을 지정합니다" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" Padding="10,1,1,1"/>
+                <Viewbox Grid.Column="0" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnSetDLLWorkingSpace" Content="[DLL 작업 공간 지정하기]" ToolTip="DLL 관련 내용을 편집하기 위한 작업 공간을 설정합니다" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" Padding="10,1,1,1" Click="DLLEditorButtonClickEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="1" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnCompileDLL" Content="[DLL 컴파일하기]" ToolTip="소스코드를 컴파일해서 새로운 DLL을 생성시킵니다" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" Padding="10,1,1,1" Click="DLLEditorButtonClickEvents"/>
+                </Viewbox>
+                <Viewbox Grid.Column="3" Stretch="Fill" Margin="10">
+                    <Button x:Name="BtnClose" Content="[닫기]" ToolTip="창을 닫습니다" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Left" Padding="10,1,1,1" Click="DLLEditorButtonClickEvents"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <ImageBrush ImageSource="../Resources/MenuBg.png"/>
+                </Grid.Background>
+                <Grid Grid.Column="0">
+                    <Button x:Name="BtnAddCodeBase" Content="▼ 코드 기반 블록 추가 ▼" ToolTip="새로운 코드 기반 블록을 추가합니다" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Padding="10,1,1,1" Click="DLLEditorButtonClickEvents"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="../Resources/MainBg.png"/>
+                    </Grid.Background>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="SqlCodeBlocks" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="5,5,5,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="../Resources/MainBg.png"/>
+                    </Grid.Background>
+                    <TextBox x:Name="TbxTextEditor" Text="" Grid.Row="1" ToolTip="생성된 소스코드를 확인합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"/>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
