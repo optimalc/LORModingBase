@@ -63,6 +63,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomExtensions\IEnumerable.cs" />
+    <Compile Include="DLLEditor\CodeBlockDataManagement.cs" />
     <Compile Include="DLLEditor\DataStructure.cs" />
     <Compile Include="DLLEditor\DLLEditorGlobalSearchWindow.xaml.cs">
       <DependentUpon>DLLEditorGlobalSearchWindow.xaml</DependentUpon>
@@ -433,6 +434,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\BtnDLLEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DLLEditor\CodeBlockControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

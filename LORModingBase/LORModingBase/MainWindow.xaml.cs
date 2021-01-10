@@ -29,6 +29,7 @@ namespace LORModingBase
                 Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.MAIN_WINDOW);
                 ReloadAllStackDatas();
                 InitLbxTextEditor();
+                DLLEditor.CodeBlockDataManagement.LoadData();
             }
             catch(Exception ex)
             {

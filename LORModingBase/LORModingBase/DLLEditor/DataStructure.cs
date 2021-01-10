@@ -16,4 +16,17 @@ namespace LORModingBase.DLLEditor
         /// </summary>
         public static string DLL_SOURCE_FILE_DIR_NAME = "SourceFiles";
     }
+
+    /// <summary>
+    /// Code block data structure
+    /// </summary>
+    class CodeBlock
+    {
+        public string title = "";
+        public string description = "";
+        public string codes = "";
+        public List<string> subBlockWhiteFilter = new List<string>();
+        public List<CodeBlock> subCodeBlocks = new List<CodeBlock>();
+        public List<string> parameterList = new List<string>();
+    }
 }
