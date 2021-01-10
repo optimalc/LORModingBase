@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["&GROUP_DICE_ACTIONS"],
+    "kr":[
+        "일방 공격인 경우",
+        "일방 공격 일때 조건을 발생시키기 위한 블록입니다",
+        ""
+    ],
+    "en":[
+        "One-way attack IF Block",
+        "Invoke if attack is One-way attack",
+        ""
+    ],
+    "jp":[
+        "One-way attack IF Block",
+        "Invoke if attack is One-way attack",
+        ""
+    ],
+    "cn":[
+        "One-way attack IF Block",
+        "Invoke if attack is One-way attack",
+        ""
+    ]
+}

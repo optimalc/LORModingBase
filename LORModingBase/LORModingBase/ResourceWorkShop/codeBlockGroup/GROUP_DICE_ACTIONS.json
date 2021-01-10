@@ -12,6 +12,11 @@
     "diceActions/ACTION_RECOVER_PLAY_POINT_BY_CARD",
     "diceActions/ACTION_DRAW_CARDS",
     "diceActions/ACTION_TAKE_DAMAGE",
+    "diceActions/ACTION_DICE_BONUS",
+    "diceActions/ACTION_GET_CHARGE",
 
-    "cardAbilityIfCodes/IF_UNDER_HP"
+    "cardAbilityIfCodes/IF_UNDER_HP",
+    "cardAbilityIfCodes/IF_OVER_HP",
+    "cardAbilityIfCodes/IF_CHARGE_OVER_AND_USE",
+    "cardAbilityIfCodes/IF_NO_PARRYING"
 ]
