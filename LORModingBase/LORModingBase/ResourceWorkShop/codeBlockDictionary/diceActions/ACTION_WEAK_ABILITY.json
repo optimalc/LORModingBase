@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "허약을 부여시키는 카드 효과",
+        "대상에게 허약을 부여시킵니다",
+        "허약 수치"
+    ],
+    "en":[
+        "Weak the target",
+        "Make the target weak",
+        "Degree of Weak"
+    ],
+    "jp":[
+        "Weak the target",
+        "Make the target weak",
+        "Degree of Weak"
+    ],
+    "cn":[
+        "Weak the target",
+        "Make the target weak",
+        "Degree of Weak"
+    ]
+}

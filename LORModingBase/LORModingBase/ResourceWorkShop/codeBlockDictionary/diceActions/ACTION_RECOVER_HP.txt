@@ -1,0 +1,1 @@
+base.card.owner.RecoverHP({{0}});

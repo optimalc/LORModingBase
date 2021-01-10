@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "취약을 부여시키는 카드 효과",
+        "타겟에게 취약을 부여시킵니다",
+        "취약 수치"
+    ],
+    "en":[
+        "Vulnerable the target",
+        "Make the target vulnerable",
+        "Degree of Vulerable"
+    ],
+    "jp":[
+        "Vulnerable the target",
+        "Make the target vulnerable",
+        "Degree of Vulerable"
+    ],
+    "cn":[
+        "Vulnerable the target",
+        "Make the target vulnerable",
+        "Degree of Vulerable"
+    ]
+}

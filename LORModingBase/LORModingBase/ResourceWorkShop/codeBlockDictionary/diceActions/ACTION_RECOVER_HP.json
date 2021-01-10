@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "자신을 회복시키는 카드 효과",
+        "자신을 회복시킵니다",
+        "회복 수치"
+    ],
+    "en":[
+        "Recover owner",
+        "Recover the owner",
+        "Degree of Recovering"
+    ],
+    "jp":[
+        "Recover owner",
+        "Recover the owner",
+        "Degree of Recovering"
+    ],
+    "cn":[
+        "Recover owner",
+        "Recover the owner",
+        "Degree of Recovering"
+    ]
+}

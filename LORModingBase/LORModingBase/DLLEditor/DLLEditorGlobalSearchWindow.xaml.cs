@@ -118,9 +118,9 @@ namespace LORModingBase.DLLEditor
         }
         #endregion
 
-        private void LbxSourceCodeBlocks_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void LbxSourceCodeBlocks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(LbxSourceCodeBlocks.SelectedIndex != -1)
+            if (LbxSourceCodeBlocks.SelectedIndex != -1)
             {
                 CodeBlock SELECTED_CODE_BLOCK = CodeBlockDataManagement.GetBaseBlockFromTargetPathOrTitle(LbxSourceCodeBlocks.SelectedItem.ToString());
                 TbxSourceCodeDes.Text = SELECTED_CODE_BLOCK.description;

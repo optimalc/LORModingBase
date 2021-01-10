@@ -1,3 +1,8 @@
 [
-    "diceActions/ACTION_BURN_ABILITY"
+    "diceActions/ACTION_BURN_ABILITY",
+    "diceActions/ACTION_BLEEDING_ABILITY",
+    "diceActions/ACTION_DISARM_ABILITY",
+    "diceActions/ACTION_RECOVER_HP",
+    "diceActions/ACTION_VULNERABLE_ABILITY",
+    "diceActions/ACTION_WEAK_ABILITY"
 ]

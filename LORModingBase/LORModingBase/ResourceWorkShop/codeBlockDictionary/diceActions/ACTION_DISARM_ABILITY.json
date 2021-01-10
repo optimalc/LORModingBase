@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "무장해제 부여시키는 카드 효과",
+        "타겟에게 무장해제를 부여시킵니다",
+        "무장해제 수치"
+    ],
+    "en":[
+        "Disarm the target",
+        "Make the target Disarm",
+        "Degree of Disarm"
+    ],
+    "jp":[
+        "Disarm the target",
+        "Make the target Disarm",
+        "Degree of Disarm"
+    ],
+    "cn":[
+        "Disarm the target",
+        "Make the target Disarm",
+        "Degree of Disarm"
+    ]
+}

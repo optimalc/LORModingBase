@@ -58,7 +58,7 @@
                 </Grid.RowDefinitions>
                 <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54C3D1C2" Margin="3"/>
                 <Label x:Name="LblSourceCodeBlocks" Grid.Row="0" Content="소스코드 블럭들" FontSize="15"  Style="{StaticResource StyLbl}"/>
-                <ListBox x:Name="LbxSourceCodeBlocks" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxItems_PreviewMouseDoubleClick" PreviewMouseLeftButtonDown="LbxSourceCodeBlocks_PreviewMouseLeftButtonDown"/>
+                <ListBox x:Name="LbxSourceCodeBlocks" Grid.Row="1"  Style="{StaticResource StyListBox}" PreviewMouseDoubleClick="LbxItems_PreviewMouseDoubleClick" SelectionChanged="LbxSourceCodeBlocks_SelectionChanged"/>
 
                 <Label x:Name="LblSourceCodeDescription" Grid.Row="2" Content="선택된 블럭 관련 설명" FontSize="15"  Style="{StaticResource StyLbl}"/>
                 <Grid Grid.Row="3">
