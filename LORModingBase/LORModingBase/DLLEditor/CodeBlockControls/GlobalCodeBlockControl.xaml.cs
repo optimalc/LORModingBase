@@ -102,6 +102,12 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                     case "BtnAddNode":
                         break;
                     case "BtnDelete":
+                        if (perentCodeBlock == null)
+                            DLLEditor.DLLEditorMainWindow.rootCodeBlocks.Remove(innerCodeBlock);
+                        else
+                            perentCodeBlock.subCodeBlocks.Remove(innerCodeBlock);
+                        updateTextBox();
+                        updateStack();
                         break;
                 }
             }
