@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":["3"],
+    "subBlockWhiteFilter":["&GROUP_PASSIVE_ACTIONS"],
+    "kr":[
+        "감정 단계가 n 이상이라면",
+        "감정 단계가 n 이상인 경우 액션을 발생시키는 조건 블록입니다",
+        "n"
+    ],
+    "en":[
+        "If emotion level is over n",
+        "If emotion level is over n",
+        "n"
+    ],
+    "jp":[
+        "If emotion level is over n",
+        "If emotion level is over n",
+        "n"
+    ],
+    "cn":[
+        "If emotion level is over n",
+        "If emotion level is over n",
+        "n"
+    ]
+}

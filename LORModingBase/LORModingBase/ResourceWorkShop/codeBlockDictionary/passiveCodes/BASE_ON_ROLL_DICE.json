@@ -2,7 +2,7 @@
     "usings":[],
     "type":["BASE"],
     "inputtedParameter":[],
-    "subBlockWhiteFilter":["passiveCodes/ACTION_ADD_PERSONAL_EGO_CARD"],
+    "subBlockWhiteFilter":["&GROUP_PASSIVE_ACTIONS"],
     "kr":[
         "주사위 굴림 트리거 기반 블록",
         "주사위를 굴릴 경우 액션를 발생시키기 위한 기반 블록입니다",
