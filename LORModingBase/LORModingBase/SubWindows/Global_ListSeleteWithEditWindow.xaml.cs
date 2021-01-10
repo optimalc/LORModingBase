@@ -187,12 +187,18 @@ namespace LORModingBase.SubWindows
 
                     Directory.GetFiles(DLL_DIR_SEARCH_PATH).ForEachSafe((string eachTxtFile) =>
                     {
-                        itemToLoad.Add(eachTxtFile.Split('\\').Last().Replace(".txt", ".dll"));
+                        itemToLoad.Add(eachTxtFile.Split('\\').Last().Replace(".json", ".dll"));
                     });
 
                     this.afterSelect = (string selectedFileName) =>
                     {
-                        DLLEditor.DLLEditorMainWindow.targetSourceFilePath = $"{DLL_DIR_SEARCH_PATH}\\{selectedFileName.Replace(".dll", ".txt")}";
+                        DLLEditor.DLLEditorMainWindow.targetSourceFilePath = $"{DLL_DIR_SEARCH_PATH}\\{selectedFileName.Replace(".dll", ".json")}";
+                        if (File.Exists(DLLEditor.DLLEditorMainWindow.targetSourceFilePath))
+                        {
+                            DLLEditor.DLLEditorMainWindow.rootCodeBlocks = Tools.JsonFile.LoadJsonFile<List<DLLEditor.CodeBlock>>(DLLEditor.DLLEditorMainWindow.targetSourceFilePath);
+                            if (DLLEditor.DLLEditorMainWindow.rootCodeBlocks == null)
+                                DLLEditor.DLLEditorMainWindow.rootCodeBlocks = new List<DLLEditor.CodeBlock>();
+                        }
                         this.Close();
                     };
 
@@ -200,9 +206,10 @@ namespace LORModingBase.SubWindows
                     {
                         new SubWindows.Global_InputOneColumnData(null, afterClose: (string inputedName) =>
                         {
-                            if (!string.IsNullOrEmpty(inputedName) && !File.Exists($"{DLL_DIR_SEARCH_PATH}\\{inputedName}.txt"))
+                            if (!string.IsNullOrEmpty(inputedName) && !File.Exists($"{DLL_DIR_SEARCH_PATH}\\{inputedName}.json"))
                             {
-                                File.Create($"{DLL_DIR_SEARCH_PATH}\\{inputedName}.txt");
+                                File.Create($"{DLL_DIR_SEARCH_PATH}\\{inputedName}.json");
+                                Tools.JsonFile.SaveJsonFile($"{DLL_DIR_SEARCH_PATH}\\{inputedName}.json", new List<DLLEditor.CodeBlock>());
                                 LbxItems.Items.Add($"{inputedName}.dll");
                             }
                         }, windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE_ADD_TITLE"),
@@ -213,11 +220,11 @@ namespace LORModingBase.SubWindows
                     {
                         new SubWindows.Global_InputOneColumnData(null, afterClose: (string inputedName) =>
                         {
-                            if (!string.IsNullOrEmpty(inputedName) && File.Exists($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.txt"))
+                            if (!string.IsNullOrEmpty(inputedName) && File.Exists($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.json"))
                             {
                                 if (selectedName.Split('.')[0] != inputedName)
                                 {
-                                    File.Move($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.txt", $"{DLL_DIR_SEARCH_PATH}\\{inputedName}.txt");
+                                    File.Move($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.json", $"{DLL_DIR_SEARCH_PATH}\\{inputedName}.json");
                                     LbxItems.Items[LbxItems.Items.IndexOf(selectedName)] = $"{inputedName}.dll";
                                 }
                             }
@@ -234,7 +241,7 @@ namespace LORModingBase.SubWindows
 
                     this.afterDelete = (string selectedName) =>
                     {
-                        File.Delete($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.txt");
+                        File.Delete($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.json");
                         File.Delete($"{DM.Config.CurrentWorkingDirectory}\\{selectedName}");
                         LbxItems.Items.Remove(selectedName);
                     };

@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +64,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomExtensions\IEnumerable.cs" />
+    <Compile Include="DLLEditor\CodeBlockControls\BaseCodeBlockControl.xaml.cs">
+      <DependentUpon>BaseCodeBlockControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DLLEditor\CodeBlockDataManagement.cs" />
     <Compile Include="DLLEditor\DataStructure.cs" />
     <Compile Include="DLLEditor\DLLEditorGlobalSearchWindow.xaml.cs">
@@ -162,6 +166,10 @@
     <Compile Include="UC\EditWave.xaml.cs">
       <DependentUpon>EditWave.xaml</DependentUpon>
     </Compile>
+    <Page Include="DLLEditor\CodeBlockControls\BaseCodeBlockControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DLLEditor\DLLEditorGlobalSearchWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -435,8 +443,6 @@
   <ItemGroup>
     <Resource Include="Resources\BtnDLLEdit.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DLLEditor\CodeBlockControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

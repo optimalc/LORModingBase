@@ -21,26 +21,21 @@ namespace LORModingBase.DLLEditor
     public partial class DLLEditorMainWindow : Window
     {
         public static string targetSourceFilePath = "";
+        public static List<CodeBlock> rootCodeBlocks = new List<CodeBlock>();
 
         public DLLEditorMainWindow()
         {
             InitializeComponent();
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO);
-            InitUIDatas();
-        }
-
-        private void InitUIDatas()
-        {
-            if(!string.IsNullOrEmpty(targetSourceFilePath) && File.Exists(targetSourceFilePath))
-            {
-                TbxTextEditor.Text = File.ReadAllText(targetSourceFilePath);
-                InitDLLStacks();
-            }
+            InitDLLStacks();
         }
 
         private void InitDLLStacks()
         {
-
+            if(string.IsNullOrEmpty(DLLEditor.DLLEditorMainWindow.targetSourceFilePath))
+            {
+                Tools.JsonFile.SaveJsonFile<List<CodeBlock>>(DLLEditor.DLLEditorMainWindow.targetSourceFilePath, rootCodeBlocks);
+            }
         }
 
         private void DLLEditorButtonClickEvents(object sender, RoutedEventArgs e)
@@ -55,7 +50,7 @@ namespace LORModingBase.DLLEditor
                              SubWindows.Global_ListSeleteWithEditWindow_PRESET.DLL_WORKING_SPACE).ShowDialog();
                         if (!string.IsNullOrEmpty(targetSourceFilePath))
                             this.Title = $"DLL Editor Window - {targetSourceFilePath.Split('\\').Last().Split('.')[0]}.dll";
-                        InitUIDatas();
+                        InitDLLStacks();
                         break;
                     case "BtnCompileDLL":
                         if (string.IsNullOrEmpty(targetSourceFilePath))
@@ -74,6 +69,7 @@ namespace LORModingBase.DLLEditor
 
                         new DLLEditorGlobalSearchWindow((CodeBlock selectedCodeBlock) =>
                         {
+                            rootCodeBlocks.Add(selectedCodeBlock);
                             InitDLLStacks();
                         }, DLLEditorGlobalSearchWindow_PRESET.BASE_BLOCK).ShowDialog();
                         break;

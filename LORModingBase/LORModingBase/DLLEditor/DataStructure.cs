@@ -15,6 +15,10 @@ namespace LORModingBase.DLLEditor
         /// DLL source file directory name
         /// </summary>
         public static string DLL_SOURCE_FILE_DIR_NAME = "SourceFiles";
+        /// <summary>
+        /// Name space to use
+        /// </summary>
+        public static string NAME_SPACE_TO_USE = "LOR_Moding_Base";
     }
 
     /// <summary>
@@ -28,5 +32,6 @@ namespace LORModingBase.DLLEditor
         public List<string> subBlockWhiteFilter = new List<string>();
         public List<CodeBlock> subCodeBlocks = new List<CodeBlock>();
         public List<string> parameterList = new List<string>();
+        public List<string> usings = new List<string>();
     }
 }

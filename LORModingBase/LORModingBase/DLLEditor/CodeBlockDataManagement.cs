@@ -42,6 +42,8 @@ namespace LORModingBase.DLLEditor
                         Dictionary<string, List<string>> loadedCodeBlockData = Tools.JsonFile.LoadJsonFile<Dictionary<string, List<string>>>(codeBlockFile);
                         if (loadedCodeBlockData.ContainsKey("subBlockWhiteFilter"))
                             createdCodeBlock.subBlockWhiteFilter = loadedCodeBlockData["subBlockWhiteFilter"];
+                        if (loadedCodeBlockData.ContainsKey("usings"))
+                            createdCodeBlock.usings = loadedCodeBlockData["usings"];
                         if (loadedCodeBlockData.ContainsKey(DM.Config.config.localizeOption))
                         {
                             createdCodeBlock.title = $"{loadedCodeBlockData[DM.Config.config.localizeOption][0]}:{KEY_TO_USE}/{SUB_KEY_TO_USE}";
