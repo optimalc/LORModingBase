@@ -73,7 +73,12 @@ namespace LORModingBase.DLLEditor
         private void MakeAllCodeBlockStructure(CodeBlock codeBlockToUse, int innerPara)
         {
             int INDEX_TO_INPUT = TbxTextEditor.Text.IndexOfNth("{", innerPara);
-            TbxTextEditor.Text = TbxTextEditor.Text.Insert(INDEX_TO_INPUT+1, "\n" + "\t".Multiple(innerPara + 1) + codeBlockToUse.codes.Replace("\n", "\n"+"\t".Multiple(innerPara + 1)));
+
+            string CODE_TO_USE = codeBlockToUse.codes;
+            for(int paraIndex=0; paraIndex<codeBlockToUse.inputtedParameterList.Count; paraIndex++)
+                CODE_TO_USE = CODE_TO_USE.Replace("{{" + paraIndex.ToString() + "}}", codeBlockToUse.inputtedParameterList[paraIndex]);
+
+            TbxTextEditor.Text = TbxTextEditor.Text.Insert(INDEX_TO_INPUT+1, "\n" + "\t".Multiple(innerPara + 1) + CODE_TO_USE.Replace("\n", "\n"+"\t".Multiple(innerPara + 1)));
             codeBlockToUse.subCodeBlocks.ForEach((CodeBlock codeBlock) =>
             {
                 MakeAllCodeBlockStructure(codeBlockToUse, innerPara+1);

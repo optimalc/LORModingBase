@@ -122,8 +122,11 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
         {
             if (innerCodeBlock == null)
                 return;
-
             TextBox tbx = sender as TextBox;
+
+            int PARA_INDEX = Convert.ToInt32(tbx.Name.Split('_').Last());
+            innerCodeBlock.inputtedParameterList[PARA_INDEX] = tbx.Text;
+            updateTextBox();
         }
     }
 }
