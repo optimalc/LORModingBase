@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":["25"],
+    "subBlockWhiteFilter":["&GROUP_PASSIVE_ACTIONS"],
+    "kr":[
+        "체력이 n% 이하일때 조건 블록",
+        "체력이 n%이하일때 조건을 발생시키기 위한 블록입니다",
+        "n%"
+    ],
+    "en":[
+        "under HP n% IF Block",
+        "Invoke when HP is under in n% of Max hp",
+        "n%"
+    ],
+    "jp":[
+        "under HP n% IF Block",
+        "Invoke when HP is under in n% of Max hp",
+        "n%"
+    ],
+    "cn":[
+        "under HP n% IF Block",
+        "Invoke when HP is under in n% of Max hp",
+        "n%"
+    ]
+}

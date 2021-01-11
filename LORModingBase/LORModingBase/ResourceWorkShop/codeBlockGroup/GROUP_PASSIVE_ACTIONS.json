@@ -15,7 +15,12 @@
     "passiveIfCodes/IF_OVER_PLAY_POINT",
     "passiveIfCodes/IF_UNDER_PLAY_POINT",
     "passiveIfCodes/IF_NO_USE_CARD",
-    "passiveIfCodes/IF_N_PERCENT",
+    "passiveIfCodes/IF_CHARGE_OVER",
+    "passiveIfCodes/IF_OVER_BREAK_LIFE",
+    "passiveIfCodes/IF_OVER_HP",
+    "passiveIfCodes/IF_SMOKE_OVER",
+    "passiveIfCodes/IF_UNDER_BREAK_LIFE",
+    "passiveIfCodes/IF_UNDER_HP",
 
     "globalBlock/WHILE_LOOP_PASSIVE_ACTIONS"
 ]

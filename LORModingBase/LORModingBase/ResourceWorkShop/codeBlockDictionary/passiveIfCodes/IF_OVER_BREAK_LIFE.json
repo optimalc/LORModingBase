@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":["25"],
+    "subBlockWhiteFilter":["&GROUP_PASSIVE_ACTIONS"],
+    "kr":[
+        "흐트러짐이 n% 이상일때 조건 블록",
+        "흐트러짐이 n% 이상일때 조건을 발생시키기 위한 블록입니다",
+        "n%"
+    ],
+    "en":[
+        "over Break Life n% IF Block",
+        "Invoke when Break Life is over n% of Max Bread Life",
+        "n%"
+    ],
+    "jp":[
+        "over Break Life n% IF Block",
+        "Invoke when Break Life is over n% of Max Bread Life",
+        "n%"
+    ],
+    "cn":[
+        "over Break Life n% IF Block",
+        "Invoke when Break Life is over n% of Max Bread Life",
+        "n%"
+    ]
+}
