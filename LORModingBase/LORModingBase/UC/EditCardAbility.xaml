@@ -39,7 +39,7 @@
                     <Label x:Name="LblPassiveDes" Content="-- 카드 효과 관련 설명 --" FontSize="13"  Style="{StaticResource StyLbl}"/>
                 </Viewbox>
                 <Grid Grid.Row="1">
-                    <TextBox Margin="5" x:Name="TbxAbilityDes" Text="" Grid.Row="1" ToolTip="카드 효과의 설명을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" TextChanged="ReflectTextChangeInTextBox"/>
+                    <TextBox Margin="5" x:Name="TbxAbilityDes" Text="" Grid.Row="1" ToolTip="카드 효과의 설명을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" TextChanged="ReflectTextChangeInTextBox" TextWrapping="Wrap"/>
                 </Grid>
             </Grid>
         </Grid>
