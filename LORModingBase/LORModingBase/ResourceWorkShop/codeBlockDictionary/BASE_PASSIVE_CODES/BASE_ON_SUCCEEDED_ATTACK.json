@@ -2,7 +2,10 @@
     "usings":[],
     "type":["BASE"],
     "inputtedParameter":[],
-    "subBlockWhiteFilter":["&GROUP_GLOBAL_PASSIVE"],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_PASSIVE",
+        "&GROUP_GLOBAL_PASSIVE_BEHAVIOR"
+    ],
     "kr":[
         "공격 적중시 트리거 기반 블록",
         "공격 적중시 액션를 발생시키기 위한 기반 블록입니다",
