@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["owner", "0"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "상대방 혹은 자신에게 카드를 추가",
+        "상대방 혹은 자신에게 카드를 추가시킵니다",
+        "대상$자신-owner$상대방-target,카드 ID"
+    ],
+    "en":[
+        "Give the card to the owner or enemy",
+        "Give the card to the owner or enemy",
+        "Target$-owner$-target,Card ID"
+    ],
+    "jp":[
+        "Give the card to the owner or enemy",
+        "Give the card to the owner or enemy",
+        "Target$-owner$-target,Card ID"
+    ],
+    "cn":[
+        "Give the card to the owner or enemy",
+        "Give the card to the owner or enemy",
+        "Target$-owner$-target,Card ID"
+    ]
+}

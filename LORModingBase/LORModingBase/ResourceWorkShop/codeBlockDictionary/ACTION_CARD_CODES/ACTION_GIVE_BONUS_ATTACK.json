@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "주사위를 한번 더 사용합니다",
+        "주사위를 한번 더 사용합니다",
+        ""
+    ],
+    "en":[
+        "Use dice one more time",
+        "Use dice one more time",
+        ""
+    ],
+    "jp":[
+        "Use dice one more time",
+        "Use dice one more time",
+        ""
+    ],
+    "cn":[
+        "Use dice one more time",
+        "Use dice one more time",
+        ""
+    ]
+}

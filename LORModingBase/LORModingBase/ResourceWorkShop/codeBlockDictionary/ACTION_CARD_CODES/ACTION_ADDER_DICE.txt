@@ -1,0 +1,2 @@
+if (base.card.{{0}} != null && base.card.{{0}}.currentDiceAction != null)
+    base.card.{{0}}.currentDiceAction.AddDiceAdder(DiceMatch.{{1}}, {{2}});
