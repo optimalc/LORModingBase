@@ -99,6 +99,23 @@ namespace LORModingBase.DLLEditor
         }
 
         /// <summary>
+        /// Make automated code list block by paths
+        /// </summary>
+        public static List<CodeBlock> MakeCodeBlockListWithParameters(List<string> pathParameters)
+        {
+            List<DLLEditor.CodeBlock> autoCodeBlock = new List<DLLEditor.CodeBlock>();
+            foreach(string pathParameter in pathParameters)
+            {
+                List<string> SPLIT_PARAMETER = pathParameter.Split(',').ToList();
+                CodeBlock passiveBase = GetBaseBlockFromTargetPathOrTitle(SPLIT_PARAMETER[0]);
+                for(int paraIndex=0; paraIndex<SPLIT_PARAMETER.Count-1; paraIndex++)
+                    passiveBase.inputtedParameterList[paraIndex] = SPLIT_PARAMETER[paraIndex + 1];
+                autoCodeBlock.Add(passiveBase);
+            }
+            return autoCodeBlock;
+        }
+
+        /// <summary>
         /// Get multiple code block from muptiple path or title
         /// </summary>
         /// <param name="targetPaths"></param>

@@ -34,6 +34,34 @@ namespace LORModingBase.DLLEditor
             InitDLLStacks();
         }
 
+        public DLLEditorMainWindow(string fileName, List<string> autoParaPaths = null)
+        {
+            InitializeComponent();
+            TbxNameSpace.Text = DM.Config.config.nameSpaceToUse;
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO);
+
+            string DLL_DIR_SEARCH_PATH = $"{DM.Config.CurrentWorkingDirectory}\\{DLLEditor.GlobalDatas.DLL_SOURCE_FILE_DIR_NAME}";
+            if (!Directory.Exists(DLL_DIR_SEARCH_PATH))
+                Directory.CreateDirectory(DLL_DIR_SEARCH_PATH);
+
+            string JSON_FILE_PATH = $"{DLL_DIR_SEARCH_PATH}\\{fileName}.json";
+            if (!File.Exists(JSON_FILE_PATH)) 
+                File.Create(JSON_FILE_PATH);
+            targetSourceFilePath = JSON_FILE_PATH;
+            if (File.Exists(targetSourceFilePath))
+            {
+                rootCodeBlocks = Tools.JsonFile.LoadJsonFile<List<DLLEditor.CodeBlock>>(DLLEditor.DLLEditorMainWindow.targetSourceFilePath);
+                if (rootCodeBlocks == null)
+                    rootCodeBlocks = new List<DLLEditor.CodeBlock>();
+
+                if (autoParaPaths != null)
+                    rootCodeBlocks = CodeBlockDataManagement.MakeCodeBlockListWithParameters(autoParaPaths);
+            }
+
+            InitCreatedSourceCodeTextBox();
+            InitDLLStacks();
+        }
+
         private void InitDLLStacks()
         {
             SqlCodeBlocks.Children.Clear();

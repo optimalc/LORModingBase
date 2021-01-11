@@ -79,7 +79,20 @@
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
             <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-
+            <Button x:Name="BtnMakeDLL" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="이 패시브와 관련된 DLL을 작성합니다" Click="RightMenuButtonEvents">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-17"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnDLLEdit.png"/>
+                </Button.Background>
+            </Button>
+            
             <Rectangle Grid.Row="2" Grid.RowSpan="6" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
             <Button x:Name="BtnCopyPassive" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="패시브를 복제해서 새로운 패시브를 만듭니다" Click="RightMenuButtonEvents">
                 <Button.RenderTransform>

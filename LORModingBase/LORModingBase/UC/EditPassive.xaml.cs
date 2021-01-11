@@ -150,6 +150,15 @@ namespace LORModingBase.UC
             Button btn = sender as Button;
             switch (btn.Name)
             {
+                case "BtnMakeDLL":
+                    if (string.IsNullOrEmpty(DM.Config.config.DLLCompilerPath))
+                    {
+                        Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"DLLCompilerPathError2"));
+                        return;
+                    }
+                    new DLLEditor.DLLEditorMainWindow($"customPassive_{TbxPassiveID.Text}", 
+                        new List<string>() { $"passiveCodes/BASE_KEY_CARD_PASSIVE,{TbxPassiveID.Text}" }).ShowDialog();
+                    break;
                 case "BtnCopyPassive":
                     DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.subNodes.Add(innerPassiveNode.Copy());
                     initStack();
