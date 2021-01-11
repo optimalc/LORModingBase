@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "연기 얻기",
+        "연기를 얻습니다",
+        "연기 양"
+    ],
+    "en":[
+        "Get smoke",
+        "Get smoke",
+        "Degree of smoke"
+    ],
+    "jp":[
+        "Get smoke",
+        "Get smoke",
+        "Degree of smoke"
+    ],
+    "cn":[
+        "Get smoke",
+        "Get smoke",
+        "Degree of smoke"
+    ]
+}

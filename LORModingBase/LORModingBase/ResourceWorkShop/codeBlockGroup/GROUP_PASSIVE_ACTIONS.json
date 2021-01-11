@@ -15,6 +15,7 @@
     "passiveIfCodes/IF_OVER_PLAY_POINT",
     "passiveIfCodes/IF_UNDER_PLAY_POINT",
     "passiveIfCodes/IF_NO_USE_CARD",
+    "passiveIfCodes/IF_N_PERCENT",
 
     "globalBlock/WHILE_LOOP_PASSIVE_ACTIONS"
 ]

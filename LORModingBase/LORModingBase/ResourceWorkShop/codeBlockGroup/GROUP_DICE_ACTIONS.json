@@ -14,11 +14,16 @@
     "diceActions/ACTION_TAKE_DAMAGE",
     "diceActions/ACTION_DICE_BONUS",
     "diceActions/ACTION_GET_CHARGE",
+    "diceActions/ACTION_GET_SMOKE",
+    "diceActions/ACTION_RECOVER_BREAK_NUM",
+    "diceActions/ACTION_TAKE_BREAK_DAMAGE",
 
     "cardAbilityIfCodes/IF_UNDER_HP",
     "cardAbilityIfCodes/IF_OVER_HP",
     "cardAbilityIfCodes/IF_CHARGE_OVER_AND_USE",
     "cardAbilityIfCodes/IF_NO_PARRYING",
+    "cardAbilityIfCodes/IF_N_PERCENT",
+    "cardAbilityIfCodes/IF_SMOKE_OVER_AND_USE",
 
     "globalBlock/WHILE_LOOP_DICE_ACTIONS"
 ]

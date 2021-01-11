@@ -1,4 +1,8 @@
 [
     "Assembly-CSharp.dll",
-    "netstandard.dll"
+    "netstandard.dll",
+    "0Harmony.dll",
+    "BaseMod.dll",
+    "UnityEngine.dll",
+    "UnityEngine.CoreModule.dll"
 ]
