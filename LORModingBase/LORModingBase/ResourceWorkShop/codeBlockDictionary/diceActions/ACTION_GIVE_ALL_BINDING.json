@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["3"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "모든 적에게 구속을 n만큼 부여",
+        "모든 적에게 구속을 n만큼 부여합니다",
+        "n"
+    ],
+    "en":[
+        "Give binding effect to all enemy by n",
+        "Give binding effect to all enemy by n",
+        "n"
+    ],
+    "jp":[
+        "Give binding effect to all enemy by n",
+        "Give binding effect to all enemy by n",
+        "n"
+    ],
+    "cn":[
+        "Give binding effect to all enemy by n",
+        "Give binding effect to all enemy by n",
+        "n"
+    ]
+}

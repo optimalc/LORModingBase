@@ -67,39 +67,45 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                 {
                     case 0:
                         GrdPara_0.Visibility = Visibility.Visible;
-                        LblPara_0.Content = innerCodeBlock.parameterList[paraIndex];
-                        LblPara_0.ToolTip = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_0.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
+                        LblPara_0.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
                         TbxPara_0.Text = innerCodeBlock.inputtedParameterList[paraIndex];
+                        TbxPara_0.Tag = innerCodeBlock.parameterList[paraIndex];
                         break;
                     case 1:
                         GrdPara_1.Visibility = Visibility.Visible;
-                        LblPara_1.Content = innerCodeBlock.parameterList[paraIndex];
-                        LblPara_1.ToolTip = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_1.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
+                        LblPara_1.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
                         TbxPara_1.Text = innerCodeBlock.inputtedParameterList[paraIndex];
+                        TbxPara_1.Tag = innerCodeBlock.parameterList[paraIndex];
                         break;
                     case 2:
                         GrdPara_2.Visibility = Visibility.Visible;
-                        LblPara_2.Content = innerCodeBlock.parameterList[paraIndex];
-                        LblPara_2.ToolTip = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_2.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
+                        LblPara_2.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
                         TbxPara_2.Text = innerCodeBlock.inputtedParameterList[paraIndex];
+                        TbxPara_2.Tag = innerCodeBlock.parameterList[paraIndex];
                         break;
                     case 3:
                         GrdPara_3.Visibility = Visibility.Visible;
-                        LblPara_3.Content = innerCodeBlock.parameterList[paraIndex];
-                        LblPara_3.ToolTip = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_3.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
+                        LblPara_3.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
                         TbxPara_3.Text = innerCodeBlock.inputtedParameterList[paraIndex];
+                        TbxPara_3.Tag = innerCodeBlock.parameterList[paraIndex];
                         break;
                     case 4:
                         GrdPara_4.Visibility = Visibility.Visible;
-                        LblPara_4.Content = innerCodeBlock.parameterList[paraIndex];
-                        LblPara_4.ToolTip = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_4.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
+                        LblPara_4.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
                         TbxPara_4.Text = innerCodeBlock.inputtedParameterList[paraIndex];
+                        TbxPara_4.Tag = innerCodeBlock.parameterList[paraIndex];
                         break;
                     case 5:
                         GrdPara_5.Visibility = Visibility.Visible;
-                        LblPara_5.Content = innerCodeBlock.parameterList[paraIndex];
-                        LblPara_5.ToolTip = innerCodeBlock.parameterList[paraIndex];
+                        LblPara_5.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
+                        LblPara_5.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
                         TbxPara_5.Text = innerCodeBlock.inputtedParameterList[paraIndex];
+                        TbxPara_5.Tag = innerCodeBlock.parameterList[paraIndex];
                         break;
                 } 
             }
@@ -148,6 +154,24 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
             int PARA_INDEX = Convert.ToInt32(tbx.Name.Split('_').Last());
             innerCodeBlock.inputtedParameterList[PARA_INDEX] = tbx.Text;
             updateTextBox();
+        }
+
+        private void ReflectSelections(object sender, MouseButtonEventArgs e)
+        {
+            if (innerCodeBlock == null)
+                return;
+            TextBox tbx = sender as TextBox;
+            if(tbx.Tag.ToString().Contains('$'))
+            {
+                List<string> SPILT_LIST = tbx.Tag.ToString().Split('$').Skip(1).ToList();
+                new SubWindows.Global_ListSeleteWindow((string selectedCode) =>
+                {
+                    tbx.Text = selectedCode.Split('-')[1];
+                    int PARA_INDEX = Convert.ToInt32(tbx.Name.Split('_').Last());
+                    innerCodeBlock.inputtedParameterList[PARA_INDEX] = tbx.Text;
+                    updateTextBox();
+                }, SPILT_LIST).ShowDialog();
+            }
         }
     }
 }

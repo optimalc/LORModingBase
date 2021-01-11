@@ -1,2 +1,2 @@
 if(base.card.target != null)
-    base.card.target.bufListDetail.AddKeywordBufByCard(KeywordBuf.Bleeding, {{0}}, base.owner);
+    base.card.target.bufListDetail.AddKeywordBufByCard(KeywordBuf.{{1}}, {{0}}, base.owner);
