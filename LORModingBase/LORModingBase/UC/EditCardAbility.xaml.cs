@@ -66,6 +66,15 @@ namespace LORModingBase.UC
             Button btn = sender as Button;
             switch (btn.Name)
             {
+                case "BtnMakeDLL":
+                    if (string.IsNullOrEmpty(DM.Config.config.DLLCompilerPath))
+                    {
+                        Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"DLLCompilerPathError2"));
+                        return;
+                    }
+                    new DLLEditor.DLLEditorMainWindow($"customCardAbility_{TbxAbilityID.Text}",
+                        new List<string>() { $"cardAbilityCodes/BASE_CARD_ABILITY,{TbxAbilityID.Text}" }).ShowDialog();
+                    break;
                 case "BtnCopyAbility":
                     DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.subNodes.Add(innerAbilityNode.Copy());
                     initStack();
