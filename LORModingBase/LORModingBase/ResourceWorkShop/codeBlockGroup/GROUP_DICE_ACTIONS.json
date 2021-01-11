@@ -24,6 +24,8 @@
     "cardAbilityIfCodes/IF_NO_PARRYING",
     "cardAbilityIfCodes/IF_N_PERCENT",
     "cardAbilityIfCodes/IF_SMOKE_OVER_AND_USE",
+    "cardAbilityIfCodes/IF_OVER_BREAK_LIFE",
+    "cardAbilityIfCodes/IF_UNDER_BREAK_LIFE",
 
     "globalBlock/WHILE_LOOP_DICE_ACTIONS"
 ]
