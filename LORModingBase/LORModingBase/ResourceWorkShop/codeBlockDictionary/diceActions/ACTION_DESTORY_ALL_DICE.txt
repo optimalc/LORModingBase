@@ -1,2 +1,0 @@
-if(base.card != null && base.card.target != null && card.target.currentDiceAction != null)
-    base.card.target.currentDiceAction.DestroyDice(DiceMatch.AllDice, DiceUITiming.Start);

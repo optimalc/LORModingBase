@@ -1,4 +1,0 @@
-this.behavior.ApplyDiceStatBonus(new DiceStatBonus
-{
-    power = {{0}}
-});

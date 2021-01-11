@@ -1,4 +1,0 @@
-foreach (BattleUnitModel battleUnitModel in BattleObjectManager.instance.GetAliveList_random(this.owner.faction, {{0}}))
-{
-    battleUnitModel.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Strength, {{1}}, this.owner);
-}

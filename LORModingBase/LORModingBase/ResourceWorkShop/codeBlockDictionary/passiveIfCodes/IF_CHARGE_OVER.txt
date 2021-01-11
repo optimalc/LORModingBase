@@ -1,5 +1,0 @@
-if ((base.owner.bufListDetail.GetActivatedBuf(KeywordBuf.WarpCharge) as BattleUnitBuf_warpCharge) != null
-    && (base.owner.bufListDetail.GetActivatedBuf(KeywordBuf.WarpCharge) as BattleUnitBuf_warpCharge).stack >= {{0}})
-{
-    
-}

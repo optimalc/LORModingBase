@@ -1,3 +1,0 @@
-if(UnityEngine.Random.Range(0, 100) < {{0}})
-{
-}

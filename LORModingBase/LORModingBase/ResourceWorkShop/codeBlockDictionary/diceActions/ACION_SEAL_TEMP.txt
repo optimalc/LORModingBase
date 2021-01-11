@@ -1,2 +1,0 @@
-if(base.card.target != null)
-    base.card.target.bufListDetail.AddReadyBuf(new BattleUnitBuf_sealTemp());

@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["&GROUP_GLOBAL_PASSIVE"],
+    "kr":[
+        "주사위를 굴리기 전에 기반 블록",
+        "주사위를 굴리기 전에 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Before rolling dice Base Block",
+        "Base block for invoking action when rolling dice",
+        ""
+    ],
+    "jp":[
+        "Before rolling dice Base Block",
+        "Base block for invoking action when rolling dice",
+        ""
+    ],
+    "cn":[
+        "Before rolling dice Base Block",
+        "Base block for invoking action when rolling dice",
+        ""
+    ]
+}

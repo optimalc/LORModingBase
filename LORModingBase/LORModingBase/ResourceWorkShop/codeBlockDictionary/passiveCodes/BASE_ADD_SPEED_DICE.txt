@@ -1,4 +1,0 @@
-public override int SpeedDiceNumAdder()
-{
-    return {{0}};
-}

@@ -1,2 +1,0 @@
-if(base.card.target != null)
-    base.card.target.bufListDetail.AddKeywordBufByCard(KeywordBuf.Burn, {{0}}, base.owner);

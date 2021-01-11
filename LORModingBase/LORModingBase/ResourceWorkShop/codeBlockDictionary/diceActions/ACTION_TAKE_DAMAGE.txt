@@ -1,2 +1,0 @@
-if(base.owner != null)
-        base.owner.TakeDamage({{0}}, null);

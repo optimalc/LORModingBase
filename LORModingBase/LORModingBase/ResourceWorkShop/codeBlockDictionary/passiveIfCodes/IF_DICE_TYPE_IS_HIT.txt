@@ -1,3 +1,0 @@
-if (behavior.Detail == BehaviourDetail.Hit)
-{
-}

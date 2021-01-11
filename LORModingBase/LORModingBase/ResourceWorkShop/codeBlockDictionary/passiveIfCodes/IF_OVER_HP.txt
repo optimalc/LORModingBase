@@ -1,3 +1,0 @@
-if (base.owner != null && base.owner.hp >= (float)(base.owner.MaxHp / 100 * {{0}}))
-{
-}

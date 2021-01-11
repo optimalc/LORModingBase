@@ -1,2 +1,0 @@
-if(base.owner != null)
-    base.owner.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.Smoke, {{0}}, base.owner);

@@ -1,2 +1,0 @@
-if(base.owner != null)
-    base.owner.bufListDetail.AddKeywordBufByCard(KeywordBuf.Strength, {{0}}, base.owner);

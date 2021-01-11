@@ -1,2 +1,0 @@
-if(base.card.target != null)
-    base.card.target.bufListDetail.AddKeywordBufByCard(KeywordBuf.Vulnerable, {{0}}, base.owner);

@@ -1,5 +1,0 @@
-if(base.owner != null)
-{
-    base.owner.emotionDetail.CreateEmotionCoin(EmotionCoinType.Positive, {{0}});
-    SingletonBehavior<BattleManagerUI>.Instance.ui_battleEmotionCoinUI.OnAcquireCoin(base.owner, EmotionCoinType.Positive, {{0}});
-}

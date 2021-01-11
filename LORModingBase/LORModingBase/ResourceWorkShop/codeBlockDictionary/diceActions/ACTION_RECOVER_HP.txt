@@ -1,2 +1,0 @@
-if(base.card.owner != null)
-    base.card.owner.RecoverHP({{0}});

@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["&GROUP_GLOBAL_ABILITY"],
+    "kr":[
+        "광역 공격에 성공시 트리거 기반 블록",
+        "광역 공격 성공시 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Succeed Area Attack Base Block",
+        "Base block for invoking action when area attack is succeeding",
+        ""
+    ],
+    "jp":[
+        "Succeed Area Attack Base Block",
+        "Base block for invoking action when area attack is succeeding",
+        ""
+    ],
+    "cn":[
+        "Succeed Area Attack Base Block",
+        "Base block for invoking action when area attack is succeeding",
+        ""
+    ]
+}

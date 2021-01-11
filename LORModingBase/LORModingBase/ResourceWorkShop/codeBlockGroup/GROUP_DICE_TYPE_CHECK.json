@@ -1,9 +1,0 @@
-[
-    "passiveIfCodes/IF_DICE_TYPE_IS_ATTACK",
-    "passiveIfCodes/IF_DICE_TYPE_IS_EVASION",
-    "passiveIfCodes/IF_DICE_TYPE_IS_GUARD",
-    "passiveIfCodes/IF_DICE_TYPE_IS_HIT",
-    "passiveIfCodes/IF_DICE_TYPE_IS_PENETRATE",
-    "passiveIfCodes/IF_DICE_TYPE_IS_SLASH",
-    "passiveIfCodes/IF_DICE_TYPE_IS_STANDBY"   
-]

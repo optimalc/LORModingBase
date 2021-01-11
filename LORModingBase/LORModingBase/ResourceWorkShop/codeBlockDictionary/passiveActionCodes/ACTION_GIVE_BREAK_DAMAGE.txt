@@ -1,2 +1,0 @@
-if(behavior.card != null && behavior.card.target != null)
-    behavior.card.target.TakeBreakDamage({{0}}, this.owner, AtkResist.Normal);
