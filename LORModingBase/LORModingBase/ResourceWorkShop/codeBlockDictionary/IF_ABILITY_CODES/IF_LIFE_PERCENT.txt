@@ -1,3 +1,3 @@
-if (base.owner != null && base.owner.hp {{0}} (float)(base.owner.MaxHp / 100 * {{1}}))
+if (base.card.{{0}} != null && base.card.{{0}}.hp {{1}} (float)(base.card.{{0}}.MaxHp / 100 * {{2}}))
 {
 }
