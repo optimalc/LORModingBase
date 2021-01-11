@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["5"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "대상에게 n의 피해를 줍니다",
+        "대상에게 n의 피해를 줍니다",
+        "n"
+    ],
+    "en":[
+        "Give n damage",
+        "Give n damage",
+        "n"
+    ],
+    "jp":[
+        "Give n damage",
+        "Give n damage",
+        "n"
+    ],
+    "cn":[
+        "Give n damage",
+        "Give n damage",
+        "n"
+    ]
+}

@@ -1,0 +1,2 @@
+if (behavior.card != null && behavior.card.target != null)
+    behavior.card.target.TakeDamage({{0}}, this.owner);

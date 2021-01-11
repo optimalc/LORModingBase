@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["5"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "대상에게 n의 흐트러짐 피해를 줍니다",
+        "대상에게 n의 흐트러짐 피해를 줍니다",
+        "n"
+    ],
+    "en":[
+        "Give n break damage",
+        "Give n break damage",
+        "n"
+    ],
+    "jp":[
+        "Give n break damage",
+        "Give n break damage",
+        "n"
+    ],
+    "cn":[
+        "Give n break damage",
+        "Give n break damage",
+        "n"
+    ]
+}
