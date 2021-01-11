@@ -1,0 +1,3 @@
+if (base.owner != null && base.owner.breakDetail.breakLife {{0}} (float)(base.owner.MaxBreakLife / 100 * {{1}}))
+{
+}
