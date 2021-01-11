@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["2","1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "무작위 아군 n명에게 m의 신속 부여",
+        "무작위 아군 n명에게 m의 신속 부여합니다",
+        "n,m"
+    ],
+    "en":[
+        "Give quickness buff to n of an ally by m",
+        "Give quickness buff to n of an ally by m",
+        "n,m"
+    ],
+    "jp":[
+        "Give quickness buff to n of an ally by m",
+        "Give quickness buff to n of an ally by m",
+        "n,m"
+    ],
+    "cn":[
+        "Give quickness buff to n of an ally by m",
+        "Give quickness buff to n of an ally by m",
+        "n,m"
+    ]
+}

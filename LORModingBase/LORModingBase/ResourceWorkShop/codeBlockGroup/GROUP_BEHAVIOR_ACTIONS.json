@@ -6,5 +6,6 @@
     "passiveActionCodes/ACTION_GIVE_PARALYSIS_EFFECT",
     "passiveActionCodes/ACTION_GIVE_SMOKE_EFFECT",
     "passiveActionCodes/ACTION_GIVE_VULNERABLE_EFFECT",
-    "passiveActionCodes/ACTION_GIVE_WEAK_EFFECT"
+    "passiveActionCodes/ACTION_GIVE_WEAK_EFFECT",
+    "passiveActionCodes/ACTION_ADD_DICE_POWER"
 ]

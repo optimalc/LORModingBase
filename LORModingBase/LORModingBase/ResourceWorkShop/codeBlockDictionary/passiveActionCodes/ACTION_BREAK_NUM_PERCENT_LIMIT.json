@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["10","15"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "흐트러짐을 n% 회복합니다(최대 m)",
+        "흐트러짐을 n% 회복합니다(최대 m)",
+        "n,m"
+    ],
+    "en":[
+        "Recover n percent of break life (max m)",
+        "Recover n percent of break life (max m)",
+        "n,m"
+    ],
+    "jp":[
+        "Recover n percent of break life (max m)",
+        "Recover n percent of break life (max m)",
+        "n,m"
+    ],
+    "cn":[
+        "Recover n percent of break life (max m)",
+        "Recover n percent of break life (max m)",
+        "n,m"
+    ]
+}

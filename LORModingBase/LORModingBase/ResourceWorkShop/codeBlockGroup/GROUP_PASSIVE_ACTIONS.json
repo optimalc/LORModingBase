@@ -11,6 +11,10 @@
     "passiveActionCodes/ACTION_TACK_DAMAGE",
     "passiveActionCodes/ACTION_ADD_COUNTER_ATTACK_DICE",
     "passiveActionCodes/ACTION_RECOVER_PERCENT_LIMIT",
+    "passiveActionCodes/ACTION_BREAK_NUM_PERCENT_LIMIT",
+    "passiveActionCodes/ACTION_PROTECTION_BUFF_TO_ALLIES",
+    "passiveActionCodes/ACTION_QUICKNESS_BUFF_TO_ALLIES",
+    "passiveActionCodes/ACTION_STRENGTH_BUFF_TO_ALLIES",
 
     "passiveIfCodes/IF_OVER_EMOTION_LEVEL",
     "passiveIfCodes/IF_OVER_PLAY_POINT",
