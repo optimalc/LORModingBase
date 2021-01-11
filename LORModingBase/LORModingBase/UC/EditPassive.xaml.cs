@@ -157,7 +157,7 @@ namespace LORModingBase.UC
                         return;
                     }
                     new DLLEditor.DLLEditorMainWindow($"customPassive_{TbxPassiveID.Text}", 
-                        new List<string>() { $"passiveCodes/BASE_KEY_CARD_PASSIVE,{TbxPassiveID.Text}" }).ShowDialog();
+                        new List<string>() { $"BASE_PASSIVE_CODES/BASE_KEY_CARD_PASSIVE,{TbxPassiveID.Text}" }).ShowDialog();
                     break;
                 case "BtnCopyPassive":
                     DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.subNodes.Add(innerPassiveNode.Copy());

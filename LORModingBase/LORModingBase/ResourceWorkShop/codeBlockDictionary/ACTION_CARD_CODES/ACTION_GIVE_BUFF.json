@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["Burn", "1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "버프를 상대에게 부여",
+        "상대에게 특정 버프를 특정 수치만큼 부여합니다",
+        "버프종류$&ENUM_KEY_WORD_BUF,부여 수치"
+    ],
+    "en":[
+        "Give buff to opponent",
+        "Give buff to opponent",
+        "Buf Type$&ENUM_KEY_WORD_BUF,Degree"
+    ],
+    "jp":[
+        "Give buff to opponent",
+        "Give buff to opponent",
+        "Buf Type$&ENUM_KEY_WORD_BUF,Degree"
+    ],
+    "cn":[
+        "Give buff to opponent",
+        "Give buff to opponent",
+        "Buf Type$&ENUM_KEY_WORD_BUF,Degree"
+    ]
+}

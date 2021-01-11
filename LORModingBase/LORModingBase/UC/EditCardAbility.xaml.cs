@@ -73,7 +73,7 @@ namespace LORModingBase.UC
                         return;
                     }
                     new DLLEditor.DLLEditorMainWindow($"customCardAbility_{TbxAbilityID.Text}",
-                        new List<string>() { $"cardAbilityCodes/BASE_CARD_ABILITY,{TbxAbilityID.Text}" }).ShowDialog();
+                        new List<string>() { $"BASE_CARD_ABILITY_CODES/BASE_CARD_ABILITY,{TbxAbilityID.Text}" }).ShowDialog();
                     break;
                 case "BtnCopyAbility":
                     DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.subNodes.Add(innerAbilityNode.Copy());
