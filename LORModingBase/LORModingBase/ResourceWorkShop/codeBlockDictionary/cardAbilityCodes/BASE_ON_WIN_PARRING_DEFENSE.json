@@ -2,7 +2,9 @@
     "usings":[],
     "type":["BASE"],
     "inputtedParameter":[],
-    "subBlockWhiteFilter":["&GROUP_DICE_ACTIONS"],
+    "subBlockWhiteFilter":[
+        "&GROUP_DICE_ACTIONS",
+        "diceActions/ACTION_GIVE_BONUS_ATTACK"],
     "kr":[
         "방어 성공시 트리거 기반 블록",
         "방어 성공시 액션를 발생시키기 위한 기반 블록입니다",

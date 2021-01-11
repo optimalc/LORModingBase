@@ -5,7 +5,8 @@
     "subBlockWhiteFilter":[
         "&GROUP_DICE_ACTIONS",
         "diceActions/ACTION_GIVE_DAMAGE",
-        "diceActions/ACTION_GIVE_BREAK_DAMAGE"],
+        "diceActions/ACTION_GIVE_BREAK_DAMAGE",
+        "diceActions/ACTION_GIVE_BONUS_ATTACK"],
     "kr":[
         "광역 공격에 성공시 트리거 기반 블록",
         "광역 공격 성공시 액션를 발생시키기 위한 기반 블록입니다",

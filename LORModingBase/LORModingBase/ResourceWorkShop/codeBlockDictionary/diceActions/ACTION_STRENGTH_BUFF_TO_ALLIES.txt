@@ -1,0 +1,4 @@
+foreach (BattleUnitModel battleUnitModel in BattleObjectManager.instance.GetAliveList_random(base.owner.faction, 1))
+{
+    battleUnitModel.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.Strength, {{0}}, base.owner);
+}

@@ -17,6 +17,13 @@
     "diceActions/ACTION_GET_SMOKE",
     "diceActions/ACTION_RECOVER_BREAK_NUM",
     "diceActions/ACTION_TAKE_BREAK_DAMAGE",
+    "diceActions/ACTION_EFFECT_TARGET_NEXT_DICE",
+    "diceActions/ACTION_GET_CARD",
+    "diceActions/ACTION_GET_NAGITIVE_EMOTION",
+    "diceActions/ACTION_GET_POSITIVE_EMOTION",
+    "diceActions/ACTION_GIVE_CARD",
+    "diceActions/ACTION_PROTECTION_BUFF_TO_ALLIES",
+    "diceActions/ACTION_STRENGTH_BUFF_TO_ALLIES",
 
     "cardAbilityIfCodes/IF_UNDER_HP",
     "cardAbilityIfCodes/IF_OVER_HP",

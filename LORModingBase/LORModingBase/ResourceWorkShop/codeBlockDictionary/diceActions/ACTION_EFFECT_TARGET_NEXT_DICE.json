@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "타겟의 다음 주사위 위력을 n만큼 약화시키거나 강화",
+        "타겟의 다음 주사위 위력을 n만큼 약화시키거나 강화합니다",
+        "n"
+    ],
+    "en":[
+        "Reduce or increase Power of opponent's next die by n",
+        "Reduce or increase Power of opponent's next die by n",
+        "n"
+    ],
+    "jp":[
+        "Reduce or increase Power of opponent's next die by n",
+        "Reduce or increase Power of opponent's next die by n",
+        "n"
+    ],
+    "cn":[
+        "Reduce or increase Power of opponent's next die by n",
+        "Reduce or increase Power of opponent's next die by n",
+        "n"
+    ]
+}
