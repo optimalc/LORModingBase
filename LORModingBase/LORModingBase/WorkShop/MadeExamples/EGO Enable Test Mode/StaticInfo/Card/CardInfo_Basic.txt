@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DiceCardXmlRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Card ID="898989">
+    <Name>TEST_NAME</Name>
+    <Artwork>Basic2</Artwork>
+    <Rarity>Rare</Rarity>
+    <Spec Range="FarArea" Cost="2" Affection="Team" />
+    <Script>recoverHp1</Script>
+    <ScriptDesc />
+    <BehaviourList>
+      <Behaviour Min="12" Dice="14" Type="Atk" Detail="Penetrate" Motion="Z" EffectRes="" Script="vulnerable1atk" Desc="" />
+    </BehaviourList>
+    <Chapter>1</Chapter>
+    <Priority>0</Priority>
+    <Option>EgoPersonal</Option>
+  </Card>
+</DiceCardXmlRoot>

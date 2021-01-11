@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":["target", ">=", "25"],
+    "subBlockWhiteFilter":["&GROUP_GLOBAL_ABILITY"],
+    "kr":[
+        "자신 혹은 상대방의 흐트러짐을 %로 비교하는 조건 블록 입니다",
+        "자신 혹은 상대방의 흐트러짐을 %로 비교하는 조건 블록 입니다",
+        "대상$자신-owner$상대방-target,비교$&ENUM_COMPARE,n"
+    ],
+    "en":[
+        "Compare Break number with the percentage of owner or target",
+        "Compare Break number with the percentage of owner or target",
+        "Target$-owner$-target,Compare$&ENUM_COMPARE,n"
+    ],
+    "jp":[
+        "Compare Break number with the percentage of owner or target",
+        "Compare Break number with the percentage of owner or target",
+        "Target$-owner$-target,Compare$&ENUM_COMPARE,n"
+    ],
+    "cn":[
+        "Compare Break number with the percentage of owner or target",
+        "Compare Break number with the percentage of owner or target",
+        "Target$-owner$-target,Compare$&ENUM_COMPARE,n"
+    ]
+}

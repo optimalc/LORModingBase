@@ -1,0 +1,3 @@
+if (base.card.{{0}} != null && base.card.{{0}}.breakDetail.breakLife {{1}} (float)(base.card.{{0}}.MaxBreakLife / 100 * {{2}}))
+{
+}

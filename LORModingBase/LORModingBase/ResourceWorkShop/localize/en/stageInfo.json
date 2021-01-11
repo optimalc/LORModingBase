@@ -1,0 +1,39 @@
+{
+    "%LblStageName%":"Name : $1.2,1$-3,0",
+    "%TbxStageName_ToolTip%":"Input the name for Stage",
+    "%LblStageUniqueID%":"Unique ID : $1.2,1$-3,0",
+    "%TbxStageUniqueID_ToolTip%":"Input the unique ID for Stage",
+
+    "%BtnStage%":"Select episode$0.8,2$10,-10",
+    "%BtnStage_ToolTip%":"Select episode for Stage",
+
+    "%BtnFloor%":"Availible floors",
+    "%BtnFloor_ToolTip%":"Select the number of available floors",
+
+    "%BtnInvitation%":"Invitation books$0.9,0.7$5,3",
+    "%BtnInvitation_ToolTip%":"Select books that will be used in the invitation",
+
+    "%BtnAddWave%":"▼ Add Wave ▼$0.5,1$30,0",
+    "%BtnAddWave_ToolTip%":"Add wave to stage",
+    "%BtnCondition_ToolTip%":"Input stage ID that must be cleared before",
+    "%BtnMapInfo_ToolTip%":"Input Map image",
+    "%BtnCopyStage_ToolTip%":"Copy stage info",
+    "%BtnDelete_ToolTip%":"Delete stage info",
+
+    "%BtnFormation%":"Unit Formation$1,0.8$0,2",
+    "%BtnFormation_ToolTip%":"Select the Formation of unit",
+
+    "%ImgAvailableUnit_ToolTip%":"Max available unit in this wave",
+    "%TbxAvailableUnit_ToolTip%":"Input max available unit in this wave",
+
+    "%BtnDeleteWave_ToolTip%":"Delete this wave",
+    "%BtnUnits%":"Wave Units$0.5,0.7$21,3",
+    "%BtnUnits_ToolTip%":"Select units to assign",
+
+    "STAGE_CONDITION":"Stage Condition",
+    "EPISODE":"Episode",
+    "AVALIABLE_FLOOR":"Avalialbe Floor",
+    "INVITATION_BOOK":"Inivation Book",
+    
+    "FORMATION":"Formation"
+}

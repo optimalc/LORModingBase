@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["&GROUP_GLOBAL_ABILITY"],
+    "kr":[
+        "데미지를 줄 시 트리거 기반 블록",
+        "데미지를 줄 시 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Give Damage Base Block",
+        "Base block for invoking action when giving damage",
+        ""
+    ],
+    "jp":[
+        "Give Damage Base Block",
+        "Base block for invoking action when giving damage",
+        ""
+    ],
+    "cn":[
+        "Give Damage Base Block",
+        "Base block for invoking action when giving damage",
+        ""
+    ]
+}

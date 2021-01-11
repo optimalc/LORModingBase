@@ -1,0 +1,33 @@
+{
+    "usings":["System"],
+    "type":["BASE"],
+    "inputtedParameter":["0"],
+    "subBlockWhiteFilter":[
+        "BASE_CARD_ABILITY_CODES/BASE_ON_SUCCESS_ATTACK",
+        "BASE_CARD_ABILITY_CODES/BASE_AFTER_ACTION",
+        "BASE_CARD_ABILITY_CODES/BASE_ON_SUCCEED_AREA_ATTACK",
+        "BASE_CARD_ABILITY_CODES/BASE_ON_LOSING_PARRYING",
+        "BASE_CARD_ABILITY_CODES/BASE_ON_WIN_PARRING_DEFENSE",
+        "BASE_CARD_ABILITY_CODES/BASE_ON_WIN_PARRYING"
+    ],
+    "kr":[
+        "전투 책장 효과 기반 블록",
+        "전투 책장에 효과를 추가하기위한 기반 블록입니다",
+        "효과 ID"
+    ],
+    "en":[
+        "Combat Bookshelf Ability Base Block",
+        "Base block for adding Combat Bookshelf Ability",
+        "Ability ID"
+    ],
+    "jp":[
+        "Combat Bookshelf Ability Base Block",
+        "Base block for adding Combat Bookshelf Ability",
+        "Ability ID"
+    ],
+    "cn":[
+        "Combat Bookshelf Ability Base Block",
+        "Base block for adding Combat Bookshelf Ability",
+        "Ability ID"
+    ]
+}

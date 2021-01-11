@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LORModingBase.CustomExtensions;
 
 namespace LORModingBase.UC
 {
@@ -33,6 +34,8 @@ namespace LORModingBase.UC
 
             TbxMinDice_Min.Text = innerBehaviourNode.GetAttributesSafe("Min");
             TbxMaxDice_Dice.Text = innerBehaviourNode.GetAttributesSafe("Dice");
+            TbxMotion.Text = innerBehaviourNode.GetAttributesSafe("Motion");
+            TbxEffectRes.Text = innerBehaviourNode.GetAttributesSafe("EffectRes");
             this.innerBehaviourNode = innerBehaviourNode;
 
             BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/icon_{innerBehaviourNode.attribute["Type"] }_{innerBehaviourNode.attribute["Detail"]}.png");
@@ -116,6 +119,9 @@ namespace LORModingBase.UC
                     case "Hit": innerBehaviourNode.attribute["Motion"] = "H"; break;
                     default: innerBehaviourNode.attribute["Motion"] = "H"; break;
                 }
+                innerBehaviourNode.attribute["EffectRes"] = "";
+                TbxMotion.Text = innerBehaviourNode.GetAttributesSafe("Motion");
+                TbxEffectRes.Text = "";
                 #endregion
             }
 
@@ -144,6 +150,57 @@ namespace LORModingBase.UC
                     break;
             }
             MainWindow.mainWindow.UpdateDebugInfo();
+        }
+
+        private void TbxMotion_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            string DICE_TYPE = innerBehaviourNode.GetAttributesSafe("Type");
+            string DICE_DETAIL = innerBehaviourNode.GetAttributesSafe("Detail");
+
+            List<DM.XmlDataNode> behaviorNodes = DM.GameInfos.staticInfos["Card"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card/BehaviourList/Behaviour",
+                attributeToCheck: new Dictionary<string, string>() { { "Type", DICE_TYPE }, { "Detail", DICE_DETAIL } });
+            List<string> motions = new List<string>();
+            behaviorNodes.ForEach((DM.XmlDataNode motion) =>
+            {
+                string BEHAVIOR_MOTION = motion.GetAttributesSafe("Motion");
+                if (!string.IsNullOrEmpty(BEHAVIOR_MOTION))
+                    motions.Add(BEHAVIOR_MOTION);
+            });
+            new SubWindows.Global_ListSeleteWindow((string selectedMotion) =>
+            {
+                TbxMotion.Text = selectedMotion;
+                TbxMotion.ToolTip = selectedMotion;
+                innerBehaviourNode.attribute["Motion"] = selectedMotion;
+
+                TbxEffectRes.Text = "";
+                TbxEffectRes.ToolTip = "";
+                innerBehaviourNode.attribute["EffectRes"] = "";
+
+                MainWindow.mainWindow.UpdateDebugInfo();
+                MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
+            }, motions.GetUniqueList()).ShowDialog();
+        }
+
+        private void TbxEffectRes_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            string DICE_MOTION = innerBehaviourNode.GetAttributesSafe("Motion");
+            List<DM.XmlDataNode> behaviorNodes = DM.GameInfos.staticInfos["Card"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card/BehaviourList/Behaviour",
+               attributeToCheck: new Dictionary<string, string>() { { "Motion", DICE_MOTION } });
+            List<string> effectReses = new List<string>();
+            behaviorNodes.ForEach((DM.XmlDataNode effectRes) =>
+            {
+                string BEHAVIOR_EFFECT_RES = effectRes.GetAttributesSafe("EffectRes");
+                if (!string.IsNullOrEmpty(BEHAVIOR_EFFECT_RES))
+                    effectReses.Add(BEHAVIOR_EFFECT_RES);
+            });
+            new SubWindows.Global_ListSeleteWindow((string selectedEffectRes) =>
+            {
+                TbxEffectRes.Text = selectedEffectRes;
+                TbxEffectRes.ToolTip = selectedEffectRes;
+                innerBehaviourNode.attribute["EffectRes"] = selectedEffectRes;
+                MainWindow.mainWindow.UpdateDebugInfo();
+                MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
+            }, effectReses.GetUniqueList()).ShowDialog();
         }
     }
 }

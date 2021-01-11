@@ -60,6 +60,8 @@ namespace LORModingBase.DM
             EnemyCheck();
             DeckCheck();
             DropBookCheck();
+            PassiveCheck();
+            CardAbilityCheck();
         }
 
         public static void KeyPageCheck()
@@ -185,6 +187,44 @@ namespace LORModingBase.DM
                     if (DROP_BOOK_ID_LIST.Contains(DROP_BOOK_ID))
                         CheckDatas.MakeCriticalMessage("DropBook_Critical_2", DROP_BOOK_ID);
                     DROP_BOOK_ID_LIST.Add(DROP_BOOK_ID);
+                }
+            });
+        }
+    
+        public static void PassiveCheck()
+        {
+            List<string> PASSIVE_ID_LIST = new List<string>();
+            DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.ActionXmlDataNodesByPath("Passive", (XmlDataNode passiveNode) =>
+            {
+                string PASSIVE_ID = passiveNode.GetAttributesSafe("ID");
+
+                if (string.IsNullOrEmpty(PASSIVE_ID))
+                    CheckDatas.MakeCriticalMessage("Passive_Critical_1");
+
+                if (!string.IsNullOrEmpty(PASSIVE_ID))
+                {
+                    if (PASSIVE_ID_LIST.Contains(PASSIVE_ID))
+                        CheckDatas.MakeCriticalMessage("Passive_Critical_2", PASSIVE_ID);
+                    PASSIVE_ID_LIST.Add(PASSIVE_ID);
+                }
+            });
+        }
+
+        public static void CardAbilityCheck()
+        {
+            List<string> CARD_ABILITY_ID_LIST = new List<string>();
+            DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (XmlDataNode cardAbilityNode) =>
+            {
+                string CARD_ABILITY_ID = cardAbilityNode.GetAttributesSafe("ID");
+
+                if (string.IsNullOrEmpty(CARD_ABILITY_ID))
+                    CheckDatas.MakeCriticalMessage("CardAbility_Critical_1");
+
+                if (!string.IsNullOrEmpty(CARD_ABILITY_ID))
+                {
+                    if (CARD_ABILITY_ID_LIST.Contains(CARD_ABILITY_ID))
+                        CheckDatas.MakeCriticalMessage("CardAbility_Critical_2", CARD_ABILITY_ID);
+                    CARD_ABILITY_ID_LIST.Add(CARD_ABILITY_ID);
                 }
             });
         }

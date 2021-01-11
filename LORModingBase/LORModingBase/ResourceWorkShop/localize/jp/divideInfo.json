@@ -1,0 +1,14 @@
+{
+    "DIV_KEY_PAGE_LIBRARIAN":"[Librarian Key Page]",
+    "DIV_KEY_PAGE_ENEMY":"[Enemy Key Paage]",
+    "DIV_KEY_PAGE_USER":"[User Key Page]",
+    "DIV_KEY_PAGE_CREATURE":"[Creature Key Page]",
+    "DIV_ETC":"[Etc]",
+
+    "DIV_CARD_BASIC":"[Basic Card]",
+    "DIV_CARD_NOMAL":"[Nomal Card]",
+    "DIV_CARD_CREATURE":"[Creature Card]",
+    "DIV_CARD_FINAL":"[Final Story Card]",
+    "DIV_CARD_EGO":"[EGO Card]",
+    "DIV_CARD_SPECIAL":"[Special Card]"
+}

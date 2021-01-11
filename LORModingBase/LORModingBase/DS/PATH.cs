@@ -32,6 +32,11 @@ namespace LORModingBase.DS
         /// Debug test file
         /// </summary>
         public const string DEBUG_TEST = ".\\debugTest.txt";
+
+        /// <summary>
+        /// Code block group directory
+        /// </summary>
+        public const string CODE_BLOCK_GROUP = ".\\codeBlockGroup";
     }
 
     class PROGRAM_RESOURCE_PATHS
@@ -44,6 +49,12 @@ namespace LORModingBase.DS
         /// Modified Unity engine path 
         /// </summary>
         public static string RESOURCE_UNITY_ENGINE_DEBUG = $"{DIC_RESOURCE}\\UnityEngine.dll";
+
+        public static string RESOURCE_ROOT_CODE_BLOCK_LIST = $"{DIC_RESOURCE}\\codeBlockRootShowList.json";
+
+        public static string RESOURCE_COMPILE_DENPENDENCIES = $"{DIC_RESOURCE}\\compileDependencies.json";
+
+        public static string RESOURCE_USING_GLOBAL = $"{DIC_RESOURCE}\\usingGlobal.json";
     }
 
     class GAME_RESOURCE_PATHS

@@ -1,0 +1,33 @@
+{
+    "usings":["System"],
+    "type":["BASE"],
+    "inputtedParameter":["0"],
+    "subBlockWhiteFilter":[    
+        "BASE_CARD_ABILITY_SELF_CODES/BASE_ON_AFTER_GIVE_DAMAGE",
+        "BASE_CARD_ABILITY_SELF_CODES/BASE_ON_RELEASE_CARD",
+        "BASE_CARD_ABILITY_SELF_CODES/BASE_ON_START_BATTLE",
+        "BASE_CARD_ABILITY_SELF_CODES/BASE_ON_SUCCEED_AREA_ATTACK",
+        "BASE_CARD_ABILITY_SELF_CODES/BASE_ON_SUCCEED_ATTACK",
+        "BASE_CARD_ABILITY_SELF_CODES/BASE_ON_USE_CARD"
+    ],
+    "kr":[
+        "전투 책장 효과 기반 블록2",
+        "전투 책장에 효과를 추가하기위한 기반 블록입니다",
+        "효과 ID"
+    ],
+    "en":[
+        "Combat Bookshelf Ability Base Block2",
+        "Base block for adding Combat Bookshelf Ability",
+        "Ability ID"
+    ],
+    "jp":[
+        "Combat Bookshelf Ability Base Block2",
+        "Base block for adding Combat Bookshelf Ability",
+        "Ability ID"
+    ],
+    "cn":[
+        "Combat Bookshelf Ability Base Block2",
+        "Base block for adding Combat Bookshelf Ability",
+        "Ability ID"
+    ]
+}

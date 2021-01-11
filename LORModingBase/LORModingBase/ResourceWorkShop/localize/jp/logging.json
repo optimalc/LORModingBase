@@ -1,0 +1,36 @@
+{
+    "Output_Logging_Complete_1":"Data is successfully exported",
+    "Output_Logging_Error_1":"Error is occurred in exporting data",
+    "Output_Logging_Error_2":"Error is occurred in checking data",
+
+    "Critical":"Critical",
+    "Caution":"Caution",
+
+    "KeyPage_Critical_1":"Key page ID is not inputted [Name : {0}]",
+    "KeyPage_Critical_2":"Key page Name is not inputted [ID : {0}]",
+    "KeyPage_Critical_3":"Key Page ID is duplicated [ID : {0}]",
+
+    "Card_Critical_1":"Combat Bookshelf ID is not inputted [Name : {0}]",
+    "Card_Critical_2":"Combat Bookshelf Name is not inputted [ID : {0}]",
+    "Card_Critical_3":"Combat Bookshelf ID is duplicated [ID : {0}]",
+
+    "Stage_Critical_1":"Stage ID is not inputted [Name : {0}]",
+    "Stage_Critical_2":"Stage Name is not inputted [ID : {0}]",
+    "Stage_Critical_3":"Stage ID is duplicated [ID : {0}]",
+
+    "Enemy_Critical_1":"Enemy ID is not inputted [Name ID : {0}]",
+    "Enemy_Critical_2":"Enemy Name ID is not inputted [ID : {0}]",
+    "Enemy_Critical_3":"Enemy ID is duplicated [ID : {0}]",
+
+    "Deck_Critical_1":"Deck ID is not inputted",
+    "Deck_Critical_2":"Deck ID is duplicated [ID : {0}]",
+
+    "DropBook_Critical_1":"Book ID is not inputted",
+    "DropBook_Critical_2":"Book ID is duplicated [ID : {0}]",
+
+    "Passive_Critical_1":"Passive ID is not inputted",
+    "Passive_Critical_2":"Passive ID is duplicated [ID : {0}]",
+
+    "CardAbility_Critical_1":"Card ability ID is not inputted",
+    "CardAbility_Critical_2":"Card ability is duplicated [ID : {0}]"
+}

@@ -1,0 +1,4 @@
+public override void OnStartBattle()
+{
+    base.OnStartBattle();
+}

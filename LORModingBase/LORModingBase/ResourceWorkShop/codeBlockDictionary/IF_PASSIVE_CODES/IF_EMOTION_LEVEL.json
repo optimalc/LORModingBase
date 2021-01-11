@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":[">=", "2"],
+    "subBlockWhiteFilter":["&GROUP_GLOBAL_PASSIVE"],
+    "kr":[
+        "자신의 감정 레벨을 n과 비교하는 조건 블록 입니다",
+        "자신의 감정 레벨을 n과 비교하는 조건 블록 입니다",
+        "비교$&ENUM_COMPARE,n"
+    ],
+    "en":[
+        "Compare with a emotion level by using n of owner",
+        "Compare with a emotion level by using n of owner",
+        "Compare$&ENUM_COMPARE,n"
+    ],
+    "jp":[
+        "Compare with a emotion level by using n of owner",
+        "Compare with a emotion level by using n of owner",
+        "Compare$&ENUM_COMPARE,n"
+    ],
+    "cn":[
+        "Compare with a emotion level by using n of owner",
+        "Compare with a emotion level by using n of owner",
+        "Compare$&ENUM_COMPARE,n"
+    ]
+}

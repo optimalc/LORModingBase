@@ -103,6 +103,10 @@ namespace LORModingBase.DM
             if (string.IsNullOrEmpty(passiveID)) return "";
             List<XmlDataNode> PassiveNodes = DM.GameInfos.localizeInfos["PassiveDesc"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("PassiveDesc",
                 attributeToCheck: new Dictionary<string, string>() { { "ID", passiveID } });
+            if (PassiveNodes.Count <= 0)
+                PassiveNodes = DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("PassiveDesc",
+                    attributeToCheck: new Dictionary<string, string>() { { "ID", passiveID } });
+
             if (PassiveNodes.Count > 0)
             {
                 string PASSIVE_NAME = PassiveNodes[0].GetInnerTextByPath("Name");
@@ -151,6 +155,10 @@ namespace LORModingBase.DM
             if (string.IsNullOrEmpty(passiveName)) return "";
             List<XmlDataNode> cardPassiveNodes = DM.GameInfos.localizeInfos["BattleCardAbilities"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
                 attributeToCheck: new Dictionary<string, string>() { { "ID", passiveName } });
+            if(cardPassiveNodes.Count <= 0)
+                cardPassiveNodes = DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
+                    attributeToCheck: new Dictionary<string, string>() { { "ID", passiveName } });
+
             if (cardPassiveNodes.Count > 0)
             {
                 string PASSIVE_DESC = cardPassiveNodes[0].GetInnerTextByPath("Desc");

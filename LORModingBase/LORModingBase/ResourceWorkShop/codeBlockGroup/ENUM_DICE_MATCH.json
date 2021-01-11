@@ -1,0 +1,10 @@
+[
+    "모든 주사위-AllDice",
+    "모든 공격 주사위-AllAttackDice",
+    "모든 방어 주사위-AllDefenseDice",
+    "다음 주사위-NextDice",
+    "마지막 주사위-LastDice",
+    "다음 방어 주사위-NextDefenseDice",
+    "다음 공격 주사위-NextAttackDice",
+    "-MostDiceFace"
+]

@@ -1,0 +1,24 @@
+{
+    "%LblBookID%":"Book ID :",
+    "%TbxBookID_ToolTip%":"Input unique ID of the Book",
+
+    "%LblNameID%":"Name ID : $1.1,1$-1,0",
+    "%TbxNameID_ToolTip%":"Input unique ID of the name",
+    "%LblBookName%":"Name : $1,1$4,0",
+    "%TbxBookName_ToolTip%":"Input name of the Book",
+
+    "%BtnBookIcon%":"Select Book Icon$0.8,0.6$12,4",
+    "%BtnBookIcon_ToolTip%":"Select Book Icon to use",
+
+    "%BtnChapter%":"Select Chapter",
+    "%BtnChapter_ToolTip%":"Select Chapter to use",
+
+    "%BtnSelectKeyPage%":"[ Select Key Pages to drop ]$0.6,1$42,0",
+    "%BtnSelectKeyPage_ToolTip%":"Select Key Pages to drop",
+
+    "%BtnSelectCards%":"[ Select Combat Bookshelf to drop ]$0.8,1$28,0",
+    "%BtnSelectCards_ToolTip%":"Select Combat Bookshelf to drop",
+
+    "%BtnCopyBook_ToolTip%":"Copy the book",
+    "%BtnDelete_ToolTip%":"Delete the book"
+}

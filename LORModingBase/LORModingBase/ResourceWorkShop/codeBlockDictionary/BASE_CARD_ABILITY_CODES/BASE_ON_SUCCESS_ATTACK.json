@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["&GROUP_GLOBAL_ABILITY"],
+    "kr":[
+        "적중 성공시 트리거 기반 블록",
+        "공격이 적중에 성공했을 경우 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Attack Success Base Block",
+        "Base block for invoking action when attacking is succeeded",
+        ""
+    ],
+    "jp":[
+        "Attack Success Base Block",
+        "Base block for invoking action when attacking is succeeded",
+        ""
+    ],
+    "cn":[
+        "Attack Success Base Block",
+        "Base block for invoking action when attacking is succeeded",
+        ""
+    ]
+}

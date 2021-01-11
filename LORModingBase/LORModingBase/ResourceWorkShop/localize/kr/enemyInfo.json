@@ -1,0 +1,40 @@
+{
+    "%LblNameID%":"이름 ID : $1,1$3,0",
+    "%TbxNameID_ToolTip%":"고유한 이름 ID를 입력",
+    "%LblEnemyName%":"이름 : $0.8,1$8,0",
+    "%TbxEnemyName_ToolTip%":"적 유닛의 이름을 입력",
+
+    "%LblMinHeight%":"키 : $0.8,1$8,0",
+    "%TbxMinHeight_ToolTip%":"키의 최솟값을 입력",
+    "%TbxMaxHeight_ToolTip%":"키의 최대값을 입력",
+
+    "%LblEnemyUniqueID%":"고유 ID : $1,1$3,0",
+    "%TbxEnemyUniqueID_ToolTip%":"적 유닛의 고유 ID를 입력",
+
+    "%BtnBookID%":"책 ID 선택$0.65,0.75$13,2",
+    "%BtnBookID_ToolTip%":"적이 사용할 핵심 책장의 ID를 입력",
+
+    "%BtnDeckID%":"덱 ID 선택$0.65,0.75$13,2",
+    "%BtnDeckID_ToolTip%":"적이 사용할 덱의 ID를 입력",
+
+    "%LblEmotionReward%":"-- 감정 보상 추가하기 --$0.8,1$15,0",
+
+    "%BtnRewardLevel_0%":"레벨 0$0.8,1$4,0",
+    "%BtnRewardLevel_0_ToolTip%":"감정 레벨이 0일때 보상 책 추가하기",
+    "%BtnRewardLevel_1%":"레벨 1$0.8,1$4,0",
+    "%BtnRewardLevel_1_ToolTip%":"감정 레벨이 1일때 보상 책 추가하기",
+    "%BtnRewardLevel_2%":"레벨 2$0.8,1$4,0",
+    "%BtnRewardLevel_2_ToolTip%":"감정 레벨이 2일때 보상 책 추가하기",
+    "%BtnRewardLevel_3%":"레벨 3$0.8,1$4,0",
+    "%BtnRewardLevel_3_ToolTip%":"감정 레벨이 3일때 보상 책 추가하기",
+
+    "%LblEmotionLevel_ToolTip%":"보상 감정 레벨",
+    "%ImgBookCount_ToolTip%":"보상 책의 개수",
+    "%TbxBookCount_ToolTip%":"보상 책의 개수를 입력합니다",
+
+    "%BtnCopyEnemy_ToolTip%":"적 유닛 정보를 복제해서 새로운 적 유닛 정보를 만듭니다",
+    "%BtnDelete_ToolTip%":"적 유닛 정보를 삭제합니다",
+
+    "BOOK":"책",
+    "DECK":"덱"
+}

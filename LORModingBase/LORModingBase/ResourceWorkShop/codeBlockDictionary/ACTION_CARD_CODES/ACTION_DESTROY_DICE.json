@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["target", "NextDice"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "상대방 혹은 자신의 주사위 파괴",
+        "상대방 혹은 자신의 주사위를 파괴합니다",
+        "대상$자신-owner$상대방-target,주사위 종류$&ENUM_DICE_MATCH"
+    ],
+    "en":[
+        "Destroy dice of owner or enemy ",
+        "Destroy dice of owner or enemy ",
+        "Target$-owner$-target,Dice type$&ENUM_DICE_MATCH"
+    ],
+    "jp":[
+        "Destroy dice of owner or enemy ",
+        "Destroy dice of owner or enemy ",
+        "Target$-owner$-target,Dice type$&ENUM_DICE_MATCH"
+    ],
+    "cn":[
+        "Destroy dice of owner or enemy ",
+        "Destroy dice of owner or enemy ",
+        "Target$-owner$-target,Dice type$&ENUM_DICE_MATCH"
+    ]
+}

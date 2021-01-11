@@ -1,0 +1,25 @@
+{
+    "%BtnSetDLLWorkingSpace%":"[Set DLL Working Space]",
+    "%BtnSetDLLWorkingSpace_ToolTip%":"Set working space for editing DLL",
+    "%BtnCompileDLL%":"[Compile DLL]$0.6,1",
+    "%BtnCompileDLL_ToolTip%":"Make a new DLL by compile source code",
+    "%BtnClose%":"[Close]",
+    "%BtnClose_ToolTip%":"Close the window",
+    "%TbxTextEditor_ToolTip%":"Check the created source code",
+    "%TbxLogging_ToolTip%":"Check the compile result",
+
+    "%BtnAddCodeBase%":"▼ Make Code Base ▼",
+    "%BtnAddCodeBase_ToolTip%":"Make a new code base block",
+
+    "DLLEditorMainWindow_Error_1":"An error has occurred in the DLL window button event",
+
+    "Type_BASE":"[Base Block]",
+    "Type_IF":"[If Block]",
+    "Type_WHILE":"[While Block]",
+    "Type_ACTION":"[Action Block]",
+
+    "%BtnAddNode_ToolTip%":"Add new code block in this node",
+    "%BtnDelete_ToolTip%":"Delete code block",
+
+    "SUCCESS_COMPILE":"Compile was succeeded"
+}

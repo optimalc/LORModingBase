@@ -1,0 +1,4 @@
+public override void OnKill(BattleUnitModel target)
+{
+    base.OnKill(target);
+}

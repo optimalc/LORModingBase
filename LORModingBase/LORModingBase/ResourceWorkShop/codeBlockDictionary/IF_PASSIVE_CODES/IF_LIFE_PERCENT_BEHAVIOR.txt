@@ -1,0 +1,3 @@
+if (behavior.card.target != null && behavior.card.target.hp {{0}} (float)(behavior.card.target.MaxHp / 100 * {{1}}))
+{
+}

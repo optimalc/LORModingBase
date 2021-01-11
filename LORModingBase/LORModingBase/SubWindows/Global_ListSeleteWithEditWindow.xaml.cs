@@ -125,6 +125,20 @@ namespace LORModingBase.SubWindows
                             DM.EditGameData_DropBookInfo.LocalizedDropBookName = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_DropBookInfo.LocalizedDropBookName, DM.Config.CurrentWorkingDirectory));
                         else
                             DM.EditGameData_DropBookInfo.LocalizedDropBookName = new DM.XmlData(DM.GameInfos.localizeInfos["etc"]);
+
+                        if (File.Exists(DM.Config.GetStaticPathToSave(DM.EditGameData_PassiveInfo.StaticPassiveList, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_PassiveInfo.StaticPassiveList = new DM.XmlData(DM.Config.GetStaticPathToSave(DM.EditGameData_PassiveInfo.StaticPassiveList, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_PassiveInfo.StaticPassiveList = new DM.XmlData(DM.GameInfos.staticInfos["PassiveList"]);
+                        if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_PassiveInfo.LocalizedPassiveDesc, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_PassiveInfo.LocalizedPassiveDesc = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_PassiveInfo.LocalizedPassiveDesc, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_PassiveInfo.LocalizedPassiveDesc = new DM.XmlData(DM.GameInfos.localizeInfos["PassiveDesc"]);
+
+                        if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardAbilityInfo.LocalizedCardAbility, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_CardAbilityInfo.LocalizedCardAbility = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardAbilityInfo.LocalizedCardAbility, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_CardAbilityInfo.LocalizedCardAbility = new DM.XmlData(DM.GameInfos.localizeInfos["BattleCardAbilities"]);
                         this.Close();
                     };
 
@@ -132,7 +146,7 @@ namespace LORModingBase.SubWindows
                     {
                         new SubWindows.Global_InputOneColumnData(null, afterClose:(string inputedName) =>
                         {
-                            if(!Directory.Exists($"{DirToSearch}\\{inputedName}"))
+                            if(!string.IsNullOrEmpty(inputedName) && !Directory.Exists($"{DirToSearch}\\{inputedName}"))
                             {
                                 Directory.CreateDirectory($"{DirToSearch}\\{inputedName}");
                                 LbxItems.Items.Add(inputedName);
@@ -145,13 +159,20 @@ namespace LORModingBase.SubWindows
                     {
                         new SubWindows.Global_InputOneColumnData(null, afterClose: (string inputedName) =>
                         {
-                            if (Directory.Exists($"{DirToSearch}\\{selectedName}"))
+                            try
                             {
-                                if($"{DirToSearch}\\{selectedName}" != $"{DirToSearch}\\{inputedName}")
+                                if (!string.IsNullOrEmpty(inputedName) && Directory.Exists($"{DirToSearch}\\{selectedName}"))
                                 {
-                                    Directory.Move($"{DirToSearch}\\{selectedName}", $"{DirToSearch}\\{inputedName}");
-                                    LbxItems.Items[LbxItems.Items.IndexOf(selectedName)] = inputedName;
+                                    if($"{DirToSearch}\\{selectedName}" != $"{DirToSearch}\\{inputedName}")
+                                    {
+                                        Directory.Move($"{DirToSearch}\\{selectedName}", $"{DirToSearch}\\{inputedName}");
+                                        LbxItems.Items[LbxItems.Items.IndexOf(selectedName)] = inputedName;
+                                    }
                                 }
+                            }
+                            catch (Exception ex)
+                            {
+                                Tools.MessageBoxTools.ShowErrorMessageBox(ex);
                             }
                         }, prevData: selectedName,  windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"WORKING_SPACE_TITLE_EDIT_TITLE"), 
                         tbxToolTip: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"WORKING_SPACE_TITLE_EDIT_TOOLTIP")).ShowDialog();
@@ -159,8 +180,98 @@ namespace LORModingBase.SubWindows
 
                     this.afterDelete = (string selectedName) =>
                     {
-                        Directory.Delete($"{DirToSearch}\\{selectedName}", true);
-                        LbxItems.Items.Remove(selectedName);
+                        try
+                        {
+                            Directory.Delete($"{DirToSearch}\\{selectedName}", true);
+                            LbxItems.Items.Remove(selectedName);
+                        }
+                        catch (Exception ex)
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox(ex);
+                        }
+                    };
+
+                    break;
+
+                case Global_ListSeleteWithEditWindow_PRESET.DLL_WORKING_SPACE:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE");
+                    string DLL_DIR_SEARCH_PATH = $"{DM.Config.CurrentWorkingDirectory}\\{DLLEditor.GlobalDatas.DLL_SOURCE_FILE_DIR_NAME}";
+                    if (!Directory.Exists(DLL_DIR_SEARCH_PATH))
+                        Directory.CreateDirectory(DLL_DIR_SEARCH_PATH);
+
+                    Directory.GetFiles(DLL_DIR_SEARCH_PATH).ForEachSafe((string eachTxtFile) =>
+                    {
+                        itemToLoad.Add(eachTxtFile.Split('\\').Last().Replace(".json", ".dll"));
+                    });
+
+                    this.afterSelect = (string selectedFileName) =>
+                    {
+                        DLLEditor.DLLEditorMainWindow.targetSourceFilePath = $"{DLL_DIR_SEARCH_PATH}\\{selectedFileName.Replace(".dll", ".json")}";
+                        if (File.Exists(DLLEditor.DLLEditorMainWindow.targetSourceFilePath))
+                        {
+                            DLLEditor.DLLEditorMainWindow.rootCodeBlocks = Tools.JsonFile.LoadJsonFile<List<DLLEditor.CodeBlock>>(DLLEditor.DLLEditorMainWindow.targetSourceFilePath);
+                            if (DLLEditor.DLLEditorMainWindow.rootCodeBlocks == null)
+                                DLLEditor.DLLEditorMainWindow.rootCodeBlocks = new List<DLLEditor.CodeBlock>();
+                        }
+                        this.Close();
+                    };
+
+                    this.afterAdd = () =>
+                    {
+                        new SubWindows.Global_InputOneColumnData(null, afterClose: (string inputedName) =>
+                        {
+                            if (!string.IsNullOrEmpty(inputedName) && !File.Exists($"{DLL_DIR_SEARCH_PATH}\\{inputedName}.json"))
+                            {
+                                File.Create($"{DLL_DIR_SEARCH_PATH}\\{inputedName}.json");
+                                Tools.JsonFile.SaveJsonFile($"{DLL_DIR_SEARCH_PATH}\\{inputedName}.json", new List<DLLEditor.CodeBlock>());
+                                LbxItems.Items.Add($"{inputedName}.dll");
+                            }
+                        }, windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE_ADD_TITLE"),
+                        tbxToolTip: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE_ADD_TOOLTIP")).ShowDialog();
+                    };
+
+                    this.afterEdit = (string selectedName) =>
+                    {
+                        new SubWindows.Global_InputOneColumnData(null, afterClose: (string inputedName) =>
+                        {
+                            try
+                            {
+                                if (!string.IsNullOrEmpty(inputedName) && File.Exists($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.json"))
+                                {
+                                    if (selectedName.Split('.')[0] != inputedName)
+                                    {
+                                        File.Move($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.json", $"{DLL_DIR_SEARCH_PATH}\\{inputedName}.json");
+                                        LbxItems.Items[LbxItems.Items.IndexOf(selectedName)] = $"{inputedName}.dll";
+                                    }
+                                }
+                                if (!string.IsNullOrEmpty(inputedName) && File.Exists($"{DM.Config.CurrentWorkingDirectory}\\{selectedName}"))
+                                {
+                                    if (selectedName.Split('.')[0] != inputedName)
+                                    {
+                                        File.Move($"{DLL_DIR_SEARCH_PATH}\\{selectedName}", $"{DLL_DIR_SEARCH_PATH}\\{inputedName}.dll");
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Tools.MessageBoxTools.ShowErrorMessageBox(ex);
+                            }
+                    }, prevData: selectedName.Split('.')[0], windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE_EDIT_TITLE"),
+                        tbxToolTip: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"DLL_WORKING_SPACE_TITLE_EDIT_TOOLTIP")).ShowDialog();
+                    };
+
+                    this.afterDelete = (string selectedName) =>
+                    {
+                        try
+                        {
+                            File.Delete($"{DLL_DIR_SEARCH_PATH}\\{selectedName.Split('.')[0]}.json");
+                            File.Delete($"{DM.Config.CurrentWorkingDirectory}\\{selectedName}");
+                            LbxItems.Items.Remove(selectedName);
+                        }
+                        catch(Exception ex)
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox(ex);
+                        }
                     };
 
                     break;
@@ -202,6 +313,7 @@ namespace LORModingBase.SubWindows
 
     public enum Global_ListSeleteWithEditWindow_PRESET
     {
-        WORKING_SPACE
+        WORKING_SPACE,
+        DLL_WORKING_SPACE
     }
 }

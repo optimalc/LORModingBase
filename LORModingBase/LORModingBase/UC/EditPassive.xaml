@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="LORModingBase.UC.EditPassive"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LORModingBase.UC"
+             mc:Ignorable="d" 
+            Height="400" Width="320">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle x:Name="WindowBg" Fill="#54FD9BB8" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="82*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="22*"/>
+                    <ColumnDefinition Width="22*"/>
+                    <ColumnDefinition Width="22*"/>
+                    <ColumnDefinition Width="22*"/>
+                    <ColumnDefinition Width="22*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TbxCost" Grid.Column="0" Text="1" ToolTip="패시브의 코스트를 입력합니다" FontSize="22" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" TextChanged="ReflectTextChangeInTextBox" TextAlignment="Center" Background="#7F000000"/>
+
+                <Rectangle Grid.Column="1" Grid.ColumnSpan="4" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Button x:Name="BtnRarity_Common" ToolTip="보급 패시브으로 지정" Grid.Column="1" Content="보급" FontSize="15" Foreground="#FF30BF4B" Tag="#5430BF4B" Style="{StaticResource StyBtnMenu}" Click="ChangeRarityButtonEvents" Background="#54FFFFFF"/>
+                <Button x:Name="BtnRarity_Uncommon" ToolTip="고급 패시브으로 지정" Grid.Column="2" Content="고급" FontSize="15" Foreground="#FF306ABF" Tag="#54306ABF" Style="{StaticResource StyBtnMenu}" Click="ChangeRarityButtonEvents"/>
+                <Button x:Name="BtnRarity_Rare" ToolTip="한정 패시브으로 지정" Grid.Column="3" Content="한정" FontSize="15" Foreground="#FF8030BF" Tag="#548030BF" Style="{StaticResource StyBtnMenu}" Click="ChangeRarityButtonEvents"/>
+                <Button x:Name="BtnRarity_Unique" ToolTip="예술 패시브으로 지정" Grid.Column="4" Content="예술" FontSize="15" Foreground="#FFF3B530" Tag="#54F3B530" Style="{StaticResource StyBtnMenu}" Click="ChangeRarityButtonEvents"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Label x:Name="LblPassiveID" Content="고유 ID : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxPassiveID" Grid.Column="1" Text="" ToolTip="패시브의 고유 ID를 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+
+
+                <Rectangle Grid.Column="2" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Viewbox Grid.Column="2" Stretch="Fill">
+                    <Label x:Name="LblPassiveName" Content="이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxPassiveName" Grid.Column="3" Text="" ToolTip="패시브의 이름을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectTextChangeInTextBox"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="90*"/>
+                </Grid.RowDefinitions>
+                <Viewbox Grid.Row="0" Stretch="Fill">
+                    <Label x:Name="LblPassiveDes" Content="-- 패시브 관련 설명 --" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <Grid Grid.Row="1">
+                    <TextBox Margin="5" x:Name="TbxPassiveDes" Text="" Grid.Row="1" ToolTip="패시브의 설명을 입력합니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" TextChanged="ReflectTextChangeInTextBox" TextWrapping="Wrap"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="37*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnMakeDLL" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="이 패시브와 관련된 DLL을 작성합니다" Click="RightMenuButtonEvents">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-17"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnDLLEdit.png"/>
+                </Button.Background>
+            </Button>
+            
+            <Rectangle Grid.Row="2" Grid.RowSpan="6" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnCopyPassive" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="패시브를 복제해서 새로운 패시브를 만듭니다" Click="RightMenuButtonEvents">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-17"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnCopy.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="RightMenuButtonEvents" ToolTip="패시브 삭제합니다" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-21"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnBin.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

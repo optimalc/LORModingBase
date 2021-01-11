@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BookUseXmlRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BookUse ID="200001">
+    <TextId>dropbook_rat</TextId>
+    <BookIcon>Rats</BookIcon>
+    <Chapter>1</Chapter>
+    <Exp>3</Exp>
+    <EquipProb>0.5</EquipProb>
+    <DropItem Type="Equip">200001</DropItem>
+    <DropItem Type="Equip">200002</DropItem>
+    <DropItem Type="Equip">200003</DropItem>
+  </BookUse>
+</BookUseXmlRoot>

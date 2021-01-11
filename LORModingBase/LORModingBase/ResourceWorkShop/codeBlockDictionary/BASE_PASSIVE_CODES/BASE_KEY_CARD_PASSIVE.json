@@ -1,0 +1,38 @@
+{
+    "usings":["System"],
+    "type":["BASE"],
+    "inputtedParameter":["0"],
+    "subBlockWhiteFilter":[
+        "BASE_PASSIVE_CODES/BASE_ON_START_BATTLE",
+        "BASE_PASSIVE_CODES/BASE_ON_DIE",
+        "BASE_PASSIVE_CODES/BASE_ON_DRAW_CARD",
+        "BASE_PASSIVE_CODES/BASE_ON_KILL",
+        "BASE_PASSIVE_CODES/BASE_ON_LOSE_HP",
+        "BASE_PASSIVE_CODES/BASE_ON_ROLL_DICE",
+        "BASE_PASSIVE_CODES/BASE_ON_ROUND_END",
+        "BASE_PASSIVE_CODES/BASE_ON_ROUND_START",
+        "BASE_PASSIVE_CODES/BASE_ON_SUCCEEDED_ATTACK",
+        "BASE_PASSIVE_CODES/BASE_ON_USE_CARD",
+        "BASE_PASSIVE_CODES/BASE_ON_BEFORE_ROLL_DICE",
+        "BASE_PASSIVE_CODES/BASE_ADD_SPEED_DICE"],
+    "kr":[
+        "핵심 책장 패시브 기반 블록",
+        "핵심 책장에 패시브를 추가하기위한 기반 블록입니다",
+        "패시브 ID"
+    ],
+    "en":[
+        "Key Page Passive Base Block",
+        "Base block for adding Key Page passive",
+        "Passive ID"
+    ],
+    "jp":[
+        "Key Page Passive Base Block",
+        "Base block for adding Key Page passive",
+        "Passive ID"
+    ],
+    "cn":[
+        "Key Page Passive Base Block",
+        "Base block for adding Key Page passive",
+        "Passive ID"
+    ]
+}

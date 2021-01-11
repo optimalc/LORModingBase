@@ -1,0 +1,3 @@
+public class DiceCardSelfAbility_{{0}} : DiceCardSelfAbilityBase
+{
+}

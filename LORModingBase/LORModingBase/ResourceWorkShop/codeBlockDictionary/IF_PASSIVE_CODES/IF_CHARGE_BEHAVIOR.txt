@@ -1,0 +1,4 @@
+if ((behavior.card.target.bufListDetail.GetActivatedBuf(KeywordBuf.WarpCharge) as BattleUnitBuf_warpCharge) != null
+    && (behavior.card.target.bufListDetail.GetActivatedBuf(KeywordBuf.WarpCharge) as BattleUnitBuf_warpCharge).stack {{0}} {{1}})
+{
+}

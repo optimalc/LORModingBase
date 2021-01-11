@@ -1,0 +1,13 @@
+[
+    "데미지-dmg",
+    "흐트러짐 데미지-breakDmg",
+    "강화-power",
+    "-face",
+    "최솟값-min",
+    "최대값-max",
+    "데미지 비율-dmgRate",
+    "흐트러짐 비율-breakRate",
+    "-guardBreakAdder",
+    "-guardBreakMultiplier",
+    "강화 무시-ignorePower"
+]

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BookXmlRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Book ID="200001">
+    <Name>레니의 책장</Name>
+    <TextId>200001</TextId>
+    <EquipEffect>
+      <HP>42</HP>
+      <Break>22</Break>
+      <SpeedMin>1</SpeedMin>
+      <Speed>4</Speed>
+      <SResist>Normal</SResist>
+      <PResist>Vulnerable</PResist>
+      <HResist>Weak</HResist>
+      <SBResist>Normal</SBResist>
+      <PBResist>Vulnerable</PBResist>
+      <HBResist>Weak</HBResist>
+      <Passive Level="10">89898989</Passive>
+    </EquipEffect>
+    <BookIcon>Rats</BookIcon>
+    <Rarity>Unique</Rarity>
+    <Chapter>1</Chapter>
+    <Episode>2</Episode>
+    <CharacterSkin>Lenny</CharacterSkin>
+  </Book>
+</BookXmlRoot>

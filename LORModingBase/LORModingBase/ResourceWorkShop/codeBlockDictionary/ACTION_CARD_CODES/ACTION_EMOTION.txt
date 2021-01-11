@@ -1,0 +1,5 @@
+if (base.card.{{0}} != null)
+{
+    base.card.{{0}}.emotionDetail.CreateEmotionCoin(EmotionCoinType.{{1}}, {{2}});
+    SingletonBehavior<BattleManagerUI>.Instance.ui_battleEmotionCoinUI.OnAcquireCoin(base.card.{{0}}, EmotionCoinType.{{1}}, {{2}});
+}

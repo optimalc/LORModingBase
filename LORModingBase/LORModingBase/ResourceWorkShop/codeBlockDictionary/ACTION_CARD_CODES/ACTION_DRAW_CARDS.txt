@@ -1,0 +1,2 @@
+if(base.owner != null)
+        base.owner.allyCardDetail.DrawCards({{0}});

@@ -1,0 +1,3 @@
+if (base.card.{{0}} != null && base.card.{{0}}.cardSlotDetail.PlayPoint {{1}} {{2}})
+{
+}

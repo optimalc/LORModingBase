@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,13 +64,28 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomExtensions\IEnumerable.cs" />
+    <Compile Include="CustomExtensions\StringExtension.cs" />
+    <Compile Include="DLLEditor\CodeBlockControls\GlobalCodeBlockControl.xaml.cs">
+      <DependentUpon>GlobalCodeBlockControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DLLEditor\CodeBlockDataManagement.cs" />
+    <Compile Include="DLLEditor\CompileDLL.cs" />
+    <Compile Include="DLLEditor\DataStructure.cs" />
+    <Compile Include="DLLEditor\DLLEditorGlobalSearchWindow.xaml.cs">
+      <DependentUpon>DLLEditorGlobalSearchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DLLEditor\DLLEditorMainWindow.xaml.cs">
+      <DependentUpon>DLLEditorMainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DM\CheckDatas.cs" />
     <Compile Include="DM\Config.cs" />
+    <Compile Include="DM\EditGameData_CardAbilityInfo.cs" />
     <Compile Include="DM\EditGameData_DropBookInfo.cs" />
     <Compile Include="DM\EditGameData_BookInfos.cs" />
     <Compile Include="DM\EditGameData_CardInfos.cs" />
     <Compile Include="DM\EditGameData_DeckInfo.cs" />
     <Compile Include="DM\EditGameData_EnemyInfo.cs" />
+    <Compile Include="DM\EditGameData_PassiveInfo.cs" />
     <Compile Include="DM\EditGameData_StageInfo.cs" />
     <Compile Include="DM\GetDivideInfo.cs" />
     <Compile Include="DM\LocalizedGameDescriptions.cs" />
@@ -122,6 +138,9 @@
     <Compile Include="UC\EditCard.xaml.cs">
       <DependentUpon>EditCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\EditCardAbility.xaml.cs">
+      <DependentUpon>EditCardAbility.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\EditCriticalPage.xaml.cs">
       <DependentUpon>EditCriticalPage.xaml</DependentUpon>
     </Compile>
@@ -137,6 +156,9 @@
     <Compile Include="UC\EditEnemyUnit.xaml.cs">
       <DependentUpon>EditEnemyUnit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\EditPassive.xaml.cs">
+      <DependentUpon>EditPassive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\EditStage.xaml.cs">
       <DependentUpon>EditStage.xaml</DependentUpon>
     </Compile>
@@ -146,6 +168,18 @@
     <Compile Include="UC\EditWave.xaml.cs">
       <DependentUpon>EditWave.xaml</DependentUpon>
     </Compile>
+    <Page Include="DLLEditor\CodeBlockControls\GlobalCodeBlockControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DLLEditor\DLLEditorGlobalSearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DLLEditor\DLLEditorMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -202,6 +236,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC\EditCardAbility.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC\EditCriticalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +257,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\EditEnemyUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EditPassive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -399,6 +441,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\TypeEgoPersonal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnDLLEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnAddNode.png" />
+    <Resource Include="Resources\BtnCodeBlockInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconMotion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

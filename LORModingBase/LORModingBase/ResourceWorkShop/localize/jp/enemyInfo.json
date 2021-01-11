@@ -1,0 +1,40 @@
+{
+    "%LblNameID%":"Name ID : $1.2,1$-3,0",
+    "%TbxNameID_ToolTip%":"Input unique ID of the name",
+    "%LblEnemyName%":"Name : $1,1$4,0",
+    "%TbxEnemyName_ToolTip%":"Input name of the enemy",
+
+    "%LblMinHeight%":"Height : $1.2,1",
+    "%TbxMinHeight_ToolTip%":"Input min value of the height",
+    "%TbxMaxHeight_ToolTip%":"Input max value of the height",
+
+    "%LblEnemyUniqueID%":"Unique ID : $1.2,1$-5,0",
+    "%TbxEnemyUniqueID_ToolTip%":"Input unique ID of the enemy",
+
+    "%BtnBookID%":"Select Book ID$0.8,0.75$11,3",
+    "%BtnBookID_ToolTip%":"Input Key Page ID that the enemy will use",
+
+    "%BtnDeckID%":"Select Deck ID$0.8,0.75$11,3",
+    "%BtnDeckID_ToolTip%":"Input Deck ID that the enemy will use",
+
+    "%LblEmotionReward%":"-- Add Emotion Reward --$0.8,1$15,0",
+
+    "%BtnRewardLevel_0%":"LEVEL 0",
+    "%BtnRewardLevel_0_ToolTip%":"Input reward books when emotion level is 0",
+    "%BtnRewardLevel_1%":"LEVEL 1",
+    "%BtnRewardLevel_1_ToolTip%":"Input reward books when emotion level is 1",
+    "%BtnRewardLevel_2%":"LEVEL 2",
+    "%BtnRewardLevel_2_ToolTip%":"Input reward books when emotion level is 2",
+    "%BtnRewardLevel_3%":"LEVEL 3",
+    "%BtnRewardLevel_3_ToolTip%":"Input reward books when emotion level is 3",
+
+    "%LblEmotionLevel_ToolTip%":"Reward emotion level",
+    "%ImgBookCount_ToolTip%":"The count of reward book",
+    "%TbxBookCount_ToolTip%":"Input count of the reward book",
+
+    "%BtnCopyEnemy_ToolTip%":"Copy enemy info",
+    "%BtnDelete_ToolTip%":"Delete enemy info",
+
+    "BOOK":"Book",
+    "DECK":"Deck"
+}

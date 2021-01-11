@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["&GROUP_GLOBAL_PASSIVE"],
+    "kr":[
+        "배틀 시작 트리거 기반 블록",
+        "배틀이 시작할 경우 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Round Start Base Block",
+        "Base block for invoking action when the battle is started",
+        ""
+    ],
+    "jp":[
+        "Round Start Base Block",
+        "Base block for invoking action when the battle is started",
+        ""
+    ],
+    "cn":[
+        "Round Start Base Block",
+        "Base block for invoking action when the battle is started",
+        ""
+    ]
+}

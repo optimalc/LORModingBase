@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace LORModingBase.DM
 {
@@ -49,7 +50,27 @@ namespace LORModingBase.DM
                         config.LORFolderPath = LOR_PATH_FULL;
                         SaveData();
                     }
-                } 
+                }
+                #endregion
+
+
+                #region Set DLL Compiler Path
+                if(Directory.Exists("C:\\Windows\\Microsoft.NET\\Framework64"))
+                {
+                    Directory.GetDirectories("C:\\Windows\\Microsoft.NET\\Framework64").ToList().ForEach((string dirPath) =>
+                    {
+                        if (dirPath.Contains("v4.0") && File.Exists($"{dirPath}\\csc.exe"))
+                            config.DLLCompilerPath = $"{dirPath}\\csc.exe";
+                    });
+                }
+                else if (Directory.Exists("C:\\Windows\\Microsoft.NET\\Framework"))
+                {
+                    Directory.GetDirectories("C:\\Windows\\Microsoft.NET\\Framework").ToList().ForEach((string dirPath) =>
+                    {
+                        if (dirPath.Contains("v4.0") && File.Exists($"{dirPath}\\csc.exe"))
+                            config.DLLCompilerPath = $"{dirPath}\\csc.exe";
+                    });
+                }
                 #endregion
             }
             InitGameResourcePaths();

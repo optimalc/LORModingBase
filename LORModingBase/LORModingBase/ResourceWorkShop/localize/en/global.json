@@ -1,0 +1,76 @@
+{
+    "%BtnAdd%":"+ ADD",
+    "%BtnAdd_ToolTip%":"Add item to list",
+    "%BtnEdit%":"+ EDIT",
+    "%BtnEdit_ToolTip%":"Edit selected item",
+    "%BtnDelete%":"- DELETE$1.3,1$-20,0",
+    "%BtnDelete_ToolTip%":"Delete selected item",
+    "%GlobalListSelectEditWindow%":"Item edit menu",
+
+    "%GlobalInputOneColumnData%":"Input item descrption",
+    "%BtnOk%":"[CLOSE]",
+    "%BtnOk_ToolTip%":"Close the window",
+    "%TbxData_ToolTip%":"Input specific information",
+
+    "WORKING_SPACE_TITLE":"Double click the working space you want",
+    "WORKING_SPACE_TITLE_ADD_TITLE":"Input mode name you want to create",
+    "WORKING_SPACE_TITLE_ADD_TOOLTIP":"Input mode name you want to create. This mode name will be used folder name",
+    "WORKING_SPACE_TITLE_EDIT_TITLE":"Input mode name you want to modify",
+    "WORKING_SPACE_TITLE_EDIT_TOOLTIP":"The modified name will be used in the folder name",
+    
+    "%GlobalInputInfoWithSearchWindow%":"Double click item you want",
+    "%LblHelpMessage%":"※ Double click item you want",
+    "%LblSearch%":"Search : ",
+    "%TbxSearch_ToolTip%":"Search by using a specific word",
+    "%LblSearchType%":"Search filter",
+    "%LblItemHelpMessage%":"Acquired contents",
+
+    "SEARCH_NO_FILTER":"No filter",
+    "EPISODE_TITLE":"Select the episode you want to apply",
+    "BOOK_ICON_TITLE":"Select the book icon name you want to apply",
+    "CHARACTER_SKIN_TITLE":"Select the character skin name you want to apply",
+    "PASSIVE_HELP":"Some passives will not be applied. So, You need to check in-game",
+    "PASSIVE_TITLE":"Select the passive name you want to apply",
+    "CRITICAL_BOOKS_TITLE":"Select the Key Page name you want to load",
+    
+    "CARD_ARTWORK_TITLE":"Select the card image name you want to apply",
+    "CARD_ABILITES_TITLE":"Select the card ability name you want to apply",
+    "DICE_ABILITES_TITLE":"Select the dice ability name you want to apply",
+    "CARDS_TITLE":"Select the Card name you want to load",
+
+
+    "%GlobalAddItemToListWindow%":"Double click the item you want. If you want to remove the selected item, double click it",
+    "%LblSelectedItemLists%":"Selected items",
+
+    "ONLY_CARD_TITLE":"Select Only Cards your Key Book can use",
+    "DROP_BOOK_TITLE":"Select books that drop Key Book",
+    "DROP_TABLE_TITLE":"Select books that drop Combat Bookshelf",
+
+    "KEY_PAGE_STORY_TITLE":"Input story of Key Page",
+
+    "%GlobalMultipleValueInputed%":"Input extra infos",
+    "%BtnClearAll%":"[CLEAR ALL]",
+    "%BtnClearAll_ToolTip%":"Clear all inputted data",
+
+    "CUSTOM_ITEM":"[Customized Item]",
+    "%ResourceWindowName%":"Resource Managemnt Window",
+    "%LblImageResource%":"Image Resource Management",
+    "%BtnAddImage%":"+ ADD",
+    "%BtnAddImage_ToolTip%":"Add image to list",
+    "%BtnDeleteImage%":"- DELETE$1.3,1$-20,0",
+    "%BtnDeleteImage_ToolTip%":"Delete selected image",
+    "RESOURCE_DIALOG_TITLE":"Selete image you want to add",
+
+    "NUM_OF_PEOPLE":"The number of people",
+
+    "DLL_WORKING_SPACE_TITLE":"Double click the DLL working space you want",
+    "DLL_WORKING_SPACE_TITLE_ADD_TITLE":"Input DLL name you want to create",
+    "DLL_WORKING_SPACE_TITLE_ADD_TOOLTIP":"Input DLL name you want to create. This DLL name will be used in DLL, source file name",
+    "DLL_WORKING_SPACE_TITLE_EDIT_TITLE":"Input DLL name you want to modify",
+    "DLL_WORKING_SPACE_TITLE_EDIT_TOOLTIP":"The modified name will be used in DLL, source file name",
+
+    "%LblSourceCodeBlocks%":"Source code blocks",
+    "%LblSourceCodeDescription%":"Description for selected source code block",
+    "%TbxSourceCodeDes_ToolTip%":"Description for source code block",
+    "%TbxSourceCodeDetail_ToolTip%":"Source code content"
+}

@@ -146,5 +146,23 @@ namespace LORModingBase.DM
             else
                 return null;
         }
+      
+
+        /// <summary>
+        /// Get passive is avaliable
+        /// </summary>
+        /// <param name="passiveID"></param>
+        /// <returns></returns>
+        public static bool IsPassiveAbliliable(string passiveID)
+        {
+            bool isPassiveAbiliable = false;
+            GameInfos.staticInfos["PassiveList"].rootDataNode
+                .ActionXmlDataNodesByAttributeWithPath("Passive", "ID", passiveID, (XmlDataNode passiveNode) =>
+                {
+                    isPassiveAbiliable = (!string.IsNullOrEmpty(passiveNode.GetInnerTextByPath("Rarity"))
+                                            && !string.IsNullOrEmpty(passiveNode.GetInnerTextByPath("Cost")));
+                });
+            return isPassiveAbiliable;
+        }
     }
 }

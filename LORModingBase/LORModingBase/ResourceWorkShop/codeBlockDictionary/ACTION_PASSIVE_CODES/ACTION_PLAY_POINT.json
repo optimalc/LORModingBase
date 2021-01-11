@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["RecoverPlayPoint", "1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "자신의 빛의 양을 변경시킵니다",
+        "자신의 빛의 양을 변경시킵니다",
+        "빛을 얻음/잃음$얻음-RecoverPlayPoint$잃음-LosePlayPoint,조절양"
+    ],
+    "en":[
+        "Change play point of the owner of the enemy",
+        "Change play point of the owner of the enemy",
+        "Get/Lose$Get-RecoverPlayPoint$Lose-LosePlayPoint,Degree"
+    ],
+    "jp":[
+        "Change play point of the owner of the enemy",
+        "Change play point of the owner of the enemy",
+        "Get/Lose$Get-RecoverPlayPoint$Lose-LosePlayPoint,Degree"
+    ],
+    "cn":[
+        "Change play point of the owner of the enemy",
+        "Change play point of the owner of the enemy",
+        "Get/Lose$Get-RecoverPlayPoint$Lose-LosePlayPoint,Degree"
+    ]
+}

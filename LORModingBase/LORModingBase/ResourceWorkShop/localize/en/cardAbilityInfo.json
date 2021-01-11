@@ -1,0 +1,12 @@
+{
+    "%LblAbilityID%":"Ability ID :$1.05,0.95",
+    "%TbxAbilityID_ToolTip%":"Input the unique ID of Card ability",
+
+    "%LblPassiveDes%":"-- Card Ability Description --",
+    "%TbxAbilityDes_ToolTip%":"Input description of the Card ability",
+
+    "%BtnCopyAbility_ToolTip%":"Copy the card ability",
+    "%BtnDelete_ToolTip%":"Delete card ability",
+
+    "%BtnMakeDLL_ToolTip%":"Make DLL for this card ability"
+}

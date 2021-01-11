@@ -1,0 +1,29 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_PASSIVE",
+        "&GROUP_GLOBAL_PASSIVE_BEHAVIOR"
+    ],
+    "kr":[
+        "주사위 굴림 트리거 기반 블록",
+        "주사위를 굴릴 경우 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Dice Roll Base Block",
+        "Base block for invoking action when rolling dice",
+        ""
+    ],
+    "jp":[
+        "Dice Roll Base Block",
+        "Base block for invoking action when rolling dice",
+        ""
+    ],
+    "cn":[
+        "Dice Roll Base Block",
+        "Base block for invoking action when rolling dice",
+        ""
+    ]
+}
