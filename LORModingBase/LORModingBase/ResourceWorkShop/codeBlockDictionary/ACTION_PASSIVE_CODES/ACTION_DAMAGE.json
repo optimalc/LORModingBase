@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["TakeDamage", "5"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "자신의 체력/흐트러짐을 감소",
+        "자신의 체력/흐트러짐을 감소시킵니다",
+        "체력/흐트러짐$체력-TakeDamage$흐트러짐-TakeBreakDamage,감소양"
+    ],
+    "en":[
+        "Damage HP/break life of owner",
+        "Damage HP/break life of owner",
+        "HP/Break$HP-TakeDamage$Break-TakeBreakDamage,Degree"
+    ],
+    "jp":[
+        "Damage HP/break life of owner",
+        "Damage HP/break life of owner",
+        "HP/Break$HP-TakeDamage$Break-TakeBreakDamage,Degree"
+    ],
+    "cn":[
+        "Damage HP/break life of owner",
+        "Damage HP/break life of owner",
+        "HP/Break$HP-TakeDamage$Break-TakeBreakDamage,Degree"
+    ]
+}

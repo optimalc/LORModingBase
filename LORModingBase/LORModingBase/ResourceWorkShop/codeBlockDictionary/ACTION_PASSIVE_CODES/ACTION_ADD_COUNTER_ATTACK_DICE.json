@@ -1,0 +1,26 @@
+{
+    "usings":["LOR_DiceSystem", "System.Collections.Generic"],
+    "type":["ACTION"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "카드에 반격 주사위를 추가시키는 효과",
+        "카드에 반격 주사위를 추가시킵니다",
+        ""
+    ],
+    "en":[
+        "Add counter-attack dice to card",
+        "Add counter-attack dice to card",
+        ""
+    ],
+    "jp":[
+        "Add counter-attack dice to card",
+        "Add counter-attack dice to card",
+        ""
+    ],
+    "cn":[
+        "Add counter-attack dice to card",
+        "Add counter-attack dice to card",
+        ""
+    ]
+}

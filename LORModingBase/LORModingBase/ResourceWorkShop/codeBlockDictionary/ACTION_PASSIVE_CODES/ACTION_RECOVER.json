@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["RecoverHP", "5"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "자신의 체력/흐트러짐을 회복",
+        "자신의 체력/흐트러짐을 회복합니다",
+        "체력/흐트러짐$체력-RecoverHP$흐트러짐-RecoverBreakLife,회복양"
+    ],
+    "en":[
+        "Recover HP/break life of owner",
+        "Recover HP/break life of owner",
+        "HP/Break$HP-RecoverHP$Break-RecoverBreakLife,Degree"
+    ],
+    "jp":[
+        "Recover HP/break life of owner",
+        "Recover HP/break life of owner",
+        "HP/Break$HP-RecoverHP$Break-RecoverBreakLife,Degree"
+    ],
+    "cn":[
+        "Recover HP/break life of owner",
+        "Recover HP/break life of owner",
+        "HP/Break$HP-RecoverHP$Break-RecoverBreakLife,Degree"
+    ]
+}

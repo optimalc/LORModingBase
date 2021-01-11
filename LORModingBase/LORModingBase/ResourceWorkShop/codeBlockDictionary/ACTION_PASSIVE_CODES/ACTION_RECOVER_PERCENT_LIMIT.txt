@@ -1,0 +1,8 @@
+if(this.owner != null)
+{
+    int <<0>> = this.owner.MaxHp / 100 * {{1}};
+    if (<<0>> > {{2}})
+        <<0>> = {{2}};
+    this.owner.ShowPassiveTypo(this);
+    this.owner.{{0}}(<<0>>);
+}

@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["power", "5"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "주사위에 보너스 효과를 부여",
+        "주사위에 보너스 효과를 부여합니다",
+        "보너스 효과$&ENUM_DICE_STAT_BONUS,수치"
+    ],
+    "en":[
+        "Give a bonus ability to dice",
+        "Give a bonus ability to dice",
+        "Bonus ability$&ENUM_DICE_STAT_BONUS,Degree"
+    ],
+    "jp":[
+        "Give a bonus ability to dice",
+        "Give a bonus ability to dice",
+        "Bonus ability$&ENUM_DICE_STAT_BONUS,Degree"
+    ],
+    "cn":[
+        "Give a bonus ability to dice",
+        "Give a bonus ability to dice",
+        "Bonus ability$&ENUM_DICE_STAT_BONUS,Degree"
+    ]
+}
