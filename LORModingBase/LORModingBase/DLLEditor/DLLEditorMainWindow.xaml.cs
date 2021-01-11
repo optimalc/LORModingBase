@@ -101,6 +101,8 @@ namespace LORModingBase.DLLEditor
                 {
                     GetAllUsingCases(rootCodeBlock, usingList);
                 });
+                usingList.AddRange(
+                    Tools.JsonFile.LoadJsonFile<List<string>>(DS.PROGRAM_RESOURCE_PATHS.RESOURCE_USING_GLOBAL));
 
                 HashSet<string> UNIQUE_USING_HASH_SET = new HashSet<string>(usingList);
                 foreach (string UNIQUE_USING_NAME in UNIQUE_USING_HASH_SET)

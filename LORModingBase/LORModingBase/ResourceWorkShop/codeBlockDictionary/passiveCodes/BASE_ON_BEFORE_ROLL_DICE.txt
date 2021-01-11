@@ -1,0 +1,4 @@
+public override void BeforeRollDice(BattleDiceBehavior behavior)
+{
+    base.BeforeRollDice(behavior);
+}

@@ -53,6 +53,8 @@ namespace LORModingBase.DS
         public static string RESOURCE_ROOT_CODE_BLOCK_LIST = $"{DIC_RESOURCE}\\codeBlockRootShowList.json";
 
         public static string RESOURCE_COMPILE_DENPENDENCIES = $"{DIC_RESOURCE}\\compileDependencies.json";
+
+        public static string RESOURCE_USING_GLOBAL = $"{DIC_RESOURCE}\\usingGlobal.json";
     }
 
     class GAME_RESOURCE_PATHS
