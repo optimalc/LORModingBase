@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["&GROUP_PASSIVE_ACTIONS"],
+    "kr":[
+        "참격 주사위인 경우 조건 블록",
+        "참격 주사위인 경우 조건 블록",
+        ""
+    ],
+    "en":[
+        "If the type of dice is slash",
+        "If the type of dice is slash",
+        ""
+    ],
+    "jp":[
+        "If the type of dice is slash",
+        "If the type of dice is slash",
+        ""
+    ],
+    "cn":[
+        "If the type of dice is slash",
+        "If the type of dice is slash",
+        ""
+    ]
+}

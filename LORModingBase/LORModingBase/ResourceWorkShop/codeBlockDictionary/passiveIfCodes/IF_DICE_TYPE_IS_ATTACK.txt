@@ -1,0 +1,3 @@
+if (behavior.Type == BehaviourType.Atk)
+{
+}

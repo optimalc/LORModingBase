@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["&GROUP_PASSIVE_ACTIONS"],
+    "kr":[
+        "타격 주사위인 경우 조건 블록",
+        "타격 주사위인 경우 조건 블록",
+        ""
+    ],
+    "en":[
+        "If the type of dice is hit",
+        "If the type of dice is hit",
+        ""
+    ],
+    "jp":[
+        "If the type of dice is hit",
+        "If the type of dice is hit",
+        ""
+    ],
+    "cn":[
+        "If the type of dice is hit",
+        "If the type of dice is hit",
+        ""
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":["&GROUP_PASSIVE_ACTIONS"],
+    "kr":[
+        "회피 주사위인 경우 조건 블록",
+        "회피 주사위인 경우 조건 블록",
+        ""
+    ],
+    "en":[
+        "If the type of dice is evasion",
+        "If the type of dice is evasion",
+        ""
+    ],
+    "jp":[
+        "If the type of dice is evasion",
+        "If the type of dice is evasion",
+        ""
+    ],
+    "cn":[
+        "If the type of dice is evasion",
+        "If the type of dice is evasion",
+        ""
+    ]
+}

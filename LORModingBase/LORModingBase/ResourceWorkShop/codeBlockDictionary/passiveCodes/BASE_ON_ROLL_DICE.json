@@ -4,7 +4,9 @@
     "inputtedParameter":[],
     "subBlockWhiteFilter":[
         "&GROUP_PASSIVE_ACTIONS",
-        "ACTION_GIVE_BREAK_DAMAGE"],
+        "passiveActionCodes/ACTION_GIVE_BREAK_DAMAGE",
+        "passiveActionCodes/ACTION_GIVE_DAMAGE",
+        "&GROUP_DICE_TYPE_CHECK"],
     "kr":[
         "주사위 굴림 트리거 기반 블록",
         "주사위를 굴릴 경우 액션를 발생시키기 위한 기반 블록입니다",

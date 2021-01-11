@@ -5,7 +5,8 @@
     "subBlockWhiteFilter":[
         "&GROUP_PASSIVE_ACTIONS",
         "passiveActionCodes/ACTION_GIVE_BREAK_DAMAGE",
-        "passiveActionCodes/ACTION_GIVE_DAMAGE"],
+        "passiveActionCodes/ACTION_GIVE_DAMAGE",
+        "&GROUP_DICE_TYPE_CHECK"],
     "kr":[
         "공격 적중시 트리거 기반 블록",
         "공격 적중시 액션를 발생시키기 위한 기반 블록입니다",
