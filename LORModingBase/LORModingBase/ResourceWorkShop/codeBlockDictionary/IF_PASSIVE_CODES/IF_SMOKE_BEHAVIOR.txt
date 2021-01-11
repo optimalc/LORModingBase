@@ -1,0 +1,4 @@
+BattleUnitBuf_smoke <<0>> = behavior.card.target.bufListDetail.GetActivatedBuf(KeywordBuf.Smoke) as BattleUnitBuf_smoke;
+if (<<0>> != null && <<0>>.stack {{0}} {{1}})
+{
+}
