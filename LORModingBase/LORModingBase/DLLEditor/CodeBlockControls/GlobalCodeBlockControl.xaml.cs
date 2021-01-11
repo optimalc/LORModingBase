@@ -68,45 +68,27 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                 {
                     case 0:
                         GrdPara_0.Visibility = Visibility.Visible;
-                        LblPara_0.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        LblPara_0.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        TbxPara_0.Text = innerCodeBlock.inputtedParameterList[paraIndex];
-                        TbxPara_0.Tag = innerCodeBlock.parameterList[paraIndex];
+                        ProcessParameters(LblPara_0, TbxPara_0, innerCodeBlock, paraIndex);
                         break;
                     case 1:
                         GrdPara_1.Visibility = Visibility.Visible;
-                        LblPara_1.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        LblPara_1.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        TbxPara_1.Text = innerCodeBlock.inputtedParameterList[paraIndex];
-                        TbxPara_1.Tag = innerCodeBlock.parameterList[paraIndex];
+                        ProcessParameters(LblPara_1, TbxPara_1, innerCodeBlock, paraIndex);
                         break;
                     case 2:
                         GrdPara_2.Visibility = Visibility.Visible;
-                        LblPara_2.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        LblPara_2.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        TbxPara_2.Text = innerCodeBlock.inputtedParameterList[paraIndex];
-                        TbxPara_2.Tag = innerCodeBlock.parameterList[paraIndex];
+                        ProcessParameters(LblPara_2, TbxPara_2, innerCodeBlock, paraIndex);
                         break;
                     case 3:
                         GrdPara_3.Visibility = Visibility.Visible;
-                        LblPara_3.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        LblPara_3.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        TbxPara_3.Text = innerCodeBlock.inputtedParameterList[paraIndex];
-                        TbxPara_3.Tag = innerCodeBlock.parameterList[paraIndex];
+                        ProcessParameters(LblPara_3, TbxPara_3, innerCodeBlock, paraIndex);
                         break;
                     case 4:
                         GrdPara_4.Visibility = Visibility.Visible;
-                        LblPara_4.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        LblPara_4.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        TbxPara_4.Text = innerCodeBlock.inputtedParameterList[paraIndex];
-                        TbxPara_4.Tag = innerCodeBlock.parameterList[paraIndex];
+                        ProcessParameters(LblPara_4, TbxPara_4, innerCodeBlock, paraIndex);
                         break;
                     case 5:
                         GrdPara_5.Visibility = Visibility.Visible;
-                        LblPara_5.Content = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        LblPara_5.ToolTip = innerCodeBlock.parameterList[paraIndex].Split('$')[0];
-                        TbxPara_5.Text = innerCodeBlock.inputtedParameterList[paraIndex];
-                        TbxPara_5.Tag = innerCodeBlock.parameterList[paraIndex];
+                        ProcessParameters(LblPara_5, TbxPara_5, innerCodeBlock, paraIndex);
                         break;
                 } 
             }
@@ -164,26 +146,77 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
             TextBox tbx = sender as TextBox;
             if(tbx.Tag.ToString().Contains('$'))
             {
-                List<string> LIST_TO_SHOW = new List<string>();
-                tbx.Tag.ToString().Split('$').Skip(1).ToList().ForEach((string selectStr) =>
-                {
-                    if (selectStr.Contains("&"))
-                    {
-                        string GROUP_PATH = $"{DS.PROGRAM_PATHS.CODE_BLOCK_GROUP}\\{selectStr.Replace("&", "")}.json";
-                        if (File.Exists(GROUP_PATH))
-                            LIST_TO_SHOW.AddRange(Tools.JsonFile.LoadJsonFile<List<string>>(GROUP_PATH));
-                    }
-                    else
-                        LIST_TO_SHOW.Add(selectStr);
-                });
-
                 new SubWindows.Global_ListSeleteWindow((string selectedCode) =>
                 {
-                    tbx.Text = selectedCode.Split('-')[1];
+                    GetLocalizedDescriptionForWord(tbx, selectedCode);
                     int PARA_INDEX = Convert.ToInt32(tbx.Name.Split('_').Last());
-                    innerCodeBlock.inputtedParameterList[PARA_INDEX] = tbx.Text;
+                    innerCodeBlock.inputtedParameterList[PARA_INDEX] = selectedCode.Split('-').Last();
                     updateTextBox();
-                }, LIST_TO_SHOW).ShowDialog();
+                }, ParseParameterStr(tbx.Tag.ToString())).ShowDialog();
+            }
+        }
+
+        private void ProcessParameters(Label lbl, TextBox tbx, CodeBlock codeBlock, int paraIndex)
+        {
+            lbl.Content = codeBlock.parameterList[paraIndex].Split('$')[0];
+            lbl.ToolTip = codeBlock.parameterList[paraIndex].Split('$')[0];
+            if(codeBlock.parameterList[paraIndex].Contains('$') && DM.Config.config.localizeOption == "kr")
+            {
+                foreach(string paraDes in ParseParameterStr(codeBlock.parameterList[paraIndex]))
+                {
+                    if (codeBlock.inputtedParameterList[paraIndex] == paraDes.Split('-').Last())
+                        tbx.Text = paraDes.Split('-')[0];
+                }
+            }
+            else
+                tbx.Text = codeBlock.inputtedParameterList[paraIndex];
+            tbx.Tag = codeBlock.parameterList[paraIndex];
+        }
+
+        private List<string> ParseParameterStr(string paraStr)
+        {
+            List<string> LIST_TO_SHOW = new List<string>();
+            paraStr.ToString().Split('$').Skip(1).ToList().ForEach((string selectStr) =>
+            {
+                if (selectStr.Contains("&"))
+                {
+                    string GROUP_PATH = $"{DS.PROGRAM_PATHS.CODE_BLOCK_GROUP}\\{selectStr.Replace("&", "")}.json";
+                    if (File.Exists(GROUP_PATH))
+                        LIST_TO_SHOW.AddRange(Tools.JsonFile.LoadJsonFile<List<string>>(GROUP_PATH));
+                }
+                else
+                    LIST_TO_SHOW.Add(selectStr);
+            });
+            return LIST_TO_SHOW;
+        }
+
+        private void GetLocalizedDescriptionForWord(TextBox tbx, string targetWord)
+        {
+            if(!targetWord.Contains("-"))
+            {
+                tbx.Text = targetWord;
+                tbx.ToolTip = targetWord;
+                return;
+            }
+
+            if (DM.Config.config.localizeOption != "kr")
+            {
+                tbx.Text = targetWord.Split('-').Last();
+                tbx.ToolTip = targetWord.Split('-').Last();
+            }
+            else
+            {
+                string KOREAN_WORD = targetWord.Split('-')[0];
+                if (string.IsNullOrEmpty(KOREAN_WORD))
+                {
+                    tbx.Text = targetWord.Split('-').Last();
+                    tbx.ToolTip = targetWord.Split('-').Last();
+                }
+                else
+                {
+                    tbx.Text = KOREAN_WORD;
+                    tbx.ToolTip = KOREAN_WORD;
+                }
             }
         }
     }

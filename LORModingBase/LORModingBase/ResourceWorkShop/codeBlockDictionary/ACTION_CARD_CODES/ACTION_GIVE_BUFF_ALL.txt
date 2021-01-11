@@ -1,0 +1,4 @@
+foreach (BattleUnitModel battleUnitModel in BattleObjectManager.instance.GetAliveList((base.owner.faction == Faction.Player) ? Faction.Enemy : Faction.Player))
+{
+    battleUnitModel.bufListDetail.AddKeywordBufByCard(KeywordBuf.{{0}}, {{1}}, null);
+}

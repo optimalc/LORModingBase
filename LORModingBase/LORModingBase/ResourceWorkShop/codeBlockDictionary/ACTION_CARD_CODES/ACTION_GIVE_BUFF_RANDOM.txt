@@ -1,0 +1,4 @@
+foreach (BattleUnitModel <<0>> in BattleObjectManager.instance.GetAliveList_random(this.card.{{0}}.faction, {{1}}))
+{
+    <<0>>.bufListDetail.AddKeywordBufByEtc(KeywordBuf.{{2}}, {{3}}, null);
+}
