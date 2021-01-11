@@ -1,0 +1,3 @@
+if (((base.card.target != null) ? base.card.target.currentDiceAction : null) != null)
+{
+}

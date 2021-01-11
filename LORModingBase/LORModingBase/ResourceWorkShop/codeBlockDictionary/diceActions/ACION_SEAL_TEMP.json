@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "다음 막동안 대상의 속도주사위 1개를 봉인",
+        "다음 막동안 대상의 속도주사위 1개를 봉인합니다",
+        ""
+    ],
+    "en":[
+        "Seal a Speed die of target for the next Scene",
+        "Seal a Speed die of target for the next Scene",
+        ""
+    ],
+    "jp":[
+        "Seal a Speed die of target for the next Scene",
+        "Seal a Speed die of target for the next Scene",
+        ""
+    ],
+    "cn":[
+        "Seal a Speed die of target for the next Scene",
+        "Seal a Speed die of target for the next Scene",
+        ""
+    ]
+}

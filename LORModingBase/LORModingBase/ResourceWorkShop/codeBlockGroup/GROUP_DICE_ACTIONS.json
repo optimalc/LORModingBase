@@ -24,6 +24,9 @@
     "diceActions/ACTION_GIVE_CARD",
     "diceActions/ACTION_PROTECTION_BUFF_TO_ALLIES",
     "diceActions/ACTION_STRENGTH_BUFF_TO_ALLIES",
+    "diceActions/ACION_SEAL_TEMP",
+    "diceActions/ACTION_DESTORY_ALL_DICE",
+    "diceActions/ACTION_DESTORY_NEXT_DICE",
 
     "cardAbilityIfCodes/IF_UNDER_HP",
     "cardAbilityIfCodes/IF_OVER_HP",
@@ -33,6 +36,10 @@
     "cardAbilityIfCodes/IF_SMOKE_OVER_AND_USE",
     "cardAbilityIfCodes/IF_OVER_BREAK_LIFE",
     "cardAbilityIfCodes/IF_UNDER_BREAK_LIFE",
+    "cardAbilityIfCodes/IF_UNIQUE_STATE",
+    "cardAbilityIfCodes/IF_VANILLA_VALUE_IS_N",
+    "cardAbilityIfCodes/IF_VANILLA_VALUE_OVER_N",
+    "cardAbilityIfCodes/IF_VANILLA_VALUE_UNDER_N",
 
     "globalBlock/WHILE_LOOP_DICE_ACTIONS"
 ]

@@ -1,0 +1,3 @@
+if (this.behavior.DiceVanillaValue == {{0}})
+{
+}
