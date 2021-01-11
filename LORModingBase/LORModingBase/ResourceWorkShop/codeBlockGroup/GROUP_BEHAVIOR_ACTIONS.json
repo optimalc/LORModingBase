@@ -1,0 +1,10 @@
+[
+    "passiveActionCodes/ACTION_GIVE_BINDING_EFFECT",
+    "passiveActionCodes/ACTION_GIVE_BLEEDING_EFFECT",
+    "passiveActionCodes/ACTION_GIVE_BURN_EFFECT",
+    "passiveActionCodes/ACTION_GIVE_DISARM_EFFECT",
+    "passiveActionCodes/ACTION_GIVE_PARALYSIS_EFFECT",
+    "passiveActionCodes/ACTION_GIVE_SMOKE_EFFECT",
+    "passiveActionCodes/ACTION_GIVE_VULNERABLE_EFFECT",
+    "passiveActionCodes/ACTION_GIVE_WEAK_EFFECT"
+]

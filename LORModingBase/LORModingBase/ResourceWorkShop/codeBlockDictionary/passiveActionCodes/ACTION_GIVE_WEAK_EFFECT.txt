@@ -1,0 +1,2 @@
+if(behavior.card.target != null)
+    behavior.card.target.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Weak, {{0}}, this.owner);

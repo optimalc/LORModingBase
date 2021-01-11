@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "대상에게 n만큼의 연기를 부여합니다",
+        "대상에게 n만큼의 연기를 부여합니다",
+        "n"
+    ],
+    "en":[
+        "Give smoke effect to the target",
+        "Give smoke effect to the target",
+        "n"
+    ],
+    "jp":[
+        "Give smoke effect to the target",
+        "Give smoke effect to the target",
+        "n"
+    ],
+    "cn":[
+        "Give smoke effect to the target",
+        "Give smoke effect to the target",
+        "n"
+    ]
+}

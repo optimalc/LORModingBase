@@ -1,0 +1,2 @@
+if(behavior.card.target != null)
+    behavior.card.target.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Burn, {{0}}, this.owner);

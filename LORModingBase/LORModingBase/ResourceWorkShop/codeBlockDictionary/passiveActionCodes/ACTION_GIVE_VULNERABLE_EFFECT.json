@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "대상에게 n만큼의 취약을 부여합니다",
+        "대상에게 n만큼의 취약을 부여합니다",
+        "n"
+    ],
+    "en":[
+        "Give vulnerable effect to the target",
+        "Give vulnerable effect to the target",
+        "n"
+    ],
+    "jp":[
+        "Give vulnerable effect to the target",
+        "Give vulnerable effect to the target",
+        "n"
+    ],
+    "cn":[
+        "Give vulnerable effect to the target",
+        "Give vulnerable effect to the target",
+        "n"
+    ]
+}
