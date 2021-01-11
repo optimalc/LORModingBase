@@ -19,5 +19,7 @@
     "%TbxPassiveDes_ToolTip%":"패시브의 설명을 입력합니다",
 
     "%BtnCopyPassive_ToolTip%":"패시브를 복제해서 새로운 패시브를 만듭니다",
-    "%BtnDelete_ToolTip%":"패시브를 삭제합니다"
+    "%BtnDelete_ToolTip%":"패시브를 삭제합니다",
+
+    "%BtnMakeDLL_ToolTip%":"이 패시브와 관련된 DLL을 작성합니다"
 }

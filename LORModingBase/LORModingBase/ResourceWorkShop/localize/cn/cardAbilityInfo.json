@@ -6,5 +6,7 @@
     "%TbxAbilityDes_ToolTip%":"Input description of the Card ability",
 
     "%BtnCopyAbility_ToolTip%":"Copy the card ability",
-    "%BtnDelete_ToolTip%":"Delete card ability"
+    "%BtnDelete_ToolTip%":"Delete card ability",
+
+    "%BtnMakeDLL_ToolTip%":"Make DLL for this card ability"
 }

@@ -19,5 +19,7 @@
     "%TbxPassiveDes_ToolTip%":"Input description of passive",
 
     "%BtnCopyPassive_ToolTip%":"Copy the passive",
-    "%BtnDelete_ToolTip%":"Delete the passive"
+    "%BtnDelete_ToolTip%":"Delete the passive",
+
+    "%BtnMakeDLL_ToolTip%":"Make DLL for this passive"
 }
