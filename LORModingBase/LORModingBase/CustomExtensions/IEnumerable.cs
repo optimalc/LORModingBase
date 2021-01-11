@@ -52,5 +52,15 @@ namespace LORModingBase.CustomExtensions
             if (listToAction != null && listToAction.Count > 0)
                 action(listToAction[0]);
         }
+    
+        /// <summary>
+        /// Get unique list
+        /// </summary>
+        /// <param name="listToUnique"></param>
+        /// <returns></returns>
+        public static List<string> GetUniqueList(this List<string> listToUnique)
+        {
+            return new HashSet<string>(listToUnique).ToList();
+        }
     }
 }

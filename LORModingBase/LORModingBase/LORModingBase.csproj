@@ -449,5 +449,8 @@
     <Resource Include="Resources\BtnAddNode.png" />
     <Resource Include="Resources\BtnCodeBlockInfo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconMotion.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -43,10 +43,10 @@
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="BtnEffect" Grid.Column="0" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" ToolTip="주사위에 특수 효과를 추가합니다" Click="NomalButtonClickEvents" >
                     <Button.RenderTransform>
@@ -61,6 +61,8 @@
                         <ImageBrush ImageSource="../Resources/BtnEffect.png"/>
                     </Button.Background>
                 </Button>
+                <TextBox x:Name="TbxMotion" Grid.Column="1" Text="H" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="주사위의 모션을 선택합니다" VerticalAlignment="Center" TextAlignment="Center" Background="#7F83B66D" SelectionBrush="{x:Null}" PreviewMouseLeftButtonDown="TbxMotion_PreviewMouseLeftButtonDown"/>
+                <TextBox x:Name="TbxEffectRes" Grid.Column="2" Text="H" FontSize="12" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0" ToolTip="주사위의 모션과 관련된 효과 스크립트를 선택합니다" VerticalAlignment="Center" TextAlignment="Center" Background="#7F83B66D" SelectionBrush="{x:Null}" PreviewMouseLeftButtonDown="TbxEffectRes_PreviewMouseLeftButtonDown"/>
                 <Button x:Name="BtnDeleteDice" Grid.Column="4" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="NomalButtonClickEvents" ToolTip="주사위를 삭제합니다" >
                     <Button.RenderTransform>
                         <TransformGroup>
