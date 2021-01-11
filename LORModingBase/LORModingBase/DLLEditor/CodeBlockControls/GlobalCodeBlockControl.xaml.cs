@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -163,14 +164,26 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
             TextBox tbx = sender as TextBox;
             if(tbx.Tag.ToString().Contains('$'))
             {
-                List<string> SPILT_LIST = tbx.Tag.ToString().Split('$').Skip(1).ToList();
+                List<string> LIST_TO_SHOW = new List<string>();
+                tbx.Tag.ToString().Split('$').Skip(1).ToList().ForEach((string selectStr) =>
+                {
+                    if (selectStr.Contains("&"))
+                    {
+                        string GROUP_PATH = $"{DS.PROGRAM_PATHS.CODE_BLOCK_GROUP}\\{selectStr.Replace("&", "")}.json";
+                        if (File.Exists(GROUP_PATH))
+                            LIST_TO_SHOW.AddRange(Tools.JsonFile.LoadJsonFile<List<string>>(GROUP_PATH));
+                    }
+                    else
+                        LIST_TO_SHOW.Add(selectStr);
+                });
+
                 new SubWindows.Global_ListSeleteWindow((string selectedCode) =>
                 {
                     tbx.Text = selectedCode.Split('-')[1];
                     int PARA_INDEX = Convert.ToInt32(tbx.Name.Split('_').Last());
                     innerCodeBlock.inputtedParameterList[PARA_INDEX] = tbx.Text;
                     updateTextBox();
-                }, SPILT_LIST).ShowDialog();
+                }, LIST_TO_SHOW).ShowDialog();
             }
         }
     }
