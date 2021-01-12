@@ -125,6 +125,7 @@
     <Compile Include="SubWindows\OptionWindow.xaml.cs">
       <DependentUpon>OptionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\CheckInput.cs" />
     <Compile Include="Tools\ColorTools.cs" />
     <Compile Include="Tools\DeepCopy.cs" />
     <Compile Include="Tools\Dialog.cs" />

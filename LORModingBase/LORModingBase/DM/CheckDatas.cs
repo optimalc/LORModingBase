@@ -29,13 +29,13 @@ namespace LORModingBase.DM
         public static void CheckCriticalMessageWithSyntaxString()
         {
             CheckDatasBySyntaxCheckStrings(
-                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"%BtnCriticalPage%").Split('$')[0],
-                "Book$ID", DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode, 
-                new List<string>() { "Book$ID#BD", "Book/Name#B" });
+               DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"%BtnCriticalPage%").Split('$')[0],
+               "Book$ID", DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode,
+               new List<string>() { "Book$ID#BDI", "Book/Name#B" });
             CheckDatasBySyntaxCheckStrings(
                 DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"%BtnCards%").Split('$')[0],
                 "Card$ID", DM.EditGameData_CardInfos.StaticCard.rootDataNode,
-                new List<string>() { "Card$ID#BD", "Card/Name#B" });
+                new List<string>() { "Card$ID#BD", "Card/Name#B" }); 
 
             CheckDatasBySyntaxCheckStrings(
              DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"%BtnStages%").Split('$')[0],
@@ -131,6 +131,28 @@ namespace LORModingBase.DM
                                     CheckDatas.MakeCautionMessage("ERROR_MESSAGE_02", REFERENCE_TEXT, menunName, CHECK_PATH);
                             }
                             DUPLICATE_CHECK.Add(CHECK_TEXT);
+                        }
+
+                        if (!string.IsNullOrEmpty(CHECK_TEXT) && CHECK_FUNC.Contains("I"))
+                        {
+                            if (!Tools.CheckInput.IsIntegerInputed(CHECK_TEXT))
+                            {
+                                if (isCritical)
+                                    CheckDatas.MakeCriticalMessage("ERROR_MESSAGE_03", REFERENCE_TEXT, menunName, CHECK_PATH);
+                                else
+                                    CheckDatas.MakeCautionMessage("ERROR_MESSAGE_03", REFERENCE_TEXT, menunName, CHECK_PATH);
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(CHECK_TEXT) && CHECK_FUNC.Contains("D"))
+                        {
+                            if (!Tools.CheckInput.IsDoubleInputed(CHECK_TEXT))
+                            {
+                                if (isCritical)
+                                    CheckDatas.MakeCriticalMessage("ERROR_MESSAGE_04", REFERENCE_TEXT, menunName, CHECK_PATH);
+                                else
+                                    CheckDatas.MakeCautionMessage("ERROR_MESSAGE_04", REFERENCE_TEXT, menunName, CHECK_PATH);
+                            }
                         }
                     });
                 }

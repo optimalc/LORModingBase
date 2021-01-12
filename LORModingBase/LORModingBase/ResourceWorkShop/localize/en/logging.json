@@ -7,5 +7,7 @@
     "Caution":"Caution",
 
     "ERROR_MESSAGE_01":"[ERROR-CODE 0x01][ID :{0}] '{2}' attribute in the '{1}' menu is must be inputted. But, it is not inputted",
-    "ERROR_MESSAGE_02":"[ERROR-CODE 0x02][ID :{0}] '{2}' attribute in the '{1}' menu is must have a unique ID. But, it was inputted duplicated ID."
+    "ERROR_MESSAGE_02":"[ERROR-CODE 0x02][ID :{0}] '{2}' attribute in the '{1}' menu is must have a unique ID. But, it was inputted duplicated ID.",
+    "ERROR_MESSAGE_03":"[ERROR-CODE 0x03][ID :{0}] '{2}' attribute in the '{1}' menu must have an Integer. But another format was inputted",
+    "ERROR_MESSAGE_04":"[ERROR-CODE 0x04][ID :{0}] '{2}' attribute in the '{1}' menu must have a Decimal. But another format was inputted"
 }
