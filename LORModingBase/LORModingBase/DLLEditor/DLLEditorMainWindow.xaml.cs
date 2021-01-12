@@ -243,5 +243,20 @@ namespace LORModingBase.DLLEditor
                     break;
             }
         }
+
+        private void SbrCodeBlockStack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (SqlCodeBlocks_ScaleTransForm == null) return;
+            if(SbrCodeBlockStack.Value > 0.25)
+            {
+                SqlCodeBlocks_ScaleTransForm.ScaleX = SbrCodeBlockStack.Value;
+                SqlCodeBlocks_ScaleTransForm.ScaleY = SbrCodeBlockStack.Value;
+            }
+            else
+            {
+                SqlCodeBlocks_ScaleTransForm.ScaleX = 0.25;
+                SqlCodeBlocks_ScaleTransForm.ScaleY = 0.25;
+            }
+        }
     }
 }
