@@ -127,9 +127,23 @@ namespace LORModingBase.DLLEditor
             {
                 if(targetPath.Contains("&"))
                 {
-                    string GROUP_PATH = $"{DS.PROGRAM_PATHS.CODE_BLOCK_GROUP}\\{targetPath.Replace("&", "")}.json";
-                    if(File.Exists(GROUP_PATH))
-                        codeBlocks.AddRange(GetMultipleBaseBlockFromTargetPathListOrTitle(Tools.JsonFile.LoadJsonFile<List<string>>(GROUP_PATH)));
+                    if(targetPath == "&ALL")
+                    {
+                        loadedCodeBlocks.ForEachKeyValuePairSafe((string dicKey, Dictionary<string, CodeBlock> codeBlockDic) =>
+                        {
+                            if (dicKey == "CUSTOM_CODES") return;
+                            codeBlockDic.ForEachKeyValuePairSafe((string fileKey, CodeBlock eachCodeBlock) =>
+                            {
+                                codeBlocks.Add(eachCodeBlock);
+                            });
+                        });
+                    }
+                    else
+                    {
+                        string GROUP_PATH = $"{DS.PROGRAM_PATHS.CODE_BLOCK_GROUP}\\{targetPath.Replace("&", "")}.json";
+                        if (File.Exists(GROUP_PATH))
+                            codeBlocks.AddRange(GetMultipleBaseBlockFromTargetPathListOrTitle(Tools.JsonFile.LoadJsonFile<List<string>>(GROUP_PATH)));
+                    }
                 }
                 else
                 {
@@ -138,6 +152,15 @@ namespace LORModingBase.DLLEditor
                         codeBlocks.Add(foundCodeBlock);
                 }
             });
+
+            if(loadedCodeBlocks.ContainsKey("CUSTOM_CODES"))
+            {
+                loadedCodeBlocks["CUSTOM_CODES"].ForEachKeyValuePairSafe((string fileKey, CodeBlock eachCodeBlock) =>
+                {
+                    codeBlocks.Add(eachCodeBlock);
+                });
+            }
+
             return codeBlocks;
         }
 

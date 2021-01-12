@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["WHILE"],
+    "inputtedParameter":[""],
+    "subBlockWhiteFilter":["&ALL"],
+    "kr":[
+        "커스텀 반복 블록",
+        "커스텀 반복 블록입니다. 텍스트창에서 오른쪽 마우스를 눌러서 무엇이든 직접 삽입시킬 수 있습니다",
+        "코드 편집"
+    ],
+    "en":[
+        "Custom WHILE block",
+        "This is a custom while block. With the right mouse button in a text editor, You can insert any code you want",
+        "Edit code"
+    ],
+    "jp":[
+        "Custom WHILE block",
+        "This is a custom while block. With the right mouse button in a text editor, You can insert any code you want",
+        "Edit code"
+    ],
+    "cn":[
+        "Custom WHILE block",
+        "This is a custom while block. With the right mouse button in a text editor, You can insert any code you want",
+        "Edit code"
+    ]
+}
