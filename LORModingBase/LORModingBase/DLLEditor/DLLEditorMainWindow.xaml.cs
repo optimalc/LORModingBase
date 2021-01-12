@@ -34,7 +34,7 @@ namespace LORModingBase.DLLEditor
             InitDLLStacks();
         }
 
-        public DLLEditorMainWindow(string fileName, List<string> autoParaPaths = null)
+        public DLLEditorMainWindow(string fileName, List<string> autoParaPaths = null, List<CodeBlock> rootCodeBlocksToUse = null)
         {
             InitializeComponent();
             TbxNameSpace.Text = DM.Config.config.nameSpaceToUse;
@@ -48,6 +48,8 @@ namespace LORModingBase.DLLEditor
             if (!File.Exists(JSON_FILE_PATH))
             {
                 File.Create(JSON_FILE_PATH);
+                if (rootCodeBlocks != null)
+                    rootCodeBlocks = rootCodeBlocksToUse;
                 if (autoParaPaths != null)
                     rootCodeBlocks = CodeBlockDataManagement.MakeCodeBlockListWithParameters(autoParaPaths);
             }

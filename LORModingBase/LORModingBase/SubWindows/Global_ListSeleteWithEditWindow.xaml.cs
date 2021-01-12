@@ -143,7 +143,10 @@ namespace LORModingBase.SubWindows
                         if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_Buff.LocalizedBuff, DM.Config.CurrentWorkingDirectory)))
                             DM.EditGameData_Buff.LocalizedBuff = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_Buff.LocalizedBuff, DM.Config.CurrentWorkingDirectory));
                         else
-                            DM.EditGameData_Buff.LocalizedBuff = new DM.XmlData(DM.GameInfos.localizeInfos["effectTextList"]);
+                        {
+                            DM.EditGameData_Buff.LocalizedBuff = new DM.XmlData(DM.GameInfos.localizeInfos["EffectTexts"]);
+                            DM.EditGameData_Buff.LocalizedBuff.rootDataNode.MakeEmptyNodeGivenPathIfNotExist("effectTextList");
+                        }
 
                         this.Close();
                     };

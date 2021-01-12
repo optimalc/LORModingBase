@@ -77,8 +77,14 @@ namespace LORModingBase.UC
                         Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.OPTION, $"DLLCompilerPathError2"));
                         return;
                     }
-                    //new DLLEditor.DLLEditorMainWindow($"customCardAbility_{TbxAbilityID.Text}",
-                    //    new List<string>() { $"BASE_CARD_ABILITY_CODES/BASE_CARD_ABILITY,{TbxAbilityID.Text}" }).ShowDialog();
+                    DLLEditor.CodeBlock buffBaseBlock = DLLEditor.CodeBlockDataManagement.GetBaseBlockFromTargetPathOrTitle("BASE_UNIT_BUFF_CODES/BASE_BATTLE_UNIT_BUF").Copy();
+                    buffBaseBlock.inputtedParameterList[0] = TbxBuffID.Text;
+                    DLLEditor.CodeBlock buffKeywordBaseBlock = DLLEditor.CodeBlockDataManagement.GetBaseBlockFromTargetPathOrTitle("BASE_UNIT_BUFF_CODES/BASE_BATTLE_UNIT_BUF_KEYWORD").Copy();
+                    buffKeywordBaseBlock.inputtedParameterList[0] = TbxBuffID.Text;
+                    buffBaseBlock.subCodeBlocks.Add(buffKeywordBaseBlock);
+
+                    new DLLEditor.DLLEditorMainWindow($"customBuff_{TbxBuffID.Text}",
+                        rootCodeBlocksToUse:new List<DLLEditor.CodeBlock>() { buffBaseBlock }).ShowDialog();
                     break;
                 case "BtnCopyBuff":
                     DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList", (DM.XmlDataNode effectTextList) => {
