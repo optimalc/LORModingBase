@@ -1,0 +1,4 @@
+public override void OnSucceedDefense()
+{
+    base.OnSucceedDefense();
+}

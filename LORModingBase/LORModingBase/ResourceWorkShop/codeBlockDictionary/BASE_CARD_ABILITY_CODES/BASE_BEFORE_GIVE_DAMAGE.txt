@@ -1,0 +1,4 @@
+public override void BeforeGiveDamage(BattleUnitModel target)
+{
+    base.BeforeGiveDamage(target);
+}
