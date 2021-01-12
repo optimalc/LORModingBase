@@ -107,7 +107,7 @@ namespace LORModingBase.DLLEditor
             foreach(string pathParameter in pathParameters)
             {
                 List<string> SPLIT_PARAMETER = pathParameter.Split(',').ToList();
-                CodeBlock passiveBase = GetBaseBlockFromTargetPathOrTitle(SPLIT_PARAMETER[0]);
+                CodeBlock passiveBase = GetBaseBlockFromTargetPathOrTitle(SPLIT_PARAMETER[0]).Copy();
                 for(int paraIndex=0; paraIndex<SPLIT_PARAMETER.Count-1; paraIndex++)
                     passiveBase.inputtedParameterList[paraIndex] = SPLIT_PARAMETER[paraIndex + 1];
                 autoCodeBlock.Add(passiveBase);
