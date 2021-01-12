@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["WHILE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "반복 탈출 블록",
+        "반복 블록 내부에서 반복중인 행위를 탈출 시킬 수 있습니다. 조건 블록과 함께 써야 유용합니다",
+        ""
+    ],
+    "en":[
+        "Loop escape block",
+        "You can escape the loop. It will be useful if you use it with IF block",
+        ""
+    ],
+    "jp":[
+        "Loop escape block",
+        "You can escape the loop. It will be useful if you use it with IF block",
+        ""
+    ],
+    "cn":[
+        "Loop escape block",
+        "You can escape the loop. It will be useful if you use it with IF block",
+        ""
+    ]
+}
