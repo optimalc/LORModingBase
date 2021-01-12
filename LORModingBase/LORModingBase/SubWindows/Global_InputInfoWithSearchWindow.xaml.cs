@@ -343,24 +343,25 @@ namespace LORModingBase.SubWindows
                     break;
 
                 case InputInfoWithSearchWindow_PRESET.BUFFS:
-                    //#region Add custom items
-                    //DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode customNode) =>
-                    //{
-                    //    string ABILITIY_ID = customNode.GetAttributesSafe("ID");
-                    //    if (!string.IsNullOrEmpty(ABILITIY_ID))
-                    //    {
-                    //        string ABILITY_DES = DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID);
-                    //        selectItems.Add($"{CUSTOM_ITEM_WORD} {ABILITY_DES}:{ABILITIY_ID}");
-                    //    }
-                    //});
-                    //searchTypes.Add(CUSTOM_ITEM_WORD);
-                    //#endregion
+                    #region Add custom items
+                    DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode customNode) =>
+                    {
+                        string BUFF_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BUFF_ID))
+                        {
+                            string BUFF_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForBuff(BUFF_ID);
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {BUFF_DES}");
+                        }
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
                     DM.GameInfos.localizeInfos["EffectTexts"].rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode buffNode) =>
                     {
                         string BUFF_ID = buffNode.GetAttributesSafe("ID");
                         if (!string.IsNullOrEmpty(BUFF_ID))
                         {
-                            selectItems.Add(BUFF_ID);
+                            string BUFF_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForBuff(BUFF_ID);
+                            selectItems.Add(BUFF_DES);
                         }
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());

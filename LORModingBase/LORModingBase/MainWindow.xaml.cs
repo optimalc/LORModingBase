@@ -913,9 +913,9 @@ namespace LORModingBase
                         {
                             List<DM.XmlDataNode> foundBuffIds = DM.GameInfos.localizeInfos["EffectTexts"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("effectTextList/BattleEffectText",
                            attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
-                            //if (foundBuffIds.Count <= 0)
-                            //    foundBuffIds = DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
-                            //        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            if (foundBuffIds.Count <= 0)
+                                foundBuffIds = DM.EditGameData_Buff.LocalizedBuff.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("effectTextList/BattleEffectText",
+                                    attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
 
                             if (foundBuffIds.Count > 0)
                             {
