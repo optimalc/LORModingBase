@@ -31,7 +31,10 @@ namespace LORModingBase.DM
             CheckDatasBySyntaxCheckStrings(
                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"%BtnCriticalPage%").Split('$')[0],
                "Book$ID", DM.EditGameData_BookInfos.StaticEquipPage.rootDataNode,
-               new List<string>() { "Book$ID#BDI", "Book/Name#B" });
+               new List<string>() { "Book$ID#BDI", "Book/Name#B" ,
+                                    "Book/EquipEffect/HP#BI", "Book/EquipEffect/Break#BI",
+                                    "Book/EquipEffect/SpeedMin#BI", "Book/EquipEffect/Speed#BI",
+                                    "Book/Chapter#BI", "Book/Episode#BI", "Book/BookIcon#B", "Book/CharacterSkin#B"});
             CheckDatasBySyntaxCheckStrings(
                 DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"%BtnCards%").Split('$')[0],
                 "Card$ID", DM.EditGameData_CardInfos.StaticCard.rootDataNode,
