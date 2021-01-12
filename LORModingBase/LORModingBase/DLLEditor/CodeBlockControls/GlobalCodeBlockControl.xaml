@@ -80,7 +80,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Label x:Name="LblPara_0" Content="" FontSize="10"  Style="{StaticResource StyLbl}"/>
-                    <TextBox x:Name="TbxPara_0" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections"/>
+                    <TextBox x:Name="TbxPara_0" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections" PreviewMouseDown="HandlyInputToTextBox"/>
                 </Grid>
                 <Grid Grid.Column="1" Name="GrdPara_1" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
@@ -89,7 +89,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Label x:Name="LblPara_1" Content="" FontSize="10"  Style="{StaticResource StyLbl}"/>
-                    <TextBox x:Name="TbxPara_1" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections"/>
+                    <TextBox x:Name="TbxPara_1" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections" PreviewMouseDown="HandlyInputToTextBox"/>
                 </Grid>
                 <Grid Grid.Column="2" Name="GrdPara_2" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
@@ -98,7 +98,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Label x:Name="LblPara_2" Content="" FontSize="10"  Style="{StaticResource StyLbl}"/>
-                    <TextBox x:Name="TbxPara_2" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections"/>
+                    <TextBox x:Name="TbxPara_2" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections" PreviewMouseDown="HandlyInputToTextBox"/>
                 </Grid>
                 <Grid Grid.Column="3" Name="GrdPara_3" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
@@ -107,7 +107,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Label x:Name="LblPara_3" Content="" FontSize="10"  Style="{StaticResource StyLbl}"/>
-                    <TextBox x:Name="TbxPara_3" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections"/>
+                    <TextBox x:Name="TbxPara_3" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections" PreviewMouseDown="HandlyInputToTextBox"/>
                 </Grid>
                 <Grid Grid.Column="4" Name="GrdPara_4" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
@@ -116,7 +116,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Label x:Name="LblPara_4" Content="" FontSize="10"  Style="{StaticResource StyLbl}"/>
-                    <TextBox x:Name="TbxPara_4" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections"/>
+                    <TextBox x:Name="TbxPara_4" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections" PreviewMouseDown="HandlyInputToTextBox"/>
                 </Grid>
                 <Grid Grid.Column="5" Name="GrdPara_5" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
@@ -125,7 +125,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
                     <Label x:Name="LblPara_5" Content="" FontSize="10"  Style="{StaticResource StyLbl}"/>
-                    <TextBox x:Name="TbxPara_5" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections"/>
+                    <TextBox x:Name="TbxPara_5" Grid.Column="1" Text="" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" TextChanged="ReflectParameterChangeInTextBox" PreviewMouseLeftButtonDown="ReflectSelections" PreviewMouseDown="HandlyInputToTextBox"/>
                 </Grid>
             </Grid>
         </Grid>

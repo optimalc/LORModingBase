@@ -128,6 +128,12 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
             }
         }
 
+        #region Text box parameter events
+        /// <summary>
+        /// Text box change -> reflect change
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReflectParameterChangeInTextBox(object sender, TextChangedEventArgs e)
         {
             if (innerCodeBlock == null)
@@ -139,6 +145,11 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
             updateTextBox();
         }
 
+        /// <summary>
+        /// Mouse left button select -> Show selector
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReflectSelections(object sender, MouseButtonEventArgs e)
         {
             if (innerCodeBlock == null)
@@ -158,7 +169,8 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
             {
                 if (tbx.Tag.ToString().Split('#').Count() > 1)
                 {
-                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedID) => {
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedID) =>
+                    {
                         int PARA_INDEX = Convert.ToInt32(tbx.Name.Split('_').Last());
                         GetDescriptionForSearchTagStr(innerCodeBlock.parameterList[PARA_INDEX], selectedID, tbx);
                         innerCodeBlock.inputtedParameterList[PARA_INDEX] = selectedID;
@@ -168,19 +180,44 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
             }
         }
 
+        /// <summary>
+        /// Mouse right button select -> Handly input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HandlyInputToTextBox(object sender, MouseButtonEventArgs e)
+        {
+            if(e.RightButton == MouseButtonState.Pressed)
+            {
+                if (innerCodeBlock == null)
+                    return;
+                TextBox tbx = sender as TextBox;
+                int PARA_INDEX = Convert.ToInt32(tbx.Name.Split('_').Last());
+
+                new SubWindows.Global_InputOneColumnData((string inputedData) =>
+                {
+                    tbx.Text = inputedData;
+                    innerCodeBlock.inputtedParameterList[PARA_INDEX] = inputedData;
+                    updateTextBox();
+                }, innerCodeBlock.inputtedParameterList[PARA_INDEX]).ShowDialog();
+            }
+        }
+        #endregion
+
+        #region Parse and Localize parameters
         private void ProcessParameters(Label lbl, TextBox tbx, CodeBlock codeBlock, int paraIndex)
         {
             lbl.Content = codeBlock.parameterList[paraIndex].Split('$')[0].Split('#')[0];
             lbl.ToolTip = codeBlock.parameterList[paraIndex].Split('$')[0].Split('#')[0];
-            if(codeBlock.parameterList[paraIndex].Contains('$') && DM.Config.config.localizeOption == "kr")
+            if (codeBlock.parameterList[paraIndex].Contains('$') && DM.Config.config.localizeOption == "kr")
             {
-                foreach(string paraDes in ParseParameterStr(codeBlock.parameterList[paraIndex]))
+                foreach (string paraDes in ParseParameterStr(codeBlock.parameterList[paraIndex]))
                 {
                     if (codeBlock.inputtedParameterList[paraIndex] == paraDes.Split('-').Last())
                         tbx.Text = paraDes.Split('-')[0];
                 }
             }
-            else if(codeBlock.parameterList[paraIndex].Contains('#'))
+            else if (codeBlock.parameterList[paraIndex].Contains('#'))
             {
                 GetDescriptionForSearchTagStr(
                     codeBlock.parameterList[paraIndex],
@@ -211,7 +248,7 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
 
         private void GetLocalizedDescriptionForWord(TextBox tbx, string targetWord)
         {
-            if(!targetWord.Contains("-"))
+            if (!targetWord.Contains("-"))
             {
                 tbx.Text = targetWord;
                 tbx.ToolTip = targetWord;
@@ -238,10 +275,10 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                 }
             }
         }
-    
+
         private void GetDescriptionForSearchTagStr(string searchTagStr, string inputedValue, TextBox tbx)
         {
-            if(searchTagStr.Split('#').Count() > 1)
+            if (searchTagStr.Split('#').Count() > 1)
             {
                 List<DM.XmlDataNode> searchedNodes = new List<DM.XmlDataNode>();
                 string searchPathToUse = "";
@@ -249,7 +286,7 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                 {
                     case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_PASSIVE:
                         searchedNodes = DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode
-                            .GetXmlDataNodesByPathWithXmlInfo("PassiveDesc", 
+                            .GetXmlDataNodesByPathWithXmlInfo("PassiveDesc",
                             attributeToCheck: new Dictionary<string, string>() { { "ID", inputedValue } });
                         searchPathToUse = "Name";
                         break;
@@ -261,7 +298,7 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                         break;
                 }
 
-                if (searchedNodes.Count > 0 && !string.IsNullOrEmpty(searchPathToUse) 
+                if (searchedNodes.Count > 0 && !string.IsNullOrEmpty(searchPathToUse)
                     && !string.IsNullOrEmpty(searchedNodes[0].GetInnerTextByPath(searchPathToUse)))
                 {
                     tbx.Text = searchedNodes[0].GetInnerTextByPath(searchPathToUse);
@@ -273,6 +310,7 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                     tbx.ToolTip = inputedValue;
                 }
             }
-        }
+        } 
+        #endregion
     }
 }
