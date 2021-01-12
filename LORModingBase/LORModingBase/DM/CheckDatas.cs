@@ -88,7 +88,14 @@ namespace LORModingBase.DM
             CheckDatasBySyntaxCheckStrings(
                 DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"%BtnCardAbility%").Split('$')[0],
                 "BattleCardAbility$ID", DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode,
-                new List<string>() { "BattleCardAbility$ID#BD" }); 
+                new List<string>() { "BattleCardAbility$ID#BD" });
+            #endregion
+
+            #region Buff check logic
+            CheckDatasBySyntaxCheckStrings(
+                DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"%BtnBuff%").Split('$')[0],
+                "effectTextList/BattleEffectText$ID", DM.EditGameData_Buff.LocalizedBuff.rootDataNode,
+                new List<string>() { "effectTextList/BattleEffectText$ID#BD" });
             #endregion
         }
 
