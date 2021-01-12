@@ -51,7 +51,13 @@ namespace LORModingBase.DLLEditor
                 string output = p.StandardOutput.ReadToEnd();
                 p.WaitForExit();
 
-                Tools.MessageBoxTools.ShowInfoMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"SUCCESS_COMPILE"));
+                if(output.Contains("output.cs"))
+                {
+                    string ERROR_MESSAGE = output.Substring(output.IndexOf("output.cs"));
+                    Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"ERROR_COMPILE") + $"\n{ERROR_MESSAGE}");
+                }
+                else
+                    Tools.MessageBoxTools.ShowInfoMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"SUCCESS_COMPILE"));
 
                 return output;
             }

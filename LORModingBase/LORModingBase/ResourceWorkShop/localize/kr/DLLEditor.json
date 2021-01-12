@@ -21,5 +21,6 @@
     "%BtnAddNode_ToolTip%":"이 노드에 새로운 코드 블록을 추가하기",
     "%BtnDelete_ToolTip%":"이 블록을 삭제하기",
 
-    "SUCCESS_COMPILE":"컴파일 성공"
+    "SUCCESS_COMPILE":"컴파일 성공",
+    "ERROR_COMPILE":"컴파일 도중에 에러가 발생했습니다"
 }

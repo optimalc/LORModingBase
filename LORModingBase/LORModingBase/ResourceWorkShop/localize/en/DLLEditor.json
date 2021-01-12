@@ -21,5 +21,6 @@
     "%BtnAddNode_ToolTip%":"Add new code block in this node",
     "%BtnDelete_ToolTip%":"Delete code block",
 
-    "SUCCESS_COMPILE":"Compile was succeeded"
+    "SUCCESS_COMPILE":"Compile was succeeded",
+    "ERROR_COMPILE":"An error has occurred while compiling"
 }
