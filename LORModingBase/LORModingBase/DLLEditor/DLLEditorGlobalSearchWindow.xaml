@@ -66,7 +66,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="TbxSourceCodeDes" Text="" Grid.Column="0" ToolTip="소스코드와 관련된 설명" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"/>
+                    <TextBox x:Name="TbxSourceCodeDes" Text="" Grid.Column="0" ToolTip="소스코드와 관련된 설명" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" TextWrapping="Wrap"/>
                     <TextBox x:Name="TbxSourceCodeDetail" Text="" Grid.Column="1" ToolTip="소스코드 내용" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"/>
                 </Grid>
             </Grid>

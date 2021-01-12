@@ -637,7 +637,7 @@
                 <Grid.Background>
                     <ImageBrush ImageSource="./Resources/MenuBg.png"/>
                 </Grid.Background>
-                <TextBox x:Name="TbxTextEditorLog" Text="" Grid.Row="1" ToolTip="데이터 생성시 발생한 로그입니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"/>
+                <TextBox x:Name="TbxTextEditorLog" Text="" Grid.Row="1" ToolTip="데이터 생성시 발생한 로그입니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" TextWrapping="Wrap"/>
             </Grid>
         </Grid>
     </Grid>
