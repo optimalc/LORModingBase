@@ -1,3 +1,14 @@
 {
-    
+    "%LblBuffID%":"버프 ID :$0.95,1$5,0",
+    "%TbxBuffID_ToolTip%":"버프의 고유 ID를 입력합니다",
+
+    "%LblBuffName%":"버프 이름 : $1.1,1$2,0",
+    "%TbxBuffName_ToolTip%":"버프의 이름을 입력합니다",
+
+    "%LblBuffDes%":"-- 버프 관련 설명 --$0.8,1$15,0",
+    "%TbxBuffDes_ToolTip%":"버프의 설명을 입력합니다",
+
+    "%BtnMakeDLL_ToolTip%":"이 버프와 관련된 DLL을 작성합니다",
+    "%BtnCopyBuff_ToolTip%":"버프를 복제해서 새로운 버프를 만듭니다",
+    "%BtnDelete_ToolTip%":"버프를 삭제합니다"
 }

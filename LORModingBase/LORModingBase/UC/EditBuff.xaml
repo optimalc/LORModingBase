@@ -61,7 +61,7 @@
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
             <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-            <Button x:Name="BtnMakeDLL" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="이 카드 효과와 관련된 DLL을 작성합니다" Click="RightMenuButtonEvents">
+            <Button x:Name="BtnMakeDLL" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="이 버프와 관련된 DLL을 작성합니다" Click="RightMenuButtonEvents">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="10" ScaleY="12"/>

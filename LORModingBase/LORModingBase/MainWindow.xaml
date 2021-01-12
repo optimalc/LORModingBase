@@ -278,16 +278,21 @@
                     <ImageBrush ImageSource="./Resources/MenuBg.png"/>
                 </Grid.Background>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="8*"/>
+                    
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="8*"/>
+
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.Column="0" Stretch="Fill" Margin="10">
                     <Button x:Name="BtnCriticalPage" Content="[핵심책장 편집]" ToolTip="핵심책장 편집 화면으로 이동합니다" Style="{StaticResource StyBtnMenu}" Click="MainWindowButtonClickEvents"/>

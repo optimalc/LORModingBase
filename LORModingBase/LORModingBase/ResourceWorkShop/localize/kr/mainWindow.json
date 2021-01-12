@@ -1,7 +1,7 @@
 {
-    "%BtnCriticalPage%":"[핵심 책장 편집]$0.95,0.95",
+    "%BtnCriticalPage%":"[핵심 책장 편집]$1.3,0.8$0,3",
     "%BtnCriticalPage_ToolTip%":"핵심책장 편집 화면으로 이동합니다",
-    "%BtnCards%":"[전투 책장 편집]$0.95,0.95$-7,0",
+    "%BtnCards%":"[전투 책장 편집]$1.3,0.8$20,3",
     "%BtnCards_ToolTip%":"전투책장 편집 화면으로 이동합니다",
     "%BtnSetWorkingSpace%":"[작업 공간 설정하기]",
     "%BtnSetWorkingSpace_ToolTip%":"사용할 작업공간을 설정합니다",
@@ -45,23 +45,26 @@
     "%BtnReverseLoad_ToolTip%":"편집기에서 편집된 내용을 프로그램으로 로드시킵니다",
     "%BtnResources_ToolTip%":"외부 커스텀 리소스들을 관리합니다",
 
-    "%BtnStages%":"[스테이지 편집]$0.9,0.95$-10,0",
+    "%BtnStages%":"[스테이지 편집]$1.3,0.8$37,3",
     "%BtnStages_ToolTip%":"스테이지 편집 화면으로 이동합니다",
 
-    "%BtnEnemy%":"[적 유닛 편집]$0.8,0.95$-15,0",
+    "%BtnEnemy%":"[적 유닛 편집]$1.1,0.8$50,3",
     "%BtnEnemy_ToolTip%":"적 유닛 편집 화면으로 이동합니다",
 
-    "%BtnDecks%":"[덱 편집]$0.5,0.95$-25,0",
+    "%BtnDecks%":"[덱 편집]$0.8,0.8$25,3",
     "%BtnDecks_ToolTip%":"덱 편집 화면으로 이동합니다",
 
-    "%BtnDropBook%":"[책 편집]$0.5,0.95$-65,0",
+    "%BtnDropBook%":"[책 편집]$0.8,0.8$-7,3",
     "%BtnDropBook_ToolTip%":"책 편집 화면으로 이동합니다",
 
-    "%BtnPassive%":"[패시브 편집]$0.8,0.95$-155,0",
+    "%BtnPassive%":"[패시브 편집]$1.1,0.8$-57,3",
     "%BtnPassive_ToolTip%":"패시브 편집 화면으로 이동합니다",
 
-    "%BtnCardAbility%":"[카드 효과 편집]$0.95,0.95$-210,0",
+    "%BtnCardAbility%":"[카드 효과 편집]$1.3,0.8$-78,3",
     "%BtnCardAbility_ToolTip%":"카드 효과 편집 창으로 이동합니다",
+
+    "%BtnBuff%":"[버프 편집]$0.9,0.8$-40,3",
+    "%BtnBuff_ToolTip%":"버프 편집 창으로 이동합니다",
 
     "%BtnDLLEdit_ToolTip%":"DLL 편집창을 엽니다"
 }
