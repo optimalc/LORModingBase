@@ -445,6 +445,20 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetDivideInfo.GetAllDividedCardFilterInfo());
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_BUFF:
+                    #region Add custom items
+                    DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode customNode) =>
+                    {
+                        string BUFF_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BUFF_ID))
+                        {
+                            string BUFF_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForBuff(BUFF_ID);
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {BUFF_DES}:{BUFF_ID}");
+                        }
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -543,5 +557,7 @@ namespace LORModingBase.SubWindows
         public const string CUSTOM_ABILITY = "CUSTOM_ABILITY";
         public const string PERSONAL_EGO_CARD = "PERSONAL_EGO_CARD";
         public const string ALL_CARDS = "ALL_CARDS";
+
+        public const string CUSTOM_BUFF = "CUSTOM_BUFF";
     }
 }

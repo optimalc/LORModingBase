@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":["0"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "버프 ID 반환 기반 블록",
+        "버프 ID를 반환시키는 블록입니다. 만약, 텍스트 편집기로 이 버프의 ID를 사용한다면 반드시 넣어야합니다",
+        "버프 ID#CUSTOM_BUFF"
+    ],
+    "en":[
+        "Buff ID Return Base Block",
+        "It can return the ID of Buff. If you define buff in the text editor, You must include it",
+        "Buff ID#CUSTOM_BUFF"
+    ],
+    "jp":[
+        "Buff ID Return Base Block",
+        "It can return the ID of Buff. If you define buff in the text editor, You must include it",
+        "Buff ID#CUSTOM_BUFF"
+    ],
+    "cn":[
+        "Buff ID Return Base Block",
+        "It can return the ID of Buff. If you define buff in the text editor, You must include it",
+        "Buff ID#CUSTOM_BUFF"
+    ]
+}

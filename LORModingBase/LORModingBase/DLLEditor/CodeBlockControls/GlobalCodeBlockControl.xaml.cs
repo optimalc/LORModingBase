@@ -301,6 +301,13 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                         tbx.Text = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(inputedValue).Split('/').Last();
                         tbx.ToolTip = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(inputedValue);
                         return;
+
+                    case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_BUFF:
+                        searchedNodes = DM.EditGameData_Buff.LocalizedBuff.rootDataNode
+                            .GetXmlDataNodesByPathWithXmlInfo("effectTextList/BattleEffectText",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", inputedValue } });
+                        searchPathToUse = "Name";
+                        break;
                 }
 
                 if (searchedNodes.Count > 0 && !string.IsNullOrEmpty(searchPathToUse)

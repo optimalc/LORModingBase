@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":["0"],
+    "subBlockWhiteFilter":[    
+        "BASE_UNIT_BUFF_CODES/BASE_BATTLE_UNIT_BUF_KEYWORD"
+    ],
+    "kr":[
+        "버프 기반 블록",
+        "버프를 추가하기 위한 기반 블록입니다",
+        "버프 ID#CUSTOM_BUFF"
+    ],
+    "en":[
+        "Buff Base Block",
+        "Base block for adding Buff",
+        "Buff ID#CUSTOM_BUFF"
+    ],
+    "jp":[
+        "Buff Base Block",
+        "Base block for adding Buff",
+        "Buff ID#CUSTOM_BUFF"
+    ],
+    "cn":[
+        "Buff Base Block",
+        "Base block for adding Buff",
+        "Buff ID#CUSTOM_BUFF"
+    ]
+}
