@@ -144,7 +144,7 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
             if (innerCodeBlock == null)
                 return;
             TextBox tbx = sender as TextBox;
-            if(tbx.Tag.ToString().Contains('$'))
+            if (tbx.Tag.ToString().Contains('$'))
             {
                 new SubWindows.Global_ListSeleteWindow((string selectedCode) =>
                 {
@@ -154,12 +154,24 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                     updateTextBox();
                 }, ParseParameterStr(tbx.Tag.ToString())).ShowDialog();
             }
+            else if (tbx.Tag.ToString().Contains('#'))
+            {
+                if (tbx.Tag.ToString().Split('#').Count() > 1)
+                {
+                    new SubWindows.Global_InputInfoWithSearchWindow((string selectedID) => {
+                        int PARA_INDEX = Convert.ToInt32(tbx.Name.Split('_').Last());
+                        GetDescriptionForSearchTagStr(innerCodeBlock.parameterList[PARA_INDEX], selectedID, tbx);
+                        innerCodeBlock.inputtedParameterList[PARA_INDEX] = selectedID;
+                        updateTextBox();
+                    }, tbx.Tag.ToString().Split('#')[1]).ShowDialog();
+                }
+            }
         }
 
         private void ProcessParameters(Label lbl, TextBox tbx, CodeBlock codeBlock, int paraIndex)
         {
-            lbl.Content = codeBlock.parameterList[paraIndex].Split('$')[0];
-            lbl.ToolTip = codeBlock.parameterList[paraIndex].Split('$')[0];
+            lbl.Content = codeBlock.parameterList[paraIndex].Split('$')[0].Split('#')[0];
+            lbl.ToolTip = codeBlock.parameterList[paraIndex].Split('$')[0].Split('#')[0];
             if(codeBlock.parameterList[paraIndex].Contains('$') && DM.Config.config.localizeOption == "kr")
             {
                 foreach(string paraDes in ParseParameterStr(codeBlock.parameterList[paraIndex]))
@@ -167,6 +179,13 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                     if (codeBlock.inputtedParameterList[paraIndex] == paraDes.Split('-').Last())
                         tbx.Text = paraDes.Split('-')[0];
                 }
+            }
+            else if(codeBlock.parameterList[paraIndex].Contains('#'))
+            {
+                GetDescriptionForSearchTagStr(
+                    codeBlock.parameterList[paraIndex],
+                    codeBlock.inputtedParameterList[paraIndex],
+                    tbx);
             }
             else
                 tbx.Text = codeBlock.inputtedParameterList[paraIndex];
@@ -216,6 +235,31 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                 {
                     tbx.Text = KOREAN_WORD;
                     tbx.ToolTip = KOREAN_WORD;
+                }
+            }
+        }
+    
+        private void GetDescriptionForSearchTagStr(string searchTagStr, string inputedValue, TextBox tbx)
+        {
+            if(searchTagStr.Split('#').Count() > 1)
+            {
+                switch (searchTagStr.Split('#')[1])
+                {
+                    case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_PASSIVE:
+                        List<DM.XmlDataNode> passiveDescNodes = DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode
+                            .GetXmlDataNodesByPathWithXmlInfo("PassiveDesc", 
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", inputedValue } });
+                        if (passiveDescNodes.Count > 0 && !string.IsNullOrEmpty(passiveDescNodes[0].GetInnerTextByPath("Name")))
+                        {
+                            tbx.Text = passiveDescNodes[0].GetInnerTextByPath("Name");
+                            tbx.ToolTip = passiveDescNodes[0].GetInnerTextByPath("Name");
+                        }
+                        else
+                        {
+                            tbx.Text = inputedValue;
+                            tbx.ToolTip = inputedValue;
+                        }
+                        break;
                 }
             }
         }

@@ -344,6 +344,37 @@ namespace LORModingBase.SubWindows
             }
             InitLbxSearchType(searchTypes);
         }
+        
+        public Global_InputInfoWithSearchWindow(Action<string> afterSelectItem, string DLL_PRESET)
+        {
+            InitializeComponent();
+            string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+            string IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
+            this.afterSelectItem = afterSelectItem;
+            List<string> searchTypes = new List<string>();
+            selectItems = new List<string>();
+
+            switch (DLL_PRESET)
+            {
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_PASSIVE:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"PASSIVE_TITLE");
+                    LblHelpMessage.Content = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"PASSIVE_HELP");
+                    #region Add custom items
+                    DM.EditGameData_PassiveInfo.StaticPassiveList.rootDataNode.ActionXmlDataNodesByPath("Passive", (DM.XmlDataNode customNode) =>
+                    {
+                        string PASSIVE_ID = customNode.GetAttributesSafe("ID");
+                        string PASSIVE_DES = DM.LocalizedGameDescriptions.GetDescriptionForPassive(customNode.GetAttributesSafe("ID"));
+                        selectItems.Add($"{CUSTOM_ITEM_WORD} {PASSIVE_DES}:{PASSIVE_ID}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
+                    break;
+            }
+
+            InitLbxSearchType(searchTypes);
+        }
         #endregion
 
         #region Init controls
@@ -431,4 +462,9 @@ namespace LORModingBase.SubWindows
 
         DROP_BOOK
     };
+    public class DLL_EDITOR_SELECT_PRESET
+    {
+        public const string CUSTOM_PASSIVE = "CUSTOM_PASSIVE";
+        public const string CUSTOM_ABILITY = "CUSTOM_ABILITY";
+    }
 }

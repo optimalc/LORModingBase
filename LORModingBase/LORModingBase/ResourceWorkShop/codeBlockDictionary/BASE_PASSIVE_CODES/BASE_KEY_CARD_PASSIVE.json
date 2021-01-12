@@ -18,21 +18,21 @@
     "kr":[
         "핵심 책장 패시브 기반 블록",
         "핵심 책장에 패시브를 추가하기위한 기반 블록입니다",
-        "패시브 ID"
+        "패시브 ID#CUSTOM_PASSIVE"
     ],
     "en":[
         "Key Page Passive Base Block",
         "Base block for adding Key Page passive",
-        "Passive ID"
+        "Passive ID#CUSTOM_PASSIVE"
     ],
     "jp":[
         "Key Page Passive Base Block",
         "Base block for adding Key Page passive",
-        "Passive ID"
+        "Passive ID#CUSTOM_PASSIVE"
     ],
     "cn":[
         "Key Page Passive Base Block",
         "Base block for adding Key Page passive",
-        "Passive ID"
+        "Passive ID#CUSTOM_PASSIVE"
     ]
 }
