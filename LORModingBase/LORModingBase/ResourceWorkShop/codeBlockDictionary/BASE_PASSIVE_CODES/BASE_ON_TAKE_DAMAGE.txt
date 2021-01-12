@@ -1,0 +1,4 @@
+public override void OnTakeDamageByAttack(BattleDiceBehavior behavior, int dmg)
+{
+    base.OnTakeDamageByAttack(behavior, dmg);
+}

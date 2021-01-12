@@ -1,0 +1,4 @@
+public override void OnStartParrying(BattlePlayingCardDataInUnitModel card)
+{
+    base.OnStartParrying(card);
+}

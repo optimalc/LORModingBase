@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_PASSIVE",
+        "&GROUP_GLOBAL_PASSIVE_BEHAVIOR"],
+    "kr":[
+        "데미지를 받은 경우 기반 블록",
+        "데미지를 받은 경우  액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Take a damage Base Block",
+        "Base block for invoking action when damage is taken by the enemy",
+        ""
+    ],
+    "jp":[
+        "Take a damage Base Block",
+        "Base block for invoking action when damage is taken by the enemy",
+        ""
+    ],
+    "cn":[
+        "Take a damage Base Block",
+        "Base block for invoking action when damage is taken by the enemy",
+        ""
+    ]
+}

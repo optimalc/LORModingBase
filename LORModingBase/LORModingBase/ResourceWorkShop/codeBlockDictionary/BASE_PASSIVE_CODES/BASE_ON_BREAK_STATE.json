@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_PASSIVE"
+    ],
+    "kr":[
+        "흐트러짐 상태인 경우 트리거 기반 블록",
+        "흐트러짐 상태인 경우 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Break State Base Block",
+        "Base block for invoking action when breaking state",
+        ""
+    ],
+    "jp":[
+        "Break State Base Block",
+        "Base block for invoking action when breaking state",
+        ""
+    ],
+    "cn":[
+        "Break State Base Block",
+        "Base block for invoking action when breaking state",
+        ""
+    ]
+}

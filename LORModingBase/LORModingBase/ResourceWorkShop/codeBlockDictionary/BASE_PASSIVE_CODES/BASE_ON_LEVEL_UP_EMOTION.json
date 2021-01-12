@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_PASSIVE"
+    ],
+    "kr":[
+        "감정 레벨이 상승했을 경우 트리거 기반 블록",
+        "감정 레벨이 상승했을 경우 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Emotion Level Up Base Block",
+        "Base block for invoking action when emotion level is increased",
+        ""
+    ],
+    "jp":[
+        "Emotion Level Up Base Block",
+        "Base block for invoking action when emotion level is increased",
+        ""
+    ],
+    "cn":[
+        "Emotion Level Up Base Block",
+        "Base block for invoking action when emotion level is increased",
+        ""
+    ]
+}

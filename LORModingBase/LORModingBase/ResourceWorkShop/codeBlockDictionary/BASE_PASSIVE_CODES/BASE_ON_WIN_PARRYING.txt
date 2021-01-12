@@ -1,0 +1,4 @@
+public override void OnWinParrying(BattleDiceBehavior behavior)
+{
+    base.OnWinParrying(behavior);
+}

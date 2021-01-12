@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_PASSIVE"
+    ],
+    "kr":[
+        "합 시작시 트리거 기반 블록",
+        "합 시작시 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Start Parrying Base Block",
+        "Base block for invoking action when parrying is started",
+        ""
+    ],
+    "jp":[
+        "Start Parrying Base Block",
+        "Base block for invoking action when parrying is started",
+        ""
+    ],
+    "cn":[
+        "Start Parrying Base Block",
+        "Base block for invoking action when parrying is started",
+        ""
+    ]
+}

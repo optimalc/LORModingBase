@@ -1,0 +1,29 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_PASSIVE",
+        "&GROUP_GLOBAL_PASSIVE_BEHAVIOR"
+    ],
+    "kr":[
+        "합에서 이긴경우 트리거 기반 블록",
+        "합에서 이긴 경우 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Win Parring Base Block",
+        "Base block for invoking action when winning in dice value",
+        ""
+    ],
+    "jp":[
+        "Win Parring Base Block",
+        "Base block for invoking action when winning in dice value",
+        ""
+    ],
+    "cn":[
+        "Win Parring Base Block",
+        "Base block for invoking action when winning in dice value",
+        ""
+    ]
+}
