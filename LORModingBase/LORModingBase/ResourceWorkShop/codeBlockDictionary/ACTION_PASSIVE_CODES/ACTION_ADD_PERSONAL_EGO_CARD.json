@@ -6,21 +6,21 @@
     "kr":[
         "개인용 EGO 카드 추가 액션 블록",
         "주어진 ID를 가진 개인용 EGO 카드를 자신의 카드 리스트에 추가시킵니다",
-        "개인 EGO 카드 ID"
+        "개인 EGO 카드 ID#PERSONAL_EGO_CARD"
     ],
     "en":[
         "Personal EGO Card Addition Action Block",
         "Add given Personal EGO card id to owner EGO card list",
-        "Personal EGO Card ID"
+        "Personal EGO Card ID#PERSONAL_EGO_CARD"
     ],
     "jp":[
         "Personal EGO Card Addition Action Block",
         "Add given Personal EGO card id to owner EGO card list",
-        "Personal EGO Card ID"
+        "Personal EGO Card ID#PERSONAL_EGO_CARD"
     ],
     "cn":[
         "Personal EGO Card Addition Action Block",
         "Add given Personal EGO card id to owner EGO card list",
-        "Personal EGO Card ID"
+        "Personal EGO Card ID#PERSONAL_EGO_CARD"
     ]
 }

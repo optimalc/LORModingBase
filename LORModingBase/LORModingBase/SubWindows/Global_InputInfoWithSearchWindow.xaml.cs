@@ -386,6 +386,20 @@ namespace LORModingBase.SubWindows
                     searchTypes.Add(CUSTOM_ITEM_WORD);
                     #endregion
                     break;
+                case DLL_EDITOR_SELECT_PRESET.PERSONAL_EGO_CARD:
+                    DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode customCardNode) =>
+                    {
+                        string CUSTOM_CARD_OPTION = customCardNode.GetInnerTextByPath("Option");
+                        if (CUSTOM_CARD_OPTION == "EgoPersonal")
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(customCardNode.GetAttributesSafe("ID"))}");
+                    });
+                    DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode customCardNode) =>
+                    {
+                        string CUSTOM_CARD_OPTION = customCardNode.GetInnerTextByPath("Option");
+                        if (CUSTOM_CARD_OPTION == "EgoPersonal")
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(customCardNode.GetAttributesSafe("ID")));
+                    });
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -481,5 +495,6 @@ namespace LORModingBase.SubWindows
     {
         public const string CUSTOM_PASSIVE = "CUSTOM_PASSIVE";
         public const string CUSTOM_ABILITY = "CUSTOM_ABILITY";
+        public const string PERSONAL_EGO_CARD = "PERSONAL_EGO_CARD";
     }
 }

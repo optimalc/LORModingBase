@@ -296,6 +296,10 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                             attributeToCheck: new Dictionary<string, string>() { { "ID", inputedValue } });
                         searchPathToUse = "Desc";
                         break;
+                    case SubWindows.DLL_EDITOR_SELECT_PRESET.PERSONAL_EGO_CARD:
+                        tbx.Text = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(inputedValue).Split('/').Last();
+                        tbx.ToolTip = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(inputedValue);
+                        return;
                 }
 
                 if (searchedNodes.Count > 0 && !string.IsNullOrEmpty(searchPathToUse)

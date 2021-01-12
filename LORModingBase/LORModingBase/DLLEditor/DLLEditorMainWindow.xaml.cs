@@ -45,18 +45,19 @@ namespace LORModingBase.DLLEditor
                 Directory.CreateDirectory(DLL_DIR_SEARCH_PATH);
 
             string JSON_FILE_PATH = $"{DLL_DIR_SEARCH_PATH}\\{fileName}.json";
-            if (!File.Exists(JSON_FILE_PATH)) 
-                File.Create(JSON_FILE_PATH);
-            targetSourceFilePath = JSON_FILE_PATH;
-            if (File.Exists(targetSourceFilePath))
+            if (!File.Exists(JSON_FILE_PATH))
             {
-                rootCodeBlocks = Tools.JsonFile.LoadJsonFile<List<DLLEditor.CodeBlock>>(DLLEditor.DLLEditorMainWindow.targetSourceFilePath);
-                if (rootCodeBlocks == null)
-                    rootCodeBlocks = new List<DLLEditor.CodeBlock>();
-
+                File.Create(JSON_FILE_PATH);
                 if (autoParaPaths != null)
                     rootCodeBlocks = CodeBlockDataManagement.MakeCodeBlockListWithParameters(autoParaPaths);
             }
+            else
+            {
+                rootCodeBlocks = Tools.JsonFile.LoadJsonFile<List<DLLEditor.CodeBlock>>(JSON_FILE_PATH);
+                if (rootCodeBlocks == null)
+                    rootCodeBlocks = new List<DLLEditor.CodeBlock>();
+            }
+            targetSourceFilePath = JSON_FILE_PATH;
 
             InitCreatedSourceCodeTextBox();
             InitDLLStacks();
