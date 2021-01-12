@@ -198,6 +198,7 @@ namespace LORModingBase.DLLEditor
                             return;
                         }
                         TbxLogging.Text = CompileDLL.CompileGivenCodeToDLL(TbxTextEditor.Text, targetSourceFilePath.Split('\\').Last().Split('.')[0]);
+                        TbxLogging.ScrollToEnd();
                         break;
 
                     case "BtnAddCodeBase":
