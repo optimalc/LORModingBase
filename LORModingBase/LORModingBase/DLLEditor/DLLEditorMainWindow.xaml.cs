@@ -114,9 +114,9 @@ namespace LORModingBase.DLLEditor
                 TbxTextEditor.Text += $"\nnamespace {DM.Config.config.nameSpaceToUse}\n{{";
                 rootCodeBlocks.ForEach((CodeBlock rootCodeBlock) =>
                 {
-                    TbxTextEditor.Text += MakeAllCodeBlockStructure(rootCodeBlock);
+                    TbxTextEditor.Text += $"\n{MakeAllCodeBlockStructure(rootCodeBlock)}\n";
                 });
-                TbxTextEditor.Text += $"\n}}";
+                TbxTextEditor.Text += $"}}";
             }
         }
 
@@ -137,12 +137,13 @@ namespace LORModingBase.DLLEditor
                 else
                     break;
             }
+            CODE_TO_USE = "\t" + CODE_TO_USE.Replace("\n", "\n\t");
 
 
             string subCodes = "";
             codeBlockToUse.subCodeBlocks.ForEach((CodeBlock subCodeBlock) =>
             {
-                subCodes += MakeAllCodeBlockStructure(subCodeBlock);
+                subCodes += MakeAllCodeBlockStructure(subCodeBlock).Replace("\n", "\n\t") + "\n\t";
             });
 
             int END_INDEX = CODE_TO_USE.IndexOf('}');
