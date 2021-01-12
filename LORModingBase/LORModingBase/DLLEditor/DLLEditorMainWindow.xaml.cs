@@ -66,23 +66,30 @@ namespace LORModingBase.DLLEditor
         private void InitDLLStacks()
         {
             SqlCodeBlocks.Children.Clear();
+            maxDeepth = 0;
             rootCodeBlocks.ForEach((CodeBlock codeBlock) =>
             {
                 LooplyInitDLLStacks(codeBlock, null);
             });
+
+            TransformGroup myTransformGroup = new TransformGroup();
+            myTransformGroup.Children.Add(
+                    new TranslateTransform(-maxDeepth * 28, 0)
+            );
+            foreach (UIElement uiElement in SqlCodeBlocks.Children)
+            {
+                uiElement.RenderTransform = myTransformGroup;
+            }
         }
 
+        public static int maxDeepth = 0;
         private void LooplyInitDLLStacks(CodeBlock codeBlock, CodeBlock perentBlock, int deepth = 0)
         {
             CodeBlockControls.GlobalCodeBlockControl ADDED_CODE_BLOCK = new CodeBlockControls.GlobalCodeBlockControl(codeBlock, InitCreatedSourceCodeTextBox, InitDLLStacks, perentBlock);
-            
-            TransformGroup myTransformGroup = new TransformGroup();
-            myTransformGroup.Children.Add(
-                    new TranslateTransform(deepth * 25, 0)
-            );
-            ADDED_CODE_BLOCK.RenderTransform = myTransformGroup;
+            ADDED_CODE_BLOCK.Margin = new Thickness(deepth * 50, 0, 0, 0);
             SqlCodeBlocks.Children.Add(ADDED_CODE_BLOCK);
 
+            if (maxDeepth < deepth) maxDeepth = deepth;
             codeBlock.subCodeBlocks.ForEach((CodeBlock subCodeBlock) =>
             {
                 LooplyInitDLLStacks(subCodeBlock, codeBlock, deepth + 1);
