@@ -6,21 +6,21 @@
     "kr":[
         "상대방 혹은 자신에게 긍정/부정 감정을 부여",
         "상대방 혹은 자신에게 긍정/부정 감정을 특정 수치만큼 부여합니다",
-        "대상$자신-owner$상대방-target,감정 종류&ENUM_EMOTION_COIN_TYPE,부여하는 양"
+        "대상$자신-owner$상대방-target,감정 종류$&ENUM_EMOTION_COIN_TYPE,부여하는 양"
     ],
     "en":[
         "Give positive/negative emotions to owner or target",
         "Give positive/negative emotions to owner or target",
-        "Target$-owner$-target,Emotion Type&ENUM_EMOTION_COIN_TYPE,Degree"
+        "Target$-owner$-target,Emotion Type$&ENUM_EMOTION_COIN_TYPE,Degree"
     ],
     "jp":[
         "Give positive/negative emotions to owner or target",
         "Give positive/negative emotions to owner or target",
-        "Target$-owner$-target,Emotion Type&ENUM_EMOTION_COIN_TYPE,Degree"
+        "Target$-owner$-target,Emotion Type$&ENUM_EMOTION_COIN_TYPE,Degree"
     ],
     "cn":[
         "Give positive/negative emotions to owner or target",
         "Give positive/negative emotions to owner or target",
-        "Target$-owner$-target,Emotion Type&ENUM_EMOTION_COIN_TYPE,Degree"
+        "Target$-owner$-target,Emotion Type$&ENUM_EMOTION_COIN_TYPE,Degree"
     ]
 }

@@ -297,6 +297,7 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                         searchPathToUse = "Desc";
                         break;
                     case SubWindows.DLL_EDITOR_SELECT_PRESET.PERSONAL_EGO_CARD:
+                    case SubWindows.DLL_EDITOR_SELECT_PRESET.ALL_CARDS:
                         tbx.Text = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(inputedValue).Split('/').Last();
                         tbx.ToolTip = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(inputedValue);
                         return;

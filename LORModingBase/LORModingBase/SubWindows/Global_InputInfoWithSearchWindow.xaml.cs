@@ -400,6 +400,26 @@ namespace LORModingBase.SubWindows
                             selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(customCardNode.GetAttributesSafe("ID")));
                     });
                     break;
+                case DLL_EDITOR_SELECT_PRESET.ALL_CARDS:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARDS_TITLE");
+                    #region Add custom items
+                    DM.EditGameData_CardInfos.StaticCard.rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode customNode) =>
+                    {
+                        string CARD_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(CARD_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    DM.GameInfos.staticInfos["Card"].rootDataNode.ActionXmlDataNodesByPath("Card", (DM.XmlDataNode cardNode) =>
+                    {
+                        string CARD_ID = cardNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(CARD_ID))
+                            selectItems.Add(DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForCard(CARD_ID));
+                    });
+                    searchTypes.AddRange(DM.GetDivideInfo.GetAllDividedCardFilterInfo());
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -496,5 +516,6 @@ namespace LORModingBase.SubWindows
         public const string CUSTOM_PASSIVE = "CUSTOM_PASSIVE";
         public const string CUSTOM_ABILITY = "CUSTOM_ABILITY";
         public const string PERSONAL_EGO_CARD = "PERSONAL_EGO_CARD";
+        public const string ALL_CARDS = "ALL_CARDS";
     }
 }
