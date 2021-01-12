@@ -139,6 +139,12 @@ namespace LORModingBase.SubWindows
                             DM.EditGameData_CardAbilityInfo.LocalizedCardAbility = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardAbilityInfo.LocalizedCardAbility, DM.Config.CurrentWorkingDirectory));
                         else
                             DM.EditGameData_CardAbilityInfo.LocalizedCardAbility = new DM.XmlData(DM.GameInfos.localizeInfos["BattleCardAbilities"]);
+
+                        if (File.Exists(DM.Config.GetLocalizePathToSave(DM.EditGameData_Buff.LocalizedBuff, DM.Config.CurrentWorkingDirectory)))
+                            DM.EditGameData_Buff.LocalizedBuff = new DM.XmlData(DM.Config.GetLocalizePathToSave(DM.EditGameData_Buff.LocalizedBuff, DM.Config.CurrentWorkingDirectory));
+                        else
+                            DM.EditGameData_Buff.LocalizedBuff = new DM.XmlData(DM.GameInfos.localizeInfos["effectTextList"]);
+
                         this.Close();
                     };
 

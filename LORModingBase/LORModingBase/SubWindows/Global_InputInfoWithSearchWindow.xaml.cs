@@ -341,6 +341,30 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
+
+                case InputInfoWithSearchWindow_PRESET.BUFFS:
+                    //#region Add custom items
+                    //DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode customNode) =>
+                    //{
+                    //    string ABILITIY_ID = customNode.GetAttributesSafe("ID");
+                    //    if (!string.IsNullOrEmpty(ABILITIY_ID))
+                    //    {
+                    //        string ABILITY_DES = DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID);
+                    //        selectItems.Add($"{CUSTOM_ITEM_WORD} {ABILITY_DES}:{ABILITIY_ID}");
+                    //    }
+                    //});
+                    //searchTypes.Add(CUSTOM_ITEM_WORD);
+                    //#endregion
+                    DM.GameInfos.localizeInfos["EffectTexts"].rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode buffNode) =>
+                    {
+                        string BUFF_ID = buffNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BUFF_ID))
+                        {
+                            selectItems.Add(BUFF_ID);
+                        }
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -509,7 +533,8 @@ namespace LORModingBase.SubWindows
         ENEMIES,
         DECKS,
 
-        DROP_BOOK
+        DROP_BOOK,
+        BUFFS
     };
     public class DLL_EDITOR_SELECT_PRESET
     {

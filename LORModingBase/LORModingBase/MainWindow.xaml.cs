@@ -49,6 +49,7 @@ namespace LORModingBase
             InitSplDropBooks();
             InitSplPassives();
             InitSplCardAbilities();
+            InitSplBuff();
         }
 
         /// <summary>
@@ -106,6 +107,7 @@ namespace LORModingBase
             DM.EditGameData_DropBookInfo.InitDatas();
             DM.EditGameData_PassiveInfo.InitDatas();
             DM.EditGameData_CardAbilityInfo.InitDatas();
+            DM.EditGameData_Buff.InitDatas();
         }
         #endregion
 
@@ -140,6 +142,9 @@ namespace LORModingBase
 
             GrdCardAbilities.Visibility = Visibility.Collapsed;
             BtnCardAbility.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
+
+            GrdBuff.Visibility = Visibility.Collapsed;
+            BtnBuff.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFFD9A3");
         }
 
         /// <summary>
@@ -201,6 +206,13 @@ namespace LORModingBase
                         GrdCardAbilities.Visibility = Visibility.Visible;
                         BtnCardAbility.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
                         ChangeDebugLocation(DEBUG_LOCATION.LOCALIZED_CARD_ABILITY_DESC);
+                        break;
+
+                    case "BtnBuff":
+                        HideAllGrid();
+                        GrdBuff.Visibility = Visibility.Visible;
+                        BtnBuff.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFFDC61B");
+                        ChangeDebugLocation(DEBUG_LOCATION.LOCALIZED_BUFF_DESC);
                         break;
 
                     case "BtnSetWorkingSpace":
@@ -865,6 +877,66 @@ namespace LORModingBase
             }
         }
         #endregion
+        #region EDIT MENU - Buff Infos
+        private void InitSplBuff()
+        {
+            SqlBuffs.Children.Clear();
+            DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode xmlDataNode) =>
+            {
+                SqlBuffs.Children.Add(new UC.EditBuff(xmlDataNode, InitSplBuff));
+            });
+        }
+
+        private void BuffGridButtonClickEvents(object sender, RoutedEventArgs e)
+        {
+
+            Button clickButton = sender as Button;
+            try
+            {
+                if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                {
+                    MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
+                    return;
+                }
+
+                switch (clickButton.Name)
+                {
+                    case "BtnAddBuff":
+                        DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList", (DM.XmlDataNode effectTextList) => {
+                            effectTextList.subNodes.Add(
+                                DM.EditGameData_Buff.MakeNewBuffInfoBase());
+                        });
+                        InitSplBuff();
+                        break;
+                    case "BtnLoadBuff":
+                        new SubWindows.Global_InputInfoWithSearchWindow((string selectedItem) =>
+                        {
+                            List<DM.XmlDataNode> foundBuffIds = DM.GameInfos.localizeInfos["EffectTexts"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("effectTextList/BattleEffectText",
+                           attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+                            //if (foundBuffIds.Count <= 0)
+                            //    foundBuffIds = DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
+                            //        attributeToCheck: new Dictionary<string, string>() { { "ID", selectedItem } });
+
+                            if (foundBuffIds.Count > 0)
+                            {
+                                DM.XmlDataNode BUFF_NODE_TO_USE = foundBuffIds[0].Copy();
+                                DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList", (DM.XmlDataNode effectTextList) => {
+                                    effectTextList.subNodes.Add(
+                                        BUFF_NODE_TO_USE);
+                                });
+                                InitSplBuff();
+                            }
+                        }, SubWindows.InputInfoWithSearchWindow_PRESET.BUFFS).ShowDialog();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox(ex,
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.MAIN_WINDOW, $"BattleCardGridButtonClickEvents_Error_1"));
+            }
+        }
+        #endregion
 
 
         #region Text editor functions
@@ -933,6 +1005,8 @@ namespace LORModingBase
                     }
                     if (GrdCardAbilities.Visibility == Visibility.Visible)
                         DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_CardAbilityInfo.LocalizedCardAbility, DM.Config.CurrentWorkingDirectory));
+                    if (GrdBuff.Visibility == Visibility.Visible)
+                        DM.EditGameData_Buff.LocalizedBuff.SaveNodeData(DM.Config.GetLocalizePathToSave(DM.EditGameData_Buff.LocalizedBuff, DM.Config.CurrentWorkingDirectory));
 
                     string debugFileName = "";
                     if (LbxTextEditor.SelectedItem != null)
@@ -1000,7 +1074,9 @@ namespace LORModingBase
             STATIC_PASSIVE_INTO=14,
             LOCALIZED_PASSIVE_DESC=15,
 
-            LOCALIZED_CARD_ABILITY_DESC=16
+            LOCALIZED_CARD_ABILITY_DESC=16,
+            
+            LOCALIZED_BUFF_DESC=17
         }
 
 
@@ -1046,6 +1122,8 @@ namespace LORModingBase
                                     case 15: DM.EditGameData_PassiveInfo.LocalizedPassiveDesc = RELOADED_XML_DATA; break;
 
                                     case 16: DM.EditGameData_CardAbilityInfo.LocalizedCardAbility = RELOADED_XML_DATA; break;
+
+                                    case 17: DM.EditGameData_Buff.LocalizedBuff = RELOADED_XML_DATA; break;
                                 }
                                 ReloadAllStackDatas();
                             }
