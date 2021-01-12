@@ -120,7 +120,7 @@ namespace LORModingBase.DLLEditor
         /// </summary>
         /// <param name="targetPaths"></param>
         /// <returns></returns>
-        public static List<CodeBlock> GetMultipleBaseBlockFromTargetPathListOrTitle(List<string> targetPaths)
+        public static List<CodeBlock> GetMultipleBaseBlockFromTargetPathListOrTitle(List<string> targetPaths, bool isFirstLoop = true)
         {
             List<CodeBlock> codeBlocks = new List<CodeBlock>();
             targetPaths.ForEach((string targetPath) =>
@@ -142,7 +142,7 @@ namespace LORModingBase.DLLEditor
                     {
                         string GROUP_PATH = $"{DS.PROGRAM_PATHS.CODE_BLOCK_GROUP}\\{targetPath.Replace("&", "")}.json";
                         if (File.Exists(GROUP_PATH))
-                            codeBlocks.AddRange(GetMultipleBaseBlockFromTargetPathListOrTitle(Tools.JsonFile.LoadJsonFile<List<string>>(GROUP_PATH)));
+                            codeBlocks.AddRange(GetMultipleBaseBlockFromTargetPathListOrTitle(Tools.JsonFile.LoadJsonFile<List<string>>(GROUP_PATH), false));
                     }
                 }
                 else
@@ -153,14 +153,11 @@ namespace LORModingBase.DLLEditor
                 }
             });
 
-            if(loadedCodeBlocks.ContainsKey("CUSTOM_CODES"))
+            if(isFirstLoop && loadedCodeBlocks.ContainsKey("CUSTOM_CODES"))
             {
-                loadedCodeBlocks["CUSTOM_CODES"].ForEachKeyValuePairSafe((string fileKey, CodeBlock eachCodeBlock) =>
-                {
-                    codeBlocks.Add(eachCodeBlock);
-                });
+                codeBlocks.AddRange(loadedCodeBlocks["CUSTOM_CODES"].Values.ToList());
             }
-
+             
             return codeBlocks;
         }
 
