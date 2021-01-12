@@ -243,23 +243,34 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
         {
             if(searchTagStr.Split('#').Count() > 1)
             {
+                List<DM.XmlDataNode> searchedNodes = new List<DM.XmlDataNode>();
+                string searchPathToUse = "";
                 switch (searchTagStr.Split('#')[1])
                 {
                     case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_PASSIVE:
-                        List<DM.XmlDataNode> passiveDescNodes = DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode
+                        searchedNodes = DM.EditGameData_PassiveInfo.LocalizedPassiveDesc.rootDataNode
                             .GetXmlDataNodesByPathWithXmlInfo("PassiveDesc", 
                             attributeToCheck: new Dictionary<string, string>() { { "ID", inputedValue } });
-                        if (passiveDescNodes.Count > 0 && !string.IsNullOrEmpty(passiveDescNodes[0].GetInnerTextByPath("Name")))
-                        {
-                            tbx.Text = passiveDescNodes[0].GetInnerTextByPath("Name");
-                            tbx.ToolTip = passiveDescNodes[0].GetInnerTextByPath("Name");
-                        }
-                        else
-                        {
-                            tbx.Text = inputedValue;
-                            tbx.ToolTip = inputedValue;
-                        }
+                        searchPathToUse = "Name";
                         break;
+                    case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_ABILITY:
+                        searchedNodes = DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode
+                            .GetXmlDataNodesByPathWithXmlInfo("BattleCardAbility",
+                            attributeToCheck: new Dictionary<string, string>() { { "ID", inputedValue } });
+                        searchPathToUse = "Desc";
+                        break;
+                }
+
+                if (searchedNodes.Count > 0 && !string.IsNullOrEmpty(searchPathToUse) 
+                    && !string.IsNullOrEmpty(searchedNodes[0].GetInnerTextByPath(searchPathToUse)))
+                {
+                    tbx.Text = searchedNodes[0].GetInnerTextByPath(searchPathToUse);
+                    tbx.ToolTip = searchedNodes[0].GetInnerTextByPath(searchPathToUse);
+                }
+                else
+                {
+                    tbx.Text = inputedValue;
+                    tbx.ToolTip = inputedValue;
                 }
             }
         }

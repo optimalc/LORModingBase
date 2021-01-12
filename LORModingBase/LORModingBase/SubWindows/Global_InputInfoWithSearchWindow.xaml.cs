@@ -371,6 +371,21 @@ namespace LORModingBase.SubWindows
                     #endregion
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_ABILITY:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARD_ABILITES_TITLE");
+                    #region Add custom items
+                    DM.EditGameData_CardAbilityInfo.LocalizedCardAbility.rootDataNode.ActionXmlDataNodesByPath("BattleCardAbility", (DM.XmlDataNode customNode) =>
+                    {
+                        string ABILITIY_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(ABILITIY_ID))
+                        {
+                            string ABILITY_DES = DM.LocalizedGameDescriptions.GetDescriptionForCardPassive(ABILITIY_ID);
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {ABILITY_DES}:{ABILITIY_ID}");
+                        }
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    break;
             }
 
             InitLbxSearchType(searchTypes);

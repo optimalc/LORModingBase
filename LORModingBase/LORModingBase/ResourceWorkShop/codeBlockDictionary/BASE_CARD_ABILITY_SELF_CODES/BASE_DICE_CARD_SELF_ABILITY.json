@@ -13,21 +13,21 @@
     "kr":[
         "전투 책장 효과 기반 블록2",
         "전투 책장에 효과를 추가하기위한 기반 블록입니다",
-        "효과 ID"
+        "효과 ID#CUSTOM_ABILITY"
     ],
     "en":[
         "Combat Bookshelf Ability Base Block2",
         "Base block for adding Combat Bookshelf Ability",
-        "Ability ID"
+        "Ability ID#CUSTOM_ABILITY"
     ],
     "jp":[
         "Combat Bookshelf Ability Base Block2",
         "Base block for adding Combat Bookshelf Ability",
-        "Ability ID"
+        "Ability ID#CUSTOM_ABILITY"
     ],
     "cn":[
         "Combat Bookshelf Ability Base Block2",
         "Base block for adding Combat Bookshelf Ability",
-        "Ability ID"
+        "Ability ID#CUSTOM_ABILITY"
     ]
 }
