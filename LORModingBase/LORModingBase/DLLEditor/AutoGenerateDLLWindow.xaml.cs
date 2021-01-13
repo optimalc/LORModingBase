@@ -261,7 +261,7 @@ namespace LORModingBase.DLLEditor
                             {
                                 tbx.Text = selectedID;
                                 tbx.ToolTip = selectedID;
-                            }, SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_BUFF).ShowDialog();
+                            }, SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_BUFF_FOR_NAME).ShowDialog();
                             break;
                         case "IMAGE_FILE_NAME":
                             new SubWindows.Global_InputInfoWithSearchWindow((string selectedID) =>
@@ -360,7 +360,7 @@ namespace LORModingBase.DLLEditor
                 Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"AUTO_CREATE_DLL_ERROR_2"));
                 return;
             }
-            string OUTPUT_DLL_PATH = $"{DM.Config.CurrentWorkingDirectory}\\{TbxDLLName}.dll";
+            string OUTPUT_DLL_PATH = $"{DM.Config.CurrentWorkingDirectory}\\{TbxDLLName.Text}.dll";
             if(File.Exists(OUTPUT_DLL_PATH))
             {
                 if (MessageBox.Show(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"AUTO_CREATE_DLL_ERROR_3"),

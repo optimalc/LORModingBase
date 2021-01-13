@@ -478,6 +478,21 @@ namespace LORModingBase.SubWindows
                     searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
                     #endregion
                     break;
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_BUFF_FOR_NAME:
+                    #region Add custom items
+                    DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode customNode) =>
+                    {
+                        string BUFF_ID = customNode.GetAttributesSafe("ID");
+                        string BUFF_NAME = customNode.GetInnerTextByPath("Name");
+                        if (!string.IsNullOrEmpty(BUFF_ID))
+                        {
+                            string BUFF_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForBuff(BUFF_ID);
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {BUFF_DES}:{BUFF_NAME}");
+                        }
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -579,5 +594,6 @@ namespace LORModingBase.SubWindows
 
         public const string CUSTOM_BUFF = "CUSTOM_BUFF";
         public const string CUSTOM_IMAGE = "CUSTOM_IMAGE";
+        public const string CUSTOM_BUFF_FOR_NAME = "CUSTOM_BUFF_FOR_NAME";
     }
 }
