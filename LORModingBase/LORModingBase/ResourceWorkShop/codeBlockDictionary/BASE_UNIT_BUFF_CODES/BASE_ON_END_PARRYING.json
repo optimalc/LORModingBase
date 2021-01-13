@@ -3,8 +3,7 @@
     "type":["BASE"],
     "inputtedParameter":[],
     "subBlockWhiteFilter":[
-        "&GROUP_GLOBAL_BUFF",
-        "&GROUP_GLOBAL_BUFF_BEHAVIOR"
+        "&GROUP_GLOBAL_BUFF"
     ],
     "kr":[
         "합 종료시 기반 블록",
