@@ -2,12 +2,12 @@ if (behavior.card.target != null)
 {
     BattleUnitBuf <<0>> = behavior.card.target.bufListDetail.GetActivatedBufList().Find((BattleUnitBuf <<1>>) =>
     {
-        return <<1>>.bufActivatedName == "{{1}}";
+        return <<1>>.bufActivatedName == "{{2}}";
     });
     if (<<0>> == null)
-        behavior.card.target.bufListDetail.AddBuf(new BattleUnitBuf_{{0}}());
+        behavior.card.target.bufListDetail.{{0}}(new BattleUnitBuf_{{1}}());
     else
-        <<0>>.stack += {{2}};
+        <<0>>.stack += {{3}};
 
     behavior.card.target.bufListDetail.CheckBufCount();
 }
