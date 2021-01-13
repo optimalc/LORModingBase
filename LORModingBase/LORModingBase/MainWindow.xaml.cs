@@ -31,6 +31,7 @@ namespace LORModingBase
                 InitLbxTextEditor();
                 DLLEditor.CodeBlockDataManagement.LoadData();
                 DLLEditor.AutoGenerateCodeBlockDataManagement.LoadData();
+                DLLEditor.CodeBlockPresetDataManagerment.LoadData();
             }
             catch(Exception ex)
             {

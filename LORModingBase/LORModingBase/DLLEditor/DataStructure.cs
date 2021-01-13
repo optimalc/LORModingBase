@@ -47,4 +47,12 @@ namespace LORModingBase.DLLEditor
         public List<string> parameterNameList = new List<string>();
         public string codes;
     }
+
+    [Serializable]
+    public class CodeBlockPresets
+    {
+        public string title = "";
+        public string description = "";
+        public List<CodeBlock> rootCodeBlocks = null;
+    }
 }
