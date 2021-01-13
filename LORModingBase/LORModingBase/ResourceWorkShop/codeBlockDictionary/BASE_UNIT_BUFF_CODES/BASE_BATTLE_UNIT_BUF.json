@@ -3,7 +3,8 @@
     "type":["BASE"],
     "inputtedParameter":["0"],
     "subBlockWhiteFilter":[    
-        "BASE_UNIT_BUFF_CODES/BASE_BATTLE_UNIT_BUF_KEYWORD"
+        "BASE_UNIT_BUFF_CODES/BASE_BATTLE_UNIT_BUF_KEYWORD",
+        "BASE_UNIT_BUFF_CODES/BASE_BATTLE_UNIT_BUF_POSITIVE_TYPE"
     ],
     "kr":[
         "버프 기반 블록",

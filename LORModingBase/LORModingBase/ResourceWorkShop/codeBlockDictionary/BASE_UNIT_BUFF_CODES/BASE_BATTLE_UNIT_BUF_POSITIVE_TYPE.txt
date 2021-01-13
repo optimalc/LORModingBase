@@ -1,0 +1,7 @@
+public override BufPositiveType positiveType
+{
+    get
+    {
+        return BufPositiveType.{{0}};
+    }
+}

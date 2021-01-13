@@ -1,6 +1,8 @@
 각 유닛은 bufListDetail(BattleUnitBufListDetail)을 가지고 있다
 
-bufListDetail.AddBuf(buf) - BattleUnitBuf를 상속하는 버프를 추가시킵니다
+bufListDetail.AddBuf(buf) - BattleUnitBuf를 상속하는 버프를 추가시킵니다. 여러번 타격하면 중복해서 쌓이는 특징이 있음
+bufListDetail.AddBufWithoutDuplication(BattleUnitBuf buf) - 중복검사를 하기때문에 기존의 버프가 파괴됩니다
+this.AddNewKeywordBufInList(BufReadyType.NextRound, bufType); - 다음 라운드 스택 쌓이게 하기때문에
 
 bufListDetail.CheckBufCount() - 버프 수치를 카운트한다. 여기에 아이콘 관련 힌트가 있다
 List<BattleUnitBuf> list = this._bufList.FindAll((BattleUnitBuf x) => x.GetBufIcon() != null);

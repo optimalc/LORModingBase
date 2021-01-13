@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":["Positive"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "버프 타입 지정 기반 블록",
+        "버프 타입을 지정하는 기반 블록 입니다",
+        "버프 타입$&ENUM_BUF_POSITIVE_TYPE"
+    ],
+    "en":[
+        "Determine the type of buff Base Block",
+        "Determine the type of buff",
+        "Buff Type$&ENUM_BUF_POSITIVE_TYPE"
+    ],
+    "jp":[
+        "Determine the type of buff Base Block",
+        "Determine the type of buff",
+        "Buff Type$&ENUM_BUF_POSITIVE_TYPE"
+    ],
+    "cn":[
+        "Determine the type of buff Base Block",
+        "Determine the type of buff",
+        "Buff Type$&ENUM_BUF_POSITIVE_TYPE"
+    ]
+}
