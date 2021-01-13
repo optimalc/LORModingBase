@@ -459,6 +459,25 @@ namespace LORModingBase.SubWindows
                     searchTypes.Add(CUSTOM_ITEM_WORD);
                     #endregion
                     break;
+
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE:
+                    #region Add custom items
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last();
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -559,5 +578,6 @@ namespace LORModingBase.SubWindows
         public const string ALL_CARDS = "ALL_CARDS";
 
         public const string CUSTOM_BUFF = "CUSTOM_BUFF";
+        public const string CUSTOM_IMAGE = "CUSTOM_IMAGE";
     }
 }
