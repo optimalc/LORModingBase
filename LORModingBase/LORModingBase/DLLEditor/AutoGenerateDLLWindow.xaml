@@ -181,7 +181,7 @@
                             <TextBox x:Name="TbxDLLName" Grid.Row="1" Text="" ToolTip="DLL 이름" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="30,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#7FBCBCBC"/>
                             
                             <Rectangle Grid.Row="2" RadiusX="5" RadiusY="5" Fill="#548C8974" Margin="3"/>
-                            <Button x:Name="BtnMakeDLLAuto" Grid.Row="2" Content="[DLL 제작하기]" ToolTip="DLL을 만듭니다" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Button x:Name="BtnMakeDLLAuto" Grid.Row="2" Content="[DLL 제작하기]" ToolTip="DLL을 만듭니다" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnMakeDLLAuto_Click"/>
                         </Grid>
                         <TextBox x:Name="TbxCompileResult" Text="" Grid.Column="1" ToolTip="컴파일 결과" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"/>
                     </Grid>

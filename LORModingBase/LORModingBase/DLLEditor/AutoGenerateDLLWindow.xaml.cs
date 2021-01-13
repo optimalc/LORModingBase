@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -292,6 +293,145 @@ namespace LORModingBase.DLLEditor
                     tbx.Text = inputedData;
                 }, tbx.Text).ShowDialog();
             }
+        }
+
+        private void BtnMakeDLLAuto_Click(object sender, RoutedEventArgs e)
+        {
+            for(int paraIndex=0; paraIndex<selectedAutoGenerateCodeBlock.parameterNameList.Count; paraIndex++)
+            {
+                #region Data empty check
+                switch (paraIndex)
+                {
+                    case 0:
+                        if (string.IsNullOrEmpty(TbxData_0.Text))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_0.Content} 항목이 입력되지 않았습니다.");
+                            return;
+                        }
+                        break;
+                    case 1:
+                        if (string.IsNullOrEmpty(TbxData_1.Text))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_1.Content} 항목이 입력되지 않았습니다.");
+                            return;
+                        }
+                        break;
+                    case 2:
+                        if (string.IsNullOrEmpty(TbxData_2.Text))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_2.Content} 항목이 입력되지 않았습니다.");
+                            return;
+                        }
+                        break;
+                    case 3:
+                        if (string.IsNullOrEmpty(TbxData_3.Text))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_3.Content} 항목이 입력되지 않았습니다.");
+                            return;
+                        }
+                        break;
+                    case 4:
+                        if (string.IsNullOrEmpty(TbxData_4.Text))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_4.Content} 항목이 입력되지 않았습니다.");
+                            return;
+                        }
+                        break;
+
+                    case 5:
+                        if (string.IsNullOrEmpty(TbxData_5.Text))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_5.Content} 항목이 입력되지 않았습니다.");
+                            return;
+                        }
+                        break;
+                    case 6:
+                        if (string.IsNullOrEmpty(TbxData_6.Text))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_6.Content} 항목이 입력되지 않았습니다.");
+                            return;
+                        }
+                        break;
+                    case 7:
+                        if (string.IsNullOrEmpty(TbxData_7.Text))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_7.Content} 항목이 입력되지 않았습니다.");
+                            return;
+                        }
+                        break;
+                    case 8:
+                        if (string.IsNullOrEmpty(TbxData_8.Text))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_8.Content} 항목이 입력되지 않았습니다.");
+                            return;
+                        }
+                        break;
+                    case 9:
+                        if (string.IsNullOrEmpty(TbxData_9.Text))
+                        {
+                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_9.Content} 항목이 입력되지 않았습니다.");
+                            return;
+                        }
+                        break;
+                } 
+                #endregion
+            }
+
+            if (string.IsNullOrEmpty(TbxDLLName.Text))
+            {
+                Tools.MessageBoxTools.ShowErrorMessageBox($"DLL 이름이 입력되지 않았습니다");
+                return;
+            }
+            string OUTPUT_DLL_PATH = $"{DM.Config.CurrentWorkingDirectory}\\{TbxDLLName}.dll";
+            if(File.Exists(OUTPUT_DLL_PATH))
+            {
+                if (MessageBox.Show("해당 이름의 DLL이 이미 존재하며, 계속 진행하면 덮어쓰기가 됩니다. 진행하시겠습니까?", "덮어쓰기 경고", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                    return;
+            }
+
+            string GENERATED_CODE = selectedAutoGenerateCodeBlock.codes;
+            for (int paraIndex = 0; paraIndex < selectedAutoGenerateCodeBlock.parameterNameList.Count; paraIndex++)
+            {
+                #region Replace code
+                switch (paraIndex)
+                {
+                    case 0:
+                        GENERATED_CODE = GENERATED_CODE.Replace("{{0}}", TbxData_0.Text);
+                        break;
+                    case 1:
+                        GENERATED_CODE = GENERATED_CODE.Replace("{{1}}", TbxData_1.Text);
+                        break;
+                    case 2:
+                        GENERATED_CODE = GENERATED_CODE.Replace("{{2}}", TbxData_2.Text);
+                        break;
+                    case 3:
+                        GENERATED_CODE = GENERATED_CODE.Replace("{{3}}", TbxData_3.Text);
+                        break;
+                    case 4:
+                        GENERATED_CODE = GENERATED_CODE.Replace("{{4}}", TbxData_4.Text);
+                        break;
+
+                    case 5:
+                        GENERATED_CODE = GENERATED_CODE.Replace("{{5}}", TbxData_5.Text);
+                        break;
+                    case 6:
+                        GENERATED_CODE = GENERATED_CODE.Replace("{{6}}", TbxData_6.Text);
+                        break;
+                    case 7:
+                        GENERATED_CODE = GENERATED_CODE.Replace("{{7}}", TbxData_7.Text);
+                        break;
+                    case 8:
+                        GENERATED_CODE = GENERATED_CODE.Replace("{{8}}", TbxData_8.Text);
+                        break;
+                    case 9:
+                        GENERATED_CODE = GENERATED_CODE.Replace("{{9}}", TbxData_9.Text);
+                        break;
+                }
+                #endregion
+            }
+
+            TbxCompileResult.Text = CompileDLL.CompileGivenCodeToDLL(GENERATED_CODE, TbxDLLName.Text);
+            TbxCompileResult.ScrollToEnd();
         }
     }
 }
