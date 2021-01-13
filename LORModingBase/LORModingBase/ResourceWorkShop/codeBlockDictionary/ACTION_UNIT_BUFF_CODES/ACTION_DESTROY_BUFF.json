@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "버프를 사라지게 만듬",
+        "버프를 사라지게 만듭니다",
+        ""
+    ],
+    "en":[
+        "Destroy buff",
+        "Destroy buff",
+        ""
+    ],
+    "jp":[
+        "Destroy buff",
+        "Destroy buff",
+        ""
+    ],
+    "cn":[
+        "Destroy buff",
+        "Destroy buff",
+        ""
+    ]
+}
