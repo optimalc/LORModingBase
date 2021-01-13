@@ -1,4 +1,3 @@
 public override void OnDrawCard()
 {
-    this.OnDrawCard();
 }
