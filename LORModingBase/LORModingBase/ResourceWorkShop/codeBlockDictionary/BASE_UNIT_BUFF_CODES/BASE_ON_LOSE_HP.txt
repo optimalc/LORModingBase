@@ -1,0 +1,4 @@
+public override void OnLoseHp(int dmg)
+{
+    this.OnLoseHp(dmg);
+}

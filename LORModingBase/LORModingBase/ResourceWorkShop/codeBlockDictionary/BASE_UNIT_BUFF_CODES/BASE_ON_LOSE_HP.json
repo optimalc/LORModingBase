@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF"
+    ],
+    "kr":[
+        "체력 잃을시 기반 블록",
+        "체력을 잃으면 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Lose hp Base Block",
+        "Base block for invoking action when HP was lost",
+        ""
+    ],
+    "jp":[
+        "Lose hp Base Block",
+        "Base block for invoking action when HP was lost",
+        ""
+    ],
+    "cn":[
+        "Lose hp Base Block",
+        "Base block for invoking action when HP was lost",
+        ""
+    ]
+}

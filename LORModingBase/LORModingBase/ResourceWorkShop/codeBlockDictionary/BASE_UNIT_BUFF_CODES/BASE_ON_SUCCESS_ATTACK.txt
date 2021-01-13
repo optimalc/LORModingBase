@@ -1,0 +1,4 @@
+public override void OnSuccessAttack(BattleDiceBehavior behavior)
+{
+    this.OnSuccessAttack(behavior);
+}

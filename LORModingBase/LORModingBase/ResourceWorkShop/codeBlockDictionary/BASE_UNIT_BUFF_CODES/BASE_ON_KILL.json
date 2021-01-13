@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF"
+    ],
+    "kr":[
+        "죽일시 기반 블록",
+        "상대방을 죽이면 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Kill Base Block",
+        "Base block for invoking action when killing the target",
+        ""
+    ],
+    "jp":[
+        "Kill Base Block",
+        "Base block for invoking action when killing the target",
+        ""
+    ],
+    "cn":[
+        "Kill Base Block",
+        "Base block for invoking action when killing the target",
+        ""
+    ]
+}

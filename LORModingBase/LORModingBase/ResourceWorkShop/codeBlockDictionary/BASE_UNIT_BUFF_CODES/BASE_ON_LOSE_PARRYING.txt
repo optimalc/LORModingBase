@@ -1,0 +1,4 @@
+public override void OnLoseParrying(BattleDiceBehavior behavior)
+{
+    this.OnLoseParrying(behavior);
+}

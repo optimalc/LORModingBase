@@ -1,0 +1,4 @@
+public override void OnRollDice(BattleDiceBehavior behavior)
+{
+    this.OnRollDice(behavior);
+}

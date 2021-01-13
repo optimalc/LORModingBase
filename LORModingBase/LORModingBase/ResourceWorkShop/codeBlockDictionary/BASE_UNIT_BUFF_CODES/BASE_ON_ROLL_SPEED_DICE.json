@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF"
+    ],
+    "kr":[
+        "속도 주사위 굴릴시 기반 블록",
+        "속도 주사위를 굴릴시 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Roll Speed Dice Base Block",
+        "Base block for invoking action when speed dice is rolled",
+        ""
+    ],
+    "jp":[
+        "Roll Speed Dice Base Block",
+        "Base block for invoking action when speed dice is rolled",
+        ""
+    ],
+    "cn":[
+        "Roll Speed Dice Base Block",
+        "Base block for invoking action when speed dice is rolled",
+        ""
+    ]
+}

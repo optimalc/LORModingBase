@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF"
+    ],
+    "kr":[
+        "아군이 데미지를 받으면 기반 블록",
+        "아군이 데미지를 받으면 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Friend take damage Base Block",
+        "Base block for invoking action when ally takes damage",
+        ""
+    ],
+    "jp":[
+        "Friend take damage Base Block",
+        "Base block for invoking action when ally takes damage",
+        ""
+    ],
+    "cn":[
+        "Friend take damage Base Block",
+        "Base block for invoking action when ally takes damage",
+        ""
+    ]
+}

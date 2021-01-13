@@ -1,0 +1,4 @@
+public override void OnRollSpeedDice()
+{
+    base.OnRollSpeedDice();
+}

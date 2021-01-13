@@ -1,0 +1,4 @@
+public override void OnUseCard(BattlePlayingCardDataInUnitModel card)
+{
+    base.OnUseCard(card);
+}

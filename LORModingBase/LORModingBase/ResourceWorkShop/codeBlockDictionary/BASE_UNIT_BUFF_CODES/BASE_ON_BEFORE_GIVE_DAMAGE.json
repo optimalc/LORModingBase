@@ -1,0 +1,29 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF",
+        "&GROUP_GLOBAL_BUFF_BEHAVIOR"
+    ],
+    "kr":[
+        "데미지를 주기 전에 기반 블록",
+        "데미지를 주기 전에 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Before give damage Base Block",
+        "Base block for invoking action before giving damage",
+        ""
+    ],
+    "jp":[
+        "Before give damage Base Block",
+        "Base block for invoking action before giving damage",
+        ""
+    ],
+    "cn":[
+        "Before give damage Base Block",
+        "Base block for invoking action before giving damage",
+        ""
+    ]
+}

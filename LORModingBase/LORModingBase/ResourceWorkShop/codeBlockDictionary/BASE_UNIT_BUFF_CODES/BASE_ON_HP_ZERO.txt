@@ -1,0 +1,4 @@
+public override void OnHpZero()
+{
+    this.OnHpZero();
+}

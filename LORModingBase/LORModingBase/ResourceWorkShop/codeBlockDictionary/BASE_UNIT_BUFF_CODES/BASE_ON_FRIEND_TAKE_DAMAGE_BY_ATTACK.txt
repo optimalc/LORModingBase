@@ -1,0 +1,4 @@
+public override void OnFriendTakeDamageByAttack(BattleDiceBehavior atkDice, int dmg)
+{
+    this.OnFriendTakeDamageByAttack(atkDice, dmg);
+}

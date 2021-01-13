@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF"
+    ],
+    "kr":[
+        "막이 시작했으면 기반 블록",
+        "막이 시작했으면 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Round Start Base Block",
+        "Base block for invoking action when the round is started",
+        ""
+    ],
+    "jp":[
+        "Round Start Base Block",
+        "Base block for invoking action when the round is started",
+        ""
+    ],
+    "cn":[
+        "Round Start Base Block",
+        "Base block for invoking action when the round is started",
+        ""
+    ]
+}
