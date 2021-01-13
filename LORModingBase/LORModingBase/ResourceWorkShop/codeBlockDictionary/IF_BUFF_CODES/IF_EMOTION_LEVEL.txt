@@ -1,0 +1,3 @@
+if (this._owner != null && this._owner.emotionDetail.EmotionLevel {{0}} {{1}})
+{
+}

@@ -1,0 +1,3 @@
+if(this._owner != null && this._owner.cardHistory.GetCurrentRoundCardList(Singleton<StageController>.Instance.RoundTurn).Count <= 0)
+{
+}
