@@ -11,6 +11,9 @@
     "%BtnAddCodeBase%":"▼ Make Code Base ▼",
     "%BtnAddCodeBase_ToolTip%":"Make a new code base block",
 
+    "%BtnAddCodeBlockPreset%":"▼ Load From Preset ▼",
+    "%BtnAddCodeBlockPreset_ToolTip%":"Load code blocks from preset",
+
     "DLLEditorMainWindow_Error_1":"An error has occurred in the DLL window button event",
 
     "Type_BASE":"[Base Block]",

@@ -82,6 +82,9 @@
     <Compile Include="DLLEditor\DLLEditorMainWindow.xaml.cs">
       <DependentUpon>DLLEditorMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DLLEditor\DLLEditorCodeBlockPresetWindow.xaml.cs">
+      <DependentUpon>DLLEditorCodeBlockPresetWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DM\CheckDatas.cs" />
     <Compile Include="DM\Config.cs" />
     <Compile Include="DM\EditGameData_Buff.cs" />
@@ -193,6 +196,10 @@
     <Page Include="DLLEditor\DLLEditorMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DLLEditor\DLLEditorCodeBlockPresetWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

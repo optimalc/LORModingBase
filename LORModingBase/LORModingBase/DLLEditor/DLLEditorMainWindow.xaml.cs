@@ -217,6 +217,25 @@ namespace LORModingBase.DLLEditor
                             InitDLLStacks();
                         }, null).ShowDialog();
                         break;
+                    case "BtnAddCodeBlockPreset":
+                        if (string.IsNullOrEmpty(targetSourceFilePath))
+                        {
+                            DLLEditorButtonClickEvents(BtnSetDLLWorkingSpace, null);
+                            return;
+                        }
+                        new DLLEditorCodeBlockPresetWindow((CodeBlockPresets presetData) =>
+                        {
+                            List<CodeBlock> copiedCodeBlocks = new List<CodeBlock>();
+                            presetData.rootCodeBlocks.ForEach((CodeBlock codeBlockToUse) =>
+                            {
+                                copiedCodeBlocks.Add(codeBlockToUse.Copy());
+                            });
+                            rootCodeBlocks.AddRange(copiedCodeBlocks);
+
+                            InitCreatedSourceCodeTextBox();
+                            InitDLLStacks();
+                        }).ShowDialog();
+                        break;
 
                     case "BtnClose":
                         this.Close();
