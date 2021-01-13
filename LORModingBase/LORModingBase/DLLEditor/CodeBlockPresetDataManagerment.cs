@@ -49,7 +49,7 @@ namespace LORModingBase.DLLEditor
                                 string CODE_BLOCK_UNIQUE_NAME = loadedCodeBlockPresetSyntaxStrList[1];
                                 string CODE_BLOCK_PERENT_NAME = loadedCodeBlockPresetSyntaxStrList[2];
 
-                                CodeBlock newCodeBlock = CodeBlockDataManagement.GetBaseBlockFromTargetPathOrTitle(CODE_BLOCK_PATH_TO_USE);
+                                CodeBlock newCodeBlock = CodeBlockDataManagement.GetBaseBlockFromTargetPathOrTitle(CODE_BLOCK_PATH_TO_USE).Copy();
                                 codeBlockDics[CODE_BLOCK_UNIQUE_NAME] = newCodeBlock;
                                 if (string.IsNullOrEmpty(CODE_BLOCK_PERENT_NAME))
                                     newCodeBlockLists.Add(newCodeBlock);
