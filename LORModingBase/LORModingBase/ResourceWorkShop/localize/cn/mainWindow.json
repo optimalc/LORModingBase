@@ -66,5 +66,6 @@
     "%BtnBuff%":"[Edit Buff]$1,0.8$95,3",
     "%BtnBuff_ToolTip%":"Move to Edit Buff window",
 
-    "%BtnDLLEdit_ToolTip%":"Open the DLL Edit window"
+    "%BtnDLLEdit_ToolTip%":"Open the DLL Edit window",
+    "%BtnAutoDLLGenerate_ToolTip%":"Open automatic DLL generation window"
 }

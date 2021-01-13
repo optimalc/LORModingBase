@@ -300,92 +300,71 @@ namespace LORModingBase.DLLEditor
             for(int paraIndex=0; paraIndex<selectedAutoGenerateCodeBlock.parameterNameList.Count; paraIndex++)
             {
                 #region Data empty check
+                TextBox tbxToCheck = null;
+                Label lblToShow = LblData_0;
                 switch (paraIndex)
                 {
-                    case 0:
-                        if (string.IsNullOrEmpty(TbxData_0.Text))
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_0.Content} 항목이 입력되지 않았습니다.");
-                            return;
-                        }
+                    case 0: 
+                        tbxToCheck = TbxData_0;
+                        lblToShow = LblData_0;
                         break;
                     case 1:
-                        if (string.IsNullOrEmpty(TbxData_1.Text))
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_1.Content} 항목이 입력되지 않았습니다.");
-                            return;
-                        }
+                        tbxToCheck = TbxData_1;
+                        lblToShow = LblData_1;
                         break;
                     case 2:
-                        if (string.IsNullOrEmpty(TbxData_2.Text))
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_2.Content} 항목이 입력되지 않았습니다.");
-                            return;
-                        }
+                        tbxToCheck = TbxData_2;
+                        lblToShow = LblData_2;
                         break;
                     case 3:
-                        if (string.IsNullOrEmpty(TbxData_3.Text))
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_3.Content} 항목이 입력되지 않았습니다.");
-                            return;
-                        }
+                        tbxToCheck = TbxData_3;
+                        lblToShow = LblData_3;
                         break;
                     case 4:
-                        if (string.IsNullOrEmpty(TbxData_4.Text))
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_4.Content} 항목이 입력되지 않았습니다.");
-                            return;
-                        }
+                        tbxToCheck = TbxData_4;
+                        lblToShow = LblData_4;
                         break;
 
                     case 5:
-                        if (string.IsNullOrEmpty(TbxData_5.Text))
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_5.Content} 항목이 입력되지 않았습니다.");
-                            return;
-                        }
+                        tbxToCheck = TbxData_5;
+                        lblToShow = LblData_5;
                         break;
                     case 6:
-                        if (string.IsNullOrEmpty(TbxData_6.Text))
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_6.Content} 항목이 입력되지 않았습니다.");
-                            return;
-                        }
+                        tbxToCheck = TbxData_6;
+                        lblToShow = LblData_6;
                         break;
                     case 7:
-                        if (string.IsNullOrEmpty(TbxData_7.Text))
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_7.Content} 항목이 입력되지 않았습니다.");
-                            return;
-                        }
+                        tbxToCheck = TbxData_7;
+                        lblToShow = LblData_7;
                         break;
                     case 8:
-                        if (string.IsNullOrEmpty(TbxData_8.Text))
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_8.Content} 항목이 입력되지 않았습니다.");
-                            return;
-                        }
+                        tbxToCheck = TbxData_8;
+                        lblToShow = LblData_8;
                         break;
                     case 9:
-                        if (string.IsNullOrEmpty(TbxData_9.Text))
-                        {
-                            Tools.MessageBoxTools.ShowErrorMessageBox($"{LblData_9.Content} 항목이 입력되지 않았습니다.");
-                            return;
-                        }
+                        tbxToCheck = TbxData_9;
+                        lblToShow = LblData_9;
                         break;
                 } 
+
+                if(tbxToCheck != null && string.IsNullOrEmpty(tbxToCheck.Text))
+                {
+                    Tools.MessageBoxTools.ShowErrorMessageBox(String.Format(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"AUTO_CREATE_DLL_ERROR_1"), lblToShow.Content));
+                    return;
+                }
                 #endregion
             }
 
             if (string.IsNullOrEmpty(TbxDLLName.Text))
             {
-                Tools.MessageBoxTools.ShowErrorMessageBox($"DLL 이름이 입력되지 않았습니다");
+                Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"AUTO_CREATE_DLL_ERROR_2"));
                 return;
             }
             string OUTPUT_DLL_PATH = $"{DM.Config.CurrentWorkingDirectory}\\{TbxDLLName}.dll";
             if(File.Exists(OUTPUT_DLL_PATH))
             {
-                if (MessageBox.Show("해당 이름의 DLL이 이미 존재하며, 계속 진행하면 덮어쓰기가 됩니다. 진행하시겠습니까?", "덮어쓰기 경고", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                if (MessageBox.Show(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"AUTO_CREATE_DLL_ERROR_3"),
+                    DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"AUTO_CREATE_DLL_ERROR_4"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                     return;
             }
 
