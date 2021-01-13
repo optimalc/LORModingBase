@@ -38,4 +38,13 @@ namespace LORModingBase.DLLEditor
             return Tools.DeepCopy.DeepClone(this);
         }
     }
+
+    [Serializable]
+    public class AutoGenerateCodeBlock
+    {
+        public string title = "";
+        public string description = "";
+        public List<string> parameterNameList = new List<string>();
+        public string codes;
+    }
 }

@@ -1,5 +1,9 @@
 [
-    "LOR_DiceSystem", 
+    "System",
+    "HarmonyLib",
+    "LOR_DiceSystem",
+    "UnityEngine",
     "System.Collections.Generic",
-    "System"
+    "System.Reflection",
+    "System.IO"
 ]

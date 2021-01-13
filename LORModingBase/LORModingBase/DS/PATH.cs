@@ -37,6 +37,11 @@ namespace LORModingBase.DS
         /// Code block group directory
         /// </summary>
         public const string CODE_BLOCK_GROUP = ".\\codeBlockGroup";
+
+        /// <summary>
+        /// Auto generate code block directory
+        /// </summary>
+        public const string AUTO_GENERATE_CODE_BLOCK = ".\\autoGenerateCodeBlock";
     }
 
     class PROGRAM_RESOURCE_PATHS

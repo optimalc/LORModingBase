@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["0"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "커스텀 버프를 상대에게 부여",
+        "상대에게 특정 커스텀 버프를 부여합니다",
+        "버프종류#CUSTOM_BUFF"
+    ],
+    "en":[
+        "Give custom buff to opponent",
+        "Give custom buff to opponent",
+        "Buf Type#CUSTOM_BUFF"
+    ],
+    "jp":[
+        "Give custom buff to opponent",
+        "Give custom buff to opponent",
+        "Buf Type#CUSTOM_BUFF"
+    ],
+    "cn":[
+        "Give custom buff to opponent",
+        "Give custom buff to opponent",
+        "Buf Type#CUSTOM_BUFF"
+    ]
+}

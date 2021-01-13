@@ -65,6 +65,7 @@
     </ApplicationDefinition>
     <Compile Include="CustomExtensions\IEnumerable.cs" />
     <Compile Include="CustomExtensions\StringExtension.cs" />
+    <Compile Include="DLLEditor\AutoGenerateCodeBlockDataManagement.cs" />
     <Compile Include="DLLEditor\CodeBlockControls\GlobalCodeBlockControl.xaml.cs">
       <DependentUpon>GlobalCodeBlockControl.xaml</DependentUpon>
     </Compile>
@@ -460,6 +461,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\IconMotion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnAutoDLLGenerate.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
