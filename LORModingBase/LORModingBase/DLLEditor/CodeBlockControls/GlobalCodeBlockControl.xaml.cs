@@ -308,6 +308,11 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                             attributeToCheck: new Dictionary<string, string>() { { "ID", inputedValue } });
                         searchPathToUse = "Name";
                         break;
+                    case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_BUFF_FOR_NAME:
+                        tbx.Text = inputedValue;
+                        tbx.ToolTip = inputedValue;
+                        return;
+
                 }
 
                 if (searchedNodes.Count > 0 && !string.IsNullOrEmpty(searchPathToUse)

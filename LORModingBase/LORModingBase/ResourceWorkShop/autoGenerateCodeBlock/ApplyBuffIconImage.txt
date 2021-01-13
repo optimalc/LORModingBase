@@ -30,7 +30,7 @@ namespace {{0}}
         {
 			try
             {
-				if (__instance.bufKeywordText.Split(' ')[0] == "{{3}}")
+				if (__instance.bufActivatedName == "{{3}}")
 				{
                     Texture2D texture = new Texture2D(2, 2);
                     texture.LoadImage(File.ReadAllBytes(UnityEngine.Application.dataPath + "/BaseMods/{{2}}/ArtWork/{{4}}"));
