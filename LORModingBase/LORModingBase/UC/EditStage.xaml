@@ -40,12 +40,18 @@
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="40*"/>
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.ColumnSpan="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
-                <Label x:Name="LblStage" Grid.Column="1" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
-                <Viewbox Grid.Column="1" Stretch="Fill" Margin="55,7">
+                <Label x:Name="LblStage" Grid.Column="0" Content="" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
                     <Button x:Name="BtnStage" Content="적용할 스테이지를 선택" ToolTip="해당 스테이지와 관련된 스테이지를 설정합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                </Viewbox>
+
+                <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Viewbox Grid.Column="1" Stretch="Fill">
+                    <Button x:Name="BtnStageCustom" Content="커스텀 설정" ToolTip="스테이지 관련 내용을 직접 입력합니다" FontSize="15"  Style="{StaticResource StyBtnMenu}"  Click="SelectItemButtonEvents" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Row="2">

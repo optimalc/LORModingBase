@@ -4,7 +4,7 @@
     "%LblStageUniqueID%":"고유 ID : $1.2,1.2$-3,-2",
     "%TbxStageUniqueID_ToolTip%":"스테이지의 고유 ID를 입력",
 
-    "%BtnStage%":"적용할 에피소드를 선택$1.2,2.3$-15,-14",
+    "%BtnStage%":"적용할 에피소드를 선택$1,0.8$0,3",
     "%BtnStage_ToolTip%":"스테이지과 관련된 에피소드를 설정합니다",
 
     "%BtnFloor%":"허용 되는 층 수 선택",
@@ -35,5 +35,18 @@
     "AVALIABLE_FLOOR":"이용가능 층 수",
     "INVITATION_BOOK":"초대장 책",
     
-    "FORMATION":"대형"
+    "FORMATION":"대형",
+
+    "%BtnStageCustom%":"커스텀 설정$0.8,0.8$9,3",
+    "%BtnStageCustom_ToolTip%":"스테이지 관련 내용을 직접 입력합니다",
+
+    "Chapter":"챕터",
+    "Chapter_ToolTip":"스테이지의 챕터 번호를 입력합니다",
+    "StoryType":"고유 스토리 타입",
+    "StoryType_ToolTip":"스테이지의 스토리 타입을 입력합니다",
+
+    "Story_Start_Conditon":"시작 스토리 번호",
+    "Story_Start_Conditon_ToolTip":"시작시 표시시킬 스토리 번호입니다",
+    "Story_End_Conditon":"끝 스토리 번호",
+    "Story_End_Conditon_TooTip":"클리어시 표시시킬 스토리 번호입니다"
 }
