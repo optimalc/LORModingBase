@@ -493,6 +493,19 @@ namespace LORModingBase.SubWindows
                     searchTypes.Add(CUSTOM_ITEM_WORD);
                     #endregion
                     break;
+
+                case DLL_EDITOR_SELECT_PRESET.STAGE_FOR_STORY_TYPE:
+                    #region Add custom items
+                    DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode customNode) =>
+                    {
+                        string STAGE_ID = customNode.GetAttributesSafe("id");
+                        string TYPE_NAME = customNode.GetInnerTextByPath("StoryType");
+                        if (!string.IsNullOrEmpty(STAGE_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STAGE_ID)}:{TYPE_NAME}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -595,5 +608,7 @@ namespace LORModingBase.SubWindows
         public const string CUSTOM_BUFF = "CUSTOM_BUFF";
         public const string CUSTOM_IMAGE = "CUSTOM_IMAGE";
         public const string CUSTOM_BUFF_FOR_NAME = "CUSTOM_BUFF_FOR_NAME";
+
+        public const string STAGE_FOR_STORY_TYPE = "STAGE_FOR_STORY_TYPE";
     }
 }

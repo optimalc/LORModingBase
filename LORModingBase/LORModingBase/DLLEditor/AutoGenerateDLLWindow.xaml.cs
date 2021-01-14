@@ -270,6 +270,13 @@ namespace LORModingBase.DLLEditor
                                 tbx.ToolTip = selectedID.Split(']').Last().Trim();
                             }, SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE).ShowDialog();
                             break;
+                        case "STORY_TYPE_NAME":
+                            new SubWindows.Global_InputInfoWithSearchWindow((string selectedName) =>
+                            {
+                                tbx.Text = selectedName;
+                                tbx.ToolTip = selectedName;
+                            }, SubWindows.DLL_EDITOR_SELECT_PRESET.STAGE_FOR_STORY_TYPE).ShowDialog();
+                            break;
                     }
                 }
             }
