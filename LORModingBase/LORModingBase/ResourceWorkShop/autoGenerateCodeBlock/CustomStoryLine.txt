@@ -10,6 +10,8 @@ namespace {{0}}
 {
 	public class Harmony_Patch
 	{
+        public static UIStoryProgressIconSlot createdSlot_{{3}} = null;
+
 		public Harmony_Patch()
 		{
 			try
@@ -38,14 +40,17 @@ namespace {{0}}
                 List<StageClassInfo> customStageInfoList = Singleton<StageClassInfoList>.Instance.recipeCondList.FindAll(x => x.storyType == "{{3}}");
                 List<UIStoryProgressIconSlot> iconList = (List<UIStoryProgressIconSlot>)__instance.GetType().GetField("iconList", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).GetValue(__instance);
                 
-                UIStoryProgressIconSlot copiedSlot = UnityEngine.Object.Instantiate<UIStoryProgressIconSlot>(iconList[0], iconList[0].transform.parent);
-                copiedSlot.transform.localPosition += new Vector3({{5}}, {{6}});
-                copiedSlot.SetSlotData(customStageInfoList);
+                if(createdSlot_{{3}} == null)
+                {
+                    createdSlot_{{3}} = UnityEngine.Object.Instantiate<UIStoryProgressIconSlot>(iconList[0], iconList[0].transform.parent);
+                    createdSlot_{{3}}.transform.localPosition += new Vector3({{5}}, {{6}});
+                }
+                createdSlot_{{3}}.SetSlotData(customStageInfoList);
 
                 if (LibraryModel.Instance.GetChapter() >= customStageInfoList[0].chapter)
-                    copiedSlot.SetActiveStory(true);
+                    createdSlot_{{3}}.SetActiveStory(true);
                 else
-                    copiedSlot.SetActiveStory(false);
+                    createdSlot_{{3}}.SetActiveStory(false);
             }
             catch (Exception ex)
             {
