@@ -42,7 +42,7 @@ namespace {{0}}
                 copiedSlot.transform.localPosition += new Vector3({{5}}, {{6}});
                 copiedSlot.SetSlotData(customStageInfoList);
 
-                if (LibraryModel.Instance.GetChapter() <= customStageInfoList[0].chapter)
+                if (LibraryModel.Instance.GetChapter() >= customStageInfoList[0].chapter)
                     copiedSlot.SetActiveStory(true);
                 else
                     copiedSlot.SetActiveStory(false);

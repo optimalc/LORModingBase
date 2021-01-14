@@ -11,7 +11,7 @@
     "%BtnAddCodeBase%":"▼ 코드 기반 블록 추가 ▼",
     "%BtnAddCodeBase_ToolTip%":"새로운 코드 기반 블록을 추가합니다",
 
-    "%BtnAddCodeBlockPreset%":"▼ 프리셋으로 부터 로드 ▼",
+    "%BtnAddCodeBlockPreset%":"▼ 프리셋으로부터 로드 ▼",
     "%BtnAddCodeBlockPreset_ToolTip%":"프리셋에서 코드 블록들을 로드시킵니다",
 
     "DLLEditorMainWindow_Error_1":"DLL 버튼 이벤트에서 에러 발생",
