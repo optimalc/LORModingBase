@@ -3,7 +3,9 @@
     "HarmonyLib",
     "LOR_DiceSystem",
     "UnityEngine",
+    "UnityEngine.UI",
     "System.Collections.Generic",
     "System.Reflection",
-    "System.IO"
+    "System.IO",
+    "UI"
 ]
