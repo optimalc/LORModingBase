@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["this.stack"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "이곳에 넣은 수치만큼 데미지가 경감됩니다",
+        "이곳에 넣은 수치만큼 데미지가 경감됩니다",
+        "수치"
+    ],
+    "en":[
+        "Damage can be reduced",
+        "Damage can be reduced",
+        "Degree"
+    ],
+    "jp":[
+        "Damage can be reduced",
+        "Damage can be reduced",
+        "Degree"
+    ],
+    "cn":[
+        "Damage can be reduced",
+        "Damage can be reduced",
+        "Degree"
+    ]
+}

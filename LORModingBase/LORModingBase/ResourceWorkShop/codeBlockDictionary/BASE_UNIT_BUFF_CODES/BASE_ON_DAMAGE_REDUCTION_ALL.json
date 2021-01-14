@@ -1,0 +1,29 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF",
+        "ACTION_UNIT_BUFF_CODES/ACTION_DAMAGE_REDUCTION"
+    ],
+    "kr":[
+        "데미지 경감 기반 블록",
+        "이 블록에서 반환되는 값 만큼 들어오는 데미지를 경감시킵니다",
+        ""
+    ],
+    "en":[
+        "Damage Reduction Block",
+        "Damage can be reduced by returned value",
+        ""
+    ],
+    "jp":[
+        "Damage Reduction Block",
+        "Damage can be reduced by returned value",
+        ""
+    ],
+    "cn":[
+        "Damage Reduction Block",
+        "Damage can be reduced by returned value",
+        ""
+    ]
+}
