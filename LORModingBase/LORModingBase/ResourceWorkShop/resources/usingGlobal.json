@@ -7,5 +7,6 @@
     "System.Collections.Generic",
     "System.Reflection",
     "System.IO",
+    "System.Linq",
     "UI"
 ]
