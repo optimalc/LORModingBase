@@ -375,6 +375,7 @@ namespace LORModingBase.SubWindows
             InitializeComponent();
             string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
             string IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
+            string SOUND_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\Sounds";
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelectItem = afterSelectItem;
             List<string> searchTypes = new List<string>();
@@ -478,6 +479,25 @@ namespace LORModingBase.SubWindows
                     searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
                     #endregion
                     break;
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_SOUND:
+                    #region Add custom items
+                    if (Directory.Exists(SOUND_DIRECTORY))
+                    {
+                        Directory.GetFiles(SOUND_DIRECTORY).ForEachSafe((string soundPath) =>
+                        {
+                            if (soundPath.Split('.').Last().ToLower() == "wav")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = soundPath.Split('\\').Last();
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:/{DM.Config.CurrentWorkingDirectory.Split('\\').Last()}/Sounds/{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+                    break;
+
                 case DLL_EDITOR_SELECT_PRESET.CUSTOM_BUFF_FOR_NAME:
                     #region Add custom items
                     DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode customNode) =>
@@ -607,6 +627,7 @@ namespace LORModingBase.SubWindows
 
         public const string CUSTOM_BUFF = "CUSTOM_BUFF";
         public const string CUSTOM_IMAGE = "CUSTOM_IMAGE";
+        public const string CUSTOM_SOUND = "CUSTOM_SOUND";
         public const string CUSTOM_BUFF_FOR_NAME = "CUSTOM_BUFF_FOR_NAME";
 
         public const string STAGE_FOR_STORY_TYPE = "STAGE_FOR_STORY_TYPE";

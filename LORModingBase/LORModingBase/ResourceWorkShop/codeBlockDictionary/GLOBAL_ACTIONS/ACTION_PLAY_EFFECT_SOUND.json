@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["", "2f"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "커스텀 사운드 효과음 재생 액션 블록",
+        "커스텀 사운드 효과음을 재생합니다",
+        "WAV파일 경로#CUSTOM_SOUND,볼륨"
+    ],
+    "en":[
+        "Custom sound effect play action block",
+        "Play custom sounds from WAV file",
+        "WAV file path#CUSTOM_SOUND,Volume"
+    ],
+    "jp":[
+        "Custom sound effect play action block",
+        "Play custom sounds from WAV file",
+        "WAV file path#CUSTOM_SOUND,Volume"
+    ],
+    "cn":[
+        "Custom sound effect play action block",
+        "Play custom sounds from WAV file",
+        "WAV file path#CUSTOM_SOUND,Volume"
+    ]
+}

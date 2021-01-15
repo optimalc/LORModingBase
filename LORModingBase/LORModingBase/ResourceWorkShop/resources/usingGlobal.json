@@ -8,5 +8,6 @@
     "System.Reflection",
     "System.IO",
     "System.Linq",
-    "UI"
+    "UI",
+    "Sound"
 ]

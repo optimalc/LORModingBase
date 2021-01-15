@@ -1,0 +1,8 @@
+WWW <<0>> = new WWW(string.Format("file://{0}", Application.dataPath + "/BaseMods" + "{{0}}"));
+while (true)
+{
+    if (<<0>>.isDone)
+        break;
+}
+AudioClip <<1>> = <<0>>.GetAudioClip();
+SingletonBehavior<SoundEffectManager>.Instance.PlayClip(<<1>>, false, {{1}}, null);
