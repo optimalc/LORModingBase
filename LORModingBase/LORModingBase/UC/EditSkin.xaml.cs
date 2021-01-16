@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LORModingBase.CustomExtensions;
 
 namespace LORModingBase.UC
 {
@@ -32,6 +33,16 @@ namespace LORModingBase.UC
 
             TbxSkinName.Text = skinRootPath.Split('\\').Last();
             TbxSkinName.ToolTip = skinRootPath.Split('\\').Last();
+            InitSqlSkinImages();
+        }
+
+        private void InitSqlSkinImages()
+        {
+            SqlSkinImages.Children.Clear();
+            DS.SkinRelativePaths.GetAllSkinImagePaths(skinRootPath).ForEachKeyValuePairSafe((string imageDes, string imagePath) =>
+            {
+                SqlSkinImages.Children.Add(new UC.EditSkinImage(imageDes, imagePath));
+            });
         }
 
         private void TbxSkinName_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -185,6 +185,9 @@
     <Compile Include="UC\EditEmotionReward.xaml.cs">
       <DependentUpon>EditEmotionReward.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\EditSkinImage.xaml.cs">
+      <DependentUpon>EditSkinImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\EditWave.xaml.cs">
       <DependentUpon>EditWave.xaml</DependentUpon>
     </Compile>
@@ -309,6 +312,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\EditEmotionReward.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC\EditSkinImage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

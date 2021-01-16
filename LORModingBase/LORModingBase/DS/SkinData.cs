@@ -27,23 +27,23 @@ namespace LORModingBase.DS
         public static string Cloth_Penetrate = $"{ClothCustomFolder}\\Penetrate.png";
         public static string Cloth_Slash = $"{ClothCustomFolder}\\Slash.png";
 
-        public static List<string> GetAllSkinImagePaths(string rootSkinPath)
+        public static Dictionary<string, string> GetAllSkinImagePaths(string rootSkinPath)
         {
-            List<string> skinPaths = new List<string>();
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.ThumbPath}");
+            Dictionary<string, string> skinPaths = new Dictionary<string, string>();
+            skinPaths["썸네일"] = $"{rootSkinPath}\\{SkinRelativePaths.ThumbPath}";
 
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.Cloth_Aim}");
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.Cloth_Damaged}");
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.Cloth_Default}");
+            skinPaths["적중 당함"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Aim}";
+            skinPaths["데미지를 받음"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Damaged}";
+            skinPaths["화염 데미지를 받음"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Fire}";
 
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.Cloth_Evade}");
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.Cloth_Fire}");
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.Cloth_Guard}");
+            skinPaths["기본 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Default}";
+            skinPaths["회피 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Evade}";
+            skinPaths["방어 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Guard}";
+            skinPaths["이동 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Move}";
 
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.Cloth_Hit}");
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.Cloth_Move}");
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.Cloth_Penetrate}");
-            skinPaths.Add($"{rootSkinPath}\\{SkinRelativePaths.Cloth_Slash}");
+            skinPaths["타격 공격 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Hit}";
+            skinPaths["관통 공격 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Penetrate}";
+            skinPaths["참격 공격 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Slash}";
             return skinPaths;
         }
     }
