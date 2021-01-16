@@ -277,6 +277,14 @@ namespace LORModingBase
                         }
                         new SubWindows.ResourceWindow().ShowDialog();
                         break;
+                    case "BtnOpenSkinWindow":
+                        if (string.IsNullOrEmpty(DM.Config.CurrentWorkingDirectory))
+                        {
+                            MainWindowButtonClickEvents(BtnSetWorkingSpace, null);
+                            return;
+                        }
+                        new SubWindows.CustomSkinWindow().ShowDialog();
+                        break;
                     case "BtnDLLEdit":
                         if (string.IsNullOrEmpty(DM.Config.config.DLLCompilerPath))
                         {

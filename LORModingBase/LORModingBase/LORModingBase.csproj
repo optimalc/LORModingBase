@@ -117,6 +117,9 @@
     <Compile Include="SubWindows\Global_InputInfoWithSearchWindow.xaml.cs">
       <DependentUpon>Global_InputInfoWithSearchWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubWindows\CustomSkinWindow.xaml.cs">
+      <DependentUpon>CustomSkinWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindows\ResourceWindow.xaml.cs">
       <DependentUpon>ResourceWindow.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,9 @@
     <Compile Include="Tools\ThreadTools.cs" />
     <Compile Include="Tools\WindowControls.cs" />
     <Compile Include="Tools\XmlFile.cs" />
+    <Compile Include="UC\EditSkin.xaml.cs">
+      <DependentUpon>EditSkin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\EditCard.xaml.cs">
       <DependentUpon>EditCard.xaml</DependentUpon>
     </Compile>
@@ -230,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="SubWindows\CustomSkinWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SubWindows\ResourceWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -251,6 +261,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubWindows\OptionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UC\EditSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -480,6 +494,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\BtnAutoDLLGenerate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BtnOpenSkinWindow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
