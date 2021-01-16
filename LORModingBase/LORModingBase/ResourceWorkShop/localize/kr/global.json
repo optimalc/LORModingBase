@@ -87,5 +87,12 @@
     "AUTO_CREATE_DLL_ERROR_1":"'{0}' 칼럼의 데이터가 입력되어 있지 않습니다",
     "AUTO_CREATE_DLL_ERROR_2":"사용할 DLL 이름이 입력되어 있지 않습니다",
     "AUTO_CREATE_DLL_ERROR_3":"이미 해당 이름의 DLL이 존재합니다. 계속 진행하면 기존 DLL을 덮어씌웁니다. 진행하시겠습니까?",
-    "AUTO_CREATE_DLL_ERROR_4":"덮어쓰기 경고"
+    "AUTO_CREATE_DLL_ERROR_4":"덮어쓰기 경고",
+
+    "%LblSoundResource%":"사운드 관리(.wav)",
+    "%BtnAddSound%":"+ 추가",
+    "%BtnAddSound_ToolTip%":"사운드를 리스트에 추가합니다",
+    "%BtnDeleteSound%":"- 삭제",
+    "%BtnDeleteSound_ToolTip%":"선택된 사운드를 삭제합니다",
+    "RESOURCE_DIALOG_TITLE2":"추가하고 싶은 사운드를 선택"
 }

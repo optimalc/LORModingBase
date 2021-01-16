@@ -87,5 +87,12 @@
     "AUTO_CREATE_DLL_ERROR_1":"The data of '{0}' column is not inputted",
     "AUTO_CREATE_DLL_ERROR_2":"The name of DLL to use is not inputted",
     "AUTO_CREATE_DLL_ERROR_3":"The name of the DLL you inputted already exists. If you continue, This DLL will be replaced. Are you sure?",
-    "AUTO_CREATE_DLL_ERROR_4":"Replace Caution"
+    "AUTO_CREATE_DLL_ERROR_4":"Replace Caution",
+
+    "%LblSoundResource%":"Sound Resource Management(.wav)",
+    "%BtnAddSound%":"+ ADD",
+    "%BtnAddSound_ToolTip%":"Add sound to list",
+    "%BtnDeleteSound%":"- DELETE",
+    "%BtnDeleteSound_ToolTip%":"Delete selected sound",
+    "RESOURCE_DIALOG_TITLE2":"Selete sound you want to add"
 }

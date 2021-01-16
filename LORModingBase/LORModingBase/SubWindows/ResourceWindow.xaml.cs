@@ -95,7 +95,7 @@ namespace LORModingBase.SubWindows
             switch (editButton.Name)
             {
                 case "BtnAddSound":
-                    Tools.Dialog.ShowOpenFileDialog(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"RESOURCE_DIALOG_TITLE"),
+                    Tools.Dialog.ShowOpenFileDialog(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"RESOURCE_DIALOG_TITLE2"),
                         "Sound Files|*.wav", (string selectedFile) =>
                         {
                             if (File.Exists(selectedFile))
