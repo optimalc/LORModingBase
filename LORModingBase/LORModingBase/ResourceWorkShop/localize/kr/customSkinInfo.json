@@ -1,0 +1,27 @@
+{
+    "%CustomSkinWindowName%":"커스텀 스킨 생성 윈도우",
+    "%BtnAddSkin_ToolTip%":"게임에 없는 새로운 스킨 정보를 추가합니다",
+    "%BtnOk%":"[닫기]",
+    "%BtnOk_ToolTip%":"창을 닫습니다",
+
+    "SKIN_INPUT":"생성시킬 스킨 이름 입력",
+
+    "%LblSkinName%":"스킨 이름 :$0.8,0.8$10,3",
+    "%TbxSkinName_ToolTip%":"스킨 이름 수정하기",
+    "%LblSkinImages%":"-- 스킨 이미지들 관리 --$0.8,0.8$15,0",
+    "%BtnDelete_ToolTip%":"스킨을 삭제합니다",
+
+    "IMAGE_THUMB_NAIL":"썸네일",
+
+    "IMAGE_HIT":"적중 당함",
+    "IMAGE_TAKE_DAMAGE":"데미지를 받음",
+    "IMAGE_TAKE_FIRE_DAMAGE":"화염 데미지를 받음",
+    "IMAGE_DEFAULT_POSTURE":"기본 자세",
+    "IMAGE_EVADE_POSTURE":"회피 자세",
+    "IMAGE_GUARD_POSTURE":"방어 자세",
+    "IMAGE_MOVE_POSTURE":"이동 자세",
+
+    "IMAGE_HIT_ATTACK_POSTURE":"타격 공격 자세",
+    "IMAGE_PENETRATE_ATTACK_POSTURE":"관통 공격 자세",
+    "IMAGE_SLASH_ATTACK_POSTURE":"참격 공격 자세"
+}

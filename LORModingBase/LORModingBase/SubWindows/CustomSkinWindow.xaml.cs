@@ -20,6 +20,7 @@ namespace LORModingBase.SubWindows
         public CustomSkinWindow()
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO);
 
             SKIN_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\Char";
             if (!Directory.Exists(SKIN_DIRECTORY))
@@ -60,8 +61,8 @@ namespace LORModingBase.SubWindows
                                 InitSqlSkins();
                             }
 
-                        }, windowTitle: "생성할 스킨 이름 입력",
-                            tbxToolTip: "스킨 이름을 입력").ShowDialog();
+                        }, windowTitle: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"SKIN_INPUT"),
+                            tbxToolTip: DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"SKIN_INPUT")).ShowDialog();
                         break;
                 }
             }

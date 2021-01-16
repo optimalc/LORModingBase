@@ -30,20 +30,20 @@ namespace LORModingBase.DS
         public static Dictionary<string, string> GetAllSkinImagePaths(string rootSkinPath)
         {
             Dictionary<string, string> skinPaths = new Dictionary<string, string>();
-            skinPaths["썸네일"] = $"{rootSkinPath}\\{SkinRelativePaths.ThumbPath}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_THUMB_NAIL")] = $"{rootSkinPath}\\{SkinRelativePaths.ThumbPath}";
 
-            skinPaths["적중 당함"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Aim}";
-            skinPaths["데미지를 받음"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Damaged}";
-            skinPaths["화염 데미지를 받음"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Fire}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_HIT")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Aim}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_TAKE_DAMAGE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Damaged}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_TAKE_FIRE_DAMAGE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Fire}";
 
-            skinPaths["기본 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Default}";
-            skinPaths["회피 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Evade}";
-            skinPaths["방어 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Guard}";
-            skinPaths["이동 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Move}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_DEFAULT_POSTURE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Default}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_EVADE_POSTURE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Evade}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_GUARD_POSTURE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Guard}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_MOVE_POSTURE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Move}";
 
-            skinPaths["타격 공격 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Hit}";
-            skinPaths["관통 공격 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Penetrate}";
-            skinPaths["참격 공격 자세"] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Slash}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_HIT_ATTACK_POSTURE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Hit}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_PENETRATE_ATTACK_POSTURE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Penetrate}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_SLASH_ATTACK_POSTURE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Slash}";
             return skinPaths;
         }
     }

@@ -28,6 +28,7 @@ namespace LORModingBase.UC
         public EditSkin(string skinRootPath, Action initStack)
         {
             InitializeComponent();
+            Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO);
             this.skinRootPath = skinRootPath;
             this.initStack = initStack;
 

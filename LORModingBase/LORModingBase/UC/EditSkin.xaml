@@ -26,7 +26,7 @@
                 <Viewbox Grid.Column="0" Stretch="Fill">
                     <Label x:Name="LblSkinName" Content="스킨 이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
                 </Viewbox>
-                <TextBox x:Name="TbxSkinName" Grid.Column="1" Text="" ToolTip="스킨의 이름입니다" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" PreviewMouseLeftButtonDown="TbxSkinName_PreviewMouseLeftButtonDown"/>
+                <TextBox x:Name="TbxSkinName" Grid.Column="1" Text="" ToolTip="스킨 이름 수정하기" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" PreviewMouseLeftButtonDown="TbxSkinName_PreviewMouseLeftButtonDown"/>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
