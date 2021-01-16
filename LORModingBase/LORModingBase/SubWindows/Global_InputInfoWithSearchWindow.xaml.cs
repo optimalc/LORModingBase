@@ -36,6 +36,7 @@ namespace LORModingBase.SubWindows
             InitializeComponent();
             string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
             string IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
+            string SKIN_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\Char";
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelectItem = afterSelectItem;
             List<string> searchTypes = new List<string>();
@@ -92,6 +93,19 @@ namespace LORModingBase.SubWindows
                     break;
                 case InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CHARACTER_SKIN_TITLE");
+                    #region Add custom items
+                    if (Directory.Exists(SKIN_DIRECTORY))
+                    {
+                        Directory.GetDirectories(SKIN_DIRECTORY).ForEachSafe((string skinDir) =>
+                        {                   
+                            string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                            string SKIN_NAME = $"Custom_{skinDir.Split('\\').Last()}";
+
+                            selectItems.Add($"{CUSTOM_FILTER_DES} {SKIN_NAME}:{SKIN_NAME}");
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
                     DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode bookNode) =>
                     {
                         string CHPATER_NAME = DM.LocalizedGameDescriptions.GetDescriptionForChapter(bookNode.GetInnerTextByPath("Chapter"));

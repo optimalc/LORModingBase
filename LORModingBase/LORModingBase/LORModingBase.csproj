@@ -104,6 +104,7 @@
     <Compile Include="DS\Config.cs" />
     <Compile Include="DS\FilterDatas.cs" />
     <Compile Include="DS\PATH.cs" />
+    <Compile Include="DS\SkinData.cs" />
     <Compile Include="SubWindows\ExtraToolsWindow.xaml.cs">
       <DependentUpon>ExtraToolsWindow.xaml</DependentUpon>
     </Compile>
