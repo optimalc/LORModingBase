@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["0"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "상대방에게 카드를 추가",
+        "상대방에게 카드를 추가시킵니다",
+        "카드 ID#ALL_CARDS"
+    ],
+    "en":[
+        "Give the card to the enemy",
+        "Give the card to the enemy",
+        "Card ID#ALL_CARDS"
+    ],
+    "jp":[
+        "Give the card to the enemy",
+        "Give the card to the enemy",
+        "Card ID#ALL_CARDS"
+    ],
+    "cn":[
+        "Give the card to the enemy",
+        "Give the card to the enemy",
+        "Card ID#ALL_CARDS"
+    ]
+}

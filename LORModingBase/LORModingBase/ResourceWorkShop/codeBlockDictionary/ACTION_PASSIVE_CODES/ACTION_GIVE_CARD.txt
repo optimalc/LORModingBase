@@ -1,0 +1,2 @@
+if (behavior.card.target != null)
+    behavior.card.target.allyCardDetail.AddNewCard({{0}});

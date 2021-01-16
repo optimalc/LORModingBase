@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["0"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "자신에게 카드를 추가",
+        "자신에게 카드를 추가시킵니다",
+        "카드 ID#ALL_CARDS"
+    ],
+    "en":[
+        "Give the card to the owner",
+        "Give the card to the owner",
+        "Card ID#ALL_CARDS"
+    ],
+    "jp":[
+        "Give the card to the owner",
+        "Give the card to the owner",
+        "Card ID#ALL_CARDS"
+    ],
+    "cn":[
+        "Give the card to the owner",
+        "Give the card to the owner",
+        "Card ID#ALL_CARDS"
+    ]
+}
