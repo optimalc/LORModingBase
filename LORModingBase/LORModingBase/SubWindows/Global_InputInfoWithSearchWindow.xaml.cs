@@ -380,6 +380,38 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
+                case InputInfoWithSearchWindow_PRESET.DICE_EFFECT_RESES:
+                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARD_ARTWORK_TITLE");
+                    #region Add custom items
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last().Split('.')[0];
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+
+                    List<DM.XmlDataNode> behaviorNodes = DM.GameInfos.staticInfos["Card"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card/BehaviourList/Behaviour");
+                    List<string> effectReses = new List<string>();
+                    behaviorNodes.ForEach((DM.XmlDataNode effectRes) =>
+                    {
+                        string BEHAVIOR_EFFECT_RES = effectRes.GetAttributesSafe("EffectRes");
+                        if (!string.IsNullOrEmpty(BEHAVIOR_EFFECT_RES))
+                            effectReses.Add(BEHAVIOR_EFFECT_RES);
+                    });
+                    effectReses.GetUniqueList().ForEach((string uniqueEffectRes) =>
+                    {
+                        selectItems.Add($"{uniqueEffectRes}:{uniqueEffectRes}");
+                    });
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -659,7 +691,8 @@ namespace LORModingBase.SubWindows
         DECKS,
 
         DROP_BOOK,
-        BUFFS
+        BUFFS,
+        DICE_EFFECT_RESES
     };
     public class DLL_EDITOR_SELECT_PRESET
     {

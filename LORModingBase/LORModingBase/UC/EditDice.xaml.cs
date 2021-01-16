@@ -174,10 +174,6 @@ namespace LORModingBase.UC
                 TbxMotion.ToolTip = selectedMotion;
                 innerBehaviourNode.attribute["Motion"] = selectedMotion;
 
-                TbxEffectRes.Text = "";
-                TbxEffectRes.ToolTip = "";
-                innerBehaviourNode.attribute["EffectRes"] = "";
-
                 MainWindow.mainWindow.UpdateDebugInfo();
                 MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
             }, motions.GetUniqueList()).ShowDialog();
@@ -185,24 +181,14 @@ namespace LORModingBase.UC
 
         private void TbxEffectRes_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            string DICE_MOTION = innerBehaviourNode.GetAttributesSafe("Motion");
-            List<DM.XmlDataNode> behaviorNodes = DM.GameInfos.staticInfos["Card"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card/BehaviourList/Behaviour",
-               attributeToCheck: new Dictionary<string, string>() { { "Motion", DICE_MOTION } });
-            List<string> effectReses = new List<string>();
-            behaviorNodes.ForEach((DM.XmlDataNode effectRes) =>
-            {
-                string BEHAVIOR_EFFECT_RES = effectRes.GetAttributesSafe("EffectRes");
-                if (!string.IsNullOrEmpty(BEHAVIOR_EFFECT_RES))
-                    effectReses.Add(BEHAVIOR_EFFECT_RES);
-            });
-            new SubWindows.Global_ListSeleteWindow((string selectedEffectRes) =>
+            new SubWindows.Global_InputInfoWithSearchWindow((string selectedEffectRes) =>
             {
                 TbxEffectRes.Text = selectedEffectRes;
                 TbxEffectRes.ToolTip = selectedEffectRes;
                 innerBehaviourNode.attribute["EffectRes"] = selectedEffectRes;
                 MainWindow.mainWindow.UpdateDebugInfo();
                 MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
-            }, effectReses.GetUniqueList()).ShowDialog();
+            }, SubWindows.InputInfoWithSearchWindow_PRESET.DICE_EFFECT_RESES).ShowDialog();
         }
 
         private void TbxActionScript_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
