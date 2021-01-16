@@ -142,6 +142,7 @@
     <Compile Include="Tools\ColorTools.cs" />
     <Compile Include="Tools\DeepCopy.cs" />
     <Compile Include="Tools\Dialog.cs" />
+    <Compile Include="Tools\ImageTools.cs" />
     <Compile Include="Tools\JsonFile.cs" />
     <Compile Include="Tools\MathTools.cs" />
     <Compile Include="Tools\MessageBoxTools.cs" />

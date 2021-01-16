@@ -15,11 +15,15 @@ namespace LORModingBase.SubWindows
     public partial class CustomSkinWindow : Window
     {
         string SKIN_DIRECTORY = "";
+        public static string prevSelectedPath = DM.Config.config.LORFolderPath;
+
         public CustomSkinWindow()
         {
             InitializeComponent();
-            SKIN_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\Char";
 
+            SKIN_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\Char";
+            if (!Directory.Exists(SKIN_DIRECTORY))
+                Directory.CreateDirectory(SKIN_DIRECTORY);
             InitSqlSkins();
         }
 

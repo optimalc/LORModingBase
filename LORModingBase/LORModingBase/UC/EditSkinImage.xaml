@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:LORModingBase.UC"
              mc:Ignorable="d" 
              Width="225" Height="80">
-    <Grid>
+    <Grid PreviewMouseLeftButtonDown="ImgSkinImage_PreviewMouseLeftButtonDown">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -22,7 +22,7 @@
             </Grid>
             <Grid Grid.Column="1">
                 <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Fill="#54BF9E9E"/>
-                <Image x:Name="ImgSkinImage" />
+                <Image x:Name="ImgSkinImage"/>
             </Grid>
         </Grid>
     </Grid>
