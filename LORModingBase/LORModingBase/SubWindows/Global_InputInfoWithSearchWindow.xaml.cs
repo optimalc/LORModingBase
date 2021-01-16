@@ -381,7 +381,6 @@ namespace LORModingBase.SubWindows
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
                     break;
                 case InputInfoWithSearchWindow_PRESET.DICE_EFFECT_RESES:
-                    this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CARD_ARTWORK_TITLE");
                     #region Add custom items
                     if (Directory.Exists(IMAGE_DIRECTORY))
                     {
