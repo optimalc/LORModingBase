@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["owner", "NextDice", "1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "상대방 혹은 자신의 주사위 강화 혹은 약화",
+        "상대방 혹은 자신의 주사위를 강화 혹은 약화시킵니다",
+        "대상$자신-owner$상대방-target,주사위 종류$&ENUM_DICE_MATCH,변화 수치"
+    ],
+    "en":[
+        "Make weak or powerful for dice of owner or enemy",
+        "Make weak or powerful for dice of owner or enemy",
+        "Target$-owner$-target,Dice type$&ENUM_DICE_MATCH,Degree"
+    ],
+    "jp":[
+        "Make weak or powerful for dice of owner or enemy",
+        "Make weak or powerful for dice of owner or enemy",
+        "Target$-owner$-target,Dice type$&ENUM_DICE_MATCH,Degree"
+    ],
+    "cn":[
+        "Make weak or powerful for dice of owner or enemy",
+        "Make weak or powerful for dice of owner or enemy",
+        "Target$-owner$-target,Dice type$&ENUM_DICE_MATCH,Degree"
+    ]
+}
