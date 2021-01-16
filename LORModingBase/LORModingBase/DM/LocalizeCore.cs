@@ -151,5 +151,7 @@ namespace LORModingBase.DM
         public static string CARD_ABILITY_INFO = "cardAbilityInfo";
 
         public static string DLL_EDITOR_INFO = "DLLEditor";
+        public static string BUFF_INFO = "buffInfo";
+        public static string CUSTOM_SKIN_INFO = "customSkinInfo";
     }
 }

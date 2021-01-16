@@ -15,18 +15,26 @@ namespace LORModingBase.SubWindows
     public partial class ResourceWindow : Window
     {
         string IMAGE_DIRECTORY = "";
-        #region Init controls
+        string SOUND_DIRECTORY = "";
+        public static string prevSelectedPath = DM.Config.config.LORFolderPath;
+
         public ResourceWindow()
         {
             InitializeComponent();
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
 
             IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
-            if (!Directory.Exists($"{DM.Config.CurrentWorkingDirectory}\\ArtWork"))
+            if (!Directory.Exists(IMAGE_DIRECTORY))
                 Directory.CreateDirectory(IMAGE_DIRECTORY);
             InitLbxImages();
+
+            SOUND_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\Sounds";
+            if (!Directory.Exists(SOUND_DIRECTORY))
+                Directory.CreateDirectory(SOUND_DIRECTORY);
+            InitLbxSounds();
         }
 
+        #region Controls for images
         private void InitLbxImages()
         {
             LbxImages.Items.Clear();
@@ -37,8 +45,7 @@ namespace LORModingBase.SubWindows
 
                 LbxImages.Items.Add(imagePath.Substring(FOUND_INDEX + 8));
             });
-        } 
-        #endregion
+        }
 
         private void EditButtonClickEvents_Images(object sender, RoutedEventArgs e)
         {
@@ -46,15 +53,19 @@ namespace LORModingBase.SubWindows
             switch (editButton.Name)
             {
                 case "BtnAddImage":
-                    Tools.Dialog.ShowOpenFileDialog(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"RESOURCE_DIALOG_TITLE"),
+                    Tools.Dialog.ShowOpenMultipleFileDialog(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"RESOURCE_DIALOG_TITLE"),
                         "Image Files|*.png;*.jpg", (string selectedFile) =>
                         {
-                            if(File.Exists(selectedFile))
+                            if (File.Exists(selectedFile))
                             {
                                 File.Copy(selectedFile, $"{IMAGE_DIRECTORY}\\{selectedFile.Split('\\').Last()}");
                                 InitLbxImages();
                             }
-                        }, DM.Config.config.LORFolderPath);
+
+                            List<string> PATH_SPLIT = selectedFile.Split('\\').ToList();
+                            PATH_SPLIT.RemoveAt(PATH_SPLIT.Count - 1);
+                            prevSelectedPath = String.Join("\\", PATH_SPLIT.ToArray());
+                        }, prevSelectedPath);
                     break;
                 case "BtnDeleteImage":
                     if (LbxImages.SelectedItem != null)
@@ -68,6 +79,54 @@ namespace LORModingBase.SubWindows
                     break;
             }
         }
+        #endregion
+
+        #region Controls for sounds
+        private void InitLbxSounds()
+        {
+            LbxSounds.Items.Clear();
+            Directory.GetFiles(SOUND_DIRECTORY).ForEachSafe((string soundPath) =>
+            {
+                int FOUND_INDEX = soundPath.IndexOf("Sounds");
+                if (FOUND_INDEX < 0) return;
+
+                LbxSounds.Items.Add(soundPath.Substring(FOUND_INDEX + 7));
+            });
+        }
+
+        private void EditButtonClickEvents_Sounds(object sender, RoutedEventArgs e)
+        {
+            Button editButton = sender as Button;
+            switch (editButton.Name)
+            {
+                case "BtnAddSound":
+                    Tools.Dialog.ShowOpenMultipleFileDialog(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"RESOURCE_DIALOG_TITLE2"),
+                        "Sound Files|*.wav", (string selectedFile) =>
+                        {
+                            if (File.Exists(selectedFile))
+                            {
+                                File.Copy(selectedFile, $"{SOUND_DIRECTORY}\\{selectedFile.Split('\\').Last()}");
+                                InitLbxSounds();
+                            }
+
+                            List<string> PATH_SPLIT = selectedFile.Split('\\').ToList();
+                            PATH_SPLIT.RemoveAt(PATH_SPLIT.Count - 1);
+                            prevSelectedPath = String.Join("\\", PATH_SPLIT.ToArray());
+                        }, prevSelectedPath);
+                    break;
+                case "BtnDeleteSound":
+                    if (LbxSounds.SelectedItem != null)
+                    {
+                        if (File.Exists($"{SOUND_DIRECTORY}\\{LbxSounds.SelectedItem}"))
+                        {
+                            File.Delete($"{SOUND_DIRECTORY}\\{LbxSounds.SelectedItem}");
+                            InitLbxSounds();
+                        }
+                    }
+                    break;
+            }
+        } 
+        #endregion
 
         private void BtnOk_Click(object sender, RoutedEventArgs e)
         {

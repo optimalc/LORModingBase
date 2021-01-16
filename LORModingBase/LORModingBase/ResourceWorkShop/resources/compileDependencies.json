@@ -4,5 +4,9 @@
     "0Harmony.dll",
     "BaseMod.dll",
     "UnityEngine.dll",
-    "UnityEngine.CoreModule.dll"
+    "UnityEngine.CoreModule.dll",
+    "UnityEngine.UI.dll",
+    "UnityEngine.ImageConversionModule.dll",
+    "UnityEngine.UnityWebRequestWWWModule.dll",
+    "UnityEngine.AudioModule.dll"
 ]

@@ -1,0 +1,48 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":["0"],
+    "subBlockWhiteFilter":[    
+        "BASE_UNIT_BUFF_CODES/BASE_BATTLE_UNIT_BUF_KEYWORD",
+        "BASE_UNIT_BUFF_CODES/BASE_BATTLE_UNIT_BUF_POSITIVE_TYPE",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_BEFORE_GIVE_DAMAGE",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_BREAK_STATE",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_DIE",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_DRAW_CARD",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_END_PARRYING",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_FRIEND_TAKE_DAMAGE_BY_ATTACK",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_HP_ZERO",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_KILL",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_LOSE_HP",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_LOSE_PARRYING",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_ROLL_DICE",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_ROLL_SPEED_DICE",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_ROUND_END",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_ROUND_START",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_SUCCESS_ATTACK",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_USE_CARD",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_WIN_PARRYING",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_AFTER_DICE_ACTION",
+        "BASE_UNIT_BUFF_CODES/BASE_ON_DAMAGE_REDUCTION_ALL"
+    ],
+    "kr":[
+        "버프 기반 블록",
+        "버프를 추가하기 위한 기반 블록입니다",
+        "버프 ID#CUSTOM_BUFF"
+    ],
+    "en":[
+        "Buff Base Block",
+        "Base block for adding Buff",
+        "Buff ID#CUSTOM_BUFF"
+    ],
+    "jp":[
+        "Buff Base Block",
+        "Base block for adding Buff",
+        "Buff ID#CUSTOM_BUFF"
+    ],
+    "cn":[
+        "Buff Base Block",
+        "Base block for adding Buff",
+        "Buff ID#CUSTOM_BUFF"
+    ]
+}

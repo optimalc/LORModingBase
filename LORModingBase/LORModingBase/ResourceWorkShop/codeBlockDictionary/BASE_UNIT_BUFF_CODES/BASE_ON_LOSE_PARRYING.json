@@ -1,0 +1,29 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF",
+        "&GROUP_GLOBAL_BUFF_BEHAVIOR"
+    ],
+    "kr":[
+        "합 패배시 기반 블록",
+        "합 패배시 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Lose parrying Base Block",
+        "Base block for invoking action when losing in dice value",
+        ""
+    ],
+    "jp":[
+        "Lose parrying Base Block",
+        "Base block for invoking action when losing in dice value",
+        ""
+    ],
+    "cn":[
+        "Lose parrying Base Block",
+        "Base block for invoking action when losing in dice value",
+        ""
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF"
+    ],
+    "kr":[
+        "막이 끝났다면 기반 블록",
+        "막이 끝났으면 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Round End Base Block",
+        "Base block for invoking action when the round is ended",
+        ""
+    ],
+    "jp":[
+        "Round End Base Block",
+        "Base block for invoking action when the round is ended",
+        ""
+    ],
+    "cn":[
+        "Round End Base Block",
+        "Base block for invoking action when the round is ended",
+        ""
+    ]
+}

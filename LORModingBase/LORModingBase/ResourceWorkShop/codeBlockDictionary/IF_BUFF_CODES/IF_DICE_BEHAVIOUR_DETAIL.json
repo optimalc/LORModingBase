@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["IF"],
+    "inputtedParameter":["Slash"],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF",
+        "&GROUP_GLOBAL_BUFF_BEHAVIOR"],
+    "kr":[
+        "주사위의 세부 종류와 비교하는 조건 블록 입니다",
+        "주사위의 세부 종류와 비교하는 조건 블록 입니다",
+        "종류$&ENUM_BEHAVIOUR_DETAIL_TYPE"
+    ],
+    "en":[
+        "Compare with dice type",
+        "Compare with dice type",
+        "Type$&ENUM_BEHAVIOUR_DETAIL_TYPE"
+    ],
+    "jp":[
+        "Compare with dice type",
+        "Compare with dice type",
+        "Type$&ENUM_BEHAVIOUR_DETAIL_TYPE"
+    ],
+    "cn":[
+        "Compare with dice type",
+        "Compare with dice type",
+        "Type$&ENUM_BEHAVIOUR_DETAIL_TYPE"
+    ]
+}

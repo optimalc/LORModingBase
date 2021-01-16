@@ -1,0 +1,3 @@
+public override void OnFriendTakeDamageByAttack(BattleDiceBehavior atkDice, int dmg)
+{
+}

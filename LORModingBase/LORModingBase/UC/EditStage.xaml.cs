@@ -191,6 +191,51 @@ namespace LORModingBase.UC
                         MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
                     }, SubWindows.InputInfoWithSearchWindow_PRESET.EPISODE).ShowDialog();
                     break;
+                case "BtnStageCustom":
+                    new SubWindows.Global_MultipleValueInputed(new Dictionary<string, string>() {
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"Chapter"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"Chapter_ToolTip")},
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"StoryType"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"StoryType_ToolTip") },
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"Story_Start_Conditon"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"Story_Start_Conditon_ToolTip") },
+                        { DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"Story_End_Conditon"), DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"Story_End_Conditon_TooTip") }
+                    }, new List<string>()
+                    {
+                        innerStageNode.GetInnerTextByPath("Chapter"),
+                        innerStageNode.GetInnerTextByPath("StoryType"),
+                        innerStageNode.GetInnerTextByAttributeWithPath("Story", "Condition", "Start"),
+                        innerStageNode.GetInnerTextByAttributeWithPath("Story", "Condition", "End")
+                    }, new List<Action<string>>()
+                    {
+                        (string inputedVar) => {
+                            innerStageNode.SetXmlInfoByPathAndEmptyWillRemove("Chapter", inputedVar);},
+                        (string inputedVar) => {
+                            innerStageNode.SetXmlInfoByPathAndEmptyWillRemove("StoryType", inputedVar);},
+                        (string inputedVar) => {
+                            innerStageNode.ActionXmlDataNodesByAttributeWithPath("Story", "Condition", "Start", (DM.XmlDataNode storyNode) => {
+                                storyNode.innerText = inputedVar;
+                            });
+                            MainWindow.mainWindow.UpdateDebugInfo();
+                            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
+                        },
+                        (string inputedVar) => {
+                                 innerStageNode.ActionXmlDataNodesByAttributeWithPath("Story", "Condition", "End", (DM.XmlDataNode storyNode) => {
+                                storyNode.innerText = inputedVar;
+                            });
+                            MainWindow.mainWindow.UpdateDebugInfo();
+                            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
+                        } }).ShowDialog();
+                    
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
+
+
+                    string STORY_TYPE = innerStageNode.GetInnerTextByPath("StoryType");
+                    string EPISODE_WORD_EX = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.STAGE_INFO, $"EPISODE");
+                    BtnStage.ToolTip = $"{EPISODE_WORD_EX} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STORY_TYPE)}";
+
+                    LblStage.Content = $"{EPISODE_WORD_EX} : {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STORY_TYPE)}"; ;
+                    BtnStage.Content = "          ";
+
+                    break;
                 case "BtnFloor":
                     new SubWindows.Global_ListSeleteWindow((string floorNumStr) => {
                         innerStageNode.SetXmlInfoByPath("FloorNum", floorNumStr);

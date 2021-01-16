@@ -51,7 +51,7 @@ namespace LORModingBase.DLLEditor
                 string output = p.StandardOutput.ReadToEnd();
                 p.WaitForExit();
 
-                if(output.Contains("output.cs"))
+                if(output.Contains("error"))
                 {
                     string ERROR_MESSAGE = output.Substring(output.IndexOf("output.cs"));
                     Tools.MessageBoxTools.ShowErrorMessageBox(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"ERROR_COMPILE") + $"\n{ERROR_MESSAGE}");

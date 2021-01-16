@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["RecoverPlayPointByCard", "1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "자신의 빛의 양을 변경시킵니다",
+        "자신의 빛의 양을 변경시킵니다",
+        "빛을 얻음/잃음$얻음-RecoverPlayPointByCard$잃음-LosePlayPoint,조절양"
+    ],
+    "en":[
+        "Change play point of the owner",
+        "Change play point of the owner",
+        "Get/Lose$Get-RecoverPlayPointByCard$Lose-LosePlayPoint,Degree"
+    ],
+    "jp":[
+        "Change play point of the owner",
+        "Change play point of the owner",
+        "Get/Lose$Get-RecoverPlayPointByCard$Lose-LosePlayPoint,Degree"
+    ],
+    "cn":[
+        "Change play point of the owner",
+        "Change play point of the owner",
+        "Get/Lose$Get-RecoverPlayPointByCard$Lose-LosePlayPoint,Degree"
+    ]
+}

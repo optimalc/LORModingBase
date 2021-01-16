@@ -1,0 +1,13 @@
+if (this.owner != null)
+{
+    BattleUnitBuf <<0>> = this.owner.bufListDetail.GetActivatedBufList().Find((BattleUnitBuf <<1>>) =>
+    {
+        return <<1>>.bufActivatedName == "{{2}}";
+    });
+    if (<<0>> == null)
+        this.owner.bufListDetail.{{0}}(new BattleUnitBuf_{{1}}());
+    else
+        <<0>>.stack += {{3}};
+
+    this.owner.bufListDetail.CheckBufCount();
+}

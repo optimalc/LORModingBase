@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["target", "AddReadyBuf", "0", "NAME", "1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "커스텀 버프를 상대방 혹은 자신에게 부여",
+        "상대방 혹은 자신에게 특정 커스텀 버프를 부여합니다",
+        "대상$자신-owner$상대방-target,부여 시간$즉시-AddBuf$다음 막-AddReadyBuf,버프 종류#CUSTOM_BUFF,버프 이름#CUSTOM_BUFF_FOR_NAME,버프 부여 수치"
+    ],
+    "en":[
+        "Give custom buff to opponent or owner",
+        "Give custom buff to opponent or owner",
+        "Target$-owner$-target,Effect time$This round-AddBuf$Next round-AddReadyBuf,Buf Type#CUSTOM_BUFF,Buf Name#CUSTOM_BUFF_FOR_NAME,Buf Stack Count"
+    ],
+    "jp":[
+        "Give custom buff to opponent or owner",
+        "Give custom buff to opponent or owner",
+        "Target$-owner$-target,Effect time$This round-AddBuf$Next round-AddReadyBuf,Buf Type#CUSTOM_BUFF,Buf Name#CUSTOM_BUFF_FOR_NAME,Buf Stack Count"
+    ],
+    "cn":[
+        "Give custom buff to opponent or owner",
+        "Give custom buff to opponent or owner",
+        "Target$-owner$-target,Effect time$This round-AddBuf$Next round-AddReadyBuf,Buf Type#CUSTOM_BUFF,Buf Name#CUSTOM_BUFF_FOR_NAME,Buf Stack Count"
+    ]
+}

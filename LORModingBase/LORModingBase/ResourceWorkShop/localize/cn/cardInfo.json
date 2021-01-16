@@ -77,5 +77,9 @@
     "%BtnDiceType_Standby_Evasion_ToolTip%":"Change to stadby evasion dice",
 
     "IMAGE":"Image",
-    "ABILITY":"Ability"
+    "ABILITY":"Ability",
+
+    "%TbxMotion_ToolTip%":"Input motion of dice (Right mouse button for direct input)",
+    "%TbxEffectRes_ToolTip%":"Input motion script of dice (Right mouse button for direct input)",
+    "%TbxActionScript_ToolTip%":"Input action script of dice (Right mouse button for direct input)"
 }

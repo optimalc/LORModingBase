@@ -43,13 +43,17 @@
                 </Grid.Background>
                 <Grid Grid.Column="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75*"/>
+                        <ColumnDefinition Width="37.5*"/>
+                        <ColumnDefinition Width="37.5*"/>
                         <ColumnDefinition Width="25*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Button x:Name="BtnAddCodeBase" Content="▼ 코드 기반 블록 추가 ▼" ToolTip="새로운 코드 기반 블록을 추가합니다" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Padding="10,1,1,1" Click="DLLEditorButtonClickEvents"/>
                     </Grid>
                     <Grid Grid.Column="1">
+                        <Button x:Name="BtnAddCodeBlockPreset" Content="▼ 프리셋으로 추가 ▼" ToolTip="코드 블록 프리셋으로부터 관련 데이터를 불러옵니다" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Padding="10,1,1,1" Click="DLLEditorButtonClickEvents"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
                         <Rectangle Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#546E766E" Margin="3,12"/>
                         <ScrollBar x:Name="SbrCodeBlockStack" Value="1" Foreground="#FFFFD9A3" RenderTransformOrigin="0.5,0.5" Margin="80,-98,79.8,-97.4" Width="Auto" ValueChanged="SbrCodeBlockStack_ValueChanged">
                             <ScrollBar.RenderTransform>

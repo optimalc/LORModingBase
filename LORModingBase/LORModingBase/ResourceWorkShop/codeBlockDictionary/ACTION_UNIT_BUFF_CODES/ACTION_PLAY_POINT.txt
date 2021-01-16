@@ -1,0 +1,2 @@
+if (this._owner != null)
+    this._owner.cardSlotDetail.{{0}}({{1}});

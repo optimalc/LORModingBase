@@ -291,6 +291,30 @@ namespace LORModingBase.DM
             else
                 return $"Deck ID :{deckID}";
         }
+
+        /// <summary>
+        /// Get description for buff
+        /// </summary>
+        /// <param name="passiveName">buff name to use</param>
+        /// <returns>Buff description</returns>
+        public static string GetDescriptionForBuff(string buffID)
+        {
+            if (string.IsNullOrEmpty(buffID)) return "";
+            List<XmlDataNode> buffNodes = DM.GameInfos.localizeInfos["EffectTexts"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("effectTextList/BattleEffectText",
+                attributeToCheck: new Dictionary<string, string>() { { "ID", buffID } });
+            if (buffNodes.Count <= 0)
+                buffNodes = DM.EditGameData_Buff.LocalizedBuff.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("effectTextList/BattleEffectText",
+                    attributeToCheck: new Dictionary<string, string>() { { "ID", buffID } });
+
+            if (buffNodes.Count > 0)
+            {
+                string BUFF_NAME = buffNodes[0].GetInnerTextByPath("Name");
+                if (string.IsNullOrEmpty(BUFF_NAME)) return $"Buff ID :{buffID}";
+                else return BUFF_NAME;
+            }
+            else
+                return $"Buff ID :{buffID}";
+        }
     }
 
     /// <summary>
@@ -480,6 +504,31 @@ namespace LORModingBase.DM
             }
             else
                 return $"Drop Table ID :{dropTableID}";
+        }
+
+        /// <summary>
+        /// Get full description for Buff
+        /// </summary>
+        /// <param name="cardID">Buff id to use</param>
+        /// <returns>Buff full desscription</returns>
+        public static string GetFullDescriptionForBuff(string buffID)
+        {
+            List<XmlDataNode> foundDataNodes = DM.GameInfos.localizeInfos["EffectTexts"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("effectTextList/BattleEffectText",
+                attributeToCheck: new Dictionary<string, string>() { { "ID", buffID } });
+            if (foundDataNodes.Count <= 0)
+                foundDataNodes = DM.EditGameData_Buff.LocalizedBuff.rootDataNode.GetXmlDataNodesByPathWithXmlInfo("effectTextList/BattleEffectText",
+                        attributeToCheck: new Dictionary<string, string>() { { "ID", buffID } });
+
+            if (foundDataNodes.Count > 0)
+            {
+                XmlDataNode BUFF_NODE = foundDataNodes[0];
+                string BUFF_NAME_DES = BUFF_NODE.GetInnerTextByPath("Name");
+                string BUFF_DESC = BUFF_NODE.GetInnerTextByPath("Desc");
+
+                return $"{BUFF_NAME_DES} / {BUFF_DESC}:{buffID}";
+            }
+            else
+                return $"Buff ID :{buffID}";
         }
     }
 

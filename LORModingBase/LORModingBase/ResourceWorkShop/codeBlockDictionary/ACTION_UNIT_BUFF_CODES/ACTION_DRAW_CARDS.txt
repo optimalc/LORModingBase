@@ -1,0 +1,2 @@
+if(this._owner != null)
+        this._owner.allyCardDetail.DrawCards({{0}});

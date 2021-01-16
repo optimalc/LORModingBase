@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["RecoverHP","10","15"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "체력을 n% 회복하거나 잃습니다(최대 m)",
+        "체력을 n% 회복하거나 잃습니다(최대 m)",
+        "회복/피해$회복-RecoverHP$피해-LoseHp,n,m"
+    ],
+    "en":[
+        "Recover or lose n percent of max life (max m)",
+        "Recover or lose n percent of max life (max m)",
+        "Recover/Lose$Recover-RecoverHP$Lose-LoseHp,n,m"
+    ],
+    "jp":[
+        "Recover or lose n percent of max life (max m)",
+        "Recover or lose n percent of max life (max m)",
+        "Recover/Lose$Recover-RecoverHP$Lose-LoseHp,n,m"
+    ],
+    "cn":[
+        "Recover or lose n percent of max life (max m)",
+        "Recover or lose n percent of max life (max m)",
+        "Recover/Lose$Recover-RecoverHP$Lose-LoseHp,n,m"
+    ]
+}

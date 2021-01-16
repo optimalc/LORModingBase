@@ -1,0 +1,22 @@
+{
+    "kr":[
+        "버프에 이미지를 등록하는 DLL",
+        "버프에 이미지를 등록하는 DLL입니다",
+        "네임 스페이스명@NAME_SPACE,하모니 ID@MAMONY_ID,모드 이름@MODE_NAME,버프 이름@BUFF_NAME,파일 이름(확장자 포함)@IMAGE_FILE_NAME"
+    ],
+    "en":[
+        "This DLL will apply an image to buff",
+        "This DLL will apply an image to buff",
+        "NameSpace name@NAME_SPACE,Hamony ID@MAMONY_ID,Mode name@MODE_NAME,Buff name@BUFF_NAME,File name(Include ext)@IMAGE_FILE_NAME"
+    ],
+    "jp":[
+        "Give a bonus ability to dice",
+        "Give a bonus ability to dice",
+        "NameSpace name@NAME_SPACE,Hamony ID@MAMONY_ID,Mode name@MODE_NAME,Buff name@BUFF_NAME,File name(Include ext)@IMAGE_FILE_NAME"
+    ],
+    "cn":[
+        "Give a bonus ability to dice",
+        "Give a bonus ability to dice",
+        "NameSpace name@NAME_SPACE,Hamony ID@MAMONY_ID,Mode name@MODE_NAME,Buff name@BUFF_NAME,File name(Include ext)@IMAGE_FILE_NAME"
+    ]
+}

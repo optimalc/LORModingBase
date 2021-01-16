@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":["", ""],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "이미지로 공격 이팩트 리소스 생성 기반 블록",
+        "이미지를 이용해서 공격 이팩트 리소스를 생성하기 위한 기반블록입니다",
+        "이미지 이름#CUSTOM_IMAGE_FOR_NAME,이미지 경로#CUSTOM_IMAGE_PATH"
+    ],
+    "en":[
+        "Create an attack effect resource by image file Base Block",
+        "Base block for making attack effect resource by image file Base Block",
+        "Image name#CUSTOM_IMAGE,Image path#CUSTOM_IMAGE_PATH"
+    ],
+    "jp":[
+        "Key Page Passive Base Block",
+        "Base block for adding Key Page passive",
+        "Image name#CUSTOM_IMAGE,Image path#CUSTOM_IMAGE_PATH"
+    ],
+    "cn":[
+        "Key Page Passive Base Block",
+        "Base block for adding Key Page passive",
+        "Image name#CUSTOM_IMAGE,Image path#CUSTOM_IMAGE_PATH"
+    ]
+}

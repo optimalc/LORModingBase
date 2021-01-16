@@ -1,0 +1,51 @@
+using System;
+using HarmonyLib;
+using UnityEngine;
+using System.Reflection;
+using System.IO;
+
+namespace {{0}}
+{
+	public class Harmony_Patch
+	{
+		public Harmony_Patch()
+		{
+			try
+			{
+				Harmony harmony = new Harmony(id: "{{1}}");
+
+				MethodInfo method = typeof(Harmony_Patch).GetMethod("BattleUnitBuf_GetBufIcon");
+				harmony.Patch(typeof(BattleUnitBuf).GetMethod("GetBufIcon", AccessTools.all), new HarmonyMethod(method), null, null, null);
+			}
+			catch (Exception ex)
+			{
+				using (System.IO.StreamWriter sw = System.IO.File.AppendText(UnityEngine.Application.dataPath + "/BaseMods/errorLog_Mod.txt"))
+				{
+					sw.WriteLine(ex + ex.StackTrace);
+				}
+			}
+		}
+
+		public static bool BattleUnitBuf_GetBufIcon(BattleUnitBuf __instance, ref Sprite __result)
+        {
+			try
+            {
+				if (__instance.bufActivatedName == "{{3}}")
+				{
+                    Texture2D texture = new Texture2D(2, 2);
+                    texture.LoadImage(File.ReadAllBytes(UnityEngine.Application.dataPath + "/BaseMods/{{2}}/ArtWork/{{4}}"));
+					__result = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+					return false;
+				}
+			}
+			catch(Exception ex)
+            {
+				using (System.IO.StreamWriter sw = System.IO.File.AppendText(UnityEngine.Application.dataPath + "/BaseMods/errorLog_Mod.txt"))
+				{
+					sw.WriteLine(ex + ex.StackTrace);
+				}
+			}
+			return true;
+		}
+	}
+}

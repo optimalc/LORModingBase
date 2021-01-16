@@ -1,0 +1,22 @@
+{
+    "kr":[
+        "새로운 스토리 라인을 생성하는 DLL",
+        "새로운 스토리 라인을 생성하는 DLL입니다",
+        "네임 스페이스명@NAME_SPACE,하모니 ID@MAMONY_ID,모드 이름@MODE_NAME,스토리 타입명@STORY_TYPE_NAME,스토리 아이콘 이름(확장자 포함)@IMAGE_FILE_NAME,위치 X좌표,위치 Y좌표"
+    ],
+    "en":[
+        "This DLL will apply an image to buff",
+        "This DLL will apply an image to buff",
+        "NameSpace name@NAME_SPACE,Hamony ID@MAMONY_ID,Mode name@MODE_NAME,Story type name@STORY_TYPE_NAME,Story Icon File name(Include ext)@IMAGE_FILE_NAME,X Pos,Y Pos"
+    ],
+    "jp":[
+        "Give a bonus ability to dice",
+        "Give a bonus ability to dice",
+        "NameSpace name@NAME_SPACE,Hamony ID@MAMONY_ID,Mode name@MODE_NAME,Story type name@STORY_TYPE_NAME,Story Icon File name(Include ext)@IMAGE_FILE_NAME,X Pos,Y Pos"
+    ],
+    "cn":[
+        "Give a bonus ability to dice",
+        "Give a bonus ability to dice",
+        "NameSpace name@NAME_SPACE,Hamony ID@MAMONY_ID,Mode name@MODE_NAME,Story type name@STORY_TYPE_NAME,Story Icon File name(Include ext)@IMAGE_FILE_NAME,X Pos,Y Pos"
+    ]
+}

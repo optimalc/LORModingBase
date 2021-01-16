@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["RecoverBreakLife", "10","15"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "흐트러짐을 n% 회복하거나 잃습니다(최대 m)",
+        "흐트러짐을 n% 회복하거나 잃습니다(최대 m)",
+        "회복/피해$회복-RecoverBreakLife$피해-TakeBreakDamage,n,m"
+    ],
+    "en":[
+        "Recover or lose n percent of break life (max m)",
+        "Recover or lose n percent of break life (max m)",
+        "Recover/Lose$Recover-RecoverBreakLife$Lose-TakeBreakDamage,n,m"
+    ],
+    "jp":[
+        "Recover n percent of break life (max m)",
+        "Recover n percent of break life (max m)",
+        "Recover/Lose$Recover-RecoverBreakLife$Lose-TakeBreakDamage,n,m"
+    ],
+    "cn":[
+        "Recover n percent of break life (max m)",
+        "Recover n percent of break life (max m)",
+        "Recover/Lose$Recover-RecoverBreakLife$Lose-TakeBreakDamage,n,m"
+    ]
+}

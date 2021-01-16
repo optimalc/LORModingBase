@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="LORModingBase.UC.EditSkin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LORModingBase.UC"
+             mc:Ignorable="d" 
+             Height="500" Width="320">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle x:Name="WindowBg" Fill="#549C7484" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="91*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                <Viewbox Grid.Column="0" Stretch="Fill">
+                    <Label x:Name="LblSkinName" Content="스킨 이름 : " FontSize="15"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <TextBox x:Name="TbxSkinName" Grid.Column="1" Text="" ToolTip="스킨 이름 수정하기" FontSize="15" Style="{StaticResource StyTbx}" HorizontalAlignment="Stretch" Margin="0,0,7,0" PreviewMouseLeftButtonDown="TbxSkinName_PreviewMouseLeftButtonDown"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="90*"/>
+                </Grid.RowDefinitions>
+                <Viewbox Grid.Row="0" Stretch="Fill">
+                    <Label x:Name="LblSkinImages" Content="-- 스킨 이미지들 관리 --" FontSize="13"  Style="{StaticResource StyLbl}"/>
+                </Viewbox>
+                <Grid Grid.Row="1">
+                    <Rectangle RadiusX="5" RadiusY="5" Fill="#54000000" Margin="3"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Visible">
+                        <StackPanel x:Name="SqlSkinImages" Orientation="Vertical" HorizontalAlignment="Center">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Margin" Value="3,3,3,3"/>
+                                </Style>
+                            </StackPanel.Resources>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="37*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Grid.RowSpan="8" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
+            <Button x:Name="BtnDelete" Grid.Row="8" Style="{StaticResource StyBtnMenu}" HorizontalAlignment="Center" Click="RightMenuButtonEvents" ToolTip="스킨을 삭제합니다" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-21"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/BtnBin.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

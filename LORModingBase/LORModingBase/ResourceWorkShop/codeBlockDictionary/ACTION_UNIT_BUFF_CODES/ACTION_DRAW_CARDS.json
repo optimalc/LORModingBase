@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "카드 뽑기",
+        "카드를 뽑습니다",
+        "뽑는 카드 수"
+    ],
+    "en":[
+        "Draw the card",
+        "Draw the card",
+        "Card count"
+    ],
+    "jp":[
+        "Draw the card",
+        "Draw the card",
+        "Card count"
+    ],
+    "cn":[
+        "Draw the card",
+        "Draw the card",
+        "Card count"
+    ]
+}

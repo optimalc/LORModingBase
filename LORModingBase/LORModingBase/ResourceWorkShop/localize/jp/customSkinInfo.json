@@ -1,0 +1,27 @@
+{
+    "%CustomSkinWindowName%":"Custom Skin Editor",
+    "%BtnAddSkin_ToolTip%":"Create new skin info",
+    "%BtnOk%":"[Close]",
+    "%BtnOk_ToolTip%":"Close the window",
+
+    "SKIN_INPUT":"Input skin name to use",
+
+    "%LblSkinName%":"Skin Name :$0.8,0.8$10,3",
+    "%TbxSkinName_ToolTip%":"Edit skin name",
+    "%LblSkinImages%":"-- Skin images --$0.8,0.8$15,0",
+    "%BtnDelete_ToolTip%":"Delete skin info",
+
+    "IMAGE_THUMB_NAIL":"Thumbnail",
+
+    "IMAGE_HIT":"Hit",
+    "IMAGE_TAKE_DAMAGE":"Take Damage",
+    "IMAGE_TAKE_FIRE_DAMAGE":"Take Fire Damage",
+    "IMAGE_DEFAULT_POSTURE":"Default Posture",
+    "IMAGE_EVADE_POSTURE":"Evading Posture",
+    "IMAGE_GUARD_POSTURE":"Guard Posture",
+    "IMAGE_MOVE_POSTURE":"Moving Posture",
+
+    "IMAGE_HIT_ATTACK_POSTURE":"Hit Attack Posture",
+    "IMAGE_PENETRATE_ATTACK_POSTURE":"Penetrate Attack Posture",
+    "IMAGE_SLASH_ATTACK_POSTURE":"Slash Attack Posture"
+}

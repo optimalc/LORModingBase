@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "버프 스택이 0이하면 버프가 사라짐",
+        "버프 스택이 0이하면 버프가 없어지게 만듭니다",
+        ""
+    ],
+    "en":[
+        "Destroy buff when a buff stack is down in 0",
+        "Destroy buff when a buff stack is down in 0",
+        ""
+    ],
+    "jp":[
+        "Destroy buff when a buff stack is down in 0",
+        "Destroy buff when a buff stack is down in 0",
+        ""
+    ],
+    "cn":[
+        "Destroy buff when a buff stack is down in 0",
+        "Destroy buff when a buff stack is down in 0",
+        ""
+    ]
+}

@@ -1,0 +1,7 @@
+if(this._owner != null)
+{
+    int <<0>> = this._owner.MaxHp / 100 * {{1}};
+    if (<<0>> > {{2}})
+        <<0>> = {{2}};
+    this._owner.{{0}}(<<0>>);
+}

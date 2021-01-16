@@ -65,6 +65,7 @@
                         <Grid.Background>
                             <ImageBrush ImageSource="../Resources/MenuBg.png"/>
                         </Grid.Background>
+                        <Label x:Name="LblSoundResource" Content="사운드 관리(.wav)" FontSize="15"  Style="{StaticResource StyLbl}" HorizontalAlignment="Center"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -75,8 +76,15 @@
                         <Grid.Background>
                             <ImageBrush ImageSource="../Resources/MenuBg.png"/>
                         </Grid.Background>
+                        <Viewbox Grid.Column="0" Stretch="Fill" Margin="35,3">
+                            <Button x:Name="BtnAddSound" Grid.Column="0" Content="+ 추가" ToolTip="사운드를 추가합니다" Style="{StaticResource StyBtnMenu}" Click="EditButtonClickEvents_Sounds"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="2" Stretch="Fill" Margin="35,3">
+                            <Button x:Name="BtnDeleteSound" Grid.Column="2" Content="- 삭제" ToolTip="사운드를 삭제합니다" Style="{StaticResource StyBtnMenu}" Click="EditButtonClickEvents_Sounds"/>
+                        </Viewbox>
                     </Grid>
                     <Grid Grid.Row="2">
+                        <ListBox x:Name="LbxSounds" Style="{StaticResource StyListBox}"/>
                     </Grid>
                 </Grid>
             </Grid>

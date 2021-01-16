@@ -1,0 +1,12 @@
+DiceCardXmlInfo <<0>> = ItemXmlDataList.instance.GetCardItem(607101);
+new DiceBehaviour();
+List<BattleDiceBehavior> <<3>> = new List<BattleDiceBehavior>();
+int <<4>> = 0;
+foreach (DiceBehaviour <<1>> in <<0>>.DiceBehaviourList)
+{
+    BattleDiceBehavior <<2>> = new BattleDiceBehavior();
+    <<2>>.behaviourInCard = <<1>>;
+    <<2>>.SetIndex(<<4>>++);
+    <<3>>.Add(<<2>>);
+}
+this._owner.cardSlotDetail.keepCard.AddBehaviours(BattleDiceCardModel.CreatePlayingCard(<<0>>), <<3>>);

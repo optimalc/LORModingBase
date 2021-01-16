@@ -1,0 +1,14 @@
+{
+    "%LblBuffID%":"Buff ID :$0.95,1$5,0",
+    "%TbxBuffID_ToolTip%":"Input unique ID of buff",
+
+    "%LblBuffName%":"Buff Name :$1,0.8$2,3",
+    "%TbxBuffName_ToolTip%":"Input name of buff",
+
+    "%LblBuffDes%":"-- Buff Description --$0.8,1$15,0",
+    "%TbxBuffDes_ToolTip%":"Input description of buff",
+
+    "%BtnMakeDLL_ToolTip%":"Make DLL for this buff",
+    "%BtnCopyBuff_ToolTip%":"Copy the buff",
+    "%BtnDelete_ToolTip%":"Delete the buff"
+}

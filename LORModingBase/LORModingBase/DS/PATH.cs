@@ -37,6 +37,16 @@ namespace LORModingBase.DS
         /// Code block group directory
         /// </summary>
         public const string CODE_BLOCK_GROUP = ".\\codeBlockGroup";
+
+        /// <summary>
+        /// Auto generate code block directory
+        /// </summary>
+        public const string AUTO_GENERATE_CODE_BLOCK = ".\\autoGenerateCodeBlock";
+
+        /// <summary>
+        /// Code block preset directory
+        /// </summary>
+        public const string CODE_BLOCK_PRESET = ".\\codeBlockPreset";
     }
 
     class PROGRAM_RESOURCE_PATHS
@@ -55,6 +65,10 @@ namespace LORModingBase.DS
         public static string RESOURCE_COMPILE_DENPENDENCIES = $"{DIC_RESOURCE}\\compileDependencies.json";
 
         public static string RESOURCE_USING_GLOBAL = $"{DIC_RESOURCE}\\usingGlobal.json";
+
+        public static string RESOURCE_SKIN_ITEMINFO = $"{DIC_RESOURCE}\\ItemInfo.xml";
+
+        public static string RESOURCE_SKIN_MODEINFO = $"{DIC_RESOURCE}\\ModInfo.Xml";
     }
 
     class GAME_RESOURCE_PATHS

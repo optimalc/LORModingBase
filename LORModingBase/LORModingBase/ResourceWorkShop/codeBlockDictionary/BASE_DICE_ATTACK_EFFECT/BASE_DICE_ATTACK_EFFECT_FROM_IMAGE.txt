@@ -1,0 +1,10 @@
+public class DiceAttackEffect_{{0}} : DiceAttackEffect
+{
+    public override void Initialize(BattleUnitView self, BattleUnitView target, float destroyTime)
+    {
+        Texture2D texture = new Texture2D(2, 2);
+        texture.LoadImage(File.ReadAllBytes(UnityEngine.Application.dataPath + "/BaseMods" + "{{1}}"));
+        this.spr.sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        base.Initialize(self, target, destroyTime);
+    }
+}

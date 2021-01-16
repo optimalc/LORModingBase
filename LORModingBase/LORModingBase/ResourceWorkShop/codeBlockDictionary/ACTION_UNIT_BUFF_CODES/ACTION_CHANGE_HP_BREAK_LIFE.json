@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["RecoverHP","this.stack"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "자신의 체력이나 흐트러짐 수치를 조절함",
+        "자신의 체력이나 흐트러짐 수치를 조절합니다",
+        "행위$체력 회복-RecoverHP$체력 잃음-LoseHp$흐트러짐 회복-RecoverBreakLife$흐트러짐 잃음-TakeBreakDamage,변화 수치"
+    ],
+    "en":[
+        "Change HP or Break Life of owner",
+        "Change HP or Break Life of owner",
+        "Action$-RecoverHP$-LoseHp$-RecoverBreakLife$-TakeBreakDamage,Degree"
+    ],
+    "jp":[
+        "Change HP or Break Life of owner",
+        "Change HP or Break Life of owner",
+        "Action$-RecoverHP$-LoseHp$-RecoverBreakLife$-TakeBreakDamage,Degree"
+    ],
+    "cn":[
+        "Change HP or Break Life of owner",
+        "Change HP or Break Life of owner",
+        "Action$-RecoverHP$-LoseHp$-RecoverBreakLife$-TakeBreakDamage,Degree"
+    ]
+}

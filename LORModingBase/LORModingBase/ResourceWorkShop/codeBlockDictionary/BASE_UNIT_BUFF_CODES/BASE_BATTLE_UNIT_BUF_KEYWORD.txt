@@ -1,0 +1,7 @@
+protected override string keywordId
+{
+    get
+    {
+        return "{{0}}";
+    }
+}

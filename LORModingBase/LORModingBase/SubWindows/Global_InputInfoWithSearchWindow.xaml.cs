@@ -36,6 +36,7 @@ namespace LORModingBase.SubWindows
             InitializeComponent();
             string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
             string IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
+            string SKIN_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\Char";
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelectItem = afterSelectItem;
             List<string> searchTypes = new List<string>();
@@ -92,6 +93,19 @@ namespace LORModingBase.SubWindows
                     break;
                 case InputInfoWithSearchWindow_PRESET.CHARACTER_SKIN:
                     this.Title = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CHARACTER_SKIN_TITLE");
+                    #region Add custom items
+                    if (Directory.Exists(SKIN_DIRECTORY))
+                    {
+                        Directory.GetDirectories(SKIN_DIRECTORY).ForEachSafe((string skinDir) =>
+                        {                   
+                            string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                            string SKIN_NAME = $"Custom_{skinDir.Split('\\').Last()}";
+
+                            selectItems.Add($"{CUSTOM_FILTER_DES} {SKIN_NAME}:{SKIN_NAME}");
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
                     DM.GameInfos.staticInfos["EquipPage"].rootDataNode.ActionXmlDataNodesByPath("Book", (DM.XmlDataNode bookNode) =>
                     {
                         string CHPATER_NAME = DM.LocalizedGameDescriptions.GetDescriptionForChapter(bookNode.GetInnerTextByPath("Chapter"));
@@ -341,6 +355,62 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
                     break;
+
+                case InputInfoWithSearchWindow_PRESET.BUFFS:
+                    #region Add custom items
+                    DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode customNode) =>
+                    {
+                        string BUFF_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BUFF_ID))
+                        {
+                            string BUFF_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForBuff(BUFF_ID);
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {BUFF_DES}");
+                        }
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    DM.GameInfos.localizeInfos["EffectTexts"].rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode buffNode) =>
+                    {
+                        string BUFF_ID = buffNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BUFF_ID))
+                        {
+                            string BUFF_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForBuff(BUFF_ID);
+                            selectItems.Add(BUFF_DES);
+                        }
+                    });
+                    searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedPassives());
+                    break;
+                case InputInfoWithSearchWindow_PRESET.DICE_EFFECT_RESES:
+                    #region Add custom items
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last().Split('.')[0];
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+
+                    List<DM.XmlDataNode> behaviorNodes = DM.GameInfos.staticInfos["Card"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card/BehaviourList/Behaviour");
+                    List<string> effectReses = new List<string>();
+                    behaviorNodes.ForEach((DM.XmlDataNode effectRes) =>
+                    {
+                        string BEHAVIOR_EFFECT_RES = effectRes.GetAttributesSafe("EffectRes");
+                        if (!string.IsNullOrEmpty(BEHAVIOR_EFFECT_RES))
+                            effectReses.Add(BEHAVIOR_EFFECT_RES);
+                    });
+                    effectReses.GetUniqueList().ForEach((string uniqueEffectRes) =>
+                    {
+                        selectItems.Add($"{uniqueEffectRes}:{uniqueEffectRes}");
+                    });
+                    break;
             }
             InitLbxSearchType(searchTypes);
         }
@@ -350,6 +420,7 @@ namespace LORModingBase.SubWindows
             InitializeComponent();
             string CUSTOM_ITEM_WORD = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
             string IMAGE_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\ArtWork";
+            string SOUND_DIRECTORY = $"{DM.Config.CurrentWorkingDirectory}\\Sounds";
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW);
             this.afterSelectItem = afterSelectItem;
             List<string> searchTypes = new List<string>();
@@ -419,6 +490,151 @@ namespace LORModingBase.SubWindows
                     });
                     searchTypes.AddRange(DM.GetDivideInfo.GetAllDividedCardFilterInfo());
                     searchTypes.AddRange(DM.GetLocalizedFilterList.GetLocalizedChapters());
+                    break;
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_BUFF:
+                    #region Add custom items
+                    DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode customNode) =>
+                    {
+                        string BUFF_ID = customNode.GetAttributesSafe("ID");
+                        if (!string.IsNullOrEmpty(BUFF_ID))
+                        {
+                            string BUFF_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForBuff(BUFF_ID);
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {BUFF_DES}:{BUFF_ID}");
+                        }
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    break;
+
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE:
+                    #region Add custom items
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last();
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES}:{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+                    break;
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE_FOR_NAME:
+                    #region Add custom items
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last();
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES}:{CUSTOM_NAME.Split('.')[0]}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+                    break;
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE_PATH:
+                    #region Add custom items
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last();
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:/{DM.Config.CurrentWorkingDirectory.Split('\\').Last()}/ArtWork/{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+                    break;
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_SOUND:
+                    #region Add custom items
+                    if (Directory.Exists(SOUND_DIRECTORY))
+                    {
+                        Directory.GetFiles(SOUND_DIRECTORY).ForEachSafe((string soundPath) =>
+                        {
+                            if (soundPath.Split('.').Last().ToLower() == "wav")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = soundPath.Split('\\').Last();
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:/{DM.Config.CurrentWorkingDirectory.Split('\\').Last()}/Sounds/{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+                    break;
+
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_BUFF_FOR_NAME:
+                    #region Add custom items
+                    DM.EditGameData_Buff.LocalizedBuff.rootDataNode.ActionXmlDataNodesByPath("effectTextList/BattleEffectText", (DM.XmlDataNode customNode) =>
+                    {
+                        string BUFF_ID = customNode.GetAttributesSafe("ID");
+                        string BUFF_NAME = customNode.GetInnerTextByPath("Name");
+                        if (!string.IsNullOrEmpty(BUFF_ID))
+                        {
+                            string BUFF_DES = DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForBuff(BUFF_ID);
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {BUFF_DES}:{BUFF_NAME}");
+                        }
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    break;
+
+                case DLL_EDITOR_SELECT_PRESET.STAGE_FOR_STORY_TYPE:
+                    #region Add custom items
+                    DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode customNode) =>
+                    {
+                        string STAGE_ID = customNode.GetAttributesSafe("id");
+                        string TYPE_NAME = customNode.GetInnerTextByPath("StoryType");
+                        if (!string.IsNullOrEmpty(STAGE_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STAGE_ID)}:{TYPE_NAME}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    break;
+                case DLL_EDITOR_SELECT_PRESET.STAGE_FOR_STORY_ID:
+                    #region Add custom items
+                    DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode customNode) =>
+                    {
+                        string STAGE_ID = customNode.GetAttributesSafe("id");
+                        if (!string.IsNullOrEmpty(STAGE_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STAGE_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    break;
+                case DLL_EDITOR_SELECT_PRESET.SOUND_FILE_NAME:
+                    #region Add custom items
+                    if (Directory.Exists(SOUND_DIRECTORY))
+                    {
+                        Directory.GetFiles(SOUND_DIRECTORY).ForEachSafe((string soundPath) =>
+                        {
+                            if (soundPath.Split('.').Last().ToLower() == "wav")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = soundPath.Split('\\').Last();
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
                     break;
             }
 
@@ -509,7 +725,9 @@ namespace LORModingBase.SubWindows
         ENEMIES,
         DECKS,
 
-        DROP_BOOK
+        DROP_BOOK,
+        BUFFS,
+        DICE_EFFECT_RESES
     };
     public class DLL_EDITOR_SELECT_PRESET
     {
@@ -517,5 +735,17 @@ namespace LORModingBase.SubWindows
         public const string CUSTOM_ABILITY = "CUSTOM_ABILITY";
         public const string PERSONAL_EGO_CARD = "PERSONAL_EGO_CARD";
         public const string ALL_CARDS = "ALL_CARDS";
+
+        public const string CUSTOM_BUFF = "CUSTOM_BUFF";
+        public const string CUSTOM_IMAGE = "CUSTOM_IMAGE";
+        public const string CUSTOM_SOUND = "CUSTOM_SOUND";
+        public const string CUSTOM_BUFF_FOR_NAME = "CUSTOM_BUFF_FOR_NAME";
+
+        public const string STAGE_FOR_STORY_TYPE = "STAGE_FOR_STORY_TYPE";
+        public const string STAGE_FOR_STORY_ID = "STAGE_FOR_STORY_ID";
+        public const string SOUND_FILE_NAME = "SOUND_FILE_NAME";
+
+        public const string CUSTOM_IMAGE_PATH = "CUSTOM_IMAGE_PATH";
+        public const string CUSTOM_IMAGE_FOR_NAME = "CUSTOM_IMAGE_FOR_NAME";
     }
 }

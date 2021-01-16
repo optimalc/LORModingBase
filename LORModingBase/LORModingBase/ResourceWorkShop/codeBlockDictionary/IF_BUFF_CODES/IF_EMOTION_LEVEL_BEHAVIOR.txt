@@ -1,0 +1,3 @@
+if (behavior.card.target != null && behavior.card.target.emotionDetail.EmotionLevel {{0}} {{1}})
+{
+}

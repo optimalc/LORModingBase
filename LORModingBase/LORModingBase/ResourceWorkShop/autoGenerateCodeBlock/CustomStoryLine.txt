@@ -1,0 +1,84 @@
+using System;
+using HarmonyLib;
+using UnityEngine;
+using System.Reflection;
+using System.IO;
+using UI;
+using System.Collections.Generic;
+
+namespace {{0}}
+{
+	public class Harmony_Patch
+	{
+        public static UIStoryProgressIconSlot createdSlot_{{3}} = null;
+
+		public Harmony_Patch()
+		{
+			try
+			{
+				Harmony harmony = new Harmony(id: "{{1}}");
+
+                MethodInfo method = typeof(Harmony_Patch).GetMethod("UIStoryProgressPanel_SetStoryLine");
+                harmony.Patch(typeof(UIStoryProgressPanel).GetMethod("SetStoryLine", AccessTools.all), null, new HarmonyMethod(method), null, null);
+
+                method = typeof(Harmony_Patch).GetMethod("UISpriteDataManager_GetStoryIcon");
+                harmony.Patch(typeof(UISpriteDataManager).GetMethod("GetStoryIcon", AccessTools.all), new HarmonyMethod(method), null, null, null);
+            }
+			catch (Exception ex)
+			{
+				using (System.IO.StreamWriter sw = System.IO.File.AppendText(UnityEngine.Application.dataPath + "/BaseMods/errorLog_Mod.txt"))
+				{
+					sw.WriteLine(ex + ex.StackTrace);
+				}
+			}
+		}
+
+		public static void UIStoryProgressPanel_SetStoryLine(UIStoryProgressPanel __instance)
+        {
+            try
+            {
+                List<StageClassInfo> customStageInfoList = Singleton<StageClassInfoList>.Instance.recipeCondList.FindAll(x => x.storyType == "{{3}}");
+                List<UIStoryProgressIconSlot> iconList = (List<UIStoryProgressIconSlot>)__instance.GetType().GetField("iconList", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).GetValue(__instance);
+                
+                if(createdSlot_{{3}} == null)
+                {
+                    createdSlot_{{3}} = UnityEngine.Object.Instantiate<UIStoryProgressIconSlot>(iconList[0], iconList[0].transform.parent);
+                    createdSlot_{{3}}.transform.localPosition += new Vector3({{5}}, {{6}});
+                }
+                createdSlot_{{3}}.SetSlotData(customStageInfoList);
+
+                if (LibraryModel.Instance.GetChapter() >= customStageInfoList[0].chapter)
+                    createdSlot_{{3}}.SetActiveStory(true);
+                else
+                    createdSlot_{{3}}.SetActiveStory(false);
+            }
+            catch (Exception ex)
+            {
+                using (System.IO.StreamWriter sw = System.IO.File.AppendText(UnityEngine.Application.dataPath + "/BaseMods/errorLog_Mod.txt"))
+                {
+                    sw.WriteLine(ex + ex.StackTrace);
+                }
+            }
+		}
+
+        public static bool UISpriteDataManager_GetStoryIcon(UISpriteDataManager __instance, ref UIIconManager.IconSet __result, string story)
+        {
+            if(story == "{{3}}")
+            {
+                UIIconManager.IconSet iconSet = new UIIconManager.IconSet();
+
+                Texture2D texture = new Texture2D(2, 2);
+                texture.LoadImage(File.ReadAllBytes(UnityEngine.Application.dataPath + "/BaseMods/{{2}}/ArtWork/{{4}}"));
+                Sprite loadedIconSprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+                iconSet.icon = loadedIconSprite;
+                iconSet.iconGlow = loadedIconSprite;
+                __result = iconSet;
+
+                return false;
+            }
+
+            return true;
+        }
+    }
+}

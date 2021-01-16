@@ -1,0 +1,28 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF"
+    ],
+    "kr":[
+        "죽으면 기반 블록",
+        "죽으면 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "Die Base Block",
+        "Base block for invoking action when died",
+        ""
+    ],
+    "jp":[
+        "Die Base Block",
+        "Base block for invoking action when died",
+        ""
+    ],
+    "cn":[
+        "Die Base Block",
+        "Base block for invoking action when died",
+        ""
+    ]
+}

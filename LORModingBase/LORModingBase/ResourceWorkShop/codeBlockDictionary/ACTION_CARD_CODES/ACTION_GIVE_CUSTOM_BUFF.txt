@@ -1,0 +1,13 @@
+if (base.card.{{0}} != null)
+{
+    BattleUnitBuf <<0>> = base.card.{{0}}.bufListDetail.GetActivatedBufList().Find((BattleUnitBuf <<1>>) =>
+    {
+        return <<1>>.bufActivatedName == "{{3}}";
+    });
+    if (<<0>> == null)
+        base.card.{{0}}.bufListDetail.{{1}}(new BattleUnitBuf_{{2}}());
+    else
+        <<0>>.stack += {{4}};
+
+    base.card.{{0}}.bufListDetail.CheckBufCount();
+}

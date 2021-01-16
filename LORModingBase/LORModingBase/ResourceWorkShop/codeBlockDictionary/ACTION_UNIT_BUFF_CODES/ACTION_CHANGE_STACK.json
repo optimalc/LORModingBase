@@ -1,0 +1,26 @@
+{
+    "usings":[],
+    "type":["ACTION"],
+    "inputtedParameter":["+=","-1"],
+    "subBlockWhiteFilter":[],
+    "kr":[
+        "버프 스택의 수치를 조절함",
+        "버프 스택의 수치를 조절합니다",
+        "변경 방식$&ENUM_CHANGE_VALUE,수치"
+    ],
+    "en":[
+        "Change buff stack value",
+        "Change buff stack value",
+        "Chage Type$&ENUM_CHANGE_VALUE,Degree"
+    ],
+    "jp":[
+        "Change buff stack value",
+        "Change buff stack value",
+        "Chage Type$&ENUM_CHANGE_VALUE,Degree"
+    ],
+    "cn":[
+        "Change buff stack value",
+        "Change buff stack value",
+        "Chage Type$&ENUM_CHANGE_VALUE,Degree"
+    ]
+}

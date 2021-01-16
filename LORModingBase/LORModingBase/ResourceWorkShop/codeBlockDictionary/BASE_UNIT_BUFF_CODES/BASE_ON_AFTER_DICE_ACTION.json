@@ -1,0 +1,29 @@
+{
+    "usings":[],
+    "type":["BASE"],
+    "inputtedParameter":[],
+    "subBlockWhiteFilter":[
+        "&GROUP_GLOBAL_BUFF",
+        "&GROUP_GLOBAL_BUFF_BEHAVIOR"
+    ],
+    "kr":[
+        "주사위를 던진 후 기반블록",
+        "주사위를 던진 후 액션를 발생시키기 위한 기반 블록입니다",
+        ""
+    ],
+    "en":[
+        "After dice Base Block",
+        "Base block for invoking action after rolling dice",
+        ""
+    ],
+    "jp":[
+        "After dice Base Block",
+        "Base block for invoking action after rolling dice",
+        ""
+    ],
+    "cn":[
+        "After dice Base Block",
+        "Base block for invoking action after rolling dice",
+        ""
+    ]
+}

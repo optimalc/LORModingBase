@@ -72,5 +72,27 @@
     "%LblSourceCodeBlocks%":"Source code blocks",
     "%LblSourceCodeDescription%":"Description for selected source code block",
     "%TbxSourceCodeDes_ToolTip%":"Description for source code block",
-    "%TbxSourceCodeDetail_ToolTip%":"Source code content"
+    "%TbxSourceCodeDetail_ToolTip%":"Source code content",
+
+
+    "%BtnMakeDLLAuto%":"[Make DLL]",
+    "%BtnMakeDLLAuto_ToolTip%":"Make a DLL automatically",
+
+    "%LblDLLName%":"DLL Name",
+    "%TbxDLLName_ToolTip%":"Input DLL name to use",
+
+    "%TbxCompileResult_ToolTip%":"Compile result",
+    "%LblDLLGenarationOption%":"DLL Generation Option",
+
+    "AUTO_CREATE_DLL_ERROR_1":"The data of '{0}' column is not inputted",
+    "AUTO_CREATE_DLL_ERROR_2":"The name of DLL to use is not inputted",
+    "AUTO_CREATE_DLL_ERROR_3":"The name of the DLL you inputted already exists. If you continue, This DLL will be replaced. Are you sure?",
+    "AUTO_CREATE_DLL_ERROR_4":"Replace Caution",
+
+    "%LblSoundResource%":"Sound Resource Management(.wav)",
+    "%BtnAddSound%":"+ ADD",
+    "%BtnAddSound_ToolTip%":"Add sound to list",
+    "%BtnDeleteSound%":"- DELETE",
+    "%BtnDeleteSound_ToolTip%":"Delete selected sound",
+    "RESOURCE_DIALOG_TITLE2":"Selete sound you want to add"
 }

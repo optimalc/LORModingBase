@@ -1,0 +1,3 @@
+if (this._owner != null && this._owner.hp {{0}} (float)(this._owner.MaxHp / 100 * {{1}}))
+{
+}

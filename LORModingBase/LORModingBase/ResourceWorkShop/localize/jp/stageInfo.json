@@ -35,5 +35,18 @@
     "AVALIABLE_FLOOR":"Avalialbe Floor",
     "INVITATION_BOOK":"Inivation Book",
     
-    "FORMATION":"Formation"
+    "FORMATION":"Formation",
+
+    "%BtnStageCustom%":"Custom setting$0.8,0.7$12,3",
+    "%BtnStageCustom_ToolTip%":"Directly input stage settings",
+
+    "Chapter":"Chapter",
+    "Chapter_ToolTip":"Input chapter number of custom stage",
+    "StoryType":"Unique story type",
+    "StoryType_ToolTip":"Input story type of custom stage",
+
+    "Story_Start_Conditon":"Start story number",
+    "Story_Start_Conditon_ToolTip":"This story will be shown in the start stage",
+    "Story_End_Conditon":"End story number",
+    "Story_End_Conditon_TooTip":"This story will be shown when the stage is cleared"
 }

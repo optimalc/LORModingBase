@@ -1,0 +1,4 @@
+behavior.ApplyDiceStatBonus(new DiceStatBonus
+{
+    {{0}}={{1}}
+});
