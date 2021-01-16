@@ -1,0 +1,22 @@
+{
+    "kr":[
+        "특정 웨이브의 스테이지를 디자인하는 DLL",
+        "특정 웨이브의 스테이지를 꾸밀 수 있는 DLL입니다",
+        "네임 스페이스명@NAME_SPACE,하모니 ID@MAMONY_ID,모드 이름@MODE_NAME,스토리 ID@STORY_ID,스테이지 배경 이미지 파일@IMAGE_FILE_NAME,스테이지 바닥 이미지 파일@IMAGE_FILE_NAME,스테이지 BGM@SOUND_FILE_NAME,웨이브 조건(1부터 시작)"
+    ],
+    "en":[
+        "This DLL will design the custom stage",
+        "This DLL will design the custom stage",
+        "NameSpace name@NAME_SPACE,Hamony ID@MAMONY_ID,Mode name@MODE_NAME,Story ID@STORY_ID,Stage backgound image file@IMAGE_FILE_NAME,Stage floor image file@IMAGE_FILE_NAME,Stage BGM@SOUND_FILE_NAME,Wave IF(Begin from 1)"
+    ],
+    "jp":[
+        "This DLL will design the custom stage",
+        "This DLL will design the custom stage",
+        "NameSpace name@NAME_SPACE,Hamony ID@MAMONY_ID,Mode name@MODE_NAME,Story ID@STORY_ID,Stage backgound image file@IMAGE_FILE_NAME,Stage floor image file@IMAGE_FILE_NAME,Stage BGM@SOUND_FILE_NAME,Wave IF(Begin from 1)"
+    ],
+    "cn":[
+        "This DLL will design the custom stage",
+        "This DLL will design the custom stage",
+        "NameSpace name@NAME_SPACE,Hamony ID@MAMONY_ID,Mode name@MODE_NAME,Story ID@STORY_ID,Stage backgound image file@IMAGE_FILE_NAME,Stage floor image file@IMAGE_FILE_NAME,Stage BGM@SOUND_FILE_NAME,Wave IF(Begin from 1)"
+    ]
+}
