@@ -9,5 +9,6 @@
     "System.IO",
     "System.Linq",
     "UI",
-    "Sound"
+    "Sound",
+    "Battle.DiceAttackEffect"
 ]

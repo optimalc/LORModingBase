@@ -310,6 +310,9 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                         break;
                     case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_BUFF_FOR_NAME:
                     case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_SOUND:
+                    case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE:
+                    case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE_PATH:
+                    case SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE_FOR_NAME:
                         tbx.Text = inputedValue;
                         tbx.ToolTip = inputedValue;
                         return;

@@ -266,8 +266,8 @@ namespace LORModingBase.DLLEditor
                         case "IMAGE_FILE_NAME":
                             new SubWindows.Global_InputInfoWithSearchWindow((string selectedID) =>
                             {
-                                tbx.Text = selectedID.Split(']').Last().Trim();
-                                tbx.ToolTip = selectedID.Split(']').Last().Trim();
+                                tbx.Text = selectedID;
+                                tbx.ToolTip = selectedID;
                             }, SubWindows.DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE).ShowDialog();
                             break;
                         case "STORY_TYPE_NAME":

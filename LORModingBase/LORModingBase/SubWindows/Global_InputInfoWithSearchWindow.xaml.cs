@@ -518,7 +518,43 @@ namespace LORModingBase.SubWindows
                                 string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
                                 string CUSTOM_NAME = imagePath.Split('\\').Last();
 
-                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}");
+                                selectItems.Add($"{CUSTOM_FILTER_DES}:{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+                    break;
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE_FOR_NAME:
+                    #region Add custom items
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last();
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES}:{CUSTOM_NAME.Split('.')[0]}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+                    break;
+                case DLL_EDITOR_SELECT_PRESET.CUSTOM_IMAGE_PATH:
+                    #region Add custom items
+                    if (Directory.Exists(IMAGE_DIRECTORY))
+                    {
+                        Directory.GetFiles(IMAGE_DIRECTORY).ForEachSafe((string imagePath) =>
+                        {
+                            if (imagePath.Split('.').Last().ToLower() == "png" || imagePath.Split('.').Last().ToLower() == "jpg")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = imagePath.Split('\\').Last();
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:/{DM.Config.CurrentWorkingDirectory.Split('\\').Last()}/ArtWork/{CUSTOM_NAME}");
                             }
                         });
                     }
@@ -709,5 +745,8 @@ namespace LORModingBase.SubWindows
         public const string STAGE_FOR_STORY_TYPE = "STAGE_FOR_STORY_TYPE";
         public const string STAGE_FOR_STORY_ID = "STAGE_FOR_STORY_ID";
         public const string SOUND_FILE_NAME = "SOUND_FILE_NAME";
+
+        public const string CUSTOM_IMAGE_PATH = "CUSTOM_IMAGE_PATH";
+        public const string CUSTOM_IMAGE_FOR_NAME = "CUSTOM_IMAGE_FOR_NAME";
     }
 }
