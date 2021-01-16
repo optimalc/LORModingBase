@@ -77,5 +77,9 @@
     "%BtnDiceType_Standby_Evasion_ToolTip%":"반격 회피 주사위로 변경시킵니다",
 
     "IMAGE":"이미지",
-    "ABILITY":"효과"
+    "ABILITY":"효과",
+
+    "%TbxMotion_ToolTip%":"주사위의 모션을 입력 (직접 입력을 위해서는 오른쪽 마우스 클릭)",
+    "%TbxEffectRes_ToolTip%":"주사위의 모션 스크립트를 입력 (직접 입력을 위해서는 오른쪽 마우스 클릭)",
+    "%TbxActionScript_ToolTip%":"주사위의 액션 스크립트를 입력 (직접 입력을 위해서는 오른쪽 마우스 클릭)"
 }

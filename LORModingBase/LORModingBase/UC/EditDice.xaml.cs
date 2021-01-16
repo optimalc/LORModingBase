@@ -36,6 +36,7 @@ namespace LORModingBase.UC
             TbxMaxDice_Dice.Text = innerBehaviourNode.GetAttributesSafe("Dice");
             TbxMotion.Text = innerBehaviourNode.GetAttributesSafe("Motion");
             TbxEffectRes.Text = innerBehaviourNode.GetAttributesSafe("EffectRes");
+            TbxActionScript.Text = innerBehaviourNode.GetAttributesSafe("ActionScript");
             this.innerBehaviourNode = innerBehaviourNode;
 
             BtnDiceType.Background = Tools.ColorTools.GetImageBrushFromPath(this, $"../Resources/icon_{innerBehaviourNode.attribute["Type"] }_{innerBehaviourNode.attribute["Detail"]}.png");
@@ -152,6 +153,7 @@ namespace LORModingBase.UC
             MainWindow.mainWindow.UpdateDebugInfo();
         }
 
+
         private void TbxMotion_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             string DICE_TYPE = innerBehaviourNode.GetAttributesSafe("Type");
@@ -201,6 +203,51 @@ namespace LORModingBase.UC
                 MainWindow.mainWindow.UpdateDebugInfo();
                 MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
             }, effectReses.GetUniqueList()).ShowDialog();
+        }
+
+        private void TbxActionScript_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            List<DM.XmlDataNode> behaviorNodes = DM.GameInfos.staticInfos["Card"].rootDataNode.GetXmlDataNodesByPathWithXmlInfo("Card/BehaviourList/Behaviour");
+            List<string> actionScripts = new List<string>();
+            behaviorNodes.ForEach((DM.XmlDataNode effectRes) =>
+            {
+                string BEHAVIOR_ACTION_SCRIPT = effectRes.GetAttributesSafe("ActionScript");
+                if (!string.IsNullOrEmpty(BEHAVIOR_ACTION_SCRIPT))
+                    actionScripts.Add(BEHAVIOR_ACTION_SCRIPT);
+            });
+            new SubWindows.Global_ListSeleteWindow((string selectedActionScript) =>
+            {
+                TbxActionScript.Text = selectedActionScript;
+                TbxActionScript.ToolTip = selectedActionScript;
+                innerBehaviourNode.attribute["ActionScript"] = selectedActionScript;
+                MainWindow.mainWindow.UpdateDebugInfo();
+                MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
+            }, actionScripts.GetUniqueList()).ShowDialog();
+        }
+
+
+        /// <summary>
+        /// Mouse right button select -> Handly input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HandlyInputToTextBox(object sender, MouseButtonEventArgs e)
+        {
+            if (e.RightButton == MouseButtonState.Pressed)
+            {
+                if (innerBehaviourNode == null)
+                    return;
+                TextBox tbx = sender as TextBox;
+
+                new SubWindows.Global_InputOneColumnData((string inputedData) =>
+                {
+                    tbx.Text = inputedData;
+                    tbx.ToolTip = inputedData;
+                    innerBehaviourNode.attribute[tbx.Name.Replace("Tbx","")] = inputedData;
+                    MainWindow.mainWindow.UpdateDebugInfo();
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_CARD);
+                }, tbx.Text).ShowDialog();
+            }
         }
     }
 }
