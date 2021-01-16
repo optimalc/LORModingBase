@@ -13,9 +13,9 @@
 
     "IMAGE_THUMB_NAIL":"Thumbnail",
 
-    "IMAGE_HIT":"Hit",
+    "IMAGE_AIM":"Aim Posture",
     "IMAGE_TAKE_DAMAGE":"Take Damage",
-    "IMAGE_TAKE_FIRE_DAMAGE":"Take Fire Damage",
+    "IMAGE_FIRE":"Fire Posture",
     "IMAGE_DEFAULT_POSTURE":"Default Posture",
     "IMAGE_EVADE_POSTURE":"Evading Posture",
     "IMAGE_GUARD_POSTURE":"Guard Posture",

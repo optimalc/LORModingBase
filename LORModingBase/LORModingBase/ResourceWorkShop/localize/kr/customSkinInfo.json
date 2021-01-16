@@ -13,9 +13,9 @@
 
     "IMAGE_THUMB_NAIL":"썸네일",
 
-    "IMAGE_HIT":"적중 당함",
+    "IMAGE_AIM":"조준 자세",
     "IMAGE_TAKE_DAMAGE":"데미지를 받음",
-    "IMAGE_TAKE_FIRE_DAMAGE":"화염 데미지를 받음",
+    "IMAGE_FIRE":"원거리 발사 자세",
     "IMAGE_DEFAULT_POSTURE":"기본 자세",
     "IMAGE_EVADE_POSTURE":"회피 자세",
     "IMAGE_GUARD_POSTURE":"방어 자세",

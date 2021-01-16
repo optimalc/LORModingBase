@@ -32,9 +32,9 @@ namespace LORModingBase.DS
             Dictionary<string, string> skinPaths = new Dictionary<string, string>();
             skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_THUMB_NAIL")] = $"{rootSkinPath}\\{SkinRelativePaths.ThumbPath}";
 
-            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_HIT")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Aim}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_AIM")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Aim}";
             skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_TAKE_DAMAGE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Damaged}";
-            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_TAKE_FIRE_DAMAGE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Fire}";
+            skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_FIRE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Fire}";
 
             skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_DEFAULT_POSTURE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Default}";
             skinPaths[DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.CUSTOM_SKIN_INFO, $"IMAGE_EVADE_POSTURE")] = $"{rootSkinPath}\\{SkinRelativePaths.Cloth_Evade}";
