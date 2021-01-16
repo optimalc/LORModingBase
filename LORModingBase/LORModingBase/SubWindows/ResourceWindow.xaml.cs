@@ -16,6 +16,7 @@ namespace LORModingBase.SubWindows
     {
         string IMAGE_DIRECTORY = "";
         string SOUND_DIRECTORY = "";
+        public static string prevSelectedPath = DM.Config.config.LORFolderPath;
 
         public ResourceWindow()
         {
@@ -52,7 +53,7 @@ namespace LORModingBase.SubWindows
             switch (editButton.Name)
             {
                 case "BtnAddImage":
-                    Tools.Dialog.ShowOpenFileDialog(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"RESOURCE_DIALOG_TITLE"),
+                    Tools.Dialog.ShowOpenMultipleFileDialog(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"RESOURCE_DIALOG_TITLE"),
                         "Image Files|*.png;*.jpg", (string selectedFile) =>
                         {
                             if (File.Exists(selectedFile))
@@ -60,7 +61,11 @@ namespace LORModingBase.SubWindows
                                 File.Copy(selectedFile, $"{IMAGE_DIRECTORY}\\{selectedFile.Split('\\').Last()}");
                                 InitLbxImages();
                             }
-                        }, DM.Config.config.LORFolderPath);
+
+                            List<string> PATH_SPLIT = selectedFile.Split('\\').ToList();
+                            PATH_SPLIT.RemoveAt(PATH_SPLIT.Count - 1);
+                            prevSelectedPath = String.Join("\\", PATH_SPLIT.ToArray());
+                        }, prevSelectedPath);
                     break;
                 case "BtnDeleteImage":
                     if (LbxImages.SelectedItem != null)
@@ -95,7 +100,7 @@ namespace LORModingBase.SubWindows
             switch (editButton.Name)
             {
                 case "BtnAddSound":
-                    Tools.Dialog.ShowOpenFileDialog(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"RESOURCE_DIALOG_TITLE2"),
+                    Tools.Dialog.ShowOpenMultipleFileDialog(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"RESOURCE_DIALOG_TITLE2"),
                         "Sound Files|*.wav", (string selectedFile) =>
                         {
                             if (File.Exists(selectedFile))
@@ -103,7 +108,11 @@ namespace LORModingBase.SubWindows
                                 File.Copy(selectedFile, $"{SOUND_DIRECTORY}\\{selectedFile.Split('\\').Last()}");
                                 InitLbxSounds();
                             }
-                        }, DM.Config.config.LORFolderPath);
+
+                            List<string> PATH_SPLIT = selectedFile.Split('\\').ToList();
+                            PATH_SPLIT.RemoveAt(PATH_SPLIT.Count - 1);
+                            prevSelectedPath = String.Join("\\", PATH_SPLIT.ToArray());
+                        }, prevSelectedPath);
                     break;
                 case "BtnDeleteSound":
                     if (LbxSounds.SelectedItem != null)

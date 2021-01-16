@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LORModingBase.Tools
@@ -57,6 +59,32 @@ namespace LORModingBase.Tools
             theDialog.InitialDirectory = InitialDirectory;
             if (theDialog.ShowDialog() == DialogResult.OK)
                 callbackSelectedFilePath(theDialog.FileName.ToString());
+        }
+
+        /// <summary>
+        /// Show open file dialog and give it to view
+        /// <para> :Parameters: </para>
+        /// <para> title - Title to use </para>
+        /// <para> filter - Filter to use </para>
+        /// <para> callbackSelectedFilePath - Callback after select file path </para>
+        /// <para> InitialDirectory - Initial directory path </para>
+        /// <para> :Example: </para>
+        /// <para> ShowOpenFileDialog("Select exe file", "EXE files|*.exe", (string selectedFilePath) => {Console.WriteLine(selectedFilePath);}); </para>
+        /// <para> // Show file select browser and print selected file path </para>
+        /// </summary>
+        /// <param name="title">Title to use</param>
+        /// <param name="filter">Filter to use </param>
+        /// <param name="callbackSelectedFilePath">Callback after select file path</param>
+        /// <param name="InitialDirectory">Initial directory path</param>
+        public static void ShowOpenMultipleFileDialog(string title, string filter, Action<string> callbackSelectedFilesPath, string InitialDirectory = @"C:\")
+        {
+            OpenFileDialog theDialog = new OpenFileDialog();
+            theDialog.Title = title;
+            theDialog.Filter = filter;
+            theDialog.InitialDirectory = InitialDirectory;
+            theDialog.Multiselect = true;
+            if (theDialog.ShowDialog() == DialogResult.OK)
+                theDialog.FileNames.ToList().ForEach(callbackSelectedFilesPath);
         }
     }
 }
