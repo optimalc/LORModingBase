@@ -1,0 +1,40 @@
+using (System.IO.StreamWriter sw = System.IO.File.AppendText(UnityEngine.Application.dataPath + "/BaseMods/innerStageLog.txt"))
+{
+    sw.WriteLine($"");
+}
+
+MapManager - Map 관련한 상속 클래스
+    this._mapChangeFilter.StartMapChangingEffect(Direction.LEFT); - 화면 전환 이벤트
+
+Play Sound ?
+    SingletonBehavior<BattleSoundManager>.Instance.SetEnemyTheme(this.mapBgm);
+    SingletonBehavior<BattleSoundManager>.Instance.ChangeEnemyTheme(0);
+
+SingletonBehavior<CreatureDlgManagerUI>.Instance.Init(SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject == this);
+
+bool enabled = phase == EnemyTeamStageManager_TheCrying.Phase.OneUnitPhase;
+foreach (SpriteRenderer spriteRenderer in this._burnSpriteRenderers)
+{
+    spriteRenderer.enabled = enabled;
+}
+SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject.mapBgm[0];
+SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject
+
+TomerryMapManager
+SingletonBehavior<SoundEffectManager>.Instance.PlayClip(this._mapChangedSound, false, 1f, null);
+
+
+
+StageModel - SetCurrentMapInfo() - MapInfo 설정?
+GetCurrentMapInfo() - MapInfo 얻음?
+
+
+StageController 에서 스테이지 모델을 얻을 수 있다
+    InitStageByInvitation - 초대장을 통한 초기화
+        StageModel.Init - MapInfo를 쓴다
+            BattleScnRoot - ChangeToSpecialMap에서 MapManager에서 해당 name과 일치하는 MapManager을 사용한다
+            
+
+Singleton<StageController>.Instance.GetStageModel().SetCurrentMapInfo(0); - 맵 이미지 변경
+PassiveAbility_230028 - 필립 전용
+this.owner.view.ChangeSkin("PhilipEgo"); - 스킨 변경?

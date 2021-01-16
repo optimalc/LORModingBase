@@ -526,6 +526,35 @@ namespace LORModingBase.SubWindows
                     searchTypes.Add(CUSTOM_ITEM_WORD);
                     #endregion
                     break;
+                case DLL_EDITOR_SELECT_PRESET.STAGE_FOR_STORY_ID:
+                    #region Add custom items
+                    DM.EditGameData_StageInfo.StaticStageInfo.rootDataNode.ActionXmlDataNodesByPath("Stage", (DM.XmlDataNode customNode) =>
+                    {
+                        string STAGE_ID = customNode.GetAttributesSafe("id");
+                        if (!string.IsNullOrEmpty(STAGE_ID))
+                            selectItems.Add($"{CUSTOM_ITEM_WORD} {DM.FullyLoclalizedGameDescriptions.GetFullDescriptionForStage(STAGE_ID)}");
+                    });
+                    searchTypes.Add(CUSTOM_ITEM_WORD);
+                    #endregion
+                    break;
+                case DLL_EDITOR_SELECT_PRESET.SOUND_FILE_NAME:
+                    #region Add custom items
+                    if (Directory.Exists(SOUND_DIRECTORY))
+                    {
+                        Directory.GetFiles(SOUND_DIRECTORY).ForEachSafe((string soundPath) =>
+                        {
+                            if (soundPath.Split('.').Last().ToLower() == "wav")
+                            {
+                                string CUSTOM_FILTER_DES = DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM");
+                                string CUSTOM_NAME = soundPath.Split('\\').Last();
+
+                                selectItems.Add($"{CUSTOM_FILTER_DES} {CUSTOM_NAME}:{CUSTOM_NAME}");
+                            }
+                        });
+                    }
+                    searchTypes.Add(DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.GLOBAL_WINDOW, $"CUSTOM_ITEM"));
+                    #endregion
+                    break;
             }
 
             InitLbxSearchType(searchTypes);
@@ -631,5 +660,7 @@ namespace LORModingBase.SubWindows
         public const string CUSTOM_BUFF_FOR_NAME = "CUSTOM_BUFF_FOR_NAME";
 
         public const string STAGE_FOR_STORY_TYPE = "STAGE_FOR_STORY_TYPE";
+        public const string STAGE_FOR_STORY_ID = "STAGE_FOR_STORY_ID";
+        public const string SOUND_FILE_NAME = "SOUND_FILE_NAME";
     }
 }

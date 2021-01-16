@@ -1,0 +1,110 @@
+using System;
+using HarmonyLib;
+using UnityEngine;
+using System.Reflection;
+using System.IO;
+
+namespace {{0}}
+{
+    public class Harmony_Patch
+    {
+        public Harmony_Patch()
+        {
+            try
+            {
+                Harmony harmony = new Harmony(id: "{{1}}");
+
+                MethodInfo method = typeof(Harmony_Patch).GetMethod("StageController_InitializeMap");
+                harmony.Patch(typeof(StageController).GetMethod("InitializeMap", AccessTools.all), null, new HarmonyMethod(method), null, null);
+
+
+                method = typeof(Harmony_Patch).GetMethod("CryingChildMapManager_CreateDialog");
+                harmony.Patch(typeof(CryingChildMapManager).GetMethod("CreateDialog", AccessTools.all), new HarmonyMethod(method), null, null, null);
+            }
+            catch (Exception ex)
+            {
+                using (System.IO.StreamWriter sw = System.IO.File.AppendText(UnityEngine.Application.dataPath + "/BaseMods/errorLog_Mod.txt"))
+                {
+                    sw.WriteLine(ex + ex.StackTrace);
+                }
+            }
+        }
+
+        public static void StageController_InitializeMap(StageController __instance)
+        {
+            try
+            {
+
+                StageModel _stageModel = (StageModel)__instance.GetType().GetField("_stageModel", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).GetValue(__instance);
+                SephirahType _currentFloor = (SephirahType)__instance.GetType().GetField("_currentFloor", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).GetValue(__instance);
+
+                if (_stageModel.ClassInfo.id == {{3}})
+                {
+                    SingletonBehavior<BattleSceneRoot>.Instance.mapList.ForEach(delegate (MapManager x)
+                    {
+                        x.gameObject.SetActive(false);
+                    });
+
+                    GameObject gameObject = Util.LoadPrefab("InvitationMaps/InvitationMap_CryingChild", SingletonBehavior<BattleSceneRoot>.Instance.transform);
+                    gameObject.name = "CUSTOM_ID_{{3}}";
+
+                    MapManager mapManager = gameObject.GetComponent<MapManager>();
+
+
+                    WWW www = new WWW(string.Format("file://{0}", Application.dataPath + "/BaseMods" + "/{{2}}/Sounds/{{6}}"));
+                    while (true)
+                    {
+                        if (www.isDone)
+                            break;
+                    }
+                    AudioClip testClip = www.GetAudioClip();
+                    mapManager.mapBgm = new AudioClip[] { testClip };
+
+
+                    foreach (Component eachComponent in mapManager.gameObject.GetComponentsInChildren<Component>())
+                    {
+                        if (eachComponent is SpriteRenderer && eachComponent.name == "BG")
+                        {
+                            Texture2D texture = new Texture2D(2, 2);
+                            texture.LoadImage(File.ReadAllBytes(UnityEngine.Application.dataPath + "/BaseMods/{{2}}/ArtWork/{{4}}"));
+                            (eachComponent as SpriteRenderer).sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                        }
+                        else if (eachComponent is SpriteRenderer && eachComponent.name == "Floor")
+                        {
+                            Texture2D texture = new Texture2D(2, 2);
+                            texture.LoadImage(File.ReadAllBytes(UnityEngine.Application.dataPath + "/BaseMods/{{2}}/ArtWork/{{5}}"));
+                            (eachComponent as SpriteRenderer).sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                        }
+                        else if (eachComponent.name != "CUSTOM_ID_{{3}}" &&
+                            !eachComponent.name.Contains("BackgroundRoot") &&
+                            !eachComponent.name.Contains("Frame") &&
+                            eachComponent.name != "Camera" &&
+                            eachComponent.name != "BG" &&
+                            eachComponent.name != "Floor")
+                            eachComponent.gameObject.SetActive(false);
+                    }
+
+                    SingletonBehavior<BattleSceneRoot>.Instance.InitInvitationMap(mapManager);
+                    BattleSceneRoot.Instance.currentMapObject = mapManager;
+                    BattleSceneRoot.Instance.currentMapObject.ActiveMap(true);
+                    BattleSceneRoot.Instance.currentMapObject.InitializeMap();
+                }
+            }
+            catch (Exception ex)
+            {
+                using (System.IO.StreamWriter sw = System.IO.File.AppendText(UnityEngine.Application.dataPath + "/BaseMods/errorLog_Mod.txt"))
+                {
+                    sw.WriteLine(ex + ex.StackTrace);
+                }
+            }
+        }
+
+        public static bool CryingChildMapManager_CreateDialog(CryingChildMapManager __instance)
+        {
+            if (__instance.name == "CUSTOM_ID_{{3}}")
+                return false;
+            else
+                return true;
+        }
+    }
+}

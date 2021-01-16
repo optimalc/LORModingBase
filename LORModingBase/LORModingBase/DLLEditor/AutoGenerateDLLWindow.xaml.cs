@@ -277,6 +277,20 @@ namespace LORModingBase.DLLEditor
                                 tbx.ToolTip = selectedName;
                             }, SubWindows.DLL_EDITOR_SELECT_PRESET.STAGE_FOR_STORY_TYPE).ShowDialog();
                             break;
+                        case "STORY_ID":
+                            new SubWindows.Global_InputInfoWithSearchWindow((string selectedID) =>
+                            {
+                                tbx.Text = selectedID;
+                                tbx.ToolTip = selectedID;
+                            }, SubWindows.DLL_EDITOR_SELECT_PRESET.STAGE_FOR_STORY_ID).ShowDialog();
+                            break;
+                        case "SOUND_FILE_NAME":
+                            new SubWindows.Global_InputInfoWithSearchWindow((string selectedID) =>
+                            {
+                                tbx.Text = selectedID;
+                                tbx.ToolTip = selectedID;
+                            }, SubWindows.DLL_EDITOR_SELECT_PRESET.SOUND_FILE_NAME).ShowDialog();
+                            break;
                     }
                 }
             }
