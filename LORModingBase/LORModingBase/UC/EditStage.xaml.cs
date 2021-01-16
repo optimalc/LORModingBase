@@ -210,9 +210,19 @@ namespace LORModingBase.UC
                         (string inputedVar) => {
                             innerStageNode.SetXmlInfoByPathAndEmptyWillRemove("StoryType", inputedVar);},
                         (string inputedVar) => {
-                            innerStageNode.SetXmlInfoByPath("Story", inputedVar, attributePairsToSet:new Dictionary<string, string>(){ { "Condition", "Start" } });},
+                            innerStageNode.ActionXmlDataNodesByAttributeWithPath("Story", "Condition", "Start", (DM.XmlDataNode storyNode) => {
+                                storyNode.innerText = inputedVar;
+                            });
+                            MainWindow.mainWindow.UpdateDebugInfo();
+                            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
+                        },
                         (string inputedVar) => {
-                            innerStageNode.SetXmlInfoByPath("Story", inputedVar, attributePairsToSet:new Dictionary<string, string>(){ { "Condition", "End" } });} }).ShowDialog();
+                                 innerStageNode.ActionXmlDataNodesByAttributeWithPath("Story", "Condition", "End", (DM.XmlDataNode storyNode) => {
+                                storyNode.innerText = inputedVar;
+                            });
+                            MainWindow.mainWindow.UpdateDebugInfo();
+                            MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
+                        } }).ShowDialog();
                     
                     MainWindow.mainWindow.UpdateDebugInfo();
                     MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_STAGE_INFO);
