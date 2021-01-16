@@ -141,6 +141,9 @@ namespace LORModingBase.DLLEditor
                             case "MODE_NAME":
                                 defaultValue = DM.Config.CurrentWorkingDirectory.Split('\\').Last();
                                 break;
+                            case "WAVE_NUM":
+                                defaultValue = "1";
+                                break;
                         }
                         InputValueToDataUI(paraIndex, selectedAutoGenerateCodeBlock.parameterNameList[paraIndex], defaultValue);
                     }
