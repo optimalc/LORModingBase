@@ -1,2 +1,2 @@
 if (behavior.card.target != null)
-    behavior.card.target.bufListDetail.AddKeywordBufByEtc(KeywordBuf.{{0}}, {{1}}, this._owner);
+    behavior.card.target.bufListDetail.{{0}}(KeywordBuf.{{1}}, {{2}}, this._owner);
