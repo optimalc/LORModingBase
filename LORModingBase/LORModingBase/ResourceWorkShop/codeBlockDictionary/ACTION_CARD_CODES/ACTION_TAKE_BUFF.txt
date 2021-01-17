@@ -1,2 +1,2 @@
 if (base.owner != null)
-        base.owner.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.{{0}}, {{1}}, null);
+        base.owner.bufListDetail.{{0}}(KeywordBuf.{{1}}, {{2}}, null);

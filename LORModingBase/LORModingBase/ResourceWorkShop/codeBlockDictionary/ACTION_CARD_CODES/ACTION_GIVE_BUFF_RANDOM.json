@@ -1,26 +1,26 @@
 {
     "usings":[],
     "type":["ACTION"],
-    "inputtedParameter":["owner", "2", "Burn", "1"],
+    "inputtedParameter":["AddKeywordBufByEtc", "owner", "2", "Burn", "1"],
     "subBlockWhiteFilter":[],
     "kr":[
         "적/아군의 몇 명중에 랜덤으로 버프를 부여",
         "적/아군의 몇 명중에 랜덤으로 특정 수치의 버프를 부여합니다",
-        "대상$자신-owner$상대방-target,인명 수,버프종류$&ENUM_KEY_WORD_BUF,부여 수치"
+        "부여 타이밍$즉시-AddKeywordBufThisRoundByEtc$다음 막에-AddKeywordBufByEtc,대상$자신-owner$상대방-target,인명 수,버프종류$&ENUM_KEY_WORD_BUF,부여 수치"
     ],
     "en":[
         "Give buff to random ally or enemy",
         "Give buff to random ally or enemy",
-        "Target$-owner$-target,The number of people,Buff type$&ENUM_KEY_WORD_BUF,Degree"
+        "Timing$Immediately-AddKeywordBufThisRoundByEtc$Next Round-AddKeywordBufByEtc,Target$-owner$-target,The number of people,Buff type$&ENUM_KEY_WORD_BUF,Degree"
     ],
     "jp":[
         "Give buff to random ally or enemy",
         "Give buff to random ally or enemy",
-        "Target$-owner$-target,The number of people,Buff type$&ENUM_KEY_WORD_BUF,Degree"
+        "Timing$Immediately-AddKeywordBufThisRoundByEtc$Next Round-AddKeywordBufByEtc,Target$-owner$-target,The number of people,Buff type$&ENUM_KEY_WORD_BUF,Degree"
     ],
     "cn":[
         "Give buff to random ally or enemy",
         "Give buff to random ally or enemy",
-        "Target$-owner$-target,The number of people,Buff type$&ENUM_KEY_WORD_BUF,Degree"
+        "Timing$Immediately-AddKeywordBufThisRoundByEtc$Next Round-AddKeywordBufByEtc,Target$-owner$-target,The number of people,Buff type$&ENUM_KEY_WORD_BUF,Degree"
     ]
 }

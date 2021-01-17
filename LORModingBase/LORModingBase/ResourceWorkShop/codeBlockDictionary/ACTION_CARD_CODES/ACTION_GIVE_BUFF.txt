@@ -1,2 +1,2 @@
 if (base.card.target != null)
-    base.card.target.bufListDetail.AddKeywordBufByCard(KeywordBuf.{{0}}, {{1}}, base.owner);
+    base.card.target.bufListDetail.{{0}}(KeywordBuf.{{1}}, {{2}}, base.owner);
