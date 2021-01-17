@@ -1,2 +1,2 @@
-if (this.owner != null)
-    this.owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.{{0}}, {{1}}, this.owner);
+if (base.owner != null)
+        base.owner.bufListDetail.{{0}}(KeywordBuf.{{1}}, {{2}}, null);

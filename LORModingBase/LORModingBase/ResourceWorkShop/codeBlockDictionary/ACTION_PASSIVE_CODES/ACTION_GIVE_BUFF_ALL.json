@@ -4,23 +4,23 @@
     "inputtedParameter":["AddKeywordBufByCard", "Burn", "1"],
     "subBlockWhiteFilter":[],
     "kr":[
-        "버프를 자신에게 부여",
-        "자신에게 특정 버프를 특정 수치만큼 부여합니다",
+        "모든 적에게 버프를 부여",
+        "모든 적에게 특정 버프를 특정 수치만큼 부여합니다",
         "부여 타이밍$즉시-AddKeywordBufThisRoundByCard$다음 막에-AddKeywordBufByCard,버프종류$&ENUM_KEY_WORD_BUF,부여 수치"
     ],
     "en":[
-        "Give buff to owner",
-        "Give buff to owner",
+        "Give buff to all opponent",
+        "Give buff to all opponent",
         "Timing$Immediately-AddKeywordBufThisRoundByCard$Next Round-AddKeywordBufByCard,Buf Type$&ENUM_KEY_WORD_BUF,Degree"
     ],
     "jp":[
-        "Give buff to owner",
-        "Give buff to owner",
+        "Give buff to all opponent",
+        "Give buff to all opponent",
         "Timing$Immediately-AddKeywordBufThisRoundByCard$Next Round-AddKeywordBufByCard,Buf Type$&ENUM_KEY_WORD_BUF,Degree"
     ],
     "cn":[
-        "Give buff to owner",
-        "Give buff to owner",
+        "Give buff to all opponent",
+        "Give buff to all opponent",
         "Timing$Immediately-AddKeywordBufThisRoundByCard$Next Round-AddKeywordBufByCard,Buf Type$&ENUM_KEY_WORD_BUF,Degree"
     ]
 }
