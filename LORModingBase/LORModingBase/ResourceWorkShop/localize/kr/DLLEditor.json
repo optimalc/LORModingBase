@@ -25,5 +25,8 @@
     "%BtnDelete_ToolTip%":"이 블록을 삭제하기",
 
     "SUCCESS_COMPILE":"컴파일 성공",
-    "ERROR_COMPILE":"컴파일 도중에 에러가 발생했습니다"
+    "ERROR_COMPILE":"컴파일 도중에 에러가 발생했습니다",
+
+    "NO_COMPILE":"아직 컴파일되지 않았습니다",
+    "YES_COMPILE":"컴파일된 DLL이 있습니다"
 }

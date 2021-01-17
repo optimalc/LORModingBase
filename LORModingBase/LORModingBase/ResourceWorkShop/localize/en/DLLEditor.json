@@ -25,5 +25,8 @@
     "%BtnDelete_ToolTip%":"Delete code block",
 
     "SUCCESS_COMPILE":"Compile was succeeded",
-    "ERROR_COMPILE":"An error has occurred while compiling"
+    "ERROR_COMPILE":"An error has occurred while compiling",
+
+    "NO_COMPILE":"Compile is not executed",
+    "YES_COMPILE":"Compiled DLL has existed"
 }

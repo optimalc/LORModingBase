@@ -32,6 +32,7 @@ namespace LORModingBase.DLLEditor
             TbxNameSpace.Text = DM.Config.config.nameSpaceToUse;
             Tools.WindowControls.LocalizeWindowControls(this, DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO);
             InitDLLStacks();
+            UpdateCompileButton();
         }
 
         public DLLEditorMainWindow(string fileName, List<string> autoParaPaths = null, List<CodeBlock> rootCodeBlocksToUse = null)
@@ -63,6 +64,25 @@ namespace LORModingBase.DLLEditor
 
             InitCreatedSourceCodeTextBox();
             InitDLLStacks();
+            UpdateCompileButton();
+        }
+
+        private void UpdateCompileButton()
+        {
+            if(!string.IsNullOrEmpty(targetSourceFilePath))
+            {
+                string OUTPUT_DLL_PATH = $"{DM.Config.CurrentWorkingDirectory}\\{targetSourceFilePath.Split('\\').Last().Split('.')[0]}.dll";
+                if (File.Exists(OUTPUT_DLL_PATH))
+                {
+                    BtnCompileDLL.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"%BtnCompileDLL_ToolTip%").Split('$')[0]}({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"YES_COMPILE")})";
+                    BtnCompileDLL.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FF2FBD40");
+                }
+                else
+                {
+                    BtnCompileDLL.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"%BtnCompileDLL_ToolTip%").Split('$')[0]}({DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.DLL_EDITOR_INFO, $"NO_COMPILE")})";
+                    BtnCompileDLL.Foreground = Tools.ColorTools.GetSolidColorBrushByHexStr("#FFE74438");
+                }
+            }
         }
 
         private void InitDLLStacks()
@@ -192,6 +212,7 @@ namespace LORModingBase.DLLEditor
                             this.Title = $"DLL Editor Window - {targetSourceFilePath.Split('\\').Last().Split('.')[0]}.dll";
                         InitCreatedSourceCodeTextBox();
                         InitDLLStacks();
+                        UpdateCompileButton();
                         break;
                     case "BtnCompileDLL":
                         if (string.IsNullOrEmpty(targetSourceFilePath))
@@ -201,6 +222,7 @@ namespace LORModingBase.DLLEditor
                         }
                         TbxLogging.Text = CompileDLL.CompileGivenCodeToDLL(TbxTextEditor.Text, targetSourceFilePath.Split('\\').Last().Split('.')[0]);
                         TbxLogging.ScrollToEnd();
+                        UpdateCompileButton();
                         break;
 
                     case "BtnAddCodeBase":
