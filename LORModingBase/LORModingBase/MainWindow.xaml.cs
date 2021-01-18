@@ -41,6 +41,10 @@ namespace LORModingBase
 
         private void ReloadAllStackDatas()
         {
+            string SAVED_SELECTED_ITEM = "";
+            if (LbxTextEditor.SelectedItem != null)
+                SAVED_SELECTED_ITEM = LbxTextEditor.SelectedItem.ToString();
+
             InitSplCriticalPage();
             InitSplCards();
 
@@ -52,6 +56,9 @@ namespace LORModingBase
             InitSplPassives();
             InitSplCardAbilities();
             InitSplBuff();
+
+            if(!string.IsNullOrEmpty(SAVED_SELECTED_ITEM))
+                LbxTextEditor.SelectedItem = SAVED_SELECTED_ITEM;
         }
 
         /// <summary>
