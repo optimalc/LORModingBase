@@ -216,6 +216,8 @@ namespace LORModingBase.DLLEditor.CodeBlockControls
                     if (codeBlock.inputtedParameterList[paraIndex] == paraDes.Split('-').Last())
                         tbx.Text = paraDes.Split('-')[0];
                 }
+                if (string.IsNullOrEmpty(tbx.Text))
+                    tbx.Text = codeBlock.inputtedParameterList[paraIndex];
             }
             else if (codeBlock.parameterList[paraIndex].Contains('#'))
             {
