@@ -8,18 +8,17 @@ namespace {{0}}
 {
 	public class Harmony_Patch
 	{
+		public static GameObject prevGameObj_{{3}}_{{7}} = null;
+
 		public Harmony_Patch()
 		{
 			try
 			{
 				Harmony harmony = new Harmony("{{1}}");
-
 				MethodInfo method = typeof(Harmony_Patch).GetMethod("StageController_InitializeMap");
 				harmony.Patch(typeof(StageController).GetMethod("InitializeMap", AccessTools.all), null, new HarmonyMethod(method), null, null);
 				method = typeof(Harmony_Patch).GetMethod("BattleSceneRoot_ChangeToSephirahMap");
 				harmony.Patch(typeof(BattleSceneRoot).GetMethod("ChangeToSephirahMap", AccessTools.all), null, new HarmonyMethod(method), null, null);
-
-
 				method = typeof(Harmony_Patch).GetMethod("CryingChildMapManager_CreateDialog");
 				harmony.Patch(typeof(CryingChildMapManager).GetMethod("CreateDialog", AccessTools.all), new HarmonyMethod(method), null, null, null);
 			}
@@ -34,60 +33,72 @@ namespace {{0}}
 
 		public static void StageController_InitializeMap()
 		{
-			MoveToCustomMap();
+			Harmony_Patch.MoveToCustomMap();
 		}
+
 		public static void BattleSceneRoot_ChangeToSephirahMap()
-        {
-			MoveToCustomMap();
+		{
+			Harmony_Patch.MoveToCustomMap();
 		}
 
 		public static void MoveToCustomMap()
 		{
 			try
 			{
-				StageModel stageModel = (StageModel)StageController.Instance.GetType().GetField("_stageModel", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).GetValue(StageController.Instance);
+				StageModel stageModel = (StageModel)Singleton<StageController>.Instance.GetType().GetField("_stageModel", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).GetValue(Singleton<StageController>.Instance);
 				int currentWave = (int)StageController.Instance.GetType().GetField("_currentWave", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).GetValue(StageController.Instance);
-                if (stageModel.ClassInfo.id == {{3}} && currentWave == {{7}})
+				if (stageModel.ClassInfo.id == {{3}} && currentWave == {{7}})
 				{
 					SingletonBehavior<BattleSceneRoot>.Instance.mapList.ForEach(delegate (MapManager x)
 					{
 						x.gameObject.SetActive(false);
 					});
-					GameObject gameObject = Util.LoadPrefab("InvitationMaps/InvitationMap_CryingChild", SingletonBehavior<BattleSceneRoot>.Instance.transform);
-					gameObject.name = "CUSTOM_ID_{{3}}";
-					MapManager component = gameObject.GetComponent<MapManager>();
-					WWW www = new WWW(string.Format("file://{0}", Application.dataPath + "/BaseMods/{{2}}/Sounds/{{6}}"));
-					while (!www.isDone)
-					{
+					if(prevGameObj_{{3}}_{{7}} == null)
+                    {
+						prevGameObj_{{3}}_{{7}} = Util.LoadPrefab("InvitationMaps/InvitationMap_CryingChild", SingletonBehavior<BattleSceneRoot>.Instance.transform);
+						prevGameObj_{{3}}_{{7}}.name = "CUSTOM_ID_{{3}}";
+						MapManager component = prevGameObj_{{3}}_{{7}}.GetComponent<MapManager>();
+						WWW www = new WWW(string.Format("file://{0}", Application.dataPath + "/BaseMods/{{2}}/Sounds/{{6}}"));
+						while (!www.isDone)
+						{
+						}
+						AudioClip audioClip = www.GetAudioClip();
+						component.mapBgm = new AudioClip[]
+						{
+						audioClip
+						};
+						foreach (Component component2 in component.gameObject.GetComponentsInChildren<Component>())
+						{
+							if (component2 is SpriteRenderer && component2.name == "BG")
+							{
+								Texture2D texture2D = new Texture2D(2, 2);
+								texture2D.LoadImage(File.ReadAllBytes(Application.dataPath + "/BaseMods/{{2}}/ArtWork/{{4}}"));
+								(component2 as SpriteRenderer).sprite = Sprite.Create(texture2D, new Rect(0f, 0f, (float)texture2D.width, (float)texture2D.height), new Vector2(0.5f, 0.5f));
+							}
+							else if (component2 is SpriteRenderer && component2.name == "Floor")
+							{
+								Texture2D texture2D = new Texture2D(2, 2);
+								texture2D.LoadImage(File.ReadAllBytes(Application.dataPath + "/BaseMods/{{2}}/ArtWork/{{5}}"));
+								(component2 as SpriteRenderer).sprite = Sprite.Create(texture2D, new Rect(0f, 0f, (float)texture2D.width, (float)texture2D.height), new Vector2(0.5f, 0.5f));
+							}
+							else if (component2.name != "CUSTOM_ID_{{3}}" && !component2.name.Contains("BackgroundRoot") && !component2.name.Contains("Frame") && component2.name != "Camera" && component2.name != "BG" && component2.name != "Floor")
+							{
+								component2.gameObject.SetActive(false);
+							}
+						}
+						SingletonBehavior<BattleSceneRoot>.Instance.InitInvitationMap(component);
+						SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject = component;
+						SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject.ActiveMap(true);
+						SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject.InitializeMap();
 					}
-					AudioClip audioClip = www.GetAudioClip();
-					component.mapBgm = new AudioClip[]
-					{
-							audioClip
-					};
-					foreach (Component component2 in component.gameObject.GetComponentsInChildren<Component>())
-					{
-						if (component2 is SpriteRenderer && component2.name == "BG")
-						{
-							Texture2D texture2D = new Texture2D(2, 2);
-							texture2D.LoadImage(File.ReadAllBytes(Application.dataPath + "/BaseMods/{{2}}/ArtWork/{{4}}"));
-							(component2 as SpriteRenderer).sprite = Sprite.Create(texture2D, new Rect(0f, 0f, (float)texture2D.width, (float)texture2D.height), new Vector2(0.5f, 0.5f));
-						}
-						else if (component2 is SpriteRenderer && component2.name == "Floor")
-						{
-							Texture2D texture2D = new Texture2D(2, 2);
-							texture2D.LoadImage(File.ReadAllBytes(Application.dataPath + "/BaseMods/{{2}}/ArtWork/{{5}}"));
-							(component2 as SpriteRenderer).sprite = Sprite.Create(texture2D, new Rect(0f, 0f, (float)texture2D.width, (float)texture2D.height), new Vector2(0.5f, 0.5f));
-						}
-						else if (component2.name != "CUSTOM_ID_{{3}}" && !component2.name.Contains("BackgroundRoot") && !component2.name.Contains("Frame") && component2.name != "Camera" && component2.name != "BG" && component2.name != "Floor")
-						{
-							component2.gameObject.SetActive(false);
-						}
+					else
+                    {
+						MapManager component = prevGameObj_{{3}}_{{7}}.GetComponent<MapManager>();
+						SingletonBehavior<BattleSceneRoot>.Instance.InitInvitationMap(component);
+						SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject = component;
+						SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject.ActiveMap(true);
+						SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject.InitializeMap();
 					}
-					SingletonBehavior<BattleSceneRoot>.Instance.InitInvitationMap(component);
-					SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject = component;
-					SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject.ActiveMap(true);
-					SingletonBehavior<BattleSceneRoot>.Instance.currentMapObject.InitializeMap();
 				}
 			}
 			catch (Exception ex)
