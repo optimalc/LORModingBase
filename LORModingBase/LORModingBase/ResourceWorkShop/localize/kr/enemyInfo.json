@@ -36,5 +36,7 @@
     "%BtnDelete_ToolTip%":"적 유닛 정보를 삭제합니다",
 
     "BOOK":"책",
-    "DECK":"덱"
+    "DECK":"덱",
+    
+    "%BtnRetreat_ToolTip%":"적 유닛이 도망가는 모션을 취할지에 대한 여부입니다"
 }

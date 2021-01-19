@@ -36,5 +36,7 @@
     "%BtnDelete_ToolTip%":"Delete enemy info",
 
     "BOOK":"Book",
-    "DECK":"Deck"
+    "DECK":"Deck",
+    
+    "%BtnRetreat_ToolTip%":"Click it if the enemy will retreat"
 }

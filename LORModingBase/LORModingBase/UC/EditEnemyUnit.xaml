@@ -144,7 +144,20 @@
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
             <Rectangle Grid.Row="0" Grid.RowSpan="2" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
-
+            <Button x:Name="BtnRetreat" Grid.Row="0"  Style="{StaticResource StyBtnMenu}" ToolTip="적 유닛이 도망가는 모션을 취할지에 대한 여부입니다(OFF)" Click="RightMenuButtonEvents">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="10" ScaleY="12"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-18" Y="-17"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/IconNoRetreat.png"/>
+                </Button.Background>
+            </Button>
+            
             <Rectangle Grid.Row="2" Grid.RowSpan="6" RadiusX="5" RadiusY="5" Fill="#54000000" Margin="1"/>
             <Button x:Name="BtnCopyEnemy" Grid.Row="2"  Style="{StaticResource StyBtnMenu}" ToolTip="적 유닛 정보를 복제해서 새로운 적 유닛 정보를 만듭니다" Click="RightMenuButtonEvents">
                 <Button.RenderTransform>

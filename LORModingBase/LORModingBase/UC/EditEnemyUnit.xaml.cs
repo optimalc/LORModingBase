@@ -61,8 +61,23 @@ namespace LORModingBase.UC
                 BtnDeckID.Content = "          ";
             });
 
+            InitRetreatButton();
             InitRewards();
             MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
+        }
+
+        private void InitRetreatButton()
+        {
+            if(innerEnemyNode.GetInnerTextByPath("Retreat") == "true")
+            {
+                BtnRetreat.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconYesRetreat.png");
+                BtnRetreat.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"%BtnRetreat_ToolTip%")} (ON)";
+            }
+            else
+            {
+                BtnRetreat.Background = Tools.ColorTools.GetImageBrushFromPath(this, "../Resources/IconNoRetreat.png");
+                BtnRetreat.ToolTip = $"{DM.LocalizeCore.GetLanguageData(DM.LANGUAGE_FILE_NAME.ENEMY_INFO, $"%BtnRetreat_ToolTip%")} (OFF)";
+            }
         }
 
         private void InitRewards()
@@ -233,6 +248,14 @@ namespace LORModingBase.UC
             Button btn = sender as Button;
             switch (btn.Name)
             {
+                case "BtnRetreat":
+                    if (innerEnemyNode.CheckIfGivenPathWithXmlInfoExists("Retreat"))
+                        innerEnemyNode.RemoveXmlInfosByPath("Retreat");
+                    else
+                        innerEnemyNode.AddXmlInfoByPath("Retreat", "true");
+                    MainWindow.mainWindow.ChangeDebugLocation(MainWindow.DEBUG_LOCATION.STATIC_ENEMY_INFO);
+                    InitRetreatButton();
+                    break;
                 case "BtnCopyEnemy":
                     DM.EditGameData_EnemyInfo.StaticEnemyUnitInfo.rootDataNode.subNodes.Add(innerEnemyNode.Copy());
                     initStack();

@@ -506,5 +506,9 @@
   <ItemGroup>
     <Resource Include="Resources\BtnOpenSkinWindow.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IconNoRetreat.png" />
+    <Resource Include="Resources\IconYesRetreat.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
